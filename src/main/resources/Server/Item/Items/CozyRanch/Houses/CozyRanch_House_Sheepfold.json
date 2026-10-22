@@ -51,6 +51,16 @@
       }
     ],
     "VariantRotation": "NESW",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CozyRanchUseHouse"
+          }
+        ]
+      }
+    },
+    "InteractionHint": "cozyranch_house.hint.use",
     "Gathering": {
       "Breaking": {
         "GatherType": "Benches",

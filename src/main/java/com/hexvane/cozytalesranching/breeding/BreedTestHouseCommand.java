@@ -22,12 +22,16 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.joml.Vector3d;
 
 /**
- * {@code /ranch breed testhouse <species> [--traits=a+b] [--role=<ranch role>]}: a house record at the admin's feet with two adult residents
- * asleep inside, five hearts and full happiness, ready to breed. A test fixture: it places no block.
+ * {@code /ranch breed testhouse <species> [--traits=a+b] [--role=<ranch role>]}: two adult residents asleep in a house, five
+ * hearts and full happiness, ready to breed. The house is the admin's own house of that species within 8 blocks if there is
+ * one (place it first with {@code /ranch house debug place}), else a bare record at their feet. A test fixture: it places no
+ * block, and the house day system removes a bare record once it sees no block there.
  */
 final class BreedTestHouseCommand extends AbstractPlayerCommand {
     private final RequiredArg<String> speciesArg;
@@ -53,10 +57,13 @@ final class BreedTestHouseCommand extends AbstractPlayerCommand {
         TransformComponent t = store.getComponent(ref, TransformComponent.getComponentType());
         if (t == null) return;
         Vector3d pos = t.getPosition();
-        HouseRecord house = Ranch.houses().create(playerRef.getUuid(), species.Id, species.HouseBlock, world.getName(),
-            (int) Math.floor(pos.x), (int) Math.floor(pos.y), (int) Math.floor(pos.z), 0);
-        house.capacity = species.HouseCapacity;
-        Ranch.houses().markDirty(house);
+        HouseRecord house = nearbyHouse(playerRef.getUuid(), species.Id, world.getName(), pos);
+        if (house == null) {
+            house = Ranch.houses().create(playerRef.getUuid(), species.Id, species.HouseBlock, world.getName(),
+                (int) Math.floor(pos.x), (int) Math.floor(pos.y), (int) Math.floor(pos.z), 0);
+            house.capacity = species.HouseCapacity;
+            Ranch.houses().markDirty(house);
+        }
 
         TraitBook book = TraitRegistry.get();
         List<String> traits = context.provided(traitsArg)
@@ -91,5 +98,21 @@ final class BreedTestHouseCommand extends AbstractPlayerCommand {
             .param("species", species.Id)
             .param("parents", String.join(", ", ids))
             .param("traits", traits.isEmpty() ? "-" : String.join(", ", traits)));
+    }
+
+    @Nullable
+    private static HouseRecord nearbyHouse(@Nonnull UUID owner, @Nonnull String speciesId, @Nonnull String worldName, @Nonnull Vector3d pos) {
+        HouseRecord best = null;
+        double bestD = 8.0 * 8.0;
+        for (HouseRecord h : Ranch.houses().ownedBy(owner)) {
+            if (!h.speciesId.equals(speciesId) || !h.worldName.equals(worldName)) continue;
+            double dx = h.doorX - pos.x, dz = h.doorZ - pos.z;
+            double d = dx * dx + dz * dz;
+            if (d <= bestD) {
+                bestD = d;
+                best = h;
+            }
+        }
+        return best;
     }
 }

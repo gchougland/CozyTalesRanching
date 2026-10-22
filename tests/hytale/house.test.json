@@ -1,0 +1,31 @@
+{
+  "cases": [
+    {
+      "name": "house gate",
+      "description": "The mod's assets parse and match the engine schemas.",
+      "steps": [
+        { "tool": "asset_validate", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true, "schemaErrors": 0 } },
+        { "tool": "ui_check_java", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true } }
+      ]
+    },
+    {
+      "name": "ranch template with GoHome",
+      "description": "The animal template, with the house's GoHome state, and a variant pass the engine schema with no warnings.",
+      "steps": [
+        { "tool": "asset_check", "name": "template", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/Template_CozyRanch_Animal.json" }, "expect": { "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "name": "cow", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Cow.json" }, "expect": { "errors": 0, "warnings": 0 } }
+      ]
+    },
+    {
+      "name": "house blocks",
+      "description": "The five house items have no errors with their Use interaction; the plugin-registered CozyRanchUseHouse type may warn.",
+      "steps": [
+        { "tool": "asset_check", "name": "coop", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_ChickenCoop.json" }, "expect": { "errors": 0 } },
+        { "tool": "asset_check", "name": "barn", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_CowBarn.json" }, "expect": { "errors": 0 } },
+        { "tool": "asset_check", "name": "pond", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FrogPond.json" }, "expect": { "errors": 0 } },
+        { "tool": "asset_check", "name": "sty", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Pigsty.json" }, "expect": { "errors": 0 } },
+        { "tool": "asset_check", "name": "fold", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Sheepfold.json" }, "expect": { "errors": 0 } }
+      ]
+    }
+  ]
+}

@@ -11,6 +11,7 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.math.util.ChunkUtil;
 import com.hypixel.hytale.math.vector.Rotation3f;
 import com.hypixel.hytale.server.core.entity.UUIDComponent;
+import com.hypixel.hytale.server.core.entity.nameplate.Nameplate;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.Universe;
@@ -188,6 +189,7 @@ final class AnimalRecovery {
                 if (uuid == null) return;
                 long generation = registry.store().bind(r, uuid.getUuid());
                 holder.putComponent(markerType, new AnimalMarker(r.animalId, generation));
+                if (r.name != null && !r.name.isEmpty()) holder.putComponent(Nameplate.getComponentType(), new Nameplate(r.name));
             }, null);
             if (spawned == null) return false;
             r.lastX = spot.pos.x;
@@ -250,10 +252,10 @@ final class AnimalRecovery {
             for (int[] o : offsets) {
                 int x = cx + o[0], z = cz + o[1];
                 if (!isChunkLoaded(world, x, z)) continue;
-                if (!ctx.set(world, x + 0.5, near.y, z + 0.5)) continue;
-                if (ctx.canSpawn() != SpawnTestResult.TEST_OK) continue;
-                if (ctx.groundFluid != null) continue;
-                return new Spot(new Vector3d(ctx.xSpawn, ctx.ySpawn, ctx.zSpawn), ctx.getModel());
+                if (ctx.set(world, x + 0.5, near.y, z + 0.5) && ctx.canSpawn() == SpawnTestResult.TEST_OK && ctx.groundFluid == null) {
+                    return new Spot(new Vector3d(ctx.xSpawn, ctx.ySpawn, ctx.zSpawn), ctx.getModel());
+                }
+                ctx.release();
             }
             return null;
         } finally {

@@ -12,6 +12,7 @@ import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredArg;
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
+import com.hypixel.hytale.server.core.command.system.arguments.types.RelativeIntPosition;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractCommandCollection;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
@@ -130,18 +131,14 @@ public final class CareCommand extends AbstractCommandCollection {
 
     /** Puts food into the trough at a position, as Use with food would. */
     static final class Fill extends AbstractPlayerCommand {
-        private final RequiredArg<Integer> x;
-        private final RequiredArg<Integer> y;
-        private final RequiredArg<Integer> z;
+        private final RequiredArg<RelativeIntPosition> coords;
         private final RequiredArg<String> item;
         private final RequiredArg<Integer> count;
 
         Fill() {
             super("fill", "cozyranch_care.commands.care.fill.desc");
             this.requirePermission(RanchPermissions.ADMIN);
-            this.x = this.withRequiredArg("x", "cozyranch_care.commands.care.fill.arg.x", ArgTypes.INTEGER);
-            this.y = this.withRequiredArg("y", "cozyranch_care.commands.care.fill.arg.y", ArgTypes.INTEGER);
-            this.z = this.withRequiredArg("z", "cozyranch_care.commands.care.fill.arg.z", ArgTypes.INTEGER);
+            this.coords = this.withRequiredArg("x y z", "cozyranch_care.commands.care.fill.arg.coords", ArgTypes.RELATIVE_BLOCK_POSITION);
             this.item = this.withRequiredArg("item", "cozyranch_care.commands.care.fill.arg.item", ArgTypes.STRING);
             this.count = this.withRequiredArg("count", "cozyranch_care.commands.care.fill.arg.count", ArgTypes.INTEGER);
         }
@@ -155,7 +152,7 @@ public final class CareCommand extends AbstractCommandCollection {
                 player.sendMessage(Message.translation("cozyranch_care.trough.not_food").param("item", TroughInteraction.itemName(itemId)));
                 return;
             }
-            Vector3i pos = TroughBlocks.base(world, new Vector3i(context.get(x), context.get(y), context.get(z)));
+            Vector3i pos = TroughBlocks.base(world, new Vector3i(context.get(coords).getBlockPosition(context, store)));
             if (TroughBlocks.presence(world, pos.x, pos.y, pos.z) != TroughBlocks.Presence.TROUGH) {
                 player.sendMessage(Message.translation("cozyranch_care.fill.no_trough").param("x", pos.x).param("y", pos.y).param("z", pos.z));
                 return;

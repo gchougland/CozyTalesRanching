@@ -14,5 +14,7 @@
   { "tool": "test_run", "args": { "project": "CozyTales-Ranching", "path": "tests/hytale/breeding.test.json" }, "save": "t7" },
   { "tool": "job_status", "args": { "jobId": "$t7", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 300000, "maxChars": 1500 },
   { "tool": "test_run", "args": { "project": "CozyTales-Ranching", "path": "tests/hytale/care.test.json" }, "save": "t8" },
-  { "tool": "job_status", "args": { "jobId": "$t8", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 300000, "maxChars": 1500 }
+  { "tool": "job_status", "args": { "jobId": "$t8", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 300000, "maxChars": 1500 },
+  { "tool": "test_run", "args": { "project": "CozyTales-Ranching", "path": "tests/hytale/house.test.json" }, "save": "t9" },
+  { "tool": "job_status", "args": { "jobId": "$t9", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 300000, "maxChars": 1500 }
 ]

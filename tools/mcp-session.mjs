@@ -6,6 +6,7 @@
 //    {"tool":"job_stop","args":{"jobId":"$job"},"always":true}]
 // "save": name stores the result's id (or jobId / botId) for later "$name" references.
 // "out": a png path saves the first picture. "always": true runs the step even after a failure.
+// {"sleepMs": 5000} just waits (job_status returns as soon as the server logs anything).
 //   node tools/mcp-session.mjs steps.json
 import { readFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
@@ -32,6 +33,7 @@ let failed = false;
 try {
   for (const step of steps) {
     if (failed && !step.always) continue;
+    if (step.sleepMs) { console.log(`\n=== sleep ${step.sleepMs} ms`); await new Promise(r => setTimeout(r, step.sleepMs)); continue; }
     console.log(`\n=== ${step.tool} ${step.note ?? ''}`);
     let result;
     const deadline = Date.now() + (step.timeoutMs ?? 300000);

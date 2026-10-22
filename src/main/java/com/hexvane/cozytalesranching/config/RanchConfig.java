@@ -129,7 +129,8 @@ public final class RanchConfig {
     public int maxAnimalsPerPlayer() { return Math.max(1, maxAnimalsPerPlayer); }
     public double saveDebounceSeconds() { return Math.max(1.0, saveDebounceSeconds); }
     public int recoveryDelaySeconds() { return Math.max(5, recoveryDelaySeconds); }
-    public int homeRangeRadius() { return Math.clamp(homeRangeRadius, 4, 32); }
+    /** At least 8: the animal roles wander 6 blocks from the door, and a smaller range sends them home all day. */
+    public int homeRangeRadius() { return Math.clamp(homeRangeRadius, 8, 32); }
     public int troughRange() { return Math.clamp(troughRange, 2, 16); }
     public int breedingMinHearts() { return Math.clamp(breedingMinHearts, 0, 5); }
     public double breedingMinHappiness() { return Math.clamp(breedingMinHappiness, 0.0, 1.0); }

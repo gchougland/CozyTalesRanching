@@ -176,7 +176,8 @@ final class AnimalEntitySystem extends RefSystem<EntityStore> {
             // removed outright (despawned, killed by a command, a builder undo): recovery brings it back
             r.state = AnimalRecord.State.MISSING;
             AnimalPresence.markMissing(animalId, System.currentTimeMillis());
-            debug("Ranch animal " + animalId + " entity removed; marked missing");
+            if (r.ownerId != null) LOG.info("Ranch animal " + animalId + " (" + r.speciesId + ", owner " + r.ownerId + ") entity was removed; marked missing, recovery will bring it back");
+            else debug("Ranch animal " + animalId + " entity removed; marked missing");
         }
         registry.markDirty(r);
     }

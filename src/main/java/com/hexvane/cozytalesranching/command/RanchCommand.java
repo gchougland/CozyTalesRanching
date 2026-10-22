@@ -18,5 +18,6 @@ public final class RanchCommand extends AbstractCommandCollection {
         this.addSubCommand(new com.hexvane.cozytalesranching.houseui.HousePageTestCommand());
         this.addSubCommand(new com.hexvane.cozytalesranching.breeding.BreedAdminCommand());
         this.addSubCommand(new com.hexvane.cozytalesranching.care.CareCommand());
+        this.addSubCommand(new com.hexvane.cozytalesranching.house.HouseCommand());
     }
 }
