@@ -1,5 +1,7 @@
 package com.hexvane.cozytalesranching.house;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import javax.annotation.Nullable;
 
@@ -29,4 +31,13 @@ public final class HouseRecord {
     public long placedAtMs;
     /** In-game day number of the last morning handled, so a morning runs once per day. */
     public long lastMorningDay = -1;
+    /** The house page's breeding toggle. Written by the house service, read by breeding. */
+    public boolean breedingEnabled = true;
+    /** Habitat around the house, written by care at most every HabitatScanIntervalSeconds. */
+    public boolean habitatRequirementsMet;
+    /** 0..1: required features present plus the share of preferred features present. */
+    public float habitatScore;
+    /** Habitat feature ids (species HabitatRequires/HabitatPrefers) not found near the house. */
+    public List<String> habitatMissing = new ArrayList<>();
+    public long habitatScannedAtMs;
 }
