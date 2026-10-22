@@ -1,0 +1,52 @@
+{
+  "Id": "sheep",
+  "NameKey": "cozyranch_species.sheep.name",
+  "WildRoles": [
+    "Sheep"
+  ],
+  "WildBabyRoles": [
+    "Sheep_Lamb"
+  ],
+  "AdoptRoles": [
+    "Tamed_Sheep"
+  ],
+  "AdoptBabyRoles": [
+    "Tamed_Sheep_Lamb"
+  ],
+  "RanchRole": "CozyRanch_Sheep",
+  "RanchBabyRole": "CozyRanch_Sheep_Lamb",
+  "HouseBlock": "CozyRanch_House_Sheepfold",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Plant_Crop_Wheat_Item",
+    "Plant_Crop_Lettuce_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Cauliflower_Item",
+    "Plant_Crop_Carrot_Item"
+  ],
+  "FavoriteTreats": [
+    "Plant_Crop_Lettuce_Item"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.4,
+  "GrowUpMinutes": 60,
+  "BreedCooldownMinutes": 45,
+  "Products": [
+    {
+      "Item": "Drop_Sheep_Harvest",
+      "Quantity": 1,
+      "IntervalMinutes": 40,
+      "Collect": "Harvest"
+    }
+  ],
+  "HabitatRequires": [
+    "food"
+  ],
+  "HabitatPrefers": [
+    "grass",
+    "flowers",
+    "hay",
+    "open_space"
+  ]
+}

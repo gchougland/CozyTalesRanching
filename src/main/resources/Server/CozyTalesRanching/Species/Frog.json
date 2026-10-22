@@ -1,0 +1,35 @@
+{
+  "Id": "frog",
+  "NameKey": "cozyranch_species.frog.name",
+  "WildRoles": [
+    "Frog_Green",
+    "Frog_Blue",
+    "Frog_Orange"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Frog",
+  "RanchBabyRole": "",
+  "HouseBlock": "CozyRanch_House_FrogPond",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "TODO_taming_agent_picks"
+  ],
+  "PreferredFoods": [],
+  "FavoriteTreats": [],
+  "FeedingsToTame": 2,
+  "Shyness": 0.7,
+  "GrowUpMinutes": 30,
+  "BreedCooldownMinutes": 30,
+  "Products": [],
+  "HabitatRequires": [
+    "water",
+    "lily_pads"
+  ],
+  "HabitatPrefers": [
+    "reeds",
+    "tall_grass",
+    "shade"
+  ]
+}

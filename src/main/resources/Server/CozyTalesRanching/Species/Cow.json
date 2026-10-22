@@ -1,0 +1,51 @@
+{
+  "Id": "cow",
+  "NameKey": "cozyranch_species.cow.name",
+  "WildRoles": [
+    "Cow"
+  ],
+  "WildBabyRoles": [
+    "Cow_Calf"
+  ],
+  "AdoptRoles": [
+    "Tamed_Cow"
+  ],
+  "AdoptBabyRoles": [
+    "Tamed_Cow_Calf"
+  ],
+  "RanchRole": "CozyRanch_Cow",
+  "RanchBabyRole": "CozyRanch_Cow_Calf",
+  "HouseBlock": "CozyRanch_House_CowBarn",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Plant_Crop_Wheat_Item",
+    "Plant_Crop_Lettuce_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Corn_Item",
+    "Plant_Crop_Cauliflower_Item"
+  ],
+  "FavoriteTreats": [
+    "Plant_Crop_Pumpkin_Item"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.3,
+  "GrowUpMinutes": 90,
+  "BreedCooldownMinutes": 60,
+  "Products": [
+    {
+      "Item": "Drop_Cow_Harvest",
+      "Quantity": 1,
+      "IntervalMinutes": 40,
+      "Collect": "Harvest"
+    }
+  ],
+  "HabitatRequires": [
+    "food"
+  ],
+  "HabitatPrefers": [
+    "grass",
+    "hay",
+    "open_space"
+  ]
+}

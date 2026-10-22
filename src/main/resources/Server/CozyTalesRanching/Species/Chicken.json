@@ -1,0 +1,56 @@
+{
+  "Id": "chicken",
+  "NameKey": "cozyranch_species.chicken.name",
+  "WildRoles": [
+    "Chicken",
+    "Chicken_Desert"
+  ],
+  "WildBabyRoles": [
+    "Chicken_Chick",
+    "Chicken_Desert_Chick"
+  ],
+  "AdoptRoles": [
+    "Tamed_Chicken",
+    "Tamed_Chicken_Desert"
+  ],
+  "AdoptBabyRoles": [
+    "Tamed_Chicken_Chick",
+    "Tamed_Chicken_Desert_Chick"
+  ],
+  "RanchRole": "CozyRanch_Chicken",
+  "RanchBabyRole": "CozyRanch_Chicken_Chick",
+  "HouseBlock": "CozyRanch_House_ChickenCoop",
+  "HouseCapacity": 6,
+  "BasicFoods": [
+    "Plant_Crop_Wheat_Item",
+    "Plant_Crop_Corn_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Rice_Item",
+    "Plant_Crop_Tomato_Item"
+  ],
+  "FavoriteTreats": [
+    "Plant_Crop_Corn_Item"
+  ],
+  "FeedingsToTame": 2,
+  "Shyness": 0.5,
+  "GrowUpMinutes": 45,
+  "BreedCooldownMinutes": 30,
+  "Products": [
+    {
+      "Item": "Food_Egg",
+      "Quantity": 1,
+      "IntervalMinutes": 25,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "food"
+  ],
+  "HabitatPrefers": [
+    "hay",
+    "grass",
+    "flowers",
+    "dust"
+  ]
+}
