@@ -76,7 +76,8 @@
                 "$length": 0
               }
             }
-          }
+          },
+          "golden": "tests/hytale/golden/animator/CozyRanch_Cow_Love.png"
         },
         {
           "tool": "animation_render",
@@ -117,7 +118,8 @@
                 "$length": 0
               }
             }
-          }
+          },
+          "golden": "tests/hytale/golden/animator/CozyRanch_Cow_TailSwish.png"
         },
         {
           "tool": "animation_render",
@@ -217,7 +219,8 @@
                 "$length": 0
               }
             }
-          }
+          },
+          "golden": "tests/hytale/golden/animator/CozyRanch_Chicken_DustBathe.png"
         },
         {
           "tool": "animation_render",
@@ -278,7 +281,8 @@
                 "$length": 0
               }
             }
-          }
+          },
+          "golden": "tests/hytale/golden/animator/CozyRanch_Chicken_Chick_Happy.png"
         },
         {
           "tool": "animation_render",
@@ -460,7 +464,8 @@
                 "$length": 0
               }
             }
-          }
+          },
+          "golden": "tests/hytale/golden/animator/CozyRanch_Sheep_Love.png"
         },
         {
           "tool": "animation_render",
@@ -545,6 +550,46 @@
         },
         {
           "tool": "animation_render",
+          "name": "CozyRanch_Frog_Blue Happy",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog_Blue.json",
+            "animation": "Happy",
+            "frames": 4,
+            "yaw": 35,
+            "pitch": 15,
+            "size": 240
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Frog_Orange Happy",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog_Orange.json",
+            "animation": "Happy",
+            "frames": 4,
+            "yaw": 35,
+            "pitch": 15,
+            "size": 240
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
           "name": "CozyRanch_Frog EatTrough",
           "arguments": {
             "root": "projects",
@@ -565,10 +610,90 @@
         },
         {
           "tool": "animation_render",
+          "name": "CozyRanch_Frog_Blue EatTrough",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog_Blue.json",
+            "animation": "EatTrough",
+            "frames": 4,
+            "yaw": 35,
+            "pitch": 15,
+            "size": 240
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Frog_Orange EatTrough",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog_Orange.json",
+            "animation": "EatTrough",
+            "frames": 4,
+            "yaw": 35,
+            "pitch": 15,
+            "size": 240
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
           "name": "CozyRanch_Frog Love",
           "arguments": {
             "root": "projects",
             "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog.json",
+            "animation": "Love",
+            "frames": 4,
+            "yaw": 35,
+            "pitch": 15,
+            "size": 240
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Frog_Blue Love",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog_Blue.json",
+            "animation": "Love",
+            "frames": 4,
+            "yaw": 35,
+            "pitch": 15,
+            "size": 240
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Frog_Orange Love",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog_Orange.json",
             "animation": "Love",
             "frames": 4,
             "yaw": 35,
@@ -606,10 +731,90 @@
         },
         {
           "tool": "animation_render",
+          "name": "CozyRanch_Frog_Blue LilyHop",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog_Blue.json",
+            "animation": "LilyHop",
+            "frames": 4,
+            "yaw": 35,
+            "pitch": 15,
+            "size": 240
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Frog_Orange LilyHop",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog_Orange.json",
+            "animation": "LilyHop",
+            "frames": 4,
+            "yaw": 35,
+            "pitch": 15,
+            "size": 240
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
           "name": "CozyRanch_Frog CroakSit",
           "arguments": {
             "root": "projects",
             "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog.json",
+            "animation": "CroakSit",
+            "frames": 4,
+            "yaw": 20,
+            "pitch": 15,
+            "size": 240
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Frog_Blue CroakSit",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog_Blue.json",
+            "animation": "CroakSit",
+            "frames": 4,
+            "yaw": 20,
+            "pitch": 15,
+            "size": 240
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Frog_Orange CroakSit",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog_Orange.json",
             "animation": "CroakSit",
             "frames": 4,
             "yaw": 20,

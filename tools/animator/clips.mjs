@@ -72,19 +72,22 @@ function quadTrough(R, o) {
   };
 }
 
-/** Affectionate nuzzle and two little bounces, 90 frames, starts and ends at rest. */
-function quadLove(R) {
+/** Affectionate nuzzle and two little bounces, 90 frames, starts and ends at rest.
+ *  o.big scales the sway, the head roll and the bounces for big animals that must read from ten blocks. */
+function quadLove(R, o = {}) {
+  const B = o.big ?? 1;
   return (t, p) => {
     const w = win(t, 0, 90, 14), H = R.hop;
-    p.p('Origin', 0, 0.45 * H * (arc(t, 10, 32) + arc(t, 46, 68)), 0);
-    p.r('Pelvis', 0, 0, 5 * sn(t, 45) * w).r('Chest', 6 * w, 8 * sn(t, 45, 0.1) * w, 0);
-    const sq = 0.07 * (bump(t, 30, 42) + bump(t, 66, 78));
+    p.p('Origin', 0, (0.45 + 0.35 * (B - 1)) * H * (arc(t, 10, 32) + arc(t, 46, 68)), 0);
+    if (B > 1) p.r('Origin', 0, 14 * (B - 1) * sn(t, 45) * w, 0).r('Pelvis', -8 * (B - 1) * (arc(t, 10, 32) + arc(t, 46, 68)), 0, 0);
+    p.r('Pelvis', 0, 0, 5 * sn(t, 45) * w).r('Chest', (B > 1 ? 0 : 6) * w, 8 * B * sn(t, 45, 0.1) * w, 0);
+    const sq = 0.07 * B * (bump(t, 30, 42) + bump(t, 66, 78));
     p.s('Pelvis', 1 + sq * 0.6, 1 - sq, 1).s('Chest', 1 + sq * 0.6, 1 - sq, 1);
-    if (R.neck) p.r(R.neck, 10 * w, 14 * sn(t, 45) * w, 0);
-    p.r(R.head, 8 * w, R.neck ? 0 : 16 * sn(t, 45) * w, 20 * sn(t, 45, 0.25) * w);
+    if (R.neck) p.r(R.neck, 10 * w - 12 * (B - 1) * w, 14 * B * sn(t, 45) * w, 0);
+    p.r(R.head, 8 * w, R.neck ? 0 : 16 * sn(t, 45) * w, 20 * B * sn(t, 45, 0.25) * w);
     ears(p, R, -12 * w + 10 * sn(t, 15) * w);
     squint(p, R, 0.9 * win(t, 8, 82, 8));
-    wag(p, R, t, 12, 30, w);
+    wag(p, R, t, 12, 30 * Math.min(B, 1.4), w);
     p.lr('Arm', -6 * w, 0, 0);
     return p;
   };
@@ -111,10 +114,16 @@ function graze(R, o) {
 function cowTailSwish(t, p) {
   const R = RIG.Cow;
   const sw = win(t, 0, 80, 14);
-  // tail flicks up and out, two big swishes, then a calm stretch with breathing and an ear flick
-  R.tail.forEach((n, i) => p.r(n, (i === 0 ? 25 : 8) * sw, 45 * sw * sn(t, 40, -0.1 * i) * (1 - 0.1 * i), 0));
-  p.r('Neck', -4 * sw, -16 * sw, 0).r('Head', 0, -10 * sw, 8 * sw);
-  p.r('Pelvis', 0, 0, 2.5 * sw * sn(t, 40, 0.25));
+  // tail swats across the rump in two wide arcs while the cow looks round at its flank and stamps a hind foot,
+  // then a calm stretch with breathing and an ear flick
+  // the tail flicks up at the end of each swat
+  const swat = sn(t, 40);
+  R.tail.forEach((n, i) => p.r(n, (i === 0 ? 20 + 30 * swat * swat : 12) * sw, 80 * sw * sn(t, 40, -0.1 * i) * (1 - 0.1 * i), 0));
+  const look = win(t, 4, 76, 16);
+  p.r('Neck', -6 * look, -50 * look, 0).r('Head', 0, -30 * look, 16 * look);
+  p.r('Chest', 0, -8 * look, 0).r('Pelvis', 0, 6 * look, 2.5 * sw * sn(t, 40, 0.25));
+  const stamp = bump(t, 28, 44);
+  p.r('R-Thigh', -35 * stamp, 0, 0).r('R-Calf', 45 * stamp, 0, 0);
   const breath = 0.5 + 0.5 * sn(t, 150, -0.25);
   p.s('Chest', 1 + 0.025 * breath, 1 + 0.02 * breath, 1);
   const flick = bump(t, 100, 110) + bump(t, 112, 122);
@@ -167,18 +176,22 @@ function chickenPeck(t, p) {
   p.lrs('Eye', 1, 1 - 0.9 * bump(t, 44, 52), 1);
   return p;
 }
+// the belly sits this far down, nestled into the dust; deeper and the leaning body passes into the ground
+const WALLOW = 5;
 function chickenDustBathe(t, p) {
-  // loop 90: low in the dust, rolling side to side, wings fluttering, feathers fluffing
-  const roll = sn(t, 45), fl = 0.5 + 0.5 * sn(t, 9);
-  p.p('Pelvis', 0, -10, 0).r('Pelvis', 6 + 4 * sn(t, 45, 0.25), 8 * sn(t, 90), 12 * roll);
-  const puff = 0.12 + 0.06 * sn(t, 15);
+  // loop 120: settled low in the dust, one slow lean to each side with the high wing lifting, one fluff shake per loop
+  const rock = sn(t, 120), shake = bump(t, 52, 70), sh = sn(t, 6) * shake;
+  p.p('Pelvis', 0, -WALLOW, 0).r('Pelvis', 8, 6 * sn(t, 120, 0.25), 11 * rock + 4 * sh);
+  const puff = 0.1 + 0.06 * shake;
   p.s('Pelvis', 1 + puff, 1 + puff * 0.6, 1 + puff);
-  chickWingsOut(p, 25 + 35 * fl);
-  p.r('L-Arm', 0, 0, 10 * roll).r('R-Arm', 0, 0, 10 * roll);
-  p.lr('Thigh', -50, 0, 12).lr('Foot', 30, 0, 0);
-  p.r('Neck', 18 + 8 * sn(t, 45, 0.25), 0, -18 * roll).r('Head', 6, 12 * sn(t, 45, 0.1), -8 * roll);
-  p.r('Tail', 6 * sn(t, 9), 15 * sn(t, 18), 0);
-  p.lrs('Eye', 1, 0.35, 1);
+  chickWingsOut(p, 40 + 6 * shake);
+  // wings spread wide and flat over the dust; the low side lifts too, so neither tip goes into the ground
+  const LOW = 20;
+  p.lr('Arm', -30, 0, 30).r('L-Arm', 0, 0, 18 * Math.max(0, rock) + LOW * Math.max(0, -rock) + 6 * sh).r('R-Arm', 0, 0, -18 * Math.max(0, -rock) - LOW * Math.max(0, rock) - 6 * sh);
+  p.lr('Thigh', -80, 0, 12).lr('Foot', 60, 0, 0);
+  p.r('Neck', 16 + 4 * sn(t, 120, 0.25), 0, -14 * rock).r('Head', 6, 10 * sn(t, 120, 0.1), -6 * rock + 8 * sh);
+  p.r('Tail', 4 * sh, 10 * rock, 0);
+  p.lrs('Eye', 1, 0.35 - 0.3 * shake, 1);
   return p;
 }
 function chickenTrough(t, p) {
@@ -226,24 +239,35 @@ function pigSnuffle(t, p) {
   p.r('Tail2', 0, 0, 30 * sn(t, 30));
   return p;
 }
+// The pig's chest box is 40 wide and 30 tall about the Pelvis pivot, 26 above Origin; the feet stand 5.8 up.
+// Rolled by `ang` degrees, the box's lowest corner is this far below the pivot.
+const pigReach = ang => { const a = ang * Math.PI / 180; return 20 * Math.abs(Math.sin(a)) + 15 * Math.abs(Math.cos(a)); };
 function pigMudRoll(t, p) {
-  // loop 120: lying down rolling side - back - other side, legs kicking happily in the air
+  // loop 150: flop down, roll over onto the back, wiggle all four legs in the air while rocking, roll on over, stand up
   const R = RIG.Pig;
-  const roll = sn(t, 120); // -1..1
-  const ang = 180 + 75 * roll; // 105 .. 255 degrees about Z
-  const side = Math.abs(Math.sin(ang * Math.PI / 180)); // 1 on a side, 0 on the back
-  p.r('Pelvis', 0, 0, ang).p('Pelvis', 0, -6 - 6 * (1 - side), 0);
-  const kick = sn(t, 15), kick2 = sn(t, 15, 0.5);
-  p.r('L-Thigh', -20 + 30 * kick, 0, 18).r('R-Thigh', -20 + 30 * kick2, 0, -18);
-  p.r('L-Calf', 25 + 15 * kick2, 0, 0).r('R-Calf', 25 + 15 * kick, 0, 0);
-  p.r('L-Arm', 20 + 30 * kick2, 0, 18).r('R-Arm', 20 + 30 * kick, 0, -18);
-  p.r('L-Forearm', -30 + 15 * kick, 0, 0).r('R-Forearm', -30 + 15 * kick2, 0, 0);
-  // the head turns against the roll so the happy face stays toward the sky
-  p.r('Neck', -10, 0, -0.45 * (ang - 180)).r('Head', -10, 0, -0.25 * (ang - 180) + 10 * sn(t, 30));
-  p.r('Jaw', 18 + 8 * sn(t, 20), 0, 0);
-  p.lr('Ear', -25 + 12 * sn(t, 15), 0, 0).lr('Ear2', 25, 0, 0);
-  squint(p, R, 0.85);
-  p.r('Tail2', 0, 0, 50 * sn(t, 12));
+  const lie = win(t, 0, 150, 16);                       // lying on the ground
+  const back = win(t, 40, 112, 10);                     // settled on the back
+  const ang = 180 * ss((t - 14) / 28) + 180 * ss((t - 108) / 28) + 22 * sn(t, 36) * back;
+  const roll = ang * Math.PI / 180, up = Math.cos(roll); // up: 1 upright, -1 on the back
+  // keep the lowest corner of the rolling body on the ground, a hair above it
+  const drop = (5.8 + 0.6 + 1.6 * back + 3.2 * Math.abs(Math.sin(2 * roll)) * (1 - back) - 26 + pigReach(ang)) * win(t, 6, 144, 16);
+  p.r('Pelvis', 0, 0, ang).p('Pelvis', 0, drop, 0);
+  // legs: tucked under while lying the right way up, kicking in the air on the back
+  const tuck = win(t, 0, 150, 10) * clamp(0.5 + 0.5 * up);
+  const air = lie * clamp(0.5 - 0.5 * up) ** 0.7;
+  const k = sn(t, 10), k2 = sn(t, 10, 0.5), kb = back;
+  p.r('L-Thigh', -55 * tuck + (-10 + 40 * k) * air * (0.4 + 0.6 * kb), 0, 25 * air).r('R-Thigh', -55 * tuck + (-10 + 40 * k2) * air * (0.4 + 0.6 * kb), 0, -25 * air);
+  p.lr('Calf', -60 * tuck, 0, 0).r('L-Calf', 30 * air * (0.5 + 0.5 * k2), 0, 0).r('R-Calf', 30 * air * (0.5 + 0.5 * k), 0, 0);
+  p.r('L-Arm', 55 * tuck + (10 + 40 * k2) * air * (0.4 + 0.6 * kb), 0, 25 * air).r('R-Arm', 55 * tuck + (10 + 40 * k) * air * (0.4 + 0.6 * kb), 0, -25 * air);
+  p.lr('Forearm', 60 * tuck, 0, 0).r('L-Forearm', -35 * air * (0.5 + 0.5 * k), 0, 0).r('R-Forearm', -35 * air * (0.5 + 0.5 * k2), 0, 0);
+  // head: tipped back toward the sky on the back, wobbling with glee; ears flop forward so they stay off the ground
+  p.r('Neck', 18 * air, 0, -0.3 * Math.sin(roll) * 40 * lie + (28 + 10 * sn(t, 36, 0.1)) * back).r('Head', 12 * air, 0, 12 * sn(t, 18) * kb);
+  p.r('Jaw', 20 * lie + 8 * sn(t, 12) * kb, 0, 0);
+  p.lr('Ear', 75 * air - 10 * tuck + 10 * sn(t, 10) * kb, 0, 0).lr('Ear2', 20 * air, 0, 0);
+  squint(p, R, 0.85 * lie);
+  p.r('Tail2', 0, 0, 60 * sn(t, 10) * lie);
+  // a little shake standing back up
+  p.r('Chest', 0, 0, 0).r('Origin', 0, 8 * sn(t, 8) * bump(t, 134, 150), 0);
   return p;
 }
 
@@ -342,7 +366,9 @@ function chickHappy(t, p) {
   p.p('Origin', 0, 9 * air + 4 * arc(t, 42, 54), 0).r('Origin', 0, 14 * sn(t, 14) * win(t, 34, 60, 8), 0);
   const sq = 0.12 * antic + 0.14 * land - 0.1 * bump(t, 12, 30);
   p.s('Pelvis', 1 + sq * 0.5, 1 - sq, 1 + sq * 0.5).s('Head', 1 + sq * 0.4, 1 - sq * 0.6, 1 + sq * 0.4);
-  p.lr('Arm', 0, 0, (50 + 30 * sn(t, 7)) * win(t, 6, 46, 6));
+  // the wings are tiny quads folded back along the body: unfold them to the sides, grow them a little and flap them high
+  const open = win(t, 4, 50, 6), flap = 0.5 + 0.5 * sn(t, 10, -0.25);
+  p.lr('Arm', -80 * open, 0, (35 + 85 * flap) * open).lrp('Arm', 0, 3 * open, -3 * open).lrs('Arm', 1, 1 + 0.5 * open, 1 + 0.3 * open);
   p.r('Head', -12 * win(t, 6, 50, 8), 0, 14 * sn(t, 20) * all);
   p.r('Rear', -20 * win(t, 4, 52, 8), 0, 0).r('Tail', 0, 20 * sn(t, 8) * all, 0);
   p.lr('Thigh', 25 * win(t, 10, 32, 6), 0, 0);
@@ -360,7 +386,7 @@ const c = (species, rig, name, dur, loop, f, extra = {}) => ({ species, rig, nam
 export const CLIPS = [
   c('Cow', 'Cow', 'Happy', 60, false, quadHappy(RIG.Cow)),
   c('Cow', 'Cow', 'EatTrough', 80, true, quadTrough(RIG.Cow, { chest: 8, neck: 34, head: 10 })),
-  c('Cow', 'Cow', 'Love', 90, false, quadLove(RIG.Cow)),
+  c('Cow', 'Cow', 'Love', 90, false, quadLove(RIG.Cow, { big: 1.8 })),
   c('Cow', 'Cow', 'Graze', 120, true, graze(RIG.Cow, { chest: 14, neck: 54, head: 18, fore: -20, drop: -2 })),
   c('Cow', 'Cow', 'TailSwish', 150, true, cowTailSwish),
   c('Cow', 'Calf', 'Happy', 60, false, quadHappy(RIG.Calf)),
@@ -368,7 +394,7 @@ export const CLIPS = [
   c('Chicken', 'Chicken', 'Happy', 60, false, chickenHappy),
   c('Chicken', 'Chicken', 'EatTrough', 60, true, chickenTrough),
   c('Chicken', 'Chicken', 'Love', 90, false, chickenLove),
-  c('Chicken', 'Chicken', 'DustBathe', 90, true, chickenDustBathe),
+  c('Chicken', 'Chicken', 'DustBathe', 120, true, chickenDustBathe),
   c('Chicken', 'Chicken', 'PeckGround', 60, true, chickenPeck),
   c('Chicken', 'Chicken', 'FlapHappy', 75, false, chickenFlapHappy),
   c('Chicken', 'Chick', 'Happy', 60, false, chickHappy),
@@ -376,13 +402,13 @@ export const CLIPS = [
   c('Pig', 'Pig', 'Happy', 60, false, pigHappy),
   c('Pig', 'Pig', 'EatTrough', 80, true, quadTrough(RIG.Pig, { chest: 6, neck: 16, head: 12, chomp: 16 })),
   c('Pig', 'Pig', 'Love', 90, false, quadLove(RIG.Pig)),
-  c('Pig', 'Pig', 'MudRoll', 120, true, pigMudRoll, { yaw: 25 }),
+  c('Pig', 'Pig', 'MudRoll', 150, true, pigMudRoll, { yaw: 25 }),
   c('Pig', 'Pig', 'Snuffle', 90, true, pigSnuffle),
   c('Pig', 'Piglet', 'Happy', 60, false, quadHappy(RIG.Piglet)),
 
   c('Sheep', 'Sheep', 'Happy', 60, false, quadHappy(RIG.Sheep)),
   c('Sheep', 'Sheep', 'EatTrough', 80, true, quadTrough(RIG.Sheep, { chest: 6, neck: 24, head: 10 })),
-  c('Sheep', 'Sheep', 'Love', 90, false, quadLove(RIG.Sheep)),
+  c('Sheep', 'Sheep', 'Love', 90, false, quadLove(RIG.Sheep, { big: 1.5 })),
   c('Sheep', 'Sheep', 'Graze', 120, true, graze(RIG.Sheep, { chest: 10, neck: 55, head: 6, drop: -1 })),
   c('Sheep', 'Sheep', 'Pronk', 60, false, sheepPronk),
   c('Sheep', 'Lamb', 'Happy', 60, false, quadHappy(RIG.Lamb)),
