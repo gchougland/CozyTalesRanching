@@ -1,7 +1,6 @@
 package com.hexvane.cozytalesranching;
 
 import com.hexvane.cozytalesranching.animal.AnimalFeature;
-import com.hexvane.cozytalesranching.animal.InMemoryAnimalRegistry;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.command.RanchCommand;
 import com.hexvane.cozytalesranching.config.RanchConfig;
@@ -52,7 +51,6 @@ public final class CozyTalesRanchingPlugin extends JavaPlugin {
 
         RanchPermissions.register();
         SpeciesRegistry.load(getDataDirectory());
-        Ranch.installAnimals(new InMemoryAnimalRegistry());
 
         AnimalFeature.register(this);
         TamingFeature.register(this);

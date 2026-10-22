@@ -1,6 +1,7 @@
 package com.hexvane.cozytalesranching.animal;
 
 import com.hexvane.cozytalesranching.compat.CompatGuard;
+import com.hexvane.cozytalesranching.config.RanchConfig;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hypixel.hytale.component.ComponentType;
@@ -41,7 +42,7 @@ import org.joml.Vector3d;
  *   <li>current entity loaded: refresh the record's last position if it moved;</li>
  *   <li>ACTIVE, not loaded, but the chunk where it was last seen is loaded for {@link #SUSPECT_SWEEPS}
  *       sweeps in a row: it is gone, mark it MISSING;</li>
- *   <li>MISSING for {@link #RECOVERY_DELAY_MS}: respawn it beside its owner (online, same world) or where
+ *   <li>MISSING for {@code RecoveryDelaySeconds}: respawn it beside its owner (online, same world) or where
  *       it was last seen (chunk loaded), on a spot the game's own spawn test accepts and with no fluid
  *       underfoot. If neither place is loaded it waits.</li>
  * </ul>
@@ -51,7 +52,9 @@ final class AnimalRecovery {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
     static final long SWEEP_SECONDS = 15;
     static final int SUSPECT_SWEEPS = 3;
-    static final long RECOVERY_DELAY_MS = TimeUnit.SECONDS.toMillis(60);
+    static long recoveryDelayMs() {
+        return TimeUnit.SECONDS.toMillis(RanchConfig.get().recoveryDelaySeconds());
+    }
     private static final double MOVED_ENOUGH_SQ = 4.0 * 4.0;
 
     private final PersistentAnimalRegistry registry;
@@ -125,7 +128,7 @@ final class AnimalRecovery {
                 }
             }
             case MISSING -> {
-                if (now - AnimalPresence.missingSince(r.animalId, now) < RECOVERY_DELAY_MS) return;
+                if (now - AnimalPresence.missingSince(r.animalId, now) < recoveryDelayMs()) return;
                 Vector3d near = recoveryTarget(world, r);
                 if (near != null) respawn(world, store, r, near);
             }

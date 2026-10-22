@@ -3,8 +3,10 @@ package com.hexvane.cozytalesranching.config;
 import com.hypixel.hytale.codec.Codec;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
@@ -19,7 +21,11 @@ public final class RanchConfig {
     private String[] ignoredComponentClasses = {
         "endgame.plugin.components.PetOwnerComponent",
         "com.danbagh.dungeonframework.features.familiars.component.FamiliarComponent",
-        "com.danbagh.dungeonframework.features.mounts.SummonedMountComponent"
+        "com.danbagh.dungeonframework.features.mounts.SummonedMountComponent",
+        "com.alechilles.alecstamework.companion.live.TameworkCompanionComponent",
+        "com.stonefallstudio.mount.MountOwnerComponent",
+        "com.airijko.endlessleveling.ecs.components.SummonOwnerComponent",
+        "com.zenkuro.arcanum.spell.builtin.summon.SummonOwnershipComponent"
     };
     private String[] disabledSpecies = new String[0];
     private boolean protectOwnedAnimals = true;
@@ -31,6 +37,7 @@ public final class RanchConfig {
     private int habitatScanRadius = 12;
     private int maxAnimalsPerPlayer = 64;
     private double saveDebounceSeconds = 10.0;
+    private int recoveryDelaySeconds = 60;
     private boolean debugLogging = false;
 
     @Nonnull
@@ -50,6 +57,7 @@ public final class RanchConfig {
         .append(new KeyedCodec<>("HabitatScanRadius", Codec.INTEGER), (c, v) -> c.habitatScanRadius = v, c -> c.habitatScanRadius).add()
         .append(new KeyedCodec<>("MaxAnimalsPerPlayer", Codec.INTEGER), (c, v) -> c.maxAnimalsPerPlayer = v, c -> c.maxAnimalsPerPlayer).add()
         .append(new KeyedCodec<>("SaveDebounceSeconds", Codec.DOUBLE), (c, v) -> c.saveDebounceSeconds = v, c -> c.saveDebounceSeconds).add()
+        .append(new KeyedCodec<>("RecoveryDelaySeconds", Codec.INTEGER), (c, v) -> c.recoveryDelaySeconds = v, c -> c.recoveryDelaySeconds).add()
         .append(new KeyedCodec<>("DebugLogging", Codec.BOOLEAN), (c, v) -> c.debugLogging = v, c -> c.debugLogging).add()
         .build();
 
@@ -91,7 +99,17 @@ public final class RanchConfig {
 
     @Nonnull public List<String> tamingBlockedWorlds() { return List.of(tamingBlockedWorlds); }
     public boolean adoptVanillaTamed() { return adoptVanillaTamed; }
-    @Nonnull public Set<String> extraAdoptRoles() { return Set.of(extraAdoptRoles); }
+    /** Entries are {@code Role=speciesId}, e.g. {@code Tamed_Cow_Highland=cow}. Malformed entries are skipped. */
+    @Nonnull public Map<String, String> extraAdoptRoles() {
+        Map<String, String> out = new LinkedHashMap<>();
+        for (String entry : extraAdoptRoles) {
+            if (entry == null) continue;
+            int eq = entry.indexOf('=');
+            if (eq <= 0 || eq == entry.length() - 1) continue;
+            out.put(entry.substring(0, eq).trim(), entry.substring(eq + 1).trim());
+        }
+        return out;
+    }
     @Nonnull public Set<String> ignoredComponentClasses() { return java.util.Arrays.stream(ignoredComponentClasses).collect(Collectors.toUnmodifiableSet()); }
     public boolean protectOwnedAnimals() { return protectOwnedAnimals; }
     public boolean protectFromHostileMobs() { return protectFromHostileMobs; }
@@ -102,5 +120,6 @@ public final class RanchConfig {
     public int habitatScanRadius() { return Math.clamp(habitatScanRadius, 4, 24); }
     public int maxAnimalsPerPlayer() { return Math.max(1, maxAnimalsPerPlayer); }
     public double saveDebounceSeconds() { return Math.max(1.0, saveDebounceSeconds); }
+    public int recoveryDelaySeconds() { return Math.max(5, recoveryDelaySeconds); }
     public boolean debugLogging() { return debugLogging; }
 }

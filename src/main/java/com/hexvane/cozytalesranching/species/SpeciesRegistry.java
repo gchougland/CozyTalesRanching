@@ -79,6 +79,13 @@ public final class SpeciesRegistry {
             if (!s.RanchRole.isEmpty()) roles.put(s.RanchRole, new RoleMatch(s, RoleKind.RANCH));
             if (!s.RanchBabyRole.isEmpty()) roles.put(s.RanchBabyRole, new RoleMatch(s, RoleKind.RANCH_BABY));
         }
+        if (config.adoptVanillaTamed()) {
+            config.extraAdoptRoles().forEach((role, speciesId) -> {
+                SpeciesDefinition s = ids.get(speciesId);
+                if (s == null) LOG.warning("ExtraAdoptRoles: unknown species '" + speciesId + "' for role " + role);
+                else if (!config.isRoleIgnored(role)) roles.putIfAbsent(role, new RoleMatch(s, RoleKind.ADOPT));
+            });
+        }
         roles.keySet().removeIf(config::isRoleIgnored);
         byId = Map.copyOf(ids);
         byRole = Map.copyOf(roles);

@@ -5,7 +5,7 @@ import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/** A ranch animal died or was processed. Its record is gone after this event. */
+/** A ranch animal died or was processed. The record is kept as MISSING and the animal is recovered, unless it was butchered or was an unclaimed adopted animal killed by a player. */
 public final class AnimalDiedEvent extends RanchAnimalEvent {
     public enum Cause { KILLED, BUTCHERED, OTHER }
 

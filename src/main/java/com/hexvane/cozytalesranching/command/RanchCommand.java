@@ -9,5 +9,6 @@ public final class RanchCommand extends AbstractCommandCollection {
         this.addAliases("cozyranch");
         this.addSubCommand(new PingCommand());
         this.addSubCommand(new ReloadCommand());
+        this.addSubCommand(new com.hexvane.cozytalesranching.animal.AnimalAdminCommand());
     }
 }

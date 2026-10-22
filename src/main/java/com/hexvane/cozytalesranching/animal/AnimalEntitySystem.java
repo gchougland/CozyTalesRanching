@@ -192,7 +192,7 @@ final class AnimalEntitySystem extends RefSystem<EntityStore> {
     }
 
     static boolean isAdoptRole(@Nonnull String role, @Nonnull RoleKind kind) {
-        return kind == RoleKind.ADOPT || kind == RoleKind.ADOPT_BABY || RanchConfig.get().extraAdoptRoles().contains(role);
+        return kind == RoleKind.ADOPT || kind == RoleKind.ADOPT_BABY;
     }
 
     static boolean isBaby(@Nonnull RoleKind kind) {
