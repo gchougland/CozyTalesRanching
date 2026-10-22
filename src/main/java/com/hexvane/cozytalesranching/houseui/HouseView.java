@@ -66,7 +66,7 @@ public record HouseView(
         List<Resident> rows = new ArrayList<>();
         for (AnimalRecord r : sorted(residents)) {
             Where where = inside.test(r.animalId) ? Where.INSIDE : r.state == AnimalRecord.State.MISSING ? Where.LOST : Where.OUTSIDE;
-            List<Txt> traits = r.traits.stream().filter(t -> t != null && !t.isBlank()).limit(MAX_TRAITS).map(t -> Txt.raw(humanise(t))).toList();
+            List<Txt> traits = r.traits.stream().filter(t -> t != null && !t.isBlank()).limit(MAX_TRAITS).map(HouseView::traitName).toList();
             rows.add(new Resident(r.animalId, animalName(r, speciesName), hearts(r.hearts), mood(r.happiness), traits, r.baby, where));
         }
         List<Follower> follow = sorted(followers).stream()
@@ -130,7 +130,15 @@ public record HouseView(
         return name.length() > MAX_NAME_LENGTH ? name.substring(0, MAX_NAME_LENGTH).strip() : name;
     }
 
-    /** {@code open_space} to {@code Open space}: for data ids that have no lang key (traits). */
+    @Nonnull
+    static Txt traitName(@Nonnull String id) {
+        return com.hexvane.cozytalesranching.breeding.TraitRegistry.get().get(id)
+            .filter(t -> !t.NameKey.isEmpty())
+            .map(t -> Txt.key(t.NameKey))
+            .orElseGet(() -> Txt.raw(humanise(id)));
+    }
+
+    /** {@code open_space} to {@code Open space}: for ids with no trait entry. */
     @Nonnull
     static String humanise(@Nonnull String id) {
         String spaced = id.replace('_', ' ').replace('-', ' ').trim();

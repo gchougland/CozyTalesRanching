@@ -97,6 +97,7 @@ public final class CozyTalesRanchingPlugin extends JavaPlugin {
         config.load().join();
         RanchConfig.bind(config.get());
         SpeciesRegistry.load(getDataDirectory());
-        getLogger().atInfo().log("Reloaded RanchConfig.json and species.");
+        com.hexvane.cozytalesranching.breeding.TraitRegistry.load(getDataDirectory());
+        getLogger().atInfo().log("Reloaded RanchConfig.json, species and traits.");
     }
 }

@@ -23,6 +23,7 @@ class SpeciesRoleVariantsTest {
         assertEquals("CozyRanch_Frog_Orange", frog.ranchRoleFor("Frog_Orange", false));
         assertEquals("CozyRanch_Frog", frog.ranchRoleFor("Frog_Green", false));
         assertEquals("CozyRanch_Frog", frog.ranchRoleFor(null, false));
+        assertEquals("CozyRanch_Frog_Blue", frog.ranchRoleFor("CozyRanch_Frog_Blue", false));
     }
 
     @Test

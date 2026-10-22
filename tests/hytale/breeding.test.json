@@ -1,0 +1,23 @@
+{
+  "cases": [
+    {
+      "name": "breeding: gate",
+      "description": "Assets (including Traits.json) parse and match the engine schemas; Java UI references are valid.",
+      "steps": [
+        { "tool": "asset_validate", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true, "schemaErrors": 0 } },
+        { "tool": "ui_check_java", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true } }
+      ]
+    },
+    {
+      "name": "breeding: build and unit tests (eligibility, cooldown, capacity, twins, inheritance odds, grow-up, colour roles)",
+      "steps": [
+        {
+          "tool": "project_build",
+          "arguments": { "project": "CozyTales-Ranching", "system": "gradle", "tasks": ["build"] },
+          "waitJob": true,
+          "expect": { "state": "succeeded" }
+        }
+      ]
+    }
+  ]
+}

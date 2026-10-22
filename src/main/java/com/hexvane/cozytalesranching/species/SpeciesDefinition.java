@@ -69,6 +69,7 @@ public final class SpeciesDefinition {
         if (fromRole != null) {
             String variant = RanchRoleVariants.get(fromRole);
             if (variant != null) return variant;
+            if (RanchRoleVariants.containsValue(fromRole)) return fromRole;
         }
         return RanchRole;
     }
