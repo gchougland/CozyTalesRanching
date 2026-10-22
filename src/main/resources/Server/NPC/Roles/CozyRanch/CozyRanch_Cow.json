@@ -1,0 +1,34 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Cow",
+    "AttitudeGroup": "PreyBig",
+    "DropList": "Drop_Cow",
+    "MaxHealth": 103,
+    "FoodItems": [
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Corn_Item",
+      "Plant_Crop_Cauliflower_Item",
+      "Plant_Crop_Pumpkin_Item"
+    ],
+    "FollowStopDistance": 3,
+    "IsHarvestable": true,
+    "HarvestDropList": "Drop_Cow_Harvest",
+    "HarvestInteractionContext": "Milk",
+    "HarvestInteractionRequiredItems": [
+      "Container_Bucket",
+      "Deco_Bucket"
+    ],
+    "HarvestParticles": "Block_Break_Snow",
+    "HarvestSound": "SFX_Water_MoveOut",
+    "HarvestTimeout": [
+      "PT11H",
+      "PT14H"
+    ],
+    "HarvestAddItemBucket": "*Container_Bucket_State_Filled_Milk",
+    "HarvestAddItemDecoBucket": "*Deco_Bucket_State_Filled_Milk",
+    "NameTranslationKey": "server.npcRoles.Cow.name"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_taming.items.CozyRanch_Food_Crickets.name",
+    "Description": "cozyranch_taming.items.CozyRanch_Food_Crickets.description"
+  },
+  "Quality": "Common",
+  "Categories": [
+    "Items.Foods"
+  ],
+  "PlayerAnimationsId": "Item",
+  "Icon": "Icons/ItemsGenerated/Potion_Poison.png",
+  "IconProperties": {
+    "Scale": 0.9,
+    "Translation": [
+      0,
+      -9
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Model": "Items/Consumables/Potions/Potion.blockymodel",
+  "Texture": "Items/Consumables/Potions/Potion_Textures/Green.png",
+  "Scale": 1,
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 2
+      },
+      {
+        "ItemId": "Plant_Crop_Wheat_Item",
+        "Quantity": 1
+      }
+    ],
+    "OutputQuantity": 2
+  },
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "CozyRanchOfferFood"
+        }
+      ]
+    }
+  },
+  "Tags": {
+    "Type": [
+      "Food"
+    ]
+  },
+  "MaxStack": 25,
+  "DropOnDeath": true
+}

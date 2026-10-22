@@ -6,5 +6,7 @@
   { "tool": "test_run", "args": { "project": "CozyTales-Ranching", "path": "tests/hytale/models-a.test.json" }, "save": "t3" },
   { "tool": "job_status", "args": { "jobId": "$t3", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 300000, "maxChars": 1500 },
   { "tool": "test_run", "args": { "project": "CozyTales-Ranching", "path": "tests/hytale/models-b.test.json" }, "save": "t4" },
-  { "tool": "job_status", "args": { "jobId": "$t4", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 300000, "maxChars": 1500 }
+  { "tool": "job_status", "args": { "jobId": "$t4", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 300000, "maxChars": 1500 },
+  { "tool": "test_run", "args": { "project": "CozyTales-Ranching", "path": "tests/hytale/taming.test.json" }, "save": "t5" },
+  { "tool": "job_status", "args": { "jobId": "$t5", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 300000, "maxChars": 1500 }
 ]

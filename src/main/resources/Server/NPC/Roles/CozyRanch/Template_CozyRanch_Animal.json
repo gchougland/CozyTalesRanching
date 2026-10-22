@@ -1,0 +1,574 @@
+{
+  "Type": "Abstract",
+  "StartState": "Idle",
+  "$Comment": "Cozy Tales: Ranching animal. Java (taming feature) owns the states Follow and Stay and the LockedTarget slot; Idle wanders around the leash point (home). Every player gets a use prompt; the mod's UseEntityEvent system decides what the use does.",
+  "Parameters": {
+    "Appearance": {
+      "Value": "Cow",
+      "Description": "The NPC's model."
+    },
+    "ParticleOffset": {
+      "Value": [ 0, 1, 0 ],
+      "Description": "The offset of any spawned particle systems."
+    },
+    "SeparationDistance": {
+      "Value": 1,
+      "Description": "The separation distance between this and other NPCs."
+    },
+    "WanderRadius": {
+      "Value": 6,
+      "Description": "How far from home (the leash point) the animal wanders when idle, in blocks."
+    },
+    "ClimbHeight": {
+      "Value": 1,
+      "Description": "The maximum climb height, in blocks."
+    },
+    "AttitudeGroup": {
+      "Value": "Prey",
+      "Description": "The attitude group this NPC belongs to."
+    },
+    "DropList": {
+      "Value": "Empty",
+      "Description": "The NPC's drop list."
+    },
+    "MaxSpeed": {
+      "Value": 4,
+      "Description": "The maximum walking speed of the NPC."
+    },
+    "MaxHealth": {
+      "Value": 100,
+      "Description": "The maximum health of the NPC."
+    },
+    "RunThreshold": {
+      "Value": 0.5,
+      "Description": "The speed ratio at which the NPC switches to its run animation."
+    },
+    "BreathesInWater": {
+      "Value": false,
+      "Description": "Whether this NPC can breathe underwater."
+    },
+    "FollowStopDistance": {
+      "Value": 2.5,
+      "Description": "How close a following animal walks up to its owner, in blocks."
+    },
+    "FoodItems": {
+      "Value": [ "Plant_Crop_Wheat_Item" ],
+      "TypeHint": "String",
+      "Description": "Items that show the feed prompt. Keep in step with the species file's food lists; the species file decides what feeding does."
+    },
+    "IsHarvestable": {
+      "Value": false,
+      "Description": "Whether this NPC can be harvested (shearing, milking)."
+    },
+    "HarvestInteractionContext": {
+      "Value": "",
+      "Description": "The interaction context of the harvest tool."
+    },
+    "HarvestInteractionRequiredItems": {
+      "Value": [ ],
+      "TypeHint": "String",
+      "Description": "The items that enable the harvest interaction."
+    },
+    "HarvestDropList": {
+      "Value": "",
+      "Description": "The drop list executed when the NPC is harvested."
+    },
+    "HarvestParticles": {
+      "Value": "Alerted",
+      "Description": "The particle system spawned when the NPC is harvested."
+    },
+    "HarvestSound": {
+      "Value": "SFX_Sheep_Sheared",
+      "Description": "The sound played when the NPC is harvested."
+    },
+    "HarvestTimeout": {
+      "Value": [ "P1D", "P1D" ],
+      "Description": "The minimum time between harvests (ISO-8601 periods with the same prefix)."
+    },
+    "HarvestModelSlot": {
+      "Value": "",
+      "Description": "The model attachment slot where the harvested state is shown."
+    },
+    "HarvestModelAttachmentHarvestable": {
+      "Value": "",
+      "Description": "The attachment rendered when the NPC can be harvested."
+    },
+    "HarvestModelAttachmentHarvested": {
+      "Value": "",
+      "Description": "The attachment rendered while the harvest is in timeout."
+    },
+    "HarvestAddItemBucket": {
+      "Value": "",
+      "Description": "Item given when the player holds Container_Bucket."
+    },
+    "HarvestAddItemDecoBucket": {
+      "Value": "",
+      "Description": "Item given when the player holds Deco_Bucket."
+    },
+    "NameTranslationKey": {
+      "Value": "server.npcRoles.Template.name",
+      "Description": "The translation key for the NPC name display."
+    }
+  },
+  "Appearance": { "Compute": "Appearance" },
+  "DropList": { "Compute": "DropList" },
+  "MaxHealth": { "Compute": "MaxHealth" },
+  "DisableDamageGroups": [ "Self" ],
+  "DefaultPlayerAttitude": "Revered",
+  "DefaultNPCAttitude": "Ignore",
+  "AttitudeGroup": { "Compute": "AttitudeGroup" },
+  "ApplySeparation": true,
+  "SeparationDistance": { "Compute": "SeparationDistance" },
+  "SeparationWeight": 1,
+  "SeparationDistanceTarget": { "Compute": "SeparationDistance" },
+  "SeparationNearRadiusTarget": 2,
+  "SeparationFarRadiusTarget": 7,
+  "BreathesInWater": { "Compute": "BreathesInWater" },
+  "KnockbackScale": 0.5,
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "MaxWalkSpeed": { "Compute": "MaxSpeed" },
+      "Gravity": 15,
+      "MaxFallSpeed": 15,
+      "JumpHeight": 0.1,
+      "MaxRotationSpeed": 360,
+      "Acceleration": 100,
+      "RunThreshold": { "Compute": "RunThreshold" },
+      "DescentAnimationType": "Fall",
+      "DescentSteepness": 2.5,
+      "DescentBlending": 1,
+      "JumpDescentSteepness": 8,
+      "MaxClimbHeight": { "Compute": "ClimbHeight" },
+      "FenceBlockSet": "Fence"
+    }
+  ],
+  "Instructions": [
+    {
+      "$Comment": "Clear harvest attachments when the harvest timeout passes.",
+      "Enabled": { "Compute": "IsHarvestable" },
+      "Continue": true,
+      "Sensor": {
+        "Type": "Alarm",
+        "Name": "Harvest_Ready",
+        "State": "Passed",
+        "Clear": true
+      },
+      "Instructions": [
+        {
+          "Enabled": { "Compute": "!isEmpty(HarvestModelSlot)" },
+          "Actions": [
+            {
+              "Type": "ModelAttachment",
+              "Slot": { "Compute": "HarvestModelSlot" },
+              "Attachment": { "Compute": "HarvestModelAttachmentHarvestable" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Instructions": [
+        {
+          "$Comment": "Idle: wander gently around home (the leash point).",
+          "Sensor": {
+            "Type": "State",
+            "State": "Idle"
+          },
+          "Instructions": [
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Player",
+                "Range": 5
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              }
+            },
+            {
+              "BodyMotion": {
+                "Type": "Sequence",
+                "Looped": true,
+                "Motions": [
+                  {
+                    "Type": "Timer",
+                    "Time": [ 1, 5 ],
+                    "Motion": {
+                      "Type": "WanderInCircle",
+                      "Radius": { "Compute": "WanderRadius" },
+                      "MaxHeadingChange": 60,
+                      "RelativeSpeed": 0.2
+                    }
+                  },
+                  {
+                    "Type": "Timer",
+                    "Time": [ 3, 8 ],
+                    "Motion": {
+                      "Type": "Nothing"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "Follow: walk to the owner Java puts in LockedTarget. With no target (owner away), wait.",
+          "Sensor": {
+            "Type": "State",
+            "State": "Follow",
+            "IgnoreMissingSetState": true
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "Target",
+                "TargetSlot": "LockedTarget",
+                "Range": { "Compute": "FollowStopDistance + 1" }
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            },
+            {
+              "Sensor": {
+                "Type": "Target",
+                "TargetSlot": "LockedTarget",
+                "Range": 96
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              },
+              "BodyMotion": {
+                "Type": "Seek",
+                "SlowDownDistance": 4,
+                "StopDistance": { "Compute": "FollowStopDistance" },
+                "RelativeSpeed": 0.9
+              }
+            },
+            {
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "Stay: stand still and look at nearby players.",
+          "Sensor": {
+            "Type": "State",
+            "State": "Stay",
+            "IgnoreMissingSetState": true
+          },
+          "Instructions": [
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Player",
+                "Range": 6
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              }
+            },
+            {
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "$Harvest"
+          },
+          "Instructions": [
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Any",
+                "Once": true
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Alerted"
+                },
+                {
+                  "Type": "SpawnParticles",
+                  "ParticleSystem": { "Compute": "HarvestParticles" },
+                  "Offset": { "Compute": "ParticleOffset" },
+                  "TargetNodeName": "Head"
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": { "Compute": "HarvestSound" }
+                },
+                {
+                  "Type": "SetAlarm",
+                  "Name": "Harvest_Ready",
+                  "DurationRange": { "Compute": "HarvestTimeout" }
+                }
+              ]
+            },
+            {
+              "Enabled": { "Compute": "!isEmpty(HarvestDropList)" },
+              "Continue": true,
+              "Sensor": {
+                "Type": "Any",
+                "Once": true
+              },
+              "Actions": [
+                {
+                  "Type": "DropItem",
+                  "DropList": { "Compute": "HarvestDropList" },
+                  "Distance": [ 0.2, 0.5 ],
+                  "Delay": [ 0, 0 ],
+                  "DropSector": [ -360, 360 ],
+                  "PitchHigh": false,
+                  "ThrowSpeed": 14
+                }
+              ]
+            },
+            {
+              "Enabled": { "Compute": "!isEmpty(HarvestAddItemBucket)" },
+              "Continue": true,
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Any",
+                    "Once": true
+                  },
+                  {
+                    "Type": "Target",
+                    "TargetSlot": "InteractionTarget",
+                    "Filters": [
+                      {
+                        "Type": "ItemInHand",
+                        "Items": [ "Container_Bucket" ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "Inventory",
+                  "UseTarget": true,
+                  "Operation": "RemoveHeldItem"
+                },
+                {
+                  "Type": "Inventory",
+                  "UseTarget": true,
+                  "Operation": "Add",
+                  "Item": { "Compute": "HarvestAddItemBucket" },
+                  "Count": 1
+                }
+              ]
+            },
+            {
+              "Enabled": { "Compute": "!isEmpty(HarvestAddItemDecoBucket)" },
+              "Continue": true,
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Any",
+                    "Once": true
+                  },
+                  {
+                    "Type": "Target",
+                    "TargetSlot": "InteractionTarget",
+                    "Filters": [
+                      {
+                        "Type": "ItemInHand",
+                        "Items": [ "Deco_Bucket" ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "Inventory",
+                  "UseTarget": true,
+                  "Operation": "RemoveHeldItem"
+                },
+                {
+                  "Type": "Inventory",
+                  "UseTarget": true,
+                  "Operation": "Add",
+                  "Item": { "Compute": "HarvestAddItemDecoBucket" },
+                  "Count": 1
+                }
+              ]
+            },
+            {
+              "Enabled": { "Compute": "IsHarvestable && !isEmpty(HarvestModelSlot)" },
+              "Continue": true,
+              "Actions": [
+                {
+                  "Type": "ModelAttachment",
+                  "Slot": { "Compute": "HarvestModelSlot" },
+                  "Attachment": { "Compute": "HarvestModelAttachmentHarvested" }
+                }
+              ]
+            },
+            {
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [ 2, 3 ]
+                },
+                {
+                  "Type": "State",
+                  "State": "Idle"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "InteractionInstruction": {
+    "Instructions": [
+      {
+        "Continue": true,
+        "Actions": [
+          {
+            "Type": "LockOnInteractionTarget",
+            "TargetSlot": "InteractionTarget"
+          }
+        ]
+      },
+      {
+        "Enabled": { "Compute": "IsHarvestable" },
+        "TreeMode": true,
+        "Instructions": [
+          {
+            "InvertTreeModeResult": true,
+            "Sensor": {
+              "Type": "Not",
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Alarm",
+                    "Name": "Harvest_Ready",
+                    "State": "Unset"
+                  },
+                  {
+                    "Type": "Target",
+                    "TargetSlot": "InteractionTarget",
+                    "Filters": [
+                      {
+                        "Enabled": { "Compute": "!isEmptyStringArray(HarvestInteractionRequiredItems)" },
+                        "Type": "ItemInHand",
+                        "Hand": "Main",
+                        "Items": { "Compute": "HarvestInteractionRequiredItems" }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "Actions": [
+              {
+                "Type": "Nothing"
+              }
+            ]
+          },
+          {
+            "InvertTreeModeResult": true,
+            "Continue": true,
+            "Sensor": {
+              "Type": "Any"
+            },
+            "Actions": [
+              {
+                "Type": "SetInteractable",
+                "Interactable": true,
+                "Hint": ""
+              }
+            ]
+          },
+          {
+            "Sensor": {
+              "Enabled": { "Compute": "!isEmpty(HarvestInteractionContext)" },
+              "Type": "InteractionContext",
+              "Context": { "Compute": "HarvestInteractionContext" }
+            },
+            "Actions": [
+              {
+                "Type": "State",
+                "State": "$Harvest"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Sensor": {
+          "Type": "Target",
+          "TargetSlot": "InteractionTarget",
+          "Filters": [
+            {
+              "Type": "ItemInHand",
+              "Hand": "Main",
+              "Items": { "Compute": "FoodItems" }
+            }
+          ]
+        },
+        "Actions": [
+          {
+            "Type": "SetInteractable",
+            "Interactable": true,
+            "Hint": "cozyranch_taming.hint.feed"
+          }
+        ]
+      },
+      {
+        "Sensor": {
+          "Type": "Target",
+          "TargetSlot": "InteractionTarget",
+          "Filters": [
+            {
+              "Type": "Not",
+              "Filter": {
+                "Type": "ItemInHand",
+                "Hand": "Main",
+                "Items": [ "*" ]
+              }
+            }
+          ]
+        },
+        "Actions": [
+          {
+            "Type": "SetInteractable",
+            "Interactable": true,
+            "Hint": "cozyranch_taming.hint.pet"
+          }
+        ]
+      },
+      {
+        "Actions": [
+          {
+            "Type": "SetInteractable",
+            "Interactable": true,
+            "Hint": "cozyranch_taming.hint.interact"
+          }
+        ]
+      }
+    ]
+  },
+  "NameTranslationKey": { "Compute": "NameTranslationKey" }
+}

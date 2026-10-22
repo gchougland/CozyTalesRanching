@@ -1,0 +1,17 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Sheep_Lamb",
+    "DropList": "Drop_Lamb",
+    "MaxHealth": 29,
+    "FoodItems": [
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Cauliflower_Item",
+      "Plant_Crop_Carrot_Item"
+    ],
+    "FollowStopDistance": 2,
+    "NameTranslationKey": "server.npcRoles.Sheep_Lamb.name"
+  }
+}
