@@ -1,0 +1,61 @@
+{
+  "InheritChance": 0.5,
+  "MutationChance": 0.08,
+  "MaxTraits": 2,
+  "Traits": [
+    {
+      "Id": "bountiful",
+      "NameKey": "cozyranch_breeding.trait.bountiful.name",
+      "DescKey": "cozyranch_breeding.trait.bountiful.desc",
+      "Effects": { "ProductionMultiplier": 1.25 }
+    },
+    {
+      "Id": "swift_grower",
+      "NameKey": "cozyranch_breeding.trait.swift_grower.name",
+      "DescKey": "cozyranch_breeding.trait.swift_grower.desc",
+      "Effects": { "GrowUpMultiplier": 0.7 }
+    },
+    {
+      "Id": "fertile",
+      "NameKey": "cozyranch_breeding.trait.fertile.name",
+      "DescKey": "cozyranch_breeding.trait.fertile.desc",
+      "Effects": { "BreedCooldownMultiplier": 0.6 }
+    },
+    {
+      "Id": "affectionate",
+      "NameKey": "cozyranch_breeding.trait.affectionate.name",
+      "DescKey": "cozyranch_breeding.trait.affectionate.desc",
+      "Effects": { "FriendshipGainMultiplier": 1.25 }
+    },
+    {
+      "Id": "hardy",
+      "NameKey": "cozyranch_breeding.trait.hardy.name",
+      "DescKey": "cozyranch_breeding.trait.hardy.desc",
+      "Effects": { "HappinessDeclineMultiplier": 0.5 }
+    },
+    {
+      "Id": "gourmet",
+      "NameKey": "cozyranch_breeding.trait.gourmet.name",
+      "DescKey": "cozyranch_breeding.trait.gourmet.desc",
+      "Effects": { "TreatBonusMultiplier": 1.5 }
+    },
+    {
+      "Id": "twinborn",
+      "NameKey": "cozyranch_breeding.trait.twinborn.name",
+      "DescKey": "cozyranch_breeding.trait.twinborn.desc",
+      "Effects": { "TwinChance": 0.3 }
+    },
+    {
+      "Id": "efficient_eater",
+      "NameKey": "cozyranch_breeding.trait.efficient_eater.name",
+      "DescKey": "cozyranch_breeding.trait.efficient_eater.desc",
+      "Effects": { "FoodUseMultiplier": 0.75 }
+    },
+    {
+      "Id": "lucky",
+      "NameKey": "cozyranch_breeding.trait.lucky.name",
+      "DescKey": "cozyranch_breeding.trait.lucky.desc",
+      "Effects": { "BonusProductChance": 0.1 }
+    }
+  ]
+}
