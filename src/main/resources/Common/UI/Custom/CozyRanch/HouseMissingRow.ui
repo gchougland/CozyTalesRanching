@@ -1,0 +1,26 @@
+$H = "HouseStyles.ui";
+
+Group #MissingRow {
+  LayoutMode: Left;
+  Anchor: (Height: 22);
+
+  Label #MNeed {
+    Style: (FontSize: 12, TextColor: #f0a0ae, RenderBold: true, RenderUppercase: true, VerticalAlignment: Center);
+    Anchor: (Width: 92);
+    Visible: false;
+    Text: "";
+  }
+
+  Label #MWant {
+    Style: (FontSize: 12, TextColor: #c9b48a, RenderBold: true, RenderUppercase: true, VerticalAlignment: Center);
+    Anchor: (Width: 92);
+    Visible: false;
+    Text: "";
+  }
+
+  Label #MName {
+    FlexWeight: 1;
+    Style: (...$H.@BodyStyle, VerticalAlignment: Center);
+    Text: "";
+  }
+}

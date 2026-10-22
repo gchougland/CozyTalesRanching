@@ -1,0 +1,15 @@
+// Shared look of the house page: warm creams and honey on the vanilla container.
+
+@ColorCream = #f4e6c8;
+@ColorHoney = #e8b25c;
+@ColorBody = #dccbb0;
+@ColorMuted = #a99a86;
+
+@HeadStyle = LabelStyle(FontSize: 15, TextColor: @ColorHoney, RenderBold: true);
+@SectionStyle = LabelStyle(FontSize: 14, TextColor: @ColorHoney, RenderBold: true, RenderUppercase: true, LetterSpacing: 1);
+@NameStyle = LabelStyle(FontSize: 16, TextColor: @ColorCream, RenderBold: true);
+@BodyStyle = LabelStyle(FontSize: 14, TextColor: @ColorBody);
+@MutedStyle = LabelStyle(FontSize: 13, TextColor: @ColorMuted);
+
+@CardBackground = (Color: #2b2119(0.62));
+@RowBackground = (Color: #2b2119(0.62));
