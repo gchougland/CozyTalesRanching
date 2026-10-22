@@ -1,0 +1,17 @@
+[
+  {"tool":"server_start","args":{"artifacts":["CozyTales-Ranching/build/libs/CozyTalesRanching-0.1.0.jar"],"port":15531,"authMode":"insecure"},"save":"srv"},
+  {"tool":"job_status","args":{"jobId":"$srv","waitMs":5000},"until":"ready","timeoutMs":300000,"maxChars":300},
+  {"tool":"bot_start","args":{"jobId":"$srv","name":"RanchBot","uuid":"11111111-2222-4333-8444-555555555555"},"save":"bot","maxChars":300},
+  {"tool":"server_command","args":{"jobId":"$srv","command":"op add 11111111-2222-4333-8444-555555555555"},"maxChars":300},
+  {"tool":"job_status","args":{"jobId":"$srv","waitMs":4000},"maxChars":100},
+  {"tool":"bot_send","args":{"botId":"$bot","op":"chat","text":"/ranch housepage --scenario full"},"maxChars":300},
+  {"tool":"job_status","args":{"jobId":"$srv","waitMs":3000},"maxChars":100},
+  {"tool":"bot_ui","args":{"botId":"$bot"},"maxChars":3000},
+  {"tool":"bot_ui_render","args":{"botId":"$bot","project":"CozyTales-Ranching"},"out":"notes/pictures/houseui/live-full.png","maxChars":1500},
+  {"tool":"bot_send","args":{"botId":"$bot","op":"chat","text":"/ranch housepage --scenario missing"},"maxChars":300},
+  {"tool":"job_status","args":{"jobId":"$srv","waitMs":3000},"maxChars":100},
+  {"tool":"bot_ui_render","args":{"botId":"$bot","project":"CozyTales-Ranching"},"out":"notes/pictures/houseui/live-missing.png","maxChars":1500},
+  {"tool":"bot_events","args":{"botId":"$bot","names":["ServerMessage"],"limit":20},"maxChars":4000,"always":true},
+  {"tool":"bot_stop","args":{"botId":"$bot"},"always":true,"maxChars":200},
+  {"tool":"job_stop","args":{"jobId":"$srv"},"always":true,"maxChars":200}
+]

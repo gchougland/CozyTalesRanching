@@ -1,0 +1,238 @@
+$C = "../Common.ui";
+$H = "HouseStyles.ui";
+
+@PanelWidth = 1000;
+@PanelHeight = 660;
+@SideWidth = 300;
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  Group {
+    LayoutMode: Center;
+
+    $C.@DecoratedContainer {
+      Anchor: (Width: @PanelWidth, Height: @PanelHeight);
+
+      #Title {
+        Label #HouseTitle {
+          Style: (...$C.@TitleStyle, FontSize: 17, TextColor: #f4e6c8, HorizontalAlignment: Center);
+          Padding: (Horizontal: 19);
+          Text: "";
+        }
+      }
+
+      #Content {
+        LayoutMode: Top;
+        Padding: (Horizontal: 18, Top: 12, Bottom: 16);
+
+        Group #Header {
+          LayoutMode: Left;
+          Anchor: (Height: 30, Bottom: 8);
+
+          Label #SpeciesLine {
+            FlexWeight: 1;
+            Style: (...$H.@BodyStyle, FontSize: 16, VerticalAlignment: Center);
+            Text: "";
+          }
+
+          Group #CountPill {
+            LayoutMode: Center;
+            Anchor: (Height: 30);
+            Padding: (Horizontal: 14);
+            Background: (Color: #e8b25c(0.16));
+            OutlineSize: 1;
+            OutlineColor: #e8b25c(0.45);
+
+            Label #ResidentCount {
+              Style: (...$H.@HeadStyle, FontSize: 15, VerticalAlignment: Center);
+              Text: "";
+            }
+          }
+        }
+
+        Group #NoticeBox {
+          LayoutMode: Left;
+          Anchor: (Height: 32, Bottom: 8);
+          Padding: (Horizontal: 12);
+          Background: (Color: #e8b25c(0.14));
+          OutlineSize: 1;
+          OutlineColor: #e8b25c(0.5);
+          Visible: false;
+
+          Label #NoticeText {
+            FlexWeight: 1;
+            Style: (FontSize: 15, TextColor: #f6d38e, RenderBold: true, VerticalAlignment: Center);
+            Text: "";
+          }
+        }
+
+        Group #Body {
+          LayoutMode: Left;
+          FlexWeight: 1;
+
+          Group #MainColumn {
+            LayoutMode: Top;
+            FlexWeight: 1;
+            Anchor: (Right: 16);
+
+            Label #ResidentsTitle {
+              Style: $H.@SectionStyle;
+              Anchor: (Bottom: 6);
+              Text: "";
+            }
+
+            Group #ResidentList {
+              LayoutMode: TopScrolling;
+              FlexWeight: 1;
+              ScrollbarStyle: $C.@DefaultScrollbarStyle;
+            }
+
+            Group #EmptyResidents {
+              LayoutMode: Middle;
+              Anchor: (Height: 150, Right: 12);
+              Background: $H.@CardBackground;
+              Padding: (Horizontal: 40);
+              Visible: false;
+
+              Group #EmptyFaces {
+                LayoutMode: Center;
+                Anchor: (Height: 32, Bottom: 14);
+
+                Group { Anchor: (Width: 18, Height: 18, Right: 10); Background: "HouseHeartFull.png"; }
+                Group { Anchor: (Width: 32, Height: 32); Background: "HouseFaceHappy.png"; }
+                Group { Anchor: (Width: 18, Height: 18, Left: 10); Background: "HouseHeartFull.png"; }
+              }
+
+              Label #EmptyResidentsText {
+                Style: (...$H.@BodyStyle, FontSize: 16, HorizontalAlignment: Center, Wrap: true);
+                Text: "";
+              }
+            }
+          }
+
+          Group #SideColumn {
+            LayoutMode: Top;
+            Anchor: (Width: @SideWidth);
+
+            Group #HabitatCard {
+              LayoutMode: Top;
+              Background: $H.@CardBackground;
+              Padding: (Full: 14);
+              Anchor: (Bottom: 10);
+
+              Label #HabitatTitle {
+                Style: $H.@SectionStyle;
+                Anchor: (Bottom: 8);
+                Text: "";
+              }
+
+              Group #HabitatRow {
+                LayoutMode: Left;
+                Anchor: (Height: 36, Bottom: 6);
+
+                Group #HabitatFace {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+
+                  Group #HabitatFaceHappy { Anchor: (Width: 32, Height: 32); Background: "HouseFaceHappy.png"; Visible: false; }
+                  Group #HabitatFaceOkay { Anchor: (Width: 32, Height: 32); Background: "HouseFaceOkay.png"; Visible: false; }
+                  Group #HabitatFaceSad { Anchor: (Width: 32, Height: 32); Background: "HouseFaceSad.png"; Visible: false; }
+                }
+
+                Label #HabitatSummary {
+                  FlexWeight: 1;
+                  Style: (...$H.@NameStyle, FontSize: 15, VerticalAlignment: Center, Wrap: true);
+                  Text: "";
+                }
+              }
+
+              Label #HabitatDetail {
+                Style: (...$H.@MutedStyle, FontSize: 13, Wrap: true);
+                Anchor: (Bottom: 4);
+                Text: "";
+              }
+
+              Group #HabitatMissing {
+                LayoutMode: Top;
+              }
+            }
+
+            Group #BreedingCard {
+              LayoutMode: Top;
+              Background: $H.@CardBackground;
+              Padding: (Full: 14);
+              Anchor: (Bottom: 10);
+
+              Label #BreedingTitle {
+                Style: $H.@SectionStyle;
+                Anchor: (Bottom: 6);
+                Text: "";
+              }
+
+              Label #BreedingState {
+                Style: (...$H.@BodyStyle, FontSize: 14, Wrap: true);
+                Anchor: (Bottom: 10);
+                Text: "";
+              }
+
+              $C.@SmallSecondaryTextButton #BreedingToggle {
+                @Anchor = (Height: 32);
+              }
+            }
+
+            Group #RenameCard {
+              LayoutMode: Top;
+              Background: $H.@CardBackground;
+              Padding: (Full: 14);
+
+              Label #RenameTitle {
+                Style: $H.@SectionStyle;
+                Anchor: (Bottom: 8);
+                Text: "";
+              }
+
+              Group #RenameRow {
+                LayoutMode: Left;
+                Anchor: (Height: 38);
+
+                $C.@TextField #RenameField {
+                  @Anchor = (Right: 8);
+                  FlexWeight: 1;
+                  MaxLength: 24;
+                }
+
+                $C.@SmallSecondaryTextButton #RenameButton {
+                  @Anchor = (Width: 92, Top: 3);
+                }
+              }
+            }
+
+            Label #FollowersTitle {
+              Style: $H.@SectionStyle;
+              Anchor: (Top: 14, Bottom: 6);
+              Text: "";
+            }
+
+            Group #FollowerList {
+              LayoutMode: TopScrolling;
+              FlexWeight: 1;
+              ScrollbarStyle: (...$C.@DefaultScrollbarStyle, Spacing: 2, Size: 4);
+            }
+
+            Group #NoFollowers {
+              LayoutMode: Top;
+              Background: $H.@CardBackground;
+              Padding: (Full: 14);
+              Visible: false;
+
+              Label #NoFollowersText {
+                Style: (...$H.@MutedStyle, FontSize: 14, Wrap: true);
+                Text: "";
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

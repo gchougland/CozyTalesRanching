@@ -1,0 +1,79 @@
+title.fallback = {species} House
+header.species = Home for: {species}
+header.count = {count} of {capacity} residents
+
+residents.title = Residents
+residents.empty = Nobody lives here yet. Walk a befriended {species} over and invite it to move in.
+resident.baby = Baby
+resident.traits = {first}, {second}
+
+mood.happy = Happy
+mood.okay = Content
+mood.sad = A bit down
+
+where.inside = Inside
+where.outside = Outside
+where.lost = Wandered off
+
+button.callback = Call back
+button.moveout = Move out
+button.movein = Move in
+button.full = House full
+
+followers.title = Following you
+followers.empty = Animals of this kind that follow you can move in here. Befriend a {species} and bring it along.
+
+habitat.title = Habitat
+habitat.unchecked = Not checked yet
+habitat.unchecked.detail = The house takes a look around every little while. Check back soon.
+habitat.great = Cozy and complete
+habitat.good = Comfy, with room to grow
+habitat.poor = Missing something important
+habitat.detail.none = Everything they love is close by.
+habitat.detail.some = Things to add nearby:
+habitat.need = Needs
+habitat.want = Would love
+habitat.food = Food
+habitat.hay = Hay
+habitat.grass = Grass
+habitat.flowers = Flowers
+habitat.dust = A dusty patch
+habitat.mud = Mud
+habitat.water = Water
+habitat.vegetables = Vegetable crops
+habitat.open_space = Open pasture
+habitat.lily_pads = Lily pads
+habitat.reeds = Reeds
+habitat.tall_grass = Tall grass
+habitat.shade = Shade
+
+breeding.title = Breeding
+breeding.on = Babies are welcome here.
+breeding.off = No babies for now.
+breeding.turnon = Turn on
+breeding.turnoff = Turn off
+
+rename.title = House name
+rename.button = Rename
+
+result.assigned = {name} moved in!
+result.unassigned = {name} moved out.
+result.resummoned = {name} is on the way to the door.
+result.breeding.on = Breeding is on. Babies are welcome.
+result.breeding.off = Breeding is off.
+result.renamed = House renamed.
+result.renamed.reset = The house has its usual name again.
+result.not_owner = Only the owner can change this house.
+result.no_permission = You are not allowed to do that here.
+result.wrong_species = That animal cannot live in this house.
+result.house_full = This house is full.
+result.not_found = That animal could not be found.
+result.unavailable = The house is still settling in. Try again soon.
+result.error = Something went wrong. Try again.
+result.gone = This house is no longer here.
+result.ok = Done.
+
+commands.housepage.desc = Opens the house page on a made-up house (typical, full, empty, unchecked, missing, breedingoff).
+commands.housepage.arg = Which made-up house to show
+commands.housepage.unknown = Unknown house. Try typical, full, empty, unchecked, missing or breedingoff.
+commands.housepage.failed = The house page could not be opened.

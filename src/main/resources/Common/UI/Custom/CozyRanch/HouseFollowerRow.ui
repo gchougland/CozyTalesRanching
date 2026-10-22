@@ -1,0 +1,40 @@
+$C = "../Common.ui";
+$H = "HouseStyles.ui";
+
+@Heart = Group {
+  Anchor: (Width: 16, Height: 16, Right: 1);
+  Background: "HouseHeartEmpty.png";
+};
+
+Group #FollowerRow {
+  LayoutMode: Left;
+  Anchor: (Height: 54, Bottom: 6);
+  Padding: (Horizontal: 12);
+  Background: $H.@RowBackground;
+
+  Group #FInfo {
+    LayoutMode: Middle;
+    FlexWeight: 1;
+    Anchor: (Right: 8);
+
+    Label #FName {
+      Style: (...$H.@NameStyle, FontSize: 15);
+      Text: "";
+    }
+
+    Group #FHearts {
+      LayoutMode: Left;
+      Anchor: (Height: 16, Top: 3);
+
+      @Heart { Group #FHeart1 { Background: "HouseHeartFull.png"; Visible: false; } }
+      @Heart { Group #FHeart2 { Background: "HouseHeartFull.png"; Visible: false; } }
+      @Heart { Group #FHeart3 { Background: "HouseHeartFull.png"; Visible: false; } }
+      @Heart { Group #FHeart4 { Background: "HouseHeartFull.png"; Visible: false; } }
+      @Heart { Group #FHeart5 { Background: "HouseHeartFull.png"; Visible: false; } }
+    }
+  }
+
+  $C.@SmallSecondaryTextButton #FMoveIn {
+    @Anchor = (Width: 112);
+  }
+}
