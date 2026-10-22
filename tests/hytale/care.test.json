@@ -1,0 +1,19 @@
+{
+  "cases": [
+    {
+      "name": "care gate",
+      "description": "The mod's assets parse and match the engine schemas, and the Java's UI strings check out.",
+      "steps": [
+        { "tool": "asset_validate", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true, "schemaErrors": 0 } },
+        { "tool": "ui_check_java", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true, "errors": 0 } }
+      ]
+    },
+    {
+      "name": "trough",
+      "description": "The trough item has no errors; its one warning is the plugin-registered CozyRanchTrough interaction type.",
+      "steps": [
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json" }, "expect": { "errors": 0 } }
+      ]
+    }
+  ]
+}
