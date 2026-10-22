@@ -34,6 +34,7 @@ import java.util.Optional;
 import java.util.UUID;
 import com.hexvane.cozytalesranching.breeding.BreedingRules;
 import com.hexvane.cozytalesranching.breeding.TraitRegistry;
+import com.hexvane.cozytalesranching.care.CareApi;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -253,6 +254,7 @@ public final class AnimalInteractions {
         }
         if (!takeHeldItem(playerEntity, use.itemId, store)) return;
         record.lastFedAtMs = now;
+        CareApi.recordMeal(record, food);
         addFriendship(record, TamingRules.feedFriendship(food));
         AnimalControl.cheer(animal, food == TamingRules.FoodKind.FAVORITE ? AnimalControl.HEARTS : AnimalControl.HEARTS_SMALL, store);
         use.player.sendMessage(Message.translation(food == TamingRules.FoodKind.FAVORITE ? "cozyranch_taming.feed.favorite" : "cozyranch_taming.feed.done")

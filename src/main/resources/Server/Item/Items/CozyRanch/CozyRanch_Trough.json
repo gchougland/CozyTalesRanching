@@ -66,6 +66,16 @@
     },
     "ParticleColor": "#815C39",
     "HitboxType": "CozyRanch_Trough",
+    "InteractionHint": "cozyranch_care.hint.trough",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CozyRanchTrough"
+          }
+        ]
+      }
+    },
     "BlockSoundSetId": "Wood",
     "PhysicalMaterialId": "Wood",
     "TextureComputedColor": "#6E4A2C"

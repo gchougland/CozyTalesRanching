@@ -1,0 +1,131 @@
+{
+  "ScanBelow": 4,
+  "ScanAbove": 10,
+  "GroundTolerance": 4,
+  "CoverPrefixes": [
+    "Plant_Leaves_"
+  ],
+  "Features": {
+    "food": {
+      "Special": "TroughFood"
+    },
+    "water": {
+      "Fluids": [
+        "Water",
+        "Water_Source",
+        "Water_Finite"
+      ],
+      "MinCount": 4
+    },
+    "lily_pads": {
+      "BlockPrefixes": [
+        "Plant_Flower_Water_"
+      ],
+      "MinCount": 1
+    },
+    "reeds": {
+      "Blocks": [
+        "Plant_Reeds_Marsh",
+        "Plant_Reeds_Water",
+        "Plant_Reeds_Wet",
+        "Plant_Reeds_Arid",
+        "Plant_Reeds_Winter"
+      ],
+      "MinCount": 2
+    },
+    "tall_grass": {
+      "Blocks": [
+        "Plant_Grass_Lush_Tall",
+        "Plant_Grass_Wet_Tall",
+        "Plant_Grass_Wet_Overgrown",
+        "Plant_Grass_Wet_Wild",
+        "Plant_Grass_Sharp_Tall",
+        "Plant_Grass_Sharp_Overgrown",
+        "Plant_Grass_Sharp_Wild",
+        "Plant_Grass_Jungle_Tall",
+        "Plant_Grass_Rocky_Tall",
+        "Plant_Grass_Gnarled_Tall",
+        "Plant_Grass_Dry_Tall",
+        "Plant_Grass_Arid_Tall",
+        "Plant_Grass_Snowy_Tall",
+        "Plant_Grass_Winter_Tall",
+        "Plant_Fern_Tall"
+      ],
+      "MinCount": 3
+    },
+    "grass": {
+      "BlockPrefixes": [
+        "Soil_Grass",
+        "Plant_Grass_"
+      ],
+      "Exclude": [
+        "Burnt",
+        "Poisoned",
+        "Cave"
+      ],
+      "MinCount": 20
+    },
+    "hay": {
+      "Blocks": [
+        "Plant_Hay_Bundle"
+      ],
+      "MinCount": 1
+    },
+    "flowers": {
+      "Blocks": [
+        "Plant_Sunflower_Block"
+      ],
+      "BlockPrefixes": [
+        "Plant_Flower_"
+      ],
+      "Exclude": [
+        "Poisoned"
+      ],
+      "MinCount": 3
+    },
+    "dust": {
+      "Blocks": [
+        "Soil_Dirt",
+        "Soil_Dirt_Dry",
+        "Soil_Dirt_Half",
+        "Soil_Dirt_Dry_Half"
+      ],
+      "BlockPrefixes": [
+        "Soil_Sand",
+        "Soil_Gravel_Sand"
+      ],
+      "Surface": true,
+      "MinCount": 4
+    },
+    "mud": {
+      "Blocks": [
+        "Soil_Mud",
+        "Soil_Mud_Dry"
+      ],
+      "Surface": true,
+      "MinCount": 3
+    },
+    "vegetables": {
+      "BlockPrefixes": [
+        "Plant_Crop_"
+      ],
+      "Exclude": [
+        "Mushroom",
+        "Wild_Grass",
+        "Cotton",
+        "Apple",
+        "_Item"
+      ],
+      "MinCount": 4
+    },
+    "shade": {
+      "Special": "Shade",
+      "MinCount": 6
+    },
+    "open_space": {
+      "Special": "OpenSky",
+      "MinCount": 40,
+      "MinFraction": 0.35
+    }
+  }
+}

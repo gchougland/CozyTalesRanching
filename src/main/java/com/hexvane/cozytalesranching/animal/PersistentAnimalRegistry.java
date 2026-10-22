@@ -81,6 +81,11 @@ public final class PersistentAnimalRegistry implements AnimalRegistry {
     }
 
     @Nonnull @Override
+    public List<AnimalRecord> inWorld(@Nonnull String worldName) {
+        return store.inWorld(worldName);
+    }
+
+    @Nonnull @Override
     public AnimalRecord create(@Nonnull String speciesId, @Nullable UUID ownerId, @Nonnull String worldName, boolean baby) {
         AnimalRecord r = store.create(speciesId, ownerId, worldName, baby);
         scheduleSave();

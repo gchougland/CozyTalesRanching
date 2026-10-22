@@ -39,6 +39,11 @@ public final class InMemoryAnimalRegistry implements AnimalRegistry {
     }
 
     @Nonnull @Override
+    public List<AnimalRecord> inWorld(@Nonnull String worldName) {
+        return records.values().stream().filter(r -> worldName.equals(r.worldName)).toList();
+    }
+
+    @Nonnull @Override
     public AnimalRecord create(@Nonnull String speciesId, @Nullable UUID ownerId, @Nonnull String worldName, boolean baby) {
         AnimalRecord r = new AnimalRecord();
         r.animalId = UUID.randomUUID();

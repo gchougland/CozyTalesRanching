@@ -15,6 +15,7 @@ public final class RanchPermissions {
     public static final String NAME = "cozyranch.name";
     public static final String HOUSE_PLACE = "cozyranch.house.place";
     public static final String HOUSE_MANAGE = "cozyranch.house.manage";
+    public static final String TROUGH = "cozyranch.trough";
     public static final String BREED = "cozyranch.breed";
     public static final String BUTCHER = "cozyranch.butcher";
     public static final String RELEASE = "cozyranch.release";
@@ -32,7 +33,7 @@ public final class RanchPermissions {
     private RanchPermissions() {}
 
     public static void register() {
-        for (String node : new String[] {TAME, FOLLOW, NAME, HOUSE_PLACE, HOUSE_MANAGE, BREED, BUTCHER, RELEASE, TRANSFER, JOURNAL}) {
+        for (String node : new String[] {TAME, FOLLOW, NAME, HOUSE_PLACE, HOUSE_MANAGE, TROUGH, BREED, BUTCHER, RELEASE, TRANSFER, JOURNAL}) {
             PermissionsModule.registerPermission(node, GROUP_PLAYERS);
         }
         for (String node : new String[] {ADMIN, ADMIN_RELOAD, ADMIN_INSPECT, ADMIN_BYPASS_BLOCKED_WORLDS, ADMIN_MANAGE_ANY}) {

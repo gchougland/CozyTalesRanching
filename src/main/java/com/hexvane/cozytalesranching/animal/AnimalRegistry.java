@@ -23,6 +23,9 @@ public interface AnimalRegistry {
 
     @Nonnull List<AnimalRecord> inHouse(@Nonnull UUID houseId);
 
+    /** Every record whose {@code worldName} is this world, housed or not, owner online or not. */
+    @Nonnull List<AnimalRecord> inWorld(@Nonnull String worldName);
+
     /** A new record with a fresh id, saved. Does not touch any entity. */
     @Nonnull AnimalRecord create(@Nonnull String speciesId, @Nullable UUID ownerId, @Nonnull String worldName, boolean baby);
 
