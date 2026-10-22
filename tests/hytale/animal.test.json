@@ -3,8 +3,8 @@
     {
       "name": "animal: gate",
       "steps": [
-        { "tool": "asset_validate", "arguments": { "project": "_worktrees/CozyTales-Ranching-animal" }, "expect": { "valid": true, "schemaErrors": 0 } },
-        { "tool": "ui_check_java", "arguments": { "project": "_worktrees/CozyTales-Ranching-animal" }, "expect": { "valid": true } }
+        { "tool": "asset_validate", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true, "schemaErrors": 0 } },
+        { "tool": "ui_check_java", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true } }
       ]
     },
     {
@@ -12,7 +12,7 @@
       "steps": [
         {
           "tool": "project_build",
-          "arguments": { "project": "_worktrees/CozyTales-Ranching-animal", "system": "gradle", "tasks": ["build"] },
+          "arguments": { "project": "CozyTales-Ranching", "system": "gradle", "tasks": ["build"] },
           "waitJob": true,
           "expect": { "state": "succeeded" }
         }

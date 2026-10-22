@@ -1,0 +1,10 @@
+[
+  { "tool": "test_run", "args": { "project": "CozyTales-Ranching", "path": "tests/hytale/animator.test.json" }, "save": "t1" },
+  { "tool": "job_status", "args": { "jobId": "$t1", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 300000, "maxChars": 1500 },
+  { "tool": "test_run", "args": { "project": "CozyTales-Ranching", "path": "tests/hytale/animal.test.json" }, "save": "t2" },
+  { "tool": "job_status", "args": { "jobId": "$t2", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 300000, "maxChars": 1500 },
+  { "tool": "test_run", "args": { "project": "CozyTales-Ranching", "path": "tests/hytale/models-a.test.json" }, "save": "t3" },
+  { "tool": "job_status", "args": { "jobId": "$t3", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 300000, "maxChars": 1500 },
+  { "tool": "test_run", "args": { "project": "CozyTales-Ranching", "path": "tests/hytale/models-b.test.json" }, "save": "t4" },
+  { "tool": "job_status", "args": { "jobId": "$t4", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 300000, "maxChars": 1500 }
+]

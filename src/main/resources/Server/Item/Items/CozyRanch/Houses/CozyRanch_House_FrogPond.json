@@ -1,0 +1,90 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_models_a.items.CozyRanch_House_FrogPond.name",
+    "Description": "cozyranch_models_a.items.CozyRanch_House_FrogPond.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_House_FrogPond.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "ItemLevel": 5,
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "Rock_Stone_Cobble",
+        "Quantity": 16
+      },
+      {
+        "ItemId": "Plant_Moss_Block_Green",
+        "Quantity": 4
+      },
+      {
+        "ItemId": "Plant_Crop_Mushroom_Cap_Red",
+        "Quantity": 2
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 4
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Farming"
+        ],
+        "Id": "Farmingbench"
+      }
+    ],
+    "TimeSeconds": 3
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "RequiresAlphaBlending": true,
+    "CustomModel": "Blocks/CozyRanch/Houses/FrogPond/FrogPond.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/Houses/FrogPond/FrogPond_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "HitboxType": "CozyRanch_House_FrogPond",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_House_FrogPond"
+      }
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "BlockParticleSetId": "Stone",
+    "ParticleColor": "#8C8E44",
+    "BlockSoundSetId": "Stone",
+    "PhysicalMaterialId": "Stone",
+    "TextureComputedColor": "#8A8A50"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.32,
+    "Translation": [
+      0,
+      -14
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 0.5,
+  "MaxStack": 4,
+  "ItemSoundSetId": "ISS_Blocks_Stone"
+}
