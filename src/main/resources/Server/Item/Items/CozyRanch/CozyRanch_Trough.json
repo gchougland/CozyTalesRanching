@@ -1,0 +1,89 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_models_b.items.CozyRanch_Trough.name",
+    "Description": "cozyranch_models_b.items.CozyRanch_Trough.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Trough.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "ItemLevel": 5,
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_All",
+        "Quantity": 12
+      },
+      {
+        "ItemId": "Ingredient_Bar_Iron",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Farming"
+        ],
+        "Id": "Farmingbench",
+        "RequiredTierLevel": 1
+      }
+    ],
+    "TimeSeconds": 2
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/CozyRanch/Trough/Trough.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/Trough/Trough_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "State": {
+      "Definitions": {
+        "Filled": {
+          "CustomModel": "Blocks/CozyRanch/Trough/Trough_Filled.blockymodel"
+        }
+      }
+    },
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_Trough"
+      }
+    },
+    "BlockParticleSetId": "Wood",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "ParticleColor": "#815C39",
+    "HitboxType": "CozyRanch_Trough",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "TextureComputedColor": "#6E4A2C"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.43,
+    "Translation": [
+      13.2,
+      -10.8
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 0.5,
+  "MaxStack": 16,
+  "ItemSoundSetId": "ISS_Blocks_Wood"
+}

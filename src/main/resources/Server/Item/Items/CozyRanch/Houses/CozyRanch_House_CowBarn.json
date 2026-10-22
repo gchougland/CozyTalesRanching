@@ -1,0 +1,90 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_models_b.items.CozyRanch_House_CowBarn.name",
+    "Description": "cozyranch_models_b.items.CozyRanch_House_CowBarn.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_House_CowBarn.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "ItemLevel": 17,
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_All",
+        "Quantity": 40
+      },
+      {
+        "ResourceTypeId": "Rock",
+        "Quantity": 20
+      },
+      {
+        "ItemId": "Ingredient_Hay",
+        "Quantity": 10
+      },
+      {
+        "ItemId": "Ingredient_Bar_Iron",
+        "Quantity": 2
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Farming"
+        ],
+        "Id": "Farmingbench",
+        "RequiredTierLevel": 3
+      }
+    ],
+    "TimeSeconds": 3
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/CozyRanch/Houses/CowBarn/CowBarn.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/Houses/CowBarn/CowBarn_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_House_CowBarn"
+      }
+    },
+    "BlockParticleSetId": "Wood",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "ParticleColor": "#9C3F2B",
+    "HitboxType": "CozyRanch_House_CowBarn",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "TextureComputedColor": "#8C3A28"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.22,
+    "Translation": [
+      0,
+      -26
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 0.5,
+  "MaxStack": 1,
+  "ItemSoundSetId": "ISS_Blocks_Wood"
+}
