@@ -1,0 +1,18 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "Calf",
+    "DropList": "Drop_Calf",
+    "MaxHealth": 60,
+    "FoodItems": [
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Corn_Item",
+      "Plant_Crop_Cauliflower_Item",
+      "Plant_Crop_Pumpkin_Item"
+    ],
+    "FollowStopDistance": 2.5,
+    "NameTranslationKey": "server.npcRoles.Cow_Calf.name"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "Chicken",
+    "SeparationDistance": 0.6,
+    "DropList": "Drop_Chicken",
+    "MaxHealth": 29,
+    "MaxSpeed": 5,
+    "ParticleOffset": [
+      0,
+      0.7,
+      0
+    ],
+    "FoodItems": [
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Corn_Item",
+      "Plant_Crop_Rice_Item",
+      "Plant_Crop_Tomato_Item"
+    ],
+    "FollowStopDistance": 2,
+    "IsHarvestable": true,
+    "HarvestDropList": "Drop_Chicken_Harvest",
+    "HarvestInteractionContext": "Shear",
+    "HarvestInteractionRequiredItems": [
+      "Tool_Shears_Basic"
+    ],
+    "HarvestParticles": "Impact_Feathers_Black",
+    "HarvestSound": "SFX_Chicken_Alerted",
+    "HarvestTimeout": [
+      "PT11H",
+      "PT14H"
+    ],
+    "NameTranslationKey": "server.npcRoles.Chicken.name"
+  }
+}

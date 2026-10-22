@@ -1,0 +1,34 @@
+{
+  "cases": [
+    {
+      "name": "taming gate",
+      "description": "The mod's assets parse and match the engine schemas.",
+      "steps": [
+        { "tool": "asset_validate", "arguments": { "project": "_worktrees/CozyTales-Ranching-taming" }, "expect": { "valid": true, "schemaErrors": 0 } }
+      ]
+    },
+    {
+      "name": "ranch roles",
+      "description": "The CozyRanch template and every species role pass the engine schema with no warnings.",
+      "steps": [
+        { "tool": "asset_check", "name": "template", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-taming/src/main/resources/Server/NPC/Roles/CozyRanch/Template_CozyRanch_Animal.json" }, "expect": { "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "name": "cow", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-taming/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Cow.json" }, "expect": { "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "name": "calf", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-taming/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Cow_Calf.json" }, "expect": { "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "name": "chicken", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-taming/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Chicken.json" }, "expect": { "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "name": "chick", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-taming/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Chicken_Chick.json" }, "expect": { "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "name": "pig", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-taming/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig.json" }, "expect": { "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "name": "piglet", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-taming/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig_Piglet.json" }, "expect": { "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "name": "sheep", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-taming/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Sheep.json" }, "expect": { "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "name": "lamb", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-taming/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Sheep_Lamb.json" }, "expect": { "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "name": "frog", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-taming/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Frog.json" }, "expect": { "errors": 0, "warnings": 0 } }
+      ]
+    },
+    {
+      "name": "cricket jar",
+      "description": "The frog food item has no errors; its one warning is the plugin-registered CozyRanchOfferFood type.",
+      "steps": [
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-taming/src/main/resources/Server/Item/Items/CozyRanch/Food/CozyRanch_Food_Crickets.json" }, "expect": { "errors": 0 } }
+      ]
+    }
+  ]
+}
