@@ -49,6 +49,9 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
     private static final Set<UUID> FORCED_MORNING = ConcurrentHashMap.newKeySet();
     /** When each resident started walking home tonight. */
     private static final Map<UUID, Long> WALKING_SINCE = new ConcurrentHashMap<>();
+    /** A resident that could not come out (door blocked) tries again after this. */
+    private static final long OUT_RETRY_MS = 30_000;
+    private static final Map<UUID, Long> OUT_RETRY_AT = new ConcurrentHashMap<>();
 
     private final PersistentHouseRegistry houses;
     private final Map<String, Float> elapsed = new ConcurrentHashMap<>();
@@ -112,7 +115,11 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
         if (!reader.hasStorageInMemory(house.x, house.y, house.z)) return false;
         int expected = BlockType.getAssetMap().getIndex(house.blockId);
         if (expected < 0 || expected == BlockType.UNKNOWN_ID) return false;
-        return reader.getBlock(house.x, house.y, house.z) != expected;
+        int found = reader.getBlock(house.x, house.y, house.z);
+        if (found == expected) return false;
+        BlockType now = BlockType.getAssetMap().getAsset(found);
+        LOG.info("House " + house.houseId + " block at " + house.x + " " + house.y + " " + house.z + " is now " + (now != null ? now.getId() : String.valueOf(found)));
+        return true;
     }
 
     private void day(@Nonnull World world, @Nonnull Store<EntityStore> store, @Nonnull HouseRecord house, long cycleDay) {
@@ -127,8 +134,13 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
         for (AnimalRecord r : Ranch.animals().inHouse(house.houseId)) {
             WALKING_SINCE.remove(r.animalId);
             if (r.state == AnimalRecord.State.STORED) {
+                long now = System.currentTimeMillis();
+                if (now < OUT_RETRY_AT.getOrDefault(r.animalId, 0L)) continue;
                 if (HouseResidents.bringOut(world, store, house, r)) {
+                    OUT_RETRY_AT.remove(r.animalId);
                     HouseResidents.log("Ranch animal " + r.animalId + " came out of house " + house.houseId + " (generation " + r.generation + ")");
+                } else {
+                    OUT_RETRY_AT.put(r.animalId, now + OUT_RETRY_MS);
                 }
                 continue;
             }
@@ -167,7 +179,10 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
                     Ref<EntityStore> stray = HouseResidents.live(world, r);
                     if (stray != null) store.removeEntity(stray, com.hypixel.hytale.component.RemoveReason.REMOVE);
                 }
-                case MISSING -> HouseResidents.storeInside(store, house, r, null);
+                case MISSING -> {
+                    HouseResidents.storeInside(store, house, r, null);
+                    HouseResidents.log("Ranch animal " + r.animalId + " went into house " + house.houseId + " (it was missing)");
+                }
                 case ACTIVE -> {
                     if (r.following) continue;
                     if (!goingHome(world, store, house, r, now)) someoneOut = true;
@@ -195,17 +210,29 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
         HouseResidents.rememberRole(r.animalId, npc);
         if (npc.getRole() != null && npc.getRole().isRoleChangeRequested()) return false;
         Vector3d p = t.getPosition();
-        long since = WALKING_SINCE.computeIfAbsent(r.animalId, id -> now);
+        Long started = WALKING_SINCE.get(r.animalId);
+        if (started == null) {
+            started = now;
+            WALKING_SINCE.put(r.animalId, now);
+            HouseResidents.log("Ranch animal " + r.animalId + " walks home to house " + house.houseId + " from " + where(p, house));
+        }
         boolean arrived = HouseRules.arrived(p.x - house.doorX, p.y - house.doorY, p.z - house.doorZ);
-        if (arrived || !HouseResidents.hasHomeStates(npc) || HouseRules.walkTimedOut(since, now)) {
+        if (arrived || !HouseResidents.hasHomeStates(npc) || HouseRules.walkTimedOut(started, now)) {
             WALKING_SINCE.remove(r.animalId);
+            StateSupport states = store.getComponent(ref, StateSupport.getComponentType());
+            String detail = arrived ? " at the door" : " (did not reach the door in time; " + where(p, house) + ", state " + (states != null ? HouseResidents.stateName(states) : "?") + ")";
             HouseResidents.storeInside(store, house, r, ref);
-            HouseResidents.log("Ranch animal " + r.animalId + " went into house " + house.houseId + (arrived ? " at the door" : " (did not reach the door in time)"));
+            HouseResidents.log("Ranch animal " + r.animalId + " went into house " + house.houseId + detail);
             return true;
         }
         HouseResidents.leashToDoor(npc, house);
         HouseResidents.setState(ref, store, HouseResidents.STATE_GO_HOME);
         return false;
+    }
+
+    @Nonnull
+    private static String where(@Nonnull Vector3d p, @Nonnull HouseRecord house) {
+        return String.format(java.util.Locale.ROOT, "%.1f blocks from the door (dy %.1f)", horizontal(p, house), p.y - house.doorY);
     }
 
     private static double horizontal(@Nonnull Vector3d p, @Nonnull HouseRecord house) {
@@ -214,6 +241,9 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
     }
 
     static void forget(@Nullable UUID animalId) {
-        if (animalId != null) WALKING_SINCE.remove(animalId);
+        if (animalId != null) {
+            WALKING_SINCE.remove(animalId);
+            OUT_RETRY_AT.remove(animalId);
+        }
     }
 }

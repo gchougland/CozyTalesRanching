@@ -122,9 +122,17 @@ final class HouseResidents {
         if (role != null && !role.isEmpty()) r.spawnRole = role;
         r.state = AnimalRecord.State.STORED;
         r.following = false;
-        r.lastX = house.doorX;
-        r.lastY = house.doorY;
-        r.lastZ = house.doorZ;
+        TransformComponent t = ref != null && ref.isValid() ? store.getComponent(ref, TransformComponent.getComponentType()) : null;
+        if (t != null) {
+            Vector3d p = t.getPosition();
+            r.lastX = p.x;
+            r.lastY = p.y;
+            r.lastZ = p.z;
+        } else if (!house.worldName.equals(r.worldName) || !nearDoor(house, r.lastX, r.lastZ)) {
+            r.lastX = house.doorX;
+            r.lastY = house.doorY;
+            r.lastZ = house.doorZ;
+        }
         r.worldName = house.worldName;
         Ranch.animals().markDirty(r);
         if (ref != null && ref.isValid()) store.removeEntity(ref, RemoveReason.REMOVE);
@@ -138,13 +146,20 @@ final class HouseResidents {
     static boolean bringOut(@Nonnull World world, @Nonnull Store<EntityStore> store, @Nonnull HouseRecord house, @Nonnull AnimalRecord r) {
         NPCPlugin npcs = NPCPlugin.get();
         if (npcs == null || !HouseBlocks.isLoaded(world, house.doorX, house.doorZ)) return false;
-        for (String role : roleCandidates(r)) {
+        Set<String> candidates = roleCandidates(r);
+        for (String role : candidates) {
             int roleIndex = npcs.getIndex(role);
             if (roleIndex < 0 || !CompatGuard.isManageableRole(role)) continue;
             var builder = npcs.tryGetCachedValidRole(roleIndex);
             if (!(builder instanceof ISpawnableWithModel spawnable)) continue;
-            Spot spot = findSpot(world, spawnable, HouseBlocks.door(house));
-            if (spot == null) return false;
+            Spot spot = findSpot(world, spawnable, house, HouseBlocks.door(house));
+            if (spot == null && house.worldName.equals(r.worldName) && nearDoor(house, r.lastX, r.lastZ)) {
+                spot = findSpot(world, spawnable, house, new Vector3d(r.lastX, r.lastY, r.lastZ));
+            }
+            if (spot == null) {
+                log("Ranch animal " + r.animalId + " cannot come out of house " + house.houseId + ": no room at the door");
+                return false;
+            }
             Ref<EntityStore> old = live(world, r);
             if (old != null) {
                 if (r.state != AnimalRecord.State.STORED) {
@@ -154,7 +169,10 @@ final class HouseResidents {
                 store.removeEntity(old, RemoveReason.REMOVE);
             }
             var spawned = npcs.spawnEntity(store, roleIndex, spot.pos, new Rotation3f(0f, (float) (Math.random() * Math.PI * 2), 0f), spot.model, null);
-            if (spawned == null || spawned.first() == null || !spawned.first().isValid()) return false;
+            if (spawned == null || spawned.first() == null || !spawned.first().isValid()) {
+                log("Ranch animal " + r.animalId + " cannot come out of house " + house.houseId + ": spawning " + role + " failed");
+                return false;
+            }
             Ref<EntityStore> ref = spawned.first();
             UUIDComponent uuid = store.getComponent(ref, UUIDComponent.getComponentType());
             if (uuid == null) {
@@ -176,6 +194,7 @@ final class HouseResidents {
             LAST_ROLE.put(r.animalId, role);
             return true;
         }
+        log("Ranch animal " + r.animalId + " cannot come out of house " + house.houseId + ": no spawnable role in " + candidates);
         return false;
     }
 
@@ -197,30 +216,66 @@ final class HouseResidents {
 
     private record Spot(@Nonnull Vector3d pos, @Nullable com.hypixel.hytale.server.core.asset.type.model.config.Model model) {}
 
-    /** Columns at and around the door, nearest first, only in loaded chunks; the game's spawn test checks room. */
-    @Nullable
-    private static Spot findSpot(@Nonnull World world, @Nonnull ISpawnableWithModel spawnable, @Nonnull Vector3d door) {
-        int cx = (int) Math.floor(door.x);
-        int cz = (int) Math.floor(door.z);
-        int[][] offsets = {
-            {0, 0}, {1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {-1, 1}, {1, -1}, {-1, -1},
-            {2, 0}, {-2, 0}, {0, 2}, {0, -2}, {2, 2}, {-2, 2}, {2, -2}, {-2, -2}
-        };
-        SpawningContext ctx = new SpawningContext();
-        try {
-            if (!ctx.setSpawnable(spawnable)) return null;
-            for (int[] o : offsets) {
-                int x = cx + o[0], z = cz + o[1];
-                if (!HouseBlocks.isLoaded(world, x, z)) continue;
-                if (!ctx.set(world, x + 0.5, door.y, z + 0.5)) continue;
-                if (ctx.canSpawn() != SpawnTestResult.TEST_OK) continue;
-                if (ctx.groundFluid != null) continue;
-                return new Spot(new Vector3d(ctx.xSpawn, ctx.ySpawn, ctx.zSpawn), ctx.getModel());
+    /** Where a resident that went in may come back out if the door is blocked: where it last stood, if close. */
+    private static boolean nearDoor(@Nonnull HouseRecord house, double x, double z) {
+        double dx = x - house.doorX, dz = z - house.doorZ;
+        return dx * dx + dz * dz <= SPOT_FALLBACK_RANGE * SPOT_FALLBACK_RANGE;
+    }
+
+    private static final double SPOT_FALLBACK_RANGE = 16;
+    private static final int SPOT_RADIUS = 4;
+    /** Every column within {@link #SPOT_RADIUS} of the centre, nearest first. */
+    private static final int[][] SPOT_OFFSETS = spotOffsets();
+
+    @Nonnull
+    private static int[][] spotOffsets() {
+        java.util.List<int[]> out = new java.util.ArrayList<>();
+        for (int dx = -SPOT_RADIUS; dx <= SPOT_RADIUS; dx++) {
+            for (int dz = -SPOT_RADIUS; dz <= SPOT_RADIUS; dz++) {
+                if (dx * dx + dz * dz <= SPOT_RADIUS * SPOT_RADIUS) out.add(new int[] {dx, dz});
             }
-            return null;
-        } finally {
-            ctx.releaseFull();
         }
+        out.sort(java.util.Comparator.comparingInt(o -> o[0] * o[0] + o[1] * o[1]));
+        return out.toArray(new int[0][]);
+    }
+
+    /**
+     * Columns around {@code centre}, nearest first, only in loaded chunks and never under the house itself
+     * (a column probe there finds its roof). Each column gets a fresh context, as the engine's own
+     * {@code NPCPlugin.spawnNPCWithColumnProbe} does: a context reused across columns keeps the previous
+     * column's movement mode and rejects every later one.
+     */
+    @Nullable
+    private static Spot findSpot(@Nonnull World world, @Nonnull ISpawnableWithModel spawnable, @Nonnull HouseRecord house, @Nonnull Vector3d centre) {
+        int cx = (int) Math.floor(centre.x);
+        int cz = (int) Math.floor(centre.z);
+        HouseGeometry.Bounds footprint = HouseBlocks.bounds(house.blockId, house.rotation);
+        StringBuilder why = new StringBuilder();
+        for (int[] o : SPOT_OFFSETS) {
+            int x = cx + o[0], z = cz + o[1];
+            if (!HouseBlocks.isLoaded(world, x, z) || HouseGeometry.covers(footprint, house.x, house.y, house.z, x, house.y, z)) continue;
+            SpawningContext ctx = new SpawningContext();
+            try {
+                if (!ctx.setSpawnable(spawnable)) {
+                    log("No spawn spot for " + house.houseId + ": " + ctx.getLastResult());
+                    return null;
+                }
+                if (!ctx.set(world, x + 0.5, centre.y, z + 0.5)) {
+                    why.append(' ').append(x).append(',').append(z).append(':').append(ctx.getLastResult());
+                    continue;
+                }
+                SpawnTestResult test = ctx.canSpawn();
+                if (test != SpawnTestResult.TEST_OK) {
+                    why.append(' ').append(x).append(',').append(z).append(':').append(test);
+                    continue;
+                }
+                return new Spot(new Vector3d(ctx.xSpawn, ctx.ySpawn, ctx.zSpawn), ctx.getModel());
+            } finally {
+                ctx.releaseFull();
+            }
+        }
+        log("No spawn spot near " + cx + " " + (int) Math.floor(centre.y) + " " + cz + ":" + (why.length() > 500 ? why.substring(0, 500) + " ..." : why));
+        return null;
     }
 
     static void forget(@Nonnull UUID animalId) {

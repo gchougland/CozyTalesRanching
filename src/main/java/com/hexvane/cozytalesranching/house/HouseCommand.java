@@ -12,6 +12,7 @@ import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.protocol.BlockRotation;
 import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.asset.type.blocktype.config.BlockType;
 import com.hypixel.hytale.server.core.asset.type.blocktype.config.Rotation;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.arguments.system.DefaultArg;
@@ -26,6 +27,7 @@ import com.hypixel.hytale.server.core.modules.entity.component.TransformComponen
 import com.hypixel.hytale.server.core.modules.interaction.BlockPlaceUtils;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
+import com.hypixel.hytale.server.core.universe.world.accessor.SectionReader;
 import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.util.TargetUtil;
@@ -94,7 +96,7 @@ public final class HouseCommand extends AbstractCommandCollection {
         }
     }
 
-    /** Places a species' house block at the player's feet through the engine's own placement, which fires the place event. */
+    /** Places a species' house block on the ground at the player's feet through the engine's own placement, which fires the place event. */
     private static final class PlaceCommand extends AbstractPlayerCommand {
         private final RequiredArg<String> speciesArg;
         private final DefaultArg<Integer> rotationArg;
@@ -116,12 +118,19 @@ public final class HouseCommand extends AbstractCommandCollection {
             }
             TransformComponent t = store.getComponent(ref, TransformComponent.getComponentType());
             InventoryComponent.Hotbar hotbar = store.getComponent(ref, InventoryComponent.Hotbar.getComponentType());
-            if (t == null || hotbar == null) return;
-            Vector3d p = t.getPosition();
-            Vector3i pos = new Vector3i((int) Math.floor(p.x), (int) Math.floor(p.y), (int) Math.floor(p.z));
-            Ref<ChunkStore> section = world.getChunkStore().getChunkSectionReferenceAtBlock(pos.x, pos.y, pos.z);
-            if (section == null || !section.isValid()) return;
             String blockId = species.get().HouseBlock;
+            if (t == null || hotbar == null) {
+                HouseResidents.log("debug place: the player has no " + (t == null ? "transform" : "hotbar"));
+                return;
+            }
+            Vector3d p = t.getPosition();
+            Vector3i pos = onGround(world, (int) Math.floor(p.x), (int) Math.floor(p.y), (int) Math.floor(p.z));
+            Ref<ChunkStore> section = world.getChunkStore().getChunkSectionReferenceAtBlock(pos.x, pos.y, pos.z);
+            if (section == null || !section.isValid()) {
+                HouseResidents.log("debug place: no chunk section at " + pos.x + " " + pos.y + " " + pos.z);
+                context.sendMessage(Message.translation("cozyranch_house.debug.place_failed").param("block", blockId).param("x", pos.x).param("y", pos.y).param("z", pos.z));
+                return;
+            }
             Integer rot = context.get(rotationArg);
             Rotation yaw = Rotation.NORMAL[Math.floorMod(rot == null ? 0 : rot, 4)];
             boolean placed = BlockPlaceUtils.placeBlock(ref, new ItemStack(blockId, 1), blockId, hotbar.getInventory(), new Vector3i(0, 1, 0), pos,
@@ -129,6 +138,17 @@ public final class HouseCommand extends AbstractCommandCollection {
                 section, world.getChunkStore().getStore(), store, false, false, false);
             context.sendMessage(Message.translation(placed ? "cozyranch_house.debug.placed" : "cozyranch_house.debug.place_failed")
                 .param("block", blockId).param("x", pos.x).param("y", pos.y).param("z", pos.z));
+        }
+
+        /** The cell above the first block at or below the feet, within 32 blocks; house blocks need support below. */
+        @Nonnull
+        private static Vector3i onGround(@Nonnull World world, int x, int y, int z) {
+            SectionReader reader = new SectionReader(world.getChunkStore());
+            for (int cy = y; cy > y - 32; cy--) {
+                if (!reader.hasStorageInMemory(x, cy - 1, z)) break;
+                if (reader.getBlock(x, cy - 1, z) != BlockType.EMPTY_ID) return new Vector3i(x, cy, z);
+            }
+            return new Vector3i(x, y, z);
         }
     }
 
