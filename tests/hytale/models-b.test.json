@@ -5,7 +5,7 @@
       "steps": [
         {
           "tool": "asset_validate",
-          "arguments": { "project": "CozyTales-Ranching" },
+          "arguments": { "project": "_worktrees/CozyTales-Ranching-artpolish" },
           "expect": { "valid": true, "schemaErrors": 0, "errors": 0 }
         }
       ]
@@ -16,17 +16,17 @@
       "steps": [
         {
           "tool": "texture_check", "name": "Cow Barn texture",
-          "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_CowBarn.json" },
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-artpolish/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_CowBarn.json" },
           "expect": { "verdict": "PASS" }
         },
         {
           "tool": "texture_check", "name": "Sheepfold texture",
-          "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Sheepfold.json" },
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-artpolish/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Sheepfold.json" },
           "expect": { "verdict": "PASS" }
         },
         {
           "tool": "texture_check", "name": "Trough texture",
-          "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json" },
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-artpolish/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json" },
           "expect": { "verdict": "PASS" }
         }
       ]
@@ -37,25 +37,25 @@
       "steps": [
         {
           "tool": "model_render", "name": "Cow Barn",
-          "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_CowBarn.json", "views": ["three_quarter"], "grid": true, "size": 320 },
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-artpolish/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_CowBarn.json", "views": ["three_quarter"], "grid": true, "size": 320 },
           "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "sizeBlocks": { "width": { "$lte": 4.05 }, "depth": { "$lte": 4.05 }, "height": { "$lte": 4 } } },
           "golden": "tests/hytale/golden/models-b/CozyRanch_House_CowBarn.png"
         },
         {
           "tool": "model_render", "name": "Sheepfold",
-          "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Sheepfold.json", "views": ["three_quarter"], "grid": true, "size": 320 },
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-artpolish/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Sheepfold.json", "views": ["three_quarter"], "grid": true, "size": 320 },
           "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "sizeBlocks": { "width": { "$lte": 3.05 }, "depth": { "$lte": 3.05 }, "height": { "$lte": 3 } } },
           "golden": "tests/hytale/golden/models-b/CozyRanch_House_Sheepfold.png"
         },
         {
           "tool": "model_render", "name": "Trough empty",
-          "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json", "views": ["three_quarter"], "grid": true, "size": 256 },
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-artpolish/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json", "views": ["three_quarter"], "grid": true, "size": 256 },
           "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "sizeBlocks": { "width": { "$lte": 2 }, "depth": { "$lte": 1 }, "height": { "$lte": 1 } } },
           "golden": "tests/hytale/golden/models-b/CozyRanch_Trough.png"
         },
         {
           "tool": "model_render", "name": "Trough filled",
-          "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json", "blockState": "Filled", "views": ["three_quarter"], "grid": true, "size": 256 },
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-artpolish/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json", "blockState": "Filled", "views": ["three_quarter"], "grid": true, "size": 256 },
           "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 } },
           "golden": "tests/hytale/golden/models-b/CozyRanch_Trough_Filled.png"
         }
