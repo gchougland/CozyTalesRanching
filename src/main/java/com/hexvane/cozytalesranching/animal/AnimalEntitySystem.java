@@ -2,6 +2,8 @@ package com.hexvane.cozytalesranching.animal;
 
 import com.hexvane.cozytalesranching.api.event.AnimalTamedEvent;
 import com.hexvane.cozytalesranching.api.event.RanchEvents;
+import com.hexvane.cozytalesranching.breeding.BreedingRules;
+import com.hexvane.cozytalesranching.breeding.TraitRegistry;
 import com.hexvane.cozytalesranching.compat.CompatGuard;
 import com.hexvane.cozytalesranching.config.RanchConfig;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
@@ -21,6 +23,7 @@ import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.entities.NPCEntity;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Logger;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -146,6 +149,7 @@ final class AnimalEntitySystem extends RefSystem<EntityStore> {
         AnimalStore.AdoptResult result = store.adoptOrGet(entityUuid, match.species().Id, world.getName(), isBaby(match.kind()));
         AnimalRecord r = result.record();
         if (result.created()) {
+            r.traits = BreedingRules.tamedTraits(TraitRegistry.get(), ThreadLocalRandom.current());
             fillPosition(r, ref, cb);
             registry.bindEntity(r, ref, entityUuid, cb);
             store.setRole(r.animalId, role);

@@ -122,6 +122,15 @@ public final class BreedingRules {
         return out;
     }
 
+    /** Traits for an animal tamed or adopted from the wild: one random trait with {@code TamedTraitChance}, else none. */
+    @Nonnull
+    public static List<String> tamedTraits(@Nonnull TraitBook book, @Nonnull RandomGenerator rng) {
+        List<String> ids = book.ids();
+        List<String> out = new ArrayList<>();
+        if (book.MaxTraits > 0 && !ids.isEmpty() && rng.nextDouble() < book.TamedTraitChance) out.add(ids.get(rng.nextInt(ids.size())));
+        return out;
+    }
+
     /**
      * The role a newborn spawns with. {@link SpeciesDefinition#ranchRoleFor} maps wild roles to ranch variants, but a
      * parent already carries the ranch variant itself (CozyRanch_Frog_Blue), so a variant role is passed on as it is

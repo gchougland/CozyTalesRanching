@@ -32,6 +32,8 @@ import com.hypixel.hytale.server.npc.entities.NPCEntity;
 import com.hypixel.hytale.server.npc.util.InventoryHelper;
 import java.util.Optional;
 import java.util.UUID;
+import com.hexvane.cozytalesranching.breeding.BreedingRules;
+import com.hexvane.cozytalesranching.breeding.TraitRegistry;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -158,6 +160,7 @@ public final class AnimalInteractions {
         }
         AnimalRecord record = Ranch.animals().create(use.species.Id, use.playerId(), use.world.getName(), use.baby());
         record.following = true;
+        record.traits = BreedingRules.tamedTraits(TraitRegistry.get(), ThreadLocalRandom.current());
         rememberPosition(record, animal, store);
         Ranch.animals().bindEntity(record, animal, use.animalUuid, store);
         if (!AnimalControl.swapRole(animal, ranchRole.get(), AnimalControl.STATE_FOLLOW, store)) {

@@ -19,6 +19,7 @@ public final class TraitBook {
 
     public double InheritChance = 0.5;
     public double MutationChance = 0.08;
+    public double TamedTraitChance = 0.25;
     public int MaxTraits = 2;
     public List<Trait> Traits = List.of();
 
@@ -35,6 +36,7 @@ public final class TraitBook {
     public TraitBook normalise() {
         InheritChance = Math.clamp(InheritChance, 0.0, 1.0);
         MutationChance = Math.clamp(MutationChance, 0.0, 1.0);
+        TamedTraitChance = Math.clamp(TamedTraitChance, 0.0, 1.0);
         MaxTraits = Math.max(0, MaxTraits);
         Map<String, Trait> ids = new LinkedHashMap<>();
         if (Traits != null) {

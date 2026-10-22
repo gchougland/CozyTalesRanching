@@ -25,6 +25,25 @@ class TraitInheritanceTest {
     }
 
     @Test
+    void aTamedAnimalGetsOneKnownTraitAQuarterOfTheTime() {
+        TraitBook b = book(0.5, 0);
+        b.TamedTraitChance = 0.25;
+        SplittableRandom rng = new SplittableRandom(6);
+        int got = 0;
+        for (int i = 0; i < TRIALS; i++) {
+            List<String> t = BreedingRules.tamedTraits(b, rng);
+            assertTrue(t.size() <= 1);
+            if (!t.isEmpty()) {
+                assertTrue(b.has(t.get(0)));
+                got++;
+            }
+        }
+        assertEquals(0.25, got / (double) TRIALS, 0.01);
+        b.TamedTraitChance = 0;
+        assertTrue(BreedingRules.tamedTraits(b, rng).isEmpty());
+    }
+
+    @Test
     void oneParentTraitPassesAboutHalfTheTime() {
         TraitBook b = book(0.5, 0);
         SplittableRandom rng = new SplittableRandom(7);
