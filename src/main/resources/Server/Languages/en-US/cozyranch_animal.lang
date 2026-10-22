@@ -1,0 +1,17 @@
+commands.admin.desc=Ranch admin tools
+commands.admin.inspect.desc=Show the ranch record of the animal you are looking at
+commands.admin.list.desc=List every ranch animal a player owns
+commands.admin.list.arg.player=Player name or UUID
+commands.admin.resummon.desc=Bring a ranch animal to you as a fresh copy
+commands.admin.resummon.arg.animal=Animal id
+admin.line={species} "{name}" owner {owner}, {hearts} hearts, {state}, {world} at {x} {y} {z}, id {id}
+admin.inspect.none=You are not looking at a creature.
+admin.inspect.notRanch=That creature is not a ranch animal.
+admin.inspect.orphan=That creature carries a ranch tag but has no record.
+admin.inspect.current=This is the real animal (generation {generation}).
+admin.inspect.stale=This is an old copy (generation {generation}, record has {recordGeneration}). It will be removed.
+admin.list.empty={player} has no ranch animals.
+admin.list.header={player} has {count} ranch animals:
+admin.resummon.unknown=No ranch animal has the id {id}.
+admin.resummon.done=Ranch animal {id} is here.
+admin.resummon.failed=No safe spot near you for ranch animal {id}. Try somewhere open.
