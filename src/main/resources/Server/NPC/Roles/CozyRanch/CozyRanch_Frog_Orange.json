@@ -1,0 +1,23 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Frog_Orange",
+    "SeparationDistance": 0.4,
+    "DropList": "Drop_Frog_Orange",
+    "MaxHealth": 15,
+    "MaxSpeed": 6,
+    "ParticleOffset": [
+      0,
+      0.4,
+      0
+    ],
+    "BreathesInWater": true,
+    "WanderRadius": 4,
+    "FoodItems": [
+      "CozyRanch_Food_Crickets"
+    ],
+    "FollowStopDistance": 2,
+    "NameTranslationKey": "server.npcRoles.Frog_Orange.name"
+  }
+}

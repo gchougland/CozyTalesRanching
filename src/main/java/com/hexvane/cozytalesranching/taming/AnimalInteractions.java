@@ -148,7 +148,7 @@ public final class AnimalInteractions {
         if (!gateOk(use)) return;
         NPCEntity npc = store.getComponent(animal, NPCEntity.getComponentType());
         if (npc == null || npc.getRoleName() == null) return;
-        Optional<String> ranchRole = AnimalControl.ranchRole(use.species, use.baby());
+        Optional<String> ranchRole = AnimalControl.ranchRole(use.species, npc.getRoleName(), use.baby());
         if (ranchRole.isEmpty()) return;
 
         AnimalTameAttemptEvent attempt = RanchEvents.fire(new AnimalTameAttemptEvent(use.playerId(), use.animalUuid, use.species.Id, npc.getRoleName(), use.world.getName()));
@@ -206,7 +206,7 @@ public final class AnimalInteractions {
         }
         if (!gateOk(use)) return;
         if (use.kind == RoleKind.ADOPT || use.kind == RoleKind.ADOPT_BABY || use.kind == RoleKind.WILD || use.kind == RoleKind.WILD_BABY) {
-            Optional<String> ranchRole = AnimalControl.ranchRole(use.species, record.baby);
+            Optional<String> ranchRole = AnimalControl.ranchRole(use.species, AnimalControl.roleName(animal, store), record.baby);
             if (ranchRole.isEmpty() || !AnimalControl.swapRole(animal, ranchRole.get(), AnimalControl.STATE_FOLLOW, store)) return;
         }
         record.ownerId = use.playerId();

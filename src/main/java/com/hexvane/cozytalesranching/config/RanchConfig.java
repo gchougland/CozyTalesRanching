@@ -38,6 +38,10 @@ public final class RanchConfig {
     private int maxAnimalsPerPlayer = 64;
     private double saveDebounceSeconds = 10.0;
     private int recoveryDelaySeconds = 60;
+    private int homeRangeRadius = 10;
+    private int troughRange = 8;
+    private int breedingMinHearts = 3;
+    private double breedingMinHappiness = 0.7;
     private boolean debugLogging = false;
 
     @Nonnull
@@ -58,6 +62,10 @@ public final class RanchConfig {
         .append(new KeyedCodec<>("MaxAnimalsPerPlayer", Codec.INTEGER), (c, v) -> c.maxAnimalsPerPlayer = v, c -> c.maxAnimalsPerPlayer).add()
         .append(new KeyedCodec<>("SaveDebounceSeconds", Codec.DOUBLE), (c, v) -> c.saveDebounceSeconds = v, c -> c.saveDebounceSeconds).add()
         .append(new KeyedCodec<>("RecoveryDelaySeconds", Codec.INTEGER), (c, v) -> c.recoveryDelaySeconds = v, c -> c.recoveryDelaySeconds).add()
+        .append(new KeyedCodec<>("HomeRangeRadius", Codec.INTEGER), (c, v) -> c.homeRangeRadius = v, c -> c.homeRangeRadius).add()
+        .append(new KeyedCodec<>("TroughRange", Codec.INTEGER), (c, v) -> c.troughRange = v, c -> c.troughRange).add()
+        .append(new KeyedCodec<>("BreedingMinHearts", Codec.INTEGER), (c, v) -> c.breedingMinHearts = v, c -> c.breedingMinHearts).add()
+        .append(new KeyedCodec<>("BreedingMinHappiness", Codec.DOUBLE), (c, v) -> c.breedingMinHappiness = v, c -> c.breedingMinHappiness).add()
         .append(new KeyedCodec<>("DebugLogging", Codec.BOOLEAN), (c, v) -> c.debugLogging = v, c -> c.debugLogging).add()
         .build();
 
@@ -121,5 +129,9 @@ public final class RanchConfig {
     public int maxAnimalsPerPlayer() { return Math.max(1, maxAnimalsPerPlayer); }
     public double saveDebounceSeconds() { return Math.max(1.0, saveDebounceSeconds); }
     public int recoveryDelaySeconds() { return Math.max(5, recoveryDelaySeconds); }
+    public int homeRangeRadius() { return Math.clamp(homeRangeRadius, 4, 32); }
+    public int troughRange() { return Math.clamp(troughRange, 2, 16); }
+    public int breedingMinHearts() { return Math.clamp(breedingMinHearts, 0, 5); }
+    public double breedingMinHappiness() { return Math.clamp(breedingMinHappiness, 0.0, 1.0); }
     public boolean debugLogging() { return debugLogging; }
 }

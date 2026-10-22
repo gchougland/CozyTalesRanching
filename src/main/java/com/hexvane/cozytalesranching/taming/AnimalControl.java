@@ -109,14 +109,20 @@ final class AnimalControl {
     }
 
     @Nonnull
-    static Optional<String> ranchRole(@Nonnull SpeciesDefinition species, boolean baby) {
-        String role = baby && !species.RanchBabyRole.isEmpty() ? species.RanchBabyRole : species.RanchRole;
-        return role == null || role.isEmpty() ? Optional.empty() : Optional.of(role);
+    static Optional<String> ranchRole(@Nonnull SpeciesDefinition species, @Nullable String fromRole, boolean baby) {
+        String role = species.ranchRoleFor(fromRole, baby);
+        return role.isEmpty() ? Optional.empty() : Optional.of(role);
     }
 
     @Nonnull
-    static Optional<String> wildRole(@Nonnull SpeciesDefinition species, boolean baby) {
-        if (baby && !species.WildBabyRoles.isEmpty()) return Optional.of(species.WildBabyRoles.getFirst());
-        return species.WildRoles.isEmpty() ? Optional.empty() : Optional.of(species.WildRoles.getFirst());
+    static Optional<String> wildRole(@Nonnull SpeciesDefinition species, @Nullable String currentRole, boolean baby) {
+        String role = species.wildRoleFor(currentRole, baby);
+        return role.isEmpty() ? Optional.empty() : Optional.of(role);
+    }
+
+    @Nullable
+    static String roleName(@Nonnull Ref<EntityStore> animal, @Nonnull Store<EntityStore> store) {
+        NPCEntity npc = store.getComponent(animal, NPCEntity.getComponentType());
+        return npc == null ? null : npc.getRoleName();
     }
 }

@@ -55,6 +55,9 @@ public final class CozyTalesRanchingPlugin extends JavaPlugin {
         AnimalFeature.register(this);
         TamingFeature.register(this);
         HouseFeature.register(this);
+        com.hexvane.cozytalesranching.houseui.HouseUiFeature.register(this);
+        com.hexvane.cozytalesranching.care.CareFeature.register(this);
+        com.hexvane.cozytalesranching.breeding.BreedingFeature.register(this);
 
         this.getCommandRegistry().registerCommand(new RanchCommand());
         getLogger().atInfo().log("Cozy Tales: Ranching v%s ready.", modVersion);

@@ -33,6 +33,16 @@ public final class TamingApi {
      * Fires {@link AnimalReleasedEvent} while the record still exists, removes the record and, when the entity is
      * loaded, gives it back its first wild role. An unloaded animal keeps its ranch role until it is seen again.
      */
+    /** Swaps a ranch animal's role next tick (grow up, variants), keeping its UUID and components. World thread, outside ticks. */
+    public static boolean swapRole(@Nonnull Ref<EntityStore> animal, @Nonnull String roleId, @Nullable String state, @Nonnull Store<EntityStore> store) {
+        return AnimalControl.swapRole(animal, roleId, state, store);
+    }
+
+    /** Hearts particles and the Happy animation, when the model has it. */
+    public static void cheer(@Nonnull Ref<EntityStore> animal, @Nonnull Store<EntityStore> store) {
+        AnimalControl.cheer(animal, AnimalControl.HEARTS, store);
+    }
+
     public static void release(@Nonnull AnimalRecord record, @Nullable Ref<EntityStore> animal, @Nonnull PlayerRef player, @Nonnull Store<EntityStore> store) {
         RanchEvents.fire(new AnimalReleasedEvent(record.view(), player.getUuid()));
         Ranch.animals().remove(record.animalId);
@@ -40,7 +50,8 @@ public final class TamingApi {
         if (animal == null || !animal.isValid()) return;
         if (store.getComponent(animal, Nameplate.getComponentType()) != null) store.removeComponent(animal, Nameplate.getComponentType());
         Optional<SpeciesDefinition> species = SpeciesRegistry.byId(record.speciesId);
-        species.flatMap(s -> AnimalControl.wildRole(s, record.baby))
+        String currentRole = AnimalControl.roleName(animal, store);
+        species.flatMap(s -> AnimalControl.wildRole(s, currentRole, record.baby))
             .ifPresent(role -> AnimalControl.swapRole(animal, role, null, store));
     }
 }

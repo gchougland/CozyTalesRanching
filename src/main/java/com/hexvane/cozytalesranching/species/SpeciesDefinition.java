@@ -1,7 +1,9 @@
 package com.hexvane.cozytalesranching.species;
 
 import java.util.List;
+import java.util.Map;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * One supported species, read with Gson from {@code Server/CozyTalesRanching/Species/<Id>.json} in the jar,
@@ -20,6 +22,8 @@ public final class SpeciesDefinition {
     /** This mod's own roles for ranch animals. */
     public String RanchRole = "";
     public String RanchBabyRole = "";
+    /** Wild or adopt role to the ranch role it becomes, for looks that must survive taming (frog colours). Adults only. */
+    public Map<String, String> RanchRoleVariants = Map.of();
     public String HouseBlock = "";
     public int HouseCapacity = 4;
     public List<String> BasicFoods = List.of();
@@ -54,7 +58,31 @@ public final class SpeciesDefinition {
         Products = Products == null ? List.of() : List.copyOf(Products);
         HabitatRequires = orEmpty(HabitatRequires);
         HabitatPrefers = orEmpty(HabitatPrefers);
+        RanchRoleVariants = RanchRoleVariants == null ? Map.of() : Map.copyOf(RanchRoleVariants);
         return this;
+    }
+
+    /** The ranch role an animal with {@code fromRole} becomes; empty string if the species has none. */
+    @Nonnull
+    public String ranchRoleFor(@Nullable String fromRole, boolean baby) {
+        if (baby && !RanchBabyRole.isEmpty()) return RanchBabyRole;
+        if (fromRole != null) {
+            String variant = RanchRoleVariants.get(fromRole);
+            if (variant != null) return variant;
+        }
+        return RanchRole;
+    }
+
+    /** The wild role a ranch animal with {@code currentRole} goes back to; empty string if the species has none. */
+    @Nonnull
+    public String wildRoleFor(@Nullable String currentRole, boolean baby) {
+        if (currentRole != null) {
+            for (Map.Entry<String, String> e : RanchRoleVariants.entrySet()) {
+                if (e.getValue().equals(currentRole) && WildRoles.contains(e.getKey())) return e.getKey();
+            }
+        }
+        if (baby && !WildBabyRoles.isEmpty()) return WildBabyRoles.getFirst();
+        return WildRoles.isEmpty() ? "" : WildRoles.getFirst();
     }
 
     private static List<String> orEmpty(List<String> l) {
