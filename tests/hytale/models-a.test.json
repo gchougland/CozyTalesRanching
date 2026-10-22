@@ -1,0 +1,53 @@
+{
+  "cases": [
+    {
+      "name": "models-a gate",
+      "description": "The pack parses and matches the engine schemas.",
+      "steps": [
+        { "tool": "asset_validate", "arguments": { "project": "_worktrees/CozyTales-Ranching-models-a" }, "expect": { "valid": true, "schemaErrors": 0 } }
+      ]
+    },
+    {
+      "name": "chicken coop",
+      "description": "2 x 2 x 3 house on stilts: ramp, nesting box, shingle roof, rooster vane. Closed: door is a dark inset.",
+      "steps": [
+        { "tool": "model_render",
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-models-a/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_ChickenCoop.json", "views": ["three_quarter"], "size": 300 },
+          "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "textureSize": [256, 224], "coverage": { "$gt": 0.05 },
+            "sizeBlocks": { "width": { "$lte": 2.25 }, "depth": { "$lte": 2.25 }, "height": { "$gt": 2.9, "$lt": 3.15 } } },
+          "golden": "tests/hytale/golden/models-a/chicken-coop.png" },
+        { "tool": "texture_check",
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-models-a/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_ChickenCoop.json" },
+          "expect": { "verdict": { "$oneOf": ["PASS", "WARN"] } } }
+      ]
+    },
+    {
+      "name": "pigsty",
+      "description": "3 x 3 x 2 plank deck with a closed lean-to hut (pink frame, dark inset), pig sign, trough, mud wallow, fence.",
+      "steps": [
+        { "tool": "model_render",
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-models-a/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Pigsty.json", "views": ["three_quarter"], "size": 300 },
+          "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "textureSize": [512, 192], "coverage": { "$gt": 0.05 },
+            "sizeBlocks": { "width": { "$lte": 3.1 }, "depth": { "$lte": 3.1 }, "height": { "$gt": 1.7, "$lt": 2 } } },
+          "golden": "tests/hytale/golden/models-a/pigsty.png" },
+        { "tool": "texture_check",
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-models-a/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Pigsty.json" },
+          "expect": { "verdict": { "$oneOf": ["PASS", "WARN"] } } }
+      ]
+    },
+    {
+      "name": "frog pond",
+      "description": "3 x 3 x 2 mossy rim, translucent water, lily pads with a flower, cattails, closed toadstool hut with a little door.",
+      "steps": [
+        { "tool": "model_render",
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-models-a/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FrogPond.json", "views": ["three_quarter"], "size": 300 },
+          "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "textureSize": [256, 224], "coverage": { "$gt": 0.05 },
+            "sizeBlocks": { "width": { "$lte": 3.05 }, "depth": { "$lte": 3.05 }, "height": { "$gt": 1.6, "$lt": 2 } } },
+          "golden": "tests/hytale/golden/models-a/frog-pond.png" },
+        { "tool": "texture_check",
+          "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-models-a/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FrogPond.json" },
+          "expect": { "verdict": { "$oneOf": ["PASS", "WARN"] } } }
+      ]
+    }
+  ]
+}
