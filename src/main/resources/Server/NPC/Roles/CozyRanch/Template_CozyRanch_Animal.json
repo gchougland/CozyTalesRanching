@@ -283,6 +283,34 @@
           ]
         },
         {
+          "$Comment": "GoHome: walk to the house door (the leash point). Java (house feature) sets it at dusk and when a resident strays past its home range, and takes the animal in on arrival.",
+          "Sensor": {
+            "Type": "State",
+            "State": "GoHome",
+            "IgnoreMissingSetState": true
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "Leash",
+                "Range": 1
+              },
+              "BodyMotion": {
+                "Type": "Seek",
+                "SlowDownDistance": 2,
+                "StopDistance": 0.5,
+                "RelativeSpeed": 0.7,
+                "UsePathfinder": true
+              }
+            },
+            {
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            }
+          ]
+        },
+        {
           "Sensor": {
             "Type": "State",
             "State": "$Harvest"
