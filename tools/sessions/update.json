@@ -1,0 +1,5 @@
+[
+  {"tool":"server_generate_schemas","args":{"install":"release"},"save":"gen"},
+  {"tool":"job_status","args":{"jobId":"$gen","waitMs":5000},"until":"finishedAt","timeoutMs":600000,"maxChars":2500},
+  {"tool":"environment_diagnose","args":{},"maxChars":3000,"always":true}
+]
