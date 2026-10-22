@@ -1,0 +1,4 @@
+[
+  { "tool": "test_run", "args": { "project": "_worktrees/CozyTales-Ranching-models-b", "filter": "models-b" }, "save": "job" },
+  { "tool": "job_status", "args": { "jobId": "$job", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 600000, "maxChars": 12000 }
+]
