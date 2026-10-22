@@ -52,6 +52,12 @@ public final class AnimalRecord {
     public long lastBredAtMs;
     public long lastFedAtMs;
     public long lastPettedAtMs;
+    /**
+     * Role to spawn this animal with when it has no entity (a baby that inherits a colour, an animal stored
+     * in its house). Null means "work it out from the species". Whoever swaps the live entity's role keeps
+     * it current or clears it.
+     */
+    @Nullable public String spawnRole;
 
     @Nonnull
     public AnimalView view() {

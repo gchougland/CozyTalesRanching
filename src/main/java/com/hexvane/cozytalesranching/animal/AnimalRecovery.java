@@ -215,6 +215,7 @@ final class AnimalRecovery {
     @Nonnull
     static List<String> roleCandidates(@Nonnull AnimalStore animals, @Nonnull AnimalRecord r) {
         Set<String> out = new LinkedHashSet<>();
+        if (r.spawnRole != null && !r.spawnRole.isEmpty()) out.add(r.spawnRole);
         String last = animals.role(r.animalId);
         if (last != null) out.add(last);
         SpeciesDefinition s = SpeciesRegistry.byId(r.speciesId).orElse(null);
