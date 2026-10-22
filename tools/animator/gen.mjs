@@ -3,8 +3,8 @@ import { execFileSync } from 'node:child_process';
 import { sample } from './lib.mjs';
 import { CLIPS } from './clips.mjs';
 
-const WT = 'C:/Users/gchou/OneDrive/Documents/Hytale-Modding/_worktrees/CozyTales-Ranching-animator';
-const PROJ = '_worktrees/CozyTales-Ranching-animator/src/main/resources/';
+const WT = 'C:/Users/gchou/OneDrive/Documents/Hytale-Modding/_worktrees/CozyTales-Ranching-animpolish';
+const PROJ = '_worktrees/CozyTales-Ranching-animpolish/src/main/resources/';
 const RES = WT + '/src/main/resources/';
 const VAN = 'C:/Users/gchou/OneDrive/Documents/Hytale-Modding/HytaleSourceCode/hytale-shared-source/HytaleAssets/';
 const [mode = 'build', filter = ''] = process.argv.slice(2);
@@ -21,6 +21,9 @@ const ASSETS = [
   ['CozyRanch_Sheep', 'Sheep', 'Server/Models/Livestock/Sheep.json'],
   ['CozyRanch_Sheep_Lamb', 'Lamb', 'Server/Models/Livestock/Lamb.json'],
   ['CozyRanch_Frog', 'Frog', 'Server/Models/Critter/Frog_Green.json'],
+  // the colour frogs are the green frog's asset with another texture, written from the same source so they cannot drift
+  ['CozyRanch_Frog_Blue', 'Frog', 'Server/Models/Critter/Frog_Green.json', { Texture: 'NPC/Critter/Frog/Models/Model_Textures/Blue.png' }],
+  ['CozyRanch_Frog_Orange', 'Frog', 'Server/Models/Critter/Frog_Green.json', { Texture: 'NPC/Critter/Frog/Models/Model_Textures/Orange.png' }],
 ];
 const assetPath = id => `Server/Models/CozyRanch/${id}.json`;
 
@@ -46,8 +49,8 @@ if (mode === 'build') {
 }
 
 if (mode === 'assets') {
-  for (const [id, rig, van] of ASSETS) {
-    const j = JSON.parse(readFileSync(VAN + van, 'utf8').replace(/^\uFEFF/, ''));
+  for (const [id, rig, van, override = {}] of ASSETS) {
+    const j = { ...JSON.parse(readFileSync(VAN + van, 'utf8').replace(/^\uFEFF/, '')), ...override };
     for (const c of CLIPS.filter(c => c.rig === rig)) {
       const entry = { Animation: c.file, BlendingDuration: c.loop ? 0.3 : 0.15 };
       if (!c.loop) entry.Looping = false;
@@ -73,6 +76,21 @@ if (mode === 'review') {
   console.log(runSteps(steps, 'review'));
 }
 
+if (mode === 'strip') {
+  // comparison strips: DIR (folder), PREFIX (file prefix), N (frames), SIZE, YAW, PITCH, MODEL (asset id override)
+  const dir = process.env.DIR ?? 'C:/temp/anim/strip';
+  mkdirSync(dir, { recursive: true });
+  const steps = pick.map(c => {
+    const id = process.env.MODEL ?? ASSETS.find(a => a[1] === c.rig)[0];
+    return { tool: 'animation_render', note: id + ' ' + c.name, always: true, maxChars: 400,
+      args: { root: 'projects', path: PROJ + assetPath(id), animation: c.name, frames: +(process.env.N ?? 6),
+        yaw: +(process.env.YAW ?? c.yaw ?? YAW[c.rig]), pitch: +(process.env.PITCH ?? 15), size: +(process.env.SIZE ?? 360),
+        hitbox: process.env.HITBOX === '1', ...(process.env.FRAMES ? { frameList: process.env.FRAMES.split(' ').map(Number) } : {}) },
+      out: `${dir}/${process.env.PREFIX ?? ''}${c.rig}_${c.name}.png` };
+  });
+  console.log(runSteps(steps, 'strip'));
+}
+
 if (mode === 'render') {
   // final pictures through our model asset, saved in notes/pictures/animator
   const dir = WT + '/notes/pictures/animator';
@@ -88,18 +106,20 @@ if (mode === 'render') {
 
 if (mode === 'tests') {
   // every set resolves through its asset with all nodes found; one golden strip per species, plus a baby
-  const GOLDEN = ['Cow_Graze', 'Chicken_FlapHappy', 'Pig_MudRoll', 'Sheep_Pronk', 'Frog_LilyHop', 'Piglet_Happy'];
-  const steps = CLIPS.map(c => {
-    const id = ASSETS.find(a => a[1] === c.rig)[0];
+  // the clips the animpolish pass reworked have goldens too
+  const GOLDEN = ['Cow_Graze', 'Chicken_FlapHappy', 'Pig_MudRoll', 'Sheep_Pronk', 'Frog_LilyHop', 'Piglet_Happy',
+    'Chicken_DustBathe', 'Chick_Happy', 'Cow_Love', 'Sheep_Love', 'Cow_TailSwish'];
+  // every asset of a rig binds every set of that rig, so the colour frogs are checked set by set too
+  const steps = CLIPS.flatMap(c => ASSETS.filter(a => a[1] === c.rig).map(([id], k) => {
     const step = { tool: 'animation_render', name: `${id} ${c.name}`,
       arguments: { root: 'projects', path: PROJ + assetPath(id), animation: c.name, frames: 4, yaw: c.yaw ?? YAW[c.rig], pitch: 15, size: 240 },
       expect: { animation: { nodesNotInModel: { $length: 0 } } } };
-    if (GOLDEN.includes(c.rig + '_' + c.name)) step.golden = `tests/hytale/golden/animator/${id}_${c.name}.png`;
+    if (k === 0 && GOLDEN.includes(c.rig + '_' + c.name)) step.golden = `tests/hytale/golden/animator/${id}_${c.name}.png`;
     return step;
-  });
+  }));
   const cases = [
     { name: 'animator gate', steps: [
-      { tool: 'asset_validate', arguments: { project: '_worktrees/CozyTales-Ranching-animator' }, expect: { valid: true, schemaErrors: 0 } }] },
+      { tool: 'asset_validate', arguments: { project: PROJ.replace('/src/main/resources/', '') }, expect: { valid: true, schemaErrors: 0 } }] },
     { name: 'animator clips', steps },
   ];
   const out = WT + '/tests/hytale/animator.test.json';
