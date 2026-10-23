@@ -85,7 +85,8 @@ an `oct()` helper that builds round parts as vanilla does, a second texture on t
 - The ball's octagon layers show as steps at close range; the gores read better than the roundness.
 - The truffle is the weakest silhouette: from far it is a brown lump; the slice and leaf carry the read.
 - The sacks are still a little boxy compared with a real sack; the burlap reads as fabric only up close.
-- The duck's tail is two boxes at an angle and its head is flat-backed.
+- `Toy_FloatingDuck.blockymodel` was hand-edited by Gibson after this pass. Do not regenerate or rewrite it with a
+  script; change it only by hand in Blockbench.
 - Feed sacks share one model, so a variant can only differ by texture (as asked).
 
 ## Money
