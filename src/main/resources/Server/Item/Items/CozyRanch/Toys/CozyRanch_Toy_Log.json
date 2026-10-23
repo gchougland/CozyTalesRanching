@@ -38,6 +38,14 @@
     ],
     "VariantRotation": "NESW",
     "HitboxType": "CozyRanch_Toy_Log",
+    "State": {
+      "Definitions": {
+        "Play": {
+          "CustomModelAnimation": "Blocks/CozyRanch/Toys/Toy_Log_Play.blockyanim",
+          "Looping": true
+        }
+      }
+    },
     "Gathering": {
       "Breaking": {
         "GatherType": "Benches",

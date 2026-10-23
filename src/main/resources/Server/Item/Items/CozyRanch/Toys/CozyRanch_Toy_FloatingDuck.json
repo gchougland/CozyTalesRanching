@@ -42,6 +42,14 @@
     ],
     "VariantRotation": "NESW",
     "HitboxType": "CozyRanch_Toy_FloatingDuck",
+    "State": {
+      "Definitions": {
+        "Play": {
+          "CustomModelAnimation": "Blocks/CozyRanch/Toys/Toy_FloatingDuck_Play.blockyanim",
+          "Looping": true
+        }
+      }
+    },
     "Gathering": {
       "Breaking": {
         "GatherType": "Benches",
