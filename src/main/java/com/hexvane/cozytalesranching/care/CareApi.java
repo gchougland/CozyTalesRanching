@@ -92,6 +92,43 @@ public final class CareApi {
         care.scheduleSave();
     }
 
+    /**
+     * What friendship gains of this animal are multiplied by: its traits' {@code FriendshipGainMultiplier} (Affectionate,
+     * 1.25) times {@code SweetFriendshipMultiplier} (1.5) while Sweet Feed runs. 1 for a plain animal. For petting and
+     * hand feeding in {@code taming}: {@code amount *= CareApi.friendshipMultiplier(record)}.
+     */
+    public static float friendshipMultiplier(@Nonnull AnimalRecord record) {
+        CareService care = CareService.get();
+        if (care == null) return 1f;
+        return Feeding.friendshipMultiplier(record, care.habitat(), System.currentTimeMillis());
+    }
+
+    /** The advanced feed bonus running now ({@code hearty}, {@code sweet}, {@code breeders}, {@code premium}), if any. */
+    @Nonnull
+    public static Optional<String> activeFeedBonus(@Nonnull AnimalRecord record) {
+        long now = System.currentTimeMillis();
+        return CareRules.bonusActive(record.feedBonus, record.feedBonusUntilMs, now) ? Optional.of(record.feedBonus) : Optional.empty();
+    }
+
+    /** True while this bonus runs, e.g. {@code hasFeedBonus(record, "premium")} for production. */
+    public static boolean hasFeedBonus(@Nonnull AnimalRecord record, @Nonnull String bonus) {
+        return bonus.equals(activeFeedBonus(record).orElse(null));
+    }
+
+    /** The bonus id of an advanced feed item, or empty when the item is not one. */
+    @Nonnull
+    public static Optional<String> feedBonusOf(@Nonnull String itemId) {
+        CareService care = CareService.get();
+        return care == null ? Optional.empty() : Optional.ofNullable(care.habitat().feedBonus(itemId));
+    }
+
+    /** The toy feature ids (habitat preferences, e.g. {@code toy_ball}) a species likes, from {@code Habitat.json}. */
+    @Nonnull
+    public static List<String> toysLiked(@Nonnull String speciesId) {
+        CareService care = CareService.get();
+        return care == null ? List.of() : List.copyOf(care.habitat().SpeciesToys.getOrDefault(speciesId, List.of()));
+    }
+
     /** How far animals reach troughs, in blocks ({@code TroughRange}). */
     public static int troughRange() {
         return RanchConfig.get().troughRange();

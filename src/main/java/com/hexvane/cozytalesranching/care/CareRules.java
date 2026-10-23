@@ -5,8 +5,10 @@ import com.hexvane.cozytalesranching.taming.TamingRules;
 import com.hexvane.cozytalesranching.taming.TamingRules.FoodKind;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * The numbers of troughs, meals and happiness, free of engine types so they can be unit tested.
@@ -42,7 +44,10 @@ public final class CareRules {
 
     public record Choice(@Nonnull String item, @Nonnull FoodKind kind) {}
 
-    /** What the happiness target is built from. */
+    /**
+     * What the happiness target is built from. {@code heartyActive}: Hearty Feed keeps the food part satisfied while it
+     * lasts. {@code treatMultiplier}: the Gourmet trait's {@code TreatBonusMultiplier} on the treat part.
+     */
     public record Inputs(
         boolean fedRecently,
         @Nonnull FoodKind lastMeal,
@@ -50,8 +55,24 @@ public final class CareRules {
         boolean hasHouse,
         boolean habitatMet,
         float habitatScore,
-        boolean pettedRecently
-    ) {}
+        boolean pettedRecently,
+        boolean heartyActive,
+        double treatMultiplier
+    ) {
+        public Inputs(boolean fedRecently, @Nonnull FoodKind lastMeal, boolean treatRecently, boolean hasHouse, boolean habitatMet,
+                      float habitatScore, boolean pettedRecently) {
+            this(fedRecently, lastMeal, treatRecently, hasHouse, habitatMet, habitatScore, pettedRecently, false, 1.0);
+        }
+    }
+
+    /** A meal from a trough: a species food, or an advanced feed ({@code feedBonus} set, eaten as preferred food). */
+    public record Meal(@Nonnull String item, @Nonnull FoodKind kind, @Nullable String feedBonus) {}
+
+    /** Advanced feed bonus ids ({@code AnimalRecord.feedBonus}). */
+    public static final String BONUS_HEARTY = "hearty";
+    public static final String BONUS_SWEET = "sweet";
+    public static final String BONUS_BREEDERS = "breeders";
+    public static final String BONUS_PREMIUM = "premium";
 
     /** Each part of the target, for the house page; {@code target} is their sum, clamped to FLOOR..1. */
     public record Breakdown(
@@ -77,6 +98,65 @@ public final class CareRules {
             }
         }
         return Optional.empty();
+    }
+
+    /**
+     * The meal an animal takes from what a trough holds. With no feed bonus running, an advanced feed comes first (the
+     * player put it there for its effect); then favourite treat, preferred, basic; a feed while a bonus runs comes last.
+     * {@code feeds} maps feed item ids to bonus ids.
+     */
+    @Nonnull
+    public static Optional<Meal> bestMeal(@Nonnull SpeciesDefinition species, @Nonnull Collection<String> available,
+                                          @Nonnull Map<String, String> feeds, boolean bonusActive) {
+        Meal feed = null;
+        for (Map.Entry<String, String> f : feeds.entrySet()) {
+            if (available.contains(f.getKey())) {
+                feed = new Meal(f.getKey(), FoodKind.PREFERRED, f.getValue());
+                break;
+            }
+        }
+        if (feed != null && !bonusActive) return Optional.of(feed);
+        Optional<Choice> food = bestFood(species, available);
+        if (food.isPresent()) return Optional.of(new Meal(food.get().item(), food.get().kind(), null));
+        return Optional.ofNullable(feed);
+    }
+
+    /** Orders meals across troughs the same way {@link #bestMeal} orders them within one. Higher is better. */
+    public static int mealRank(@Nonnull Meal meal, boolean bonusActive) {
+        if (meal.feedBonus() != null) return bonusActive ? 1 : 10;
+        return switch (meal.kind()) {
+            case NONE -> 0;
+            case BASIC -> 2;
+            case PREFERRED -> 3;
+            case FAVORITE -> 4;
+        };
+    }
+
+    public static boolean bonusActive(@Nullable String bonus, long untilMs, long nowMs) {
+        return bonus != null && nowMs < untilMs;
+    }
+
+    /** Efficient Eater: a trough meal uses up its item only when {@code roll} (0..1) is below {@code foodUse}. */
+    public static boolean usesItem(double foodUse, double roll) {
+        return roll < Math.clamp(foodUse, 0.0, 1.0);
+    }
+
+    /** Friendship multiplier from traits (Affectionate) and Sweet Feed while it runs. */
+    public static float friendshipMultiplier(double traitMultiplier, boolean sweetActive, float sweetMultiplier) {
+        double m = Math.max(0.0, traitMultiplier) * (sweetActive ? Math.max(1f, sweetMultiplier) : 1f);
+        return (float) m;
+    }
+
+    /**
+     * Breeder's Feed: the new {@code lastBredAtMs}, moved back by {@code cut} of the cooldown but never further than
+     * "cooled down now". An animal that never bred, or has already cooled down, is unchanged.
+     */
+    public static long breedersCut(long lastBredAtMs, long nowMs, long cooldownMs, double cut) {
+        if (lastBredAtMs <= 0 || cooldownMs <= 0) return lastBredAtMs;
+        long ready = nowMs - cooldownMs;
+        if (lastBredAtMs <= ready) return lastBredAtMs;
+        long moved = lastBredAtMs - Math.round(Math.clamp(cut, 0.0, 1.0) * cooldownMs);
+        return Math.max(Math.max(ready, 1L), moved);
     }
 
     /** True if any species eats this item; only food goes in a trough. */
@@ -108,26 +188,37 @@ public final class CareRules {
 
     @Nonnull
     public static Breakdown target(@Nonnull Inputs in) {
-        float fed = in.fedRecently() ? FED : 0f;
+        boolean fedNow = in.fedRecently() || in.heartyActive();
+        float fed = fedNow ? FED : 0f;
         boolean good = in.lastMeal() == FoodKind.PREFERRED || in.lastMeal() == FoodKind.FAVORITE;
-        float preferred = in.fedRecently() && good ? PREFERRED : 0f;
+        float preferred = fedNow && good ? PREFERRED : 0f;
         float house = in.hasHouse() ? HOUSE : 0f;
         float met = in.hasHouse() && in.habitatMet() ? HABITAT_MET : 0f;
         float score = in.hasHouse() ? HABITAT_SCORE * Math.clamp(in.habitatScore(), 0f, 1f) : 0f;
         float petted = in.pettedRecently() ? PETTED : 0f;
-        float treat = in.treatRecently() ? TREAT : 0f;
+        float treat = in.treatRecently() ? (float) (TREAT * Math.max(0.0, in.treatMultiplier())) : 0f;
         float sum = BASE + fed + preferred + house + met + score + petted + treat;
         return new Breakdown(BASE, fed, preferred, house, met, score, petted, treat, Math.clamp(sum, FLOOR, 1f));
     }
 
     /** Moves {@code current} toward {@code target} exponentially over {@code dtMs}; never below FLOOR. */
     public static float drift(float current, float target, long dtMs) {
-        float from = Math.clamp(Float.isNaN(current) ? FLOOR : current, 0f, 1f);
-        float to = Math.clamp(target, FLOOR, 1f);
+        return drift(current, target, dtMs, 1.0, FLOOR);
+    }
+
+    /**
+     * As {@link #drift(float, float, long)}, with the Hardy trait: falling is {@code declineMultiplier} times as fast
+     * (0.5 takes twice as long) and happiness never drifts below {@code floor}.
+     */
+    public static float drift(float current, float target, long dtMs, double declineMultiplier, float floor) {
+        float low = Math.clamp(floor, FLOOR, 1f);
+        float from = Math.clamp(Float.isNaN(current) ? low : current, 0f, 1f);
+        float to = Math.clamp(target, low, 1f);
         long dt = Math.clamp(dtMs, 0L, MAX_STEP_MS);
-        double tau = to >= from ? RISE_TAU_MS : FALL_TAU_MS;
+        double decline = declineMultiplier > 0 ? declineMultiplier : 1.0;
+        double tau = to >= from ? RISE_TAU_MS : FALL_TAU_MS / decline;
         double k = 1.0 - Math.exp(-dt / tau);
         float next = (float) (from + (to - from) * k);
-        return Math.clamp(next, FLOOR, 1f);
+        return Math.clamp(next, low, 1f);
     }
 }

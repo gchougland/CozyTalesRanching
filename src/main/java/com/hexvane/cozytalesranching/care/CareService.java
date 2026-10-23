@@ -1,6 +1,7 @@
 package com.hexvane.cozytalesranching.care;
 
 import com.hexvane.cozytalesranching.config.RanchConfig;
+import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -61,6 +62,11 @@ final class CareService {
     @Nonnull
     HabitatConfig habitat() {
         return habitat;
+    }
+
+    /** Food some species eats, or an advanced feed (every species eats those). */
+    boolean isTroughFood(@Nonnull String itemId) {
+        return habitat.feedBonus(itemId) != null || CareRules.isAnyFood(SpeciesRegistry.all(), itemId);
     }
 
     void load() {

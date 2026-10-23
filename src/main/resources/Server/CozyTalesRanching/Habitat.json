@@ -126,6 +126,77 @@
       "Special": "OpenSky",
       "MinCount": 40,
       "MinFraction": 0.35
+    },
+    "toy_ball": {
+      "Blocks": [
+        "CozyRanch_Toy_Ball"
+      ],
+      "MinCount": 1
+    },
+    "toy_post": {
+      "Blocks": [
+        "CozyRanch_Toy_ScratchingPost"
+      ],
+      "MinCount": 1
+    },
+    "toy_bell": {
+      "Blocks": [
+        "CozyRanch_Toy_HangingBell"
+      ],
+      "MinCount": 1
+    },
+    "toy_duck": {
+      "Blocks": [
+        "CozyRanch_Toy_FloatingDuck"
+      ],
+      "MinCount": 1
+    },
+    "toy_log": {
+      "Blocks": [
+        "CozyRanch_Toy_Log"
+      ],
+      "MinCount": 1
     }
-  }
+  },
+  "SpeciesToys": {
+    "chicken": [
+      "toy_bell"
+    ],
+    "cow": [
+      "toy_post"
+    ],
+    "pig": [
+      "toy_ball"
+    ],
+    "sheep": [
+      "toy_post"
+    ],
+    "frog": [
+      "toy_duck",
+      "toy_log"
+    ]
+  },
+  "Feeds": {
+    "CozyRanch_Feed_Hearty": {
+      "Bonus": "hearty",
+      "Minutes": 120
+    },
+    "CozyRanch_Feed_Sweet": {
+      "Bonus": "sweet",
+      "Minutes": 60
+    },
+    "CozyRanch_Feed_Breeders": {
+      "Bonus": "breeders",
+      "Minutes": 60
+    },
+    "CozyRanch_Feed_Premium": {
+      "Bonus": "premium",
+      "Minutes": 90
+    }
+  },
+  "FeedEffects": {
+    "SweetFriendshipMultiplier": 1.5,
+    "BreedersCooldownCut": 0.5
+  },
+  "DeclineTraitFloor": 0.45
 }

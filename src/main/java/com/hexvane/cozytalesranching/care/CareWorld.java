@@ -24,12 +24,14 @@ import com.hypixel.hytale.server.npc.entities.NPCEntity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.joml.Vector3d;
@@ -41,7 +43,8 @@ import org.joml.Vector3d;
  *       rebuilt once a minute and walked 1/60 per second, so each animal is looked at once a minute: it eats
  *       if a meal is due and a trough in range has food it likes, and its happiness drifts.</li>
  *   <li>Habitat: at most one house is scanned at a time, {@link #COLUMNS_PER_STEP} columns per second, only
- *       when its last scan is older than {@code HabitatScanIntervalSeconds} and its block is loaded.</li>
+ *       when its last scan is older than {@code HabitatScanIntervalSeconds} and its block is loaded. A house just
+ *       placed goes first; one never scanned by its first morning is scanned whole by the morning hook.</li>
  *   <li>Troughs: every 5 s the ones whose block may not show their contents are fixed, every minute all are
  *       checked for being gone (their food is dropped).</li>
  * </ul>
@@ -66,13 +69,16 @@ final class CareWorld {
     private int rosterIndex;
     private long rosterBuiltAt = Long.MIN_VALUE / 2;
     private final Map<UUID, Long> happinessAt = new HashMap<>();
+    /** Houses placed but not scanned yet, oldest first. World thread. */
+    private final Set<UUID> placed = new LinkedHashSet<>();
     @Nullable private Job job;
     @Nullable private WorldHabitatGrid jobGrid;
     private long lastTroughSync;
     private long lastTroughCheckAll;
     private long lastHousePick;
 
-    private record Job(@Nonnull UUID houseId, @Nonnull HabitatScan scan) {}
+    /** {@code placed}: the first scan of a house just placed. */
+    private record Job(@Nonnull UUID houseId, @Nonnull HabitatScan scan, boolean placed) {}
 
     /** What one step knows about the world. */
     record Context(
@@ -87,7 +93,12 @@ final class CareWorld {
 
     @Nonnull
     static CareWorld of(@Nonnull World world) {
-        return WORLDS.computeIfAbsent(world.getName(), w -> new CareWorld());
+        return of(world.getName());
+    }
+
+    @Nonnull
+    static CareWorld of(@Nonnull String worldName) {
+        return WORLDS.computeIfAbsent(worldName, w -> new CareWorld());
     }
 
     @Nonnull
@@ -164,12 +175,13 @@ final class CareWorld {
             Store<EntityStore> store = ctx.world().getEntityStore().getStore();
             Ref<EntityStore> entity = entity(ctx.world(), record);
             Vector3d pos = position(record, entity, store);
-            boolean changed = false;
-            if (CareRules.mealDue(record.lastFedAtMs, ctx.nowMs(), ctx.mealIntervalMs())) changed = feed(record, species, pos, entity, ctx);
+            boolean changed = Feeding.expire(record, ctx.nowMs());
+            if (CareRules.mealDue(record.lastFedAtMs, ctx.nowMs(), ctx.mealIntervalMs())) changed |= feed(record, species, pos, entity, ctx);
             Long last = happinessAt.put(record.animalId, ctx.nowMs());
             long dt = last == null ? ROSTER_MS : ctx.nowMs() - last;
             float target = CareRules.target(inputs(record, ctx)).target();
-            float next = CareRules.drift(record.happiness, target, dt);
+            CareTraits traits = Feeding.traits(record, ctx.care().habitat());
+            float next = CareRules.drift(record.happiness, target, dt, traits.declineMultiplier(), traits.floor());
             if (Math.abs(next - record.happiness) >= HAPPINESS_SAVE_STEP) changed = true;
             record.happiness = next;
             if (changed) Ranch.animals().markDirty(record);
@@ -178,11 +190,18 @@ final class CareWorld {
         }
     }
 
-    /** Eats one item of the best food it likes from any trough in range. Returns true if it ate. */
+    /**
+     * Eats the best meal it likes from any trough in range (advanced feed first when no bonus runs). The item is used up
+     * unless an Efficient Eater's roll spares it. Returns true if it ate.
+     */
     private static boolean feed(@Nonnull AnimalRecord record, @Nonnull SpeciesDefinition species, @Nonnull Vector3d pos,
                                 @Nullable Ref<EntityStore> entity, @Nonnull Context ctx) {
+        CareService care = ctx.care();
+        HabitatConfig config = care.habitat();
+        Map<String, String> feeds = config.feedItems();
+        boolean bonus = Feeding.active(record, null, ctx.nowMs());
         CareStore.TroughView bestTrough = null;
-        CareRules.Choice best = null;
+        CareRules.Meal best = null;
         double bestDist = Double.MAX_VALUE;
         for (CareStore.TroughView t : ctx.troughs()) {
             if (t.contents().isEmpty()) continue;
@@ -190,21 +209,32 @@ final class CareWorld {
             if (dist < 0) continue;
             Set<String> items = new HashSet<>();
             for (TroughContents.Slot s : t.contents().slots) items.add(s.item);
-            CareRules.Choice c = CareRules.bestFood(species, items).orElse(null);
-            if (c == null) continue;
-            if (best == null || rank(c.kind()) > rank(best.kind()) || (rank(c.kind()) == rank(best.kind()) && dist < bestDist)) {
-                best = c;
+            CareRules.Meal m = CareRules.bestMeal(species, items, feeds, bonus).orElse(null);
+            if (m == null) continue;
+            int r = CareRules.mealRank(m, bonus);
+            int bestR = best == null ? -1 : CareRules.mealRank(best, bonus);
+            if (r > bestR || (r == bestR && dist < bestDist)) {
+                best = m;
                 bestTrough = t;
                 bestDist = dist;
             }
         }
         if (best == null) return false;
-        CareService care = ctx.care();
         String w = ctx.world().getName();
-        if (!care.store().takeOne(w, bestTrough.x(), bestTrough.y(), bestTrough.z(), best.item())) return false;
+        CareTraits traits = Feeding.traits(record, config);
+        boolean use = CareRules.usesItem(traits.foodUse(), ThreadLocalRandom.current().nextDouble());
+        if (use && !care.store().takeOne(w, bestTrough.x(), bestTrough.y(), bestTrough.z(), best.item())) return false;
         record.lastFedAtMs = ctx.nowMs();
         care.store().recordMeal(record.animalId, w, best.kind(), ctx.nowMs());
-        if (best.kind() == FoodKind.FAVORITE) addFriendship(record, CareRules.TROUGH_TREAT_FRIENDSHIP);
+        if (best.feedBonus() != null) {
+            Feeding.apply(record, best.item(), config, ctx.nowMs());
+            LOGGER.atInfo().log("Care: ranch animal %s ate %s from the trough at %d %d %d: bonus %s until %d",
+                record.animalId, best.item(), bestTrough.x(), bestTrough.y(), bestTrough.z(), record.feedBonus, record.feedBonusUntilMs);
+        }
+        if (best.kind() == FoodKind.FAVORITE) {
+            float gain = (float) (CareRules.TROUGH_TREAT_FRIENDSHIP * traits.treatMultiplier()) * Feeding.friendshipMultiplier(record, config, ctx.nowMs());
+            addFriendship(record, gain);
+        }
         if (care.store().trough(w, bestTrough.x(), bestTrough.y(), bestTrough.z()).map(v -> v.contents().isEmpty()).orElse(true)) {
             syncTrough(ctx.world(), care, bestTrough.x(), bestTrough.y(), bestTrough.z());
         }
@@ -221,16 +251,7 @@ final class CareWorld {
         return d <= range && Math.abs(dy) <= TROUGH_HEIGHT ? d : -1;
     }
 
-    private static int rank(@Nonnull FoodKind kind) {
-        return switch (kind) {
-            case NONE -> 0;
-            case BASIC -> 1;
-            case PREFERRED -> 2;
-            case FAVORITE -> 3;
-        };
-    }
-
-    private static void addFriendship(@Nonnull AnimalRecord record, float amount) {
+    static void addFriendship(@Nonnull AnimalRecord record, float amount) {
         int before = record.hearts;
         TamingRules.Friendship next = TamingRules.addFriendship(record.hearts, record.heartProgress, amount);
         record.hearts = next.hearts();
@@ -290,14 +311,22 @@ final class CareWorld {
             house != null,
             house != null && house.habitatRequirementsMet,
             house == null ? 0f : house.habitatScore,
-            CareRules.pettedRecently(record.lastPettedAtMs, gameNowMs)
+            CareRules.pettedRecently(record.lastPettedAtMs, gameNowMs),
+            Feeding.active(record, CareRules.BONUS_HEARTY, nowMs),
+            Feeding.traits(record, care.habitat()).treatMultiplier()
         );
     }
 
     // ---- habitat ----
 
+    /** A house just placed: its first scan starts at the next step, ahead of every other house. World thread. */
+    void housePlaced(@Nonnull UUID houseId) {
+        placed.add(houseId);
+    }
+
     private void stepHabitat(@Nonnull World world, @Nonnull CareService care, long now) {
         String w = world.getName();
+        if (job == null) startPlacedScan(world, care);
         if (job == null) {
             if (now - lastHousePick < HOUSE_PICK_MS) return;
             lastHousePick = now;
@@ -305,7 +334,7 @@ final class CareWorld {
             for (HouseRecord h : Ranch.houses().inWorld(w)) {
                 if (now - h.habitatScannedAtMs < intervalMs) continue;
                 if (TroughBlocks.typeAt(world, h.x, h.y, h.z) == null) continue;
-                job = new Job(h.houseId, newScan(care, h));
+                job = new Job(h.houseId, newScan(care, h), false);
                 jobGrid = new WorldHabitatGrid(world);
                 break;
             }
@@ -319,8 +348,47 @@ final class CareWorld {
         job.scan().step(jobGrid, COLUMNS_PER_STEP);
         if (!job.scan().done()) return;
         finishScan(care, w, house, job.scan(), now);
+        if (job.placed()) {
+            LOGGER.atInfo().log("Care: first habitat scan of new house %s: requirements met %s, score %.2f, %d columns scanned",
+                house.houseId, house.habitatRequirementsMet, house.habitatScore, job.scan().columnsScanned());
+        }
         job = null;
         jobGrid = null;
+    }
+
+    /** Starts the scan of the first placed house still waiting whose block is loaded; forgets houses that are gone or scanned. */
+    private void startPlacedScan(@Nonnull World world, @Nonnull CareService care) {
+        for (UUID id : List.copyOf(placed)) {
+            HouseRecord h = Ranch.houses().get(id).orElse(null);
+            if (h == null || !world.getName().equals(h.worldName) || h.habitatScannedAtMs > 0) {
+                placed.remove(id);
+                continue;
+            }
+            if (TroughBlocks.typeAt(world, h.x, h.y, h.z) == null) continue;
+            placed.remove(id);
+            job = new Job(h.houseId, newScan(care, h), true);
+            jobGrid = new WorldHabitatGrid(world);
+            return;
+        }
+    }
+
+    /**
+     * Scans a house completely, now, if it was never scanned (the morning hook, before breeding decides). Columns not in
+     * memory are skipped as always; if all are, the house still counts as scanned with its requirements unmet.
+     * Returns true if it scanned. World thread.
+     */
+    boolean scanIfNeverScanned(@Nonnull World world, @Nonnull CareService care, @Nonnull HouseRecord house, long now) {
+        if (house.habitatScannedAtMs > 0) return false;
+        if (job != null && job.houseId().equals(house.houseId)) {
+            job = null;
+            jobGrid = null;
+        }
+        placed.remove(house.houseId);
+        HabitatScan scan = newScan(care, house);
+        WorldHabitatGrid grid = new WorldHabitatGrid(world);
+        while (!scan.done()) scan.step(grid, 4096);
+        finishScan(care, world.getName(), house, scan, now);
+        return true;
     }
 
     @Nonnull
@@ -329,15 +397,9 @@ final class CareWorld {
     }
 
     private static void finishScan(@Nonnull CareService care, @Nonnull String world, @Nonnull HouseRecord house, @Nonnull HabitatScan scan, long now) {
-        house.habitatScannedAtMs = now;
         SpeciesDefinition species = SpeciesRegistry.byId(house.speciesId).orElse(null);
-        if (species != null && scan.columnsScanned() > 0) {
-            boolean food = troughFoodNear(care, world, house, species);
-            HabitatScan.Result r = scan.evaluate(species.HabitatRequires, species.HabitatPrefers, food);
-            house.habitatRequirementsMet = r.requirementsMet();
-            house.habitatScore = r.score();
-            house.habitatMissing = new ArrayList<>(r.missing());
-        }
+        boolean food = species != null && troughFoodNear(care, world, house, species);
+        scan.applyTo(house, species, food, now);
         Ranch.houses().markDirty(house);
     }
 
@@ -348,7 +410,7 @@ final class CareWorld {
         for (CareStore.TroughView t : care.store().troughsIn(world)) {
             if (reach(at, t, radius) < 0) continue;
             for (TroughContents.Slot s : t.contents().slots) {
-                if (s.count > 0 && TamingRules.foodKind(species, s.item) != FoodKind.NONE) return true;
+                if (s.count > 0 && (TamingRules.foodKind(species, s.item) != FoodKind.NONE || care.habitat().feedBonus(s.item) != null)) return true;
             }
         }
         return false;

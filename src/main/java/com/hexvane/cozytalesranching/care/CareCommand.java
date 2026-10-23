@@ -1,6 +1,7 @@
 package com.hexvane.cozytalesranching.care;
 
 import com.hexvane.cozytalesranching.RanchPermissions;
+import com.hexvane.cozytalesranching.RanchSounds;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.house.HouseRecord;
@@ -20,6 +21,7 @@ import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import javax.annotation.Nonnull;
 import org.joml.Vector3i;
 
@@ -35,6 +37,7 @@ public final class CareCommand extends AbstractCommandCollection {
         this.addSubCommand(new Animals());
         this.addSubCommand(new Run());
         this.addSubCommand(new Fill());
+        this.addSubCommand(new Bonus());
     }
 
     @Nonnull
@@ -108,6 +111,64 @@ public final class CareCommand extends AbstractCommandCollection {
                     .param("base", pct(b.base())).param("food", pct(b.fed())).param("preferred", pct(b.preferred()))
                     .param("house", pct(b.house())).param("met", pct(b.habitatMet())).param("score", pct(b.habitatScore()))
                     .param("petted", pct(b.petted())).param("treat", pct(b.treat())));
+                String bonus = CareApi.activeFeedBonus(r).orElse(null);
+                if (bonus != null) {
+                    player.sendMessage(Message.translation("cozyranch_care.animals.bonus")
+                        .param("bonus", bonus).param("minutes", Math.max(0L, (r.feedBonusUntilMs - now) / 60_000L)));
+                }
+            }
+        }
+    }
+
+    /**
+     * Gives your animals here an advanced feed as if they ate it: {@code <animal>} is a name, the start of an animal
+     * id, or {@code all}; {@code <feed>} a feed item id or bonus id ({@code hearty}, {@code sweet}, {@code breeders},
+     * {@code premium}).
+     */
+    static final class Bonus extends AbstractPlayerCommand {
+        private final RequiredArg<String> animal;
+        private final RequiredArg<String> feed;
+
+        Bonus() {
+            super("bonus", "cozyranch_care.commands.care.bonus.desc");
+            this.requirePermission(RanchPermissions.ADMIN);
+            this.animal = this.withRequiredArg("animal", "cozyranch_care.commands.care.bonus.arg.animal", ArgTypes.STRING);
+            this.feed = this.withRequiredArg("feed", "cozyranch_care.commands.care.bonus.arg.feed", ArgTypes.STRING);
+        }
+
+        @Override
+        protected void execute(@Nonnull CommandContext context, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef player, @Nonnull World world) {
+            CareService care = CareService.get();
+            if (care == null) return;
+            HabitatConfig config = care.habitat();
+            String wanted = context.get(feed);
+            String itemId = null;
+            for (Map.Entry<String, String> f : config.feedItems().entrySet()) {
+                if (f.getKey().equalsIgnoreCase(wanted) || f.getValue().equalsIgnoreCase(wanted)) itemId = f.getKey();
+            }
+            if (itemId == null) {
+                player.sendMessage(Message.translation("cozyranch_care.bonus.unknown_feed").param("feed", wanted));
+                return;
+            }
+            String who = context.get(animal);
+            List<AnimalRecord> mine = Ranch.animals().ownedBy(player.getUuid()).stream()
+                .filter(r -> world.getName().equals(r.worldName))
+                .filter(r -> who.equalsIgnoreCase("all") || who.equalsIgnoreCase(r.name) || r.animalId.toString().startsWith(who.toLowerCase(Locale.ROOT)))
+                .toList();
+            if (mine.isEmpty()) {
+                player.sendMessage(Message.translation("cozyranch_care.bonus.no_animal").param("animal", who));
+                return;
+            }
+            long now = System.currentTimeMillis();
+            for (AnimalRecord r : mine) {
+                long bredBefore = r.lastBredAtMs;
+                Feeding.apply(r, itemId, config, now);
+                Ranch.animals().markDirty(r);
+                player.sendMessage(Message.translation("cozyranch_care.bonus.done")
+                    .param("animal", TamingApi.displayName(r))
+                    .param("bonus", r.feedBonus)
+                    .param("minutes", Math.round(config.feedDurationMs(itemId) / 60_000.0))
+                    .param("moved", Math.max(0L, (bredBefore - r.lastBredAtMs) / 1000L)));
             }
         }
     }
@@ -148,7 +209,7 @@ public final class CareCommand extends AbstractCommandCollection {
             CareService care = CareService.get();
             if (care == null) return;
             String itemId = context.get(item);
-            if (!CareRules.isAnyFood(SpeciesRegistry.all(), itemId)) {
+            if (!care.isTroughFood(itemId)) {
                 player.sendMessage(Message.translation("cozyranch_care.trough.not_food").param("item", TroughInteraction.itemName(itemId)));
                 return;
             }
@@ -160,6 +221,7 @@ public final class CareCommand extends AbstractCommandCollection {
             int put = care.store().add(world.getName(), pos.x, pos.y, pos.z, itemId, Math.max(0, context.get(count)), TroughBlocks::maxStack);
             CareWorld.syncTrough(world, care, pos.x, pos.y, pos.z);
             care.scheduleSave();
+            if (put > 0) RanchSounds.play(RanchSounds.TROUGH_FILL, pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, store);
             player.sendMessage(Message.translation("cozyranch_care.fill.done").param("count", put).param("item", TroughInteraction.itemName(itemId))
                 .param("x", pos.x).param("y", pos.y).param("z", pos.z));
         }
