@@ -1,0 +1,21 @@
+{
+  "cases": [
+    {
+      "name": "behaviour gate",
+      "description": "The mod's assets parse and match the engine schemas.",
+      "steps": [
+        { "tool": "asset_validate", "arguments": { "project": "_worktrees/CozyTales-Ranching-behaviour" }, "expect": { "valid": true, "schemaErrors": 0 } },
+        { "tool": "ui_check_java", "arguments": { "project": "_worktrees/CozyTales-Ranching-behaviour" }, "expect": { "valid": true } }
+      ]
+    },
+    {
+      "name": "ranch template with behaviour states",
+      "description": "The animal template with the Behave, Tag and Meet states, and an adult and a baby variant, pass the engine schema with no warnings.",
+      "steps": [
+        { "tool": "asset_check", "name": "template", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-behaviour/src/main/resources/Server/NPC/Roles/CozyRanch/Template_CozyRanch_Animal.json" }, "expect": { "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "name": "pig", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-behaviour/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig.json" }, "expect": { "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "name": "chick", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-behaviour/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Chicken_Chick.json" }, "expect": { "errors": 0, "warnings": 0 } }
+      ]
+    }
+  ]
+}

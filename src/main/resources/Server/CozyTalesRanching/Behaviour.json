@@ -1,0 +1,194 @@
+{
+  "$Comment": "Flavour behaviours of owned residents by day (behaviour feature). A copy in <plugin data>/Behaviour.json overrides this file; /ranch reload re-reads it. Seconds are real seconds. Species keys are species ids; each lists the behaviours it can do with the animation sets to try in order (the first one the model has is played). A behaviour a species does not list never happens for it.",
+  "DecisionSeconds": [ 25, 70 ],
+  "IdleWeight": 2.0,
+  "EventCooldownSeconds": 60,
+  "WitnessRange": 16,
+  "MaxWalkSeconds": 15,
+  "ArriveDistance": 1.6,
+  "ActAnywayDistance": 3.0,
+  "SocialRange": 8,
+  "PlayerRange": 12,
+  "ShyDistance": 6,
+  "ShyCooldownSeconds": 12,
+  "NearHouseDistance": 4,
+  "ShadeHeight": 6,
+  "ToyScanRadius": 10,
+  "ToyScanSeconds": 60,
+  "RecentInteractionSeconds": 10,
+  "Log": false,
+  "Ground": {
+    "grass": [
+      { "Under": [ "Soil_Grass" ], "Exclude": [ "Burnt", "Poisoned" ] },
+      { "At": [ "Plant_Grass_" ], "Exclude": [ "Burnt", "Poisoned", "Cave" ] }
+    ],
+    "dust": [
+      { "Under": [ "Soil_Dirt", "Soil_Sand", "Soil_Gravel", "Soil_Pathway" ], "Exclude": [ "Wet", "Poisoned", "Burnt", "Tilled" ] }
+    ],
+    "mud": [
+      { "Under": [ "Soil_Mud", "Soil_Dirt_Wet", "Soil_Grass_Wet" ] },
+      { "Under": [ "Soil_Dirt", "Soil_Grass" ], "NearFluid": [ "Water", "Water_Source", "Water_Finite" ], "Exclude": [ "Poisoned", "Burnt" ] }
+    ],
+    "pond": [
+      { "Fluid": [ "Water", "Water_Source", "Water_Finite" ] },
+      { "NearFluid": [ "Water", "Water_Source", "Water_Finite" ] },
+      { "At": [ "Plant_Flower_Water_" ] },
+      { "Near": [ "Plant_Flower_Water_" ] }
+    ]
+  },
+  "Toys": {
+    "CozyRanch_Toy_Ball": "toy_ball",
+    "CozyRanch_Toy_ScratchingPost": "toy_post",
+    "CozyRanch_Toy_HangingBell": "toy_bell",
+    "CozyRanch_Toy_FloatingDuck": "toy_duck",
+    "CozyRanch_Toy_Log": "toy_log"
+  },
+  "Behaviours": {
+    "trough_snack": { "Kind": "trough", "Weight": 1.5, "CooldownDayFraction": 0.25, "Seconds": [ 4, 7 ] },
+    "graze": { "Kind": "here", "Ground": "grass", "Weight": 3, "CooldownSeconds": 60, "Seconds": [ 6, 10 ] },
+    "tail_swish": { "Kind": "here", "Weight": 1, "CooldownSeconds": 90, "Seconds": [ 3, 5 ] },
+    "peck": { "Kind": "here", "Weight": 3, "CooldownSeconds": 40, "Seconds": [ 3, 6 ] },
+    "dust_bathe": { "Kind": "here", "Ground": "dust", "Weight": 2, "CooldownSeconds": 120, "Seconds": [ 5, 8 ] },
+    "flap": { "Kind": "here", "Weight": 1, "CooldownSeconds": 90, "Seconds": [ 2, 3 ], "RepeatSeconds": 2 },
+    "mud_roll": { "Kind": "here", "Ground": "mud", "Weight": 3, "CooldownSeconds": 120, "Seconds": [ 5, 8 ] },
+    "snuffle": { "Kind": "here", "Weight": 2, "CooldownSeconds": 60, "Seconds": [ 4, 6 ] },
+    "pronk": { "Kind": "here", "Weight": 1, "CooldownSeconds": 90, "Seconds": [ 3, 5 ], "RepeatSeconds": 1 },
+    "lily_hop": { "Kind": "here", "Ground": "pond", "Weight": 3, "CooldownSeconds": 60, "Seconds": [ 2, 4 ], "RepeatSeconds": 2 },
+    "croak": { "Kind": "here", "Weight": 2, "CooldownSeconds": 60, "Seconds": [ 4, 6 ] },
+    "follow_parent": { "Kind": "parent", "Weight": 4, "CooldownSeconds": 45, "Seconds": [ 20, 40 ] },
+    "socialise": { "Kind": "social", "Weight": 1.5, "CooldownSeconds": 120, "Seconds": [ 3, 4 ], "RepeatSeconds": 2 },
+    "nap": { "Kind": "rest", "Weight": 1, "CooldownSeconds": 240, "Seconds": [ 20, 40 ], "AllowStill": true },
+    "toy_ball": { "Kind": "toy", "Weight": 1.5, "CooldownSeconds": 150, "Seconds": [ 3, 5 ], "RepeatSeconds": 2 },
+    "toy_post": { "Kind": "toy", "Weight": 1.5, "CooldownSeconds": 150, "Seconds": [ 4, 6 ] },
+    "toy_bell": { "Kind": "toy", "Weight": 1.5, "CooldownSeconds": 150, "Seconds": [ 3, 5 ], "RepeatSeconds": 2 },
+    "toy_duck": { "Kind": "toy", "Weight": 1.5, "CooldownSeconds": 150, "Seconds": [ 3, 5 ], "RepeatSeconds": 2 },
+    "toy_log": { "Kind": "toy", "Weight": 1.5, "CooldownSeconds": 150, "Seconds": [ 4, 6 ] },
+    "approach_player": { "Kind": "player", "Weight": 2, "CooldownSeconds": 90, "Seconds": [ 4, 6 ], "Event": false, "OnlyPersonality": "curious" },
+    "greet_owner": { "Kind": "owner", "Weight": 2, "CooldownSeconds": 120, "Seconds": [ 3, 4 ], "RepeatSeconds": 2, "Event": false, "OnlyPersonality": "affectionate" },
+    "retreat": { "Kind": "retreat", "Weight": 0, "CooldownSeconds": 0, "Seconds": [ 2, 3 ], "AllowStill": true, "Event": false }
+  },
+  "Species": {
+    "cow": {
+      "Adult": {
+        "trough_snack": [ "EatTrough" ],
+        "graze": [ "Graze" ],
+        "tail_swish": [ "TailSwish" ],
+        "socialise": [ "Happy" ],
+        "nap": [ "Sleep" ],
+        "toy_ball": [ "Happy" ],
+        "toy_post": [ "TailSwish" ],
+        "toy_log": [ "Graze" ],
+        "approach_player": [ "Curious" ],
+        "greet_owner": [ "Happy" ],
+        "retreat": [ ]
+      },
+      "Baby": {
+        "follow_parent": [ ],
+        "socialise": [ "Happy" ],
+        "nap": [ "Sleep" ],
+        "toy_ball": [ "Happy" ],
+        "approach_player": [ "Curious" ],
+        "greet_owner": [ "Happy" ],
+        "retreat": [ ]
+      }
+    },
+    "chicken": {
+      "Adult": {
+        "trough_snack": [ "EatTrough" ],
+        "peck": [ "PeckGround" ],
+        "dust_bathe": [ "DustBathe" ],
+        "flap": [ "FlapHappy" ],
+        "socialise": [ "Happy" ],
+        "nap": [ "Sleep" ],
+        "toy_bell": [ "PeckGround" ],
+        "toy_ball": [ "FlapHappy" ],
+        "approach_player": [ "Curious" ],
+        "greet_owner": [ "Happy" ],
+        "retreat": [ ]
+      },
+      "Baby": {
+        "follow_parent": [ ],
+        "socialise": [ "Happy" ],
+        "nap": [ "Sleep" ],
+        "toy_bell": [ "Happy" ],
+        "greet_owner": [ "Happy" ],
+        "retreat": [ ]
+      }
+    },
+    "pig": {
+      "Adult": {
+        "trough_snack": [ "EatTrough" ],
+        "mud_roll": [ "MudRoll" ],
+        "snuffle": [ "Snuffle", "SniffGround" ],
+        "socialise": [ "Happy" ],
+        "nap": [ "Sleep" ],
+        "toy_ball": [ "Snuffle", "Happy" ],
+        "toy_post": [ "ScratchButtTree", "Happy" ],
+        "toy_log": [ "ScratchBackGround", "Happy" ],
+        "approach_player": [ "Curious" ],
+        "greet_owner": [ "Happy" ],
+        "retreat": [ ]
+      },
+      "Baby": {
+        "follow_parent": [ ],
+        "socialise": [ "Happy" ],
+        "nap": [ "Sleep" ],
+        "toy_ball": [ "Happy" ],
+        "approach_player": [ "Curious" ],
+        "greet_owner": [ "Happy" ],
+        "retreat": [ ]
+      }
+    },
+    "sheep": {
+      "Adult": {
+        "trough_snack": [ "EatTrough" ],
+        "graze": [ "Graze" ],
+        "pronk": [ "Pronk" ],
+        "socialise": [ "Happy" ],
+        "nap": [ "Sleep" ],
+        "toy_ball": [ "Pronk" ],
+        "toy_post": [ "Happy" ],
+        "toy_log": [ "Pronk" ],
+        "approach_player": [ "Curious" ],
+        "greet_owner": [ "Happy" ],
+        "retreat": [ ]
+      },
+      "Baby": {
+        "follow_parent": [ ],
+        "socialise": [ "Happy" ],
+        "nap": [ "Sleep" ],
+        "toy_ball": [ "Happy" ],
+        "approach_player": [ "Curious" ],
+        "greet_owner": [ "Happy" ],
+        "retreat": [ ]
+      }
+    },
+    "frog": {
+      "Adult": {
+        "trough_snack": [ "EatTrough" ],
+        "lily_hop": [ "LilyHop" ],
+        "croak": [ "CroakSit" ],
+        "socialise": [ "Happy" ],
+        "nap": [ "Sleep" ],
+        "toy_duck": [ "LilyHop", "Happy" ],
+        "toy_log": [ "CroakSit" ],
+        "approach_player": [ "Curious" ],
+        "greet_owner": [ "Happy" ],
+        "retreat": [ ]
+      },
+      "Baby": {
+        "follow_parent": [ ],
+        "socialise": [ "Happy" ],
+        "nap": [ "Sleep" ],
+        "retreat": [ ]
+      }
+    }
+  },
+  "Personalities": {
+    "shy": { "Weights": { "socialise": 0.5, "approach_player": 0, "toy_*": 0.7 }, "DecisionScale": 1.2 },
+    "playful": { "Weights": { "toy_*": 3, "pronk": 2, "flap": 2, "lily_hop": 2, "socialise": 1.5, "nap": 0.5 }, "DecisionScale": 0.8 },
+    "curious": { "Weights": { "approach_player": 1, "toy_*": 1.3, "trough_snack": 1.2 }, "DecisionScale": 0.9 },
+    "lazy": { "Weights": { "nap": 3, "toy_*": 0.5, "pronk": 0.5, "flap": 0.5 }, "DecisionScale": 1.4, "IdleWeight": 3 },
+    "affectionate": { "Weights": { "greet_owner": 1, "socialise": 1.5, "follow_parent": 1.3 }, "DecisionScale": 1.0 }
+  }
+}
