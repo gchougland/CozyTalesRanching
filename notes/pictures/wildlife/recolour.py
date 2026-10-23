@@ -126,9 +126,12 @@ def black_sheep():
     body = load(r"Livestock\Sheep\Models\Texture.png")
 
     def body_fn(x, y, h, l, s):
-        if l < 0.48 or s > 0.3:  # skin and face are already dark; only the pale wool tufts change
+        if (l > 0.75 and s > 0.3) or (85 <= x < 93 and 14 <= y < 22):  # eye highlights; the eye quad at (85, 14)
             return None
-        return wool(x, y, h, l, s)
+        if l >= 0.48 and s <= 0.3:  # pale wool tufts
+            return wool(x, y, h, l, s)
+        # the skin goes a deep grey-brown too, or a shorn black sheep shows pink patches between dark tufts
+        return 18, 0.05 + l * 0.27, s * 0.3
 
     save(per_pixel(body, body_fn), "Sheep_Black.png")
     save(per_pixel(load(r"Livestock\Sheep\Models\Wool_Attachment_Texture.png"), wool), "Sheep_Black_Wool.png")

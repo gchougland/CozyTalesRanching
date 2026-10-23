@@ -90,6 +90,8 @@ final class WildlifeWorld {
             if (state.nextVisitAtMs <= 0 && !forceDue) {
                 state.nextVisitAtMs = now + WildlifeRules.nextVisitDelayMs(config, rng);
                 service.store().markDirty(world.getName());
+                LOG.info("Wildlife: house " + house.houseId + " (" + house.speciesId + ") may draw a visitor in "
+                    + (state.nextVisitAtMs - now) / 1000 + " s");
                 continue;
             }
             if (now < state.nextVisitAtMs && !forceDue) continue;
@@ -188,7 +190,8 @@ final class WildlifeWorld {
             double reach = 48;
             npc.setLeashPoint(new Vector3d(cx + dx / len * reach, v.y, cz + dz / len * reach));
         }
-        LOG.info("Wildlife: visitor " + v.entityUuid + " (" + v.roleId + ") walks off after " + (now - v.arrivedAtMs) / 1000 + " s");
+        LOG.info(String.format("Wildlife: visitor %s (%s) walks off after %d s, %.0f blocks from its house",
+            v.entityUuid, v.roleId, (now - v.arrivedAtMs) / 1000, distanceToHouse(v)));
     }
 
     /** Removes every loaded visitor of this world and forgets all of them. Returns how many entities went. */
@@ -413,6 +416,12 @@ final class WildlifeWorld {
             if (t != null) out.add(new Vector3d(t.getPosition()));
         }
         return out;
+    }
+
+    /** Horizontal distance from its last seen place to its house; -1 when the house is gone. */
+    static double distanceToHouse(@Nonnull Visitor v) {
+        HouseRecord h = v.houseId == null ? null : Ranch.houses().get(v.houseId).orElse(null);
+        return h == null ? -1 : Math.hypot(v.x - h.x - 0.5, v.z - h.z - 0.5);
     }
 
     static double nearest(@Nonnull List<Vector3d> players, double x, double y, double z) {

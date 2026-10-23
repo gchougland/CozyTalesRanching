@@ -1,0 +1,390 @@
+{
+  "cases": [
+    {
+      "name": "wildlife gate",
+      "description": "The pack parses and matches the engine schemas, with the rare roles and models in it.",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "rare chicken",
+      "description": "A golden hen: the cream feathers turned rich gold, comb and wattle still red, legs still yellow.",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanchWild/CozyRanchWild_Chicken_Golden.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/Rare/CozyRanch_Chicken_Golden.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Chicken_Golden.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Chicken_Golden.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 300
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.03
+            }
+          },
+          "golden": "tests/hytale/golden/wildlife/chicken-rare.png"
+        },
+        {
+          "tool": "texture_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/NPC/CozyRanch/Rare/Chicken_Golden.png"
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "rare cow",
+      "description": "A red highland cow: the coat rust red, the nose and udder still pink, horns still pale.",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanchWild/CozyRanchWild_Cow_Red.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/Rare/CozyRanch_Cow_Red.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Cow_Red.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Cow_Red.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 300
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.03
+            }
+          },
+          "golden": "tests/hytale/golden/wildlife/cow-rare.png"
+        },
+        {
+          "tool": "texture_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/NPC/CozyRanch/Rare/Cow_Red.png"
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "rare pig",
+      "description": "A spotted pig: soft dark chestnut patches over the pink body, the face kept clear.",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanchWild/CozyRanchWild_Pig_Spotted.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/Rare/CozyRanch_Pig_Spotted.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Pig_Spotted.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Pig_Spotted.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 300
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.03
+            }
+          },
+          "golden": "tests/hytale/golden/wildlife/pig-rare.png"
+        },
+        {
+          "tool": "texture_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/NPC/CozyRanch/Rare/Pig_Spotted.png"
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "rare sheep",
+      "description": "A black sheep: charcoal body and face (the wool attachment is not drawn offline; its texture is checked on its own).",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanchWild/CozyRanchWild_Sheep_Black.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/Rare/CozyRanch_Sheep_Black.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Sheep_Black.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Sheep_Black.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 300
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.03
+            }
+          },
+          "golden": "tests/hytale/golden/wildlife/sheep-rare.png"
+        },
+        {
+          "tool": "texture_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/NPC/CozyRanch/Rare/Sheep_Black.png"
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/NPC/CozyRanch/Rare/Sheep_Black_Wool.png"
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "rare frog",
+      "description": "A purple frog: violet back, lavender belly, eyes unchanged, teal warts turned pink.",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanchWild/CozyRanchWild_Frog_Purple.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/Rare/CozyRanch_Frog_Purple.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Frog_Purple.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Frog_Purple.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 300
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.03
+            }
+          },
+          "golden": "tests/hytale/golden/wildlife/frog-rare.png"
+        },
+        {
+          "tool": "texture_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/NPC/CozyRanch/Rare/Frog_Purple.png"
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

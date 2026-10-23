@@ -110,6 +110,7 @@ public final class WildlifeCommand extends AbstractCommandCollection {
                     .param("house", v.houseId == null ? "-" : v.houseId.toString().substring(0, 8))
                     .param("rare", v.rare)
                     .param("loaded", loaded)
+                    .param("distance", (int) Math.round(WildlifeWorld.distanceToHouse(v)))
                     .param("state", v.leaving() ? "leaving " + (now - v.leavingSinceMs) / 1000 + " s"
                         : "leaves in " + Math.max(0, (v.leaveAtMs - now) / 1000) + " s"));
             }
