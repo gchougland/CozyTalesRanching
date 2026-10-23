@@ -44,7 +44,7 @@ $C.@PageOverlay {
           LayoutMode: Left;
           Anchor: (Height: 34, Top: 10);
 
-          $J.@NavButton #NavContents {
+          $J.@NavButton #MemNavContents {
             Text: %cozyranch_journal.nav.contents;
           }
         }
@@ -67,7 +67,7 @@ $C.@PageOverlay {
           LayoutMode: Left;
           Anchor: (Height: 34, Top: 10);
 
-          $J.@NavButton #NavPrev {
+          $J.@NavButton #MemNavPrev {
             Text: %cozyranch_journal.nav.previous;
           }
 
@@ -77,7 +77,7 @@ $C.@PageOverlay {
             Text: "";
           }
 
-          $J.@NavButton #NavNext {
+          $J.@NavButton #MemNavNext {
             Text: %cozyranch_journal.nav.next;
           }
         }

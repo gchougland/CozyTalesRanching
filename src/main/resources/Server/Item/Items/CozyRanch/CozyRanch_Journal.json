@@ -1,0 +1,70 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_journal.items.journal.name",
+    "Description": "cozyranch_journal.items.journal.description"
+  },
+  "Quality": "Common",
+  "Categories": [
+    "Items.Tools"
+  ],
+  "PlayerAnimationsId": "Item",
+  "Icon": "Icons/ItemsGenerated/Weapon_Spellbook_Grimoire_Brown.png",
+  "IconProperties": {
+    "Scale": 0.745,
+    "Translation": [
+      -7.8,
+      -7.8
+    ],
+    "Rotation": [
+      45,
+      90,
+      0
+    ]
+  },
+  "Model": "Items/Weapons/Spellbook/Grimoire.blockymodel",
+  "Texture": "Items/Weapons/Spellbook/Grimoire_Brown_Texture.png",
+  "Scale": 1,
+  "Recipe": {
+    "TimeSeconds": 2,
+    "Input": [
+      {
+        "ItemId": "Ingredient_Hide_Light",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 3
+      }
+    ],
+    "OutputQuantity": 1,
+    "BenchRequirement": [
+      {
+        "Id": "Workbench",
+        "Type": "Crafting",
+        "Categories": [
+          "Workbench_Crafting"
+        ]
+      }
+    ]
+  },
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "OpenCustomUI",
+          "Page": {
+            "Id": "CozyRanchJournal"
+          }
+        }
+      ]
+    }
+  },
+  "Tags": {
+    "Type": [
+      "Tool"
+    ]
+  },
+  "MaxStack": 1,
+  "DropOnDeath": false,
+  "ItemSoundSetId": "ISS_Weapons_Books"
+}

@@ -60,11 +60,11 @@ public final class JournalLayout {
         rows("#MemoryLeft", v.left(), ui);
         rows("#MemoryRight", v.right(), ui);
         ui.text("#MemoryPageLabel", v.pageLabel());
-        ui.set("#NavPrev.Disabled", !v.hasPrevious());
-        ui.set("#NavNext.Disabled", !v.hasNext());
-        ui.click("#NavContents", ACTION_CONTENTS, "");
-        if (v.hasPrevious()) ui.click("#NavPrev", ACTION_MEMORIES, String.valueOf(v.spread() - 1));
-        if (v.hasNext()) ui.click("#NavNext", ACTION_MEMORIES, String.valueOf(v.spread() + 1));
+        ui.set("#MemNavPrev.Disabled", !v.hasPrevious());
+        ui.set("#MemNavNext.Disabled", !v.hasNext());
+        ui.click("#MemNavContents", ACTION_CONTENTS, "");
+        if (v.hasPrevious()) ui.click("#MemNavPrev", ACTION_MEMORIES, String.valueOf(v.spread() - 1));
+        if (v.hasNext()) ui.click("#MemNavNext", ACTION_MEMORIES, String.valueOf(v.spread() + 1));
     }
 
     private static void sections(@Nonnull String container, @Nonnull List<JournalView.Section> sections, @Nonnull UiOut ui) {
