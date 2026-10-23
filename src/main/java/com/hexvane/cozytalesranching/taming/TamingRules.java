@@ -1,6 +1,7 @@
 package com.hexvane.cozytalesranching.taming;
 
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
+import java.time.Instant;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -70,6 +71,18 @@ public final class TamingRules {
         }
         if (h >= MAX_HEARTS) p = 0f;
         return new Friendship(h, p);
+    }
+
+    /** Where the world's game clock starts (vanilla {@code WorldTimeResource.ZERO_YEAR}). */
+    private static final Instant GAME_CLOCK_START = Instant.parse("0001-01-01T00:00:00.00Z");
+
+    /**
+     * A game-clock instant as milliseconds since the clock's start, plus one so it is never 0 ("never").
+     * The clock starts in year 1, so {@code Instant.toEpochMilli()} is negative and cannot be stored as is:
+     * {@code Math.max(1, epochMilli)} turned every pet into "never petted", which let petting repeat forever.
+     */
+    public static long gameClockMs(@Nonnull Instant gameTime) {
+        return Math.max(0L, gameTime.toEpochMilli() - GAME_CLOCK_START.toEpochMilli()) + 1L;
     }
 
     /** In-game day number for a game-clock instant in epoch milliseconds. */

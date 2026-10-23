@@ -276,7 +276,7 @@ public final class AnimalInteractions {
         if (animal == null || !animal.isValid() || found.isEmpty()) return;
         AnimalRecord record = found.get();
         WorldTimeResource time = store.getResource(WorldTimeResource.getResourceType());
-        long gameNow = time.getGameTime().toEpochMilli();
+        long gameNow = TamingRules.gameClockMs(time.getGameTime());
         if (!TamingRules.canPetForFriendship(record.lastPettedAtMs, gameNow)) {
             // once a day: a second pet gives no hearts, sound, animation or friendship, only this line
             use.player.sendMessage(Message.translation("cozyranch_taming.pet.already").param("animal", AnimalControl.displayName(record)));
@@ -284,7 +284,7 @@ public final class AnimalInteractions {
         }
         refreshNameplate(record, animal, store);
         AnimalControl.cheer(animal, AnimalControl.HEARTS_SMALL, store);
-        record.lastPettedAtMs = Math.max(1L, gameNow);
+        record.lastPettedAtMs = gameNow;
         AnimalControl.sound(animal, addFriendship(record, TamingRules.PET_FRIENDSHIP) ? RanchSounds.HEART_UP : RanchSounds.ANIMAL_HAPPY, store);
         use.player.sendMessage(Message.translation("cozyranch_taming.pet.done")
             .param("animal", AnimalControl.displayName(record)).param("hearts", record.hearts).param("max", TamingRules.MAX_HEARTS));

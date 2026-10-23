@@ -111,9 +111,11 @@ Button #ResidentRow {
           Text: "";
         }
 
+        // Hover it to read what the personality means (the tooltip text is set from Java).
         Label #RPersonality {
           Style: (FontSize: 13, TextColor: #cdb9e6, VerticalAlignment: Center);
           Anchor: (Right: 10);
+          TextTooltipStyle: $C.@DefaultTextTooltipStyle;
           Text: "";
         }
       }

@@ -103,6 +103,19 @@ class TamingRulesTest {
     }
 
     @Test
+    void pettingOncePerGameDayOnTheRealGameClock() {
+        // The world's game clock starts in year 1, so epoch milliseconds are negative; this let petting repeat forever.
+        java.time.Instant morning = java.time.Instant.parse("0001-01-04T07:00:00Z");
+        long first = TamingRules.gameClockMs(morning);
+        assertTrue(first > 0);
+        assertTrue(TamingRules.canPetForFriendship(0, first));
+        assertFalse(TamingRules.canPetForFriendship(first, TamingRules.gameClockMs(morning.plusSeconds(3))));
+        assertFalse(TamingRules.canPetForFriendship(first, TamingRules.gameClockMs(java.time.Instant.parse("0001-01-04T23:59:00Z"))));
+        assertTrue(TamingRules.canPetForFriendship(first, TamingRules.gameClockMs(java.time.Instant.parse("0001-01-05T00:01:00Z"))));
+        assertEquals(1L, TamingRules.gameClockMs(java.time.Instant.parse("0001-01-01T00:00:00Z")));
+    }
+
+    @Test
     void feedingCooldown() {
         assertTrue(TamingRules.canFeedForFriendship(0, 1));
         assertFalse(TamingRules.canFeedForFriendship(1000, 1000 + TamingRules.FEED_COOLDOWN_MS - 1));

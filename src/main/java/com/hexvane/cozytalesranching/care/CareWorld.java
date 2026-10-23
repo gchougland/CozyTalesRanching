@@ -103,7 +103,7 @@ final class CareWorld {
     @Nonnull
     static Context context(@Nonnull World world, @Nonnull CareService care, long nowMs) {
         WorldTimeResource time = world.getEntityStore().getStore().getResource(WorldTimeResource.getResourceType());
-        long gameNow = time == null ? 0L : time.getGameTime().toEpochMilli();
+        long gameNow = time == null ? 0L : com.hexvane.cozytalesranching.taming.TamingRules.gameClockMs(time.getGameTime());
         long interval = CareRules.mealIntervalMs((long) world.getDaytimeDurationSeconds() + world.getNighttimeDurationSeconds());
         return new Context(world, care, nowMs, gameNow, interval, RanchConfig.get().troughRange(), care.store().troughsIn(world.getName()));
     }

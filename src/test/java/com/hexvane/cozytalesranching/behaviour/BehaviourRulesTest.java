@@ -268,7 +268,8 @@ class BehaviourRulesTest {
         assertEquals(Set.of("dust"), BehaviourRules.groundTags(ground("Soil_Gravel_Mossy", null, null, Set.of(), Set.of()), config));
         assertEquals(Set.of("mud"), BehaviourRules.groundTags(ground("Soil_Dirt_Wet", null, null, Set.of(), Set.of()), config), "wet dirt is mud, not dust");
         assertEquals(Set.of("mud"), BehaviourRules.groundTags(ground("Soil_Mud", null, null, Set.of(), Set.of()), config));
-        assertEquals(Set.of("dust"), BehaviourRules.groundTags(ground("Soil_Dirt", null, null, Set.of(), Set.of()), config), "dry dirt");
+        assertEquals(Set.of("dust", "mud"), BehaviourRules.groundTags(ground("Soil_Dirt", null, null, Set.of(), Set.of()), config), "dry dirt: chickens dust-bathe, pigs wallow");
+        assertEquals(Set.of(), BehaviourRules.groundTags(ground("Soil_Dirt_Tilled", null, null, Set.of(), Set.of()), config), "no wallowing in tilled soil");
         assertTrue(BehaviourRules.groundTags(ground("Soil_Dirt", null, null, Set.of(), Set.of("Water_Source")), config).contains("mud"), "dirt by water");
         assertTrue(BehaviourRules.groundTags(ground("Soil_Grass", null, null, Set.of(), Set.of("Water")), config).containsAll(Set.of("grass", "mud", "pond")));
         assertEquals(Set.of("pond"), BehaviourRules.groundTags(ground(null, null, "Water", Set.of(), Set.of()), config), "standing in water");

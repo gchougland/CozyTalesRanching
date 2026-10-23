@@ -114,7 +114,10 @@ public final class HousePageLayout {
             ui.set(row + "#RFeed.Visible", r.feedBonus() != null);
             if (r.feedBonus() != null) ui.text(row + "#RFeedText", r.feedBonus());
             ui.set(row + "#RPersonality.Visible", r.personality() != null);
-            if (r.personality() != null) ui.text(row + "#RPersonality", r.personality());
+            if (r.personality() != null) {
+                ui.text(row + "#RPersonality", r.personality());
+                if (r.personality().key() != null) ui.tooltip(row + "#RPersonality", Txt.key(r.personality().key() + ".desc"));
+            }
             traits(ui, row, r.traits());
             ui.set(row + "#RNameButton.Visible", r.nameable());
             if (r.nameable()) {

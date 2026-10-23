@@ -65,7 +65,7 @@ public final class CareApi {
         if (world != null) {
             interval = CareRules.mealIntervalMs((long) world.getDaytimeDurationSeconds() + world.getNighttimeDurationSeconds());
             WorldTimeResource time = world.getEntityStore().getStore().getResource(WorldTimeResource.getResourceType());
-            if (time != null) gameNow = time.getGameTime().toEpochMilli();
+            if (time != null) gameNow = com.hexvane.cozytalesranching.taming.TamingRules.gameClockMs(time.getGameTime());
         }
         if (care == null) {
             return CareRules.target(new CareRules.Inputs(false, FoodKind.NONE, false, false, false, 0f, false));

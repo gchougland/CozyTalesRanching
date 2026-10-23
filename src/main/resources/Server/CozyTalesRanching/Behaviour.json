@@ -27,7 +27,8 @@
     ],
     "mud": [
       { "Under": [ "Soil_Mud", "Soil_Dirt_Wet", "Soil_Grass_Wet" ] },
-      { "Under": [ "Soil_Dirt", "Soil_Grass" ], "NearFluid": [ "Water", "Water_Source", "Water_Finite" ], "Exclude": [ "Poisoned", "Burnt" ] }
+      { "Under": [ "Soil_Dirt", "Soil_Grass" ], "NearFluid": [ "Water", "Water_Source", "Water_Finite" ], "Exclude": [ "Poisoned", "Burnt" ] },
+      { "Under": [ "Soil_Dirt" ], "Exclude": [ "Poisoned", "Burnt", "Tilled" ] }
     ],
     "pond": [
       { "Fluid": [ "Water", "Water_Source", "Water_Finite" ] },
@@ -50,7 +51,7 @@
     "peck": { "Kind": "here", "Weight": 3, "CooldownSeconds": 40, "Seconds": [ 3, 6 ] },
     "dust_bathe": { "Kind": "here", "Ground": "dust", "Weight": 2, "CooldownSeconds": 120, "Seconds": [ 5, 8 ] },
     "flap": { "Kind": "here", "Weight": 1, "CooldownSeconds": 90, "Seconds": [ 2, 3 ], "RepeatSeconds": 2 },
-    "mud_roll": { "Kind": "here", "Ground": "mud", "Weight": 3, "CooldownSeconds": 120, "Seconds": [ 5, 8 ] },
+    "mud_roll": { "Kind": "here", "Ground": "mud", "Weight": 6, "CooldownSeconds": 60, "Seconds": [ 5, 8 ] },
     "snuffle": { "Kind": "here", "Weight": 2, "CooldownSeconds": 60, "Seconds": [ 4, 6 ] },
     "pronk": { "Kind": "here", "Weight": 1, "CooldownSeconds": 90, "Seconds": [ 3, 5 ], "RepeatSeconds": 1 },
     "lily_hop": { "Kind": "here", "Ground": "pond", "Weight": 3, "CooldownSeconds": 60, "Seconds": [ 2, 4 ], "RepeatSeconds": 2 },
