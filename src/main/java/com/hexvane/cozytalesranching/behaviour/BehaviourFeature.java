@@ -38,6 +38,7 @@ public final class BehaviourFeature {
         dataDirectory = plugin.getDataDirectory();
         config = load(plugin.getDataDirectory());
         plugin.getEntityStoreRegistry().registerSystem(new BehaviourSystem(PLANNER));
+        plugin.getEntityStoreRegistry().registerSystem(new GentleStepSystem());
         plugin.getEventRegistry().register(AnimalBehaviourEvent.class, e -> RECEIVED.merge(e.getBehaviourId(), 1, Integer::sum));
         plugin.getLogger().atInfo().log("Behaviour registered: %d behaviours for %d species", config.Behaviours.size(), config.Species.size());
     }

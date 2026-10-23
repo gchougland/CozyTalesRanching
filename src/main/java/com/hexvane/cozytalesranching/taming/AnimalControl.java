@@ -2,16 +2,16 @@ package com.hexvane.cozytalesranching.taming;
 
 import com.hexvane.cozytalesranching.RanchSounds;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
+import com.hexvane.cozytalesranching.animal.Ranch;
+import com.hexvane.cozytalesranching.house.HouseRecord;
+import com.hexvane.cozytalesranching.behaviour.AnimalClips;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hypixel.hytale.component.ComponentAccessor;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.logger.HytaleLogger;
-import com.hypixel.hytale.protocol.AnimationSlot;
 import com.hypixel.hytale.server.core.Message;
-import com.hypixel.hytale.server.core.asset.type.model.config.Model;
-import com.hypixel.hytale.server.core.modules.entity.component.ModelComponent;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.universe.world.ParticleUtil;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
@@ -32,6 +32,8 @@ final class AnimalControl {
     static final String STATE_IDLE = "Idle";
     static final String STATE_PANIC = "Panic";
     static final String HAPPY_ANIMATION = "Happy";
+    /** Happy is a one-second hop; the slot is cleared after this so walking shows again. */
+    static final double HAPPY_SECONDS = 1.5;
     static final String HEARTS = "Hearts";
     static final String HEARTS_SMALL = "Hearts_Subtle";
 
@@ -50,7 +52,10 @@ final class AnimalControl {
         return Message.translation(species.NameKey);
     }
 
-    /** Points the animal at its owner, or makes it stand where it is. Only for our ranch roles; others ignore states. */
+    /**
+     * Points the animal at its owner; or, when it stops following, sends a house resident back to its house routine and
+     * makes any other animal stand where it is. Only for our ranch roles; others ignore states.
+     */
     static void applyFollow(@Nonnull Ref<EntityStore> animal, @Nonnull AnimalRecord record, @Nullable Ref<EntityStore> owner, @Nonnull Store<EntityStore> store) {
         NPCEntity npc = store.getComponent(animal, NPCEntity.getComponentType());
         StateSupport states = store.getComponent(animal, StateSupport.getComponentType());
@@ -61,6 +66,14 @@ final class AnimalControl {
                 marked.setMarkedEntity(MarkedEntitySupport.DEFAULT_TARGET_SLOT, owner);
             }
             if (!inState(states, STATE_FOLLOW)) states.setState(animal, STATE_FOLLOW, null, store);
+        } else if (record.houseId != null) {
+            // A resident told to stop following goes back to its house routine: wander around the door (the house's
+            // day pass walks it home from there, and takes it in at dusk), not a Stay that would freeze it all day.
+            HouseRecord house = Ranch.houses().get(record.houseId).orElse(null);
+            if (house == null) return;
+            if (marked != null) marked.setMarkedEntity(MarkedEntitySupport.DEFAULT_TARGET_SLOT, null);
+            npc.setLeashPoint(new Vector3d(house.doorX, house.doorY, house.doorZ));
+            if (!inState(states, STATE_IDLE)) states.setState(animal, STATE_IDLE, null, store);
         } else if (!inState(states, STATE_STAY)) {
             if (marked != null) marked.setMarkedEntity(MarkedEntitySupport.DEFAULT_TARGET_SLOT, null);
             TransformComponent t = store.getComponent(animal, TransformComponent.getComponentType());
@@ -74,19 +87,14 @@ final class AnimalControl {
         return name.equals(state) || name.startsWith(state + ".");
     }
 
-    /** Hearts above the animal and its Happy animation when the model has one. */
+    /** Hearts above the animal and its Happy animation when the model has one (Status slot; see {@link AnimalClips}). */
     static void cheer(@Nonnull Ref<EntityStore> animal, @Nonnull String particles, @Nonnull Store<EntityStore> store) {
         TransformComponent t = store.getComponent(animal, TransformComponent.getComponentType());
         if (t != null) {
             Vector3d p = new Vector3d(t.getPosition()).add(0, 1.0, 0);
             ParticleUtil.spawnParticleEffect(particles, p, store);
         }
-        NPCEntity npc = store.getComponent(animal, NPCEntity.getComponentType());
-        ModelComponent mc = store.getComponent(animal, ModelComponent.getComponentType());
-        Model model = mc != null ? mc.getModel() : null;
-        if (npc != null && model != null && model.getAnimationSetMap().containsKey(HAPPY_ANIMATION)) {
-            npc.playAnimation(animal, AnimationSlot.Emote, HAPPY_ANIMATION, store);
-        }
+        AnimalClips.playFor(store, animal, HAPPY_ANIMATION, HAPPY_SECONDS);
     }
 
     /** One of {@link RanchSounds} at the animal, heard by players nearby. */
