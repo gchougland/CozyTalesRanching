@@ -2,7 +2,8 @@
   "Id": "sheep",
   "NameKey": "cozyranch_species.sheep.name",
   "WildRoles": [
-    "Sheep"
+    "Sheep",
+    "CozyRanchWild_Sheep_Black"
   ],
   "WildBabyRoles": [
     "Sheep_Lamb"
@@ -15,6 +16,9 @@
   ],
   "RanchRole": "CozyRanch_Sheep",
   "RanchBabyRole": "CozyRanch_Sheep_Lamb",
+  "RanchRoleVariants": {
+    "CozyRanchWild_Sheep_Black": "CozyRanch_Sheep_Black"
+  },
   "HouseBlock": "CozyRanch_House_Sheepfold",
   "HouseCapacity": 4,
   "BasicFoods": [

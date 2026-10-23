@@ -1,0 +1,31 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_Animal_Neutral",
+  "Modify": {
+    "Appearance": "CozyRanch_Sheep_Black",
+    "AttitudeGroup": "PreyBig",
+    "FlockArray": [
+      "Sheep",
+      "Sheep_Lamb"
+    ],
+    "AttractiveItemSet": [
+      "Plant_Crop_Lettuce_Item"
+    ],
+    "AttractiveItemSetParticles": "Want_Food_Lettuce",
+    "DropList": "Drop_Sheep",
+    "MaxHealth": 81,
+    "MaxSpeed": 6,
+    "ViewRange": 15,
+    "ViewSector": 340,
+    "HearingRange": 9,
+    "AlertedRange": 17,
+    "AlertedActionRange": 7,
+    "AbsoluteDetectionRange": 2,
+    "ProduceItem": "Ingredient_Poop",
+    "IsTameable": true,
+    "TameRoleChange": "Tamed_Sheep",
+    "IsMemory": true,
+    "MemoriesNameOverride": "Sheep",
+    "NameTranslationKey": "server.cozyranch_wildlife.role.sheep_black"
+  }
+}

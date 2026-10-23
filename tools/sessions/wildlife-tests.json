@@ -1,0 +1,4 @@
+[
+  {"tool": "test_run", "args": {"project": "CozyTales-Ranching", "directory": "build/wildlife-regress"}, "save": "t"},
+  {"tool": "job_status", "args": {"jobId": "$t", "waitMs": 5000}, "until": "finishedAt", "timeoutMs": 1800000, "maxChars": 6000}
+]
