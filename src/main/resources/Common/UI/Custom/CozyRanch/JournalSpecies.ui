@@ -1,0 +1,94 @@
+$C = "../Common.ui";
+$J = "JournalStyles.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  Group {
+    LayoutMode: Center;
+
+    $J.@Book #Book {
+      Group #LeftPage {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Background: $J.@PageLeftBackground;
+        Padding: $J.@LeftPagePadding;
+
+        Label #SpeciesName {
+          Style: $J.@NameStyle;
+          Text: "";
+        }
+
+        Label #SpeciesTagline {
+          Style: $J.@TaglineStyle;
+          Anchor: (Top: 2);
+          Text: "";
+        }
+
+        $J.@Divider {}
+
+        AssetImage #SpeciesArt {
+          Anchor: (Width: 220, Height: 220);
+          FallbackTexturePath: "UI/Custom/CozyRanch/Journal/Unknown.png";
+        }
+
+        Label #SpeciesDesc {
+          Style: $J.@BodyStyle;
+          Anchor: (Top: 10);
+          Text: "";
+        }
+
+        Group #LeftNotes {
+          LayoutMode: Top;
+          Anchor: (Top: 4);
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #LeftNav {
+          LayoutMode: Left;
+          Anchor: (Height: 34, Top: 10);
+
+          $J.@NavButton #NavContents {
+            Text: %cozyranch_journal.nav.contents;
+          }
+
+          Group { FlexWeight: 1; }
+
+          Label #SpeciesNumber {
+            Style: (...$J.@TaglineStyle, VerticalAlignment: Center);
+            Text: "";
+          }
+        }
+      }
+
+      Group #RightPage {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Background: $J.@PageRightBackground;
+        Padding: $J.@RightPagePadding;
+
+        Group #RightNotes {
+          LayoutMode: TopScrolling;
+          FlexWeight: 1;
+          ScrollbarStyle: $J.@NotesScrollbar;
+        }
+
+        Group #RightNav {
+          LayoutMode: Left;
+          Anchor: (Height: 34, Top: 10);
+
+          $J.@NavButton #NavPrev {
+            Text: %cozyranch_journal.nav.previous;
+          }
+
+          Group { FlexWeight: 1; }
+
+          $J.@NavButton #NavNext {
+            Text: %cozyranch_journal.nav.next;
+          }
+        }
+      }
+    }
+  }
+}

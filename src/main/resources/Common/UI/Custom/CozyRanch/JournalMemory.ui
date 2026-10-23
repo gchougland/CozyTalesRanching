@@ -1,0 +1,34 @@
+$J = "JournalStyles.ui";
+
+Group #MemoryRow {
+  LayoutMode: Left;
+  Anchor: (Height: 150, Bottom: 14);
+  Padding: (Full: 10);
+  Background: (Color: #6e4a2e(0.07));
+
+  AssetImage #MemArt {
+    Anchor: (Width: 96, Height: 96, Right: 14);
+    FallbackTexturePath: "UI/Custom/CozyRanch/Journal/Cover.png";
+  }
+
+  Group #MemBody {
+    LayoutMode: Top;
+    FlexWeight: 1;
+
+    Label #MemDate {
+      Style: (...$J.@MutedStyle, FontSize: 13, Wrap: false);
+      Text: "";
+    }
+
+    Label #MemTitle {
+      Style: (...$J.@BodyStyle, FontSize: 17, TextColor: $J.@InkHead, RenderBold: true, Wrap: false);
+      Anchor: (Top: 2, Bottom: 4);
+      Text: "";
+    }
+
+    Label #MemText {
+      Style: (...$J.@BodyStyle, FontSize: 14, WrapMaxLines: 4);
+      Text: "";
+    }
+  }
+}

@@ -1,0 +1,66 @@
+// The Rancher's Journal: a leather book open on two parchment pages, inked in warm browns.
+$Sounds = "../Sounds.ui";
+
+@Ink = #4a3526;
+@InkHead = #6b3f1d;
+@InkMuted = #8f775b;
+@InkRare = #9a4a12;
+
+@LeatherBackground = PatchStyle(TexturePath: "Journal/Leather.png", Border: 24);
+@PageLeftBackground = PatchStyle(TexturePath: "Journal/PageLeft.png", Border: 40);
+@PageRightBackground = PatchStyle(TexturePath: "Journal/PageRight.png", Border: 40);
+@LeftPagePadding = (Left: 40, Right: 44, Top: 28, Bottom: 22);
+@RightPagePadding = (Left: 44, Right: 40, Top: 28, Bottom: 22);
+
+@TitleStyle = LabelStyle(FontName: "Secondary", FontSize: 30, TextColor: @InkHead, HorizontalAlignment: Center);
+@NameStyle = LabelStyle(FontName: "Secondary", FontSize: 28, TextColor: @InkHead, HorizontalAlignment: Center);
+@HeadingStyle = LabelStyle(FontName: "Secondary", FontSize: 20, TextColor: @InkHead, HorizontalAlignment: Center);
+@TaglineStyle = LabelStyle(FontSize: 14, TextColor: @InkMuted, HorizontalAlignment: Center);
+@SectionStyle = LabelStyle(FontSize: 13, TextColor: @InkHead, RenderBold: true, RenderUppercase: true, LetterSpacing: 1);
+@BodyStyle = LabelStyle(FontSize: 15, TextColor: @Ink, Wrap: true);
+@MutedStyle = LabelStyle(FontSize: 14, TextColor: @InkMuted, Wrap: true);
+@RareStyle = LabelStyle(FontSize: 15, TextColor: @InkRare, RenderBold: true, Wrap: true);
+@CardNameStyle = LabelStyle(FontSize: 15, TextColor: @InkHead, RenderBold: true, HorizontalAlignment: Center);
+
+@NavLabel = LabelStyle(FontSize: 15, TextColor: @InkHead, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+@NavButtonStyle = TextButtonStyle(
+  Default: (Background: (Color: #6e4a2e(0.10)), LabelStyle: @NavLabel),
+  Hovered: (Background: (Color: #6e4a2e(0.22)), LabelStyle: (...@NavLabel, TextColor: #8a3f12)),
+  Pressed: (Background: (Color: #6e4a2e(0.32)), LabelStyle: @NavLabel),
+  Disabled: (Background: (Color: #6e4a2e(0.04)), LabelStyle: (...@NavLabel, TextColor: #c0ad90)),
+  Sounds: $Sounds.@ButtonsLight,
+);
+
+@CardStyle = ButtonStyle(
+  Default: (Background: PatchStyle(TexturePath: "Journal/Card.png", Border: 12)),
+  Hovered: (Background: PatchStyle(TexturePath: "Journal/CardHovered.png", Border: 12)),
+  Pressed: (Background: PatchStyle(TexturePath: "Journal/Card.png", Border: 12)),
+  Sounds: $Sounds.@ButtonsLight,
+);
+
+@NotesScrollbar = ScrollbarStyle(
+  Spacing: 4,
+  Size: 6,
+  Background: (Color: #6e4a2e(0.08)),
+  Handle: (Color: #6e4a2e(0.35)),
+  HoveredHandle: (Color: #6e4a2e(0.5)),
+  DraggedHandle: (Color: #6e4a2e(0.6))
+);
+
+@Book = Group {
+  LayoutMode: Left;
+  Anchor: (Width: 1180, Height: 740);
+  Padding: (Full: 20);
+  Background: @LeatherBackground;
+};
+
+@Divider = Group {
+  Anchor: (Height: 12, Top: 10, Bottom: 10);
+  Background: "Journal/Divider.png";
+};
+
+@NavButton = TextButton {
+  Anchor: (Width: 150, Height: 34);
+  Style: @NavButtonStyle;
+  Text: "";
+};

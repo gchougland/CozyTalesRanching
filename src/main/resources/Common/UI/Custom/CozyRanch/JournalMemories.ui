@@ -1,0 +1,87 @@
+$C = "../Common.ui";
+$J = "JournalStyles.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  Group {
+    LayoutMode: Center;
+
+    $J.@Book #Book {
+      Group #LeftPage {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Background: $J.@PageLeftBackground;
+        Padding: $J.@LeftPagePadding;
+
+        Label #MemoriesTitle {
+          Style: $J.@TitleStyle;
+          Text: %cozyranch_journal.memories.title;
+        }
+
+        Label #MemoriesSubtitle {
+          Style: $J.@TaglineStyle;
+          Anchor: (Top: 4);
+          Text: %cozyranch_journal.memories.subtitle;
+        }
+
+        $J.@Divider {}
+
+        Label #MemoriesEmpty {
+          Style: (...$J.@MutedStyle, FontSize: 15, HorizontalAlignment: Center);
+          Anchor: (Top: 40, Left: 20, Right: 20);
+          Text: "";
+          Visible: false;
+        }
+
+        Group #MemoryLeft {
+          LayoutMode: Top;
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #LeftNav {
+          LayoutMode: Left;
+          Anchor: (Height: 34, Top: 10);
+
+          $J.@NavButton #MemNavContents {
+            Text: %cozyranch_journal.nav.contents;
+          }
+        }
+      }
+
+      Group #RightPage {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Background: $J.@PageRightBackground;
+        Padding: $J.@RightPagePadding;
+
+        Group #MemoryRight {
+          LayoutMode: Top;
+          Anchor: (Top: 14);
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #RightNav {
+          LayoutMode: Left;
+          Anchor: (Height: 34, Top: 10);
+
+          $J.@NavButton #MemNavPrev {
+            Text: %cozyranch_journal.nav.previous;
+          }
+
+          Label #MemoryPageLabel {
+            FlexWeight: 1;
+            Style: (...$J.@TaglineStyle, VerticalAlignment: Center);
+            Text: "";
+          }
+
+          $J.@NavButton #MemNavNext {
+            Text: %cozyranch_journal.nav.next;
+          }
+        }
+      }
+    }
+  }
+}

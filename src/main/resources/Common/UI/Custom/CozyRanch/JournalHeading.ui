@@ -1,0 +1,7 @@
+$J = "JournalStyles.ui";
+
+Label #NoteHead {
+  Style: $J.@SectionStyle;
+  Anchor: (Top: 12, Bottom: 3);
+  Text: "";
+}

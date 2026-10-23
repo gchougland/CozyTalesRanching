@@ -1,0 +1,70 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_journal.items.journal.name",
+    "Description": "cozyranch_journal.items.journal.description"
+  },
+  "Quality": "Common",
+  "Categories": [
+    "Items.Tools"
+  ],
+  "PlayerAnimationsId": "Item",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Journal.png",
+  "IconProperties": {
+    "Scale": 0.85,
+    "Translation": [
+      0,
+      -8
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Model": "Items/CozyRanch/Journal/Journal.blockymodel",
+  "Texture": "Items/CozyRanch/Journal/Journal_Texture.png",
+  "Scale": 1,
+  "Recipe": {
+    "TimeSeconds": 2,
+    "Input": [
+      {
+        "ItemId": "Ingredient_Hide_Light",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 3
+      }
+    ],
+    "OutputQuantity": 1,
+    "BenchRequirement": [
+      {
+        "Id": "Workbench",
+        "Type": "Crafting",
+        "Categories": [
+          "Workbench_Crafting"
+        ]
+      }
+    ]
+  },
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "OpenCustomUI",
+          "Page": {
+            "Id": "CozyRanchJournal"
+          }
+        }
+      ]
+    }
+  },
+  "Tags": {
+    "Type": [
+      "Tool"
+    ]
+  },
+  "MaxStack": 1,
+  "DropOnDeath": false,
+  "ItemSoundSetId": "ISS_Weapons_Books"
+}
