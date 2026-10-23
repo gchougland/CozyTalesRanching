@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "name": "produce: gate",
+      "description": "Assets (species Products, Produce.json, the truffle) parse and match the engine schemas; Java UI references are valid.",
+      "steps": [
+        { "tool": "asset_validate", "arguments": { "project": "_worktrees/CozyTales-Ranching-produce" }, "expect": { "valid": true, "schemaErrors": 0 } },
+        { "tool": "ui_check_java", "arguments": { "project": "_worktrees/CozyTales-Ranching-produce" }, "expect": { "valid": true } }
+      ]
+    },
+    {
+      "name": "produce: truffle item",
+      "description": "CozyRanch_Truffle is a clean food item: no errors or warnings, every reference resolves.",
+      "steps": [
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "_worktrees/CozyTales-Ranching-produce/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Truffle.json" }, "expect": { "errors": 0, "warnings": 0 } }
+      ]
+    },
+    {
+      "name": "produce: build and unit tests (happiness, hearts, bountiful, lucky, premium, caps, catch-up, buckets, save file)",
+      "steps": [
+        { "tool": "project_build", "arguments": { "project": "_worktrees/CozyTales-Ranching-produce", "system": "gradle", "tasks": ["build"] }, "waitJob": true, "expect": { "state": "succeeded" } }
+      ]
+    }
+  ]
+}
