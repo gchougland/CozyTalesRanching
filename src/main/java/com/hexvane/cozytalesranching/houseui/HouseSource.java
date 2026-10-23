@@ -108,6 +108,7 @@ public interface HouseSource {
 
             @Override
             public boolean rescan(@Nonnull HouseRecord house, @Nonnull World world) {
+                com.hexvane.cozytalesranching.behaviour.BehaviourFeature.refreshToys(house.houseId);
                 return CareApi.rescanHouse(world, house);
             }
 

@@ -13,14 +13,11 @@ import com.hexvane.cozytalesranching.taming.TamingRules.FoodKind;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.logger.HytaleLogger;
-import com.hypixel.hytale.protocol.AnimationSlot;
-import com.hypixel.hytale.server.core.asset.type.model.config.Model;
-import com.hypixel.hytale.server.core.modules.entity.component.ModelComponent;
+import com.hexvane.cozytalesranching.behaviour.AnimalClips;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.modules.time.WorldTimeResource;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
-import com.hypixel.hytale.server.npc.entities.NPCEntity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -58,6 +55,8 @@ final class CareWorld {
     static final long TROUGH_CHECK_ALL_MS = 60_000L;
     static final long HOUSE_PICK_MS = 5_000L;
     static final String EAT_ANIMATION = "EatTrough";
+    /** About three plays of the 1.0 to 1.3 s clip. */
+    static final double EAT_SECONDS = 4.0;
     /** Animals and troughs this far apart in height never meet. */
     static final double TROUGH_HEIGHT = 4.0;
     /** A change smaller than this is kept in memory and saved with the next real change. */
@@ -261,12 +260,7 @@ final class CareWorld {
     }
 
     private static void playEat(@Nonnull Ref<EntityStore> animal, @Nonnull Store<EntityStore> store) {
-        NPCEntity npc = store.getComponent(animal, NPCEntity.getComponentType());
-        ModelComponent mc = store.getComponent(animal, ModelComponent.getComponentType());
-        Model model = mc != null ? mc.getModel() : null;
-        if (npc != null && model != null && model.getAnimationSetMap().containsKey(EAT_ANIMATION)) {
-            npc.playAnimation(animal, AnimationSlot.Emote, EAT_ANIMATION, store);
-        }
+        AnimalClips.playFor(store, animal, EAT_ANIMATION, EAT_SECONDS);
     }
 
     @Nullable

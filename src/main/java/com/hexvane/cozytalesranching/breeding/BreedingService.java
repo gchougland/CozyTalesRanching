@@ -19,9 +19,7 @@ import com.hexvane.cozytalesranching.taming.TamingApi;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.logger.HytaleLogger;
-import com.hypixel.hytale.protocol.AnimationSlot;
-import com.hypixel.hytale.server.core.asset.type.model.config.Model;
-import com.hypixel.hytale.server.core.modules.entity.component.ModelComponent;
+import com.hexvane.cozytalesranching.behaviour.AnimalClips;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
@@ -43,6 +41,8 @@ import javax.annotation.Nullable;
  */
 final class BreedingService implements HouseDayHooks.Hook {
     static final String LOVE_ANIMATION = "Love";
+    /** Two plays of the 1.5 s clip. */
+    static final double LOVE_SECONDS = 3.0;
     /** The family comes out right after the hooks; look for their entities for this long. */
     private static final long SIGNAL_WINDOW_MS = 20_000L;
     static final int GROWTH_EVERY_PASSES = 5;
@@ -175,12 +175,7 @@ final class BreedingService implements HouseDayHooks.Hook {
     }
 
     private static void playLove(@Nonnull Ref<EntityStore> animal, @Nonnull Store<EntityStore> store) {
-        NPCEntity npc = store.getComponent(animal, NPCEntity.getComponentType());
-        ModelComponent mc = store.getComponent(animal, ModelComponent.getComponentType());
-        Model model = mc != null ? mc.getModel() : null;
-        if (npc != null && model != null && model.getAnimationSetMap().containsKey(LOVE_ANIMATION)) {
-            npc.playAnimation(animal, AnimationSlot.Emote, LOVE_ANIMATION, store);
-        }
+        AnimalClips.playFor(store, animal, LOVE_ANIMATION, LOVE_SECONDS);
     }
 
     /** Babies of the world's houses and of its online players. Cost: houses x residents + players x animals, once a minute. */

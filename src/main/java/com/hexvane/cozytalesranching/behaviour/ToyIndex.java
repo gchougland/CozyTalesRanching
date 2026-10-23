@@ -39,6 +39,11 @@ final class ToyIndex {
         byHouse.replaceAll((k, e) -> new Entry(0, e.toys));
     }
 
+    /** Makes this house's list due now, so the next planner pass rescans it. */
+    void expire(@Nonnull UUID houseId) {
+        byHouse.computeIfPresent(houseId, (k, e) -> new Entry(0, e.toys));
+    }
+
     void forget(@Nonnull UUID houseId) {
         byHouse.remove(houseId);
     }

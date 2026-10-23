@@ -56,6 +56,11 @@ public final class BehaviourFeature {
         LOG.info("Reloaded Behaviour.json: " + config.Behaviours.size() + " behaviours");
     }
 
+    /** The house page's Check now: this house's toys are found again on the next planner pass (within a second). */
+    public static void refreshToys(@Nonnull java.util.UUID houseId) {
+        PLANNER.toys.expire(houseId);
+    }
+
     @Nonnull
     static BehaviourConfig config() {
         return config;
