@@ -57,25 +57,16 @@ See [Aetherhaven](../Aetherhaven) for a full-featured reference mod using the sa
 
 ## HStats setup
 
-This template includes optional [hstats.dev](https://hstats.dev) metrics integration.
-
-1. Register your mod at [hstats.dev](https://hstats.dev).
-2. Set your mod UUID in `gradle.properties`:
-
-```properties
-hstats_mod_uuid=your-uuid-here
-```
-
-Or pass at build time:
+The mod reports to [hstats.dev](https://hstats.dev). The mod UUID is baked in at build time from the
+environment variable `COZYTALESRANCHING_HSTATS_MOD_UUID`, or else from `hstats_mod_uuid` in
+`gradle.properties` (or `-Phstats_mod_uuid=...`):
 
 ```bat
-set TEMPLATEMOD_HSTATS_MOD_UUID=your-uuid-here
+set COZYTALESRANCHING_HSTATS_MOD_UUID=your-uuid-here
 .\gradlew.bat build
 ```
 
-When copying this template for a new mod, rename the env var in `build.gradle.kts` (e.g. `TEMPLATEMOD_HSTATS_MOD_UUID` → `MYMOD_HSTATS_MOD_UUID`).
-
-Leave `hstats_mod_uuid` empty to disable metrics (the plugin logs a skip message at startup).
+When neither is set the built jar sends no metrics.
 
 **Note:** Only change the package name in `HStats.java` — do not modify the metrics-sending logic per HStats license.
 

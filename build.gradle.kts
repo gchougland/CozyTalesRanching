@@ -92,12 +92,12 @@ java {
 
 /**
  * hstats.dev mod UUID, resolved when Gradle runs (baked into [HstatsBuildMetadata]):
- * 1. environment variable {@code COZYRANCH_HSTATS_MOD_UUID}
+ * 1. environment variable {@code COZYTALESRANCHING_HSTATS_MOD_UUID}
  * 2. else Gradle property {@code hstats_mod_uuid} ({@code gradle.properties} or {@code -Phstats_mod_uuid=...})
  */
 val hstatsModUuid: Provider<String> =
     providers
-        .environmentVariable("COZYRANCH_HSTATS_MOD_UUID")
+        .environmentVariable("COZYTALESRANCHING_HSTATS_MOD_UUID")
         .map { it.trim() }
         .filter(String::isNotEmpty)
         .orElse(providers.gradleProperty("hstats_mod_uuid").map { it.trim() }.orElse(""))
@@ -124,7 +124,7 @@ val generateHstatsBuildMetadata =
                 public final class HstatsBuildMetadata {
                     private HstatsBuildMetadata() {}
 
-                    /** Mod UUID from build-time env {@code COZYRANCH_HSTATS_MOD_UUID} or Gradle {@code hstats_mod_uuid}; empty when unset. */
+                    /** Mod UUID from build-time env {@code COZYTALESRANCHING_HSTATS_MOD_UUID} or Gradle {@code hstats_mod_uuid}; empty when unset. */
                     public static final String HSTATS_MOD_UUID = "$escaped";
                 }
                 """.trimIndent()
