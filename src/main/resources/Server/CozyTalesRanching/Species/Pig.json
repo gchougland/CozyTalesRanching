@@ -36,7 +36,14 @@
   "Shyness": 0.2,
   "GrowUpMinutes": 60,
   "BreedCooldownMinutes": 45,
-  "Products": [],
+  "Products": [
+    {
+      "Item": "CozyRanch_Truffle",
+      "Quantity": 1,
+      "IntervalMinutes": 60,
+      "Collect": "House"
+    }
+  ],
   "HabitatRequires": [
     "food"
   ],

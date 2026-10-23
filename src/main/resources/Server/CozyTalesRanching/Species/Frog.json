@@ -26,7 +26,14 @@
   "Shyness": 0.7,
   "GrowUpMinutes": 30,
   "BreedCooldownMinutes": 30,
-  "Products": [],
+  "Products": [
+    {
+      "Item": "Plant_Flower_Water_Green",
+      "Quantity": 1,
+      "IntervalMinutes": 60,
+      "Collect": "House"
+    }
+  ],
   "HabitatRequires": [
     "water",
     "lily_pads"
