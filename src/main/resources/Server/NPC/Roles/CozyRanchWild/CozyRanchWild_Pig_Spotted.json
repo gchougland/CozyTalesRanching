@@ -1,0 +1,30 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_Animal_Neutral",
+  "Modify": {
+    "Appearance": "CozyRanch_Pig_Spotted",
+    "AttitudeGroup": "PreyBig",
+    "FlockArray": [
+      "Pig",
+      "Pig_Piglet"
+    ],
+    "AttractiveItemSet": [
+      "Plant_Crop_Turnip_Item"
+    ],
+    "AttractiveItemSetParticles": "Want_Food_Turnip",
+    "DropList": "Drop_Pig",
+    "MaxHealth": 38,
+    "ViewRange": 15,
+    "ViewSector": 300,
+    "HearingRange": 9,
+    "AlertedRange": 17,
+    "AlertedActionRange": 6,
+    "AbsoluteDetectionRange": 2,
+    "ProduceItem": "Ingredient_Poop",
+    "IsTameable": true,
+    "TameRoleChange": "Tamed_Pig",
+    "IsMemory": true,
+    "MemoriesNameOverride": "Pig",
+    "NameTranslationKey": "server.cozyranch_wildlife.role.pig_spotted"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Frog_Purple",
+    "SeparationDistance": 0.4,
+    "DropList": "Drop_Frog_Green",
+    "MaxHealth": 15,
+    "MaxSpeed": 6,
+    "ParticleOffset": [
+      0,
+      0.4,
+      0
+    ],
+    "BreathesInWater": true,
+    "WanderRadius": 4,
+    "FoodItems": [
+      "CozyRanch_Food_Crickets"
+    ],
+    "FollowStopDistance": 2,
+    "NameTranslationKey": "server.cozyranch_wildlife.role.frog_purple"
+  }
+}

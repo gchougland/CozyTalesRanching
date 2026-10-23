@@ -3,7 +3,8 @@
   "NameKey": "cozyranch_species.chicken.name",
   "WildRoles": [
     "Chicken",
-    "Chicken_Desert"
+    "Chicken_Desert",
+    "CozyRanchWild_Chicken_Golden"
   ],
   "WildBabyRoles": [
     "Chicken_Chick",
@@ -19,6 +20,9 @@
   ],
   "RanchRole": "CozyRanch_Chicken",
   "RanchBabyRole": "CozyRanch_Chicken_Chick",
+  "RanchRoleVariants": {
+    "CozyRanchWild_Chicken_Golden": "CozyRanch_Chicken_Golden"
+  },
   "HouseBlock": "CozyRanch_House_ChickenCoop",
   "HouseCapacity": 6,
   "BasicFoods": [

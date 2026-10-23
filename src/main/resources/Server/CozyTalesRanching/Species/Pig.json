@@ -3,7 +3,8 @@
   "NameKey": "cozyranch_species.pig.name",
   "WildRoles": [
     "Pig",
-    "Pig_Wild"
+    "Pig_Wild",
+    "CozyRanchWild_Pig_Spotted"
   ],
   "WildBabyRoles": [
     "Pig_Piglet",
@@ -19,6 +20,9 @@
   ],
   "RanchRole": "CozyRanch_Pig",
   "RanchBabyRole": "CozyRanch_Pig_Piglet",
+  "RanchRoleVariants": {
+    "CozyRanchWild_Pig_Spotted": "CozyRanch_Pig_Spotted"
+  },
   "HouseBlock": "CozyRanch_House_Pigsty",
   "HouseCapacity": 4,
   "BasicFoods": [

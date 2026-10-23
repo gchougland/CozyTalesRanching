@@ -2,7 +2,8 @@
   "Id": "cow",
   "NameKey": "cozyranch_species.cow.name",
   "WildRoles": [
-    "Cow"
+    "Cow",
+    "CozyRanchWild_Cow_Red"
   ],
   "WildBabyRoles": [
     "Cow_Calf"
@@ -15,6 +16,9 @@
   ],
   "RanchRole": "CozyRanch_Cow",
   "RanchBabyRole": "CozyRanch_Cow_Calf",
+  "RanchRoleVariants": {
+    "CozyRanchWild_Cow_Red": "CozyRanch_Cow_Red"
+  },
   "HouseBlock": "CozyRanch_House_CowBarn",
   "HouseCapacity": 4,
   "BasicFoods": [
