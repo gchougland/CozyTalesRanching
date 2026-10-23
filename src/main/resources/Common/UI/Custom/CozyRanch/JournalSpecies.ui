@@ -50,7 +50,7 @@ $C.@PageOverlay {
           Anchor: (Height: 34, Top: 10);
 
           $J.@NavButton #NavContents {
-            Text: %cozyranch_journal.nav.contents;
+            Text: "";
           }
 
           Group { FlexWeight: 1; }
@@ -79,13 +79,13 @@ $C.@PageOverlay {
           Anchor: (Height: 34, Top: 10);
 
           $J.@NavButton #NavPrev {
-            Text: %cozyranch_journal.nav.previous;
+            Text: "";
           }
 
           Group { FlexWeight: 1; }
 
           $J.@NavButton #NavNext {
-            Text: %cozyranch_journal.nav.next;
+            Text: "";
           }
         }
       }

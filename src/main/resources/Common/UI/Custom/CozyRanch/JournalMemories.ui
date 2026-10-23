@@ -16,13 +16,13 @@ $C.@PageOverlay {
 
         Label #MemoriesTitle {
           Style: $J.@TitleStyle;
-          Text: %cozyranch_journal.memories.title;
+          Text: "";
         }
 
         Label #MemoriesSubtitle {
           Style: $J.@TaglineStyle;
           Anchor: (Top: 4);
-          Text: %cozyranch_journal.memories.subtitle;
+          Text: "";
         }
 
         $J.@Divider {}
@@ -45,7 +45,7 @@ $C.@PageOverlay {
           Anchor: (Height: 34, Top: 10);
 
           $J.@NavButton #MemNavContents {
-            Text: %cozyranch_journal.nav.contents;
+            Text: "";
           }
         }
       }
@@ -68,7 +68,7 @@ $C.@PageOverlay {
           Anchor: (Height: 34, Top: 10);
 
           $J.@NavButton #MemNavPrev {
-            Text: %cozyranch_journal.nav.previous;
+            Text: "";
           }
 
           Label #MemoryPageLabel {
@@ -78,7 +78,7 @@ $C.@PageOverlay {
           }
 
           $J.@NavButton #MemNavNext {
-            Text: %cozyranch_journal.nav.next;
+            Text: "";
           }
         }
       }

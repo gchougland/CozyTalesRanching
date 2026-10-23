@@ -16,7 +16,7 @@ $C.@PageOverlay {
 
         Label #JournalTitle {
           Style: $J.@TitleStyle;
-          Text: %cozyranch_journal.contents.title;
+          Text: "";
         }
 
         Label #Keeper {
@@ -35,7 +35,7 @@ $C.@PageOverlay {
         Label #Intro {
           Style: (...$J.@BodyStyle, HorizontalAlignment: Center);
           Anchor: (Top: 14, Left: 16, Right: 16);
-          Text: %cozyranch_journal.contents.intro;
+          Text: "";
         }
 
         Group { FlexWeight: 1; }
@@ -57,7 +57,7 @@ $C.@PageOverlay {
 
           $J.@NavButton #MemoriesButton {
             Anchor: (Width: 200, Height: 34);
-            Text: %cozyranch_journal.nav.memories;
+            Text: "";
           }
         }
       }
@@ -71,7 +71,7 @@ $C.@PageOverlay {
         Label #AnimalsTitle {
           Style: $J.@HeadingStyle;
           Anchor: (Top: 6);
-          Text: %cozyranch_journal.contents.animals;
+          Text: "";
         }
 
         $J.@Divider {}

@@ -23,6 +23,10 @@ public final class JournalLayout {
 
     public static void contents(@Nonnull JournalView.Contents v, @Nonnull UiOut ui) {
         ui.append(CONTENTS);
+        ui.text("#JournalTitle", Txt.j("contents.title"));
+        ui.text("#Intro", Txt.j("contents.intro"));
+        ui.text("#MemoriesButton", Txt.j("nav.memories"));
+        ui.text("#AnimalsTitle", Txt.j("contents.animals"));
         ui.text("#Keeper", v.keeper());
         ui.text("#Progress", v.progress());
         ui.text("#MemoryCount", v.memories());
@@ -47,6 +51,7 @@ public final class JournalLayout {
         ui.text("#SpeciesNumber", v.number());
         sections("#LeftNotes", v.left(), ui);
         sections("#RightNotes", v.right(), ui);
+        nav("#NavContents", "#NavPrev", "#NavNext", ui);
         ui.click("#NavContents", ACTION_CONTENTS, "");
         ui.click("#NavPrev", ACTION_SPECIES, v.previous());
         ui.click("#NavNext", ACTION_SPECIES, v.next());
@@ -54,6 +59,9 @@ public final class JournalLayout {
 
     public static void memories(@Nonnull JournalView.Memories v, @Nonnull UiOut ui) {
         ui.append(MEMORIES);
+        ui.text("#MemoriesTitle", Txt.j("memories.title"));
+        ui.text("#MemoriesSubtitle", Txt.j("memories.subtitle"));
+        nav("#MemNavContents", "#MemNavPrev", "#MemNavNext", ui);
         boolean empty = v.left().isEmpty();
         ui.set("#MemoriesEmpty.Visible", empty);
         if (empty) ui.text("#MemoriesEmpty", Txt.j("memories.empty"));
@@ -65,6 +73,13 @@ public final class JournalLayout {
         ui.click("#MemNavContents", ACTION_CONTENTS, "");
         if (v.hasPrevious()) ui.click("#MemNavPrev", ACTION_MEMORIES, String.valueOf(v.spread() - 1));
         if (v.hasNext()) ui.click("#MemNavNext", ACTION_MEMORIES, String.valueOf(v.spread() + 1));
+    }
+
+    /** Static labels are set here: a .ui {@code %key} reference cannot contain the underscore in our lang file names. */
+    private static void nav(@Nonnull String contents, @Nonnull String previous, @Nonnull String next, @Nonnull UiOut ui) {
+        ui.text(contents, Txt.j("nav.contents"));
+        ui.text(previous, Txt.j("nav.previous"));
+        ui.text(next, Txt.j("nav.next"));
     }
 
     private static void sections(@Nonnull String container, @Nonnull List<JournalView.Section> sections, @Nonnull UiOut ui) {
