@@ -40,9 +40,14 @@ species and a memories page, filled in per player from the public ranch events o
 - **Data**: `Server/CozyTalesRanching/Journal.json` per species: order, description key, rare key, art, silhouette,
   behaviours to list. A species with no entry still gets a page (defaults, `Unknown` art). `<data>/Journal.json`
   replaces it; `/ranch reload` re-reads it.
-- **Art**: six fal illustrations (cow, chicken, pig, sheep, frog, cover). `notes/pictures/journal/make_art.py` cuts them
-  out, derives the silhouettes and paints the book textures. Shipped in `Common/UI/Custom/CozyRanch/Journal/` at 1x and
-  `@2x` (species 240 logical). Sources in the main checkout's `art/journal/src/` (git-ignored).
+- **Art**: the animals are the in-game models (Gibson: "it should be using images of the actual animals in game").
+  `tools/journal/render.ps1 <dir>` renders each species' ranch model asset (`model_render`, three-quarter, transparent,
+  Idle frame 0; the sheep through `tools/animator/woolcheck.py` so it has its wool), then
+  `python tools/journal/portraits.py <dir>` writes the 240/480 portraits, the silhouettes, `Unknown` (the sheep
+  silhouette) and the cover (all five in a row at their relative heights). Re-run both after a model change or a new
+  species (add it to both scripts). `notes/pictures/journal/make_art.py` still paints the book textures (leather, pages,
+  cards, divider); its fal painting cut-outs are no longer shipped. Shipped in `Common/UI/Custom/CozyRanch/Journal/`
+  at 1x and `@2x` (species 240 logical).
 - **Tests**: `JournalRulesTest` (11: which event reveals what, idempotent, per player, save round trip, corrupt file
   falls back to `.prev`) and `JournalLayoutTest` (9: layout facts, every key sent exists, every listed behaviour has
   strings and art, and `tests/hytale/journal.test.json` holds exactly the commands Java sends; rewrite with

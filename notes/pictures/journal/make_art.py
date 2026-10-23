@@ -1,13 +1,7 @@
-"""Builds the journal's UI textures.
+"""Builds the journal's book textures: leather cover, two paper pages with a gutter shadow, a card, a hovered card and
+a divider, painted with numpy, into src/main/resources/Common/UI/Custom/CozyRanch/Journal/.
 
-Inputs: the fal illustrations in the main checkout's art/journal/src/ (cow, chicken, pig, sheep, frog, cover; prompts in
-notes/journal.md). Outputs: src/main/resources/Common/UI/Custom/CozyRanch/Journal/*.png and *@2x.png in the worktree.
-
-- Species art: the flat cream background is keyed out by a flood fill from the border (so pale bellies inside the outline
-  stay), feathered, trimmed to the animal, padded square, then area-reduced to 480 (@2x) and 240.
-- Silhouettes: the cut-out's alpha filled with a soft ink brown, as if pencilled into the book.
-- Cover vignette: background keyed to alpha softly (no flood fill), so the painted vignette fades into the page.
-- Book: leather cover, two paper pages with a gutter shadow, a card, a hovered card and a divider, painted with numpy.
+The species portraits, silhouettes and cover are rendered from the in-game models by tools/journal/portraits.py.
 
 Run: python make_art.py <art/journal dir> <worktree dir>
 """
@@ -190,26 +184,12 @@ def divider() -> Image.Image:
     return Image.fromarray(img.astype(np.uint8), "RGBA")
 
 
-for key, name in SPECIES.items():
-    src = ART / "src" / f"{key}.png"
-    art = cutout(src)
-    art.save(ART / f"{name}_cut.png")
-    save_pair(art, name, (240, 240))
-    save_pair(silhouette(art), name + "Silhouette", (240, 240))
-
-unknown = silhouette(cutout(ART / "src" / "sheep.png"))
-save_pair(unknown, "Unknown", (240, 240))
-
-cover = cover_vignette(ART / "src" / "cover.png")
-ch = round(cover.height * 400 / cover.width)
-save_pair(cover, "Cover", (400, ch))
-
+# Species portraits, silhouettes, Unknown and the cover come from the in-game models: tools/journal/portraits.py.
 leather().save(OUT / "Leather@2x.png")
 paper(gutter_right=True).save(OUT / "PageLeft@2x.png")
 paper(gutter_right=False).save(OUT / "PageRight@2x.png")
 card(False).save(OUT / "Card@2x.png")
 card(True).save(OUT / "CardHovered@2x.png")
 divider().save(OUT / "Divider@2x.png")
-print("cover logical size", 400, ch)
 for p in sorted(OUT.glob("*.png")):
     print(p.name, Image.open(p).size)
