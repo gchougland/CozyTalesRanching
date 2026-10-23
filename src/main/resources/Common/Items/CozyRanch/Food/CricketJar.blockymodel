@@ -5,7 +5,7 @@
       "name": "R-Attachment",
       "position": {
         "x": -2,
-        "y": 5,
+        "y": 6,
         "z": -3
       },
       "orientation": {
@@ -475,6 +475,17 @@
                         "offset": {
                           "x": 1,
                           "y": 1
+                        },
+                        "mirror": {
+                          "x": false,
+                          "y": false
+                        },
+                        "angle": 0
+                      },
+                      "top": {
+                        "offset": {
+                          "x": 1,
+                          "y": 70
                         },
                         "mirror": {
                           "x": false,

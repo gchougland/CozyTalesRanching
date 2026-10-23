@@ -24,6 +24,27 @@
   "Model": "Items/CozyRanch/Food/CricketJar.blockymodel",
   "Texture": "Items/CozyRanch/Food/CricketJar_Texture.png",
   "Scale": 1,
+  "BlockType": {
+    "Material": "Empty",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Items/CozyRanch/Food/CricketJar.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/CozyRanch/Food/CricketJar_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelScale": 0.5,
+    "HitboxType": "CozyRanch_CricketJar",
+    "RandomRotation": "YawStep1",
+    "ParticleColor": "#9cc3c4",
+    "TextureComputedColor": "#8fb7b8",
+    "Gathering": {
+      "Harvest": {},
+      "Soft": {}
+    }
+  },
   "Recipe": {
     "Input": [
       {
@@ -57,7 +78,12 @@
     "Secondary": {
       "Interactions": [
         {
-          "Type": "CozyRanchOfferFood"
+          "Type": "Condition",
+          "Crouching": false,
+          "Next": {
+            "Type": "CozyRanchOfferFood"
+          },
+          "Failed": "Block_Secondary"
         }
       ]
     }
