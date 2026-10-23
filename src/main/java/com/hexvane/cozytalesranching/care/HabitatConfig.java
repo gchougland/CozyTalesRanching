@@ -28,6 +28,27 @@ public final class HabitatConfig {
     /** Blocks that shade the ground below them besides any solid block (tree canopies). */
     public List<String> CoverPrefixes = new ArrayList<>(List.of("Plant_Leaves_"));
     public Map<String, Feature> Features = new LinkedHashMap<>();
+    /** Species id to the toy feature ids it likes; added to the species' {@code HabitatPrefers}. */
+    public Map<String, List<String>> SpeciesToys = new LinkedHashMap<>();
+    /** Advanced feed item id to its effect. Every species eats every feed. */
+    public Map<String, Feed> Feeds = new LinkedHashMap<>();
+    public FeedEffects FeedEffects = new FeedEffects();
+    /** Happiness floor of an animal with a trait that slows its decline, unless the trait sets its own {@code HappinessFloor}. */
+    public float DeclineTraitFloor = 0.45f;
+
+    public static final class Feed {
+        /** {@code hearty}, {@code sweet}, {@code breeders} or {@code premium} ({@code AnimalRecord.feedBonus}). */
+        public String Bonus = "";
+        /** Real minutes the bonus lasts after the feed is eaten. */
+        public double Minutes = 60;
+    }
+
+    public static final class FeedEffects {
+        /** Sweet Feed: friendship gained from meals, treats and petting is multiplied by this. */
+        public float SweetFriendshipMultiplier = 1.5f;
+        /** Breeder's Feed: each feed eaten moves the breeding cooldown on by this share of the species' cooldown. */
+        public double BreedersCooldownCut = 0.5;
+    }
 
     public static final class Feature {
         /** Base block ids (without state suffix) that count. */
@@ -87,6 +108,37 @@ public final class HabitatConfig {
         return Features.get(id);
     }
 
+    /** The species' own preferences followed by the toys it likes, without repeats. */
+    @Nonnull
+    public List<String> prefers(@Nonnull String speciesId, @Nonnull List<String> speciesPrefers) {
+        List<String> out = new ArrayList<>(speciesPrefers);
+        for (String toy : SpeciesToys.getOrDefault(speciesId, List.of())) if (!out.contains(toy)) out.add(toy);
+        return out;
+    }
+
+    /** The bonus id of an advanced feed item, or null when the item is not a feed. */
+    @Nullable
+    public String feedBonus(@Nullable String itemId) {
+        Feed f = itemId == null ? null : Feeds.get(itemId);
+        return f == null || f.Bonus.isEmpty() ? null : f.Bonus;
+    }
+
+    /** How long a feed's bonus lasts, in milliseconds; 0 when the item is not a feed. */
+    public long feedDurationMs(@Nullable String itemId) {
+        Feed f = itemId == null ? null : Feeds.get(itemId);
+        return f == null ? 0L : Math.round(f.Minutes * 60_000.0);
+    }
+
+    /** Feed item id to bonus id, in file order, for picking a meal. */
+    @Nonnull
+    public Map<String, String> feedItems() {
+        Map<String, String> out = new LinkedHashMap<>();
+        Feeds.forEach((item, f) -> {
+            if (!f.Bonus.isEmpty()) out.put(item, f.Bonus);
+        });
+        return out;
+    }
+
     public boolean isCover(@Nonnull String baseId) {
         for (String p : CoverPrefixes) if (baseId.startsWith(p)) return true;
         return false;
@@ -104,6 +156,18 @@ public final class HabitatConfig {
         if (CoverPrefixes == null) CoverPrefixes = new ArrayList<>();
         Features.values().removeIf(f -> f == null);
         Features.values().forEach(Feature::normalise);
+        if (SpeciesToys == null) SpeciesToys = new LinkedHashMap<>();
+        SpeciesToys.values().removeIf(l -> l == null);
+        if (Feeds == null) Feeds = new LinkedHashMap<>();
+        Feeds.values().removeIf(f -> f == null);
+        for (Feed f : Feeds.values()) {
+            if (f.Bonus == null) f.Bonus = "";
+            f.Minutes = Math.clamp(f.Minutes, 0.0, 24 * 60.0);
+        }
+        if (FeedEffects == null) FeedEffects = new FeedEffects();
+        FeedEffects.SweetFriendshipMultiplier = Math.clamp(FeedEffects.SweetFriendshipMultiplier, 1f, 5f);
+        FeedEffects.BreedersCooldownCut = Math.clamp(FeedEffects.BreedersCooldownCut, 0.0, 1.0);
+        DeclineTraitFloor = Math.clamp(DeclineTraitFloor, CareRules.FLOOR, 1f);
         ScanBelow = Math.clamp(ScanBelow, 0, 16);
         ScanAbove = Math.clamp(ScanAbove, 2, 24);
         GroundTolerance = Math.clamp(GroundTolerance, 0, 16);

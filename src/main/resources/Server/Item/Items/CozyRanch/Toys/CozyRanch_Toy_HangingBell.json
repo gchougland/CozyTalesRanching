@@ -1,0 +1,80 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_care.items.CozyRanch_Toy_HangingBell.name",
+    "Description": "cozyranch_care.items.CozyRanch_Toy_HangingBell.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Deco_Lantern.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "Ingredient_Bar_Copper",
+        "Quantity": 2
+      },
+      {
+        "ResourceTypeId": "Wood_All",
+        "Quantity": 3
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Decorative"
+        ],
+        "Id": "Farmingbench"
+      }
+    ],
+    "TimeSeconds": 2
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Decorative_Sets/Village/Lantern.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Decorative_Sets/Village/Lantern_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "HitboxType": "Food_Medium",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_Toy_HangingBell"
+      }
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "BlockParticleSetId": "Dust",
+    "ParticleColor": "#C9A13B",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "TextureComputedColor": "#C9A13B"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.58823,
+    "Translation": [
+      0,
+      -13.5
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "MaxStack": 16,
+  "ItemSoundSetId": "ISS_Blocks_Wood"
+}

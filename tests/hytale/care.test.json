@@ -14,6 +14,54 @@
       "steps": [
         { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json" }, "expect": { "errors": 0 } }
       ]
+    },
+    {
+      "name": "feeds and toys",
+      "description": "The four advanced feeds and five toys have no errors; their warnings are the plugin-registered CozyRanchGiveFeed type.",
+      "steps": [
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Feed/CozyRanch_Feed_Hearty.json" }, "expect": { "errors": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Feed/CozyRanch_Feed_Sweet.json" }, "expect": { "errors": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Feed/CozyRanch_Feed_Breeders.json" }, "expect": { "errors": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Feed/CozyRanch_Feed_Premium.json" }, "expect": { "errors": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_Ball.json" }, "expect": { "errors": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_ScratchingPost.json" }, "expect": { "errors": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_HangingBell.json" }, "expect": { "errors": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_FloatingDuck.json" }, "expect": { "errors": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_Log.json" }, "expect": { "errors": 0 } }
+      ]
+    },
+    {
+      "name": "feed in the trough",
+      "description": "A new house is scanned within seconds; breeder's feed goes into a trough, two test-house cows eat it from the trough and get the breeders bonus; the bonus command gives another.",
+      "steps": [
+        { "tool": "server_start", "arguments": { "artifacts": ["CozyTales-Ranching/build/libs/CozyTalesRanching-0.1.0.jar"], "authMode": "insecure" }, "waitReady": true, "save": "server" },
+        { "tool": "server_command", "arguments": { "jobId": "${server.id}", "command": "op add 11111111-2222-4333-8444-555555555555" } },
+        { "tool": "bot_start", "arguments": { "jobId": "${server.id}", "uuid": "11111111-2222-4333-8444-555555555555" }, "expect": { "state": "ready" }, "save": "bot" },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/ranch house debug place cow" }, "save": "placed" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${placed.cursor}",
+            "where": { "message": { "messageId": "cozyranch_house.debug.placed" } } }, "expect": { "matched": true } },
+        { "tool": "server_scenario", "arguments": { "jobId": "${server.id}", "steps": [
+            { "expect": "Care: first habitat scan of new house", "timeoutMs": 30000 } ] },
+          "waitJob": true, "expect": { "state": "succeeded" } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/block set ~3 ~ ~5 CozyRanch_Trough" }, "save": "trough" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${trough.cursor}",
+            "where": { "message": { "messageId": "server.commands.block.set.success" } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/ranch care fill ~3 ~ ~5 CozyRanch_Feed_Breeders 4" }, "save": "filled" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${filled.cursor}",
+            "where": { "message": { "messageId": "cozyranch_care.fill.done" } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/ranch breed testhouse cow" }, "save": "house" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${house.cursor}",
+            "where": { "message": { "messageId": "cozyranch_breeding.debug.testhouse.done" } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/ranch care run" }, "save": "ran" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${ran.cursor}",
+            "where": { "message": { "messageId": "cozyranch_care.run.done" } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/ranch care animals" }, "save": "animals" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${animals.cursor}",
+            "where": { "message": { "messageId": "cozyranch_care.animals.bonus" } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/ranch care bonus all CozyRanch_Feed_Sweet" }, "save": "bonus" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${bonus.cursor}",
+            "where": { "message": { "messageId": "cozyranch_care.bonus.done" } } }, "expect": { "matched": true } }
+      ]
     }
   ]
 }

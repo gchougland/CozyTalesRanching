@@ -281,6 +281,7 @@ public final class AnimalInteractions {
     }
 
     private static void addFriendship(@Nonnull AnimalRecord record, float amount) {
+        amount *= com.hexvane.cozytalesranching.care.CareApi.friendshipMultiplier(record);
         int before = record.hearts;
         TamingRules.Friendship next = TamingRules.addFriendship(record.hearts, record.heartProgress, amount);
         record.hearts = next.hearts();

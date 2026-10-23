@@ -1,7 +1,7 @@
 package com.hexvane.cozytalesranching.care;
 
 import com.hexvane.cozytalesranching.RanchPermissions;
-import com.hexvane.cozytalesranching.species.SpeciesRegistry;
+import com.hexvane.cozytalesranching.RanchSounds;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
 import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.Ref;
@@ -76,7 +76,7 @@ public final class TroughInteraction extends SimpleBlockInteraction {
         String w = world.getName();
 
         if (itemId != null) {
-            if (!CareRules.isAnyFood(SpeciesRegistry.all(), itemId)) {
+            if (!care.isTroughFood(itemId)) {
                 player.sendMessage(Message.translation("cozyranch_care.trough.not_food").param("item", itemName(itemId)));
                 return;
             }
@@ -90,6 +90,7 @@ public final class TroughInteraction extends SimpleBlockInteraction {
             InventoryHelper.removeItemInHand(ref, store, put);
             CareWorld.syncTrough(world, care, pos.x, pos.y, pos.z);
             care.scheduleSave();
+            RanchSounds.play(RanchSounds.TROUGH_FILL, pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, store);
             player.sendMessage(Message.translation("cozyranch_care.trough.added").param("count", put).param("item", itemName(itemId)));
             return;
         }

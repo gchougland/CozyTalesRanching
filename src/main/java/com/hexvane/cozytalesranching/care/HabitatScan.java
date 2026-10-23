@@ -1,6 +1,8 @@
 package com.hexvane.cozytalesranching.care;
 
 import com.hexvane.cozytalesranching.care.HabitatConfig.Feature;
+import com.hexvane.cozytalesranching.house.HouseRecord;
+import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -196,6 +198,20 @@ public final class HabitatScan {
         float reqShare = req[1] == 0 ? 1f : (float) req[0] / req[1];
         float prefShare = pref[1] == 0 ? 1f : (float) pref[0] / pref[1];
         return new Result(req[0] == req[1], 0.5f * reqShare + 0.5f * prefShare, missing);
+    }
+
+    /**
+     * Writes this finished scan on the house; the species' preferences include the toys it likes ({@code SpeciesToys}).
+     * The house counts as scanned even when every column was skipped; a house scanned for the first time that way keeps
+     * its requirements unmet, so it never breeds on an empty scan.
+     */
+    public void applyTo(@Nonnull HouseRecord house, @Nullable SpeciesDefinition species, boolean troughFood, long nowMs) {
+        house.habitatScannedAtMs = Math.max(1L, nowMs);
+        if (species == null || columnsScanned <= 0) return;
+        Result r = evaluate(species.HabitatRequires, config.prefers(species.Id, species.HabitatPrefers), troughFood);
+        house.habitatRequirementsMet = r.requirementsMet();
+        house.habitatScore = r.score();
+        house.habitatMissing = new ArrayList<>(r.missing());
     }
 
     private int[] tally(@Nonnull List<String> ids, boolean troughFood, @Nonnull List<String> missing) {

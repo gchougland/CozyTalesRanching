@@ -1,0 +1,70 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_care.items.CozyRanch_Feed_Hearty.name",
+    "Description": "cozyranch_care.items.CozyRanch_Feed_Hearty.description"
+  },
+  "Quality": "Uncommon",
+  "Categories": [
+    "Items.Foods"
+  ],
+  "PlayerAnimationsId": "Item",
+  "Icon": "Icons/ItemsGenerated/Tool_Feedbag.png",
+  "IconProperties": {
+    "Scale": 0.5,
+    "Translation": [
+      0,
+      -15
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Model": "Items/Tools/Feedbag/Feedbag.blockymodel",
+  "Texture": "Items/Tools/Feedbag/Feedbag_Texture.png",
+  "Scale": 1,
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "Plant_Crop_Wheat_Item",
+        "Quantity": 3
+      },
+      {
+        "ItemId": "Plant_Crop_Corn_Item",
+        "Quantity": 2
+      },
+      {
+        "ItemId": "Plant_Crop_Potato_Item",
+        "Quantity": 1
+      }
+    ],
+    "OutputQuantity": 2,
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Farming"
+        ],
+        "Id": "Farmingbench"
+      }
+    ],
+    "TimeSeconds": 2
+  },
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "CozyRanchGiveFeed"
+        }
+      ]
+    }
+  },
+  "Tags": {
+    "Type": [
+      "Food"
+    ]
+  },
+  "MaxStack": 25,
+  "DropOnDeath": true
+}

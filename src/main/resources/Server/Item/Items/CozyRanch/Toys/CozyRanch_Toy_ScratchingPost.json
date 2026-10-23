@@ -1,0 +1,80 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_care.items.CozyRanch_Toy_ScratchingPost.name",
+    "Description": "cozyranch_care.items.CozyRanch_Toy_ScratchingPost.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Deco_Target.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_All",
+        "Quantity": 6
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 6
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Decorative"
+        ],
+        "Id": "Farmingbench"
+      }
+    ],
+    "TimeSeconds": 2
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Miscellaneous/HayTarget.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Miscellaneous/HayTarget_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "HitboxType": "Full",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_Toy_ScratchingPost"
+      }
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "BlockParticleSetId": "Wood",
+    "ParticleColor": "#A9773D",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "TextureComputedColor": "#A9773D"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.58823,
+    "Translation": [
+      0,
+      -13.5
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "MaxStack": 16,
+  "ItemSoundSetId": "ISS_Blocks_Wood"
+}
