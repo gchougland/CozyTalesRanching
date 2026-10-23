@@ -1,0 +1,29 @@
+{
+  "Enabled": true,
+  "PassSeconds": 15,
+  "CooldownMinutes": 6,
+  "ChancePerMinute": 0.12,
+  "Babies": false,
+  "Species": {
+    "chicken": true,
+    "cow": true,
+    "pig": true,
+    "sheep": true,
+    "frog": false
+  },
+  "MergeRadius": 3,
+  "MaxCount": 8,
+  "MaxPilesPerHouse": 6,
+  "MaxPilesPerPass": 4,
+  "DoorClearance": 2,
+  "PlayerPilesMerge": true,
+  "ExcludedGround": [
+    "Farmland",
+    "Tilled",
+    "Path",
+    "Plant_Crop",
+    "CozyRanch_",
+    "Wood_",
+    "Furniture_"
+  ]
+}
