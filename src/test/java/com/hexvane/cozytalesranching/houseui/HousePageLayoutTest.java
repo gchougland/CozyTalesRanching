@@ -30,7 +30,7 @@ import org.junit.jupiter.api.io.TempDir;
 class HousePageLayoutTest {
     static final UUID PLAYER = UUID.fromString("11111111-2222-4333-8444-555555555555");
     static final Path TEST_FILE = Path.of("tests/hytale/houseui.test.json");
-    static final String PROJECT = "_worktrees/CozyTales-Ranching-houseui";
+    static final String PROJECT = "_worktrees/CozyTales-Ranching-fix-houseui";
     static final long NOW = 1_700_000_000_000L;
     static final String[][] RENDERS = {
         {"EMPTY", "empty pigsty, no products", "houseui-empty"},
@@ -46,6 +46,8 @@ class HousePageLayoutTest {
         {"PERSONALITY", "personalities and feed bonuses on residents (one bonus expired)", "houseui-personality"},
         {"LONG", "longest names everywhere, picker open", "houseui-long"},
         {"MILK", "after Collect with no buckets", "houseui-collected", "result.collect.buckets"},
+        {"FULL", "area lights on: Hide area, the on notice", "houseui-border", "result.border.on.trough", "border"},
+        {"TYPICAL", "no traits on any resident, a Refresh just done", "houseui-notraits", "result.refreshed"},
     };
 
     @TempDir static Path data;
@@ -53,6 +55,7 @@ class HousePageLayoutTest {
     @BeforeAll
     static void loadSpecies() {
         SpeciesRegistry.load(data);
+        com.hexvane.cozytalesranching.breeding.TraitRegistry.load(data);
     }
 
     @Test
@@ -135,14 +138,22 @@ class HousePageLayoutTest {
     }
 
     static Recorder render(HouseDemo.Scenario scenario, String noticeKey) {
+        return render(scenario, noticeKey, false);
+    }
+
+    static Recorder render(HouseDemo.Scenario scenario, String noticeKey, boolean border) {
         HouseDemo demo = HouseDemo.create(scenario, PLAYER);
         Recorder ui = new Recorder();
-        HousePageLayout.render(view(demo, noticeKey), ui);
+        HousePageLayout.render(view(demo, noticeKey, border), ui);
         return ui;
     }
 
     /** The view {@code HousePage.view} builds, with the house item names read from the item files. */
     static HouseView view(HouseDemo demo, String noticeKey) {
+        return view(demo, noticeKey, false);
+    }
+
+    static HouseView view(HouseDemo demo, String noticeKey, boolean border) {
         HouseRecord house = demo.house();
         SpeciesDefinition species = SpeciesRegistry.byId(house.speciesId).orElseThrow();
         Txt speciesName = HouseView.speciesName(species, house.speciesId);
@@ -152,7 +163,7 @@ class HousePageLayoutTest {
             .toList();
         return HouseView.of(house, species, houseNameKey(house.blockId), demo.residents(house), demo.service()::isInside,
             demo.followers(house, PLAYER), noticeKey == null ? null : Txt.ui(noticeKey),
-            demo.stored(house), demo.initialState(), targets, NOW);
+            demo.stored(house), demo.initialState(), targets, r -> PLAYER.equals(r.ownerId), border, NOW);
     }
 
     @Test
@@ -245,6 +256,115 @@ class HousePageLayoutTest {
         assertEquals("southwest", Locate.compass(-5, 5));
     }
 
+    @Test
+    void eachTraitIsAPillWithItsDescriptionAsTooltip() {
+        Recorder ui = render(HouseDemo.Scenario.FULL);
+        int rowWithTwo = -1;
+        for (int i = 0; i < 6 && rowWithTwo < 0; i++) if (ui.has("#ResidentList[" + i + "] #RTrait2.Visible", "true")) rowWithTwo = i;
+        assertTrue(rowWithTwo >= 0, "the full coop has a resident with two traits");
+        String row = "#ResidentList[" + rowWithTwo + "] ";
+        assertTrue(ui.has(row + "#RTrait1.Visible", "true"));
+        for (String pill : new String[] {"#RTrait1", "#RTrait2"}) {
+            assertEquals(1, ui.count(row + pill + ".TooltipText\",\"data\":{\"MessageId\":\"cozyranch_breeding.trait."), pill);
+            assertEquals(1, ui.count(row + pill + ".TextSpans\""), pill);
+        }
+        assertTrue(ui.count(".desc\"}") >= 2, "tooltips are the trait descriptions");
+    }
+
+    @Test
+    void noTraitsHidesBothPills() {
+        Recorder ui = render(HouseDemo.Scenario.TYPICAL);
+        for (int i = 0; i < 3; i++) {
+            if (!ui.has("#ResidentList[" + i + "] #RTrait1.Visible", "false")) continue;
+            assertTrue(ui.has("#ResidentList[" + i + "] #RTrait2.Visible", "false"));
+            assertEquals(0, ui.count("#ResidentList[" + i + "] #RTrait1.TooltipText"));
+            return;
+        }
+        throw new AssertionError("the typical barn has a resident with no traits");
+    }
+
+    @Test
+    void traitsComeFromTraitsJsonWithAStockLineForUnknownIds() {
+        HouseView.Trait known = HouseView.trait("bountiful");
+        assertEquals("cozyranch_breeding.trait.bountiful.desc", known.description().key());
+        HouseView.Trait unknown = HouseView.trait("moon_dancer");
+        assertEquals("Moon dancer", unknown.name().raw());
+        assertEquals("cozyranch_houseui.trait.nodesc", unknown.description().key());
+    }
+
+    @Test
+    void nameButtonOnlyForTheViewersOwnAnimals() {
+        HouseDemo demo = HouseDemo.create(HouseDemo.Scenario.FULL, PLAYER);
+        Recorder mine = new Recorder();
+        HousePageLayout.render(view(demo, null), mine);
+        assertTrue(mine.has("#ResidentList[0] #RNameButton.Visible", "true"));
+        assertTrue(mine.has("#ResidentList[0] #RNameButton.TextSpans", "{\"MessageId\":\"cozyranch_houseui.button.name\"}"));
+        HouseRecord house = demo.house();
+        SpeciesDefinition species = SpeciesRegistry.byId(house.speciesId).orElseThrow();
+        HouseView stranger = HouseView.of(house, species, null, demo.residents(house), id -> false, List.of(), null, Map.of(),
+            HouseView.PageState.NONE, List.of(), r -> false, false, NOW);
+        Recorder theirs = new Recorder();
+        HousePageLayout.render(stranger, theirs);
+        assertTrue(theirs.has("#ResidentList[0] #RNameButton.Visible", "false"));
+        assertEquals(0, theirs.count("#RNameButton.TextSpans"));
+    }
+
+    @Test
+    void areaButtonSaysWhatPressingItDoes() {
+        assertTrue(render(HouseDemo.Scenario.FULL).has("#AreaButton.TextSpans", "{\"MessageId\":\"cozyranch_houseui.button.area.show\"}"));
+        assertTrue(render(HouseDemo.Scenario.FULL, null, true).has("#AreaButton.TextSpans", "{\"MessageId\":\"cozyranch_houseui.button.area.hide\"}"));
+        assertTrue(render(HouseDemo.Scenario.FULL).has("#RefreshButton.TooltipText", "{\"MessageId\":\"cozyranch_houseui.tooltip.refresh\"}"));
+    }
+
+    @Test
+    void refreshIsLimitedToOnceEveryTwoSecondsPerPlayer() {
+        RateLimit limit = new RateLimit(2_000L);
+        UUID a = UUID.randomUUID(), b = UUID.randomUUID();
+        assertTrue(limit.tryAcquire(a, 10_000L));
+        assertFalse(limit.tryAcquire(a, 10_500L));
+        assertFalse(limit.tryAcquire(a, 11_999L));
+        assertTrue(limit.tryAcquire(b, 11_999L), "another player is not held up");
+        assertTrue(limit.tryAcquire(a, 12_000L));
+        assertFalse(limit.tryAcquire(a, 12_001L), "a refused press does not reset the wait, the accepted one does");
+        assertEquals(2_000L, HousePage.REFRESH_LIMIT_MS);
+    }
+
+    @Test
+    void borderRingIsEvenAndOnTheGround() {
+        List<double[]> ring = HouseBorder.ring(0.5, 0.5, 12.5, HouseBorder.SPACING);
+        assertTrue(ring.size() >= 52);
+        for (double[] p : ring) assertEquals(12.5, Math.hypot(p[0] - 0.5, p[1] - 0.5), 1e-9);
+        double gap = Math.hypot(ring.get(1)[0] - ring.get(0)[0], ring.get(1)[1] - ring.get(0)[1]);
+        assertTrue(gap <= HouseBorder.SPACING, "motes at most 1.5 blocks apart");
+        assertTrue(HouseBorder.showTroughRing(12, 8));
+        assertFalse(HouseBorder.showTroughRing(12, 12));
+        // flat ground at 63: a mote stands at 64
+        assertEquals(64, HouseBorder.groundY(column(y -> y <= 63, y -> true), 64));
+        // a roof at 70 over ground at 63: the ground nearest the house's height wins
+        assertEquals(64, HouseBorder.groundY(column(y -> y <= 63 || y == 70, y -> true), 64));
+        // a hill: ground at 67
+        assertEquals(68, HouseBorder.groundY(column(y -> y <= 67, y -> true), 64));
+        // not in memory: no mote
+        assertEquals(null, HouseBorder.groundY(column(y -> y <= 63, y -> y < 66), 64));
+        // a drop far below the search: no mote
+        assertEquals(null, HouseBorder.groundY(column(y -> y <= 40, y -> true), 64));
+    }
+
+    @Test
+    void borderEndsWithTimeOrDistance() {
+        HouseBorder.Active a = new HouseBorder.Active("default", UUID.randomUUID(), 0.5, 0.5, 36.5, List.of(), 1_000L + HouseBorder.LIFETIME_MS);
+        assertTrue(HouseBorder.keep(a, 10, 10, 1_000L));
+        assertFalse(HouseBorder.keep(a, 40, 0.5, 1_000L), "walked away");
+        assertFalse(HouseBorder.keep(a, 10, 10, 1_000L + HouseBorder.LIFETIME_MS), "time is up");
+    }
+
+    static HouseBorder.Column column(java.util.function.IntPredicate ground, java.util.function.IntPredicate loaded) {
+        return new HouseBorder.Column() {
+            @Override public boolean loaded(int y) { return loaded.test(y); }
+            @Override public boolean ground(int y) { return ground.test(y); }
+        };
+    }
+
     static HouseRecord house(String species, String world, int capacity) {
         HouseRecord h = new HouseRecord();
         h.houseId = UUID.randomUUID();
@@ -277,7 +397,7 @@ class HousePageLayoutTest {
         out.append("    {\n      \"name\": \"house page\",\n      \"description\": \"The house page for each /ranch housepage scenario, with the commands HousePageLayout sends (generated by HousePageLayoutTest).\",\n      \"steps\": [\n");
         for (int i = 0; i < RENDERS.length; i++) {
             String[] r = RENDERS[i];
-            Recorder rec = render(HouseDemo.Scenario.valueOf(r[0]), r.length > 3 ? r[3] : null);
+            Recorder rec = render(HouseDemo.Scenario.valueOf(r[0]), r.length > 3 ? r[3] : null, r.length > 4 && r[4].equals("border"));
             out.append("        {\n");
             out.append("          \"tool\": \"ui_render\",\n");
             out.append("          \"name\": \"" + r[1] + "\",\n");
@@ -317,6 +437,8 @@ class HousePageLayoutTest {
         @Override public void set(String selector, String value) { commands.add(setCmd(selector, str(value))); }
 
         @Override public void text(String selector, Txt text) { commands.add(setCmd(selector + ".TextSpans", message(text))); }
+
+        @Override public void tooltip(String selector, Txt text) { commands.add(setCmd(selector + ".TooltipText", message(text))); }
 
         @Override public void click(String selector, String action, String animal, String house) {}
 

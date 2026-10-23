@@ -17,6 +17,9 @@ public interface UiOut {
     /** Sets {@code selector.TextSpans}. */
     void text(@Nonnull String selector, @Nonnull Txt text);
 
+    /** Sets {@code selector.TooltipText}; the element needs a {@code TextTooltipStyle} in its document. */
+    void tooltip(@Nonnull String selector, @Nonnull Txt text);
+
     /** A button press that sends {@code Action} and, when not empty, {@code Animal}. */
     default void click(@Nonnull String selector, @Nonnull String action, @Nonnull String animal) {
         click(selector, action, animal, "");

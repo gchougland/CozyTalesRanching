@@ -28,7 +28,8 @@ public record HouseView(
     @Nonnull List<Product> products,
     @Nullable Resident selected,
     boolean picking,
-    @Nonnull List<MoveTarget> moveTargets
+    @Nonnull List<MoveTarget> moveTargets,
+    boolean borderOn
 ) {
     public static final int MAX_HEARTS = 5;
     public static final int MAX_TRAITS = 2;
@@ -48,8 +49,11 @@ public record HouseView(
 
     public enum Where { INSIDE, OUTSIDE, LOST }
 
-    public record Resident(@Nonnull UUID id, @Nonnull Txt name, int hearts, @Nonnull Mood mood, @Nonnull List<Txt> traits, boolean baby,
-                           @Nonnull Where where, @Nullable Txt personality, @Nullable Txt feedBonus) {}
+    public record Resident(@Nonnull UUID id, @Nonnull Txt name, int hearts, @Nonnull Mood mood, @Nonnull List<Trait> traits, boolean baby,
+                           @Nonnull Where where, @Nullable Txt personality, @Nullable Txt feedBonus, boolean nameable) {}
+
+    /** A trait on a resident row: its name, and what it does for the tooltip. */
+    public record Trait(@Nonnull Txt name, @Nonnull Txt description) {}
 
     public record Follower(@Nonnull UUID id, @Nonnull Txt name, int hearts) {}
 
@@ -82,13 +86,16 @@ public record HouseView(
      * @param inside       whether a resident is inside its house right now
      * @param stored       item id to count waiting in the house, in display order
      * @param moveTargets  the owner's other houses the selected resident could move to
+     * @param canName      whether the viewer may name a resident (its owner, or an admin who manages any)
+     * @param borderOn     whether the viewer has this house's area lights on
      */
     @Nonnull
     public static HouseView of(@Nonnull HouseRecord house, @Nullable SpeciesDefinition species, @Nullable String houseNameKey,
                                @Nonnull List<AnimalRecord> residents, @Nonnull Predicate<UUID> inside,
                                @Nonnull List<AnimalRecord> followers, @Nullable Txt notice,
                                @Nonnull Map<String, Integer> stored, @Nonnull PageState state,
-                               @Nonnull List<MoveTarget> moveTargets, long nowMs) {
+                               @Nonnull List<MoveTarget> moveTargets, @Nonnull Predicate<AnimalRecord> canName,
+                               boolean borderOn, long nowMs) {
         Txt speciesName = speciesName(species, house.speciesId);
         String custom = house.name == null || house.name.isBlank() ? null : house.name;
         Txt title = houseTitle(house, speciesName, houseNameKey);
@@ -96,9 +103,10 @@ public record HouseView(
         List<Resident> rows = new ArrayList<>();
         for (AnimalRecord r : sorted(residents)) {
             Where where = inside.test(r.animalId) ? Where.INSIDE : r.state == AnimalRecord.State.MISSING ? Where.LOST : Where.OUTSIDE;
-            List<Txt> traits = r.traits.stream().filter(t -> t != null && !t.isBlank()).limit(MAX_TRAITS).map(HouseView::traitName).toList();
+            List<Trait> traits = r.traits == null ? List.of()
+                : r.traits.stream().filter(t -> t != null && !t.isBlank()).distinct().limit(MAX_TRAITS).map(HouseView::trait).toList();
             rows.add(new Resident(r.animalId, animalName(r, speciesName), hearts(r.hearts), mood(r.happiness), traits, r.baby, where,
-                personality(r.personality), feedBonus(r.feedBonus, r.feedBonusUntilMs, nowMs)));
+                personality(r.personality), feedBonus(r.feedBonus, r.feedBonusUntilMs, nowMs), canName.test(r)));
         }
         Resident selected = rows.stream().filter(r -> r.id().equals(state.selected())).findFirst()
             .orElse(rows.isEmpty() ? null : rows.getFirst());
@@ -113,7 +121,7 @@ public record HouseView(
         boolean picking = state.picking() && !targets.isEmpty();
         int capacity = Math.max(1, house.capacity);
         return new HouseView(title, speciesName, residents.size(), capacity, rows, habitat(house, species),
-            house.breedingEnabled, follow, custom, notice, products, selected, picking, targets);
+            house.breedingEnabled, follow, custom, notice, products, selected, picking, targets, borderOn);
     }
 
     /** The house's own name, else its item's name, else "{species} House". */
@@ -211,12 +219,13 @@ public record HouseView(
         return name.length() > MAX_NAME_LENGTH ? name.substring(0, MAX_NAME_LENGTH).strip() : name;
     }
 
+    /** A trait's name and description from {@code Traits.json} (NameKey, DescKey); an unknown id is humanised and gets a stock line. */
     @Nonnull
-    static Txt traitName(@Nonnull String id) {
-        return com.hexvane.cozytalesranching.breeding.TraitRegistry.get().get(id)
-            .filter(t -> !t.NameKey.isEmpty())
-            .map(t -> Txt.key(t.NameKey))
-            .orElseGet(() -> Txt.raw(humanise(id)));
+    static Trait trait(@Nonnull String id) {
+        var def = com.hexvane.cozytalesranching.breeding.TraitRegistry.get().get(id).orElse(null);
+        Txt name = def != null && def.NameKey != null && !def.NameKey.isBlank() ? Txt.key(def.NameKey) : Txt.raw(humanise(id));
+        Txt desc = def != null && def.DescKey != null && !def.DescKey.isBlank() ? Txt.key(def.DescKey) : Txt.ui("trait.nodesc");
+        return new Trait(name, desc);
     }
 
     /** {@code open_space} to {@code Open space}: for ids with no trait entry. */

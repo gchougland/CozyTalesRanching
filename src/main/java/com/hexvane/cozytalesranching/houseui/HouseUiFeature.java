@@ -11,5 +11,6 @@ public final class HouseUiFeature {
     /** Called once from the plugin's setup(). */
     public static void register(@Nonnull CozyTalesRanchingPlugin plugin) {
         Ranch.installHousePages(HousePage::open);
+        plugin.getEntityStoreRegistry().registerSystem(new HouseBorderSystem());
     }
 }
