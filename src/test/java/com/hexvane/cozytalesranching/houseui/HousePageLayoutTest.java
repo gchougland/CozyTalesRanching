@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
@@ -29,15 +30,22 @@ import org.junit.jupiter.api.io.TempDir;
 class HousePageLayoutTest {
     static final UUID PLAYER = UUID.fromString("11111111-2222-4333-8444-555555555555");
     static final Path TEST_FILE = Path.of("tests/hytale/houseui.test.json");
-    static final String PROJECT = "CozyTales-Ranching";
+    static final String PROJECT = "_worktrees/CozyTales-Ranching-houseui";
+    static final long NOW = 1_700_000_000_000L;
     static final String[][] RENDERS = {
-        {"EMPTY", "empty pigsty", "houseui-empty"},
-        {"TYPICAL", "typical cow barn: three residents, one inside, one follower", "houseui-typical"},
-        {"FULL", "full chicken coop: six residents, long names, a baby, traits", "houseui-full"},
+        {"EMPTY", "empty pigsty, no products", "houseui-empty"},
+        {"TYPICAL", "typical cow barn: three residents, one inside, one follower, no products", "houseui-typical"},
+        {"FULL", "full chicken coop: six residents, long names, a baby, traits, eggs waiting, every resident action", "houseui-full"},
         {"UNCHECKED", "frog pond whose habitat has not been checked", "houseui-unchecked"},
         {"MISSING", "frog pond missing lily pads (needed) and reeds (liked)", "houseui-missing"},
         {"BREEDINGOFF", "sheepfold with breeding off", "houseui-breedingoff"},
         {"TYPICAL", "a button pressed before the house service is installed", "houseui-unavailable", "result.unavailable"},
+        {"PRODUCTS", "seven kinds of products waiting, huge counts", "houseui-products"},
+        {"MILK", "milk waiting and no buckets: the bucket hint", "houseui-milk"},
+        {"MOVE", "move picker open for the first hen", "houseui-move"},
+        {"PERSONALITY", "personalities and feed bonuses on residents (one bonus expired)", "houseui-personality"},
+        {"LONG", "longest names everywhere, picker open", "houseui-long"},
+        {"MILK", "after Collect with no buckets", "houseui-collected", "result.collect.buckets"},
     };
 
     @TempDir static Path data;
@@ -128,13 +136,123 @@ class HousePageLayoutTest {
 
     static Recorder render(HouseDemo.Scenario scenario, String noticeKey) {
         HouseDemo demo = HouseDemo.create(scenario, PLAYER);
+        Recorder ui = new Recorder();
+        HousePageLayout.render(view(demo, noticeKey), ui);
+        return ui;
+    }
+
+    /** The view {@code HousePage.view} builds, with the house item names read from the item files. */
+    static HouseView view(HouseDemo demo, String noticeKey) {
         HouseRecord house = demo.house();
         SpeciesDefinition species = SpeciesRegistry.byId(house.speciesId).orElseThrow();
-        HouseView view = HouseView.of(house, species, houseNameKey(house.blockId), demo.residents(house), demo.service()::isInside,
-            demo.followers(house, PLAYER), noticeKey == null ? null : Txt.ui(noticeKey));
-        Recorder ui = new Recorder();
-        HousePageLayout.render(view, ui);
-        return ui;
+        Txt speciesName = HouseView.speciesName(species, house.speciesId);
+        List<HouseView.MoveTarget> targets = demo.moveTargets(house).stream()
+            .map(h -> new HouseView.MoveTarget(h.houseId, HouseView.pickerName(h, speciesName, houseNameKey(h.blockId)),
+                demo.residents(h).size(), Math.max(1, h.capacity)))
+            .toList();
+        return HouseView.of(house, species, houseNameKey(house.blockId), demo.residents(house), demo.service()::isInside,
+            demo.followers(house, PLAYER), noticeKey == null ? null : Txt.ui(noticeKey),
+            demo.stored(house), demo.initialState(), targets, NOW);
+    }
+
+    @Test
+    void productsShowFourChipsAndTheRestAsMore() {
+        Recorder ui = render(HouseDemo.Scenario.PRODUCTS);
+        assertEquals(HousePageLayout.MAX_CHIPS - 1, ui.count("\"selector\":\"#ProductList\",\"text\":\"CozyRanch/HouseProductChip.ui\""));
+        assertTrue(ui.has("#ProductsMore.Visible", "true"));
+        assertTrue(ui.has("#ProductList[0] #PIcon.ItemId", "\"Food_Egg\""));
+        assertTrue(ui.has("#CollectButton.Disabled", "false"));
+        assertTrue(ui.has("#MilkHint.Visible", "false"));
+    }
+
+    @Test
+    void noProductsDisablesCollect() {
+        Recorder ui = render(HouseDemo.Scenario.TYPICAL);
+        assertTrue(ui.has("#ProductsEmpty.Visible", "true"));
+        assertTrue(ui.has("#CollectButton.Disabled", "true"));
+        assertEquals(0, ui.count("HouseProductChip.ui"));
+    }
+
+    @Test
+    void milkShowsTheBucketHintAndStaysAfterCollect() {
+        HouseDemo demo = HouseDemo.create(HouseDemo.Scenario.MILK, PLAYER);
+        assertTrue(view(demo, null).bucketsNeeded());
+        assertEquals(0, demo.collect(null, null, demo.house()));
+        assertEquals(Map.of(HouseDemo.MILK, 3), demo.stored(demo.house()));
+        assertTrue(render(HouseDemo.Scenario.MILK).has("#MilkHint.Visible", "true"));
+    }
+
+    @Test
+    void moveIsHiddenWithoutAnotherHouseWithRoom() {
+        assertTrue(render(HouseDemo.Scenario.TYPICAL).has("#MoveButton.Visible", "false"));
+        Recorder full = render(HouseDemo.Scenario.FULL);
+        assertTrue(full.has("#MoveButton.Visible", "true"));
+        assertTrue(full.has("#MoveCard.Visible", "false"));
+        Recorder move = render(HouseDemo.Scenario.MOVE);
+        assertTrue(move.has("#MoveCard.Visible", "true"));
+        assertTrue(move.has("#DetailCard.Visible", "false"));
+        assertEquals(2, move.count("\"selector\":\"#MoveList\",\"text\":\"CozyRanch/HouseMoveRow.ui\""), "the full coop is left out");
+    }
+
+    @Test
+    void firstResidentIsSelectedByDefault() {
+        Recorder ui = render(HouseDemo.Scenario.FULL);
+        assertTrue(ui.has("#ResidentList[0] #RSelected.Visible", "true"));
+        assertTrue(ui.has("#ResidentList[1] #RSelected.Visible", "false"));
+        assertTrue(ui.has("#DetailName.TextSpans", "{\"RawText\":\"Princess Featherbottom\"}"));
+    }
+
+    @Test
+    void personalityAndActiveFeedBonusShow() {
+        Recorder ui = render(HouseDemo.Scenario.PERSONALITY);
+        assertTrue(ui.has("#ResidentList[0] #RPersonality.TextSpans", "{\"MessageId\":\"" + HouseView.PERSONALITY_LANG + "playful\"}"));
+        assertTrue(ui.has("#ResidentList[0] #RFeedText.TextSpans", "{\"MessageId\":\"cozyranch_houseui.feed.hearty\"}"));
+        assertTrue(ui.has("#ResidentList[2] #RFeed.Visible", "false"), "Rosie's sweet feed has worn off");
+        assertTrue(ui.has("#ResidentList[0] #RPersonality.Visible", "true"));
+        assertTrue(render(HouseDemo.Scenario.TYPICAL).has("#ResidentList[0] #RPersonality.Visible", "false"));
+    }
+
+    @Test
+    void moveTargetsAreSameOwnerSpeciesWorldWithRoom() {
+        HouseRecord a = house("cow", "default", 4), b = house("cow", "default", 4);
+        assertTrue(HouseView.canMoveTo(a, b, 3));
+        assertFalse(HouseView.canMoveTo(a, b, 4));
+        assertFalse(HouseView.canMoveTo(a, a, 0));
+        assertFalse(HouseView.canMoveTo(a, house("pig", "default", 4), 0));
+        assertFalse(HouseView.canMoveTo(a, house("cow", "other", 4), 0));
+        HouseRecord stranger = house("cow", "default", 4);
+        stranger.ownerId = UUID.randomUUID();
+        assertFalse(HouseView.canMoveTo(a, stranger, 0));
+    }
+
+    @Test
+    void locateSaysWhereAndHowFar() {
+        Txt name = Txt.raw("Daisy");
+        Locate.Fix me = new Locate.Fix(0, 64, 0, true);
+        assertEquals("cozyranch_houseui.locate.inside", Locate.describe(name, true, AnimalRecord.State.ACTIVE, true, null, me).key());
+        assertEquals("cozyranch_houseui.locate.lost", Locate.describe(name, false, AnimalRecord.State.MISSING, true, null, me).key());
+        assertEquals("cozyranch_houseui.locate.elsewhere", Locate.describe(name, false, AnimalRecord.State.ACTIVE, false, null, me).key());
+        assertEquals("cozyranch_houseui.locate.near", Locate.describe(name, false, AnimalRecord.State.ACTIVE, true, new Locate.Fix(1, 64, 1, true), me).key());
+        Txt far = Locate.describe(name, false, AnimalRecord.State.ACTIVE, true, new Locate.Fix(30, 64, -40, true), me);
+        assertEquals("cozyranch_houseui.locate.far", far.key());
+        assertEquals(50, far.params().get("distance"));
+        assertEquals("cozyranch_houseui.dir.northeast", ((Txt) far.params().get("direction")).key());
+        assertEquals("cozyranch_houseui.locate.last", Locate.describe(name, false, AnimalRecord.State.ACTIVE, true, new Locate.Fix(0, 64, 20, false), me).key());
+        assertEquals("north", Locate.compass(0, -5));
+        assertEquals("east", Locate.compass(5, 0));
+        assertEquals("south", Locate.compass(0, 5));
+        assertEquals("west", Locate.compass(-5, 0));
+        assertEquals("southwest", Locate.compass(-5, 5));
+    }
+
+    static HouseRecord house(String species, String world, int capacity) {
+        HouseRecord h = new HouseRecord();
+        h.houseId = UUID.randomUUID();
+        h.ownerId = PLAYER;
+        h.speciesId = species;
+        h.worldName = world;
+        h.capacity = capacity;
+        return h;
     }
 
     /** What {@code Item.getTranslationKey} returns for a house item: its TranslationProperties name. */
@@ -200,7 +318,7 @@ class HousePageLayoutTest {
 
         @Override public void text(String selector, Txt text) { commands.add(setCmd(selector + ".TextSpans", message(text))); }
 
-        @Override public void click(String selector, String action, String animal) {}
+        @Override public void click(String selector, String action, String animal, String house) {}
 
         @Override public void clickWithField(String selector, String action, String fieldSelector) {}
 

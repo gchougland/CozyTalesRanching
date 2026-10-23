@@ -4,10 +4,16 @@ import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.house.HouseService;
+import com.hypixel.hytale.component.Ref;
+import com.hypixel.hytale.component.Store;
+import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
+import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.joml.Vector3d;
 
 /** Where the page reads a house and its animals and sends its actions: the real registries, or the test command's demo. */
 public interface HouseSource {
@@ -23,7 +29,28 @@ public interface HouseSource {
 
     @Nonnull HouseService service();
 
-    /** Reads {@code Ranch}: the persistent registries and whatever house service is installed. */
+    /** Item id to count waiting in the house, in display order. */
+    @Nonnull Map<String, Integer> stored(@Nonnull HouseRecord house);
+
+    /** World thread. Moves what fits into the player's inventory; returns how many items moved. */
+    int collect(@Nonnull Ref<EntityStore> player, @Nonnull Store<EntityStore> store, @Nonnull HouseRecord house);
+
+    /** The owner's other houses a resident of {@code house} could move to (see {@link HouseView#canMoveTo}). */
+    @Nonnull List<HouseRecord> moveTargets(@Nonnull HouseRecord house);
+
+    /** World thread. Opens the Rancher's Journal at the species; false if nothing opened. */
+    boolean openJournal(@Nonnull Ref<EntityStore> player, @Nonnull Store<EntityStore> store, @Nonnull String speciesId);
+
+    /** World thread. The chat line for Locate. */
+    @Nonnull Txt locate(@Nonnull AnimalRecord animal, @Nonnull Txt name, @Nonnull Ref<EntityStore> player, @Nonnull Store<EntityStore> store);
+
+    /** Selection and picker state the page opens with. */
+    @Nonnull
+    default HouseView.PageState initialState() {
+        return HouseView.PageState.NONE;
+    }
+
+    /** Reads {@code Ranch}: the persistent registries and whatever house service, product storage and journal are installed. */
     static HouseSource live(@Nonnull UUID houseId) {
         return new HouseSource() {
             @Nullable @Override
@@ -50,7 +77,52 @@ public interface HouseSource {
             public HouseService service() {
                 return Ranch.houseService();
             }
+
+            @Nonnull @Override
+            public Map<String, Integer> stored(@Nonnull HouseRecord house) {
+                return Ranch.produce().stored(house.houseId);
+            }
+
+            @Override
+            public int collect(@Nonnull Ref<EntityStore> player, @Nonnull Store<EntityStore> store, @Nonnull HouseRecord house) {
+                return Ranch.produce().collect(player, store, house);
+            }
+
+            @Nonnull @Override
+            public List<HouseRecord> moveTargets(@Nonnull HouseRecord house) {
+                if (house.ownerId == null) return List.of();
+                return Ranch.houses().ownedBy(house.ownerId).stream()
+                    .filter(h -> HouseView.canMoveTo(house, h, Ranch.animals().inHouse(h.houseId).size()))
+                    .toList();
+            }
+
+            @Override
+            public boolean openJournal(@Nonnull Ref<EntityStore> player, @Nonnull Store<EntityStore> store, @Nonnull String speciesId) {
+                return Ranch.journal().open(player, store, speciesId);
+            }
+
+            @Nonnull @Override
+            public Txt locate(@Nonnull AnimalRecord animal, @Nonnull Txt name, @Nonnull Ref<EntityStore> player, @Nonnull Store<EntityStore> store) {
+                EntityStore entities = store.getExternalData();
+                boolean sameWorld = entities.getWorld().getName().equals(animal.worldName);
+                Locate.Fix animalFix = null;
+                if (sameWorld && animal.state == AnimalRecord.State.ACTIVE && animal.entityUuid != null) {
+                    Ref<EntityStore> ref = entities.getRefFromUUID(animal.entityUuid);
+                    TransformComponent t = ref != null && ref.isValid() ? store.getComponent(ref, TransformComponent.getComponentType()) : null;
+                    if (t != null) animalFix = fix(t.getPosition(), true);
+                }
+                if (animalFix == null && (animal.lastX != 0 || animal.lastY != 0 || animal.lastZ != 0)) {
+                    animalFix = new Locate.Fix(animal.lastX, animal.lastY, animal.lastZ, false);
+                }
+                TransformComponent pt = store.getComponent(player, TransformComponent.getComponentType());
+                return Locate.describe(name, service().isInside(animal.animalId), animal.state, sameWorld, animalFix,
+                    pt == null ? null : fix(pt.getPosition(), true));
+            }
         };
+    }
+
+    private static Locate.Fix fix(@Nonnull Vector3d p, boolean live) {
+        return new Locate.Fix(p.x, p.y, p.z, live);
     }
 
     static boolean isFollower(@Nonnull AnimalRecord r, @Nonnull HouseRecord house, @Nonnull UUID player) {

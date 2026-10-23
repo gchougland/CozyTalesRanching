@@ -1,4 +1,5 @@
 $C = "../Common.ui";
+$S = "../Sounds.ui";
 $H = "HouseStyles.ui";
 
 @Heart = Group {
@@ -6,89 +7,118 @@ $H = "HouseStyles.ui";
   Background: "HouseHeartEmpty.png";
 };
 
-Group #ResidentRow {
-  LayoutMode: Left;
+@Pill = Group {
+  LayoutMode: Center;
+  Anchor: (Height: 18, Right: 8, Top: 1);
+  Padding: (Horizontal: 7);
+  Visible: false;
+};
+
+@PillText = LabelStyle(FontSize: 12, RenderBold: true, RenderUppercase: true, VerticalAlignment: Center);
+
+Button #ResidentRow {
+  LayoutMode: Full;
   Anchor: (Height: 64, Bottom: 6);
-  Padding: (Horizontal: 12);
-  Background: $H.@RowBackground;
+  Style: (
+    Default: (Background: $H.@RowBackground),
+    Hovered: (Background: (Color: #3a2c20(0.8))),
+    Pressed: (Background: (Color: #45352a(0.85))),
+    Sounds: $S.@ButtonsLight
+  );
 
-  Group #RFace {
-    Anchor: (Width: 32, Height: 32, Right: 12);
-
-    Group #RFaceHappy { Anchor: (Width: 32, Height: 32); Background: "HouseFaceHappy.png"; Visible: false; }
-    Group #RFaceOkay { Anchor: (Width: 32, Height: 32); Background: "HouseFaceOkay.png"; Visible: false; }
-    Group #RFaceSad { Anchor: (Width: 32, Height: 32); Background: "HouseFaceSad.png"; Visible: false; }
+  Group #RSelected {
+    Anchor: (Full: 0);
+    Background: (Color: #e8b25c(0.08));
+    OutlineSize: 1;
+    OutlineColor: #e8b25c(0.75);
+    Visible: false;
   }
 
-  Group #RInfo {
-    LayoutMode: Middle;
-    FlexWeight: 1;
-    Anchor: (Right: 10);
+  Group #RContent {
+    LayoutMode: Left;
+    Anchor: (Full: 0);
+    Padding: (Horizontal: 12);
 
-    Label #RName {
-      Style: $H.@NameStyle;
-      Text: "";
+    Group #RFace {
+      Anchor: (Width: 32, Height: 32, Right: 12);
+
+      Group #RFaceHappy { Anchor: (Width: 32, Height: 32); Background: "HouseFaceHappy.png"; Visible: false; }
+      Group #RFaceOkay { Anchor: (Width: 32, Height: 32); Background: "HouseFaceOkay.png"; Visible: false; }
+      Group #RFaceSad { Anchor: (Width: 32, Height: 32); Background: "HouseFaceSad.png"; Visible: false; }
     }
 
-    Group #RLine {
-      LayoutMode: Left;
-      Anchor: (Height: 20, Top: 3);
+    Group #RInfo {
+      LayoutMode: Middle;
+      FlexWeight: 1;
+      Anchor: (Right: 10);
 
-      Group #RBaby {
-        LayoutMode: Center;
-        Anchor: (Height: 18, Right: 8, Top: 1);
-        Padding: (Horizontal: 7);
-        Background: (Color: #e88a9a(0.28));
-        Visible: false;
+      Label #RName {
+        Style: $H.@NameStyle;
+        Text: "";
+      }
 
-        Label #RBabyText {
-          Style: (FontSize: 12, TextColor: #ffd6de, RenderBold: true, RenderUppercase: true, VerticalAlignment: Center);
+      Group #RLine {
+        LayoutMode: Left;
+        Anchor: (Height: 20, Top: 3);
+
+        @Pill #RBaby {
+          Background: (Color: #e88a9a(0.28));
+
+          Label #RBabyText {
+            Style: (...@PillText, TextColor: #ffd6de);
+            Text: "";
+          }
+        }
+
+        @Pill #RFeed {
+          Background: (Color: #8fcf7a(0.22));
+
+          Label #RFeedText {
+            Style: (...@PillText, TextColor: #d9f5c8);
+            Text: "";
+          }
+        }
+
+        Label #RMood {
+          Style: (...$H.@BodyStyle, FontSize: 13, RenderBold: true, VerticalAlignment: Center);
+          Anchor: (Right: 10);
+          Text: "";
+        }
+
+        Label #RPersonality {
+          Style: (FontSize: 13, TextColor: #cdb9e6, VerticalAlignment: Center);
+          Anchor: (Right: 10);
+          Text: "";
+        }
+
+        Label #RTraits {
+          FlexWeight: 1;
+          Style: (...$H.@MutedStyle, VerticalAlignment: Center);
           Text: "";
         }
       }
+    }
 
-      Label #RMood {
-        Style: (...$H.@BodyStyle, FontSize: 13, RenderBold: true, VerticalAlignment: Center);
-        Anchor: (Right: 10);
-        Text: "";
+    Group #RHeartCol {
+      LayoutMode: Middle;
+      Anchor: (Width: 100);
+
+      Group #RHearts {
+        LayoutMode: Left;
+        Anchor: (Width: 100, Height: 18);
+
+        @Heart { Group #RHeart1 { Background: "HouseHeartFull.png"; Visible: false; } }
+        @Heart { Group #RHeart2 { Background: "HouseHeartFull.png"; Visible: false; } }
+        @Heart { Group #RHeart3 { Background: "HouseHeartFull.png"; Visible: false; } }
+        @Heart { Group #RHeart4 { Background: "HouseHeartFull.png"; Visible: false; } }
+        @Heart { Group #RHeart5 { Background: "HouseHeartFull.png"; Visible: false; } }
       }
 
-      Label #RTraits {
-        FlexWeight: 1;
-        Style: (...$H.@MutedStyle, VerticalAlignment: Center);
+      Label #RWhere {
+        Style: (...$H.@MutedStyle, FontSize: 12, HorizontalAlignment: Center);
+        Anchor: (Top: 5);
         Text: "";
       }
     }
-  }
-
-  Group #RHeartCol {
-    LayoutMode: Middle;
-    Anchor: (Width: 100, Right: 10);
-
-    Group #RHearts {
-      LayoutMode: Left;
-      Anchor: (Width: 100, Height: 18);
-
-      @Heart { Group #RHeart1 { Background: "HouseHeartFull.png"; Visible: false; } }
-      @Heart { Group #RHeart2 { Background: "HouseHeartFull.png"; Visible: false; } }
-      @Heart { Group #RHeart3 { Background: "HouseHeartFull.png"; Visible: false; } }
-      @Heart { Group #RHeart4 { Background: "HouseHeartFull.png"; Visible: false; } }
-      @Heart { Group #RHeart5 { Background: "HouseHeartFull.png"; Visible: false; } }
-    }
-
-    Label #RWhere {
-      Style: (...$H.@MutedStyle, FontSize: 12, HorizontalAlignment: Center);
-      Anchor: (Top: 5);
-      Text: "";
-    }
-  }
-
-  $C.@SmallSecondaryTextButton #RCallBack {
-    @Anchor = (Width: 112, Right: 6);
-  }
-
-  $C.@SmallTertiaryTextButton #RMoveOut {
-    @Anchor = (Width: 112);
-    @Text = "";
   }
 }

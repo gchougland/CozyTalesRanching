@@ -31,9 +31,10 @@ final class ServerUiOut implements UiOut {
     @Override public void text(@Nonnull String selector, @Nonnull Txt text) { commands.set(selector + ".TextSpans", message(text)); }
 
     @Override
-    public void click(@Nonnull String selector, @Nonnull String action, @Nonnull String animal) {
+    public void click(@Nonnull String selector, @Nonnull String action, @Nonnull String animal, @Nonnull String house) {
         EventData data = EventData.of("Action", action);
         if (!animal.isEmpty()) data = data.append("Animal", animal);
+        if (!house.isEmpty()) data = data.append("House", house);
         events.addEventBinding(CustomUIEventBindingType.Activating, selector, data, false);
     }
 

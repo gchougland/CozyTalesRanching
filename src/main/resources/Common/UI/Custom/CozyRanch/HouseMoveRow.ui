@@ -1,0 +1,26 @@
+$C = "../Common.ui";
+$H = "HouseStyles.ui";
+
+Group #MoveRow {
+  LayoutMode: Left;
+  Anchor: (Height: 38, Bottom: 4);
+  Padding: (Horizontal: 10);
+  Background: $H.@RowBackground;
+
+  Label #MVName {
+    FlexWeight: 1;
+    Style: (...$H.@NameStyle, FontSize: 14, VerticalAlignment: Center);
+    Anchor: (Right: 10);
+    Text: "";
+  }
+
+  Label #MVCount {
+    Style: (...$H.@MutedStyle, FontSize: 13, VerticalAlignment: Center);
+    Anchor: (Right: 12);
+    Text: "";
+  }
+
+  $C.@SmallSecondaryTextButton #MVGo {
+    @Anchor = (Width: 112, Top: 3);
+  }
+}
