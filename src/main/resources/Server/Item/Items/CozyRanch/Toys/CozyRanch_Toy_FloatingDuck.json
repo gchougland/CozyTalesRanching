@@ -3,7 +3,7 @@
     "Name": "cozyranch_care.items.CozyRanch_Toy_FloatingDuck.name",
     "Description": "cozyranch_care.items.CozyRanch_Toy_FloatingDuck.description"
   },
-  "Icon": "Icons/ItemsGenerated/WinterHoliday_Ornament_Bauble.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Toy_FloatingDuck.png",
   "Categories": [
     "Furniture.Furniture"
   ],
@@ -33,43 +33,33 @@
     "Material": "Solid",
     "DrawType": "Model",
     "Opacity": "Transparent",
-    "CustomModel": "Items/Hypixel/Event_Decoration/Winter Holiday_Props/WinterHoliday_Ornamet_Bauble.blockymodel",
+    "CustomModel": "Blocks/CozyRanch/Toys/Toy_FloatingDuck.blockymodel",
     "CustomModelTexture": [
       {
-        "Texture": "Items/Hypixel/Event_Decoration/Winter Holiday_Props/WinterHoliday_Ornamet_Bauble3_Texture.png",
+        "Texture": "Blocks/CozyRanch/Toys/Toy_FloatingDuck_Texture.png",
         "Weight": 1
       }
     ],
     "VariantRotation": "NESW",
-    "HitboxType": "Food_Medium",
+    "HitboxType": "CozyRanch_Toy_FloatingDuck",
     "Gathering": {
       "Breaking": {
         "GatherType": "Benches",
         "ItemId": "CozyRanch_Toy_FloatingDuck"
       }
     },
-    "Support": {
-      "Down": [
-        {
-          "FaceType": "Full"
-        },
-        {
-          "FluidId": "Water_Source"
-        }
-      ]
-    },
     "BlockParticleSetId": "Wood",
-    "ParticleColor": "#E8C23A",
+    "ParticleColor": "#E2B848",
     "BlockSoundSetId": "Wood",
     "PhysicalMaterialId": "Wood",
-    "TextureComputedColor": "#E8C23A"
+    "TextureComputedColor": "#E2B848"
   },
   "PlayerAnimationsId": "Block",
   "IconProperties": {
-    "Scale": 0.58823,
+    "Scale": 0.6,
     "Translation": [
       0,
-      -13.5
+      -12
     ],
     "Rotation": [
       22.5,
@@ -77,7 +67,7 @@
       22.5
     ]
   },
-  "Scale": 1,
+  "Scale": 0.5,
   "MaxStack": 16,
   "ItemSoundSetId": "ISS_Blocks_Wood"
 }

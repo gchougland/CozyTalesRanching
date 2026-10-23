@@ -3,7 +3,7 @@
     "Name": "cozyranch_care.items.CozyRanch_Toy_Log.name",
     "Description": "cozyranch_care.items.CozyRanch_Toy_Log.description"
   },
-  "Icon": "Icons/ItemsGenerated/Wood_Oak_Trunk_Half.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Toy_Log.png",
   "Categories": [
     "Furniture.Furniture"
   ],
@@ -29,15 +29,15 @@
     "Material": "Solid",
     "DrawType": "Model",
     "Opacity": "Transparent",
-    "CustomModel": "Blocks/Structures/Base_Shapes/HalfBlock.blockymodel",
+    "CustomModel": "Blocks/CozyRanch/Toys/Toy_Log.blockymodel",
     "CustomModelTexture": [
       {
-        "Texture": "BlockTextures/Wood_Trunk_Oak_Side.png",
+        "Texture": "Blocks/CozyRanch/Toys/Toy_Log_Texture.png",
         "Weight": 1
       }
     ],
     "VariantRotation": "NESW",
-    "HitboxType": "Block_Half",
+    "HitboxType": "CozyRanch_Toy_Log",
     "Gathering": {
       "Breaking": {
         "GatherType": "Benches",
@@ -52,17 +52,17 @@
       ]
     },
     "BlockParticleSetId": "Wood",
-    "ParticleColor": "#512B1D",
+    "ParticleColor": "#6E5038",
     "BlockSoundSetId": "Wood",
     "PhysicalMaterialId": "Wood",
-    "TextureComputedColor": "#512B1D"
+    "TextureComputedColor": "#6E5038"
   },
   "PlayerAnimationsId": "Block",
   "IconProperties": {
-    "Scale": 0.58823,
+    "Scale": 0.43,
     "Translation": [
-      0,
-      -13.5
+      13.2,
+      -10.8
     ],
     "Rotation": [
       22.5,
@@ -70,7 +70,7 @@
       22.5
     ]
   },
-  "Scale": 1,
+  "Scale": 0.5,
   "MaxStack": 16,
   "ItemSoundSetId": "ISS_Blocks_Wood"
 }

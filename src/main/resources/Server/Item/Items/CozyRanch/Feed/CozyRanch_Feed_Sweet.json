@@ -8,12 +8,12 @@
     "Items.Foods"
   ],
   "PlayerAnimationsId": "Item",
-  "Icon": "Icons/ItemsGenerated/Tool_Feedbag.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Feed_Sweet.png",
   "IconProperties": {
-    "Scale": 0.5,
+    "Scale": 0.9,
     "Translation": [
       0,
-      -15
+      -8
     ],
     "Rotation": [
       22.5,
@@ -21,8 +21,8 @@
       22.5
     ]
   },
-  "Model": "Items/Tools/Feedbag/Feedbag.blockymodel",
-  "Texture": "Items/Tools/Feedbag/Feedbag_Texture.png",
+  "Model": "Items/CozyRanch/Feed/FeedSack.blockymodel",
+  "Texture": "Items/CozyRanch/Feed/FeedSack_Sweet_Texture.png",
   "Scale": 1,
   "Recipe": {
     "Input": [
@@ -66,5 +66,6 @@
     ]
   },
   "MaxStack": 25,
-  "DropOnDeath": true
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Cloth"
 }

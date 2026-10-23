@@ -1,0 +1,710 @@
+{
+  "cases": [
+    {
+      "name": "art3 gate",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0,
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "art3 textures",
+      "description": "Painted, not pixelled: no texture of the toys, butcher block, journal, feed sacks or truffle FAILs the style rules.",
+      "steps": [
+        {
+          "tool": "texture_check",
+          "name": "Toy_Ball texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_Ball_Texture.png",
+            "category": "blockmodel",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_Ball.blockymodel"
+            }
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Toy_ScratchingPost texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_ScratchingPost_Texture.png",
+            "category": "blockmodel",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_ScratchingPost.blockymodel"
+            }
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Toy_HangingBell texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_HangingBell_Texture.png",
+            "category": "blockmodel",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_HangingBell.blockymodel"
+            }
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Toy_FloatingDuck texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_FloatingDuck_Texture.png",
+            "category": "blockmodel",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_FloatingDuck.blockymodel"
+            }
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Toy_Log texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_Log_Texture.png",
+            "category": "blockmodel",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_Log.blockymodel"
+            }
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "ButcherBlock texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/ButcherBlock/ButcherBlock_Texture.png",
+            "category": "blockmodel",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/ButcherBlock/ButcherBlock.blockymodel"
+            }
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Journal texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Journal/Journal_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Journal/Journal.blockymodel"
+            }
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Feed_Hearty texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack_Hearty_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack.blockymodel"
+            }
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Feed_Sweet texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack_Sweet_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack.blockymodel"
+            }
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Feed_Breeders texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack_Breeders_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack.blockymodel"
+            }
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Feed_Premium texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack_Premium_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack.blockymodel"
+            }
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Truffle texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Truffle_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Truffle.blockymodel"
+            }
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "art3 models",
+      "description": "Each model with its texture: no faces outside the texture, size inside its footprint, a golden from the front three-quarter.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "Toy_Ball",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_Ball.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_Ball_Texture.png"
+            },
+            "views": [
+              "three_quarter"
+            ],
+            "grid": true,
+            "size": 256
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 1
+              },
+              "height": {
+                "$lte": 1.02
+              },
+              "depth": {
+                "$lte": 1
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art3/CozyRanch_Toy_Ball.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Toy_ScratchingPost",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_ScratchingPost.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_ScratchingPost_Texture.png"
+            },
+            "views": [
+              "three_quarter"
+            ],
+            "grid": true,
+            "size": 256
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 1
+              },
+              "height": {
+                "$lte": 1.02
+              },
+              "depth": {
+                "$lte": 1
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art3/CozyRanch_Toy_ScratchingPost.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Toy_HangingBell",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_HangingBell.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_HangingBell_Texture.png"
+            },
+            "views": [
+              "three_quarter"
+            ],
+            "grid": true,
+            "size": 256
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 1.05
+              },
+              "height": {
+                "$lte": 1.02
+              },
+              "depth": {
+                "$lte": 0.4
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art3/CozyRanch_Toy_HangingBell.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Toy_FloatingDuck",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_FloatingDuck.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_FloatingDuck_Texture.png"
+            },
+            "views": [
+              "three_quarter"
+            ],
+            "grid": true,
+            "size": 256
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 1
+              },
+              "height": {
+                "$lte": 1.02
+              },
+              "depth": {
+                "$lte": 1
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art3/CozyRanch_Toy_FloatingDuck.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Toy_Log",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_Log.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Toys/Toy_Log_Texture.png"
+            },
+            "views": [
+              "three_quarter"
+            ],
+            "grid": true,
+            "size": 256
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 1.9
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.8
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art3/CozyRanch_Toy_Log.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "ButcherBlock",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/ButcherBlock/ButcherBlock.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/ButcherBlock/ButcherBlock_Texture.png"
+            },
+            "views": [
+              "three_quarter"
+            ],
+            "grid": true,
+            "size": 256
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.85
+              },
+              "height": {
+                "$lte": 1.02
+              },
+              "depth": {
+                "$lte": 0.85
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art3/CozyRanch_ButcherBlock.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Journal",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Journal/Journal.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Journal/Journal_Texture.png"
+            },
+            "views": [
+              "three_quarter"
+            ],
+            "grid": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.4
+              },
+              "height": {
+                "$lte": 0.4
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art3/CozyRanch_Journal.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Feed_Hearty",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack_Hearty_Texture.png"
+            },
+            "views": [
+              "three_quarter"
+            ],
+            "grid": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.4
+              },
+              "height": {
+                "$lte": 0.4
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art3/CozyRanch_Feed_Hearty.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Feed_Sweet",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack_Sweet_Texture.png"
+            },
+            "views": [
+              "three_quarter"
+            ],
+            "grid": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.4
+              },
+              "height": {
+                "$lte": 0.4
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art3/CozyRanch_Feed_Sweet.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Feed_Breeders",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack_Breeders_Texture.png"
+            },
+            "views": [
+              "three_quarter"
+            ],
+            "grid": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.4
+              },
+              "height": {
+                "$lte": 0.4
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art3/CozyRanch_Feed_Breeders.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Feed_Premium",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Feed/FeedSack_Premium_Texture.png"
+            },
+            "views": [
+              "three_quarter"
+            ],
+            "grid": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.4
+              },
+              "height": {
+                "$lte": 0.4
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art3/CozyRanch_Feed_Premium.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Truffle",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Truffle.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Truffle_Texture.png"
+            },
+            "views": [
+              "three_quarter"
+            ],
+            "grid": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.4
+              },
+              "height": {
+                "$lte": 0.4
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art3/CozyRanch_Truffle.png"
+        }
+      ]
+    }
+  ]
+}

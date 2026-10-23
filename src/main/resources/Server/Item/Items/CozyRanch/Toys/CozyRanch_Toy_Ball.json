@@ -3,7 +3,7 @@
     "Name": "cozyranch_care.items.CozyRanch_Toy_Ball.name",
     "Description": "cozyranch_care.items.CozyRanch_Toy_Ball.description"
   },
-  "Icon": "Icons/ItemsGenerated/WinterHoliday_Ornament_Bauble.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Toy_Ball.png",
   "Categories": [
     "Furniture.Furniture"
   ],
@@ -33,15 +33,15 @@
     "Material": "Solid",
     "DrawType": "Model",
     "Opacity": "Transparent",
-    "CustomModel": "Items/Hypixel/Event_Decoration/Winter Holiday_Props/WinterHoliday_Ornamet_Bauble.blockymodel",
+    "CustomModel": "Blocks/CozyRanch/Toys/Toy_Ball.blockymodel",
     "CustomModelTexture": [
       {
-        "Texture": "Items/Hypixel/Event_Decoration/Winter Holiday_Props/WinterHoliday_Ornamet_Bauble1_Texture.png",
+        "Texture": "Blocks/CozyRanch/Toys/Toy_Ball_Texture.png",
         "Weight": 1
       }
     ],
     "VariantRotation": "NESW",
-    "HitboxType": "Food_Medium",
+    "HitboxType": "CozyRanch_Toy_Ball",
     "Gathering": {
       "Breaking": {
         "GatherType": "Benches",
@@ -55,18 +55,18 @@
         }
       ]
     },
-    "BlockParticleSetId": "Dust",
-    "ParticleColor": "#C8553D",
+    "BlockParticleSetId": "Grass",
+    "ParticleColor": "#C4573E",
     "BlockSoundSetId": "Cloth",
     "PhysicalMaterialId": "Cloth",
-    "TextureComputedColor": "#C8553D"
+    "TextureComputedColor": "#C4573E"
   },
   "PlayerAnimationsId": "Block",
   "IconProperties": {
-    "Scale": 0.58823,
+    "Scale": 0.6,
     "Translation": [
       0,
-      -13.5
+      -12
     ],
     "Rotation": [
       22.5,
@@ -74,7 +74,7 @@
       22.5
     ]
   },
-  "Scale": 1,
+  "Scale": 0.5,
   "MaxStack": 16,
-  "ItemSoundSetId": "ISS_Blocks_Wood"
+  "ItemSoundSetId": "ISS_Blocks_Soft"
 }

@@ -38,16 +38,15 @@
       ]
     }
   },
-  "Icon": "Icons/ItemsGenerated/Plant_Crop_Potato.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Truffle.png",
   "BlockType": {
     "Material": "Empty",
     "DrawType": "Model",
-    "CustomModel": "Resources/Ingredients/Potato.blockymodel",
-    "CustomModelScale": 0.6,
+    "CustomModel": "Items/CozyRanch/Produce/Truffle.blockymodel",
     "HitboxType": "Food_Medium",
     "CustomModelTexture": [
       {
-        "Texture": "Resources/Ingredients/Potato_Texture.png",
+        "Texture": "Items/CozyRanch/Produce/Truffle_Texture.png",
         "Weight": 1
       }
     ],
@@ -55,15 +54,15 @@
     "TextureComputedColor": "#5A3F28"
   },
   "IconProperties": {
-    "Scale": 0.75,
+    "Scale": 1.1,
     "Translation": [
-      -0.6,
-      -3.6
+      0,
+      -5
     ],
     "Rotation": [
-      36,
+      22.5,
       45,
-      347.6
+      22.5
     ]
   },
   "ResourceTypes": [
