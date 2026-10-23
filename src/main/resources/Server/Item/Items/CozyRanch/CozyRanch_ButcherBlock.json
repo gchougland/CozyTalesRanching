@@ -1,0 +1,91 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_rehome.items.CozyRanch_ButcherBlock.name",
+    "Description": "cozyranch_rehome.items.CozyRanch_ButcherBlock.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_ButcherBlock.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "ItemLevel": 5,
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_All",
+        "Quantity": 8
+      },
+      {
+        "ItemId": "Ingredient_Bar_Iron",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Farming"
+        ],
+        "Id": "Farmingbench",
+        "RequiredTierLevel": 1
+      }
+    ],
+    "TimeSeconds": 2
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/CozyRanch/ButcherBlock/ButcherBlock.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/ButcherBlock/ButcherBlock_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_ButcherBlock"
+      }
+    },
+    "BlockParticleSetId": "Wood",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "ParticleColor": "#B88A56",
+    "HitboxType": "CozyRanch_ButcherBlock",
+    "InteractionHint": "cozyranch_rehome.hint.butcher",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CozyRanchButcher"
+          }
+        ]
+      }
+    },
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.5,
+    "Translation": [
+      0,
+      -15
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 0.5,
+  "MaxStack": 16,
+  "ItemSoundSetId": "ISS_Blocks_Wood"
+}

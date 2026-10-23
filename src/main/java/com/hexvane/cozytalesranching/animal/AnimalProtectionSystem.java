@@ -2,6 +2,7 @@ package com.hexvane.cozytalesranching.animal;
 
 import com.hexvane.cozytalesranching.compat.CompatGuard;
 import com.hexvane.cozytalesranching.config.RanchConfig;
+import com.hexvane.cozytalesranching.rehome.RehomeSettings;
 import com.hypixel.hytale.component.ArchetypeChunk;
 import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.ComponentType;
@@ -16,17 +17,26 @@ import com.hypixel.hytale.server.core.modules.entity.damage.DamageEventSystem;
 import com.hypixel.hytale.server.core.modules.entity.damage.DamageModule;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.entities.NPCEntity;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
  * Cancels damage to owned ranch animals: from every player (the owner included, so a stray swing never
- * kills a pet) when {@code ProtectOwnedAnimals} is on, and from other creatures when
- * {@code ProtectFromHostileMobs} is on. Falls, fire and drowning still hurt; recovery covers deaths.
+ * kills a pet) when {@code ProtectOwnedAnimals} is on, and from other creatures, anywhere, when
+ * {@code ProtectFromHostileMobs} is on (in {@code RanchConfig}, or rehome's {@link RehomeSettings}, on by default).
+ * Falls, fire and drowning still hurt; recovery covers deaths.
  * Unowned adopted animals are left as vanilla had them. Runs only on damage events, only for entities
  * carrying the ranch marker.
  */
 final class AnimalProtectionSystem extends DamageEventSystem {
+    private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
+    private static final long MOB_LOG_INTERVAL_MS = 10_000;
+    private static final Map<UUID, Long> MOB_LOGGED = new ConcurrentHashMap<>();
+
     private final PersistentAnimalRegistry registry;
     private final ComponentType<EntityStore, AnimalMarker> markerType;
     private final ComponentType<EntityStore, UUIDComponent> uuidType = UUIDComponent.getComponentType();
@@ -56,7 +66,7 @@ final class AnimalProtectionSystem extends DamageEventSystem {
         if (damage.isCancelled()) return;
         RanchConfig config = RanchConfig.get();
         boolean players = config.protectOwnedAnimals();
-        boolean mobs = config.protectFromHostileMobs();
+        boolean mobs = config.protectFromHostileMobs() || RehomeSettings.protectFromHostileMobs();
         if (!players && !mobs) return;
         if (!(damage.getSource() instanceof Damage.EntitySource source)) return;
 
@@ -72,6 +82,20 @@ final class AnimalProtectionSystem extends DamageEventSystem {
         Ref<EntityStore> attacker = source.getRef();
         if (!attacker.isValid()) return;
         boolean fromPlayer = cb.getComponent(attacker, Player.getComponentType()) != null;
-        if (fromPlayer ? players : mobs) damage.setCancelled(true);
+        if (fromPlayer ? players : mobs) {
+            damage.setCancelled(true);
+            if (!fromPlayer) noteMobBlocked(r, attacker, cb, damage.getAmount());
+        }
+    }
+
+    /** One INFO line per animal per {@link #MOB_LOG_INTERVAL_MS}, so a mob gnawing at a cow does not flood the log. */
+    private static void noteMobBlocked(@Nonnull AnimalRecord r, @Nonnull Ref<EntityStore> attacker, @Nonnull CommandBuffer<EntityStore> cb, float amount) {
+        long now = System.currentTimeMillis();
+        Long last = MOB_LOGGED.get(r.animalId);
+        if (last != null && now - last < MOB_LOG_INTERVAL_MS) return;
+        MOB_LOGGED.put(r.animalId, now);
+        NPCEntity npc = cb.getComponent(attacker, NPCEntity.getComponentType());
+        String who = npc != null && npc.getRoleName() != null ? npc.getRoleName() : "a creature";
+        LOG.info("Blocked " + amount + " damage from " + who + " to owned " + r.speciesId + " " + r.animalId + " (hostile-mob protection)");
     }
 }
