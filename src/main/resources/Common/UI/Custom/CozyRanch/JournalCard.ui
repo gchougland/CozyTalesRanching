@@ -1,0 +1,21 @@
+$J = "JournalStyles.ui";
+
+Button #CardButton {
+  LayoutMode: Top;
+  Anchor: (Width: 146, Height: 180, Right: 10, Bottom: 10);
+  Padding: (Full: 10);
+  Style: $J.@CardStyle;
+
+  AssetImage #CardArt {
+    HitTestVisible: false;
+    Anchor: (Width: 116, Height: 116);
+    FallbackTexturePath: "UI/Custom/CozyRanch/Journal/Unknown.png";
+  }
+
+  Label #CardName {
+    HitTestVisible: false;
+    Anchor: (Top: 10);
+    Style: $J.@CardNameStyle;
+    Text: "";
+  }
+}

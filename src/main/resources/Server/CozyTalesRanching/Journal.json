@@ -1,0 +1,51 @@
+{
+  "FormatVersion": 1,
+  "UnknownArt": "UI/Custom/CozyRanch/Journal/Unknown.png",
+  "Species": [
+    {
+      "Id": "cow",
+      "Order": 10,
+      "DescriptionKey": "cozyranch_journal.species.cow.desc",
+      "RareKey": "cozyranch_journal.species.cow.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Cow.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/CowSilhouette.png",
+      "Behaviours": ["graze", "tail_swish", "trough_snack", "follow_parent", "socialise", "nap", "toy_ball", "toy_post"]
+    },
+    {
+      "Id": "chicken",
+      "Order": 20,
+      "DescriptionKey": "cozyranch_journal.species.chicken.desc",
+      "RareKey": "cozyranch_journal.species.chicken.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Chicken.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/ChickenSilhouette.png",
+      "Behaviours": ["peck", "dust_bathe", "flap", "trough_snack", "follow_parent", "socialise", "nap", "toy_bell"]
+    },
+    {
+      "Id": "pig",
+      "Order": 30,
+      "DescriptionKey": "cozyranch_journal.species.pig.desc",
+      "RareKey": "cozyranch_journal.species.pig.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Pig.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/PigSilhouette.png",
+      "Behaviours": ["mud_roll", "snuffle", "trough_snack", "follow_parent", "socialise", "nap", "toy_ball", "toy_log"]
+    },
+    {
+      "Id": "sheep",
+      "Order": 40,
+      "DescriptionKey": "cozyranch_journal.species.sheep.desc",
+      "RareKey": "cozyranch_journal.species.sheep.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Sheep.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/SheepSilhouette.png",
+      "Behaviours": ["graze", "pronk", "trough_snack", "follow_parent", "socialise", "nap", "toy_post", "toy_bell"]
+    },
+    {
+      "Id": "frog",
+      "Order": 50,
+      "DescriptionKey": "cozyranch_journal.species.frog.desc",
+      "RareKey": "cozyranch_journal.species.frog.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Frog.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/FrogSilhouette.png",
+      "Behaviours": ["lily_hop", "croak", "socialise", "nap", "toy_duck", "toy_log"]
+    }
+  ]
+}

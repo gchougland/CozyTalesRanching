@@ -1,0 +1,91 @@
+$C = "../Common.ui";
+$J = "JournalStyles.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  Group {
+    LayoutMode: Center;
+
+    $J.@Book #Book {
+      Group #LeftPage {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Background: $J.@PageLeftBackground;
+        Padding: $J.@LeftPagePadding;
+
+        Label #JournalTitle {
+          Style: $J.@TitleStyle;
+          Text: %cozyranch_journal.contents.title;
+        }
+
+        Label #Keeper {
+          Style: $J.@TaglineStyle;
+          Anchor: (Top: 4);
+          Text: "";
+        }
+
+        $J.@Divider {}
+
+        Group #CoverArt {
+          Anchor: (Width: 400, Height: 289);
+          Background: "Journal/Cover.png";
+        }
+
+        Label #Intro {
+          Style: (...$J.@BodyStyle, HorizontalAlignment: Center);
+          Anchor: (Top: 14, Left: 16, Right: 16);
+          Text: %cozyranch_journal.contents.intro;
+        }
+
+        Group { FlexWeight: 1; }
+
+        Label #Progress {
+          Style: (...$J.@BodyStyle, RenderBold: true, HorizontalAlignment: Center);
+          Text: "";
+        }
+
+        Label #MemoryCount {
+          Style: $J.@TaglineStyle;
+          Anchor: (Top: 2);
+          Text: "";
+        }
+
+        Group #LeftNav {
+          LayoutMode: Center;
+          Anchor: (Height: 34, Top: 12);
+
+          $J.@NavButton #MemoriesButton {
+            Anchor: (Width: 200, Height: 34);
+            Text: %cozyranch_journal.nav.memories;
+          }
+        }
+      }
+
+      Group #RightPage {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Background: $J.@PageRightBackground;
+        Padding: $J.@RightPagePadding;
+
+        Label #AnimalsTitle {
+          Style: $J.@HeadingStyle;
+          Anchor: (Top: 6);
+          Text: %cozyranch_journal.contents.animals;
+        }
+
+        $J.@Divider {}
+
+        Group #CardScroll {
+          LayoutMode: TopScrolling;
+          FlexWeight: 1;
+          ScrollbarStyle: $J.@NotesScrollbar;
+
+          Group #Cards {
+            LayoutMode: LeftWrap;
+          }
+        }
+      }
+    }
+  }
+}

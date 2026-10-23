@@ -1,0 +1,9 @@
+$J = "JournalStyles.ui";
+
+Label #NoteLine {
+  Style: $J.@RareStyle;
+  Anchor: (Bottom: 2);
+  Padding: (Horizontal: 8, Vertical: 6);
+  Background: (Color: #e8b25c(0.22));
+  Text: "";
+}

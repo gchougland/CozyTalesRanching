@@ -1,0 +1,7 @@
+$J = "JournalStyles.ui";
+
+Label #NoteLine {
+  Style: $J.@MutedStyle;
+  Anchor: (Bottom: 2);
+  Text: "";
+}

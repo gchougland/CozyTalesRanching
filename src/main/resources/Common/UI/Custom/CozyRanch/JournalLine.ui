@@ -1,0 +1,7 @@
+$J = "JournalStyles.ui";
+
+Label #NoteLine {
+  Style: $J.@BodyStyle;
+  Anchor: (Bottom: 2);
+  Text: "";
+}
