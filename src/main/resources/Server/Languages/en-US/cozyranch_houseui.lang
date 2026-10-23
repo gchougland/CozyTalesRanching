@@ -19,6 +19,46 @@ button.callback = Call back
 button.moveout = Move out
 button.movein = Move in
 button.full = House full
+button.locate = Locate
+button.move = Move
+button.movehere = Move here
+button.cancel = Cancel
+button.collect = Collect
+button.journal = Journal
+
+products.title = Waiting in the house
+products.empty = Nothing yet. Happy residents leave little gifts here.
+products.count = x{count}
+products.more = +{count} more
+products.buckets = Milk needs one empty bucket each. Carry buckets when you collect.
+
+feed.hearty = Hearty feed
+feed.sweet = Sweet feed
+feed.breeders = Breeder's feed
+feed.premium = Premium feed
+feed.other = {name} feed
+
+move.title = Move {name} to:
+move.house.at = {name} at {x}, {z}
+
+locate.inside = {name} is inside the house, snug and safe.
+locate.lost = {name} has wandered off. Call back brings it home.
+locate.elsewhere = {name} is in another world right now.
+locate.unknown = {name} could not be found just now. Try Call back.
+locate.near = {name} is right beside you.
+locate.far = {name} is {distance} blocks {direction} of you.
+locate.last.near = {name} was last seen right beside you.
+locate.last = {name} was last seen {distance} blocks {direction} of you.
+dir.north = north
+dir.northeast = northeast
+dir.east = east
+dir.southeast = southeast
+dir.south = south
+dir.southwest = southwest
+dir.west = west
+dir.northwest = northwest
+
+journal.unavailable = The Rancher's Journal is not ready yet.
 
 followers.title = Following you
 followers.empty = Animals of this kind that follow you can move in here. Befriend a {species} and bring it along.
@@ -72,8 +112,15 @@ result.unavailable = The house is still settling in. Try again soon.
 result.error = Something went wrong. Try again.
 result.gone = This house is no longer here.
 result.ok = Done.
+result.moved = {name} moved to {house}.
+result.move.gone = That house has no room any more.
+result.collected = Into your bags: {count}.
+result.collected.buckets = Into your bags: {count}. The milk waits for empty buckets.
+result.collect.nothing = Nothing to collect yet.
+result.collect.buckets = The milk waits for empty buckets, one each.
+result.collect.full = Your bags are full.
 
-commands.housepage.desc = Opens the house page on a made-up house (typical, full, empty, unchecked, missing, breedingoff).
+commands.housepage.desc = Opens the house page on a made-up house (typical, full, empty, unchecked, missing, breedingoff, products, milk, move, personality, long).
 commands.housepage.arg = Which made-up house to show
-commands.housepage.unknown = Unknown house. Try typical, full, empty, unchecked, missing or breedingoff.
+commands.housepage.unknown = Unknown house. Try typical, full, empty, unchecked, missing, breedingoff, products, milk, move, personality or long.
 commands.housepage.failed = The house page could not be opened.

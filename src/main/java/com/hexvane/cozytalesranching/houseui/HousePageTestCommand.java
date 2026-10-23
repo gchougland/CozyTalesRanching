@@ -14,7 +14,7 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import javax.annotation.Nonnull;
 
 /**
- * {@code /ranch housepage [typical|full|empty|unchecked|missing|breedingoff]}: opens the house page on a made-up house
+ * {@code /ranch housepage [typical|full|empty|unchecked|missing|breedingoff|products|milk|move|personality|long]}: opens the house page on a made-up house
  * ({@link HouseDemo}) so the page can be seen and clicked without placing one. Admin only; touches no saved data.
  */
 public final class HousePageTestCommand extends AbstractPlayerCommand {

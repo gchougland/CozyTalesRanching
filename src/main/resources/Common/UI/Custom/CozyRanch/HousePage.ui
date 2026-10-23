@@ -1,8 +1,8 @@
 $C = "../Common.ui";
 $H = "HouseStyles.ui";
 
-@PanelWidth = 1000;
-@PanelHeight = 660;
+@PanelWidth = 1040;
+@PanelHeight = 720;
 @SideWidth = 300;
 
 $C.@PageOverlay {
@@ -28,7 +28,7 @@ $C.@PageOverlay {
 
         Group #Header {
           LayoutMode: Left;
-          Anchor: (Height: 30, Bottom: 8);
+          Anchor: (Height: 32, Bottom: 8);
 
           Label #SpeciesLine {
             FlexWeight: 1;
@@ -36,9 +36,13 @@ $C.@PageOverlay {
             Text: "";
           }
 
+          $C.@SmallSecondaryTextButton #JournalButton {
+            @Anchor = (Width: 120, Right: 10, Top: 1);
+          }
+
           Group #CountPill {
             LayoutMode: Center;
-            Anchor: (Height: 30);
+            Anchor: (Height: 30, Top: 1);
             Padding: (Horizontal: 14);
             Background: (Color: #e8b25c(0.16));
             OutlineSize: 1;
@@ -76,6 +80,51 @@ $C.@PageOverlay {
             FlexWeight: 1;
             Anchor: (Right: 16);
 
+            Group #ProductsCard {
+              LayoutMode: Top;
+              Background: $H.@CardBackground;
+              Padding: (Horizontal: 14, Top: 10, Bottom: 10);
+              Anchor: (Bottom: 10);
+
+              Label #ProductsTitle {
+                Style: $H.@SectionStyle;
+                Anchor: (Bottom: 6);
+                Text: "";
+              }
+
+              Group #ProductsRow {
+                LayoutMode: Left;
+                Anchor: (Height: 40);
+
+                Group #ProductList {
+                  LayoutMode: Left;
+                }
+
+                Label #ProductsMore {
+                  Style: (...$H.@MutedStyle, FontSize: 14, RenderBold: true, VerticalAlignment: Center);
+                  Anchor: (Left: 2);
+                  Text: "";
+                }
+
+                Label #ProductsEmpty {
+                  Style: (...$H.@MutedStyle, FontSize: 14, VerticalAlignment: Center);
+                  Text: "";
+                }
+
+                Group { FlexWeight: 1; }
+
+                $C.@SmallSecondaryTextButton #CollectButton {
+                  @Anchor = (Width: 120, Left: 10, Top: 4);
+                }
+              }
+
+              Label #MilkHint {
+                Style: (FontSize: 13, TextColor: #f2c48a, VerticalAlignment: Center, Wrap: true);
+                Anchor: (Top: 6);
+                Text: "";
+              }
+            }
+
             Label #ResidentsTitle {
               Style: $H.@SectionStyle;
               Anchor: (Bottom: 6);
@@ -107,6 +156,70 @@ $C.@PageOverlay {
               Label #EmptyResidentsText {
                 Style: (...$H.@BodyStyle, FontSize: 16, HorizontalAlignment: Center, Wrap: true);
                 Text: "";
+              }
+            }
+
+            Group #DetailCard {
+              LayoutMode: Left;
+              Anchor: (Height: 52, Top: 8);
+              Padding: (Horizontal: 14);
+              Background: (Color: #3a2a1c(0.72));
+              OutlineSize: 1;
+              OutlineColor: #e8b25c(0.35);
+
+              Label #DetailName {
+                FlexWeight: 1;
+                Style: (...$H.@NameStyle, FontSize: 15, VerticalAlignment: Center);
+                Anchor: (Right: 10);
+                Text: "";
+              }
+
+              $C.@SmallSecondaryTextButton #LocateButton {
+                @Anchor = (Width: 104, Right: 6, Top: 10);
+              }
+
+              $C.@SmallSecondaryTextButton #ResummonButton {
+                @Anchor = (Width: 112, Right: 6, Top: 10);
+              }
+
+              $C.@SmallSecondaryTextButton #MoveButton {
+                @Anchor = (Width: 104, Right: 6, Top: 10);
+              }
+
+              $C.@SmallTertiaryTextButton #MoveOutButton {
+                @Anchor = (Width: 112, Top: 10);
+                @Text = "";
+              }
+            }
+
+            Group #MoveCard {
+              LayoutMode: Top;
+              Anchor: (Top: 8);
+              Padding: (Horizontal: 14, Top: 10, Bottom: 10);
+              Background: (Color: #3a2a1c(0.72));
+              OutlineSize: 1;
+              OutlineColor: #e8b25c(0.35);
+              Visible: false;
+
+              Group #MoveHead {
+                LayoutMode: Left;
+                Anchor: (Height: 32, Bottom: 6);
+
+                Label #MoveTitle {
+                  FlexWeight: 1;
+                  Style: (...$H.@NameStyle, FontSize: 15, VerticalAlignment: Center);
+                  Anchor: (Right: 10);
+                  Text: "";
+                }
+
+                $C.@SmallTertiaryTextButton #MoveCancel {
+                  @Anchor = (Width: 104);
+                  @Text = "";
+                }
+              }
+
+              Group #MoveList {
+                LayoutMode: Top;
               }
             }
           }

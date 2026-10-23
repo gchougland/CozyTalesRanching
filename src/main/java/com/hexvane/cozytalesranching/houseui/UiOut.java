@@ -18,7 +18,12 @@ public interface UiOut {
     void text(@Nonnull String selector, @Nonnull Txt text);
 
     /** A button press that sends {@code Action} and, when not empty, {@code Animal}. */
-    void click(@Nonnull String selector, @Nonnull String action, @Nonnull String animal);
+    default void click(@Nonnull String selector, @Nonnull String action, @Nonnull String animal) {
+        click(selector, action, animal, "");
+    }
+
+    /** A button press that sends {@code Action} and, when not empty, {@code Animal} and {@code House}. */
+    void click(@Nonnull String selector, @Nonnull String action, @Nonnull String animal, @Nonnull String house);
 
     /** A button press that also sends the live {@code Value} of a text field as {@code @Name}. */
     void clickWithField(@Nonnull String selector, @Nonnull String action, @Nonnull String fieldSelector);

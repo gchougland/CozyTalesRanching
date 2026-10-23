@@ -1,0 +1,21 @@
+$H = "HouseStyles.ui";
+
+Group #ProductChip {
+  LayoutMode: Left;
+  Anchor: (Width: 96, Height: 40, Right: 8);
+  Padding: (Horizontal: 6);
+  Background: (Color: #120d09(0.45));
+  OutlineSize: 1;
+  OutlineColor: #e8b25c(0.25);
+
+  ItemIcon #PIcon {
+    Anchor: (Width: 32, Height: 32, Right: 6);
+    ShowItemTooltip: true;
+  }
+
+  Label #PCount {
+    FlexWeight: 1;
+    Style: (...$H.@NameStyle, FontSize: 15, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 11);
+    Text: "";
+  }
+}
