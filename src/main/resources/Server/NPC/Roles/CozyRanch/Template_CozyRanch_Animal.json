@@ -1,7 +1,7 @@
 {
   "Type": "Abstract",
   "StartState": "Idle",
-  "$Comment": "Cozy Tales: Ranching animal. Java (taming feature) owns the states Follow and Stay and the LockedTarget slot; Idle wanders around the leash point (home). Every player gets a use prompt; the mod's UseEntityEvent system decides what the use does.",
+  "$Comment": "Cozy Tales: Ranching animal. Java (taming feature) owns the states Follow and Stay and the LockedTarget slot; Idle wanders around the leash point (home). Java (house feature) owns GoHome; Java (behaviour feature) owns Behave, Tag and Meet and only enters them from Idle by day. Every player gets a use prompt; the mod's UseEntityEvent system decides what the use does.",
   "Parameters": {
     "Appearance": {
       "Value": "Cow",
@@ -301,6 +301,122 @@
                 "StopDistance": 0.5,
                 "RelativeSpeed": 0.7,
                 "UsePathfinder": true
+              }
+            },
+            {
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "Behave: a flavour behaviour at a spot (behaviour feature). Java points the leash at the spot (a trough, a toy, a patch of grass, where it stands), plays the clip on arrival and sets Idle when done.",
+          "Sensor": {
+            "Type": "State",
+            "State": "Behave",
+            "IgnoreMissingSetState": true
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "Leash",
+                "Range": 1
+              },
+              "BodyMotion": {
+                "Type": "Seek",
+                "SlowDownDistance": 2,
+                "StopDistance": 0.5,
+                "RelativeSpeed": 0.4,
+                "UsePathfinder": true
+              }
+            },
+            {
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "Tag: walk along behind another entity Java puts in LockedTarget (a baby behind its parent, a curious animal toward a player). Java sets Idle when done.",
+          "Sensor": {
+            "Type": "State",
+            "State": "Tag",
+            "IgnoreMissingSetState": true
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "Target",
+                "TargetSlot": "LockedTarget",
+                "Range": 3
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            },
+            {
+              "Sensor": {
+                "Type": "Target",
+                "TargetSlot": "LockedTarget",
+                "Range": 24
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              },
+              "BodyMotion": {
+                "Type": "Seek",
+                "SlowDownDistance": 3,
+                "StopDistance": 2.5,
+                "RelativeSpeed": 0.5
+              }
+            },
+            {
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "Meet: two residents walk up to each other (LockedTarget) and face each other to socialise. Java plays Happy and sets Idle.",
+          "Sensor": {
+            "Type": "State",
+            "State": "Meet",
+            "IgnoreMissingSetState": true
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "Target",
+                "TargetSlot": "LockedTarget",
+                "Range": 2
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            },
+            {
+              "Sensor": {
+                "Type": "Target",
+                "TargetSlot": "LockedTarget",
+                "Range": 16
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              },
+              "BodyMotion": {
+                "Type": "Seek",
+                "SlowDownDistance": 2,
+                "StopDistance": 1.6,
+                "RelativeSpeed": 0.4
               }
             },
             {
