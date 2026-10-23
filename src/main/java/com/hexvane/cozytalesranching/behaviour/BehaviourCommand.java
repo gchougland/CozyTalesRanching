@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
 import org.joml.Vector3d;
 
 /**
- * {@code /ranch behaviour status [--animal=<a>] | force <animal> <behaviourId> | toy <blockId> [--behaviour=<id>] | log <on|off>}:
+ * {@code /ranch behaviour status [--animal=<a>] | force <animal> <behaviourId> | toy <blockId> [--behaviour=<id>] | log <on|off> | gentle <on|off>}:
  * admin tools for the behaviour planner, usable by the headless test player. An animal is {@code nearest}, the
  * start of its animal id, or its name.
  */
@@ -43,6 +43,7 @@ public final class BehaviourCommand extends AbstractCommandCollection {
         this.addSubCommand(new Force());
         this.addSubCommand(new Toy());
         this.addSubCommand(new Log());
+        this.addSubCommand(new Gentle());
     }
 
     /**
@@ -109,7 +110,8 @@ public final class BehaviourCommand extends AbstractCommandCollection {
                     .param("residents", planner.lastPassResidents)
                     .param("busy", planner.sessions().size())
                     .param("micros", planner.lastPassNanos / 1000)
-                    .param("reads", planner.lastPassReads));
+                    .param("reads", planner.lastPassReads)
+                    .param("gentle", GentleStepSystem.APPLIED.get()));
                 player.sendMessage(Message.translation("cozyranch_behaviour.status.started").param("list", counts(planner.started)));
                 player.sendMessage(Message.translation("cozyranch_behaviour.status.events")
                     .param("fired", counts(planner.eventsFired)).param("received", counts(BehaviourFeature.RECEIVED)));
@@ -142,6 +144,24 @@ public final class BehaviourCommand extends AbstractCommandCollection {
                 .param("state", states != null ? states.getStateName() : "-")
                 .param("doing", s == null ? Message.translation("cozyranch_behaviour.status.nothing") : Message.translation(LANG + ".name." + s.id))
                 .param("next", next <= 0 ? -1 : Math.max(0, (next - System.currentTimeMillis()) / 1000)));
+            if (animal != null) location(player, store, ref, animal);
+        }
+
+        /** Where it is, how far from you, its leash point and what its LockedTarget holds (follow and tag debugging). */
+        private static void location(@Nonnull PlayerRef player, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> me, @Nonnull Ref<EntityStore> animal) {
+            Vector3d p = BehaviourPlanner.position(store, animal);
+            Vector3d mine = BehaviourPlanner.position(store, me);
+            com.hypixel.hytale.server.npc.entities.NPCEntity npc = store.getComponent(animal, com.hypixel.hytale.server.npc.entities.NPCEntity.getComponentType());
+            Vector3d leash = npc != null ? npc.getLeashPoint() : new Vector3d();
+            com.hypixel.hytale.server.npc.role.support.MarkedEntitySupport marked = store.getComponent(animal,
+                com.hypixel.hytale.server.npc.role.support.MarkedEntitySupport.getComponentType());
+            Ref<EntityStore> locked = marked != null ? marked.getMarkedEntityRef(com.hypixel.hytale.server.npc.role.support.MarkedEntitySupport.DEFAULT_TARGET_SLOT) : null;
+            String target = locked == null ? "none" : locked.equals(me) ? "you" : "other";
+            player.sendMessage(Message.translation("cozyranch_behaviour.status.where")
+                .param("pos", String.format(java.util.Locale.ROOT, "%.1f %.1f %.1f", p.x, p.y, p.z))
+                .param("distance", String.format(java.util.Locale.ROOT, "%.1f", p.distance(mine)))
+                .param("leash", String.format(java.util.Locale.ROOT, "%.1f %.1f %.1f", leash.x, leash.y, leash.z))
+                .param("target", target));
         }
     }
 
@@ -216,6 +236,24 @@ public final class BehaviourCommand extends AbstractCommandCollection {
             boolean on = !context.get(onArg).trim().equalsIgnoreCase("off");
             BehaviourFeature.setLogging(on);
             player.sendMessage(Message.translation(on ? "cozyranch_behaviour.log.on" : "cozyranch_behaviour.log.off"));
+        }
+    }
+
+    /** Test switch: whether ranch animals added from now on keep off vanilla block triggers (water lilies). Default on. */
+    static final class Gentle extends AbstractPlayerCommand {
+        private final RequiredArg<String> onArg;
+
+        Gentle() {
+            super("gentle", "cozyranch_behaviour.commands.behaviour.gentle.desc");
+            this.requirePermission(RanchPermissions.ADMIN);
+            this.onArg = withRequiredArg("on|off", "cozyranch_behaviour.commands.behaviour.arg.on", ArgTypes.STRING);
+        }
+
+        @Override
+        protected void execute(@Nonnull CommandContext context, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef player, @Nonnull World world) {
+            boolean on = !context.get(onArg).trim().equalsIgnoreCase("off");
+            GentleStepSystem.setEnabled(on);
+            player.sendMessage(Message.translation(on ? "cozyranch_behaviour.gentle.on" : "cozyranch_behaviour.gentle.off"));
         }
     }
 }

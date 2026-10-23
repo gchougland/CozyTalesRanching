@@ -4,17 +4,181 @@
       "name": "behaviour gate",
       "description": "The mod's assets parse and match the engine schemas.",
       "steps": [
-        { "tool": "asset_validate", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true, "schemaErrors": 0 } },
-        { "tool": "ui_check_java", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true } }
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0
+          }
+        },
+        {
+          "tool": "ui_check_java",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true
+          }
+        }
       ]
     },
     {
       "name": "ranch template with behaviour states",
       "description": "The animal template with the Behave, Tag and Meet states, and an adult and a baby variant, pass the engine schema with no warnings.",
       "steps": [
-        { "tool": "asset_check", "name": "template", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/Template_CozyRanch_Animal.json" }, "expect": { "errors": 0, "warnings": 0 } },
-        { "tool": "asset_check", "name": "pig", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig.json" }, "expect": { "errors": 0, "warnings": 0 } },
-        { "tool": "asset_check", "name": "chick", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Chicken_Chick.json" }, "expect": { "errors": 0, "warnings": 0 } }
+        {
+          "tool": "asset_check",
+          "name": "template",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/Template_CozyRanch_Animal.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "pig",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "chick",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Chicken_Chick.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "behaviour clips resolve on the real models",
+      "description": "The clip ids the planner plays (Status slot) are animation sets of the model assets the ranch roles use, and each clip binds to the model's nodes.",
+      "steps": [
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Cow Graze",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Cow.json",
+            "animation": "Graze",
+            "frames": 4,
+            "size": 200
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Cow TailSwish",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Cow.json",
+            "animation": "TailSwish",
+            "frames": 4,
+            "size": 200
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Pig MudRoll",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig.json",
+            "animation": "MudRoll",
+            "frames": 4,
+            "size": 200
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Chicken DustBathe",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Chicken.json",
+            "animation": "DustBathe",
+            "frames": 4,
+            "size": 200
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Frog LilyHop",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Frog.json",
+            "animation": "LilyHop",
+            "frames": 4,
+            "size": 200
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Sheep Pronk",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep.json",
+            "animation": "Pronk",
+            "frames": 4,
+            "size": 200
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
+        }
       ]
     }
   ]

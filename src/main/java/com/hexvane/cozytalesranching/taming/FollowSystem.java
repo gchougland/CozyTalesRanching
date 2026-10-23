@@ -2,6 +2,7 @@ package com.hexvane.cozytalesranching.taming;
 
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
+import com.hexvane.cozytalesranching.behaviour.FollowProgress;
 import com.hexvane.cozytalesranching.config.RanchConfig;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry.RoleKind;
@@ -30,9 +31,7 @@ import org.joml.Vector3d;
  */
 final class FollowSystem extends TickingSystem<EntityStore> {
     private static final float PASS_SECONDS = 1f;
-    /** Moving less than this per second while far from the owner counts as stuck. */
-    private static final double STUCK_MOVE = 0.3;
-    private static final double STUCK_MIN_DISTANCE = 4.0;
+    private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger("CozyTalesRanching");
 
     private record Track(double x, double y, double z, double stuckSeconds) {}
 
@@ -71,23 +70,31 @@ final class FollowSystem extends TickingSystem<EntityStore> {
                 Vector3d pos = t.getPosition();
                 Vector3d ownerPos = ownerT.getPosition();
                 double distance = pos.distance(ownerPos);
-                Track track = advance(record.animalId, pos, distance);
+                Track track = advance(record.animalId, pos, ownerPos);
                 record.lastX = pos.x;
                 record.lastY = pos.y;
                 record.lastZ = pos.z;
                 boolean tooFar = distance > config.followTeleportDistance();
                 boolean stuck = track.stuckSeconds() >= config.followStuckSeconds();
-                if (tooFar || stuck) bringBack(world, store, animal, record, ownerT);
+                if (tooFar || stuck) {
+                    LOG.info(String.format(java.util.Locale.ROOT, "Ranch animal %s brought back to its owner (%s, %.1f blocks away, state %s)",
+                        record.animalId, tooFar ? "too far" : "no progress for " + (int) track.stuckSeconds() + " s", distance, stateOf(animal, store)));
+                    bringBack(world, store, animal, record, ownerT);
+                }
             }
         }
     }
 
-    private static Track advance(@Nonnull UUID animalId, @Nonnull Vector3d pos, double distanceToOwner) {
+    /**
+     * Counts the seconds the animal has not come closer to where its owner is now ({@link FollowProgress}): standing
+     * still, pushing into a fence, or sliding along a pen's fence all count, walking after a running owner does not.
+     */
+    private static Track advance(@Nonnull UUID animalId, @Nonnull Vector3d pos, @Nonnull Vector3d ownerPos) {
         Track before = TRACKS.get(animalId);
         double stuck = 0;
-        if (before != null && distanceToOwner > STUCK_MIN_DISTANCE) {
-            double moved = Math.sqrt(sq(pos.x - before.x()) + sq(pos.y - before.y()) + sq(pos.z - before.z()));
-            stuck = moved < STUCK_MOVE ? before.stuckSeconds() + PASS_SECONDS : 0;
+        if (before != null) {
+            double beforeToOwner = Math.sqrt(sq(before.x() - ownerPos.x) + sq(before.y() - ownerPos.y) + sq(before.z() - ownerPos.z));
+            stuck = FollowProgress.stuckSeconds(beforeToOwner, pos.distance(ownerPos), PASS_SECONDS, before.stuckSeconds());
         }
         Track next = new Track(pos.x, pos.y, pos.z, stuck);
         TRACKS.put(animalId, next);
@@ -121,6 +128,12 @@ final class FollowSystem extends TickingSystem<EntityStore> {
         return SpeciesRegistry.byRole(npc.getRoleName())
             .map(m -> m.kind() == RoleKind.RANCH || m.kind() == RoleKind.RANCH_BABY)
             .orElse(false);
+    }
+
+    @Nonnull
+    private static String stateOf(@Nonnull Ref<EntityStore> animal, @Nonnull Store<EntityStore> store) {
+        com.hypixel.hytale.server.npc.role.support.StateSupport states = store.getComponent(animal, com.hypixel.hytale.server.npc.role.support.StateSupport.getComponentType());
+        return states != null ? states.getStateName() : "?";
     }
 
     private static double sq(double v) {

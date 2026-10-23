@@ -19,7 +19,6 @@ import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry.RoleKind;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
-import com.hypixel.hytale.protocol.AnimationSlot;
 import com.hypixel.hytale.server.core.asset.type.model.config.Model;
 import com.hypixel.hytale.server.core.modules.entity.component.ModelComponent;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
@@ -703,10 +702,8 @@ final class BehaviourPlanner {
     }
 
     private static void play(@Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nullable String clip, boolean force) {
-        NPCEntity npc = store.getComponent(ref, NPCEntity.getComponentType());
-        if (npc == null) return;
-        if (clip != null && !animations(store, ref).contains(clip)) return;
-        npc.playAnimation(ref, AnimationSlot.Emote, clip, force, store);
+        if (clip == null) AnimalClips.stop(store, ref);
+        else AnimalClips.play(store, ref, clip);
     }
 
     @Nonnull
