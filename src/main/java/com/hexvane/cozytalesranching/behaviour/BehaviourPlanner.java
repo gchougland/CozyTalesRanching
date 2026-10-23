@@ -56,6 +56,8 @@ import org.joml.Vector3d;
  */
 final class BehaviourPlanner {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
+    /** The trough hitbox is two blocks long and reaches 1.5 from its block centre; this clears it on any side. */
+    private static final double TROUGH_GAP = 2.1;
     private static final String HEARTS_SMALL = "Hearts_Subtle";
     private static final int PERSONALITY_PASSES = 10;
     private static final int CLEANUP_PASSES = 120;
@@ -75,6 +77,7 @@ final class BehaviourPlanner {
         double arriveDistance;
         long actUntilMs;
         long nextRepeatMs;
+        long nextTraceMs;
         boolean acting;
 
         Session(@Nonnull String id, @Nonnull Def def, @Nullable String clip, @Nonnull String state, long now, double seconds) {
@@ -327,7 +330,7 @@ final class BehaviourPlanner {
                 }
                 if (best == null) return "no_trough";
                 s = new Session(id, def, clip, BehaviourRules.STATE_BEHAVE, now, seconds);
-                s.spot = beside(p, best.x() + 0.5, best.y(), best.z() + 0.5, 1.3);
+                s.spot = beside(p, best.x() + 0.5, best.y(), best.z() + 0.5, TROUGH_GAP);
             }
             case TOY -> {
                 ToyIndex.Toy toy = toys.nearest(house.houseId, id, p.x, p.z);
@@ -409,6 +412,13 @@ final class BehaviourPlanner {
         if (!s.acting) {
             double d = distanceToGoal(store, ref, s);
             double arrive = s.arriveDistance > 0 ? s.arriveDistance : c.ArriveDistance;
+            if (now >= s.nextTraceMs && BehaviourFeature.logging()) {
+                s.nextTraceMs = now + 3000;
+                Vector3d p = position(store, ref);
+                StateSupport st = store.getComponent(ref, StateSupport.getComponentType());
+                debug(String.format(java.util.Locale.ROOT, "Ranch animal %s walking to %s: %.1f to go, at %.1f %.1f %.1f, state %s",
+                    r.animalId, s.id, d, p.x, p.y, p.z, st != null ? st.getStateName() : "?"));
+            }
             if (d <= arrive) {
                 act(store, ref, r, s, now);
             } else if (now - s.startedMs > (long) (c.MaxWalkSeconds * 1000)) {
@@ -649,8 +659,8 @@ final class BehaviourPlanner {
         Vector3d p = position(store, ref);
         if (s.target != null) return position(store, s.target).distance(p);
         if (s.spot != null) {
-            if (Math.abs(p.y - s.spot.y) > 2.5) return Double.MAX_VALUE;
-            return horizontal(p, s.spot.x, s.spot.z);
+            double h = horizontal(p, s.spot.x, s.spot.z), dy = Math.abs(p.y - s.spot.y);
+            return dy > 2.5 ? Math.sqrt(h * h + dy * dy) : h;
         }
         return 0;
     }
