@@ -1,5 +1,6 @@
 package com.hexvane.cozytalesranching.taming;
 
+import com.hexvane.cozytalesranching.RanchSounds;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
@@ -86,6 +87,12 @@ final class AnimalControl {
         if (npc != null && model != null && model.getAnimationSetMap().containsKey(HAPPY_ANIMATION)) {
             npc.playAnimation(animal, AnimationSlot.Emote, HAPPY_ANIMATION, store);
         }
+    }
+
+    /** One of {@link RanchSounds} at the animal, heard by players nearby. */
+    static void sound(@Nonnull Ref<EntityStore> animal, @Nonnull String soundEventId, @Nonnull Store<EntityStore> store) {
+        TransformComponent t = store.getComponent(animal, TransformComponent.getComponentType());
+        if (t != null) RanchSounds.play(soundEventId, t.getPosition().x, t.getPosition().y + 0.5, t.getPosition().z, store);
     }
 
     static void startle(@Nonnull Ref<EntityStore> animal, @Nonnull ComponentAccessor<EntityStore> accessor) {
