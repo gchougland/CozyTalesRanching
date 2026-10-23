@@ -47,10 +47,13 @@ class JournalLayoutTest {
         {"contents", "EMPTY", "", "contents page, nothing found yet", "journal-contents-empty"},
         {"contents", "PARTIAL", "", "contents page, cow and chicken found", "journal-contents-partial"},
         {"contents", "FULL", "", "contents page, every animal found", "journal-contents-full"},
-        {"species", "FULL", "cow", "cow page, everything discovered", "journal-species-full"},
-        {"species", "PARTIAL", "cow", "cow page, befriended and housed, two habits seen", "journal-species-partial"},
+        {"species", "FULL", "cow", "cow page, everything discovered, all nine traits", "journal-species-full"},
+        {"species", "PARTIAL", "cow", "cow page, befriended and housed, two habits and one trait seen", "journal-species-partial"},
         {"species", "PARTIAL", "chicken", "chicken page, fed once", "journal-species-fed"},
         {"species", "EMPTY", "cow", "cow page, not met yet", "journal-species-undiscovered"},
+        {"traits", "EMPTY", "0", "traits page, no trait seen", "journal-traits-empty"},
+        {"traits", "PARTIAL", "0", "traits page, one trait seen", "journal-traits-partial"},
+        {"traits", "FULL", "0", "traits page, every trait seen", "journal-traits-full"},
         {"memories", "EMPTY", "0", "memories page, no memories", "journal-memories-empty"},
         {"memories", "FULL", "0", "memories page, every memory, first spread", "journal-memories-full"},
         {"memories", "FULL", "1", "memories page, every memory, last spread", "journal-memories-full-2"},
@@ -107,6 +110,39 @@ class JournalLayoutTest {
         JournalView.Section habits = p.right().stream().filter(s -> "cozyranch_journal.section.behaviours".equals(s.title().key())).findFirst().orElseThrow();
         assertEquals(book.page("cow").Behaviours.size(), habits.lines().size());
         assertEquals("cozyranch_journal.section.rare", p.right().getLast().title().key());
+    }
+
+    @Test
+    void speciesPageNamesAndDescribesEachSeenTrait() {
+        JournalView.SpeciesPage p = JournalView.species(demo("FULL"), context, species("cow"));
+        JournalView.Section traits = section(p, "traits");
+        List<String> keys = traits.lines().stream().map(l -> l.text().key()).toList();
+        for (var t : TraitRegistry.get().Traits) {
+            int at = keys.indexOf(t.NameKey);
+            assertTrue(at >= 0, t.Id);
+            assertEquals(JournalView.Style.STRONG, traits.lines().get(at).style());
+            assertEquals(t.DescKey, keys.get(at + 1), t.Id);
+        }
+        JournalView.SpeciesPage partial = JournalView.species(demo("PARTIAL"), context, species("cow"));
+        JournalView.Section one = section(partial, "traits");
+        assertEquals(3, one.lines().size(), "one trait: name, description, how many more");
+    }
+
+    @Test
+    void traitsPageHidesUnseenTraitsAndCountsSeenOnes() {
+        int total = TraitRegistry.get().Traits.size();
+        JournalView.Traits empty = JournalView.traits(new PlayerJournal(), context, 0);
+        assertEquals(Math.min(total, JournalView.TRAITS_PER_SPREAD), empty.left().size() + empty.right().size());
+        assertTrue(concat(empty.left(), empty.right()).stream().noneMatch(JournalView.TraitRow::known));
+        assertEquals("0", String.valueOf(empty.progress().params().get("found")));
+
+        JournalView.Traits one = JournalView.traits(demo("PARTIAL"), context, 0);
+        assertEquals(1, concat(one.left(), one.right()).stream().filter(JournalView.TraitRow::known).count());
+
+        JournalView.Traits full = JournalView.traits(demo("FULL"), context, 0);
+        assertTrue(concat(full.left(), full.right()).stream().allMatch(JournalView.TraitRow::known));
+        assertEquals(String.valueOf(total), String.valueOf(full.progress().params().get("found")));
+        assertEquals(TraitRegistry.get().Traits.getFirst().DescKey, full.left().getFirst().text().key());
     }
 
     @Test
@@ -192,6 +228,7 @@ class JournalLayoutTest {
         switch (page) {
             case "contents" -> JournalLayout.contents(JournalView.contents(j, context, "Hexvane"), ui);
             case "species" -> JournalLayout.species(JournalView.species(j, context, species(arg)), ui);
+            case "traits" -> JournalLayout.traits(JournalView.traits(j, context, Integer.parseInt(arg)), ui);
             default -> JournalLayout.memories(JournalView.memories(j, context, Integer.parseInt(arg)), ui);
         }
         return ui;
@@ -210,6 +247,7 @@ class JournalLayoutTest {
             String doc = switch (r[0]) {
                 case "contents" -> JournalLayout.CONTENTS;
                 case "species" -> JournalLayout.SPECIES;
+                case "traits" -> JournalLayout.TRAITS;
                 default -> JournalLayout.MEMORIES;
             };
             out.append("        {\n");
@@ -245,6 +283,10 @@ class JournalLayoutTest {
     static void collectKeys(String json, Set<String> out) {
         Matcher m = Pattern.compile("\"MessageId\":\"([^\"]+)\"").matcher(json);
         while (m.find()) out.add(m.group(1));
+    }
+
+    static JournalView.Section section(JournalView.SpeciesPage p, String id) {
+        return p.right().stream().filter(s -> ("cozyranch_journal.section." + id).equals(s.title().key())).findFirst().orElseThrow();
     }
 
     static <T> List<T> concat(List<T> a, List<T> b) {

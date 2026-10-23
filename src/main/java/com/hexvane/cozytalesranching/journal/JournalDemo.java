@@ -19,7 +19,7 @@ public final class JournalDemo {
         EMPTY,
         /** Two species met: the cow well known, the chicken only fed once. Three memories. */
         PARTIAL,
-        /** Every species fully known and every memory a journal can hold (more than one spread). */
+        /** Every species fully known, every trait (all on the first species), every memory (more than one spread). */
         FULL
     }
 
@@ -72,6 +72,8 @@ public final class JournalDemo {
                     for (SpeciesDefinition.Product p : s.Products) JournalRules.produced(j, s.Id, p.Item, t + 14_400_000);
                     JournalRules.hearts(j, s.Id, name, 4, 5, t + 18_000_000);
                     JournalRules.visitor(j, s.Id, true, t + 21_600_000);
+                    // The first species has raised every trait there is: its page shows the longest traits list.
+                    if (i == 0) JournalRules.traits(j, s.Id, traitIds, t + 25_200_000);
                 }
             }
         }

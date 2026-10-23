@@ -56,7 +56,12 @@ $C.@PageOverlay {
           Anchor: (Height: 34, Top: 12);
 
           $J.@NavButton #MemoriesButton {
-            Anchor: (Width: 200, Height: 34);
+            Anchor: (Width: 170, Height: 34, Right: 8);
+            Text: "";
+          }
+
+          $J.@NavButton #TraitsButton {
+            Anchor: (Width: 170, Height: 34, Left: 8);
             Text: "";
           }
         }

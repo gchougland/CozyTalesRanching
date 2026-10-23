@@ -22,6 +22,10 @@ public final class JournalView {
     /** Memories per spread: three on each page. */
     public static final int MEMORIES_PER_PAGE = 3;
     public static final int MEMORIES_PER_SPREAD = MEMORIES_PER_PAGE * 2;
+    /** Traits per spread: four under the left page's heading, five on the right. */
+    public static final int TRAITS_LEFT = 4;
+    public static final int TRAITS_RIGHT = 5;
+    public static final int TRAITS_PER_SPREAD = TRAITS_LEFT + TRAITS_RIGHT;
     static final String COVER_ART = JournalBook.ART_DIR + "Cover.png";
 
     /** What the view needs from the server: item names, whether another role's lang key exists, the rules' numbers. */
@@ -45,7 +49,7 @@ public final class JournalView {
 
     public record Contents(@Nonnull Txt keeper, @Nonnull Txt progress, @Nonnull Txt memories, @Nonnull List<Card> cards) {}
 
-    public enum Style { BODY, MUTED, RARE }
+    public enum Style { BODY, STRONG, MUTED, RARE }
 
     public record Line(@Nonnull Txt text, @Nonnull Style style) {}
 
@@ -59,6 +63,12 @@ public final class JournalView {
 
     public record Memories(int spread, int spreads, @Nonnull List<MemoryRow> left, @Nonnull List<MemoryRow> right, @Nonnull Txt pageLabel,
                            boolean hasPrevious, boolean hasNext) {}
+
+    /** One trait on the traits pages: its name, what it does and which species it was seen on; or ??? and a hint. */
+    public record TraitRow(boolean known, @Nonnull Txt name, @Nonnull Txt text, @Nullable Txt seen) {}
+
+    public record Traits(int spread, int spreads, @Nonnull Txt progress, @Nonnull Txt intro, @Nonnull List<TraitRow> left, @Nonnull List<TraitRow> right,
+                         @Nonnull Txt pageLabel, boolean hasPrevious, boolean hasNext) {}
 
     private JournalView() {}
 
@@ -191,15 +201,20 @@ public final class JournalView {
         return new Section(Txt.j("section.products"), lines);
     }
 
+    /** Each trait seen on this species: its name, then what it does. */
     @Nonnull
     private static Section traits(@Nonnull Entry e, @Nonnull Context c) {
         List<TraitBook.Trait> all = c.traits().Traits;
-        List<Txt> known = new ArrayList<>();
-        for (TraitBook.Trait t : all) if (e.Traits.contains(t.Id)) known.add(Txt.key(t.NameKey));
-        if (known.isEmpty()) return unknown("section.traits", "hint.traits");
         List<Line> lines = new ArrayList<>();
-        lines.add(body(Txt.j("traits.line").with("traits", list(known))));
-        int more = all.size() - known.size();
+        int known = 0;
+        for (TraitBook.Trait t : all) {
+            if (!e.Traits.contains(t.Id)) continue;
+            known++;
+            lines.add(new Line(traitName(t), Style.STRONG));
+            lines.add(body(traitText(t)));
+        }
+        if (known == 0) return unknown("section.traits", "hint.traits");
+        int more = all.size() - known;
         if (more > 0) lines.add(muted(more(more)));
         return new Section(Txt.j("section.traits"), lines);
     }
@@ -255,6 +270,51 @@ public final class JournalView {
         if (kind == MemoryKind.FIRST_BEHAVIOUR) text.with("behaviour", m.Detail == null ? Txt.j("unknown") : behaviourName(m.Detail));
         String art = s != null && j.knows(s.Id, Fact.SEEN) ? c.book().art(s.Id) : COVER_ART;
         return new MemoryRow(date(m.AtMs, c.lookup().zone()), Txt.j(base + ".title"), text, art);
+    }
+
+    // ---- traits ----
+
+    /** Every trait in the trait book, in its order: name, effect and where seen once any animal of the player had it. */
+    @Nonnull
+    public static Traits traits(@Nonnull PlayerJournal j, @Nonnull Context c, int spread) {
+        List<TraitBook.Trait> all = c.traits().Traits;
+        int spreads = Math.max(1, (all.size() + TRAITS_PER_SPREAD - 1) / TRAITS_PER_SPREAD);
+        int s = Math.clamp(spread, 0, spreads - 1);
+        int found = 0;
+        for (TraitBook.Trait t : all) if (!seenOn(j, c, t.Id).isEmpty()) found++;
+        List<TraitRow> left = new ArrayList<>(), right = new ArrayList<>();
+        for (int i = s * TRAITS_PER_SPREAD; i < Math.min(all.size(), (s + 1) * TRAITS_PER_SPREAD); i++) {
+            TraitBook.Trait t = all.get(i);
+            List<Txt> seen = seenOn(j, c, t.Id);
+            TraitRow row = seen.isEmpty()
+                ? new TraitRow(false, Txt.j("unknown"), Txt.j("traits.unknown"), null)
+                : new TraitRow(true, traitName(t), traitText(t), Txt.j("traits.seen").with("species", list(seen)));
+            (i - s * TRAITS_PER_SPREAD < TRAITS_LEFT ? left : right).add(row);
+        }
+        Txt progress = Txt.j("traits.progress").with("found", found).with("total", all.size());
+        Txt label = Txt.j("traits.page").with("page", s + 1).with("pages", spreads);
+        return new Traits(s, spreads, progress, Txt.j("traits.intro").with("max", c.traits().MaxTraits), left, right, label, s > 0, s + 1 < spreads);
+    }
+
+    /** Names of the species (book order) whose journal entry has the trait. */
+    @Nonnull
+    private static List<Txt> seenOn(@Nonnull PlayerJournal j, @Nonnull Context c, @Nonnull String traitId) {
+        List<Txt> out = new ArrayList<>();
+        for (SpeciesDefinition s : c.species()) {
+            Entry e = j.entry(s.Id);
+            if (e != null && e.Traits.contains(traitId)) out.add(speciesName(s));
+        }
+        return out;
+    }
+
+    @Nonnull
+    static Txt traitName(@Nonnull TraitBook.Trait t) {
+        return t.NameKey == null || t.NameKey.isBlank() ? Txt.raw(prettify(t.Id)) : Txt.key(t.NameKey);
+    }
+
+    @Nonnull
+    static Txt traitText(@Nonnull TraitBook.Trait t) {
+        return t.DescKey == null || t.DescKey.isBlank() ? Txt.j("traits.no_description") : Txt.key(t.DescKey);
     }
 
     // ---- pieces ----

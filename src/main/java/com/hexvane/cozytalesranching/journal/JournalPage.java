@@ -29,12 +29,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/** The Rancher's Journal: contents, one page per species, memories. Rebuilt whole on every turn of a page. World thread. */
+/** The Rancher's Journal: contents, one page per species, traits, memories. Rebuilt whole on every turn of a page. World thread. */
 public final class JournalPage extends InteractiveCustomUIPage<JournalPage.Event> {
     private final Supplier<PlayerJournal> journal;
     private String view;
     @Nullable private String speciesId;
     private int spread;
+    private int traitSpread;
 
     JournalPage(@Nonnull PlayerRef playerRef, @Nonnull Supplier<PlayerJournal> journal, @Nullable String speciesId) {
         super(playerRef, CustomPageLifetime.CanDismiss, Event.CODEC);
@@ -99,6 +100,8 @@ public final class JournalPage extends InteractiveCustomUIPage<JournalPage.Event
         SpeciesDefinition species = view.equals(JournalLayout.ACTION_SPECIES) ? find(context.species(), speciesId) : null;
         if (species != null) {
             JournalLayout.species(JournalView.species(j, context, species), ui);
+        } else if (view.equals(JournalLayout.ACTION_TRAITS)) {
+            JournalLayout.traits(JournalView.traits(j, context, traitSpread), ui);
         } else if (view.equals(JournalLayout.ACTION_MEMORIES)) {
             JournalLayout.memories(JournalView.memories(j, context, spread), ui);
         } else {
@@ -119,15 +122,23 @@ public final class JournalPage extends InteractiveCustomUIPage<JournalPage.Event
             }
             case JournalLayout.ACTION_MEMORIES -> {
                 view = action;
-                try {
-                    spread = Math.max(0, Integer.parseInt(data.arg == null ? "0" : data.arg));
-                } catch (NumberFormatException e) {
-                    spread = 0;
-                }
+                spread = page(data.arg);
+            }
+            case JournalLayout.ACTION_TRAITS -> {
+                view = action;
+                traitSpread = page(data.arg);
             }
             default -> view = JournalLayout.ACTION_CONTENTS;
         }
         rebuild();
+    }
+
+    private static int page(@Nullable String arg) {
+        try {
+            return Math.max(0, Integer.parseInt(arg == null ? "0" : arg));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 
     @Nonnull

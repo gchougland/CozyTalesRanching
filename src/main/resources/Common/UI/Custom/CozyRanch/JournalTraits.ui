@@ -1,0 +1,86 @@
+$C = "../Common.ui";
+$J = "JournalStyles.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  Group {
+    LayoutMode: Center;
+
+    $J.@Book #Book {
+      Group #LeftPage {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Background: $J.@PageLeftBackground;
+        Padding: $J.@LeftPagePadding;
+
+        Label #TraitsTitle {
+          Style: $J.@TitleStyle;
+          Text: "";
+        }
+
+        Label #TraitsProgress {
+          Style: $J.@TaglineStyle;
+          Anchor: (Top: 4);
+          Text: "";
+        }
+
+        $J.@Divider {}
+
+        Label #TraitsIntro {
+          Style: (...$J.@MutedStyle, HorizontalAlignment: Center);
+          Anchor: (Left: 10, Right: 10, Bottom: 12);
+          Text: "";
+        }
+
+        Group #TraitLeft {
+          LayoutMode: Top;
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #TraitLeftNav {
+          LayoutMode: Left;
+          Anchor: (Height: 34, Top: 10);
+
+          $J.@NavButton #TraitNavContents {
+            Text: "";
+          }
+        }
+      }
+
+      Group #RightPage {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Background: $J.@PageRightBackground;
+        Padding: $J.@RightPagePadding;
+
+        Group #TraitRight {
+          LayoutMode: Top;
+          Anchor: (Top: 6);
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #TraitRightNav {
+          LayoutMode: Left;
+          Anchor: (Height: 34, Top: 10);
+
+          $J.@NavButton #TraitNavPrev {
+            Text: "";
+          }
+
+          Label #TraitPageLabel {
+            FlexWeight: 1;
+            Style: (...$J.@TaglineStyle, VerticalAlignment: Center);
+            Text: "";
+          }
+
+          $J.@NavButton #TraitNavNext {
+            Text: "";
+          }
+        }
+      }
+    }
+  }
+}

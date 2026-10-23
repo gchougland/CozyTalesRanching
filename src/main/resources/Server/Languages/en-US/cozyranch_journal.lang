@@ -14,6 +14,7 @@ contents.memories.many={count} memories kept
 
 nav.contents=Contents
 nav.memories=Memories
+nav.traits=Traits
 nav.previous=Previous
 nav.next=Next
 
@@ -75,10 +76,17 @@ breeding.grow.one=A baby grows up in about a minute.
 breeding.grow.many=A baby grows up in about {minutes} minutes.
 products.line=Gives {items}.
 products.none=Makes nothing at all. It is simply good company.
-traits.line=Seen so far: {traits}.
+traits.no_description=What this trait does is still a mystery.
 rare.fallback=You saw a rare one with your own eyes.
 more.one=1 more to discover.
 more.many={count} more to discover.
+
+traits.title=Traits
+traits.progress={found} of {total} traits recorded
+traits.intro=Some animals carry a trait, and babies can inherit their parents' traits. One animal holds up to {max}.
+traits.seen=Seen on: {species}.
+traits.unknown=Not seen on any of your animals yet.
+traits.page={page} of {pages}
 
 list.1={a}
 list.2={a} and {b}
