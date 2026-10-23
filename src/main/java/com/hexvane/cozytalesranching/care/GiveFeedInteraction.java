@@ -4,6 +4,7 @@ import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.compat.CompatGuard;
+import com.hexvane.cozytalesranching.prefs.RanchChat;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hexvane.cozytalesranching.taming.TamingApi;
 import com.hexvane.cozytalesranching.taming.TamingRules;
@@ -128,7 +129,7 @@ public final class GiveFeedInteraction extends SimpleInstantInteraction {
         Ranch.animals().markDirty(record);
         Ref<EntityStore> animal = world.getEntityStore().getRefFromUUID(animalUuid);
         if (animal != null && animal.isValid()) TamingApi.cheer(animal, store);
-        player.sendMessage(Message.translation("cozyranch_care.feed.given")
+        RanchChat.tell(player, Message.translation("cozyranch_care.feed.given")
             .param("animal", TamingApi.displayName(record))
             .param("feed", TroughInteraction.itemName(itemId))
             .param("minutes", Math.round(config.feedDurationMs(itemId) / 60_000.0)));

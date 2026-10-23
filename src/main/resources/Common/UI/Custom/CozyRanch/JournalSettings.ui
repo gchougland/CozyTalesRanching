@@ -1,0 +1,136 @@
+$C = "../Common.ui";
+$J = "JournalStyles.ui";
+
+// Settings: two per-player toggles (ranch messages, ranch sounds) and what always shows.
+@SettingRow = Group {
+  LayoutMode: Left;
+  Anchor: (Top: 14, Left: 6, Right: 6);
+};
+
+@ToggleButton = TextButton {
+  Anchor: (Width: 96, Height: 34, Left: 16);
+  Style: $J.@NavButtonStyle;
+  Text: "";
+};
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  Group {
+    LayoutMode: Center;
+
+    $J.@Book #Book {
+      Group #LeftPage {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Background: $J.@PageLeftBackground;
+        Padding: $J.@LeftPagePadding;
+
+        Label #SettingsTitle {
+          Style: $J.@TitleStyle;
+          Text: "";
+        }
+
+        Label #SettingsSubtitle {
+          Style: $J.@TaglineStyle;
+          Anchor: (Top: 4);
+          Text: "";
+        }
+
+        $J.@Divider {}
+
+        @SettingRow #ChatRow {
+          Group {
+            FlexWeight: 1;
+            LayoutMode: Top;
+
+            Label #ChatName {
+              Style: (...$J.@BodyStyle, TextColor: $J.@InkHead, RenderBold: true);
+              Text: "";
+            }
+
+            Label #ChatDesc {
+              Style: $J.@MutedStyle;
+              Anchor: (Top: 2);
+              Text: "";
+            }
+          }
+
+          @ToggleButton #ChatToggle {}
+        }
+
+        @SettingRow #SoundsRow {
+          Group {
+            FlexWeight: 1;
+            LayoutMode: Top;
+
+            Label #SoundsName {
+              Style: (...$J.@BodyStyle, TextColor: $J.@InkHead, RenderBold: true);
+              Text: "";
+            }
+
+            Label #SoundsDesc {
+              Style: $J.@MutedStyle;
+              Anchor: (Top: 2);
+              Text: "";
+            }
+          }
+
+          @ToggleButton #SoundsToggle {}
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #SettingsLeftNav {
+          LayoutMode: Left;
+          Anchor: (Height: 34, Top: 10);
+
+          $J.@NavButton #SetNavContents {
+            Text: "";
+          }
+        }
+      }
+
+      Group #RightPage {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Background: $J.@PageRightBackground;
+        Padding: $J.@RightPagePadding;
+
+        Label #AlwaysTitle {
+          Style: $J.@HeadingStyle;
+          Anchor: (Top: 6);
+          Text: "";
+        }
+
+        $J.@Divider {}
+
+        Label #AlwaysIntro {
+          Style: $J.@BodyStyle;
+          Anchor: (Bottom: 6);
+          Text: "";
+        }
+
+        Label #AlwaysLine1 {
+          Style: $J.@MutedStyle;
+          Anchor: (Top: 4, Left: 12);
+          Text: "";
+        }
+
+        Label #AlwaysLine2 {
+          Style: $J.@MutedStyle;
+          Anchor: (Top: 4, Left: 12);
+          Text: "";
+        }
+
+        Label #AlwaysLine3 {
+          Style: $J.@MutedStyle;
+          Anchor: (Top: 4, Left: 12);
+          Text: "";
+        }
+
+        Group { FlexWeight: 1; }
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@ package com.hexvane.cozytalesranching.care;
 
 import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.RanchSounds;
+import com.hexvane.cozytalesranching.prefs.RanchChat;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
 import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.Ref;
@@ -91,7 +92,7 @@ public final class TroughInteraction extends SimpleBlockInteraction {
             CareWorld.syncTrough(world, care, pos.x, pos.y, pos.z);
             care.scheduleSave();
             RanchSounds.play(RanchSounds.TROUGH_FILL, pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, store);
-            player.sendMessage(Message.translation("cozyranch_care.trough.added").param("count", put).param("item", itemName(itemId)));
+            RanchChat.tell(player, Message.translation("cozyranch_care.trough.added").param("count", put).param("item", itemName(itemId)));
             return;
         }
 
@@ -107,7 +108,7 @@ public final class TroughInteraction extends SimpleBlockInteraction {
             }
             CareWorld.syncTrough(world, care, pos.x, pos.y, pos.z);
             care.scheduleSave();
-            player.sendMessage(Message.translation("cozyranch_care.trough.taken"));
+            RanchChat.tell(player, Message.translation("cozyranch_care.trough.taken"));
             return;
         }
 

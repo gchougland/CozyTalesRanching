@@ -7,6 +7,7 @@ import com.hexvane.cozytalesranching.api.event.AnimalHouseAssignedEvent;
 import com.hexvane.cozytalesranching.api.event.RanchEvents;
 import com.hexvane.cozytalesranching.api.event.RanchHousePlacedEvent;
 import com.hexvane.cozytalesranching.api.event.RanchHouseRemovedEvent;
+import com.hexvane.cozytalesranching.prefs.RanchChat;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hypixel.hytale.component.Archetype;
 import com.hypixel.hytale.component.ArchetypeChunk;
@@ -138,7 +139,7 @@ final class HousePlacement {
         RanchEvents.fire(new RanchHousePlacedEvent(playerId, house.houseId, speciesId, world.getName()));
         PlayerRef player = Universe.get().getPlayer(playerId);
         if (player != null) {
-            player.sendMessage(Message.translation("cozyranch_house.place.done")
+            RanchChat.tell(player, Message.translation("cozyranch_house.place.done")
                 .param("house", HouseBlocks.displayName(house)).param("capacity", house.capacity));
         }
     }
@@ -172,7 +173,7 @@ final class HousePlacement {
         LOG.info("House " + house.houseId + " removed (block gone" + (breaker != null ? ", broken by " + breaker : "") + "); " + residents.size() + " resident(s) unassigned");
         PlayerRef owner = house.ownerId != null ? Universe.get().getPlayer(house.ownerId) : null;
         if (owner != null) {
-            owner.sendMessage(Message.translation("cozyranch_house.break.done").param("house", HouseBlocks.displayName(house)).param("count", residents.size()));
+            RanchChat.tell(owner, Message.translation("cozyranch_house.break.done").param("house", HouseBlocks.displayName(house)).param("count", residents.size()));
         }
     }
 

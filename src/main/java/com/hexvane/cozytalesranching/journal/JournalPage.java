@@ -4,13 +4,14 @@ import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.RanchSounds;
 import com.hexvane.cozytalesranching.breeding.TraitRegistry;
 import com.hexvane.cozytalesranching.config.RanchConfig;
+import com.hexvane.cozytalesranching.prefs.PlayerPrefs;
+import com.hexvane.cozytalesranching.prefs.RanchPrefs;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hypixel.hytale.codec.Codec;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
-import com.hypixel.hytale.protocol.SoundCategory;
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
 import com.hypixel.hytale.server.core.asset.type.item.config.Item;
 import com.hypixel.hytale.server.core.entity.entities.Player;
@@ -19,7 +20,6 @@ import com.hypixel.hytale.server.core.modules.i18n.I18nModule;
 import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder;
 import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
-import com.hypixel.hytale.server.core.universe.world.SoundUtil;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.time.ZoneId;
 import java.util.List;
@@ -81,7 +81,7 @@ public final class JournalPage extends InteractiveCustomUIPage<JournalPage.Event
     }
 
     static void playOpenSound(@Nonnull PlayerRef ref) {
-        SoundUtil.playSoundEvent2dToPlayer(ref, RanchSounds.JOURNAL_OPEN, SoundCategory.UI);
+        RanchSounds.play2d(ref, RanchSounds.JOURNAL_OPEN);
     }
 
     @Nullable
@@ -102,6 +102,11 @@ public final class JournalPage extends InteractiveCustomUIPage<JournalPage.Event
             JournalLayout.species(JournalView.species(j, context, species), ui);
         } else if (view.equals(JournalLayout.ACTION_TRAITS)) {
             JournalLayout.traits(JournalView.traits(j, context, traitSpread), ui);
+        } else if (view.equals(JournalLayout.ACTION_GUIDE)) {
+            JournalLayout.guide(JournalView.guide(), ui);
+        } else if (view.equals(JournalLayout.ACTION_SETTINGS)) {
+            PlayerPrefs prefs = RanchPrefs.of(playerRef.getUuid());
+            JournalLayout.settings(JournalView.settings(prefs.Chat, prefs.Sounds), ui);
         } else if (view.equals(JournalLayout.ACTION_MEMORIES)) {
             JournalLayout.memories(JournalView.memories(j, context, spread), ui);
         } else {
@@ -127,6 +132,12 @@ public final class JournalPage extends InteractiveCustomUIPage<JournalPage.Event
             case JournalLayout.ACTION_TRAITS -> {
                 view = action;
                 traitSpread = page(data.arg);
+            }
+            case JournalLayout.ACTION_GUIDE, JournalLayout.ACTION_SETTINGS -> view = action;
+            case JournalLayout.ACTION_TOGGLE -> {
+                PlayerPrefs.Setting setting = PlayerPrefs.Setting.byId(data.arg);
+                if (setting != null) RanchPrefs.toggle(playerRef.getUuid(), setting);
+                view = JournalLayout.ACTION_SETTINGS;
             }
             default -> view = JournalLayout.ACTION_CONTENTS;
         }

@@ -3,6 +3,7 @@ package com.hexvane.cozytalesranching.taming;
 import com.hexvane.cozytalesranching.animal.AnimalMarker;
 import com.hexvane.cozytalesranching.compat.CompatGuard;
 import com.hexvane.cozytalesranching.config.RanchConfig;
+import com.hexvane.cozytalesranching.prefs.RanchChat;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry.RoleKind;
@@ -168,7 +169,7 @@ public final class WildPrompts {
             PlayerRef playerRef = chunk.getComponent(index, PlayerRef.getComponentType());
             ItemStack held = InventoryComponent.getItemInHand(cb, player);
             if (playerRef != null && !ItemStack.isEmpty(held) && CRICKETS_ITEM.equals(held.getItemId()) && TOLD_ABOUT_CRICKETS.add(playerRef.getUuid())) {
-                playerRef.sendMessage(Message.translation("cozyranch_taming.crickets.tip"));
+                RanchChat.tell(playerRef, Message.translation("cozyranch_taming.crickets.tip"));
             }
             EntityTrackerSystems.EntityViewer viewer = cb.getComponent(player, EntityTrackerSystems.EntityViewer.getComponentType());
             TransformComponent at = cb.getComponent(player, TransformComponent.getComponentType());

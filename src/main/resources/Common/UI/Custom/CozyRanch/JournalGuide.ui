@@ -1,0 +1,62 @@
+$C = "../Common.ui";
+$J = "JournalStyles.ui";
+
+// How to ranch: short sections on both pages, filled from Java (heading and line rows like a species page).
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  Group {
+    LayoutMode: Center;
+
+    $J.@Book #Book {
+      Group #LeftPage {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Background: $J.@PageLeftBackground;
+        Padding: $J.@LeftPagePadding;
+
+        Label #GuideTitle {
+          Style: $J.@TitleStyle;
+          Text: "";
+        }
+
+        Label #GuideSubtitle {
+          Style: $J.@TaglineStyle;
+          Anchor: (Top: 4);
+          Text: "";
+        }
+
+        $J.@Divider {}
+
+        Group #GuideLeft {
+          LayoutMode: Top;
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #GuideLeftNav {
+          LayoutMode: Left;
+          Anchor: (Height: 34, Top: 10);
+
+          $J.@NavButton #GuideNavContents {
+            Text: "";
+          }
+        }
+      }
+
+      Group #RightPage {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Background: $J.@PageRightBackground;
+        Padding: $J.@RightPagePadding;
+
+        Group #GuideRight {
+          LayoutMode: Top;
+          Anchor: (Top: 6);
+        }
+
+        Group { FlexWeight: 1; }
+      }
+    }
+  }
+}

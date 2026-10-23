@@ -8,6 +8,7 @@ import com.hexvane.cozytalesranching.api.event.RanchVisitorArrivedEvent;
 import com.hexvane.cozytalesranching.care.CareApi;
 import com.hexvane.cozytalesranching.config.RanchConfig;
 import com.hexvane.cozytalesranching.house.HouseRecord;
+import com.hexvane.cozytalesranching.prefs.RanchChat;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hexvane.cozytalesranching.wildlife.VisitorStore.HouseState;
@@ -326,7 +327,7 @@ final class WildlifeWorld {
             if (t == null || t.getPosition().distance(house.x + 0.5, house.y, house.z + 0.5) > config.PlayerRange) return;
             Message animal = rare && sw.Rare != null && !sw.Rare.NameKey.isEmpty()
                 ? Message.translation(sw.Rare.NameKey) : Message.translation(species.NameKey);
-            p.sendMessage(Message.translation(rare ? "cozyranch_wildlife.arrived.rare" : "cozyranch_wildlife.arrived")
+            RanchChat.tell(p, Message.translation(rare ? "cozyranch_wildlife.arrived.rare" : "cozyranch_wildlife.arrived")
                 .param("animal", animal).param("house", houseName(house)));
             return;
         }

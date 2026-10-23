@@ -70,6 +70,16 @@ public final class JournalView {
     public record Traits(int spread, int spreads, @Nonnull Txt progress, @Nonnull Txt intro, @Nonnull List<TraitRow> left, @Nonnull List<TraitRow> right,
                          @Nonnull Txt pageLabel, boolean hasPrevious, boolean hasNext) {}
 
+    /** The How to pages: short sections of plain lines, the same rows as a species page. */
+    public record Guide(@Nonnull List<Section> left, @Nonnull List<Section> right) {}
+
+    /** One toggle on the settings page. */
+    public record SettingRow(@Nonnull String id, @Nonnull Txt name, @Nonnull Txt description, @Nonnull Txt state, boolean on) {}
+
+    /** The How to sections, in reading order, with how many lines each has ({@code guide.<id>.title}, {@code guide.<id>.<n>}). */
+    static final String[][] GUIDE_LEFT = {{"friend", "4"}, {"home", "3"}, {"happy", "3"}};
+    static final String[][] GUIDE_RIGHT = {{"babies", "2"}, {"produce", "2"}, {"frogs", "2"}};
+
     private JournalView() {}
 
     // ---- contents ----
@@ -415,5 +425,34 @@ public final class JournalView {
         String s = itemId.replaceFirst("^(Plant_Crop_|Food_|Ingredient_|CozyRanch_Food_|CozyRanch_)", "").replaceFirst("_Item$", "");
         s = s.replace('_', ' ').trim();
         return s.isEmpty() ? itemId : s.substring(0, 1).toUpperCase(Locale.ROOT) + s.substring(1);
+    }
+
+    // ---- how to and settings ----
+
+    @Nonnull
+    public static Guide guide() {
+        return new Guide(guideSections(GUIDE_LEFT), guideSections(GUIDE_RIGHT));
+    }
+
+    @Nonnull
+    private static List<Section> guideSections(@Nonnull String[][] spec) {
+        List<Section> out = new ArrayList<>();
+        for (String[] s : spec) {
+            List<Line> lines = new ArrayList<>();
+            for (int i = 1; i <= Integer.parseInt(s[1]); i++) lines.add(new Line(Txt.j("guide." + s[0] + "." + i), Style.BODY));
+            out.add(new Section(Txt.j("guide." + s[0] + ".title"), lines));
+        }
+        return out;
+    }
+
+    /** The settings page's rows for one player's current choices. */
+    @Nonnull
+    public static List<SettingRow> settings(boolean chat, boolean sounds) {
+        return List.of(setting("chat", chat), setting("sounds", sounds));
+    }
+
+    @Nonnull
+    private static SettingRow setting(@Nonnull String id, boolean on) {
+        return new SettingRow(id, Txt.j("settings." + id + ".name"), Txt.j("settings." + id + ".desc"), Txt.j(on ? "settings.on" : "settings.off"), on);
     }
 }

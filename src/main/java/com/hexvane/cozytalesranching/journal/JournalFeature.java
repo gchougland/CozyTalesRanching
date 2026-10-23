@@ -3,6 +3,7 @@ package com.hexvane.cozytalesranching.journal;
 import com.hexvane.cozytalesranching.CozyTalesRanchingPlugin;
 import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.animal.Ranch;
+import com.hexvane.cozytalesranching.prefs.RanchPrefs;
 import com.hypixel.hytale.server.core.event.events.ShutdownEvent;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.server.OpenCustomUIInteraction;
 import java.nio.file.Path;
@@ -23,6 +24,8 @@ public final class JournalFeature {
     /** Called once from the plugin's setup(). */
     public static void register(@Nonnull CozyTalesRanchingPlugin plugin) {
         dataDirectory = plugin.getDataDirectory();
+        // Per-player chat and sound settings live with the journal, whose Settings page toggles them.
+        RanchPrefs prefs = RanchPrefs.start(dataDirectory);
         JournalBook.install(JournalBook.load(dataDirectory));
         JournalService journal = new JournalService(dataDirectory);
         journal.load();
@@ -38,8 +41,14 @@ public final class JournalFeature {
             return page;
         });
         Ranch.installJournal(JournalPage::open);
-        plugin.getEventRegistry().register(SAVE_ON_SHUTDOWN, ShutdownEvent.class, event -> journal.close());
-        Runtime.getRuntime().addShutdownHook(new Thread(journal::close, "CozyRanch-JournalShutdown"));
+        plugin.getEventRegistry().register(SAVE_ON_SHUTDOWN, ShutdownEvent.class, event -> {
+            journal.close();
+            prefs.close();
+        });
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            journal.close();
+            prefs.close();
+        }, "CozyRanch-JournalShutdown"));
         plugin.getLogger().atInfo().log("Journal registered: page %s, %d species pages", PAGE_ID, JournalBook.get().Species.size());
     }
 
