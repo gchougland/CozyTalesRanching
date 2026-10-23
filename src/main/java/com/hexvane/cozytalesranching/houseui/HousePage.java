@@ -2,10 +2,12 @@ package com.hexvane.cozytalesranching.houseui;
 
 import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
+import com.hexvane.cozytalesranching.config.RanchConfig;
 import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.house.HouseService;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
+import com.hexvane.cozytalesranching.taming.TamingApi;
 import com.hypixel.hytale.codec.Codec;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
@@ -18,6 +20,7 @@ import com.hypixel.hytale.server.core.entity.entities.player.pages.InteractiveCu
 import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder;
 import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.List;
 import java.util.Locale;
@@ -31,6 +34,9 @@ import javax.annotation.Nullable;
 /** The house page (design doc section 13). Rebuilt whole after every action. World thread. */
 public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
+    /** Refresh at most once per 2 seconds per player. */
+    static final long REFRESH_LIMIT_MS = 2_000L;
+    static final RateLimit REFRESH_LIMIT = new RateLimit(REFRESH_LIMIT_MS);
 
     private final HouseSource source;
     @Nullable private Txt notice;
@@ -112,6 +118,12 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
                 playerRef.sendMessage(ServerUiOut.message(Txt.ui("journal.unavailable")));
                 return notice;
             }
+            case HousePageLayout.ACTION_REFRESH -> {
+                return refresh(house, store);
+            }
+            case HousePageLayout.ACTION_BORDER -> {
+                return border(house, store);
+            }
             case HousePageLayout.ACTION_CANCEL_MOVE -> {
                 state = new HouseView.PageState(state.selected(), false);
                 return null;
@@ -123,6 +135,13 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
         AnimalRecord animal = data.animal == null ? null : source.animal(data.animal);
         if (animal == null) return Txt.ui("result.not_found");
         Txt name = HouseView.animalName(animal, HouseView.speciesName(species(house), house.speciesId));
+        if (action.equals(HousePageLayout.ACTION_NAME)) {
+            if (!house.houseId.equals(animal.houseId)) return Txt.ui("result.not_found");
+            if (!canName(animal)) return failure(HouseService.Result.NOT_OWNER);
+            replaced = true;
+            TamingApi.openNamePage(playerRef, animal.animalId);
+            return null;
+        }
         if (action.equals(HousePageLayout.ACTION_MOVE_IN)) {
             if (!HouseSource.isFollower(animal, house, playerRef.getUuid())) return Txt.ui("result.not_found");
             HouseService.Result result = service.assign(playerRef, animal, house);
@@ -183,6 +202,38 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
         return Txt.ui(onlyBuckets ? "result.collect.buckets" : "result.collect.full");
     }
 
+    /** Looks around this house again now (habitat and the troughs near it), at most once per 2 s per player. */
+    @Nonnull
+    private Txt refresh(@Nonnull HouseRecord house, @Nonnull Store<EntityStore> store) {
+        if (!REFRESH_LIMIT.tryAcquire(playerRef.getUuid(), System.currentTimeMillis())) return Txt.ui("result.refresh.wait");
+        World world = store.getExternalData().getWorld();
+        if (!world.getName().equals(house.worldName) && !source.demo()) return Txt.ui("result.refresh.elsewhere");
+        if (!source.rescan(house, world)) return Txt.ui("result.unavailable");
+        HouseBorder.refresh(playerRef, world, house);
+        return Txt.ui("result.refreshed");
+    }
+
+    /** Turns this house's area lights on or off for the viewer. */
+    @Nonnull
+    private Txt border(@Nonnull HouseRecord house, @Nonnull Store<EntityStore> store) {
+        if (HouseBorder.isOn(playerRef.getUuid(), house.houseId)) {
+            HouseBorder.stop(playerRef.getUuid());
+            return Txt.ui("result.border.off");
+        }
+        World world = store.getExternalData().getWorld();
+        if (!world.getName().equals(house.worldName) && !source.demo()) return Txt.ui("result.refresh.elsewhere");
+        HouseBorder.start(playerRef, world, house, System.currentTimeMillis());
+        int radius = RanchConfig.get().habitatScanRadius();
+        boolean trough = HouseBorder.showTroughRing(radius, RanchConfig.get().troughRange());
+        return Txt.ui(trough ? "result.border.on.trough" : "result.border.on");
+    }
+
+    /** The viewer owns the animal, or may manage anyone's. */
+    private boolean canName(@Nonnull AnimalRecord animal) {
+        UUID id = playerRef.getUuid();
+        return id.equals(animal.ownerId) || RanchPermissions.has(id, RanchPermissions.ADMIN_MANAGE_ANY);
+    }
+
     /** Owner with {@code cozyranch.house.manage}, or {@code cozyranch.admin.manageany}; null when allowed. */
     @Nullable
     private Txt manageCheck(@Nonnull HouseRecord house) {
@@ -202,7 +253,8 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
             .map(h -> new HouseView.MoveTarget(h.houseId, houseName(h), source.residents(h).size(), Math.max(1, h.capacity)))
             .toList();
         return HouseView.of(house, species, houseNameKey(house, species), residents, service::isInside, followers, notice,
-            source.stored(house), state, targets, System.currentTimeMillis());
+            source.stored(house), state, targets, this::canName, HouseBorder.isOn(playerRef.getUuid(), house.houseId),
+            System.currentTimeMillis());
     }
 
     @Nonnull
@@ -210,7 +262,7 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
         HouseRecord gone = new HouseRecord();
         gone.houseId = new UUID(0, 0);
         return HouseView.of(gone, null, null, List.of(), id -> false, List.of(), Txt.ui("result.gone"),
-            Map.of(), HouseView.PageState.NONE, List.of(), System.currentTimeMillis());
+            Map.of(), HouseView.PageState.NONE, List.of(), r -> false, false, System.currentTimeMillis());
     }
 
     /** A house's name in the move picker: its own name, else its item's name with where it stands. */

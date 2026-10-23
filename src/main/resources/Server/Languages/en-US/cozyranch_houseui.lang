@@ -5,7 +5,7 @@ header.count = {count} of {capacity} residents
 residents.title = Residents
 residents.empty = Nobody lives here yet. Walk a befriended {species} over and invite it to move in.
 resident.baby = Baby
-resident.traits = {first}, {second}
+trait.nodesc = A trait this ranch has no notes on yet.
 
 mood.happy = Happy
 mood.okay = Content
@@ -25,6 +25,13 @@ button.movehere = Move here
 button.cancel = Cancel
 button.collect = Collect
 button.journal = Journal
+button.name = Name
+button.refresh = Check now
+button.area.show = Show area
+button.area.hide = Hide area
+
+tooltip.refresh = Look around the house again right now: decorations, water, shade and troughs.
+tooltip.area = Rings the house with little lights for a few minutes, seen only by you. Anything inside the honey ring counts for this house. Blue lights show how far animals sleeping at home reach a trough.
 
 products.title = Waiting in the house
 products.empty = Nothing yet. Happy residents leave little gifts here.
@@ -65,7 +72,7 @@ followers.empty = Animals of this kind that follow you can move in here. Befrien
 
 habitat.title = Habitat
 habitat.unchecked = Not checked yet
-habitat.unchecked.detail = The house takes a look around every little while. Check back soon.
+habitat.unchecked.detail = The house takes a look around every little while, or press Check now.
 habitat.great = Cozy and complete
 habitat.good = Comfy, with room to grow
 habitat.poor = Missing something important
@@ -124,6 +131,12 @@ result.collected.buckets = Into your bags: {count}. The milk waits for empty buc
 result.collect.nothing = Nothing to collect yet.
 result.collect.buckets = The milk waits for empty buckets, one each.
 result.collect.full = Your bags are full.
+result.refreshed = Took a fresh look around the house.
+result.refresh.wait = Give it a moment before looking again.
+result.refresh.elsewhere = Stand in the same world as the house for that.
+result.border.on = Lights ring the house for a few minutes. What is inside the ring counts for it.
+result.border.on.trough = Lights ring the house for a few minutes: honey for what counts, blue for trough reach.
+result.border.off = The area lights are off.
 
 commands.housepage.desc = Opens the house page on a made-up house (typical, full, empty, unchecked, missing, breedingoff, products, milk, move, personality, long).
 commands.housepage.arg = Which made-up house to show

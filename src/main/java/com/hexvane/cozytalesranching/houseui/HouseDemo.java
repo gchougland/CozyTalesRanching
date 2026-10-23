@@ -7,6 +7,7 @@ import com.hexvane.cozytalesranching.house.HouseService;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -77,7 +78,7 @@ public final class HouseDemo implements HouseSource {
             case TYPICAL -> {
                 HouseDemo d = new HouseDemo(owner, "cow", "CozyRanch_House_CowBarn", 4);
                 d.habitat(true, 0.72f, "open_space");
-                d.resident("Buttercup", 4, 0.86f, false, false, "gentle");
+                d.resident("Buttercup", 4, 0.86f, false, false, "efficient_eater");
                 d.resident("Moose", 2, 0.55f, false, true);
                 d.resident(null, 1, 0.22f, false, false);
                 d.follower("Daisy", 3);
@@ -87,12 +88,12 @@ public final class HouseDemo implements HouseSource {
                 HouseDemo d = new HouseDemo(owner, "chicken", "CozyRanch_House_ChickenCoop", 6);
                 d.house.name = "The Sunny Side Henhouse";
                 d.habitat(true, 0.95f);
-                d.resident("Princess Featherbottom", 5, 0.92f, false, false, "fluffy", "early_riser");
-                d.resident("Sir Reginald Cluckworth", 4, 0.78f, false, true, "golden_feathers", "brave", "loud");
-                d.resident("Henrietta Marigold", 3, 0.64f, false, false, "speedy");
+                d.resident("Princess Featherbottom", 5, 0.92f, false, false, "bountiful", "lucky");
+                d.resident("Sir Reginald Cluckworth", 4, 0.78f, false, true, "affectionate", "hardy", "gourmet");
+                d.resident("Henrietta Marigold", 3, 0.64f, false, false, "swift_grower");
                 d.resident("Nugget", 2, 0.45f, false, false);
-                d.resident("Pepper", 1, 0.3f, false, true, "shy");
-                d.resident("Little Pip", 0, 0.8f, true, false, "fluffy");
+                d.resident("Pepper", 1, 0.3f, false, true, "fertile");
+                d.resident("Little Pip", 0, 0.8f, true, false, "twinborn");
                 d.follower("Waddles", 2);
                 d.product("Food_Egg", 12);
                 d.product("Ingredient_Feathers_Light", 3);
@@ -109,7 +110,7 @@ public final class HouseDemo implements HouseSource {
                 d.house.habitatScannedAtMs = 0;
                 d.house.habitatRequirementsMet = false;
                 d.house.habitatScore = 0;
-                d.resident("Ribbit", 3, 0.6f, false, false, "jumpy");
+                d.resident("Ribbit", 3, 0.6f, false, false, "lucky");
                 d.resident(null, 1, 0.5f, false, false);
                 d.follower(null, 1);
                 yield d;
@@ -118,14 +119,14 @@ public final class HouseDemo implements HouseSource {
                 HouseDemo d = new HouseDemo(owner, "frog", "CozyRanch_House_FrogPond", 4);
                 d.habitat(false, 0.35f, "lily_pads", "reeds");
                 d.resident("Lily", 2, 0.35f, false, false);
-                d.resident("Croaker", 4, 0.48f, false, true, "loud");
+                d.resident("Croaker", 4, 0.48f, false, true, "hardy");
                 yield d;
             }
             case BREEDINGOFF -> {
                 HouseDemo d = new HouseDemo(owner, "sheep", "CozyRanch_House_Sheepfold", 4);
                 d.house.breedingEnabled = false;
                 d.habitat(true, 0.8f, "flowers");
-                d.resident("Woolliam", 5, 0.9f, false, false, "extra_fluffy");
+                d.resident("Woolliam", 5, 0.9f, false, false, "gourmet");
                 d.resident("Cotton", 3, 0.74f, false, false);
                 d.resident("Lambchop", 1, 0.66f, true, true);
                 d.product("Ingredient_Fabric_Scrap_Wool", 6);
@@ -309,6 +310,15 @@ public final class HouseDemo implements HouseSource {
     public List<HouseRecord> moveTargets(@Nonnull HouseRecord h) {
         return others.stream().filter(o -> HouseView.canMoveTo(h, o, residents(o).size())).toList();
     }
+
+    /** Pretends to look around: the demo habitat stays as it is, only its time moves on. No world is read. */
+    @Override
+    public boolean rescan(@Nonnull HouseRecord h, @Nonnull World world) {
+        h.habitatScannedAtMs = Math.max(1, System.currentTimeMillis());
+        return true;
+    }
+
+    @Override public boolean demo() { return true; }
 
     @Override
     public boolean openJournal(@Nonnull Ref<EntityStore> player, @Nonnull Store<EntityStore> store, @Nonnull String speciesId) {

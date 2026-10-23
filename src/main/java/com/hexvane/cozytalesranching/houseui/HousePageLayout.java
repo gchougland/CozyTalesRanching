@@ -27,6 +27,9 @@ public final class HousePageLayout {
     public static final String ACTION_CANCEL_MOVE = "CancelMove";
     public static final String ACTION_COLLECT = "Collect";
     public static final String ACTION_JOURNAL = "Journal";
+    public static final String ACTION_REFRESH = "Refresh";
+    public static final String ACTION_BORDER = "Border";
+    public static final String ACTION_NAME = "Name";
 
     /** Product chips that fit beside the Collect button; with more kinds, one chip's place shows "+N more". */
     public static final int MAX_CHIPS = 5;
@@ -112,7 +115,12 @@ public final class HousePageLayout {
             if (r.feedBonus() != null) ui.text(row + "#RFeedText", r.feedBonus());
             ui.set(row + "#RPersonality.Visible", r.personality() != null);
             if (r.personality() != null) ui.text(row + "#RPersonality", r.personality());
-            ui.text(row + "#RTraits", traits(r.traits()));
+            traits(ui, row, r.traits());
+            ui.set(row + "#RNameButton.Visible", r.nameable());
+            if (r.nameable()) {
+                ui.text(row + "#RNameButton", Txt.ui("button.name"));
+                ui.click(row + "#RNameButton", ACTION_NAME, r.id().toString());
+            }
             hearts(ui, row + "#RHeart", r.hearts());
             ui.text(row + "#RWhere", Txt.ui("where." + r.where().name().toLowerCase(java.util.Locale.ROOT)));
             ui.click(list, ACTION_SELECT, r.id().toString());
@@ -196,6 +204,12 @@ public final class HousePageLayout {
         int i = 0;
         for (String id : h.missingRequired()) missingRow(ui, i++, id, true);
         for (String id : h.missingPreferred()) missingRow(ui, i++, id, false);
+        ui.text("#RefreshButton", Txt.ui("button.refresh"));
+        ui.tooltip("#RefreshButton", Txt.ui("tooltip.refresh"));
+        ui.click("#RefreshButton", ACTION_REFRESH, "");
+        ui.text("#AreaButton", Txt.ui(view.borderOn() ? "button.area.hide" : "button.area.show"));
+        ui.tooltip("#AreaButton", Txt.ui("tooltip.area"));
+        ui.click("#AreaButton", ACTION_BORDER, "");
     }
 
     private static void missingRow(@Nonnull UiOut ui, int index, @Nonnull String featureId, boolean required) {
@@ -212,12 +226,16 @@ public final class HousePageLayout {
         for (int h = 1; h <= HouseView.MAX_HEARTS; h++) ui.set(prefix + h + ".Visible", h <= hearts);
     }
 
-    @Nonnull
-    private static Txt traits(@Nonnull List<Txt> traits) {
-        return switch (traits.size()) {
-            case 0 -> Txt.raw("");
-            case 1 -> traits.getFirst();
-            default -> Txt.ui("resident.traits").with("first", traits.get(0)).with("second", traits.get(1));
-        };
+    /** One pill per trait ({@code #RTrait1}, {@code #RTrait2}), each with what the trait does as its tooltip. */
+    private static void traits(@Nonnull UiOut ui, @Nonnull String row, @Nonnull List<HouseView.Trait> traits) {
+        for (int t = 1; t <= HouseView.MAX_TRAITS; t++) {
+            boolean has = t <= traits.size();
+            String pill = row + "#RTrait" + t;
+            ui.set(pill + ".Visible", has);
+            if (!has) continue;
+            HouseView.Trait trait = traits.get(t - 1);
+            ui.text(pill, trait.name());
+            ui.tooltip(pill, trait.description());
+        }
     }
 }

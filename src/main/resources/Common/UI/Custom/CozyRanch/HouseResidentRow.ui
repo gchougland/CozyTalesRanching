@@ -16,6 +16,19 @@ $H = "HouseStyles.ui";
 
 @PillText = LabelStyle(FontSize: 12, RenderBold: true, RenderUppercase: true, VerticalAlignment: Center);
 
+// A trait: hover it to read what it does (the tooltip text is set from Java).
+@TraitPill = Label {
+  Anchor: (Height: 18, Left: 6);
+  Padding: (Horizontal: 7);
+  Background: (Color: #e8b25c(0.16));
+  OutlineSize: 1;
+  OutlineColor: #e8b25c(0.4);
+  Style: (FontSize: 12, RenderBold: true, TextColor: #f6d38e, VerticalAlignment: Center);
+  TextTooltipStyle: $C.@DefaultTextTooltipStyle;
+  Text: "";
+  Visible: false;
+};
+
 Button #ResidentRow {
   LayoutMode: Full;
   Anchor: (Height: 64, Bottom: 6);
@@ -52,9 +65,22 @@ Button #ResidentRow {
       FlexWeight: 1;
       Anchor: (Right: 10);
 
-      Label #RName {
-        Style: $H.@NameStyle;
-        Text: "";
+      Group #RTop {
+        LayoutMode: Left;
+        Anchor: (Height: 22);
+
+        Label #RName {
+          FlexWeight: 1;
+          Style: (...$H.@NameStyle, VerticalAlignment: Center);
+          Text: "";
+        }
+
+        Group #RTraits {
+          LayoutMode: Left;
+
+          @TraitPill #RTrait1 {}
+          @TraitPill #RTrait2 {}
+        }
       }
 
       Group #RLine {
@@ -90,13 +116,12 @@ Button #ResidentRow {
           Anchor: (Right: 10);
           Text: "";
         }
-
-        Label #RTraits {
-          FlexWeight: 1;
-          Style: (...$H.@MutedStyle, VerticalAlignment: Center);
-          Text: "";
-        }
       }
+    }
+
+    $C.@SmallSecondaryTextButton #RNameButton {
+      @Anchor = (Width: 76, Right: 14);
+      Visible: false;
     }
 
     Group #RHeartCol {

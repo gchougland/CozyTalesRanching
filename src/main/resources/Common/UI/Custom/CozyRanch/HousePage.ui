@@ -268,6 +268,22 @@ $C.@PageOverlay {
               Group #HabitatMissing {
                 LayoutMode: Top;
               }
+
+              Group #HabitatButtons {
+                LayoutMode: Left;
+                Anchor: (Height: 32, Top: 8);
+
+                $C.@SmallSecondaryTextButton #RefreshButton {
+                  @Anchor = (Right: 8);
+                  FlexWeight: 1;
+                  TextTooltipStyle: $C.@DefaultTextTooltipStyle;
+                }
+
+                $C.@SmallSecondaryTextButton #AreaButton {
+                  FlexWeight: 1;
+                  TextTooltipStyle: $C.@DefaultTextTooltipStyle;
+                }
+              }
             }
 
             Group #BreedingCard {

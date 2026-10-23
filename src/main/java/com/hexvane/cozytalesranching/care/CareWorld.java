@@ -391,6 +391,29 @@ final class CareWorld {
         return true;
     }
 
+    /**
+     * The house page's Refresh: this one house scanned whole, now, after the troughs that count for it (within its scan
+     * radius plus the trough range) are checked, so a trough just broken or filled shows at once. A scan of this house
+     * already under way is dropped. Columns not in memory are skipped, as always. World thread, outside ticks.
+     */
+    void rescanHouse(@Nonnull World world, @Nonnull CareService care, @Nonnull HouseRecord house, long now) {
+        if (job != null && job.houseId().equals(house.houseId)) {
+            job = null;
+            jobGrid = null;
+        }
+        placed.remove(house.houseId);
+        Vector3d at = new Vector3d(house.x + 0.5, house.y, house.z + 0.5);
+        int reachTroughs = RanchConfig.get().habitatScanRadius() + RanchConfig.get().troughRange();
+        for (CareStore.TroughView t : care.store().troughsIn(world.getName())) {
+            if (reach(at, t, reachTroughs) >= 0) syncTrough(world, care, t.x(), t.y(), t.z());
+        }
+        HabitatScan scan = newScan(care, house);
+        WorldHabitatGrid grid = new WorldHabitatGrid(world);
+        while (!scan.done()) scan.step(grid, 4096);
+        finishScan(care, world.getName(), house, scan, now);
+        care.scheduleSave();
+    }
+
     @Nonnull
     private static HabitatScan newScan(@Nonnull CareService care, @Nonnull HouseRecord h) {
         return new HabitatScan(care.habitat(), h.x, h.y, h.z, RanchConfig.get().habitatScanRadius());

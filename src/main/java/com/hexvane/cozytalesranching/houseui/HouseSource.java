@@ -2,11 +2,13 @@ package com.hexvane.cozytalesranching.houseui;
 
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
+import com.hexvane.cozytalesranching.care.CareApi;
 import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.house.HouseService;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
+import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +45,14 @@ public interface HouseSource {
 
     /** World thread. The chat line for Locate. */
     @Nonnull Txt locate(@Nonnull AnimalRecord animal, @Nonnull Txt name, @Nonnull Ref<EntityStore> player, @Nonnull Store<EntityStore> store);
+
+    /** World thread, outside ticks. Looks around this house again now (habitat, the troughs near it); false if nothing ran. */
+    boolean rescan(@Nonnull HouseRecord house, @Nonnull World world);
+
+    /** True for the test command's made-up houses, which stand in no world. */
+    default boolean demo() {
+        return false;
+    }
 
     /** Selection and picker state the page opens with. */
     @Nonnull
@@ -94,6 +104,11 @@ public interface HouseSource {
                 return Ranch.houses().ownedBy(house.ownerId).stream()
                     .filter(h -> HouseView.canMoveTo(house, h, Ranch.animals().inHouse(h.houseId).size()))
                     .toList();
+            }
+
+            @Override
+            public boolean rescan(@Nonnull HouseRecord house, @Nonnull World world) {
+                return CareApi.rescanHouse(world, house);
             }
 
             @Override

@@ -130,6 +130,18 @@ public final class CareApi {
     }
 
     /** How far animals reach troughs, in blocks ({@code TroughRange}). */
+    /**
+     * Rescans one house's habitat now (the house page's Refresh) and checks the troughs near it. Bounded to this house:
+     * one disc of {@code HabitatScanRadius} columns, read only from sections already in memory. Call on the house's
+     * world thread, outside any tick. False when care is not running or the house is in another world.
+     */
+    public static boolean rescanHouse(@Nonnull World world, @Nonnull com.hexvane.cozytalesranching.house.HouseRecord house) {
+        CareService care = CareService.get();
+        if (care == null || !world.getName().equals(house.worldName)) return false;
+        CareWorld.of(world).rescanHouse(world, care, house, System.currentTimeMillis());
+        return true;
+    }
+
     public static int troughRange() {
         return RanchConfig.get().troughRange();
     }

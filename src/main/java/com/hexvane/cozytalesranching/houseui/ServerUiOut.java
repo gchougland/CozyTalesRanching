@@ -30,6 +30,8 @@ final class ServerUiOut implements UiOut {
 
     @Override public void text(@Nonnull String selector, @Nonnull Txt text) { commands.set(selector + ".TextSpans", message(text)); }
 
+    @Override public void tooltip(@Nonnull String selector, @Nonnull Txt text) { commands.set(selector + ".TooltipText", message(text)); }
+
     @Override
     public void click(@Nonnull String selector, @Nonnull String action, @Nonnull String animal, @Nonnull String house) {
         EventData data = EventData.of("Action", action);
