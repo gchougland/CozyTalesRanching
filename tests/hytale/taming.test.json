@@ -4,30 +4,389 @@
       "name": "taming gate",
       "description": "The mod's assets parse and match the engine schemas.",
       "steps": [
-        { "tool": "asset_validate", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true, "schemaErrors": 0 } }
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0
+          }
+        }
       ]
     },
     {
       "name": "ranch roles",
       "description": "The CozyRanch template and every species role pass the engine schema with no warnings.",
       "steps": [
-        { "tool": "asset_check", "name": "template", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/Template_CozyRanch_Animal.json" }, "expect": { "errors": 0, "warnings": 0 } },
-        { "tool": "asset_check", "name": "cow", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Cow.json" }, "expect": { "errors": 0, "warnings": 0 } },
-        { "tool": "asset_check", "name": "calf", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Cow_Calf.json" }, "expect": { "errors": 0, "warnings": 0 } },
-        { "tool": "asset_check", "name": "chicken", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Chicken.json" }, "expect": { "errors": 0, "warnings": 0 } },
-        { "tool": "asset_check", "name": "chick", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Chicken_Chick.json" }, "expect": { "errors": 0, "warnings": 0 } },
-        { "tool": "asset_check", "name": "pig", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig.json" }, "expect": { "errors": 0, "warnings": 0 } },
-        { "tool": "asset_check", "name": "piglet", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig_Piglet.json" }, "expect": { "errors": 0, "warnings": 0 } },
-        { "tool": "asset_check", "name": "sheep", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Sheep.json" }, "expect": { "errors": 0, "warnings": 0 } },
-        { "tool": "asset_check", "name": "lamb", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Sheep_Lamb.json" }, "expect": { "errors": 0, "warnings": 0 } },
-        { "tool": "asset_check", "name": "frog", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Frog.json" }, "expect": { "errors": 0, "warnings": 0 } }
+        {
+          "tool": "asset_check",
+          "name": "template",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/Template_CozyRanch_Animal.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "cow",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Cow.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "calf",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Cow_Calf.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "chicken",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Chicken.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "chick",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Chicken_Chick.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "pig",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "piglet",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig_Piglet.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "sheep",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Sheep.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "lamb",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Sheep_Lamb.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "frog",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Frog.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        }
       ]
     },
     {
       "name": "cricket jar",
       "description": "The frog food item has no errors; its one warning is the plugin-registered CozyRanchOfferFood type.",
       "steps": [
-        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Food/CozyRanch_Food_Crickets.json" }, "expect": { "errors": 0 } }
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Food/CozyRanch_Food_Crickets.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "name page gate",
+      "description": "Every UI document parses and the taming Java names only ids and properties that exist.",
+      "steps": [
+        {
+          "tool": "ui_check_java",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "name page",
+      "description": "The naming page as NamePage.build() sends it: just tamed (empty), renaming, and the longest name with the refusal notice. Prompts with a species or name parameter are given as the rendered English text.",
+      "steps": [
+        {
+          "tool": "ui_render",
+          "name": "just tamed, empty field",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/NamePage.ui",
+            "commands": [
+              {
+                "type": "Append",
+                "text": "CozyRanch/NamePage.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#NameTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NamePrompt.TextSpans",
+                "data": {
+                  "RawText": "What would you like to call your Cow?"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NameField.Value",
+                "data": ""
+              },
+              {
+                "type": "Set",
+                "selector": "#NameHint.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.limit",
+                  "Params": {
+                    "max": 24
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NameNotice.TextSpans",
+                "data": {
+                  "RawText": ""
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SaveButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.save"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#CancelButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.cancel"
+                }
+              }
+            ]
+          },
+          "expect": {
+            "valid": true,
+            "errors": 0,
+            "warnings": 0
+          },
+          "golden": "tests/hytale/golden/namepage-empty.png"
+        },
+        {
+          "tool": "ui_render",
+          "name": "rename a named animal",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/NamePage.ui",
+            "commands": [
+              {
+                "type": "Append",
+                "text": "CozyRanch/NamePage.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#NameTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.title.rename"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NamePrompt.TextSpans",
+                "data": {
+                  "RawText": "Pick a new name for Daisy."
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NameField.Value",
+                "data": "Daisy"
+              },
+              {
+                "type": "Set",
+                "selector": "#NameHint.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.limit",
+                  "Params": {
+                    "max": 24
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NameNotice.TextSpans",
+                "data": {
+                  "RawText": ""
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SaveButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.save"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#CancelButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.cancel"
+                }
+              }
+            ]
+          },
+          "expect": {
+            "valid": true,
+            "errors": 0,
+            "warnings": 0
+          },
+          "golden": "tests/hytale/golden/namepage-typical.png"
+        },
+        {
+          "tool": "ui_render",
+          "name": "24 characters and a refused name",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/NamePage.ui",
+            "commands": [
+              {
+                "type": "Append",
+                "text": "CozyRanch/NamePage.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#NameTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.title.rename"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NamePrompt.TextSpans",
+                "data": {
+                  "RawText": "Pick a new name for Bartholomew Buttercup Th."
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NameField.Value",
+                "data": "Bartholomew Buttercup Th"
+              },
+              {
+                "type": "Set",
+                "selector": "#NameHint.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.limit",
+                  "Params": {
+                    "max": 24
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NameNotice.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.name.invalid"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SaveButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.save"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#CancelButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.cancel"
+                }
+              }
+            ]
+          },
+          "expect": {
+            "valid": true,
+            "errors": 0,
+            "warnings": 0
+          },
+          "golden": "tests/hytale/golden/namepage-long.png"
+        }
       ]
     }
   ]

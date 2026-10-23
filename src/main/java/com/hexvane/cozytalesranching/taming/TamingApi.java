@@ -4,6 +4,7 @@ import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.api.event.AnimalReleasedEvent;
 import com.hexvane.cozytalesranching.api.event.RanchEvents;
+import com.hexvane.cozytalesranching.config.RanchConfig;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hypixel.hytale.component.Ref;
@@ -50,12 +51,12 @@ public final class TamingApi {
      */
     @Nullable
     public static String nameplateText(@Nonnull AnimalRecord record) {
-        return record.name != null && !record.name.isEmpty() ? record.name : null;
+        return TamingRules.nameplateText(record.name, RanchConfig.get().showNameplates());
     }
 
     /** Opens the naming page for one of the player's animals. World thread of the player, outside ticks. */
     public static void openNamePage(@Nonnull PlayerRef player, @Nonnull UUID animalId) {
-        // Filled in by the taming fix wave.
+        NamePage.open(player, animalId);
     }
 
     public static void release(@Nonnull AnimalRecord record, @Nullable Ref<EntityStore> animal, @Nonnull PlayerRef player, @Nonnull Store<EntityStore> store) {

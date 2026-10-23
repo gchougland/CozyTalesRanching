@@ -1,0 +1,78 @@
+// Naming a ranch animal: one text field, Save and Not now. Every text is set from Java (.TextSpans).
+$C = "../Common.ui";
+$H = "HouseStyles.ui";
+
+@PanelWidth = 500;
+@PanelHeight = 268;
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  Group {
+    LayoutMode: Center;
+
+    $C.@DecoratedContainer {
+      Anchor: (Width: @PanelWidth, Height: @PanelHeight);
+
+      #Title {
+        Label #NameTitle {
+          Style: (...$C.@TitleStyle, FontSize: 17, TextColor: #f4e6c8, HorizontalAlignment: Center);
+          Padding: (Horizontal: 19);
+          Text: "";
+        }
+      }
+
+      #Content {
+        LayoutMode: Top;
+        Padding: (Horizontal: 22, Top: 16, Bottom: 16);
+
+        Group #NameCard {
+          LayoutMode: Top;
+          Background: $H.@CardBackground;
+          Padding: (Full: 14);
+
+          Label #NamePrompt {
+            Style: (...$H.@BodyStyle, FontSize: 15, Wrap: true);
+            Anchor: (Bottom: 10);
+            Text: "";
+          }
+
+          $C.@TextField #NameField {
+            MaxLength: 24;
+          }
+
+          Label #NameHint {
+            Style: $H.@MutedStyle;
+            Anchor: (Top: 6);
+            Text: "";
+          }
+        }
+
+        Label #NameNotice {
+          Style: (...$H.@BodyStyle, TextColor: $H.@ColorHoney, HorizontalAlignment: Center);
+          Anchor: (Top: 8, Height: 20);
+          Text: "";
+        }
+
+        Group #NameButtons {
+          LayoutMode: Left;
+          Anchor: (Top: 6, Height: 44);
+
+          Group {
+            FlexWeight: 1;
+          }
+
+          $C.@SecondaryTextButton #CancelButton {
+            @Text = "";
+            @Anchor = (Width: 150, Right: 12);
+          }
+
+          $C.@TextButton #SaveButton {
+            @Text = "";
+            @Anchor = (Width: 150);
+          }
+        }
+      }
+    }
+  }
+}

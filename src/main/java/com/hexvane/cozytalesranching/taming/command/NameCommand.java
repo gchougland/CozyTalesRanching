@@ -2,6 +2,7 @@ package com.hexvane.cozytalesranching.taming.command;
 
 import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.animal.Ranch;
+import com.hexvane.cozytalesranching.taming.Nameplates;
 import com.hexvane.cozytalesranching.taming.TamingRules;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
@@ -10,7 +11,6 @@ import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredArg;
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
-import com.hypixel.hytale.server.core.entity.nameplate.Nameplate;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
@@ -38,7 +38,7 @@ public final class NameCommand extends AbstractPlayerCommand {
         TamingCommands.lookedAtOwned(ref, playerRef, store).ifPresent(target -> {
             target.record().name = clean;
             Ranch.animals().markDirty(target.record());
-            store.ensureAndGetComponent(target.entity(), Nameplate.getComponentType()).setText(clean);
+            Nameplates.apply(target.record(), target.entity(), store);
             playerRef.sendMessage(Message.translation("cozyranch_taming.name.done").param("name", clean));
         });
     }

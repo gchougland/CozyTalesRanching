@@ -175,6 +175,7 @@ public final class AnimalInteractions {
         AnimalControl.cheer(animal, AnimalControl.HEARTS, store);
         AnimalControl.sound(animal, RanchSounds.ANIMAL_TAMED, store);
         use.player.sendMessage(Message.translation("cozyranch_taming.tame.done").param("animal", animalName));
+        TamingApi.openNamePage(use.player, record.animalId);
     }
 
     // ---- animals with a ranch record ----
@@ -224,6 +225,8 @@ public final class AnimalInteractions {
         AnimalControl.cheer(animal, AnimalControl.HEARTS, store);
         AnimalControl.sound(animal, RanchSounds.ANIMAL_TAMED, store);
         use.player.sendMessage(Message.translation("cozyranch_taming.claim.done").param("animal", AnimalControl.displayName(record)));
+        refreshNameplate(record, animal, store);
+        if (record.name == null || record.name.isBlank()) TamingApi.openNamePage(use.player, record.animalId);
     }
 
     private static void toggleFollow(@Nonnull Use use) {
@@ -258,6 +261,7 @@ public final class AnimalInteractions {
         }
         if (!takeHeldItem(playerEntity, use.itemId, store)) return;
         record.lastFedAtMs = now;
+        refreshNameplate(record, animal, store);
         CareApi.recordMeal(record, food);
         AnimalControl.sound(animal, addFriendship(record, TamingRules.feedFriendship(food)) ? RanchSounds.HEART_UP : RanchSounds.ANIMAL_HAPPY, store);
         AnimalControl.cheer(animal, food == TamingRules.FoodKind.FAVORITE ? AnimalControl.HEARTS : AnimalControl.HEARTS_SMALL, store);
@@ -273,16 +277,22 @@ public final class AnimalInteractions {
         AnimalRecord record = found.get();
         WorldTimeResource time = store.getResource(WorldTimeResource.getResourceType());
         long gameNow = time.getGameTime().toEpochMilli();
-        AnimalControl.cheer(animal, AnimalControl.HEARTS_SMALL, store);
         if (!TamingRules.canPetForFriendship(record.lastPettedAtMs, gameNow)) {
-            AnimalControl.sound(animal, RanchSounds.ANIMAL_HAPPY, store);
-            use.player.sendMessage(Message.translation("cozyranch_taming.pet.again").param("animal", AnimalControl.displayName(record)));
+            // once a day: a second pet gives no hearts, sound, animation or friendship, only this line
+            use.player.sendMessage(Message.translation("cozyranch_taming.pet.already").param("animal", AnimalControl.displayName(record)));
             return;
         }
+        refreshNameplate(record, animal, store);
+        AnimalControl.cheer(animal, AnimalControl.HEARTS_SMALL, store);
         record.lastPettedAtMs = Math.max(1L, gameNow);
         AnimalControl.sound(animal, addFriendship(record, TamingRules.PET_FRIENDSHIP) ? RanchSounds.HEART_UP : RanchSounds.ANIMAL_HAPPY, store);
         use.player.sendMessage(Message.translation("cozyranch_taming.pet.done")
             .param("animal", AnimalControl.displayName(record)).param("hearts", record.hearts).param("max", TamingRules.MAX_HEARTS));
+    }
+
+    /** Brings the nameplate in line with the name and the config switch whenever the player deals with the animal. */
+    private static void refreshNameplate(@Nonnull AnimalRecord record, @Nonnull Ref<EntityStore> animal, @Nonnull Store<EntityStore> store) {
+        Nameplates.apply(record, animal, store);
     }
 
     /** @return true when a heart was gained */

@@ -13,6 +13,10 @@ public final class TamingFeature {
         plugin.getCodecRegistry(Interaction.CODEC).register(OfferFoodInteraction.TYPE, OfferFoodInteraction.class, OfferFoodInteraction.CODEC);
         plugin.getEntityStoreRegistry().registerSystem(new UseAnimalSystem());
         plugin.getEntityStoreRegistry().registerSystem(new FollowSystem());
+        plugin.getEntityStoreRegistry().registerSystem(new WildPrompts.Repair());
+        plugin.getEntityStoreRegistry().registerSystem(new WildPrompts.OnHotbar());
+        var marker = com.hexvane.cozytalesranching.animal.AnimalMarker.type();
+        if (marker != null) plugin.getEntityStoreRegistry().registerSystem(new Nameplates.OnLoad(marker));
         plugin.getLogger().atInfo().log("Taming registered: interaction %s, use and follow systems", OfferFoodInteraction.TYPE);
     }
 }
