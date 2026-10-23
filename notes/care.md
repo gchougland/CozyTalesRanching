@@ -212,6 +212,90 @@ They work only once `RanchCommand` adds the sub-command (REQUESTS).
 6. **Live state.** Check that `setBlockInteractionState` back to `default` works on a rotated trough; it is
    the only state change I could not test.
 
+## Wave 3: feeds, toys, care traits, first scans
+
+### Advanced feed (`Feeding`, `GiveFeedInteraction`, `Habitat.json` `Feeds`/`FeedEffects`)
+
+- Items `CozyRanch_Feed_Hearty/_Sweet/_Breeders/_Premium`, crafted at the Farmer's bench (Farming tab), 2 per
+  craft: Hearty = 3 wheat + 2 corn + 1 potato; Sweet = 2 carrot + 1 pumpkin + 1 wheat; Breeder's = 2 lettuce +
+  1 cauliflower + 1 turnip + 1 wheat; Premium = corn + carrot + pumpkin + tomato + rice. Max stack 25.
+- Every species accepts them in a trough (`CareService.isTroughFood`) and by hand: Secondary (right-click) on
+  your own ranch animal within 6 blocks (`CozyRanchGiveFeed`). Hand feeding needs `RanchPermissions.TROUGH` and
+  ownership (or `ADMIN_MANAGE_ANY`); it counts as a Preferred meal and gives Preferred-meal friendship.
+- One bonus at a time in `AnimalRecord.feedBonus`/`feedBonusUntilMs`; a new feed replaces the old. Durations in
+  real minutes, from `Habitat.json`: hearty 120, sweet 60, breeders 60, premium 90. Expired bonuses are
+  cleared at the next care visit.
+- Trough choice: with no bonus active an animal eats feed first; with a bonus active it eats normal food first
+  (favourite > preferred > basic) and feed last, so a trough of feed is not burned through.
+- Effects:
+  - **hearty**: the "fed" and "good food" parts stay on while the bonus lasts, even past 2 meal intervals.
+  - **sweet**: friendship from meals and treats ×1.5 (`FeedEffects.SweetFriendshipMultiplier`).
+  - **breeders**: on eating, `lastBredAtMs` moves back by 0.5 × the animal's cooldown (`BreedersCooldownCut`),
+    never past "ready", once per feeding. Never-bred or already-ready animals are unchanged.
+  - **premium**: only sets the bonus. Produce reads it (REQUESTS).
+
+### Toys (`Toys/`, `Habitat.json` `Features` + `SpeciesToys`)
+
+- Placeable blocks `CozyRanch_Toy_Ball/_ScratchingPost/_HangingBell/_FloatingDuck/_Log`, Farmer's bench,
+  Decorative tab. Each is a habitat feature (`toy_*`, 1 block within the scan) added to the species' preferred
+  list: pig ball; cow and sheep post; chicken bell; frog duck and log.
+- They raise happiness through the existing score (preferred share). Side effect: adding a preference dilutes
+  the share for a house without the toy, so a house's score drops slightly until a toy is placed (e.g. a
+  cow at 2 of 4 preferences now has 2 of 5).
+
+### Care traits (`CareTraits`, effects read from breeding's `Traits.json` through `TraitBook`)
+
+| trait | key | value | effect |
+|---|---|---|---|
+| hardy | `HappinessDeclineMultiplier` | 0.5 | falling τ 20 → 40 min; floor 0.30 → 0.45 (`DeclineTraitFloor`, or a trait's own `HappinessFloor`) |
+| gourmet | `TreatBonusMultiplier` | 1.5 | treat part 0.05 → 0.075, favourite treat friendship 0.1 → 0.15 |
+| efficient_eater | `FoodUseMultiplier` | 0.75 | a trough meal uses up the item 75 % of the time |
+| affectionate | `FriendshipGainMultiplier` | 1.25 | care's friendship gains ×1.25; `CareApi.friendshipMultiplier` for taming |
+
+Multipliers stack with sweet feed (affectionate + sweet = ×1.875).
+
+### No unscanned house breeds
+
+- `RanchHousePlacedEvent` queues the new house ahead of the regular rotation; its scan finishes within a few
+  seconds (live: 4 s, 420 columns) and logs `Care: first habitat scan of new house …`.
+- Morning: a care `HouseDayHooks` hook scans any house with `habitatScannedAtMs == 0` synchronously before
+  breeding's hook. Order checked: hooks fire in registration order and `CozyTalesRanchingPlugin.setup()` calls
+  `CareFeature.register` before `BreedingFeature.register`.
+- A scan where every column was unloaded still sets the timestamp, so breeding then applies its habitat rule
+  (HABITAT) rather than the unscanned pass.
+
+### Other
+
+- `RanchSounds.TROUGH_FILL` plays when a trough is filled (interaction and `/ranch care fill`).
+- `/ranch care bonus <animal|id prefix|all> <feed item or bonus id>` applies a feed as if eaten.
+- `/ranch care animals` adds a "feed bonus …, N min left" line.
+- New read methods on `CareApi`: `friendshipMultiplier(record)`, `activeFeedBonus(record)`,
+  `hasFeedBonus(record, bonus)`, `feedBonusOf(itemId)`, `toysLiked(speciesId)`.
+
+### Verified (wave 3)
+
+- `gradlew --no-daemon clean build` green. New: `FeedTest` (8: feeds are data, meal order with and without a
+  bonus, replace, hearty, sweet, breeders once per feed, premium), `CareTraitsTest` (6: none, hardy, own floor,
+  gourmet, efficient eater, affectionate), `ToyAndFirstScanTest` (7: every species has a mapped toy, toys join
+  preferences, a ball raises a pig's score and happiness, another species' toy does nothing, never-scanned house
+  is scanned before breeding and a poor habitat then blocks it, all-skipped scan blocks, good cow breeds).
+  Existing care and breeding classes pass.
+- `test_run` on the worktree, 6/6, including the new server case `feed in the trough`: house placed → first
+  scan logged → trough set → 4 breeder's feed filled → test-house cows eat it on `/ranch care run` →
+  `animals` shows the breeders bonus → `bonus all CozyRanch_Feed_Sweet` succeeds.
+- `asset_validate` valid, 0 errors; `asset_check` 0 errors on all 9 items; `ui_check_java` valid;
+  `check-lang` 0 missing.
+- Pictures in `notes/pictures/care/`, all opened.
+
+### Faked or unfinished
+
+- All models and icons are vanilla placeholders: feeds share the feedbag; ball and duck are a Christmas
+  bauble (off-centre in its block, it is a wall ornament); post is the hay target; bell is a standing lantern
+  (not hanging); log is an oak half block. Waiting on art.
+- Not tried live: right-click hand feeding (the bot cannot use items on entities), crafting, placing toys by
+  hand, the floating duck on water, the fill sound being audible.
+- Petting friendship from affectionate/sweet needs taming (REQUESTS).
+
 ## REQUESTS
 
 1. `RanchCommand`: `this.addSubCommand(new com.hexvane.cozytalesranching.care.CareCommand());`
@@ -225,3 +309,19 @@ They work only once `RanchCommand` adds the sub-command (REQUESTS).
    on it.
 7. `AnimalRegistry.inWorld(world)`, so unhoused animals of offline owners keep updating.
 8. Translations of `cozyranch_care.lang` for es-ES and pt-BR.
+
+Wave 3:
+
+9. Taming (`AnimalInteractions.addFriendship`, line ~283), first line:
+   `amount *= com.hexvane.cozytalesranching.care.CareApi.friendshipMultiplier(record);`
+   so petting and taming's hand meals get affectionate and sweet.
+10. House UI (`cozyranch_houseui.lang`): names for the new habitat ids, shown when a toy is missing:
+    `habitat.toy_ball = Play ball`, `habitat.toy_post = Scratching post`, `habitat.toy_bell = Hanging bell`,
+    `habitat.toy_duck = Floating duck`, `habitat.toy_log = Climbing log`.
+11. Produce: read the premium bonus with `CareApi.hasFeedBonus(record, "premium")`.
+12. Breeding (optional, `Traits.json`): `"HappinessFloor": 0.45` in hardy's effects to own the floor there;
+    care falls back to `Habitat.json` `DeclineTraitFloor` (0.45) until then.
+13. Art: real models and icons for the 4 feeds (one shared sack with tinted variants is fine) and the 5 toys
+    (the bell should hang from a support above; the duck should sit on water).
+14. Breeding / house-breed-live: houses are now scanned at placement and before morning breeding, so a test
+    house in a poor spot can now get HABITAT where it used to breed unscanned.
