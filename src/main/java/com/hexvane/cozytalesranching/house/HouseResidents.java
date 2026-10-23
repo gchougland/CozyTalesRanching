@@ -194,7 +194,8 @@ final class HouseResidents {
             Ranch.animals().markDirty(r);
             NPCEntity npc = spawned.second();
             if (npc != null) npc.setLeashPoint(HouseBlocks.door(house));
-            if (r.name != null && !r.name.isEmpty()) store.ensureAndGetComponent(ref, Nameplate.getComponentType()).setText(r.name);
+            String plate = com.hexvane.cozytalesranching.taming.TamingApi.nameplateText(r);
+            if (plate != null) store.ensureAndGetComponent(ref, Nameplate.getComponentType()).setText(plate);
             LAST_ROLE.put(r.animalId, role);
             RanchSounds.play(RanchSounds.HOUSE_DOOR, house.doorX, house.doorY, house.doorZ, store);
             return true;

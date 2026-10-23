@@ -189,7 +189,8 @@ final class AnimalRecovery {
                 if (uuid == null) return;
                 long generation = registry.store().bind(r, uuid.getUuid());
                 holder.putComponent(markerType, new AnimalMarker(r.animalId, generation));
-                if (r.name != null && !r.name.isEmpty()) holder.putComponent(Nameplate.getComponentType(), new Nameplate(r.name));
+                String plate = com.hexvane.cozytalesranching.taming.TamingApi.nameplateText(r);
+                if (plate != null) holder.putComponent(Nameplate.getComponentType(), new Nameplate(plate));
             }, null);
             if (spawned == null) return false;
             r.lastX = spot.pos.x;

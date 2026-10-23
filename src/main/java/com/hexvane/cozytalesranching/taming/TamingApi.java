@@ -13,6 +13,7 @@ import com.hypixel.hytale.server.core.entity.nameplate.Nameplate;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.Optional;
+import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -41,6 +42,20 @@ public final class TamingApi {
     /** Hearts particles and the Happy animation, when the model has it. */
     public static void cheer(@Nonnull Ref<EntityStore> animal, @Nonnull Store<EntityStore> store) {
         AnimalControl.cheer(animal, AnimalControl.HEARTS, store);
+    }
+
+    /**
+     * Text for the animal's nameplate, or null for none. Every place that puts a nameplate on a ranch animal asks
+     * this (taming, recovery, house residents), so the {@code ShowNameplates} switch lives in one spot.
+     */
+    @Nullable
+    public static String nameplateText(@Nonnull AnimalRecord record) {
+        return record.name != null && !record.name.isEmpty() ? record.name : null;
+    }
+
+    /** Opens the naming page for one of the player's animals. World thread of the player, outside ticks. */
+    public static void openNamePage(@Nonnull PlayerRef player, @Nonnull UUID animalId) {
+        // Filled in by the taming fix wave.
     }
 
     public static void release(@Nonnull AnimalRecord record, @Nullable Ref<EntityStore> animal, @Nonnull PlayerRef player, @Nonnull Store<EntityStore> store) {

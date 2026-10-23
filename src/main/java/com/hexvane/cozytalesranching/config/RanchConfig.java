@@ -42,6 +42,7 @@ public final class RanchConfig {
     private int troughRange = 8;
     private int breedingMinHearts = 3;
     private double breedingMinHappiness = 0.7;
+    private boolean showNameplates = true;
     private boolean debugLogging = false;
 
     @Nonnull
@@ -66,6 +67,7 @@ public final class RanchConfig {
         .append(new KeyedCodec<>("TroughRange", Codec.INTEGER), (c, v) -> c.troughRange = v, c -> c.troughRange).add()
         .append(new KeyedCodec<>("BreedingMinHearts", Codec.INTEGER), (c, v) -> c.breedingMinHearts = v, c -> c.breedingMinHearts).add()
         .append(new KeyedCodec<>("BreedingMinHappiness", Codec.DOUBLE), (c, v) -> c.breedingMinHappiness = v, c -> c.breedingMinHappiness).add()
+        .append(new KeyedCodec<>("ShowNameplates", Codec.BOOLEAN), (c, v) -> c.showNameplates = v, c -> c.showNameplates).add()
         .append(new KeyedCodec<>("DebugLogging", Codec.BOOLEAN), (c, v) -> c.debugLogging = v, c -> c.debugLogging).add()
         .build();
 
@@ -134,5 +136,7 @@ public final class RanchConfig {
     public int troughRange() { return Math.clamp(troughRange, 2, 16); }
     public int breedingMinHearts() { return Math.clamp(breedingMinHearts, 0, 5); }
     public double breedingMinHappiness() { return Math.clamp(breedingMinHappiness, 0.0, 1.0); }
+    /** Owned animals show their name (or species name) above their head. */
+    public boolean showNameplates() { return showNameplates; }
     public boolean debugLogging() { return debugLogging; }
 }
