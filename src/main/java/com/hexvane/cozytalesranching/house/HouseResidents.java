@@ -245,17 +245,37 @@ final class HouseResidents {
     }
 
     /**
+     * Ground within this many blocks of the door's height is tried in every column before any column may
+     * use a span further up or down. Otherwise a column where a tall animal does not fit at the door (an
+     * overhang, an awning) hands back the nearest span that fits, which can be the house's own roof.
+     */
+    private static final double SPOT_LEVEL_RANGE = 2;
+    private static final double SPOT_ANY_RANGE = 16;
+
+    @Nullable
+    private static Spot findSpot(@Nonnull World world, @Nonnull ISpawnableWithModel spawnable, @Nonnull HouseRecord house, @Nonnull Vector3d centre) {
+        StringBuilder why = new StringBuilder();
+        Spot spot = findSpot(world, spawnable, house, centre, SPOT_LEVEL_RANGE, why);
+        if (spot == null) spot = findSpot(world, spawnable, house, centre, SPOT_ANY_RANGE, why);
+        if (spot == null) {
+            log("No spawn spot near " + (int) Math.floor(centre.x) + " " + (int) Math.floor(centre.y) + " " + (int) Math.floor(centre.z)
+                + ":" + (why.length() > 500 ? why.substring(0, 500) + " ..." : why));
+        }
+        return spot;
+    }
+
+    /**
      * Columns around {@code centre}, nearest first, only in loaded chunks and never under the house itself
      * (a column probe there finds its roof). Each column gets a fresh context, as the engine's own
      * {@code NPCPlugin.spawnNPCWithColumnProbe} does: a context reused across columns keeps the previous
      * column's movement mode and rejects every later one.
      */
     @Nullable
-    private static Spot findSpot(@Nonnull World world, @Nonnull ISpawnableWithModel spawnable, @Nonnull HouseRecord house, @Nonnull Vector3d centre) {
+    private static Spot findSpot(@Nonnull World world, @Nonnull ISpawnableWithModel spawnable, @Nonnull HouseRecord house, @Nonnull Vector3d centre,
+                                 double verticalRange, @Nonnull StringBuilder why) {
         int cx = (int) Math.floor(centre.x);
         int cz = (int) Math.floor(centre.z);
         HouseGeometry.Bounds footprint = HouseBlocks.bounds(house.blockId, house.rotation);
-        StringBuilder why = new StringBuilder();
         for (int[] o : SPOT_OFFSETS) {
             int x = cx + o[0], z = cz + o[1];
             if (!HouseBlocks.isLoaded(world, x, z) || HouseGeometry.covers(footprint, house.x, house.y, house.z, x, house.y, z)) continue;
@@ -265,7 +285,7 @@ final class HouseResidents {
                     log("No spawn spot for " + house.houseId + ": " + ctx.getLastResult());
                     return null;
                 }
-                if (!ctx.set(world, x + 0.5, centre.y, z + 0.5)) {
+                if (!ctx.set(world, x + 0.5, centre.y, z + 0.5, false, verticalRange)) {
                     why.append(' ').append(x).append(',').append(z).append(':').append(ctx.getLastResult());
                     continue;
                 }
@@ -279,7 +299,6 @@ final class HouseResidents {
                 ctx.releaseFull();
             }
         }
-        log("No spawn spot near " + cx + " " + (int) Math.floor(centre.y) + " " + cz + ":" + (why.length() > 500 ? why.substring(0, 500) + " ..." : why));
         return null;
     }
 
