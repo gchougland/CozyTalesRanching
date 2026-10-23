@@ -18,12 +18,18 @@ public final class ProduceFeature {
 
     @Nullable private static volatile ProduceService service;
     @Nullable private static volatile Path dataDirectory;
+    @Nullable private static volatile PoopService poop;
 
     private ProduceFeature() {}
 
     @Nullable
     static ProduceService service() {
         return service;
+    }
+
+    @Nullable
+    static PoopService poop() {
+        return poop;
     }
 
     /** Called once from the plugin's setup(). */
@@ -37,6 +43,11 @@ public final class ProduceFeature {
         Ranch.installProduce(s);
 
         plugin.getEntityStoreRegistry().registerSystem(new ProduceSystem(s));
+        PoopTuning.load(plugin.getDataDirectory());
+        PoopService ps = new PoopService();
+        poop = ps;
+        plugin.getEntityStoreRegistry().registerSystem(new PoopSystem(ps));
+        plugin.getEntityStoreRegistry().registerSystem(new PoopSystem.Place(ps));
         plugin.getEventRegistry().register(RanchHouseRemovedEvent.class, s::onHouseRemoved);
         plugin.getEventRegistry().register(SAVE_ON_SHUTDOWN, ShutdownEvent.class, event -> shutdown());
         Runtime.getRuntime().addShutdownHook(new Thread(ProduceFeature::shutdown, "CozyRanch-ProduceShutdown"));
@@ -46,7 +57,10 @@ public final class ProduceFeature {
     /** Called from /ranch reload. */
     public static void reload() {
         Path dir = dataDirectory;
-        if (dir != null) ProduceTuning.load(dir);
+        if (dir != null) {
+            ProduceTuning.load(dir);
+            PoopTuning.load(dir);
+        }
     }
 
     private static void logSummary(@Nonnull CozyTalesRanchingPlugin plugin) {
@@ -63,6 +77,10 @@ public final class ProduceFeature {
         }
         plugin.getLogger().atInfo().log("Produce registered: pass every %.0f s, house cap %d, catch-up cap %.0f min; %s",
             t.PassSeconds, t.HouseCap, t.CatchUpCapMinutes, b.toString());
+        PoopTuning pt = PoopTuning.get();
+        plugin.getLogger().atInfo().log("Poop piles %s: pass every %.0f s, %.2f per minute after %.1f min, merge radius %d, cap %d, %d per house, off for %s",
+            pt.Enabled ? "on" : "off", pt.PassSeconds, pt.ChancePerMinute, pt.CooldownMinutes, pt.MergeRadius, pt.MaxCount, pt.MaxPilesPerHouse,
+            pt.Species.entrySet().stream().filter(e -> !e.getValue()).map(java.util.Map.Entry::getKey).toList());
     }
 
     private static void shutdown() {

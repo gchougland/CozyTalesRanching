@@ -32,6 +32,7 @@ public final class ProduceCommand extends AbstractCommandCollection {
         this.addSubCommand(new Status());
         this.addSubCommand(new Tick());
         this.addSubCommand(new Collect());
+        this.addSubCommand(new PoopCommand());
     }
 
     @Nonnull
