@@ -10,6 +10,7 @@ import com.hexvane.cozytalesranching.api.event.RanchEvents;
 import com.hexvane.cozytalesranching.breeding.TraitBook;
 import com.hexvane.cozytalesranching.breeding.TraitRegistry;
 import com.hexvane.cozytalesranching.compat.CompatGuard;
+import com.hexvane.cozytalesranching.prefs.RanchChat;
 import com.hexvane.cozytalesranching.produce.ProduceRules;
 import com.hexvane.cozytalesranching.rehome.RehomeRules.Verdict;
 import com.hypixel.hytale.component.AddReason;
@@ -156,7 +157,7 @@ final class ButcherService {
         int total = give(playerEntity, store, items);
         LOG.info(String.format(java.util.Locale.ROOT, "Butchered %s for %s at the block %.1f %.1f %.1f: happiness %.2f, hearts %d, traits %s, factor %.2f, %d roll(s) of %s -> %s",
             RehomeAnimals.describe(record), player.getUsername(), block.x, block.y, block.z, record.happiness, record.hearts, record.traits, factor, rolls, dropList, items));
-        player.sendMessage(Message.translation("cozyranch_rehome.butcher.done").param("animal", animal).param("count", total));
+        RanchChat.tell(player, Message.translation("cozyranch_rehome.butcher.done").param("animal", animal).param("count", total));
         RanchEvents.fire(new AnimalDiedEvent(view, AnimalDiedEvent.Cause.BUTCHERED, pid));
     }
 

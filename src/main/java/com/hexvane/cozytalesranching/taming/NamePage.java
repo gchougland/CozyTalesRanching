@@ -3,6 +3,7 @@ package com.hexvane.cozytalesranching.taming;
 import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
+import com.hexvane.cozytalesranching.prefs.RanchChat;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hexvane.cozytalesranching.taming.command.NameCommand;
 import com.hypixel.hytale.codec.Codec;
@@ -106,7 +107,7 @@ public final class NamePage extends InteractiveCustomUIPage<NamePage.Event> {
         Ranch.animals().markDirty(record);
         World world = record.worldName == null || record.worldName.isEmpty() ? null : Universe.get().getWorld(record.worldName);
         if (world != null) world.execute(() -> Nameplates.applyLoaded(record));
-        playerRef.sendMessage(Message.translation("cozyranch_taming.name.done").param("name", clean));
+        RanchChat.tell(playerRef, Message.translation("cozyranch_taming.name.done").param("name", clean));
         close();
     }
 

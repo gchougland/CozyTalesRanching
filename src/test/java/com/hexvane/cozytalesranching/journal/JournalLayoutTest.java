@@ -57,6 +57,9 @@ class JournalLayoutTest {
         {"memories", "EMPTY", "0", "memories page, no memories", "journal-memories-empty"},
         {"memories", "FULL", "0", "memories page, every memory, first spread", "journal-memories-full"},
         {"memories", "FULL", "1", "memories page, every memory, last spread", "journal-memories-full-2"},
+        {"guide", "EMPTY", "", "how to page", "journal-guide"},
+        {"settings", "EMPTY", "on", "settings page, messages and sounds on", "journal-settings-on"},
+        {"settings", "EMPTY", "mixed", "settings page, messages off, sounds on", "journal-settings-mixed"},
     };
 
     @TempDir static Path data;
@@ -168,6 +171,54 @@ class JournalLayoutTest {
     }
 
     @Test
+    void settingsShowEachToggleAndSendItsId() {
+        Recorder on = render("settings", "EMPTY", "on");
+        assertTrue(on.has("#ChatToggle.TextSpans", "{\"MessageId\":\"cozyranch_journal.settings.on\"}"));
+        assertTrue(on.has("#SoundsToggle.TextSpans", "{\"MessageId\":\"cozyranch_journal.settings.on\"}"));
+        Recorder mixed = render("settings", "EMPTY", "mixed");
+        assertTrue(mixed.has("#ChatToggle.TextSpans", "{\"MessageId\":\"cozyranch_journal.settings.off\"}"));
+        assertTrue(mixed.has("#SoundsToggle.TextSpans", "{\"MessageId\":\"cozyranch_journal.settings.on\"}"));
+        assertEquals(List.of("chat", "sounds"), JournalView.settings(true, true).stream().map(JournalView.SettingRow::id).toList());
+        for (JournalView.SettingRow r : JournalView.settings(true, false)) {
+            assertEquals(r.id().equals("chat"), r.on());
+            assertTrue(com.hexvane.cozytalesranching.prefs.PlayerPrefs.Setting.byId(r.id()) != null, r.id());
+        }
+    }
+
+    @Test
+    void guideIsShortAndPlain() throws IOException {
+        Set<String> keys = langKeys();
+        JournalView.Guide g = JournalView.guide();
+        Map<String, String> text = langText();
+        int lines = 0;
+        for (JournalView.Section s : concat(g.left(), g.right())) {
+            assertTrue(keys.contains(s.title().key()), s.title().key());
+            for (JournalView.Line l : s.lines()) {
+                lines++;
+                String t = text.get(l.text().key());
+                assertTrue(t != null, l.text().key());
+                assertTrue(t.length() <= 90, "short: " + t);
+                assertFalse(t.contains(" - ") || t.contains("—") || t.contains("–"), "no dashes: " + t);
+            }
+        }
+        assertTrue(lines <= 20, "a short page: " + lines + " lines");
+        String all = String.join(" ", text.values());
+        for (String must : new String[] {"Crouch", "name", "Farmer's Workbench", "trough", "decorations", "Show area", "once a day", "baby", "Collect", "Jar of Crickets"}) {
+            assertTrue(concat(g.left(), g.right()).stream().flatMap(s -> s.lines().stream()).anyMatch(l -> text.get(l.text().key()).contains(must)), "the guide mentions " + must);
+        }
+        assertFalse(all.isEmpty());
+    }
+
+    static Map<String, String> langText() throws IOException {
+        Map<String, String> out = new java.util.HashMap<>();
+        for (String line : Files.readAllLines(RES.resolve("Server/Languages/en-US/cozyranch_journal.lang"), StandardCharsets.UTF_8)) {
+            int eq = line.indexOf('=');
+            if (eq > 0 && !line.startsWith("#")) out.put("cozyranch_journal." + line.substring(0, eq).trim(), line.substring(eq + 1).trim());
+        }
+        return out;
+    }
+
+    @Test
     void everyKeyTheJournalSendsExists() throws IOException {
         Set<String> keys = langKeys();
         Set<String> sent = new HashSet<>();
@@ -229,6 +280,8 @@ class JournalLayoutTest {
             case "contents" -> JournalLayout.contents(JournalView.contents(j, context, "Hexvane"), ui);
             case "species" -> JournalLayout.species(JournalView.species(j, context, species(arg)), ui);
             case "traits" -> JournalLayout.traits(JournalView.traits(j, context, Integer.parseInt(arg)), ui);
+            case "guide" -> JournalLayout.guide(JournalView.guide(), ui);
+            case "settings" -> JournalLayout.settings(JournalView.settings(!arg.equals("mixed"), true), ui);
             default -> JournalLayout.memories(JournalView.memories(j, context, Integer.parseInt(arg)), ui);
         }
         return ui;
@@ -248,6 +301,8 @@ class JournalLayoutTest {
                 case "contents" -> JournalLayout.CONTENTS;
                 case "species" -> JournalLayout.SPECIES;
                 case "traits" -> JournalLayout.TRAITS;
+                case "guide" -> JournalLayout.GUIDE;
+                case "settings" -> JournalLayout.SETTINGS;
                 default -> JournalLayout.MEMORIES;
             };
             out.append("        {\n");

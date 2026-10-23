@@ -14,13 +14,12 @@ import com.hexvane.cozytalesranching.api.event.AnimalTameAttemptEvent;
 import com.hexvane.cozytalesranching.api.event.AnimalTamedEvent;
 import com.hexvane.cozytalesranching.api.event.RanchHousePlacedEvent;
 import com.hexvane.cozytalesranching.api.event.RanchVisitorArrivedEvent;
+import com.hexvane.cozytalesranching.prefs.RanchChat;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hypixel.hytale.event.EventRegistry;
-import com.hypixel.hytale.protocol.SoundCategory;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.Universe;
-import com.hypixel.hytale.server.core.universe.world.SoundUtil;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -95,8 +94,8 @@ final class JournalListeners {
     private static void tell(@Nonnull UUID player, @Nonnull SpeciesDefinition species, @Nonnull JournalRules.Change change) {
         PlayerRef ref = Universe.get().getPlayer(player);
         if (ref == null) return;
-        ref.sendMessage(ServerUiOut.message(notice(species, change)));
-        SoundUtil.playSoundEvent2dToPlayer(ref, RanchSounds.JOURNAL_DISCOVERY, SoundCategory.UI);
+        RanchChat.tell(ref, ServerUiOut.message(notice(species, change)));
+        RanchSounds.play2d(ref, RanchSounds.JOURNAL_DISCOVERY);
     }
 
     /** One quiet line: a new memory first, else a new page, else new notes. */

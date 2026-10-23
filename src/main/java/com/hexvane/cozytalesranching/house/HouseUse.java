@@ -3,6 +3,7 @@ package com.hexvane.cozytalesranching.house;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.house.HouseService.Result;
+import com.hexvane.cozytalesranching.prefs.RanchChat;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.Message;
@@ -38,7 +39,7 @@ final class HouseUse {
             }
             int residents = Ranch.animals().inHouse(house.houseId).size();
             if (moved > 0) {
-                player.sendMessage(Message.translation("cozyranch_house.assign.done")
+                RanchChat.tell(player, Message.translation("cozyranch_house.assign.done")
                     .param("count", moved).param("house", HouseBlocks.displayName(house))
                     .param("residents", residents).param("capacity", house.capacity));
             }

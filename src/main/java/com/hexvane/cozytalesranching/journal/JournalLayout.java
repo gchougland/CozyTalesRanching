@@ -9,6 +9,8 @@ public final class JournalLayout {
     public static final String SPECIES = "CozyRanch/JournalSpecies.ui";
     public static final String MEMORIES = "CozyRanch/JournalMemories.ui";
     public static final String TRAITS = "CozyRanch/JournalTraits.ui";
+    public static final String GUIDE = "CozyRanch/JournalGuide.ui";
+    public static final String SETTINGS = "CozyRanch/JournalSettings.ui";
     static final String CARD = "CozyRanch/JournalCard.ui";
     static final String HEADING = "CozyRanch/JournalHeading.ui";
     static final String LINE = "CozyRanch/JournalLine.ui";
@@ -23,6 +25,10 @@ public final class JournalLayout {
     public static final String ACTION_SPECIES = "species";
     public static final String ACTION_MEMORIES = "memories";
     public static final String ACTION_TRAITS = "traits";
+    public static final String ACTION_GUIDE = "guide";
+    public static final String ACTION_SETTINGS = "settings";
+    /** Flips one setting (arg: {@code chat} or {@code sounds}) and shows the settings page again. */
+    public static final String ACTION_TOGGLE = "toggle";
 
     private JournalLayout() {}
 
@@ -32,12 +38,16 @@ public final class JournalLayout {
         ui.text("#Intro", Txt.j("contents.intro"));
         ui.text("#MemoriesButton", Txt.j("nav.memories"));
         ui.text("#TraitsButton", Txt.j("nav.traits"));
+        ui.text("#GuideButton", Txt.j("nav.guide"));
+        ui.text("#SettingsButton", Txt.j("nav.settings"));
         ui.text("#AnimalsTitle", Txt.j("contents.animals"));
         ui.text("#Keeper", v.keeper());
         ui.text("#Progress", v.progress());
         ui.text("#MemoryCount", v.memories());
         ui.click("#MemoriesButton", ACTION_MEMORIES, "0");
         ui.click("#TraitsButton", ACTION_TRAITS, "0");
+        ui.click("#GuideButton", ACTION_GUIDE, "");
+        ui.click("#SettingsButton", ACTION_SETTINGS, "");
         List<JournalView.Card> cards = v.cards();
         for (int i = 0; i < cards.size(); i++) {
             JournalView.Card card = cards.get(i);
@@ -96,6 +106,44 @@ public final class JournalLayout {
         ui.click("#TraitNavContents", ACTION_CONTENTS, "");
         if (v.hasPrevious()) ui.click("#TraitNavPrev", ACTION_TRAITS, String.valueOf(v.spread() - 1));
         if (v.hasNext()) ui.click("#TraitNavNext", ACTION_TRAITS, String.valueOf(v.spread() + 1));
+    }
+
+    public static void guide(@Nonnull JournalView.Guide v, @Nonnull UiOut ui) {
+        ui.append(GUIDE);
+        ui.text("#GuideTitle", Txt.j("guide.title"));
+        ui.text("#GuideSubtitle", Txt.j("guide.subtitle"));
+        sections("#GuideLeft", v.left(), ui);
+        sections("#GuideRight", v.right(), ui);
+        ui.text("#GuideNavContents", Txt.j("nav.contents"));
+        ui.click("#GuideNavContents", ACTION_CONTENTS, "");
+    }
+
+    /** Rows {@code chat} and {@code sounds}: each has #<Name>Name, #<Name>Desc and #<Name>Toggle in the document. */
+    public static void settings(@Nonnull List<JournalView.SettingRow> rows, @Nonnull UiOut ui) {
+        ui.append(SETTINGS);
+        ui.text("#SettingsTitle", Txt.j("settings.title"));
+        ui.text("#SettingsSubtitle", Txt.j("settings.subtitle"));
+        for (JournalView.SettingRow r : rows) {
+            switch (r.id()) {
+                case "chat" -> settingRow(r, "#ChatName", "#ChatDesc", "#ChatToggle", ui);
+                case "sounds" -> settingRow(r, "#SoundsName", "#SoundsDesc", "#SoundsToggle", ui);
+                default -> throw new IllegalArgumentException("no settings row for " + r.id());
+            }
+        }
+        ui.text("#AlwaysTitle", Txt.j("settings.always.title"));
+        ui.text("#AlwaysIntro", Txt.j("settings.always.intro"));
+        ui.text("#AlwaysLine1", Txt.j("settings.always.1"));
+        ui.text("#AlwaysLine2", Txt.j("settings.always.2"));
+        ui.text("#AlwaysLine3", Txt.j("settings.always.3"));
+        ui.text("#SetNavContents", Txt.j("nav.contents"));
+        ui.click("#SetNavContents", ACTION_CONTENTS, "");
+    }
+
+    private static void settingRow(@Nonnull JournalView.SettingRow r, @Nonnull String name, @Nonnull String desc, @Nonnull String toggle, @Nonnull UiOut ui) {
+        ui.text(name, r.name());
+        ui.text(desc, r.description());
+        ui.text(toggle, r.state());
+        ui.click(toggle, ACTION_TOGGLE, r.id());
     }
 
     /** Static labels are set here: a .ui {@code %key} reference cannot contain the underscore in our lang file names. */

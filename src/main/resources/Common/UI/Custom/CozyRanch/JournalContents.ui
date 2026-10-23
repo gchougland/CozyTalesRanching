@@ -65,6 +65,21 @@ $C.@PageOverlay {
             Text: "";
           }
         }
+
+        Group #LeftNav2 {
+          LayoutMode: Center;
+          Anchor: (Height: 34, Top: 8);
+
+          $J.@NavButton #GuideButton {
+            Anchor: (Width: 170, Height: 34, Right: 8);
+            Text: "";
+          }
+
+          $J.@NavButton #SettingsButton {
+            Anchor: (Width: 170, Height: 34, Left: 8);
+            Text: "";
+          }
+        }
       }
 
       Group #RightPage {
