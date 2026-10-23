@@ -22,5 +22,11 @@ public final class RanchCommand extends AbstractCommandCollection {
         this.addSubCommand(new com.hexvane.cozytalesranching.produce.ProduceCommand());
         this.addSubCommand(new com.hexvane.cozytalesranching.journal.JournalCommand());
         this.addSubCommand(new com.hexvane.cozytalesranching.behaviour.BehaviourCommand());
+        this.addSubCommand(new com.hexvane.cozytalesranching.rehome.GiveCommand());
+        this.addSubCommand(com.hexvane.cozytalesranching.rehome.AcceptCommand.accept());
+        this.addSubCommand(com.hexvane.cozytalesranching.rehome.AcceptCommand.decline());
+        this.addSubCommand(new com.hexvane.cozytalesranching.rehome.MoveCommand());
+        this.addSubCommand(new com.hexvane.cozytalesranching.rehome.ButcherCommand());
+        this.addSubCommand(new com.hexvane.cozytalesranching.rehome.RehomeDebugCommand());
     }
 }

@@ -29,7 +29,7 @@ public final class RanchConfig {
     };
     private String[] disabledSpecies = new String[0];
     private boolean protectOwnedAnimals = true;
-    private boolean protectFromHostileMobs = false;
+    private boolean protectFromHostileMobs = true;
     private boolean breedingEnabled = true;
     private double followTeleportDistance = 24.0;
     private double followStuckSeconds = 6.0;
