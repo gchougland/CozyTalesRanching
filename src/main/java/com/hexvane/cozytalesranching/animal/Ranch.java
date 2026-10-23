@@ -10,9 +10,11 @@ import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /** Internal service locator. The {@code animal} role installs the persistent registry in its feature's register. */
 public final class Ranch {
@@ -30,6 +32,37 @@ public final class Ranch {
 
         HousePageOpener NONE = (p, s, h) -> false;
     }
+
+    /** Products waiting in houses. Installed by the {@code produce} role; the house page reads and collects. */
+    public interface ProduceStorage {
+        /** Item id to count waiting in the house, in display order. Any thread; never null. */
+        @Nonnull Map<String, Integer> stored(@Nonnull UUID houseId);
+
+        /** World thread. Moves what fits into the player's inventory; returns how many items moved. */
+        int collect(@Nonnull Ref<EntityStore> playerRef, @Nonnull Store<EntityStore> store, @Nonnull HouseRecord house);
+
+        ProduceStorage NONE = new ProduceStorage() {
+            @Nonnull @Override public Map<String, Integer> stored(@Nonnull UUID houseId) { return Map.of(); }
+            @Override public int collect(@Nonnull Ref<EntityStore> playerRef, @Nonnull Store<EntityStore> store, @Nonnull HouseRecord house) { return 0; }
+        };
+    }
+
+    /** Opens the Rancher's Journal. Installed by the {@code journal} role; the house page and the journal item call it. */
+    public interface JournalOpener {
+        /** World thread. {@code speciesId} null opens the contents page. Returns false if nothing opened. */
+        boolean open(@Nonnull Ref<EntityStore> playerRef, @Nonnull Store<EntityStore> store, @Nullable String speciesId);
+
+        JournalOpener NONE = (p, s, id) -> false;
+    }
+
+    private static volatile ProduceStorage produce = ProduceStorage.NONE;
+    private static volatile JournalOpener journal = JournalOpener.NONE;
+
+    @Nonnull public static ProduceStorage produce() { return produce; }
+    public static void installProduce(@Nonnull ProduceStorage storage) { produce = storage; }
+
+    @Nonnull public static JournalOpener journal() { return journal; }
+    public static void installJournal(@Nonnull JournalOpener opener) { journal = opener; }
 
     @Nonnull public static HouseRegistry houses() { return houses; }
     public static void installHouses(@Nonnull HouseRegistry registry) { houses = registry; }

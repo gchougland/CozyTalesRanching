@@ -52,6 +52,10 @@ public final class AnimalRecord {
     public long lastBredAtMs;
     public long lastFedAtMs;
     public long lastPettedAtMs;
+    /** Advanced feed in effect ({@code hearty}, {@code sweet}, {@code breeders}, {@code premium}), written by care. */
+    @Nullable public String feedBonus;
+    /** When {@link #feedBonus} wears off. */
+    public long feedBonusUntilMs;
     /**
      * Role to spawn this animal with when it has no entity (a baby that inherits a colour, an animal stored
      * in its house). Null means "work it out from the species". Whoever swaps the live entity's role keeps

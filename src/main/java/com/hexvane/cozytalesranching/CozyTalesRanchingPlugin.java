@@ -58,6 +58,11 @@ public final class CozyTalesRanchingPlugin extends JavaPlugin {
         com.hexvane.cozytalesranching.houseui.HouseUiFeature.register(this);
         com.hexvane.cozytalesranching.care.CareFeature.register(this);
         com.hexvane.cozytalesranching.breeding.BreedingFeature.register(this);
+        com.hexvane.cozytalesranching.produce.ProduceFeature.register(this);
+        com.hexvane.cozytalesranching.behaviour.BehaviourFeature.register(this);
+        com.hexvane.cozytalesranching.journal.JournalFeature.register(this);
+        com.hexvane.cozytalesranching.wildlife.WildlifeFeature.register(this);
+        com.hexvane.cozytalesranching.rehome.RehomeFeature.register(this);
 
         this.getCommandRegistry().registerCommand(new RanchCommand());
         getLogger().atInfo().log("Cozy Tales: Ranching v%s ready.", modVersion);
@@ -99,6 +104,11 @@ public final class CozyTalesRanchingPlugin extends JavaPlugin {
         SpeciesRegistry.load(getDataDirectory());
         com.hexvane.cozytalesranching.breeding.TraitRegistry.load(getDataDirectory());
         com.hexvane.cozytalesranching.care.CareFeature.reload();
+        com.hexvane.cozytalesranching.produce.ProduceFeature.reload();
+        com.hexvane.cozytalesranching.behaviour.BehaviourFeature.reload();
+        com.hexvane.cozytalesranching.journal.JournalFeature.reload();
+        com.hexvane.cozytalesranching.wildlife.WildlifeFeature.reload();
+        com.hexvane.cozytalesranching.rehome.RehomeFeature.reload();
         getLogger().atInfo().log("Reloaded RanchConfig.json, species, traits and habitat.");
     }
 }
