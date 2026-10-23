@@ -1,0 +1,23 @@
+{
+  "cases": [
+    {
+      "name": "rehome gate",
+      "steps": [
+        { "tool": "asset_validate", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true, "schemaErrors": 0 } },
+        { "tool": "ui_check_java", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true } }
+      ]
+    },
+    {
+      "name": "rehome butcher block",
+      "description": "The Butcher's Block as placed, through its item: inside one block, no renderer notes, golden from the front three-quarter.",
+      "steps": [
+        {
+          "tool": "model_render", "name": "Butcher's Block",
+          "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_ButcherBlock.json", "views": ["three_quarter"], "grid": true, "size": 256 },
+          "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "sizeBlocks": { "width": { "$lte": 1 }, "depth": { "$lte": 1 }, "height": { "$lte": 1.05 } } },
+          "golden": "tests/hytale/golden/rehome/CozyRanch_ButcherBlock.png"
+        }
+      ]
+    }
+  ]
+}

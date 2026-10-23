@@ -1,0 +1,4 @@
+[
+  { "tool": "test_run", "args": { "project": "_worktrees/CozyTales-Ranching-rehome", "directory": "build/tests-copy" }, "save": "t1" },
+  { "tool": "job_status", "args": { "jobId": "$t1", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 1200000, "maxChars": 60000 }
+]

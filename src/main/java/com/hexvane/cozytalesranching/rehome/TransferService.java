@@ -113,6 +113,7 @@ final class TransferService {
      */
     private static void transfer(@Nonnull AnimalRecord record, @Nonnull PlayerRef recipient, @Nullable PlayerRef admin, boolean forced) {
         UUID previous = record.ownerId;
+        UUID previousHouse = record.houseId;
         Message animal = RehomeAnimals.displayName(record);
         if (record.houseId != null && !leaveHouse(record, previous, recipient, admin)) {
             record.ownerId = previous;
@@ -132,7 +133,7 @@ final class TransferService {
         Ranch.animals().markDirty(record);
         LOG.info("Transfer " + (forced ? "(forced) " : "") + RehomeAnimals.describe(record) + ": owner " + previous + " -> "
             + recipient.getUuid() + " (" + recipient.getUsername() + "), hearts " + record.hearts + ", traits " + record.traits
-            + ", personality " + record.personality + ", house " + record.houseId);
+            + ", personality " + record.personality + ", left house " + previousHouse + ", now in house " + record.houseId);
         recipient.sendMessage(Message.translation("cozyranch_rehome.transfer.received").param("animal", animal));
         PlayerRef giver = previous == null ? null : Universe.get().getPlayer(previous);
         if (giver != null) giver.sendMessage(Message.translation("cozyranch_rehome.transfer.given").param("animal", animal).param("player", recipient.getUsername()));
