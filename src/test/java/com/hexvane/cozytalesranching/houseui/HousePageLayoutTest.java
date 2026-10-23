@@ -30,7 +30,7 @@ import org.junit.jupiter.api.io.TempDir;
 class HousePageLayoutTest {
     static final UUID PLAYER = UUID.fromString("11111111-2222-4333-8444-555555555555");
     static final Path TEST_FILE = Path.of("tests/hytale/houseui.test.json");
-    static final String PROJECT = "_worktrees/CozyTales-Ranching-fix-houseui";
+    static final String PROJECT = "CozyTales-Ranching";
     static final long NOW = 1_700_000_000_000L;
     static final String[][] RENDERS = {
         {"EMPTY", "empty pigsty, no products", "houseui-empty"},
