@@ -1,0 +1,35 @@
+{
+  "cases": [
+    {
+      "name": "sounds: gate",
+      "steps": [
+        { "tool": "asset_validate", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true, "schemaErrors": 0 } },
+        { "tool": "ui_check_java", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true } }
+      ]
+    },
+    {
+      "name": "sounds: every RanchSounds id is a SoundEvent whose .ogg files exist",
+      "description": "One step per id in RanchSounds (file name = id). A missing or misplaced .ogg is a reference warning, so warnings must be 0.",
+      "steps": [
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/SFX_CozyRanch_Animal_Happy.json" }, "expect": { "type": "SoundEvent", "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/SFX_CozyRanch_Animal_Tamed.json" }, "expect": { "type": "SoundEvent", "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/SFX_CozyRanch_Heart_Up.json" }, "expect": { "type": "SoundEvent", "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/SFX_CozyRanch_Baby_Born.json" }, "expect": { "type": "SoundEvent", "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/SFX_CozyRanch_House_Door.json" }, "expect": { "type": "SoundEvent", "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/SFX_CozyRanch_Trough_Fill.json" }, "expect": { "type": "SoundEvent", "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/SFX_CozyRanch_Produce_Collect.json" }, "expect": { "type": "SoundEvent", "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/SFX_CozyRanch_Journal_Open.json" }, "expect": { "type": "SoundEvent", "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/SFX_CozyRanch_Journal_Discovery.json" }, "expect": { "type": "SoundEvent", "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/SFX_CozyRanch_Visitor_Arrived.json" }, "expect": { "type": "SoundEvent", "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/SFX_CozyRanch_Toy_Play.json" }, "expect": { "type": "SoundEvent", "errors": 0, "warnings": 0 } },
+        { "tool": "asset_check", "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/SFX_CozyRanch_Butcher.json" }, "expect": { "type": "SoundEvent", "errors": 0, "warnings": 0 } }
+      ]
+    },
+    {
+      "name": "sounds: build and unit tests",
+      "steps": [
+        { "tool": "project_build", "arguments": { "project": "CozyTales-Ranching", "system": "gradle", "tasks": ["build"] }, "waitJob": true, "expect": { "state": "succeeded" } }
+      ]
+    }
+  ]
+}

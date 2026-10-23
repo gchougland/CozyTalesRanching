@@ -1,6 +1,7 @@
 package com.hexvane.cozytalesranching.breeding;
 
 import com.hexvane.cozytalesranching.RanchPermissions;
+import com.hexvane.cozytalesranching.RanchSounds;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.api.AnimalView;
@@ -156,6 +157,7 @@ final class BreedingService implements HouseDayHooks.Hook {
                 Ref<EntityStore> ref = liveEntity(world, id);
                 if (ref != null) {
                     TamingApi.cheer(ref, store);
+                    Ranch.animals().get(id).ifPresent(r -> RanchSounds.play(RanchSounds.BABY_BORN, r.lastX, r.lastY + 0.5, r.lastZ, store));
                     s.done().add(id);
                 }
             }

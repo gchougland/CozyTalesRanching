@@ -1,5 +1,6 @@
 package com.hexvane.cozytalesranching.house;
 
+import com.hexvane.cozytalesranching.RanchSounds;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.compat.CompatGuard;
@@ -135,7 +136,10 @@ final class HouseResidents {
         }
         r.worldName = house.worldName;
         Ranch.animals().markDirty(r);
-        if (ref != null && ref.isValid()) store.removeEntity(ref, RemoveReason.REMOVE);
+        if (ref != null && ref.isValid()) {
+            RanchSounds.play(RanchSounds.HOUSE_DOOR, house.doorX, house.doorY, house.doorZ, store);
+            store.removeEntity(ref, RemoveReason.REMOVE);
+        }
     }
 
     /**
@@ -192,6 +196,7 @@ final class HouseResidents {
             if (npc != null) npc.setLeashPoint(HouseBlocks.door(house));
             if (r.name != null && !r.name.isEmpty()) store.ensureAndGetComponent(ref, Nameplate.getComponentType()).setText(r.name);
             LAST_ROLE.put(r.animalId, role);
+            RanchSounds.play(RanchSounds.HOUSE_DOOR, house.doorX, house.doorY, house.doorZ, store);
             return true;
         }
         log("Ranch animal " + r.animalId + " cannot come out of house " + house.houseId + ": no spawnable role in " + candidates);

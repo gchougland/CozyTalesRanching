@@ -1,0 +1,22 @@
+{
+  "Layers": [
+    {
+      "Files": [
+        "Sounds/CozyRanch/Animal/Animal_Happy_01.ogg",
+        "Sounds/CozyRanch/Animal/Animal_Happy_02.ogg",
+        "Sounds/CozyRanch/Animal/Animal_Happy_03.ogg",
+        "Sounds/CozyRanch/Animal/Animal_Happy_04.ogg"
+      ],
+      "RandomSettings": {
+        "MinPitch": -1,
+        "MaxPitch": 1,
+        "MinVolume": -2
+      },
+      "RoundRobinHistorySize": 2
+    }
+  ],
+  "Volume": 0,
+  "MaxInstance": 3,
+  "PreventSoundInterruption": false,
+  "Parent": "SFX_Attn_Quiet"
+}

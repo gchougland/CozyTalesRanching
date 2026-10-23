@@ -1,6 +1,7 @@
 package com.hexvane.cozytalesranching.taming;
 
 import com.hexvane.cozytalesranching.RanchPermissions;
+import com.hexvane.cozytalesranching.RanchSounds;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.api.event.AnimalFriendshipChangedEvent;
@@ -144,6 +145,7 @@ public final class AnimalInteractions {
         int total = PROGRESS.add(use.animalUuid, use.playerId(), TamingRules.tamePoints(food), System.currentTimeMillis());
         if (total < needed) {
             AnimalControl.cheer(animal, AnimalControl.HEARTS_SMALL, store);
+            AnimalControl.sound(animal, RanchSounds.ANIMAL_HAPPY, store);
             use.player.sendMessage(Message.translation("cozyranch_taming.tame.progress").param("animal", animalName).param("count", total).param("needed", needed));
             return;
         }
@@ -171,6 +173,7 @@ public final class AnimalInteractions {
         Ranch.animals().markDirty(record);
         RanchEvents.fire(new AnimalTamedEvent(record.view(), use.playerId(), AnimalTamedEvent.Source.TAMED));
         AnimalControl.cheer(animal, AnimalControl.HEARTS, store);
+        AnimalControl.sound(animal, RanchSounds.ANIMAL_TAMED, store);
         use.player.sendMessage(Message.translation("cozyranch_taming.tame.done").param("animal", animalName));
     }
 
@@ -219,6 +222,7 @@ public final class AnimalInteractions {
         Ranch.animals().markDirty(record);
         RanchEvents.fire(new AnimalOwnerChangedEvent(record.view(), null, use.playerId()));
         AnimalControl.cheer(animal, AnimalControl.HEARTS, store);
+        AnimalControl.sound(animal, RanchSounds.ANIMAL_TAMED, store);
         use.player.sendMessage(Message.translation("cozyranch_taming.claim.done").param("animal", AnimalControl.displayName(record)));
     }
 
@@ -255,7 +259,7 @@ public final class AnimalInteractions {
         if (!takeHeldItem(playerEntity, use.itemId, store)) return;
         record.lastFedAtMs = now;
         CareApi.recordMeal(record, food);
-        addFriendship(record, TamingRules.feedFriendship(food));
+        AnimalControl.sound(animal, addFriendship(record, TamingRules.feedFriendship(food)) ? RanchSounds.HEART_UP : RanchSounds.ANIMAL_HAPPY, store);
         AnimalControl.cheer(animal, food == TamingRules.FoodKind.FAVORITE ? AnimalControl.HEARTS : AnimalControl.HEARTS_SMALL, store);
         use.player.sendMessage(Message.translation(food == TamingRules.FoodKind.FAVORITE ? "cozyranch_taming.feed.favorite" : "cozyranch_taming.feed.done")
             .param("animal", AnimalControl.displayName(record)).param("hearts", record.hearts).param("max", TamingRules.MAX_HEARTS));
@@ -271,16 +275,18 @@ public final class AnimalInteractions {
         long gameNow = time.getGameTime().toEpochMilli();
         AnimalControl.cheer(animal, AnimalControl.HEARTS_SMALL, store);
         if (!TamingRules.canPetForFriendship(record.lastPettedAtMs, gameNow)) {
+            AnimalControl.sound(animal, RanchSounds.ANIMAL_HAPPY, store);
             use.player.sendMessage(Message.translation("cozyranch_taming.pet.again").param("animal", AnimalControl.displayName(record)));
             return;
         }
         record.lastPettedAtMs = Math.max(1L, gameNow);
-        addFriendship(record, TamingRules.PET_FRIENDSHIP);
+        AnimalControl.sound(animal, addFriendship(record, TamingRules.PET_FRIENDSHIP) ? RanchSounds.HEART_UP : RanchSounds.ANIMAL_HAPPY, store);
         use.player.sendMessage(Message.translation("cozyranch_taming.pet.done")
             .param("animal", AnimalControl.displayName(record)).param("hearts", record.hearts).param("max", TamingRules.MAX_HEARTS));
     }
 
-    private static void addFriendship(@Nonnull AnimalRecord record, float amount) {
+    /** @return true when a heart was gained */
+    private static boolean addFriendship(@Nonnull AnimalRecord record, float amount) {
         amount *= com.hexvane.cozytalesranching.care.CareApi.friendshipMultiplier(record);
         int before = record.hearts;
         TamingRules.Friendship next = TamingRules.addFriendship(record.hearts, record.heartProgress, amount);
@@ -288,6 +294,7 @@ public final class AnimalInteractions {
         record.heartProgress = next.progress();
         Ranch.animals().markDirty(record);
         if (next.hearts() != before) RanchEvents.fire(new AnimalFriendshipChangedEvent(record.view(), before, next.hearts()));
+        return next.hearts() > before;
     }
 
     // ---- shared checks ----

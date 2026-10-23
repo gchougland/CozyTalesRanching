@@ -1,0 +1,25 @@
+{
+  "Layers": [
+    {
+      "Files": [
+        "Sounds/CozyRanch/Animal/Heart_Up_01.ogg",
+        "Sounds/CozyRanch/Animal/Heart_Up_02.ogg"
+      ]
+    },
+    {
+      "Files": [
+        "Sounds/CozyRanch/Animal/Heart_Up_Sparkle_01.ogg"
+      ],
+      "StartDelay": 0.08,
+      "Volume": -4,
+      "RandomSettings": {
+        "MinPitch": -1,
+        "MaxPitch": 1
+      }
+    }
+  ],
+  "Volume": 0,
+  "MaxInstance": 2,
+  "PreventSoundInterruption": true,
+  "Parent": "SFX_Attn_Moderate"
+}
