@@ -1,0 +1,17 @@
+items.CozyRanch_Truffle.name=Truffle
+items.CozyRanch_Truffle.description=An earthy treasure your pigs snuffled up. Eat it, or cook it as a mushroom.
+commands.produce.desc=Ranch product tools: what houses hold, time passing, collecting
+commands.produce.status.desc=List the products waiting in every house of this world
+commands.produce.tick.desc=Let 60 minutes of production pass for every house in this world
+commands.produce.tick.minutes.desc=Let a number of minutes of production pass for every house in this world
+commands.produce.tick.arg.minutes=Minutes of production to credit (capped like a restart)
+commands.produce.collect.desc=Collect from your houses within 32 blocks
+status.header=Products in {world}: {count} houses, each holds up to {cap} items.
+status.house={species} house at {x} {y} {z}: {producers} producing, {total} of {cap} waiting: {items}
+bucket.waiting={count} milk waiting for empty buckets.
+house.full=This house is full. Its animals rest until you collect.
+tick.done={minutes} of {asked} minutes passed: {items} items from {batches} batches in {houses} houses.
+collect.done=From the {species} house: you took {moved} ({items}). {left} still waiting.
+collect.bucket={count} milk waits. Bring an empty bucket for each one.
+collect.denied=You cannot collect from this {species} house.
+collect.none=None of your houses is within {radius} blocks.

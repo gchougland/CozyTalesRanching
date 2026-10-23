@@ -1,0 +1,82 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_produce.items.CozyRanch_Truffle.name",
+    "Description": "cozyranch_produce.items.CozyRanch_Truffle.description"
+  },
+  "Parent": "Template_Food",
+  "Interactions": {
+    "Secondary": "Root_Secondary_Consume_Food_T3"
+  },
+  "Quality": "Uncommon",
+  "Categories": [
+    "Items.Foods"
+  ],
+  "InteractionVars": {
+    "Consume_Charge": {
+      "Interactions": [
+        {
+          "Parent": "Consume_Charge_Food_T1_Inner",
+          "Effects": {
+            "Particles": [
+              {
+                "SystemId": "Food_Eat",
+                "Color": "#6B4A2E",
+                "TargetNodeName": "Mouth",
+                "TargetEntityPart": "Entity"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "Effect": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Food_Instant_Heal_T1"
+        }
+      ]
+    }
+  },
+  "Icon": "Icons/ItemsGenerated/Plant_Crop_Potato.png",
+  "BlockType": {
+    "Material": "Empty",
+    "DrawType": "Model",
+    "CustomModel": "Resources/Ingredients/Potato.blockymodel",
+    "CustomModelScale": 0.6,
+    "HitboxType": "Food_Medium",
+    "CustomModelTexture": [
+      {
+        "Texture": "Resources/Ingredients/Potato_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "ParticleColor": "#6b4a2e",
+    "TextureComputedColor": "#5A3F28"
+  },
+  "IconProperties": {
+    "Scale": 0.75,
+    "Translation": [
+      -0.6,
+      -3.6
+    ],
+    "Rotation": [
+      36,
+      45,
+      347.6
+    ]
+  },
+  "ResourceTypes": [
+    {
+      "Id": "Mushrooms"
+    }
+  ],
+  "Tags": {
+    "Type": [
+      "Food"
+    ]
+  },
+  "MaxStack": 25,
+  "Consumable": true,
+  "DropOnDeath": true
+}
