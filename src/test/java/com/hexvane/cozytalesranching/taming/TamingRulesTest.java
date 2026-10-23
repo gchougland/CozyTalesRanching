@@ -124,4 +124,44 @@ class TamingRulesTest {
         assertNull(TamingRules.cleanName("   ", 24));
         assertNull(TamingRules.cleanName(null, 24));
     }
+
+    @Test
+    void secondPetTheSameGameDayGivesNothing() {
+        long day = 86_400_000L;
+        long morning = 12 * day + day / 4;
+        // first pet ever, then again a few seconds and a few hours later the same in-game day
+        assertTrue(TamingRules.canPetForFriendship(0, morning));
+        assertFalse(TamingRules.canPetForFriendship(morning, morning + 3_000));
+        assertFalse(TamingRules.canPetForFriendship(morning, 13 * day - 1));
+        // the next in-game day starts at midnight on the game clock, not 24 real hours later
+        assertTrue(TamingRules.canPetForFriendship(13 * day - 1, 13 * day));
+    }
+
+    @Test
+    void nameRulesMatchTheCommand() {
+        assertEquals("Daisy", TamingRules.cleanName("Daisy\u0000\u0007", 24));
+        assertEquals("SirMoosA Lot", TamingRules.cleanName("Sir\nMoos\rA   Lot", 24));
+        String longName = "Bartholomew Buttercup The Third";
+        String cut = TamingRules.cleanName(longName, 24);
+        assertEquals(24, cut.length());
+        assertEquals("Bartholomew Buttercup Th", cut);
+        assertEquals("Café 🐄", TamingRules.cleanName(" Café 🐄 ", 24));
+        assertNull(TamingRules.cleanName("\u0001\u0002", 24));
+    }
+
+    @Test
+    void nameplateFollowsTheConfigSwitch() {
+        assertEquals("Daisy", TamingRules.nameplateText("Daisy", true));
+        assertNull(TamingRules.nameplateText("Daisy", false));
+        assertNull(TamingRules.nameplateText(null, true));
+        assertNull(TamingRules.nameplateText("  ", true));
+        assertNull(TamingRules.nameplateText(null, false));
+    }
+
+    @Test
+    void wildPromptDependsOnTheHeldFood() {
+        assertEquals("cozyranch_taming.hint.greet", TamingRules.wildHintKey(FoodKind.NONE));
+        assertEquals("cozyranch_taming.hint.befriend", TamingRules.wildHintKey(FoodKind.BASIC));
+        assertEquals("cozyranch_taming.hint.befriend", TamingRules.wildHintKey(FoodKind.FAVORITE));
+    }
 }

@@ -77,7 +77,10 @@ public final class TamingRules {
         return Math.floorDiv(gameTimeMs, GAME_DAY_MS);
     }
 
-    /** Petting gives friendship once per animal per in-game day. {@code lastPettedGameMs} 0 means never. */
+    /**
+     * An animal can be petted once per in-game day (a day on the world's game clock, not 24 real hours). A second
+     * pet the same day gives nothing: no friendship, hearts, sound or animation. {@code lastPettedGameMs} 0 means never.
+     */
     public static boolean canPetForFriendship(long lastPettedGameMs, long nowGameMs) {
         return lastPettedGameMs == 0L || gameDay(nowGameMs) != gameDay(lastPettedGameMs);
     }
@@ -102,6 +105,22 @@ public final class TamingRules {
     public static boolean startles(double shyness, boolean crouching, boolean hurried, double roll) {
         if (crouching || !hurried) return false;
         return roll < Math.clamp(shyness, 0.0, 1.0);
+    }
+
+    /** Use prompt on a wild animal the mod befriends: holding a food it eats, befriend; anything else, look closer. */
+    @Nonnull
+    public static String wildHintKey(@Nonnull FoodKind held) {
+        return held == FoodKind.NONE ? "cozyranch_taming.hint.greet" : "cozyranch_taming.hint.befriend";
+    }
+
+    /**
+     * Nameplate text for an owned animal: its name when plates are on, otherwise none. An unnamed animal has no
+     * plate; every new friend is asked for a name when it is tamed or claimed.
+     */
+    @Nullable
+    public static String nameplateText(@Nullable String name, boolean showNameplates) {
+        if (!showNameplates || name == null || name.isBlank()) return null;
+        return name;
     }
 
     /** Names are trimmed, stripped of control characters and kept short. Returns null when nothing is left. */
