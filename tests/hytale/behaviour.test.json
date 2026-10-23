@@ -180,6 +180,177 @@
           }
         }
       ]
+    },
+    {
+      "name": "toys animate while played with",
+      "description": "Each toy item has a looping Play state (ToyAnimator swaps the placed block to it while an animal plays). The clip is drawn through the real item asset; every animated node is a node of the toy model (the duck keeps Gibson's node names), and the strip is held against a golden.",
+      "steps": [
+        {
+          "tool": "animation_render",
+          "name": "Toy_Ball Play",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_Ball.json",
+            "animation": "Blocks/CozyRanch/Toys/Toy_Ball_Play.blockyanim",
+            "frameList": [
+              0,
+              8,
+              12,
+              20,
+              26,
+              32,
+              40,
+              48
+            ],
+            "size": 160,
+            "hitbox": false,
+            "yaw": 80,
+            "pitch": 12
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              },
+              "animatedNodes": 22,
+              "durationFrames": 60
+            }
+          },
+          "golden": "tests/hytale/golden/behaviour/Toy_Ball_Play.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "Toy_ScratchingPost Play",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_ScratchingPost.json",
+            "animation": "Blocks/CozyRanch/Toys/Toy_ScratchingPost_Play.blockyanim",
+            "frameList": [
+              0,
+              8,
+              12,
+              20,
+              26,
+              32,
+              40,
+              48
+            ],
+            "size": 160,
+            "hitbox": false,
+            "yaw": 20,
+            "pitch": 12
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              },
+              "animatedNodes": 18,
+              "durationFrames": 60
+            }
+          },
+          "golden": "tests/hytale/golden/behaviour/Toy_ScratchingPost_Play.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "Toy_HangingBell Play",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_HangingBell.json",
+            "animation": "Blocks/CozyRanch/Toys/Toy_HangingBell_Play.blockyanim",
+            "frameList": [
+              0,
+              8,
+              12,
+              20,
+              26,
+              32,
+              40,
+              48
+            ],
+            "size": 160,
+            "hitbox": false,
+            "yaw": 90,
+            "pitch": 12
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              },
+              "animatedNodes": 15,
+              "durationFrames": 60
+            }
+          },
+          "golden": "tests/hytale/golden/behaviour/Toy_HangingBell_Play.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "Toy_FloatingDuck Play",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_FloatingDuck.json",
+            "animation": "Blocks/CozyRanch/Toys/Toy_FloatingDuck_Play.blockyanim",
+            "frameList": [
+              0,
+              8,
+              12,
+              20,
+              26,
+              32,
+              40,
+              48
+            ],
+            "size": 160,
+            "hitbox": false,
+            "yaw": 60,
+            "pitch": 12
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              },
+              "animatedNodes": 12,
+              "durationFrames": 60
+            }
+          },
+          "golden": "tests/hytale/golden/behaviour/Toy_FloatingDuck_Play.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "Toy_Log Play",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_Log.json",
+            "animation": "Blocks/CozyRanch/Toys/Toy_Log_Play.blockyanim",
+            "frameList": [
+              0,
+              8,
+              12,
+              20,
+              26,
+              32,
+              40,
+              48
+            ],
+            "size": 160,
+            "hitbox": false,
+            "yaw": -75,
+            "pitch": 12
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              },
+              "animatedNodes": 14,
+              "durationFrames": 60
+            }
+          },
+          "golden": "tests/hytale/golden/behaviour/Toy_Log_Play.png"
+        }
+      ]
     }
   ]
 }

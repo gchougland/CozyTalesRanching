@@ -42,6 +42,14 @@
     ],
     "VariantRotation": "NESW",
     "HitboxType": "CozyRanch_Toy_HangingBell",
+    "State": {
+      "Definitions": {
+        "Play": {
+          "CustomModelAnimation": "Blocks/CozyRanch/Toys/Toy_HangingBell_Play.blockyanim",
+          "Looping": true
+        }
+      }
+    },
     "Gathering": {
       "Breaking": {
         "GatherType": "Benches",

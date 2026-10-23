@@ -49,6 +49,13 @@ final class WorldBlocks {
         return s.isEmpty() ? null : s;
     }
 
+    /** The cell holds a block in a toy's {@code Play} state (its own animation running). */
+    boolean inPlayState(int x, int y, int z) {
+        if (!loaded(x, y, z)) return false;
+        BlockType type = BlockType.getAssetMap().getAsset(reader.getBlock(x, y, z));
+        return type != null && ToyAnimator.isPlayState(type.getId());
+    }
+
     /** The cell is a filler of a multi-cell block (not its origin). */
     boolean filler(int x, int y, int z) {
         return loaded(x, y, z) && reader.getFiller(x, y, z) != 0;

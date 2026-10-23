@@ -42,6 +42,14 @@
     ],
     "VariantRotation": "NESW",
     "HitboxType": "CozyRanch_Toy_ScratchingPost",
+    "State": {
+      "Definitions": {
+        "Play": {
+          "CustomModelAnimation": "Blocks/CozyRanch/Toys/Toy_ScratchingPost_Play.blockyanim",
+          "Looping": true
+        }
+      }
+    },
     "Gathering": {
       "Breaking": {
         "GatherType": "Benches",

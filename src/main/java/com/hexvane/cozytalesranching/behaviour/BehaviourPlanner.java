@@ -78,6 +78,9 @@ final class BehaviourPlanner {
         long nextRepeatMs;
         long nextTraceMs;
         boolean acting;
+        /** The toy block this session plays with, and its world; its Play animation runs while {@link #acting}. */
+        @Nullable ToyAnimator.Cell toy;
+        @Nullable String world;
 
         Session(@Nonnull String id, @Nonnull Def def, @Nullable String clip, @Nonnull String state, long now, double seconds) {
             this.id = id;
@@ -102,6 +105,7 @@ final class BehaviourPlanner {
     private final Map<String, String> extraToys = new ConcurrentHashMap<>();
     private final Map<String, Integer> passes = new ConcurrentHashMap<>();
     final ToyIndex toys = new ToyIndex();
+    final ToyAnimator toyAnimator = new ToyAnimator();
 
     /** Counters for {@code /ranch behaviour status}. */
     final Map<String, Integer> started = new ConcurrentHashMap<>();
@@ -146,7 +150,10 @@ final class BehaviourPlanner {
         if (pass % CLEANUP_PASSES == 0) cleanup();
 
         List<HouseRecord> houses = Ranch.houses().inWorld(world.getName());
-        if (houses.isEmpty() && sessions.isEmpty()) return;
+        if (houses.isEmpty() && sessions.isEmpty()) {
+            if (toyAnimator.playingIn(world.getName()) > 0) toyAnimator.reconcile(world, Set.of(), id -> toyBehaviour(c, id) != null);
+            return;
+        }
         WorldBlocks blocks = new WorldBlocks(world);
         List<Seen> players = players(world, store);
         double dayLength = (double) world.getDaytimeDurationSeconds() + world.getNighttimeDurationSeconds();
@@ -159,6 +166,9 @@ final class BehaviourPlanner {
             try {
                 if (!scanned && day && toys.due(house.houseId, now, c) && blocks.loaded((int) Math.floor(house.doorX), (int) Math.floor(house.doorY), (int) Math.floor(house.doorZ))) {
                     toys.scan(blocks, house, (int) Math.min(c.ToyScanRadius, range), id -> toyBehaviour(c, id), now);
+                    for (ToyIndex.Toy t : toys.toys(house.houseId)) {
+                        if (blocks.inPlayState(t.x(), t.y(), t.z())) toyAnimator.noteStale(world.getName(), new ToyAnimator.Cell(t.x(), t.y(), t.z()));
+                    }
                     scanned = true;
                 }
                 List<AnimalRecord> inHouse = Ranch.animals().inHouse(house.houseId);
@@ -172,9 +182,20 @@ final class BehaviourPlanner {
             }
         }
         if (sessions.size() > 0) dropOrphans(world, store, visited);
+        toyAnimator.reconcile(world, playingToys(world.getName()), id -> toyBehaviour(c, id) != null);
         lastPassResidents = residents;
         lastPassReads = blocks.reads;
         lastPassNanos = System.nanoTime() - t0;
+    }
+
+    /** Toys an animal in this world is playing with right now (acting toy sessions). */
+    @Nonnull
+    private Set<ToyAnimator.Cell> playingToys(@Nonnull String worldName) {
+        Set<ToyAnimator.Cell> out = new java.util.HashSet<>();
+        for (Session s : sessions.values()) {
+            if (s.acting && s.toy != null && worldName.equals(s.world)) out.add(s.toy);
+        }
+        return out;
     }
 
     /**
@@ -336,6 +357,8 @@ final class BehaviourPlanner {
                 if (toy == null) return "no_toy";
                 s = new Session(id, def, clip, BehaviourRules.STATE_BEHAVE, now, seconds);
                 s.spot = beside(p, toy.x() + 0.5, toy.y(), toy.z() + 0.5, 1.1);
+                s.toy = new ToyAnimator.Cell(toy.x(), toy.y(), toy.z());
+                s.world = world.getName();
             }
             case PARENT -> {
                 Ref<EntityStore> parent = parentOf(world, store, r, p, inHouse);
@@ -791,5 +814,7 @@ final class BehaviourPlanner {
             if (house != null && ref != null) stop(store, ref, house, e.getValue(), true);
             sessions.remove(e.getKey());
         }
+        BehaviourConfig c = BehaviourFeature.config();
+        toyAnimator.stopAll(world, id -> toyBehaviour(c, id) != null);
     }
 }
