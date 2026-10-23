@@ -1,0 +1,25 @@
+$J = "JournalStyles.ui";
+
+Group #TraitRow {
+  LayoutMode: Top;
+  Anchor: (Bottom: 10);
+  Padding: (Horizontal: 12, Vertical: 9);
+  Background: (Color: #6e4a2e(0.07));
+
+  Label #TraitName {
+    Style: (...$J.@BodyStyle, FontSize: 17, TextColor: $J.@InkHead, RenderBold: true, Wrap: false);
+    Text: "";
+  }
+
+  Label #TraitText {
+    Style: (...$J.@BodyStyle, WrapMaxLines: 3);
+    Anchor: (Top: 2);
+    Text: "";
+  }
+
+  Label #TraitSeen {
+    Style: (...$J.@MutedStyle, FontSize: 13, WrapMaxLines: 2);
+    Anchor: (Top: 3);
+    Text: "";
+  }
+}

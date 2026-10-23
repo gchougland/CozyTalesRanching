@@ -8,16 +8,21 @@ public final class JournalLayout {
     public static final String CONTENTS = "CozyRanch/JournalContents.ui";
     public static final String SPECIES = "CozyRanch/JournalSpecies.ui";
     public static final String MEMORIES = "CozyRanch/JournalMemories.ui";
+    public static final String TRAITS = "CozyRanch/JournalTraits.ui";
     static final String CARD = "CozyRanch/JournalCard.ui";
     static final String HEADING = "CozyRanch/JournalHeading.ui";
     static final String LINE = "CozyRanch/JournalLine.ui";
+    static final String LINE_STRONG = "CozyRanch/JournalLineStrong.ui";
     static final String LINE_MUTED = "CozyRanch/JournalLineMuted.ui";
     static final String LINE_RARE = "CozyRanch/JournalLineRare.ui";
     static final String MEMORY = "CozyRanch/JournalMemory.ui";
+    static final String TRAIT = "CozyRanch/JournalTrait.ui";
+    static final String TRAIT_UNKNOWN = "CozyRanch/JournalTraitUnknown.ui";
 
     public static final String ACTION_CONTENTS = "contents";
     public static final String ACTION_SPECIES = "species";
     public static final String ACTION_MEMORIES = "memories";
+    public static final String ACTION_TRAITS = "traits";
 
     private JournalLayout() {}
 
@@ -26,11 +31,13 @@ public final class JournalLayout {
         ui.text("#JournalTitle", Txt.j("contents.title"));
         ui.text("#Intro", Txt.j("contents.intro"));
         ui.text("#MemoriesButton", Txt.j("nav.memories"));
+        ui.text("#TraitsButton", Txt.j("nav.traits"));
         ui.text("#AnimalsTitle", Txt.j("contents.animals"));
         ui.text("#Keeper", v.keeper());
         ui.text("#Progress", v.progress());
         ui.text("#MemoryCount", v.memories());
         ui.click("#MemoriesButton", ACTION_MEMORIES, "0");
+        ui.click("#TraitsButton", ACTION_TRAITS, "0");
         List<JournalView.Card> cards = v.cards();
         for (int i = 0; i < cards.size(); i++) {
             JournalView.Card card = cards.get(i);
@@ -75,6 +82,22 @@ public final class JournalLayout {
         if (v.hasNext()) ui.click("#MemNavNext", ACTION_MEMORIES, String.valueOf(v.spread() + 1));
     }
 
+    public static void traits(@Nonnull JournalView.Traits v, @Nonnull UiOut ui) {
+        ui.append(TRAITS);
+        ui.text("#TraitsTitle", Txt.j("traits.title"));
+        ui.text("#TraitsProgress", v.progress());
+        ui.text("#TraitsIntro", v.intro());
+        nav("#TraitNavContents", "#TraitNavPrev", "#TraitNavNext", ui);
+        traitRows("#TraitLeft", v.left(), ui);
+        traitRows("#TraitRight", v.right(), ui);
+        ui.text("#TraitPageLabel", v.pageLabel());
+        ui.set("#TraitNavPrev.Disabled", !v.hasPrevious());
+        ui.set("#TraitNavNext.Disabled", !v.hasNext());
+        ui.click("#TraitNavContents", ACTION_CONTENTS, "");
+        if (v.hasPrevious()) ui.click("#TraitNavPrev", ACTION_TRAITS, String.valueOf(v.spread() - 1));
+        if (v.hasNext()) ui.click("#TraitNavNext", ACTION_TRAITS, String.valueOf(v.spread() + 1));
+    }
+
     /** Static labels are set here: a .ui {@code %key} reference cannot contain the underscore in our lang file names. */
     private static void nav(@Nonnull String contents, @Nonnull String previous, @Nonnull String next, @Nonnull UiOut ui) {
         ui.text(contents, Txt.j("nav.contents"));
@@ -90,6 +113,7 @@ public final class JournalLayout {
             for (JournalView.Line line : s.lines()) {
                 ui.append(container, switch (line.style()) {
                     case BODY -> LINE;
+                    case STRONG -> LINE_STRONG;
                     case MUTED -> LINE_MUTED;
                     case RARE -> LINE_RARE;
                 });
@@ -107,6 +131,17 @@ public final class JournalLayout {
             ui.text(row + " #MemDate", r.date());
             ui.text(row + " #MemTitle", r.title());
             ui.text(row + " #MemText", r.text());
+        }
+    }
+
+    private static void traitRows(@Nonnull String container, @Nonnull List<JournalView.TraitRow> rows, @Nonnull UiOut ui) {
+        for (int i = 0; i < rows.size(); i++) {
+            JournalView.TraitRow r = rows.get(i);
+            String row = container + "[" + i + "]";
+            ui.append(container, r.known() ? TRAIT : TRAIT_UNKNOWN);
+            ui.text(row + " #TraitName", r.name());
+            ui.text(row + " #TraitText", r.text());
+            if (r.seen() != null) ui.text(row + " #TraitSeen", r.seen());
         }
     }
 }
