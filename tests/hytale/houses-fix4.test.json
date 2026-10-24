@@ -7,7 +7,7 @@
         {
           "tool": "asset_validate",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix4-houses"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true,
@@ -25,7 +25,7 @@
           "name": "hitbox AntelopeShelter",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_AntelopeShelter.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_AntelopeShelter.json"
           },
           "expect": {
             "errors": 0
@@ -36,7 +36,7 @@
           "name": "item AntelopeShelter",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_AntelopeShelter.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_AntelopeShelter.json"
           },
           "expect": {
             "errors": 0
@@ -47,7 +47,7 @@
           "name": "hitbox DeerShelter",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_DeerShelter.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_DeerShelter.json"
           },
           "expect": {
             "errors": 0
@@ -58,7 +58,7 @@
           "name": "item DeerShelter",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_DeerShelter.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_DeerShelter.json"
           },
           "expect": {
             "errors": 0
@@ -69,7 +69,7 @@
           "name": "hitbox WarthogWallow",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_WarthogWallow.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_WarthogWallow.json"
           },
           "expect": {
             "errors": 0
@@ -80,7 +80,7 @@
           "name": "item WarthogWallow",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WarthogWallow.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WarthogWallow.json"
           },
           "expect": {
             "errors": 0
@@ -91,7 +91,7 @@
           "name": "hitbox BisonBarn",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_BisonBarn.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_BisonBarn.json"
           },
           "expect": {
             "errors": 0
@@ -102,7 +102,7 @@
           "name": "item BisonBarn",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BisonBarn.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BisonBarn.json"
           },
           "expect": {
             "errors": 0
@@ -113,7 +113,7 @@
           "name": "hitbox FoxDen",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_FoxDen.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_FoxDen.json"
           },
           "expect": {
             "errors": 0
@@ -124,7 +124,7 @@
           "name": "item FoxDen",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FoxDen.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FoxDen.json"
           },
           "expect": {
             "errors": 0
@@ -135,7 +135,7 @@
           "name": "hitbox MeerkatMound",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_MeerkatMound.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_MeerkatMound.json"
           },
           "expect": {
             "errors": 0
@@ -146,7 +146,7 @@
           "name": "item MeerkatMound",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_MeerkatMound.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_MeerkatMound.json"
           },
           "expect": {
             "errors": 0
@@ -157,7 +157,7 @@
           "name": "hitbox Rookery",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_Rookery.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_Rookery.json"
           },
           "expect": {
             "errors": 0
@@ -168,7 +168,7 @@
           "name": "item Rookery",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Rookery.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Rookery.json"
           },
           "expect": {
             "errors": 0
@@ -179,7 +179,7 @@
           "name": "hitbox WolfLodge",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_WolfLodge.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_WolfLodge.json"
           },
           "expect": {
             "errors": 0
@@ -190,7 +190,7 @@
           "name": "item WolfLodge",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WolfLodge.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WolfLodge.json"
           },
           "expect": {
             "errors": 0
@@ -201,7 +201,7 @@
           "name": "hitbox BearCave",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_BearCave.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_BearCave.json"
           },
           "expect": {
             "errors": 0
@@ -212,7 +212,7 @@
           "name": "item BearCave",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BearCave.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BearCave.json"
           },
           "expect": {
             "errors": 0
@@ -229,7 +229,7 @@
           "name": "WolfLodge",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WolfLodge.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WolfLodge.json",
             "views": [
               "front",
               "three_quarter",
@@ -266,7 +266,7 @@
           "name": "WolfLodge texture",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WolfLodge.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WolfLodge.json",
             "image": false
           },
           "expect": {
@@ -289,7 +289,7 @@
           "name": "BearCave",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BearCave.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BearCave.json",
             "views": [
               "front",
               "three_quarter",
@@ -327,7 +327,7 @@
           "name": "BearCave texture",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BearCave.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BearCave.json",
             "image": false
           },
           "expect": {
@@ -350,7 +350,7 @@
           "name": "BisonBarn",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BisonBarn.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BisonBarn.json",
             "views": [
               "three_quarter",
               "top"
@@ -386,7 +386,7 @@
           "name": "BisonBarn texture",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BisonBarn.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BisonBarn.json",
             "image": false
           },
           "expect": {
@@ -409,7 +409,7 @@
           "name": "FoxDen",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FoxDen.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FoxDen.json",
             "views": [
               "three_quarter",
               "top"
@@ -434,7 +434,7 @@
           "name": "FoxDen texture",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FoxDen.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FoxDen.json",
             "image": false
           },
           "expect": {
@@ -457,7 +457,7 @@
           "name": "MeerkatMound",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_MeerkatMound.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_MeerkatMound.json",
             "views": [
               "three_quarter",
               "top"
@@ -482,7 +482,7 @@
           "name": "MeerkatMound texture",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-houses/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_MeerkatMound.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_MeerkatMound.json",
             "image": false
           },
           "expect": {
