@@ -1,0 +1,47 @@
+{
+  "Id": "crab",
+  "NameKey": "cozyranch_species.crab.name",
+  "WildRoles": [
+    "Crab"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Crab",
+  "RanchBabyRole": "CozyRanch_Crab_Baby",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_TidePool",
+  "HouseCapacity": 3,
+  "BasicFoods": [
+    "Plant_Seaweed_Grass",
+    "Food_Fish_Raw"
+  ],
+  "PreferredFoods": [
+    "Plant_Seaweed_Grass_Bulbs",
+    "Fish_Minnow_Item"
+  ],
+  "FavoriteTreats": [
+    "Plant_Fruit_Coconut"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.5,
+  "GrowUpMinutes": 40,
+  "BreedCooldownMinutes": 40,
+  "Products": [
+    {
+      "Item": "CozyRanch_Sea_Shell",
+      "Quantity": 1,
+      "IntervalMinutes": 60,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "beach_sand",
+    "water"
+  ],
+  "HabitatPrefers": [
+    "seaweed",
+    "shells",
+    "open_space"
+  ]
+}

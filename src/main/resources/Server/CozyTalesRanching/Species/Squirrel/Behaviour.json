@@ -1,0 +1,93 @@
+{
+  "Behaviours": {
+    "nibble": {
+      "Kind": "here",
+      "Weight": 3,
+      "CooldownSeconds": 50,
+      "Seconds": [
+        5,
+        9
+      ]
+    },
+    "bury_nut": {
+      "Kind": "here",
+      "Ground": "grass",
+      "Weight": 2,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        4,
+        7
+      ]
+    },
+    "tail_flick": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 45,
+      "Seconds": [
+        2,
+        3
+      ],
+      "RepeatSeconds": 1
+    }
+  },
+  "Species": {
+    "squirrel": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "nibble": [
+          "SitNibble"
+        ],
+        "bury_nut": [
+          "BuryNut"
+        ],
+        "tail_flick": [
+          "TailFlick"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_post": [
+          "PerchUp"
+        ],
+        "toy_log": [
+          "PerchUp",
+          "SitNibble"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "nibble": [
+          "SitNibble"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "PerchUp"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "Ground": {
+    "shore": [
+      {
+        "Under": [
+          "Soil_Sand",
+          "Soil_Gravel_Sand"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "claw_wave": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        3,
+        5
+      ]
+    },
+    "sand_dig": {
+      "Kind": "here",
+      "Ground": "shore",
+      "Weight": 3,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "bubble": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 75,
+      "Seconds": [
+        4,
+        6
+      ]
+    },
+    "sidestep": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 45,
+      "Seconds": [
+        3,
+        5
+      ]
+    }
+  },
+  "Species": {
+    "crab": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "claw_wave": [
+          "ClawWave"
+        ],
+        "sand_dig": [
+          "SandDig"
+        ],
+        "bubble": [
+          "Bubble"
+        ],
+        "sidestep": [
+          "Sidestep"
+        ],
+        "socialise": [
+          "ClawWave",
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "ClawWave",
+          "Happy"
+        ],
+        "toy_duck": [
+          "Sidestep"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "sidestep": [
+          "Sidestep"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "sidestep": 1.5,
+        "tail_flick": 1.5
+      }
+    }
+  }
+}
