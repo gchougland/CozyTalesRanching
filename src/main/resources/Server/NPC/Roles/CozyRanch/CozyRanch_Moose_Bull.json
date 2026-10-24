@@ -1,0 +1,25 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Moose_Bull",
+    "AttitudeGroup": "PreyBig",
+    "SeparationDistance": 1.3,
+    "DropList": "Drop_Moose_Bull",
+    "MaxHealth": 124,
+    "ParticleOffset": [
+      0,
+      2.4,
+      0
+    ],
+    "FoodItems": [
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Leaves_Birch",
+      "Plant_Flower_Water_Duckweed",
+      "Plant_Crop_Turnip_Item",
+      "Plant_Fruit_Apple"
+    ],
+    "FollowStopDistance": 3.5,
+    "NameTranslationKey": "server.npcRoles.Moose_Bull.name"
+  }
+}

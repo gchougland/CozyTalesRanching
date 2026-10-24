@@ -1,0 +1,25 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Moose",
+    "AttitudeGroup": "PreyBig",
+    "SeparationDistance": 1.2,
+    "DropList": "Drop_Moose_Cow",
+    "MaxHealth": 103,
+    "ParticleOffset": [
+      0,
+      2.1,
+      0
+    ],
+    "FoodItems": [
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Leaves_Birch",
+      "Plant_Flower_Water_Duckweed",
+      "Plant_Crop_Turnip_Item",
+      "Plant_Fruit_Apple"
+    ],
+    "FollowStopDistance": 3.5,
+    "NameTranslationKey": "server.npcRoles.Moose_Cow.name"
+  }
+}

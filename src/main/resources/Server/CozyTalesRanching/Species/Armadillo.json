@@ -1,0 +1,46 @@
+{
+  "Id": "armadillo",
+  "NameKey": "cozyranch_species.armadillo.name",
+  "WildRoles": [
+    "Armadillo"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Armadillo",
+  "RanchBabyRole": "CozyRanch_Armadillo_Baby",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_ArmadilloBurrow",
+  "HouseCapacity": 3,
+  "BasicFoods": [
+    "Plant_Fruit_Berries_Red",
+    "Plant_Crop_Potato_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Corn_Item",
+    "Food_Egg"
+  ],
+  "FavoriteTreats": [
+    "CozyRanch_Food_Crickets"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.6,
+  "GrowUpMinutes": 60,
+  "BreedCooldownMinutes": 55,
+  "Products": [
+    {
+      "Item": "CozyRanch_Armadillo_Plate",
+      "Quantity": 1,
+      "IntervalMinutes": 75,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "dust"
+  ],
+  "HabitatPrefers": [
+    "dry_scrub",
+    "red_earth",
+    "open_space"
+  ]
+}

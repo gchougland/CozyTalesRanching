@@ -1,0 +1,25 @@
+{
+  "Species": [
+    {
+      "Id": "moose",
+      "Order": 210,
+      "DescriptionKey": "cozyranch_journal.species.moose.desc",
+      "RareKey": "cozyranch_journal.species.moose.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Moose.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/MooseSilhouette.png",
+      "Behaviours": [
+        "pond_browse",
+        "graze",
+        "browse_high",
+        "shake_off",
+        "antler_rub",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_log",
+        "toy_ball"
+      ]
+    }
+  ]
+}

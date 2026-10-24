@@ -1,0 +1,27 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Armadillo",
+    "AttitudeGroup": "PreyBig",
+    "SeparationDistance": 1.2,
+    "DropList": "Drop_Armadillo",
+    "MaxHealth": 103,
+    "ParticleOffset": [
+      0,
+      1.6,
+      0
+    ],
+    "FoodItems": [
+      "Plant_Fruit_Berries_Red",
+      "Plant_Crop_Potato_Item",
+      "Plant_Crop_Corn_Item",
+      "Food_Egg",
+      "CozyRanch_Food_Crickets"
+    ],
+    "FollowStopDistance": 3,
+    "NameTranslationKey": "server.npcRoles.Armadillo.name",
+    "MaxSpeed": 3.5,
+    "WanderRadius": 5
+  }
+}

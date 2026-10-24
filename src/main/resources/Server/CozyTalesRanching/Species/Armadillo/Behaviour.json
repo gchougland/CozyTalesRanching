@@ -1,0 +1,137 @@
+{
+  "Behaviours": {
+    "armadillo_dig": {
+      "Kind": "here",
+      "Ground": "dust",
+      "Weight": 4,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "curl_up": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 150,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "grub_sniff": {
+      "Kind": "here",
+      "Weight": 2.5,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        4,
+        6
+      ]
+    },
+    "armadillo_dance": {
+      "Kind": "here",
+      "Weight": 0.8,
+      "CooldownSeconds": 240,
+      "Seconds": [
+        3,
+        5
+      ]
+    }
+  },
+  "Species": {
+    "armadillo": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "armadillo_dig": [
+          "Dig"
+        ],
+        "curl_up": [
+          "CurlUp"
+        ],
+        "grub_sniff": [
+          "GrubSniff"
+        ],
+        "armadillo_dance": [
+          "Dance"
+        ],
+        "socialise": [
+          "Love",
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "CurlUp",
+          "Happy"
+        ],
+        "toy_log": [
+          "GrubSniff"
+        ],
+        "approach_player": [
+          "GrubSniff"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "armadillo_dig": [
+          "Dig"
+        ],
+        "curl_up": [
+          "CurlUp"
+        ],
+        "grub_sniff": [
+          "GrubSniff"
+        ],
+        "armadillo_dance": [
+          "Dance"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "CurlUp",
+          "Happy"
+        ],
+        "approach_player": [
+          "GrubSniff"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "shy": {
+      "Weights": {
+        "curl_up": 2.5
+      }
+    },
+    "playful": {
+      "Weights": {
+        "armadillo_dance": 2.5
+      }
+    },
+    "curious": {
+      "Weights": {
+        "grub_sniff": 1.6
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "armadillo_dig": 0.6
+      }
+    }
+  }
+}
