@@ -1,0 +1,62 @@
+$H = "HouseStyles.ui";
+
+// One house in the ledger: its name, species and where it stands, how full it is, and the products waiting in it.
+Group #LedgerHouseCard {
+  LayoutMode: Top;
+  Anchor: (Top: 6, Bottom: 6, Right: 12);
+  Padding: (Horizontal: 14, Top: 10, Bottom: 10);
+  Background: (Color: #3a2a1c(0.72));
+  OutlineSize: 1;
+  OutlineColor: #e8b25c(0.35);
+
+  Group #LHTop {
+    LayoutMode: Left;
+    Anchor: (Height: 26);
+
+    Label #LHName {
+      FlexWeight: 1;
+      Style: (...$H.@HeadStyle, FontSize: 16, VerticalAlignment: Center);
+      Text: "";
+    }
+
+    Group #LHCountPill {
+      LayoutMode: Center;
+      Anchor: (Height: 24);
+      Padding: (Horizontal: 10);
+      Background: (Color: #e8b25c(0.16));
+      OutlineSize: 1;
+      OutlineColor: #e8b25c(0.45);
+
+      Label #LHCount {
+        Style: (...$H.@HeadStyle, FontSize: 13, VerticalAlignment: Center);
+        Text: "";
+      }
+    }
+  }
+
+  Label #LHWhere {
+    Style: (...$H.@MutedStyle, FontSize: 13);
+    Anchor: (Top: 2, Bottom: 6);
+    Text: "";
+  }
+
+  Group #LHProductRow {
+    LayoutMode: Left;
+    Anchor: (Height: 40);
+
+    Group #LHProducts {
+      LayoutMode: Left;
+    }
+
+    Label #LHMore {
+      Style: (...$H.@MutedStyle, FontSize: 14, RenderBold: true, VerticalAlignment: Center);
+      Anchor: (Left: 2);
+      Text: "";
+    }
+
+    Label #LHNoProducts {
+      Style: (...$H.@MutedStyle, FontSize: 14, VerticalAlignment: Center);
+      Text: "";
+    }
+  }
+}

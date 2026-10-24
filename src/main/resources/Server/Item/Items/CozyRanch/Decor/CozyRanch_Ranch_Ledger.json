@@ -53,6 +53,16 @@
       }
     ],
     "VariantRotation": "NESW",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CozyRanchOpenLedger"
+          }
+        ]
+      }
+    },
+    "InteractionHint": "cozyranch_items.ledger.hint",
     "HitboxType": "CozyRanch_Ranch_Ledger",
     "Gathering": {
       "Breaking": {
