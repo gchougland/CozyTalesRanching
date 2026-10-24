@@ -10,6 +10,7 @@ import com.hypixel.hytale.component.RemoveReason;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.math.util.ChunkUtil;
 import com.hypixel.hytale.math.vector.Rotation3f;
+import com.hypixel.hytale.server.core.asset.type.fluid.Fluid;
 import com.hypixel.hytale.server.core.entity.UUIDComponent;
 import com.hypixel.hytale.server.core.entity.nameplate.Nameplate;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
@@ -24,8 +25,10 @@ import com.hypixel.hytale.server.spawning.SpawningContext;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -131,10 +134,22 @@ final class AnimalRecovery {
             case MISSING -> {
                 if (now - AnimalPresence.missingSince(r.animalId, now) < recoveryDelayMs()) return;
                 Vector3d near = recoveryTarget(world, r);
-                if (near != null) respawn(world, store, r, near);
+                if (near != null && !respawn(world, store, r, near)) noteFailure(r, near, now);
             }
         }
     }
+
+    /** A failed respawn is retried every sweep; say so in the log at most every 10 minutes per animal so it is never silent. */
+    private static void noteFailure(@Nonnull AnimalRecord r, @Nonnull Vector3d near, long now) {
+        Long last = FAIL_LOGGED.get(r.animalId);
+        if (last != null && now - last < FAIL_LOG_EVERY_MS) return;
+        FAIL_LOGGED.put(r.animalId, now);
+        LOG.warning("Ranch animal " + r.animalId + " (" + r.speciesId + ") is missing and could not be respawned near "
+            + (long) Math.floor(near.x) + " " + (long) Math.floor(near.y) + " " + (long) Math.floor(near.z) + "; retrying every " + SWEEP_SECONDS + " s");
+    }
+
+    private static final long FAIL_LOG_EVERY_MS = TimeUnit.MINUTES.toMillis(10);
+    private static final Map<UUID, Long> FAIL_LOGGED = new ConcurrentHashMap<>();
 
     private void refreshPosition(Store<EntityStore> store, Ref<EntityStore> ref, AnimalRecord r) {
         TransformComponent t = store.getComponent(ref, TransformComponent.getComponentType());
@@ -198,6 +213,7 @@ final class AnimalRecovery {
             r.lastZ = spot.pos.z;
             r.worldName = world.getName();
             registry.markDirty(r);
+            FAIL_LOGGED.remove(r.animalId);
             LOG.info("Ranch animal " + r.animalId + " recovered in " + world.getName() + " as " + role);
             return true;
         }
@@ -253,7 +269,7 @@ final class AnimalRecovery {
             for (int[] o : offsets) {
                 int x = cx + o[0], z = cz + o[1];
                 if (!isChunkLoaded(world, x, z)) continue;
-                if (ctx.set(world, x + 0.5, near.y, z + 0.5) && ctx.canSpawn() == SpawnTestResult.TEST_OK && ctx.groundFluid == null) {
+                if (ctx.set(world, x + 0.5, near.y, z + 0.5) && ctx.canSpawn() == SpawnTestResult.TEST_OK && isDryFooting(ctx.groundFluidId, ctx.getWaterLevel())) {
                     return new Spot(new Vector3d(ctx.xSpawn, ctx.ySpawn, ctx.zSpawn), ctx.getModel());
                 }
                 ctx.release();
@@ -262,6 +278,19 @@ final class AnimalRecovery {
         } finally {
             ctx.releaseFull();
         }
+    }
+
+    /** {@code SpawningContext.NO_WATER_LEVEL} (private there): the chosen span has no water in it. */
+    static final int NO_WATER_LEVEL = Integer.MAX_VALUE;
+
+    /**
+     * No fluid in the ground block and no water in the span. Dry ground reports {@code Fluid.EMPTY} (id 0), never
+     * null: {@code SpawningContext.selectSpawnSpan} sets {@code groundFluid = Fluid.getAssetMap().getAsset(id)} and
+     * {@code Fluid.EMPTY} is preloaded at id 0. The old test {@code groundFluid == null} was therefore never true, so
+     * no recovery spawn (and no admin resummon) ever found a spot.
+     */
+    static boolean isDryFooting(int groundFluidId, int waterLevel) {
+        return groundFluidId == Fluid.EMPTY_ID && waterLevel == NO_WATER_LEVEL;
     }
 
     /** Respawns a record next to a position right now, ignoring the delay. For the admin command. */

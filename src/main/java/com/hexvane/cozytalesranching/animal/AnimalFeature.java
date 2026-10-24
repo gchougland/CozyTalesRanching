@@ -32,6 +32,8 @@ public final class AnimalFeature {
         entities.registerSystem(new AnimalEntitySystem(animals, markerType));
         entities.registerSystem(new AnimalProtectionSystem(animals, markerType));
         entities.registerSystem(new AnimalDeathSystem(animals, markerType));
+        VanillaCoopGuard coopGuard = VanillaCoopGuard.create(animals, markerType);
+        if (coopGuard != null) entities.registerSystem(coopGuard);
 
         AnimalRecovery rec = new AnimalRecovery(animals, markerType);
         rec.start();
@@ -39,6 +41,11 @@ public final class AnimalFeature {
 
         plugin.getEventRegistry().register(SAVE_ON_SHUTDOWN, ShutdownEvent.class, event -> shutdown());
         Runtime.getRuntime().addShutdownHook(new Thread(AnimalFeature::shutdown, "CozyRanch-AnimalsShutdown"));
+    }
+
+    @Nullable
+    static PersistentAnimalRegistry registry() {
+        return registry;
     }
 
     @Nullable

@@ -11,6 +11,7 @@ import com.hexvane.cozytalesranching.species.SpeciesRegistry.RoleKind;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry.RoleMatch;
 import com.hypixel.hytale.component.AddReason;
 import com.hypixel.hytale.component.CommandBuffer;
+import com.hypixel.hytale.component.ComponentAccessor;
 import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.RemoveReason;
@@ -18,6 +19,7 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.RefSystem;
 import com.hypixel.hytale.server.core.entity.UUIDComponent;
+import com.hypixel.hytale.server.core.entity.nameplate.Nameplate;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
@@ -76,9 +78,55 @@ final class AnimalEntitySystem extends RefSystem<EntityStore> {
 
         if (marker != null) {
             onMarkedAdded(ref, cb, world, marker, entityUuid, role, match, !foreign && CompatGuard.isManageableRole(role));
-        } else if (shouldAdopt(role, false, foreign)) {
-            adopt(ref, cb, world, entityUuid, role, match);
+            return;
         }
+        if (mayBeOrphan(match.kind(), foreign, role) && relinkOrphan(ref, cb, world, entityUuid, role, match)) return;
+        if (shouldAdopt(role, false, foreign)) adopt(ref, cb, world, entityUuid, role, match);
+    }
+
+    /** Only untagged ranch and adopt roles can be one of ours that lost its tag; wild animals never are. */
+    static boolean mayBeOrphan(@Nonnull RoleKind kind, boolean hasForeignComponent, @Nonnull String role) {
+        if (hasForeignComponent || !CompatGuard.isManageableRole(role)) return false;
+        return kind == RoleKind.RANCH || kind == RoleKind.RANCH_BABY || isAdoptRole(role, kind);
+    }
+
+    /**
+     * An untagged ranch or adopt animal that is a MISSING record come back (a vanilla coop re-created it
+     * with a new UUID): it becomes that record's current incarnation instead of a stranger or a new record.
+     */
+    private boolean relinkOrphan(Ref<EntityStore> ref, CommandBuffer<EntityStore> cb, World world, UUID entityUuid, String role, RoleMatch match) {
+        TransformComponent t = cb.getComponent(ref, transformType);
+        if (t == null) return false;
+        return relink(registry, markerType, ref, cb, world, entityUuid, role, match, t.getPosition());
+    }
+
+    /**
+     * Binds an untagged entity to the MISSING record {@link OrphanRelink#match} picks, if any. Works with a command
+     * buffer (entity add) or the store (admin command). Returns false when nothing matched.
+     */
+    static boolean relink(@Nonnull PersistentAnimalRegistry registry, @Nonnull ComponentType<EntityStore, AnimalMarker> markerType,
+                          @Nonnull Ref<EntityStore> ref, @Nonnull ComponentAccessor<EntityStore> accessor, @Nonnull World world,
+                          @Nonnull UUID entityUuid, @Nonnull String role, @Nonnull RoleMatch match, @Nonnull Vector3d p) {
+        AnimalStore store = registry.store();
+        if (store.byEntity(entityUuid) != null) return false;
+        AnimalRecord r = OrphanRelink.match(store, world.getName(), match.species().Id, role, isBaby(match.kind()), p.x, p.z);
+        if (r == null) return false;
+        Ref<EntityStore> old = AnimalPresence.get(r.animalId);
+        if (old != null && old != ref) return false;
+        long generation = store.bind(r, entityUuid);
+        accessor.putComponent(ref, markerType, new AnimalMarker(r.animalId, generation));
+        String plate = com.hexvane.cozytalesranching.taming.TamingApi.nameplateText(r);
+        if (plate != null) accessor.putComponent(ref, Nameplate.getComponentType(), new Nameplate(plate));
+        AnimalPresence.put(r.animalId, ref);
+        r.worldName = world.getName();
+        r.lastX = p.x;
+        r.lastY = p.y;
+        r.lastZ = p.z;
+        store.setRole(r.animalId, role);
+        registry.markDirty(r);
+        LOG.info("Ranch animal " + r.animalId + " (" + r.speciesId + (r.name != null ? " \"" + r.name + "\"" : "") + ") came back untagged as " + role
+            + " entity " + entityUuid + " (re-created by a vanilla coop or another mod); relinked to its record");
+        return true;
     }
 
     /** An NPC becomes an unowned ranch animal only if: supported species, adopt role, not ignored, no marker yet, no other mod's component. */

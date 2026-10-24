@@ -15,3 +15,6 @@ admin.list.header={player} has {count} ranch animals:
 admin.resummon.unknown=No ranch animal has the id {id}.
 admin.resummon.done=Ranch animal {id} is here.
 admin.resummon.failed=No safe spot near you for ranch animal {id}. Try somewhere open.
+commands.admin.relink.desc=Bring back ranch animals that lost their tag nearby, and respawn missing ones beside you
+commands.admin.relink.arg.radius=How far to look, in blocks (default 48)
+admin.relink.done=Relinked {relinked} animals nearby and brought back {respawned} missing ones. Still missing: {missing}.
