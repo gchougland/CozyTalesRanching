@@ -18,3 +18,6 @@ admin.resummon.failed=No safe spot near you for ranch animal {id}. Try somewhere
 commands.admin.relink.desc=Bring back ranch animals that lost their tag nearby, and respawn missing ones beside you
 commands.admin.relink.arg.radius=How far to look, in blocks (default 48)
 admin.relink.done=Relinked {relinked} animals nearby and brought back {respawned} missing ones. Still missing: {missing}.
+commands.admin.befriend.desc=Befriend the nearest wild ranch animal at once (for testing)
+admin.befriend.done=Befriended the nearest wild {species}.
+admin.befriend.none=No wild ranch animal within 16 blocks.

@@ -152,6 +152,12 @@ public final class AnimalInteractions {
         }
         PROGRESS.clear(use.animalUuid);
         if (!gateOk(use)) return;
+        befriendNow(use, animal, store);
+    }
+
+    /** The wild animal trusts the player now: record, ranch role in Follow, events, cheer, name page. World thread. */
+    private static void befriendNow(@Nonnull Use use, @Nonnull Ref<EntityStore> animal, @Nonnull Store<EntityStore> store) {
+        Message animalName = AnimalControl.speciesName(use.species);
         NPCEntity npc = store.getComponent(animal, NPCEntity.getComponentType());
         if (npc == null || npc.getRoleName() == null) return;
         Optional<String> ranchRole = AnimalControl.ranchRole(use.species, npc.getRoleName(), use.baby());
@@ -177,6 +183,43 @@ public final class AnimalInteractions {
         AnimalControl.sound(animal, RanchSounds.ANIMAL_TAMED, store);
         RanchChat.tell(use.player, Message.translation("cozyranch_taming.tame.done").param("animal", animalName));
         TamingApi.openNamePage(use.player, record.animalId);
+    }
+
+    /**
+     * Admin test path ({@code /ranch admin befriend}): befriends the nearest supported wild animal within
+     * {@code radius} blocks at once, through the same code as the last feeding. Returns the species id, or null.
+     */
+    @Nullable
+    public static String debugBefriendNearest(@Nonnull PlayerRef player, @Nonnull Ref<EntityStore> playerEntity, @Nonnull World world,
+                                              @Nonnull Store<EntityStore> store, double radius) {
+        TransformComponent pt = store.getComponent(playerEntity, TransformComponent.getComponentType());
+        if (pt == null) return null;
+        Vector3d p = pt.getPosition();
+        Object[] best = {null, null, Double.MAX_VALUE};
+        store.forEachChunk(NPCEntity.getComponentType(), (chunk, buffer) -> {
+            for (int i = 0; i < chunk.size(); i++) {
+                NPCEntity npc = chunk.getComponent(i, NPCEntity.getComponentType());
+                TransformComponent t = chunk.getComponent(i, TransformComponent.getComponentType());
+                UUIDComponent id = chunk.getComponent(i, UUIDComponent.getComponentType());
+                if (npc == null || t == null || id == null || npc.getRoleName() == null) continue;
+                Optional<RoleMatch> m = SpeciesRegistry.byRole(npc.getRoleName());
+                if (m.isEmpty() || (m.get().kind() != RoleKind.WILD && m.get().kind() != RoleKind.WILD_BABY)) continue;
+                if (Ranch.animals().byEntity(id.getUuid()).isPresent()) continue;
+                double d = t.getPosition().distance(p);
+                if (d <= radius && d < (double) best[2]) {
+                    best[0] = id.getUuid();
+                    best[1] = m.get();
+                    best[2] = d;
+                }
+            }
+        });
+        if (best[0] == null) return null;
+        RoleMatch match = (RoleMatch) best[1];
+        Use use = new Use(player, world, (UUID) best[0], match.species(), match.kind(), null, false);
+        Ref<EntityStore> animal = world.getEntityStore().getRefFromUUID(use.animalUuid);
+        if (animal == null || !animal.isValid()) return null;
+        befriendNow(use, animal, store);
+        return match.species().Id;
     }
 
     // ---- animals with a ranch record ----

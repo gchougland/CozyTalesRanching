@@ -18,3 +18,6 @@ admin.resummon.failed=No hay ningún lugar seguro cerca de usted para animales d
 commands.admin.relink.desc=Trae de vuelta a los animales de rancho que perdieron su etiqueta cerca y haz reaparecer a los que faltan a tu lado.
 commands.admin.relink.arg.radius=Hasta dónde mirar, en bloques (por defecto 48)
 admin.relink.done=Se volvieron a conectar los animales cercanos {relinked} y se trajeron de vuelta los que faltaban {respawned}. Todavía falta: {missing}.
+commands.admin.befriend.desc=Hazte amigo del animal salvaje de rancho más cercano de inmediato (para probarlo).
+admin.befriend.done=Me hice amigo del animal salvaje más cercano {species}.
+admin.befriend.none=No hay animales salvajes de rancho en un radio de 16 cuadras.

@@ -18,3 +18,6 @@ admin.resummon.failed=Não há local seguro perto de você para animais de fazen
 commands.admin.relink.desc=Traga de volta os animais da fazenda que perderam a etiqueta e faça reaparecer os que estão faltando ao seu lado.
 commands.admin.relink.arg.radius=Até onde olhar, em quarteirões (padrão 48)
 admin.relink.done=Reconectamos os animais {relinked} próximos e trouxemos de volta os {respawned} que estavam desaparecidos. Ainda desaparecido: {missing}.
+commands.admin.befriend.desc=Faça amizade com o animal selvagem mais próximo imediatamente (para fins de teste).
+admin.befriend.done=Fiz amizade com o {species} selvagem mais próximo.
+admin.befriend.none=Não há animais selvagens de fazenda num raio de 16 quarteirões.

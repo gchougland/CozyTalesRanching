@@ -63,7 +63,7 @@
     },
     {
       "name": "produce: poop pile",
-      "description": "CozyRanch_Poop_Pile (states Count2 to Count8, one drop list per count) is clean, its drop lists resolve to vanilla Ingredient_Poop, and the three pile textures pass the style rules.",
+      "description": "CozyRanch_Poop_Pile (states Count2 to Count8, one drop list per count) is clean, its drop lists resolve to vanilla Ingredient_Poop; the pile uses vanilla Ingredient_Poop's model.",
       "steps": [
         {
           "tool": "asset_check",
@@ -85,19 +85,6 @@
           "expect": {
             "errors": 0,
             "warnings": 0
-          }
-        },
-        {
-          "tool": "texture_check",
-          "arguments": {
-            "root": "projects",
-            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Poop",
-            "image": false
-          },
-          "expect": {
-            "verdicts": {
-              "FAIL": 0
-            }
           }
         }
       ]

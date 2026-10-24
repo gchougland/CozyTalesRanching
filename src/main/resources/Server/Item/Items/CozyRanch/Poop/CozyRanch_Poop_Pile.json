@@ -3,7 +3,7 @@
     "Name": "cozyranch_produce.items.CozyRanch_Poop_Pile.name",
     "Description": "cozyranch_produce.items.CozyRanch_Poop_Pile.description"
   },
-  "Icon": "Icons/ItemsGenerated/CozyRanch_Poop_Pile.png",
+  "Icon": "Icons/ItemsGenerated/Ingredient_Poop.png",
   "Categories": [
     "Items.Ingredients"
   ],
@@ -29,10 +29,10 @@
     "Material": "Empty",
     "DrawType": "Model",
     "Opacity": "Transparent",
-    "CustomModel": "Blocks/CozyRanch/Poop/Poop_Small.blockymodel",
+    "CustomModel": "Items/Ingredients/Poop.blockymodel",
     "CustomModelTexture": [
       {
-        "Texture": "Blocks/CozyRanch/Poop/Poop_Small_Texture.png",
+        "Texture": "Items/Ingredients/Poop_Texture.png",
         "Weight": 1
       }
     ],
@@ -47,10 +47,10 @@
     "State": {
       "Definitions": {
         "Count2": {
-          "CustomModel": "Blocks/CozyRanch/Poop/Poop_Medium.blockymodel",
+          "CustomModel": "Items/Ingredients/Poop.blockymodel",
           "CustomModelTexture": [
             {
-              "Texture": "Blocks/CozyRanch/Poop/Poop_Medium_Texture.png",
+              "Texture": "Items/Ingredients/Poop_Texture.png",
               "Weight": 1
             }
           ],
@@ -60,13 +60,14 @@
               "IsWeaponBreakable": false,
               "DropList": "Drops_CozyRanch_Poop_2"
             }
-          }
+          },
+          "CustomModelScale": 1.25
         },
         "Count3": {
-          "CustomModel": "Blocks/CozyRanch/Poop/Poop_Medium.blockymodel",
+          "CustomModel": "Items/Ingredients/Poop.blockymodel",
           "CustomModelTexture": [
             {
-              "Texture": "Blocks/CozyRanch/Poop/Poop_Medium_Texture.png",
+              "Texture": "Items/Ingredients/Poop_Texture.png",
               "Weight": 1
             }
           ],
@@ -76,13 +77,14 @@
               "IsWeaponBreakable": false,
               "DropList": "Drops_CozyRanch_Poop_3"
             }
-          }
+          },
+          "CustomModelScale": 1.25
         },
         "Count4": {
-          "CustomModel": "Blocks/CozyRanch/Poop/Poop_Large.blockymodel",
+          "CustomModel": "Items/Ingredients/Poop.blockymodel",
           "CustomModelTexture": [
             {
-              "Texture": "Blocks/CozyRanch/Poop/Poop_Large_Texture.png",
+              "Texture": "Items/Ingredients/Poop_Texture.png",
               "Weight": 1
             }
           ],
@@ -98,13 +100,14 @@
               "SystemId": "Flies_Poop",
               "Color": "#ffffff"
             }
-          ]
+          ],
+          "CustomModelScale": 1.5
         },
         "Count5": {
-          "CustomModel": "Blocks/CozyRanch/Poop/Poop_Large.blockymodel",
+          "CustomModel": "Items/Ingredients/Poop.blockymodel",
           "CustomModelTexture": [
             {
-              "Texture": "Blocks/CozyRanch/Poop/Poop_Large_Texture.png",
+              "Texture": "Items/Ingredients/Poop_Texture.png",
               "Weight": 1
             }
           ],
@@ -120,13 +123,14 @@
               "SystemId": "Flies_Poop",
               "Color": "#ffffff"
             }
-          ]
+          ],
+          "CustomModelScale": 1.5
         },
         "Count6": {
-          "CustomModel": "Blocks/CozyRanch/Poop/Poop_Large.blockymodel",
+          "CustomModel": "Items/Ingredients/Poop.blockymodel",
           "CustomModelTexture": [
             {
-              "Texture": "Blocks/CozyRanch/Poop/Poop_Large_Texture.png",
+              "Texture": "Items/Ingredients/Poop_Texture.png",
               "Weight": 1
             }
           ],
@@ -142,13 +146,14 @@
               "SystemId": "Flies_Poop",
               "Color": "#ffffff"
             }
-          ]
+          ],
+          "CustomModelScale": 1.5
         },
         "Count7": {
-          "CustomModel": "Blocks/CozyRanch/Poop/Poop_Large.blockymodel",
+          "CustomModel": "Items/Ingredients/Poop.blockymodel",
           "CustomModelTexture": [
             {
-              "Texture": "Blocks/CozyRanch/Poop/Poop_Large_Texture.png",
+              "Texture": "Items/Ingredients/Poop_Texture.png",
               "Weight": 1
             }
           ],
@@ -164,13 +169,14 @@
               "SystemId": "Flies_Poop",
               "Color": "#ffffff"
             }
-          ]
+          ],
+          "CustomModelScale": 1.5
         },
         "Count8": {
-          "CustomModel": "Blocks/CozyRanch/Poop/Poop_Large.blockymodel",
+          "CustomModel": "Items/Ingredients/Poop.blockymodel",
           "CustomModelTexture": [
             {
-              "Texture": "Blocks/CozyRanch/Poop/Poop_Large_Texture.png",
+              "Texture": "Items/Ingredients/Poop_Texture.png",
               "Weight": 1
             }
           ],
@@ -186,7 +192,8 @@
               "SystemId": "Flies_Poop",
               "Color": "#ffffff"
             }
-          ]
+          ],
+          "CustomModelScale": 1.5
         }
       }
     },
@@ -201,7 +208,8 @@
     "ParticleColor": "#6F4A2D",
     "BlockSoundSetId": "Mud",
     "PhysicalMaterialId": "Dirt",
-    "TextureComputedColor": "#6F4A2D"
+    "TextureComputedColor": "#6F4A2D",
+    "CustomModelScale": 1.0
   },
   "PlayerAnimationsId": "Block",
   "IconProperties": {
