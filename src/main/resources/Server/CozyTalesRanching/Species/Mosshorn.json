@@ -1,0 +1,55 @@
+{
+  "Id": "mosshorn",
+  "NameKey": "cozyranch_species.mosshorn.name",
+  "WildRoles": [
+    "Mosshorn",
+    "Mosshorn_Plain"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [
+    "Tamed_Mosshorn",
+    "Tamed_Mosshorn_Plain"
+  ],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Mosshorn",
+  "RanchBabyRole": "CozyRanch_Mosshorn_Baby",
+  "RanchRoleVariants": {
+    "Mosshorn_Plain": "CozyRanch_Mosshorn_Plain",
+    "Tamed_Mosshorn_Plain": "CozyRanch_Mosshorn_Plain"
+  },
+  "HouseBlock": "CozyRanch_House_MossyLodge",
+  "HouseCapacity": 3,
+  "BasicFoods": [
+    "Plant_Crop_Potato_Item",
+    "Plant_Crop_Lettuce_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Turnip_Item",
+    "Plant_Crop_Mushroom_Common_Brown"
+  ],
+  "FavoriteTreats": [
+    "Plant_Crop_Mushroom_Common_Brown"
+  ],
+  "FeedingsToTame": 4,
+  "Shyness": 0.25,
+  "GrowUpMinutes": 75,
+  "BreedCooldownMinutes": 60,
+  "Products": [
+    {
+      "Item": "CozyRanch_Moss_Tuft",
+      "Quantity": 1,
+      "IntervalMinutes": 45,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "food"
+  ],
+  "HabitatPrefers": [
+    "shade",
+    "moss",
+    "mushrooms",
+    "ferns",
+    "woodland"
+  ]
+}

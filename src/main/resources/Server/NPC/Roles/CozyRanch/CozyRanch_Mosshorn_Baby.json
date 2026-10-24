@@ -1,0 +1,25 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Mosshorn_Baby",
+    "AttitudeGroup": "PreyBig",
+    "SeparationDistance": 1.2,
+    "DropList": "Drop_Mosshorn",
+    "MaxHealth": 45,
+    "MaxSpeed": 4,
+    "ParticleOffset": [
+      0,
+      1.0,
+      0
+    ],
+    "FoodItems": [
+      "Plant_Crop_Potato_Item",
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Turnip_Item",
+      "Plant_Crop_Mushroom_Common_Brown"
+    ],
+    "FollowStopDistance": 2.5,
+    "NameTranslationKey": "cozyranch_species.mosshorn_calf.name"
+  }
+}

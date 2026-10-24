@@ -1,0 +1,40 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Mosshorn_Plain",
+    "AttitudeGroup": "PreyBig",
+    "SeparationDistance": 2,
+    "DropList": "Drop_Mosshorn",
+    "MaxHealth": 124,
+    "MaxSpeed": 5,
+    "ParticleOffset": [
+      0,
+      1.6,
+      0
+    ],
+    "FoodItems": [
+      "Plant_Crop_Potato_Item",
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Turnip_Item",
+      "Plant_Crop_Mushroom_Common_Brown"
+    ],
+    "FollowStopDistance": 3.5,
+    "IsHarvestable": true,
+    "HarvestDropList": "Drop_Mosshorn_Poop",
+    "HarvestInteractionContext": "Milk",
+    "HarvestInteractionRequiredItems": [
+      "Container_Bucket",
+      "Deco_Bucket"
+    ],
+    "HarvestParticles": "Block_Break_Snow",
+    "HarvestSound": "SFX_Water_MoveOut",
+    "HarvestTimeout": [
+      "PT11H",
+      "PT14H"
+    ],
+    "HarvestAddItemBucket": "*Container_Bucket_State_Filled_Mosshorn_Milk",
+    "HarvestAddItemDecoBucket": "*Deco_Bucket_State_Filled_Mosshorn_Milk",
+    "NameTranslationKey": "server.npcRoles.Mosshorn_Plain.name"
+  }
+}

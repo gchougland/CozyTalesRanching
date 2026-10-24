@@ -1,0 +1,53 @@
+{
+  "Id": "turkey",
+  "NameKey": "cozyranch_species.turkey.name",
+  "WildRoles": [
+    "Turkey"
+  ],
+  "WildBabyRoles": [
+    "Turkey_Chick"
+  ],
+  "AdoptRoles": [
+    "Tamed_Turkey"
+  ],
+  "AdoptBabyRoles": [
+    "Tamed_Turkey_Chick"
+  ],
+  "RanchRole": "CozyRanch_Turkey",
+  "RanchBabyRole": "CozyRanch_Turkey_Chick",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_TurkeyRoost",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Plant_Crop_Wheat_Item",
+    "Plant_Crop_Corn_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Fruit_Berries_Red",
+    "Plant_Crop_Rice_Item"
+  ],
+  "FavoriteTreats": [
+    "Plant_Crop_Corn_Item"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.55,
+  "GrowUpMinutes": 50,
+  "BreedCooldownMinutes": 35,
+  "Products": [
+    {
+      "Item": "CozyRanch_Turkey_Feather",
+      "Quantity": 1,
+      "IntervalMinutes": 35,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "food"
+  ],
+  "HabitatPrefers": [
+    "grass",
+    "open_space",
+    "perch",
+    "flowers"
+  ]
+}
