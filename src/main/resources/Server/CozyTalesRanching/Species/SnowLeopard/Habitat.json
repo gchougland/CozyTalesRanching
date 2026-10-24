@@ -1,0 +1,36 @@
+{
+  "Features": {
+    "snow_cover": {
+      "Blocks": [
+        "Soil_Snow",
+        "Soil_Snow_Half"
+      ],
+      "BlockPrefixes": [
+        "Plant_Grass_Snowy"
+      ],
+      "Surface": true,
+      "MinCount": 8
+    },
+    "frozen_ice": {
+      "BlockPrefixes": [
+        "Rock_Ice"
+      ],
+      "MinCount": 3
+    },
+    "snowy_firs": {
+      "Blocks": [
+        "Wood_Fir_Trunk",
+        "Plant_Leaves_Fir_Snow",
+        "Plant_Leaves_Fir_Tip_Snow",
+        "Plant_Bush_Winter_Snow"
+      ],
+      "MinCount": 4
+    }
+  },
+  "SpeciesToys": {
+    "snowleopard": [
+      "toy_ball",
+      "toy_post"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Bear_Cub",
+    "AttitudeGroup": "Empty",
+    "SeparationDistance": 1,
+    "DropList": "Empty",
+    "MaxHealth": 40,
+    "MaxSpeed": 4,
+    "ParticleOffset": [
+      0,
+      1.0,
+      0
+    ],
+    "FoodItems": [
+      "Plant_Fruit_Berries_Red",
+      "Plant_Fruit_Apple",
+      "Food_Fish_Raw",
+      "Plant_Fruit_Pinkberry",
+      "Food_Pie_Apple"
+    ],
+    "FollowStopDistance": 2,
+    "NameTranslationKey": "cozyranch_species.bear_cub.name"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "Id": "bear",
+  "NameKey": "cozyranch_species.bear.name",
+  "WildRoles": [
+    "Bear_Grizzly",
+    "Bear_Polar"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Bear",
+  "RanchBabyRole": "CozyRanch_Bear_Cub",
+  "RanchRoleVariants": {
+    "Bear_Polar": "CozyRanch_Bear_Polar"
+  },
+  "RanchBabyRoleVariants": {
+    "CozyRanch_Bear_Polar": "CozyRanch_Bear_Polar_Cub"
+  },
+  "Predator": true,
+  "BaitItems": [
+    "Food_Fish_Raw",
+    "Plant_Fruit_Berries_Red",
+    "Food_Pie_Apple"
+  ],
+  "CalmMinutes": 3,
+  "HouseBlock": "CozyRanch_House_BearCave",
+  "HouseCapacity": 2,
+  "BasicFoods": [
+    "Plant_Fruit_Berries_Red",
+    "Plant_Fruit_Apple"
+  ],
+  "PreferredFoods": [
+    "Food_Fish_Raw",
+    "Plant_Fruit_Pinkberry"
+  ],
+  "FavoriteTreats": [
+    "Food_Pie_Apple"
+  ],
+  "FeedingsToTame": 5,
+  "Shyness": 0.4,
+  "GrowUpMinutes": 90,
+  "BreedCooldownMinutes": 75,
+  "Products": [
+    {
+      "Item": "CozyRanch_Wild_Honey",
+      "Quantity": 1,
+      "IntervalMinutes": 50,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "food"
+  ],
+  "HabitatPrefers": [
+    "woodland",
+    "water",
+    "wild_berries",
+    "bee_hive",
+    "shade"
+  ]
+}

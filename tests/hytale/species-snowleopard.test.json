@@ -1,0 +1,1241 @@
+{
+  "cases": [
+    {
+      "name": "species-snowleopard gate",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "asset_check CozyRanch_SnowLeopard.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_SnowLeopard.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "asset_check CozyRanch_SnowLeopard_Cub.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_SnowLeopard_Cub.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "asset_check CozyRanch_SnowLeopard.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "asset_check CozyRanch_SnowLeopard_Cub.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard_Cub.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "asset_check CozyRanch_House_SnowyDen.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_SnowyDen.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "asset_check CozyRanch_House_SnowyDen.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_SnowyDen.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "species-snowleopard art",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "CozyRanch_SnowLeopard adult",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard.json",
+            "views": [
+              "three_quarter",
+              "right"
+            ],
+            "size": 240
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_SnowLeopard.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "CozyRanch_SnowLeopard_Cub cub (adult at 0.6)",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard_Cub.json",
+            "views": [
+              "three_quarter",
+              "right"
+            ],
+            "size": 240
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_SnowLeopard_Cub.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_SnowLeopard Happy",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard.json",
+            "animation": "Happy",
+            "frames": 5,
+            "yaw": 60,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_SnowLeopard_Happy.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_SnowLeopard Love",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard.json",
+            "animation": "Love",
+            "frames": 5,
+            "yaw": 60,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_SnowLeopard_Love.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_SnowLeopard EatTrough",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard.json",
+            "animation": "EatTrough",
+            "frames": 5,
+            "yaw": 60,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_SnowLeopard_EatTrough.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_SnowLeopard StalkPounce",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard.json",
+            "animation": "StalkPounce",
+            "frames": 5,
+            "yaw": 60,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_SnowLeopard_StalkPounce.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_SnowLeopard Groom",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard.json",
+            "animation": "Groom",
+            "frames": 5,
+            "yaw": 60,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_SnowLeopard_Groom.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_SnowLeopard CurlUp",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard.json",
+            "animation": "CurlUp",
+            "frames": 5,
+            "yaw": 60,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_SnowLeopard_CurlUp.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_SnowLeopard PerchWatch",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard.json",
+            "animation": "PerchWatch",
+            "frames": 5,
+            "yaw": 60,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_SnowLeopard_PerchWatch.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_SnowLeopard SnowPaw",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard.json",
+            "animation": "SnowPaw",
+            "frames": 5,
+            "yaw": 60,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_SnowLeopard_SnowPaw.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_SnowLeopard ClawStretch",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard.json",
+            "animation": "ClawStretch",
+            "frames": 5,
+            "yaw": 60,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_SnowLeopard_ClawStretch.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_SnowLeopard_Cub Happy",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_SnowLeopard_Cub.json",
+            "animation": "Happy",
+            "frames": 5,
+            "yaw": 60,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_SnowLeopard_Cub_Happy.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "CozyRanch_House_SnowyDen four sides",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_SnowyDen.json",
+            "views": [
+              "three_quarter",
+              "front",
+              "right",
+              "back"
+            ],
+            "size": 220
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 3.05
+              },
+              "height": {
+                "$lte": 3.05
+              },
+              "depth": {
+                "$lte": 3.05
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/CozyRanch_House_SnowyDen.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "CozyRanch_House_SnowyDen texture",
+          "arguments": {
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_SnowyDen.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": "PASS"
+          }
+        }
+      ]
+    },
+    {
+      "name": "species-snowleopard pages",
+      "steps": [
+        {
+          "tool": "ui_render",
+          "name": "empty CozyRanch_House_SnowyDen, two habitat things missing",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "commands": [
+              {
+                "type": "Append",
+                "text": "CozyRanch/HousePage.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#HouseTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_models_a.items.CozyRanch_House_SnowyDen.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesLine.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.header.species",
+                  "MessageParams": {
+                    "species": {
+                      "MessageId": "cozyranch_species.snowleopard.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentCount.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.header.count",
+                  "Params": {
+                    "count": "0",
+                    "capacity": "2"
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#JournalButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.journal"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NoticeBox.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.products.title"
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#ProductList"
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsMore.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsEmpty.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsEmpty.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.products.empty"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#CollectButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.collect"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#CollectButton.Disabled",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#MilkHint.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentsTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.residents.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#EmptyResidents.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#EmptyResidentsText.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.residents.empty",
+                  "MessageParams": {
+                    "species": {
+                      "MessageId": "cozyranch_species.snowleopard.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#ResidentList"
+              },
+              {
+                "type": "Set",
+                "selector": "#DetailCard.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#MoveCard.Visible",
+                "data": false
+              },
+              {
+                "type": "Clear",
+                "selector": "#MoveList"
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowersTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.followers.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowerList.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#NoFollowers.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#NoFollowersText.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.followers.empty",
+                  "MessageParams": {
+                    "species": {
+                      "MessageId": "cozyranch_species.snowleopard.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#FollowerList"
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFace.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFaceHappy.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFaceOkay.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFaceSad.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatSummary.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.good"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatDetail.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.detail.some"
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#HabitatMissing"
+              },
+              {
+                "type": "Append",
+                "selector": "#HabitatMissing",
+                "text": "CozyRanch/HouseMissingRow.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MNeed.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MWant.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MNeed.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.need"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MName.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.snow_cover"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#HabitatMissing",
+                "text": "CozyRanch/HouseMissingRow.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[1] #MNeed.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[1] #MWant.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[1] #MWant.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.want"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[1] #MName.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.frozen_ice"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RefreshButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.refresh"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RefreshButton.TooltipText",
+                "data": {
+                  "MessageId": "cozyranch_houseui.tooltip.refresh"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#AreaButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.area.show"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#AreaButton.TooltipText",
+                "data": {
+                  "MessageId": "cozyranch_houseui.tooltip.area"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#BreedingTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.breeding.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#BreedingState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.breeding.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#BreedingToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.rename.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameField.Value",
+                "data": ""
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.rename.button"
+                }
+              }
+            ]
+          },
+          "expect": {
+            "valid": true,
+            "errors": 0,
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/house-page.png"
+        },
+        {
+          "tool": "ui_render",
+          "name": "snowleopard journal page, befriended and housed, two habits and one trait seen",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
+            "commands": [
+              {
+                "type": "Append",
+                "text": "CozyRanch/JournalSpecies.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesName.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_species.snowleopard.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesTagline.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.first_met",
+                  "MessageParams": {
+                    "date": {
+                      "MessageId": "cozyranch_journal.date",
+                      "Params": {
+                        "day": "22",
+                        "year": "2026"
+                      },
+                      "MessageParams": {
+                        "month": {
+                          "MessageId": "cozyranch_journal.month.10"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesArt.AssetPath",
+                "data": "UI/Custom/CozyRanch/Journal/SnowLeopard.png"
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesDesc.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snowleopard.desc"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesNumber.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.number",
+                  "Params": {
+                    "number": "1",
+                    "total": "14"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[0].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.diet"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[1].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.diet.eats",
+                  "MessageParams": {
+                    "foods": {
+                      "MessageId": "cozyranch_journal.list.2",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Food_Wildmeat_Raw.name"
+                        },
+                        "b": {
+                          "MessageId": "server.items.Food_Chicken_Raw.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[2].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.diet.prefers",
+                  "MessageParams": {
+                    "foods": {
+                      "MessageId": "cozyranch_journal.list.2",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Food_Fish_Raw.name"
+                        },
+                        "b": {
+                          "MessageId": "server.items.Food_Beef_Raw.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[3].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.treats"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[4].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.treats.line",
+                  "MessageParams": {
+                    "foods": {
+                      "MessageId": "cozyranch_journal.list.1",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Food_Fish_Grilled.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[0].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.care"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[1].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.care.tame.many",
+                  "Params": {
+                    "count": "5"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[2].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.care.daily"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[3].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.home"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[4].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.home.house",
+                  "Params": {
+                    "count": "2"
+                  },
+                  "MessageParams": {
+                    "house": {
+                      "MessageId": "cozyranch_models_a.items.CozyRanch_House_SnowyDen.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[5].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.home.needs",
+                  "MessageParams": {
+                    "things": {
+                      "MessageId": "cozyranch_journal.list.1",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "cozyranch_houseui.habitat.food"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[6].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.home.likes",
+                  "MessageParams": {
+                    "things": {
+                      "MessageId": "cozyranch_journal.list.3",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "cozyranch_houseui.habitat.rocky_ground"
+                        },
+                        "b": {
+                          "MessageId": "cozyranch_houseui.habitat.frozen_ice"
+                        },
+                        "c": {
+                          "MessageId": "cozyranch_houseui.habitat.snowy_firs"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[7].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.wildlife"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[8].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_wildlife.hint.snowleopard"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[9].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.breeding"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineMuted.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[10].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.hint.breeding"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[11].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.products"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineMuted.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[12].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.hint.products"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[13].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.traits"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[14].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.bountiful.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[15].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.bountiful.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineMuted.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[16].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.more.many",
+                  "Params": {
+                    "count": "8"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[17].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.behaviours"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[18].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.stalk_pounce.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[19].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.groom.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineMuted.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[20].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.more.many",
+                  "Params": {
+                    "count": "6"
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NavContents.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.nav.contents"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NavPrev.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.nav.previous"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NavNext.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.nav.next"
+                }
+              }
+            ]
+          },
+          "expect": {
+            "valid": true,
+            "errors": 0,
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-snowleopard/journal-page.png"
+        }
+      ]
+    }
+  ]
+}

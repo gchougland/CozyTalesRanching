@@ -1,0 +1,26 @@
+{
+  "Species": [
+    {
+      "Id": "bear",
+      "Order": 150,
+      "DescriptionKey": "cozyranch_journal.species.bear.desc",
+      "RareKey": "cozyranch_journal.species.bear.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Bear.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/BearSilhouette.png",
+      "Behaviours": [
+        "bear_scratch",
+        "belly_roll",
+        "bear_fish",
+        "honey_sniff",
+        "honey_hunt",
+        "bear_doze",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_log",
+        "toy_ball"
+      ]
+    }
+  ]
+}

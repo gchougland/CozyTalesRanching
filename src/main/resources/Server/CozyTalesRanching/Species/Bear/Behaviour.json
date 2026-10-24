@@ -1,0 +1,177 @@
+{
+  "Ground": {
+    "honey_patch": [
+      {
+        "Near": [
+          "Deco_Hive",
+          "Plant_Crop_Berry_"
+        ]
+      },
+      {
+        "At": [
+          "Plant_Crop_Berry_",
+          "Plant_Flower_"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "bear_scratch": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "belly_roll": {
+      "Kind": "here",
+      "Ground": "grass",
+      "Weight": 1.5,
+      "CooldownSeconds": 150,
+      "Seconds": [
+        4,
+        5
+      ]
+    },
+    "bear_fish": {
+      "Kind": "here",
+      "Ground": "pond",
+      "Weight": 5,
+      "CooldownSeconds": 70,
+      "Seconds": [
+        8,
+        14
+      ]
+    },
+    "honey_sniff": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 100,
+      "Seconds": [
+        4,
+        7
+      ]
+    },
+    "honey_hunt": {
+      "Kind": "here",
+      "Ground": "honey_patch",
+      "Weight": 5,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "bear_doze": {
+      "Kind": "here",
+      "Weight": 2.5,
+      "CooldownSeconds": 180,
+      "Seconds": [
+        25,
+        50
+      ],
+      "AllowStill": true
+    }
+  },
+  "Species": {
+    "bear": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "bear_scratch": [
+          "SitScratch"
+        ],
+        "belly_roll": [
+          "BellyRoll"
+        ],
+        "bear_fish": [
+          "FishSwipe"
+        ],
+        "honey_sniff": [
+          "HoneySniff"
+        ],
+        "honey_hunt": [
+          "HoneySniff",
+          "Search"
+        ],
+        "bear_doze": [
+          "Sleep"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "SitScratch"
+        ],
+        "toy_ball": [
+          "BellyRoll"
+        ],
+        "approach_player": [
+          "Search"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "belly_roll": [
+          "BellyRoll"
+        ],
+        "bear_scratch": [
+          "SitScratch"
+        ],
+        "honey_sniff": [
+          "HoneySniff"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "bear_doze": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "BellyRoll"
+        ],
+        "approach_player": [
+          "Search"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "belly_roll": 2,
+        "bear_fish": 1.3
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "bear_doze": 2,
+        "bear_scratch": 1.5,
+        "belly_roll": 0.6
+      }
+    },
+    "curious": {
+      "Weights": {
+        "honey_sniff": 1.6,
+        "honey_hunt": 1.4
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "Features": {
+    "wild_berries": {
+      "BlockPrefixes": [
+        "Plant_Crop_Berry_"
+      ],
+      "Exclude": [
+        "_Item"
+      ],
+      "MinCount": 2
+    },
+    "bee_hive": {
+      "Blocks": [
+        "Deco_Hive"
+      ],
+      "MinCount": 1
+    }
+  },
+  "SpeciesToys": {
+    "bear": [
+      "toy_log",
+      "toy_ball"
+    ]
+  }
+}

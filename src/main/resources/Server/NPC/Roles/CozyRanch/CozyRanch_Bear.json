@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Bear",
+    "AttitudeGroup": "Empty",
+    "SeparationDistance": 2,
+    "DropList": "Drop_Bear_Grizzly",
+    "MaxHealth": 124,
+    "MaxSpeed": 5,
+    "ParticleOffset": [
+      0,
+      1.9,
+      0
+    ],
+    "FoodItems": [
+      "Plant_Fruit_Berries_Red",
+      "Plant_Fruit_Apple",
+      "Food_Fish_Raw",
+      "Plant_Fruit_Pinkberry",
+      "Food_Pie_Apple"
+    ],
+    "FollowStopDistance": 3.5,
+    "NameTranslationKey": "server.npcRoles.Bear_Grizzly.name"
+  }
+}
