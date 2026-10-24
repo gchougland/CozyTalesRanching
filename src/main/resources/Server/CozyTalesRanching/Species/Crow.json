@@ -1,0 +1,57 @@
+{
+  "Id": "crow",
+  "NameKey": "cozyranch_species.crow.name",
+  "WildRoles": [
+    "CozyRanchWild_Crow",
+    "CozyRanchWild_Raven",
+    "Crow",
+    "Raven"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Crow",
+  "RanchBabyRole": "CozyRanch_Crow_Fledgling",
+  "RanchRoleVariants": {
+    "CozyRanchWild_Raven": "CozyRanch_Raven",
+    "Raven": "CozyRanch_Raven"
+  },
+  "RanchBabyRoleVariants": {
+    "CozyRanch_Raven": "CozyRanch_Raven_Fledgling"
+  },
+  "HouseBlock": "CozyRanch_House_Rookery",
+  "HouseCapacity": 5,
+  "BasicFoods": [
+    "Plant_Crop_Corn_Item",
+    "Plant_Seeds_Wheat",
+    "Food_Wildmeat_Raw"
+  ],
+  "PreferredFoods": [
+    "Plant_Fruit_Berries_Red",
+    "Plant_Fruit_Apple",
+    "Food_Egg"
+  ],
+  "FavoriteTreats": [
+    "Food_Cheese"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.5,
+  "GrowUpMinutes": 30,
+  "BreedCooldownMinutes": 40,
+  "Products": [
+    {
+      "Item": "Ingredient_Feathers_Dark",
+      "Quantity": 1,
+      "IntervalMinutes": 40,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "perch"
+  ],
+  "HabitatPrefers": [
+    "open_space",
+    "vegetables",
+    "tree_trunks"
+  ]
+}

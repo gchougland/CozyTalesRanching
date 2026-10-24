@@ -1,0 +1,28 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Raven_Fledgling",
+    "SeparationDistance": 0.3,
+    "DropList": "Empty",
+    "MaxHealth": 10,
+    "MaxSpeed": 3.5,
+    "ParticleOffset": [
+      0,
+      0.65,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Plant_Crop_Corn_Item",
+      "Plant_Seeds_Wheat",
+      "Food_Wildmeat_Raw",
+      "Plant_Fruit_Berries_Red",
+      "Plant_Fruit_Apple",
+      "Food_Egg",
+      "Food_Cheese"
+    ],
+    "FollowStopDistance": 1.2,
+    "NameTranslationKey": "server.cozyranch_species.crow.baby.raven.name"
+  }
+}

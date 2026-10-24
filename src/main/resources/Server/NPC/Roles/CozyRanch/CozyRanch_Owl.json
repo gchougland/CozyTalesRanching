@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Owl",
+    "SeparationDistance": 0.4,
+    "DropList": "Drop_Owl_Brown",
+    "MaxHealth": 29,
+    "MaxSpeed": 3,
+    "ParticleOffset": [
+      0,
+      1.0,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Food_Wildmeat_Raw",
+      "Food_Fish_Raw",
+      "Food_Pork_Raw",
+      "Food_Beef_Raw",
+      "CozyRanch_Food_Crickets"
+    ],
+    "FollowStopDistance": 1.5,
+    "NameTranslationKey": "server.npcRoles.Owl_Brown.name"
+  }
+}

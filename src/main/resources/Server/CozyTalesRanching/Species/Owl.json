@@ -1,0 +1,77 @@
+{
+  "Id": "owl",
+  "NameKey": "cozyranch_species.owl.name",
+  "WildRoles": [
+    "CozyRanchWild_Owl_Brown",
+    "CozyRanchWild_Owl_Snow",
+    "Owl_Brown",
+    "Owl_Snow"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Owl",
+  "RanchBabyRole": "CozyRanch_Owl_Owlet",
+  "RanchRoleVariants": {
+    "CozyRanchWild_Owl_Snow": "CozyRanch_Owl_Snow",
+    "Owl_Snow": "CozyRanch_Owl_Snow"
+  },
+  "RanchBabyRoleVariants": {
+    "CozyRanch_Owl_Snow": "CozyRanch_Owl_Snow_Owlet"
+  },
+  "HouseBlock": "CozyRanch_House_OwlBarn",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Food_Wildmeat_Raw",
+    "Food_Fish_Raw"
+  ],
+  "PreferredFoods": [
+    "Food_Pork_Raw",
+    "Food_Beef_Raw"
+  ],
+  "FavoriteTreats": [
+    "CozyRanch_Food_Crickets"
+  ],
+  "FeedingsToTame": 4,
+  "Shyness": 0.6,
+  "GrowUpMinutes": 40,
+  "BreedCooldownMinutes": 45,
+  "Products": [
+    {
+      "Item": "Ingredient_Feathers_Dark",
+      "Quantity": 1,
+      "IntervalMinutes": 50,
+      "Collect": "House"
+    },
+    {
+      "Item": "CozyRanch_Owl_Pellet",
+      "Quantity": 1,
+      "IntervalMinutes": 70,
+      "Collect": "House"
+    }
+  ],
+  "VariantProducts": {
+    "CozyRanch_Owl_Snow": [
+      {
+        "Item": "Ingredient_Feathers_Red",
+        "Quantity": 1,
+        "IntervalMinutes": 50,
+        "Collect": "House"
+      },
+      {
+        "Item": "CozyRanch_Owl_Pellet",
+        "Quantity": 1,
+        "IntervalMinutes": 70,
+        "Collect": "House"
+      }
+    ]
+  },
+  "HabitatRequires": [
+    "tree_trunks"
+  ],
+  "HabitatPrefers": [
+    "shade",
+    "tall_grass",
+    "perch"
+  ]
+}

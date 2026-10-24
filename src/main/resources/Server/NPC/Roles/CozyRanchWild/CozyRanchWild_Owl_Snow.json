@@ -1,0 +1,30 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_Animal_Neutral",
+  "Modify": {
+    "Appearance": "CozyRanch_Owl_Snow",
+    "FlockArray": [
+      "CozyRanchWild_Owl_Snow"
+    ],
+    "DropList": "Drop_Owl_Snow",
+    "MaxHealth": 29,
+    "MaxSpeed": 4,
+    "WanderRadius": 8,
+    "ViewRange": 8,
+    "ViewSector": 300,
+    "HearingRange": 4,
+    "AlertedRange": 10,
+    "AlertedActionRange": 4,
+    "AbsoluteDetectionRange": 1.5,
+    "GrazingBlockSet": "Grass",
+    "DayTimeNapWeight": 6,
+    "DayTimeNapTimeRange": [
+      14,
+      20
+    ],
+    "IsMemory": true,
+    "MemoriesCategory": "Avian",
+    "MemoriesNameOverride": "Owl_Snow",
+    "NameTranslationKey": "server.npcRoles.Owl_Snow.name"
+  }
+}
