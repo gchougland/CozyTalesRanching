@@ -1,0 +1,91 @@
+{
+  "Id": "songbird",
+  "NameKey": "cozyranch_species.songbird.name",
+  "WildRoles": [
+    "CozyRanchWild_Songbird_Sparrow",
+    "CozyRanchWild_Songbird_Finch",
+    "CozyRanchWild_Songbird_Bluebird",
+    "Sparrow",
+    "Finch_Green",
+    "Bluebird"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Songbird_Sparrow",
+  "RanchBabyRole": "CozyRanch_Songbird_Sparrow_Chick",
+  "RanchRoleVariants": {
+    "CozyRanchWild_Songbird_Sparrow": "CozyRanch_Songbird_Sparrow",
+    "Sparrow": "CozyRanch_Songbird_Sparrow",
+    "CozyRanchWild_Songbird_Finch": "CozyRanch_Songbird_Finch",
+    "Finch_Green": "CozyRanch_Songbird_Finch",
+    "CozyRanchWild_Songbird_Bluebird": "CozyRanch_Songbird_Bluebird",
+    "Bluebird": "CozyRanch_Songbird_Bluebird"
+  },
+  "RanchBabyRoleVariants": {
+    "CozyRanch_Songbird_Sparrow": "CozyRanch_Songbird_Sparrow_Chick",
+    "CozyRanch_Songbird_Finch": "CozyRanch_Songbird_Finch_Chick",
+    "CozyRanch_Songbird_Bluebird": "CozyRanch_Songbird_Bluebird_Chick"
+  },
+  "HouseBlock": "CozyRanch_House_SongbirdAviary",
+  "HouseCapacity": 6,
+  "BasicFoods": [
+    "Plant_Seeds_Wild",
+    "Plant_Seeds_Wheat"
+  ],
+  "PreferredFoods": [
+    "Plant_Seeds_Sunflower",
+    "Plant_Fruit_Berries_Red",
+    "Plant_Crop_Rice_Item"
+  ],
+  "FavoriteTreats": [
+    "CozyRanch_Food_Crickets"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.6,
+  "GrowUpMinutes": 30,
+  "BreedCooldownMinutes": 35,
+  "Products": [
+    {
+      "Item": "Ingredient_Feathers_Dark",
+      "Quantity": 1,
+      "IntervalMinutes": 40,
+      "Collect": "House"
+    }
+  ],
+  "VariantProducts": {
+    "CozyRanch_Songbird_Sparrow": [
+      {
+        "Item": "Ingredient_Feathers_Dark",
+        "Quantity": 1,
+        "IntervalMinutes": 40,
+        "Collect": "House"
+      }
+    ],
+    "CozyRanch_Songbird_Finch": [
+      {
+        "Item": "Ingredient_Feathers_Red",
+        "Quantity": 1,
+        "IntervalMinutes": 40,
+        "Collect": "House"
+      }
+    ],
+    "CozyRanch_Songbird_Bluebird": [
+      {
+        "Item": "Ingredient_Feathers_Blue",
+        "Quantity": 1,
+        "IntervalMinutes": 45,
+        "Collect": "House"
+      }
+    ]
+  },
+  "HabitatRequires": [
+    "berry_brambles"
+  ],
+  "HabitatPrefers": [
+    "flowers",
+    "perch",
+    "water",
+    "tree_trunks"
+  ]
+}

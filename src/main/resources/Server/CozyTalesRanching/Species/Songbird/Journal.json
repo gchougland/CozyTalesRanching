@@ -1,0 +1,39 @@
+{
+  "Species": [
+    {
+      "Id": "songbird",
+      "Order": 310,
+      "DescriptionKey": "cozyranch_journal.species.songbird.desc",
+      "RareKey": "cozyranch_journal.species.songbird.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Songbird.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/SongbirdSilhouette.png",
+      "Behaviours": [
+        "songbird_sing",
+        "songbird_hop",
+        "dust_bathe",
+        "peck",
+        "flap",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_bell"
+      ],
+      "Looks": [
+        {
+          "NameKey": "cozyranch_journal.species.songbird.look.sparrow",
+          "HowKey": "cozyranch_journal.species.songbird.look.sparrow.how"
+        },
+        {
+          "NameKey": "cozyranch_journal.species.songbird.look.finch",
+          "HowKey": "cozyranch_journal.species.songbird.look.finch.how"
+        },
+        {
+          "NameKey": "cozyranch_journal.species.songbird.look.bluebird",
+          "HowKey": "cozyranch_journal.species.songbird.look.bluebird.how"
+        }
+      ],
+      "LooksTitleKey": "cozyranch_journal.section.songbird.plumage"
+    }
+  ]
+}

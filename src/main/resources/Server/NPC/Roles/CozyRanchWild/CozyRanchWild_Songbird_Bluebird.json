@@ -1,0 +1,29 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_Animal_Neutral",
+  "Modify": {
+    "Appearance": "CozyRanch_Songbird_Bluebird",
+    "FlockArray": [
+      "CozyRanchWild_Songbird_Bluebird"
+    ],
+    "AttractiveItemSet": [
+      "Plant_Seeds_Sunflower"
+    ],
+    "AttractiveItemSetParticles": "Want_Food_Corn",
+    "DropList": "Drop_Bluebird",
+    "MaxHealth": 15,
+    "MaxSpeed": 3.5,
+    "WanderRadius": 8,
+    "ViewRange": 8,
+    "ViewSector": 300,
+    "HearingRange": 4,
+    "AlertedRange": 10,
+    "AlertedActionRange": 4,
+    "AbsoluteDetectionRange": 1.5,
+    "GrazingBlockSet": "Grass",
+    "IsMemory": true,
+    "MemoriesCategory": "Avian",
+    "MemoriesNameOverride": "Bluebird",
+    "NameTranslationKey": "server.npcRoles.Bluebird.name"
+  }
+}

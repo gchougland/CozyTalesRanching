@@ -1,0 +1,50 @@
+{
+  "Id": "parrot",
+  "NameKey": "cozyranch_species.parrot.name",
+  "WildRoles": [
+    "CozyRanchWild_Parrot",
+    "Parrot"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Parrot",
+  "RanchBabyRole": "CozyRanch_Parrot_Chick",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_ParrotPerch",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Plant_Fruit_Berries_Red",
+    "Plant_Seeds_Sunflower"
+  ],
+  "PreferredFoods": [
+    "Plant_Fruit_Apple",
+    "Plant_Fruit_Coconut",
+    "Plant_Fruit_Pinkberry",
+    "Plant_Crop_Corn_Item"
+  ],
+  "FavoriteTreats": [
+    "Plant_Fruit_Mango"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.4,
+  "GrowUpMinutes": 35,
+  "BreedCooldownMinutes": 40,
+  "Products": [
+    {
+      "Item": "Ingredient_Feathers_Red",
+      "Quantity": 1,
+      "IntervalMinutes": 35,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "parrot_jungle"
+  ],
+  "HabitatPrefers": [
+    "flowers",
+    "water",
+    "perch",
+    "warm_light"
+  ]
+}

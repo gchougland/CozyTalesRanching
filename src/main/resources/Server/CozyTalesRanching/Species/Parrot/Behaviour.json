@@ -1,0 +1,115 @@
+{
+  "Behaviours": {
+    "parrot_dance": {
+      "Kind": "here",
+      "Weight": 2.5,
+      "CooldownSeconds": 70,
+      "Seconds": [
+        4,
+        6
+      ]
+    },
+    "parrot_wing_stretch": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        3,
+        4
+      ]
+    },
+    "parrot_squawk": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        3,
+        5
+      ]
+    }
+  },
+  "Species": {
+    "parrot": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "parrot_dance": [
+          "Dance"
+        ],
+        "parrot_wing_stretch": [
+          "WingStretch"
+        ],
+        "parrot_squawk": [
+          "Squawk"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "Squawk",
+          "Love"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_bell": [
+          "Squawk"
+        ],
+        "toy_ball": [
+          "Dance"
+        ],
+        "approach_player": [
+          "Squawk"
+        ],
+        "greet_owner": [
+          "Dance",
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "parrot_dance": [
+          "Dance"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Dance"
+        ],
+        "approach_player": [
+          "Squawk"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "parrot_dance": 2
+      }
+    },
+    "curious": {
+      "Weights": {
+        "parrot_squawk": 1.5
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "parrot_wing_stretch": 1.5
+      }
+    }
+  }
+}
