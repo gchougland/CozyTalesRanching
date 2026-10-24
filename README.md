@@ -30,6 +30,8 @@ Befriend wild Cows, Chickens, Pigs, Sheep and Frogs, give them names and a home,
 5. Pet each friend once a day, collect produce from the house page, and look for babies in the morning.
 6. Craft the **Ranch Journal** at the Workbench to see everything you have learned. Its Settings page turns the mod's chat messages and sounds off for you.
 
+Tip: in Creative mode animals only follow you if Allow NPC detection is on in your Creative settings.
+
 Tip: frogs only eat crickets. Craft a **Jar of Crickets** from fibre and wheat, then right-click a frog to offer it. Crouch and right-click to set the jar down.
 
 ## Commands
