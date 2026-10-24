@@ -1,0 +1,49 @@
+{
+  "Id": "pigeon",
+  "NameKey": "cozyranch_species.pigeon.name",
+  "WildRoles": [
+    "CozyRanchWild_Pigeon",
+    "Pigeon"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Pigeon",
+  "RanchBabyRole": "CozyRanch_Pigeon_Squab",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_Dovecote",
+  "HouseCapacity": 6,
+  "BasicFoods": [
+    "Plant_Seeds_Wheat",
+    "Plant_Seeds_Wild",
+    "Plant_Crop_Corn_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Wheat_Item",
+    "Plant_Crop_Rice_Item",
+    "Plant_Seeds_Sunflower"
+  ],
+  "FavoriteTreats": [
+    "Food_Bread"
+  ],
+  "FeedingsToTame": 2,
+  "Shyness": 0.35,
+  "GrowUpMinutes": 30,
+  "BreedCooldownMinutes": 30,
+  "Products": [
+    {
+      "Item": "CozyRanch_Pigeon_Feather",
+      "Quantity": 1,
+      "IntervalMinutes": 45,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "perch"
+  ],
+  "HabitatPrefers": [
+    "grain_patch",
+    "open_space",
+    "food"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Pigeon",
+    "SeparationDistance": 0.4,
+    "DropList": "Drop_Pigeon",
+    "MaxHealth": 20,
+    "MaxSpeed": 4,
+    "ParticleOffset": [
+      0,
+      0.9,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Plant_Seeds_Wheat",
+      "Plant_Seeds_Wild",
+      "Plant_Crop_Corn_Item",
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Rice_Item",
+      "Plant_Seeds_Sunflower",
+      "Food_Bread"
+    ],
+    "FollowStopDistance": 1.5,
+    "NameTranslationKey": "server.npcRoles.Pigeon.name"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "Behaviours": {
+    "sun_bask": {
+      "Kind": "here",
+      "Ground": "rocky",
+      "Weight": 4,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        10,
+        18
+      ]
+    },
+    "wall_cling": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        4,
+        7
+      ]
+    },
+    "push_up": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        2,
+        3
+      ],
+      "RepeatSeconds": 1
+    },
+    "tail_wave": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 75,
+      "Seconds": [
+        3,
+        5
+      ]
+    }
+  },
+  "Species": {
+    "gecko": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "sun_bask": [
+          "Bask"
+        ],
+        "wall_cling": [
+          "Cling"
+        ],
+        "push_up": [
+          "PushUp"
+        ],
+        "tail_wave": [
+          "TailWave"
+        ],
+        "socialise": [
+          "PushUp",
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Cling",
+          "TailWave"
+        ],
+        "toy_ball": [
+          "TailWave"
+        ],
+        "approach_player": [
+          "PushUp"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "sun_bask": [
+          "Bask"
+        ],
+        "tail_wave": [
+          "TailWave"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Cling"
+        ],
+        "approach_player": [
+          "PushUp"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "lazy": {
+      "Weights": {
+        "sun_bask": 2
+      }
+    },
+    "playful": {
+      "Weights": {
+        "wall_cling": 1.5,
+        "tail_wave": 1.5
+      }
+    },
+    "curious": {
+      "Weights": {
+        "push_up": 1.5
+      }
+    }
+  }
+}

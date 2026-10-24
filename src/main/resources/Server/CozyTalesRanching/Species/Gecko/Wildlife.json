@@ -1,0 +1,28 @@
+{
+  "Species": {
+    "gecko": {
+      "Roles": [
+        "Gecko"
+      ],
+      "OwnHouseWeight": 0.9,
+      "CooldownMinutes": 20,
+      "Attractors": [
+        {
+          "HouseSpecies": "camel",
+          "Features": [
+            "desert_sand",
+            "cacti"
+          ],
+          "Weight": 0.25
+        },
+        {
+          "HouseSpecies": "tortoise",
+          "Features": [
+            "desert_sand"
+          ],
+          "Weight": 0.2
+        }
+      ]
+    }
+  }
+}
