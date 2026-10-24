@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Wolf_Baby",
+    "SeparationDistance": 0.5,
+    "DropList": "Empty",
+    "MaxHealth": 40,
+    "MaxSpeed": 6,
+    "ParticleOffset": [
+      0,
+      0.9,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Food_Wildmeat_Raw",
+      "Food_Fish_Raw",
+      "Food_Beef_Raw",
+      "Food_Pork_Raw",
+      "Food_Wildmeat_Cooked"
+    ],
+    "FollowStopDistance": 1.8,
+    "NameTranslationKey": "server.cozyranch_species.wolf.baby.name"
+  }
+}

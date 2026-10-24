@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Wolf",
+    "SeparationDistance": 0.8,
+    "DropList": "Drop_Wolf_Black",
+    "MaxHealth": 103,
+    "MaxSpeed": 8,
+    "ParticleOffset": [
+      0,
+      1.4,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Food_Wildmeat_Raw",
+      "Food_Fish_Raw",
+      "Food_Beef_Raw",
+      "Food_Pork_Raw",
+      "Food_Wildmeat_Cooked"
+    ],
+    "FollowStopDistance": 2.5,
+    "NameTranslationKey": "server.npcRoles.Wolf_Black.name"
+  }
+}

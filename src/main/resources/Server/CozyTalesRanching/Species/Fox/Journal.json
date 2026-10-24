@@ -1,0 +1,23 @@
+{
+  "Species": [
+    {
+      "Id": "fox",
+      "Order": 150,
+      "DescriptionKey": "cozyranch_journal.species.fox.desc",
+      "RareKey": "cozyranch_journal.species.fox.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Fox.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/FoxSilhouette.png",
+      "Behaviours": [
+        "pounce",
+        "head_tilt",
+        "trinket",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_ball",
+        "toy_log"
+      ]
+    }
+  ]
+}

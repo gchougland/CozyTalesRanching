@@ -1,0 +1,115 @@
+{
+  "Behaviours": {
+    "howl": {
+      "Kind": "here",
+      "Weight": 1,
+      "CooldownSeconds": 180,
+      "Seconds": [
+        3,
+        4
+      ]
+    },
+    "play_bow": {
+      "Kind": "social",
+      "Weight": 2,
+      "CooldownSeconds": 100,
+      "Seconds": [
+        3,
+        4
+      ],
+      "RepeatSeconds": 2
+    },
+    "lie_watch": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        8,
+        14
+      ]
+    }
+  },
+  "Species": {
+    "wolf": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "howl": [
+          "Howl"
+        ],
+        "play_bow": [
+          "PlayBow"
+        ],
+        "lie_watch": [
+          "LieWatch"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "PlayBow",
+          "Happy"
+        ],
+        "toy_log": [
+          "LieWatch",
+          "Happy"
+        ],
+        "approach_player": [
+          "Sit"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "howl": [
+          "Howl"
+        ],
+        "play_bow": [
+          "PlayBow"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "PlayBow",
+          "Happy"
+        ],
+        "approach_player": [
+          "Sit"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "play_bow": 2
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "lie_watch": 2,
+        "play_bow": 0.5
+      }
+    },
+    "shy": {
+      "Weights": {
+        "howl": 0.5
+      }
+    }
+  }
+}

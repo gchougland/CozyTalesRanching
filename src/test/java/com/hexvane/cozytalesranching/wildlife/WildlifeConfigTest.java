@@ -27,7 +27,10 @@ class WildlifeConfigTest {
             Path file = RES.resolve("Server/CozyTalesRanching/Species/" + name + ".json");
             if (!Files.isRegularFile(file)) continue;
             try {
-                out.put(JsonParser.parseString(Files.readString(file, StandardCharsets.UTF_8)).getAsJsonObject().get("Id").getAsString(), name + ".json");
+                JsonObject species = JsonParser.parseString(Files.readString(file, StandardCharsets.UTF_8)).getAsJsonObject();
+                // predators are tamed with bait, never as visitors: they have no wildlife entry
+                if (species.has("Predator") && species.get("Predator").getAsBoolean()) continue;
+                out.put(species.get("Id").getAsString(), name + ".json");
             } catch (java.io.IOException e) {
                 throw new java.io.UncheckedIOException(e);
             }
