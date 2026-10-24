@@ -57,6 +57,9 @@ final class BehaviourPlanner {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
     /** The trough hitbox is two blocks long and reaches 1.5 from its block centre; this clears it on any side. */
     private static final double TROUGH_GAP = 2.1;
+    /** A toy session stands this far from the toy's centre and must get within TOY_ARRIVE of that spot; no playing from afar. */
+    private static final double TOY_GAP = 0.8;
+    private static final double TOY_ARRIVE = 0.7;
     private static final String HEARTS_SMALL = "Hearts_Subtle";
     private static final int PERSONALITY_PASSES = 10;
     private static final int CLEANUP_PASSES = 120;
@@ -356,7 +359,9 @@ final class BehaviourPlanner {
                 ToyIndex.Toy toy = toys.nearest(house.houseId, id, p.x, p.z);
                 if (toy == null) return "no_toy";
                 s = new Session(id, def, clip, BehaviourRules.STATE_BEHAVE, now, seconds);
-                s.spot = beside(p, toy.x() + 0.5, toy.y(), toy.z() + 0.5, 1.1);
+                // Close enough to touch it: the pig in Gibson's game played with the ball from over a block away.
+                s.spot = beside(p, toy.x() + 0.5, toy.y(), toy.z() + 0.5, TOY_GAP);
+                s.arriveDistance = TOY_ARRIVE;
                 s.toy = new ToyAnimator.Cell(toy.x(), toy.y(), toy.z());
                 s.world = world.getName();
             }
@@ -444,7 +449,7 @@ final class BehaviourPlanner {
             if (d <= arrive) {
                 act(store, ref, r, s, now);
             } else if (now - s.startedMs > (long) (c.MaxWalkSeconds * 1000)) {
-                if (d <= Math.max(c.ActAnywayDistance, arrive)) {
+                if (s.toy == null && d <= Math.max(c.ActAnywayDistance, arrive)) {
                     act(store, ref, r, s, now);
                 } else {
                     debug("Ranch animal " + r.animalId + " gives up " + s.id + String.format(java.util.Locale.ROOT, " (%.1f blocks short)", d));
