@@ -1,0 +1,76 @@
+$C = "../Common.ui";
+$H = "HouseStyles.ui";
+
+// The Rancher's Ledger: every house of the reader's with who lives there and what waits in it, then the animals
+// with no house. Read only; the house page does the managing.
+
+@PanelWidth = 820;
+@PanelHeight = 700;
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  Group {
+    LayoutMode: Center;
+
+    $C.@DecoratedContainer {
+      Anchor: (Width: @PanelWidth, Height: @PanelHeight);
+
+      #Title {
+        Label #LedgerTitle {
+          Style: (...$C.@TitleStyle, FontSize: 17, TextColor: #f4e6c8, HorizontalAlignment: Center);
+          Padding: (Horizontal: 19);
+          Text: "";
+        }
+      }
+
+      #Content {
+        LayoutMode: Top;
+        Padding: (Horizontal: 18, Top: 12, Bottom: 16);
+
+        Group #LedgerHeader {
+          LayoutMode: Left;
+          Anchor: (Height: 32, Bottom: 10);
+
+          Label #LedgerSummary {
+            FlexWeight: 1;
+            Style: (...$H.@BodyStyle, FontSize: 16, VerticalAlignment: Center);
+            Text: "";
+          }
+
+          $C.@SmallSecondaryTextButton #LedgerJournal {
+            @Anchor = (Width: 132, Top: 1);
+          }
+        }
+
+        Group #LedgerList {
+          LayoutMode: TopScrolling;
+          FlexWeight: 1;
+          ScrollbarStyle: $C.@DefaultScrollbarStyle;
+        }
+
+        Group #LedgerEmpty {
+          LayoutMode: Middle;
+          Anchor: (Height: 160);
+          Background: $H.@CardBackground;
+          Padding: (Horizontal: 40);
+          Visible: false;
+
+          Group #LedgerEmptyFaces {
+            LayoutMode: Center;
+            Anchor: (Height: 32, Bottom: 14);
+
+            Group { Anchor: (Width: 18, Height: 18, Right: 10); Background: "HouseHeartFull.png"; }
+            Group { Anchor: (Width: 32, Height: 32); Background: "HouseFaceHappy.png"; }
+            Group { Anchor: (Width: 18, Height: 18, Left: 10); Background: "HouseHeartFull.png"; }
+          }
+
+          Label #LedgerEmptyText {
+            Style: (...$H.@BodyStyle, FontSize: 16, HorizontalAlignment: Center, Wrap: true);
+            Text: "";
+          }
+        }
+      }
+    }
+  }
+}

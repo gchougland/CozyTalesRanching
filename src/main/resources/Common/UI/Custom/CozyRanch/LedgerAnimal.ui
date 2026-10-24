@@ -1,0 +1,56 @@
+$H = "HouseStyles.ui";
+
+@Heart = Group {
+  Anchor: (Width: 16, Height: 16, Right: 1);
+  Background: "HouseHeartEmpty.png";
+};
+
+// One animal in the ledger: name, species, hearts and where it is now.
+Group #LedgerAnimalRow {
+  LayoutMode: Left;
+  Anchor: (Height: 40, Bottom: 4, Left: 18, Right: 12);
+  Padding: (Horizontal: 12);
+  Background: $H.@RowBackground;
+
+  Label #LAName {
+    Anchor: (Width: 210);
+    Style: (...$H.@NameStyle, FontSize: 15, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 11);
+    Text: "";
+  }
+
+  Group #LABaby {
+    LayoutMode: Center;
+    Anchor: (Height: 18, Right: 8, Top: 11);
+    Padding: (Horizontal: 7);
+    Background: (Color: #e88a9a(0.28));
+    Visible: false;
+
+    Label #LABabyText {
+      Style: (FontSize: 12, RenderBold: true, RenderUppercase: true, VerticalAlignment: Center, TextColor: #ffd6de);
+      Text: "";
+    }
+  }
+
+  Label #LASpecies {
+    FlexWeight: 1;
+    Style: (...$H.@BodyStyle, FontSize: 14, VerticalAlignment: Center);
+    Text: "";
+  }
+
+  Group #LAHearts {
+    LayoutMode: Left;
+    Anchor: (Width: 92, Height: 16, Top: 12, Right: 12);
+
+    @Heart { Group #LAHeart1 { Background: "HouseHeartFull.png"; Visible: false; } }
+    @Heart { Group #LAHeart2 { Background: "HouseHeartFull.png"; Visible: false; } }
+    @Heart { Group #LAHeart3 { Background: "HouseHeartFull.png"; Visible: false; } }
+    @Heart { Group #LAHeart4 { Background: "HouseHeartFull.png"; Visible: false; } }
+    @Heart { Group #LAHeart5 { Background: "HouseHeartFull.png"; Visible: false; } }
+  }
+
+  Label #LAWhere {
+    Anchor: (Width: 170);
+    Style: (...$H.@MutedStyle, FontSize: 13, VerticalAlignment: Center, HorizontalAlignment: End);
+    Text: "";
+  }
+}
