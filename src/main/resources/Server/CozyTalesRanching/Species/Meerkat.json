@@ -1,0 +1,46 @@
+{
+  "Id": "meerkat",
+  "NameKey": "cozyranch_species.meerkat.name",
+  "WildRoles": [
+    "Meerkat"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Meerkat",
+  "RanchBabyRole": "CozyRanch_Meerkat_Baby",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_MeerkatMound",
+  "HouseCapacity": 6,
+  "BasicFoods": [
+    "CozyRanch_Food_Crickets",
+    "Plant_Fruit_Berries_Red"
+  ],
+  "PreferredFoods": [
+    "Food_Egg",
+    "Plant_Fruit_Pinkberry"
+  ],
+  "FavoriteTreats": [
+    "CozyRanch_Food_Crickets"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.7,
+  "GrowUpMinutes": 25,
+  "BreedCooldownMinutes": 25,
+  "Products": [
+    {
+      "Item": "CozyRanch_Shiny_Pebble",
+      "Quantity": 1,
+      "IntervalMinutes": 60,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "desert_sand"
+  ],
+  "HabitatPrefers": [
+    "lookout_post",
+    "dry_scrub",
+    "open_space"
+  ]
+}

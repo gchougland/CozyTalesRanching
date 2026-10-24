@@ -1,0 +1,144 @@
+{
+  "Ground": {
+    "meerkat_soil": [
+      {
+        "Under": [
+          "Soil_Sand",
+          "Soil_Gravel_Sand",
+          "Soil_Dirt",
+          "Soil_Grass"
+        ],
+        "Exclude": [
+          "Wet",
+          "Tilled",
+          "Burnt",
+          "Poisoned"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "sentry": {
+      "Kind": "here",
+      "Weight": 3,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        5,
+        9
+      ]
+    },
+    "forage_dig": {
+      "Kind": "here",
+      "Ground": "meerkat_soil",
+      "Weight": 2.5,
+      "CooldownSeconds": 75,
+      "Seconds": [
+        4,
+        7
+      ]
+    },
+    "huddle": {
+      "Kind": "social",
+      "Weight": 2,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "chitter": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        2,
+        4
+      ]
+    }
+  },
+  "Species": {
+    "meerkat": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "sentry": [
+          "Sentry",
+          "IdlePassive"
+        ],
+        "forage_dig": [
+          "Dig"
+        ],
+        "huddle": [
+          "Huddle"
+        ],
+        "chitter": [
+          "Chitter"
+        ],
+        "socialise": [
+          "Chitter",
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Dig",
+          "Sentry"
+        ],
+        "toy_bell": [
+          "Sentry"
+        ],
+        "approach_player": [
+          "IdlePassive"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "huddle": [
+          "Huddle"
+        ],
+        "forage_dig": [
+          "Dig"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Dig"
+        ],
+        "approach_player": [
+          "IdlePassive"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "curious": {
+      "Weights": {
+        "sentry": 1.5
+      }
+    },
+    "affectionate": {
+      "Weights": {
+        "huddle": 2
+      }
+    },
+    "playful": {
+      "Weights": {
+        "forage_dig": 1.5
+      }
+    }
+  }
+}

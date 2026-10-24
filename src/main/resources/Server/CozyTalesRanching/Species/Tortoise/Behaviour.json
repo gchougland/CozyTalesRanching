@@ -1,0 +1,107 @@
+{
+  "Behaviours": {
+    "bask": {
+      "Kind": "here",
+      "Weight": 3,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        10,
+        18
+      ]
+    },
+    "shell_tuck": {
+      "Kind": "here",
+      "Weight": 1.2,
+      "CooldownSeconds": 150,
+      "Seconds": [
+        4,
+        6
+      ]
+    },
+    "leaf_munch": {
+      "Kind": "here",
+      "Ground": "grass",
+      "Weight": 2,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        6,
+        10
+      ]
+    }
+  },
+  "Species": {
+    "tortoise": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "bask": [
+          "Bask"
+        ],
+        "shell_tuck": [
+          "ShellTuck"
+        ],
+        "leaf_munch": [
+          "Munch"
+        ],
+        "socialise": [
+          "Love",
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "toy_log": [
+          "Munch"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "bask": [
+          "Bask"
+        ],
+        "shell_tuck": [
+          "ShellTuck"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "lazy": {
+      "Weights": {
+        "bask": 2
+      }
+    },
+    "shy": {
+      "Weights": {
+        "shell_tuck": 2
+      }
+    }
+  }
+}

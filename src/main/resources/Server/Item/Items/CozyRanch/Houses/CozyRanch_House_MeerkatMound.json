@@ -1,0 +1,99 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_models_a.items.CozyRanch_House_MeerkatMound.name",
+    "Description": "cozyranch_models_a.items.CozyRanch_House_MeerkatMound.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_House_MeerkatMound.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "ItemLevel": 5,
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "Soil_Sand",
+        "Quantity": 12
+      },
+      {
+        "ItemId": "Ingredient_Stick",
+        "Quantity": 4
+      },
+      {
+        "ItemId": "Rock_Stone_Cobble",
+        "Quantity": 4
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 2
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Farming"
+        ],
+        "Id": "Farmingbench"
+      }
+    ],
+    "TimeSeconds": 3
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/CozyRanch/Houses/MeerkatMound/MeerkatMound.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/Houses/MeerkatMound/MeerkatMound_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CozyRanchUseHouse"
+          }
+        ]
+      }
+    },
+    "InteractionHint": "cozyranch_house.hint.use",
+    "HitboxType": "CozyRanch_House_MeerkatMound",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_House_MeerkatMound"
+      }
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "BlockParticleSetId": "Sand",
+    "ParticleColor": "#D2AE76",
+    "BlockSoundSetId": "Sand",
+    "PhysicalMaterialId": "Dirt",
+    "TextureComputedColor": "#D2AE76"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.3,
+    "Translation": [
+      0,
+      -18
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 0.5,
+  "MaxStack": 4,
+  "ItemSoundSetId": "ISS_Blocks_Gravel"
+}

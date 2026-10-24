@@ -1,0 +1,23 @@
+{
+  "Species": [
+    {
+      "Id": "tortoise",
+      "Order": 210,
+      "DescriptionKey": "cozyranch_journal.species.tortoise.desc",
+      "RareKey": "cozyranch_journal.species.tortoise.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Tortoise.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/TortoiseSilhouette.png",
+      "Behaviours": [
+        "bask",
+        "shell_tuck",
+        "leaf_munch",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_ball",
+        "toy_log"
+      ]
+    }
+  ]
+}
