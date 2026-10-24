@@ -1,0 +1,48 @@
+{
+  "Id": "gecko",
+  "NameKey": "cozyranch_species.gecko.name",
+  "WildRoles": [
+    "Gecko"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Gecko",
+  "RanchBabyRole": "CozyRanch_Gecko_Baby",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_GeckoTerrarium",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "CozyRanch_Food_Crickets",
+    "Plant_Fruit_Berries_Red"
+  ],
+  "PreferredFoods": [
+    "Plant_Fruit_Pinkberry",
+    "Plant_Fruit_Apple",
+    "Plant_Fruit_Coconut"
+  ],
+  "FavoriteTreats": [
+    "Plant_Fruit_Mango"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.75,
+  "GrowUpMinutes": 30,
+  "BreedCooldownMinutes": 30,
+  "Products": [
+    {
+      "Item": "CozyRanch_Shed_Skin",
+      "Quantity": 1,
+      "IntervalMinutes": 60,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "rocky_ground"
+  ],
+  "HabitatPrefers": [
+    "warm_light",
+    "desert_sand",
+    "cacti",
+    "shade"
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "Behaviours": {
+    "coo": {
+      "Kind": "here",
+      "Weight": 2.5,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        4,
+        6
+      ]
+    },
+    "bob_strut": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        3,
+        5
+      ]
+    }
+  },
+  "Species": {
+    "pigeon": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "peck": [
+          "Peck"
+        ],
+        "coo": [
+          "Coo"
+        ],
+        "bob_strut": [
+          "Strut"
+        ],
+        "preen": [
+          "Preen"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "Coo",
+          "Love"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_bell": [
+          "Peck"
+        ],
+        "toy_ball": [
+          "Strut"
+        ],
+        "approach_player": [
+          "Strut"
+        ],
+        "greet_owner": [
+          "Flutter",
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "peck": [
+          "Peck"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_bell": [
+          "Peck"
+        ],
+        "approach_player": [
+          "Strut"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "affectionate": {
+      "Weights": {
+        "coo": 2
+      }
+    },
+    "playful": {
+      "Weights": {
+        "bob_strut": 1.5,
+        "flap": 1.5
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "preen": 1.5
+      }
+    }
+  }
+}

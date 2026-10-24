@@ -1,0 +1,25 @@
+{
+  "Species": [
+    {
+      "Id": "pigeon",
+      "Order": 280,
+      "DescriptionKey": "cozyranch_journal.species.pigeon.desc",
+      "RareKey": "cozyranch_journal.species.pigeon.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Pigeon.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/PigeonSilhouette.png",
+      "Behaviours": [
+        "coo",
+        "bob_strut",
+        "peck",
+        "preen",
+        "flap",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_bell",
+        "toy_ball"
+      ]
+    }
+  ]
+}
