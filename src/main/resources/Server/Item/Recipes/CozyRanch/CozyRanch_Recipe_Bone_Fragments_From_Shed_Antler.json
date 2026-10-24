@@ -1,0 +1,29 @@
+{
+  "Input": [
+    {
+      "ItemId": "CozyRanch_Shed_Antler",
+      "Quantity": 1
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Ingredient_Bone_Fragment",
+    "Quantity": 3
+  },
+  "Output": [
+    {
+      "ItemId": "Ingredient_Bone_Fragment",
+      "Quantity": 3
+    }
+  ],
+  "OutputQuantity": 3,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Workbench",
+      "Categories": [
+        "Workbench_Survival"
+      ]
+    }
+  ],
+  "TimeSeconds": 1
+}

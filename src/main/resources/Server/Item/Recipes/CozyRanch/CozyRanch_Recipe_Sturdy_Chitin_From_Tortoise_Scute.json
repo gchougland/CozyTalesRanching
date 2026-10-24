@@ -1,0 +1,29 @@
+{
+  "Input": [
+    {
+      "ItemId": "CozyRanch_Tortoise_Scute",
+      "Quantity": 1
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Ingredient_Chitin_Sturdy",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Ingredient_Chitin_Sturdy",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Workbench",
+      "Categories": [
+        "Workbench_Survival"
+      ]
+    }
+  ],
+  "TimeSeconds": 1
+}

@@ -1,0 +1,26 @@
+{
+  "Input": [
+    {
+      "ItemId": "CozyRanch_Wolf_Fur",
+      "Quantity": 2
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Ingredient_Leather_Medium",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Ingredient_Leather_Medium",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Processing",
+      "Id": "Tannery"
+    }
+  ],
+  "TimeSeconds": 20
+}

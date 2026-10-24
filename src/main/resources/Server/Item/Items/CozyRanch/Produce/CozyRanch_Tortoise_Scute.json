@@ -1,0 +1,35 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Tortoise_Scute.name",
+    "Description": "cozyranch_items.items.CozyRanch_Tortoise_Scute.description"
+  },
+  "Categories": [
+    "Items.Ingredients"
+  ],
+  "Quality": "Common",
+  "Model": "Items/CozyRanch/Produce/Tortoise_Scute.blockymodel",
+  "Texture": "Items/CozyRanch/Produce/Tortoise_Scute_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Tortoise_Scute.png",
+  "IconProperties": {
+    "Scale": 0.75,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Ingredient"
+    ]
+  },
+  "MaxStack": 50,
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Bones"
+}

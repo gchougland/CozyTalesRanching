@@ -1,0 +1,896 @@
+{
+  "cases": [
+    {
+      "name": "items-040 gate",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0,
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-040 assets",
+      "description": "The eight 0.4.0 products, the Honey Cake, the Spotted Rug and Antler Mount, their hitboxes and recipes pass the engine schema (CozyRanchOpenFind is our plugin type).",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Fox_Trinket",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Fox_Trinket.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Wolf_Fur",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Wolf_Fur.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Wild_Honey",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Wild_Honey.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Spotted_Pelt",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Spotted_Pelt.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Shed_Antler",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Shed_Antler.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Bison_Wool",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Bison_Wool.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Tortoise_Scute",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Tortoise_Scute.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Shiny_Pebble",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Shiny_Pebble.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Honey_Cake",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Cooking/CozyRanch_Honey_Cake.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Spotted_Rug",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Decor/CozyRanch_Spotted_Rug.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Antler_Mount",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Decor/CozyRanch_Antler_Mount.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Spotted_Rug hitbox",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_Spotted_Rug.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Antler_Mount hitbox",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_Antler_Mount.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Medium_Leather_From_Wolf_Fur",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Medium_Leather_From_Wolf_Fur.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Wool_Scrap_From_Bison_Wool",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Wool_Scrap_From_Bison_Wool.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Bone_Fragments_From_Shed_Antler",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Bone_Fragments_From_Shed_Antler.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Sturdy_Chitin_From_Tortoise_Scute",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Sturdy_Chitin_From_Tortoise_Scute.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Apple_Pie_With_Wild_Honey",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Apple_Pie_With_Wild_Honey.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-040 textures",
+      "description": "Painted, not pixelled: no new texture FAILs the style rules.",
+      "steps": [
+        {
+          "tool": "texture_check",
+          "name": "Fox_Trinket texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Fox_Trinket_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Fox_Trinket.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Wolf_Fur texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Wolf_Fur_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Wolf_Fur.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Wild_Honey texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Wild_Honey_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Wild_Honey.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Spotted_Pelt texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Spotted_Pelt_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Spotted_Pelt.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Shed_Antler texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Shed_Antler_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Shed_Antler.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Bison_Wool texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Bison_Wool_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Bison_Wool.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Tortoise_Scute texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Tortoise_Scute_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Tortoise_Scute.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Shiny_Pebble texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Shiny_Pebble_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Shiny_Pebble.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Honey_Cake texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Food/Honey_Cake_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Food/Honey_Cake.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Spotted_Rug texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Spotted_Rug_Texture.png",
+            "category": "blockmodel",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Spotted_Rug.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Antler_Mount texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Antler_Mount_Texture.png",
+            "category": "blockmodel",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Antler_Mount.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-040 models",
+      "description": "Each new model with its texture, three-quarter, against a golden that was looked at.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "Fox_Trinket",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Fox_Trinket.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Fox_Trinket_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.55
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items040/CozyRanch_Fox_Trinket.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Wolf_Fur",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Wolf_Fur.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Wolf_Fur_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.55
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items040/CozyRanch_Wolf_Fur.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Wild_Honey",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Wild_Honey.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Wild_Honey_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.55
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items040/CozyRanch_Wild_Honey.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Spotted_Pelt",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Spotted_Pelt.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Spotted_Pelt_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.55
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items040/CozyRanch_Spotted_Pelt.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Shed_Antler",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Shed_Antler.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Shed_Antler_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.55
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items040/CozyRanch_Shed_Antler.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Bison_Wool",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Bison_Wool.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Bison_Wool_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.55
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items040/CozyRanch_Bison_Wool.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Tortoise_Scute",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Tortoise_Scute.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Tortoise_Scute_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.55
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items040/CozyRanch_Tortoise_Scute.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Shiny_Pebble",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Shiny_Pebble.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Shiny_Pebble_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.55
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items040/CozyRanch_Shiny_Pebble.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Honey_Cake",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Food/Honey_Cake.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Food/Honey_Cake_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.55
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items040/CozyRanch_Honey_Cake.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Spotted_Rug",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Spotted_Rug.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Spotted_Rug_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 2
+              },
+              "height": {
+                "$lte": 1
+              },
+              "depth": {
+                "$lte": 1
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items040/CozyRanch_Spotted_Rug.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Antler_Mount",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Antler_Mount.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Antler_Mount_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 2
+              },
+              "height": {
+                "$lte": 1
+              },
+              "depth": {
+                "$lte": 1
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items040/CozyRanch_Antler_Mount.png"
+        }
+      ]
+    }
+  ]
+}

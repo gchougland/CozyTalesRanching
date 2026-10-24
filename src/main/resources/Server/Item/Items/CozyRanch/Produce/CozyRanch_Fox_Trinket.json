@@ -1,0 +1,113 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Fox_Trinket.name",
+    "Description": "cozyranch_items.items.CozyRanch_Fox_Trinket.description"
+  },
+  "Categories": [
+    "Items.Tools"
+  ],
+  "Quality": "Uncommon",
+  "Model": "Items/CozyRanch/Produce/Fox_Trinket.blockymodel",
+  "Texture": "Items/CozyRanch/Produce/Fox_Trinket_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Fox_Trinket.png",
+  "IconProperties": {
+    "Scale": 0.85,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Tool"
+    ]
+  },
+  "MaxStack": 25,
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Cloth",
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "CozyRanchOpenFind",
+          "Finds": [
+            {
+              "Item": "Ingredient_Bar_Copper",
+              "Weight": 16,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ingredient_Bar_Iron",
+              "Weight": 10,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ingredient_Bar_Silver",
+              "Weight": 4,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ingredient_Bar_Gold",
+              "Weight": 2,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ingredient_Strap_Leather",
+              "Weight": 14,
+              "Min": 1,
+              "Max": 2
+            },
+            {
+              "Item": "Ingredient_Stud_Iron",
+              "Weight": 12,
+              "Min": 2,
+              "Max": 4
+            },
+            {
+              "Item": "Ingredient_Feathers_Light",
+              "Weight": 10,
+              "Min": 1,
+              "Max": 3
+            },
+            {
+              "Item": "Ingredient_Feathers_Red",
+              "Weight": 6,
+              "Min": 1,
+              "Max": 2
+            },
+            {
+              "Item": "Ingredient_Feathers_Blue",
+              "Weight": 6,
+              "Min": 1,
+              "Max": 2
+            },
+            {
+              "Item": "Ingredient_Bone_Fragment",
+              "Weight": 10,
+              "Min": 1,
+              "Max": 3
+            },
+            {
+              "Item": "Ingredient_Fabric_Scrap_Silk",
+              "Weight": 3,
+              "Min": 1,
+              "Max": 1
+            }
+          ],
+          "Message": "cozyranch_items.fox_trinket.opened"
+        }
+      ]
+    }
+  }
+}

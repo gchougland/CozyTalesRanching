@@ -1,0 +1,41 @@
+{
+  "Input": [
+    {
+      "ItemId": "Ingredient_Dough",
+      "Quantity": 1
+    },
+    {
+      "ItemId": "Plant_Fruit_Apple",
+      "Quantity": 3
+    },
+    {
+      "ItemId": "CozyRanch_Wild_Honey",
+      "Quantity": 1
+    },
+    {
+      "ResourceTypeId": "Fuel",
+      "Quantity": 3
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Food_Pie_Apple",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Food_Pie_Apple",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Cookingbench",
+      "Categories": [
+        "Baked"
+      ]
+    }
+  ],
+  "TimeSeconds": 5
+}

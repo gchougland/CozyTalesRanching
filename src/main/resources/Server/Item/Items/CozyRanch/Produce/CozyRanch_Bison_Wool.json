@@ -1,0 +1,35 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Bison_Wool.name",
+    "Description": "cozyranch_items.items.CozyRanch_Bison_Wool.description"
+  },
+  "Categories": [
+    "Items.Ingredients"
+  ],
+  "Quality": "Common",
+  "Model": "Items/CozyRanch/Produce/Bison_Wool.blockymodel",
+  "Texture": "Items/CozyRanch/Produce/Bison_Wool_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Bison_Wool.png",
+  "IconProperties": {
+    "Scale": 0.7,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Ingredient"
+    ]
+  },
+  "MaxStack": 50,
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Cloth"
+}
