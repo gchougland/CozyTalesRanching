@@ -1,0 +1,101 @@
+{
+  "Ground": {
+    "desert": [
+      {
+        "Under": [
+          "Soil_Sand",
+          "Soil_Gravel_Sand"
+        ],
+        "Exclude": [
+          "Wet"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "cud_chew": {
+      "Kind": "here",
+      "Weight": 2.5,
+      "CooldownSeconds": 150,
+      "Seconds": [
+        8,
+        8
+      ]
+    },
+    "spit_snort": {
+      "Kind": "here",
+      "Weight": 1,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        2,
+        2
+      ]
+    }
+  },
+  "Species": {
+    "camel": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "cud_chew": [
+          "KneelChew"
+        ],
+        "spit_snort": [
+          "SpitSnort"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_post": [
+          "Love",
+          "Happy"
+        ],
+        "toy_log": [
+          "KneelChew"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "lazy": {
+      "Weights": {
+        "cud_chew": 2
+      }
+    },
+    "playful": {
+      "Weights": {
+        "spit_snort": 1.5
+      }
+    }
+  }
+}

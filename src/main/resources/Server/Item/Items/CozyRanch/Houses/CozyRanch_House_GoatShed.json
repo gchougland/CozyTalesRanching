@@ -1,0 +1,96 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_models_a.items.CozyRanch_House_GoatShed.name",
+    "Description": "cozyranch_models_a.items.CozyRanch_House_GoatShed.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_House_GoatShed.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "ItemLevel": 12,
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Rock",
+        "Quantity": 30
+      },
+      {
+        "ResourceTypeId": "Wood_All",
+        "Quantity": 20
+      },
+      {
+        "ItemId": "Ingredient_Hay",
+        "Quantity": 4
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Farming"
+        ],
+        "Id": "Farmingbench",
+        "RequiredTierLevel": 2
+      }
+    ],
+    "TimeSeconds": 3
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/CozyRanch/Houses/GoatShed/GoatShed.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/Houses/GoatShed/GoatShed_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CozyRanchUseHouse"
+          }
+        ]
+      }
+    },
+    "InteractionHint": "cozyranch_house.hint.use",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_House_GoatShed"
+      }
+    },
+    "BlockParticleSetId": "Stone",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "ParticleColor": "#7E6A52",
+    "HitboxType": "CozyRanch_House_GoatShed",
+    "BlockSoundSetId": "Stone",
+    "PhysicalMaterialId": "Stone",
+    "TextureComputedColor": "#7C6A55"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.3,
+    "Translation": [
+      0,
+      -20
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 0.5,
+  "MaxStack": 1,
+  "ItemSoundSetId": "ISS_Blocks_Stone"
+}

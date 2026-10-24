@@ -1,0 +1,24 @@
+{
+  "Species": [
+    {
+      "Id": "goat",
+      "Order": 120,
+      "DescriptionKey": "cozyranch_journal.species.goat.desc",
+      "RareKey": "cozyranch_journal.species.goat.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Goat.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/GoatSilhouette.png",
+      "Behaviours": [
+        "rock_hop",
+        "headbutt",
+        "bleat",
+        "browse",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_ball",
+        "toy_log"
+      ]
+    }
+  ]
+}

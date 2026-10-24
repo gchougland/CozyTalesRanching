@@ -1,0 +1,33 @@
+{
+  "Features": {
+    "rocky_ground": {
+      "BlockPrefixes": [
+        "Rock_"
+      ],
+      "Exclude": [
+        "Ore",
+        "Crystal"
+      ],
+      "Surface": true,
+      "MinCount": 4
+    },
+    "browse": {
+      "BlockPrefixes": [
+        "Plant_Leaves_",
+        "Plant_Bush"
+      ],
+      "Exclude": [
+        "Burnt",
+        "Dead",
+        "Poison"
+      ],
+      "MinCount": 4
+    }
+  },
+  "SpeciesToys": {
+    "goat": [
+      "toy_ball",
+      "toy_log"
+    ]
+  }
+}

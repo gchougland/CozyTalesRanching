@@ -1,0 +1,20 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Goat_Kid",
+    "DropList": "Drop_Goat_Kid",
+    "MaxHealth": 36,
+    "FoodItems": [
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Carrot_Item",
+      "Plant_Hay_Bundle",
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Cauliflower_Item",
+      "Plant_Leaves_Oak",
+      "Plant_Fruit_Apple"
+    ],
+    "FollowStopDistance": 2,
+    "NameTranslationKey": "server.npcRoles.Goat_Kid.name"
+  }
+}

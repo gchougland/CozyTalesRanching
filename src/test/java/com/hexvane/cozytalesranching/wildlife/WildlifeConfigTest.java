@@ -19,7 +19,8 @@ import org.junit.jupiter.api.Test;
 class WildlifeConfigTest {
     private static final Path RES = Path.of("src/main/resources");
     private static final Map<String, String> SPECIES_FILES = Map.of(
-        "chicken", "Chicken.json", "cow", "Cow.json", "pig", "Pig.json", "sheep", "Sheep.json", "frog", "Frog.json");
+        "chicken", "Chicken.json", "cow", "Cow.json", "pig", "Pig.json", "sheep", "Sheep.json", "frog", "Frog.json",
+        "camel", "Camel.json", "goat", "Goat.json");
 
     @Test
     void bundledCoversEverySpecies() {

@@ -1,0 +1,35 @@
+{
+  "Features": {
+    "desert_sand": {
+      "BlockPrefixes": [
+        "Soil_Sand"
+      ],
+      "Exclude": [
+        "Wet"
+      ],
+      "Surface": true,
+      "MinCount": 12
+    },
+    "cacti": {
+      "BlockPrefixes": [
+        "Plant_Cactus_"
+      ],
+      "MinCount": 2
+    },
+    "dry_scrub": {
+      "BlockPrefixes": [
+        "Plant_Bush_Arid",
+        "Plant_Bush_Dead",
+        "Plant_Grass_Arid",
+        "Plant_Grass_Dry"
+      ],
+      "MinCount": 3
+    }
+  },
+  "SpeciesToys": {
+    "camel": [
+      "toy_post",
+      "toy_log"
+    ]
+  }
+}

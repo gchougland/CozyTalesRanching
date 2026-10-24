@@ -1,0 +1,31 @@
+{
+  "Species": {
+    "goat": {
+      "Roles": [
+        "Goat"
+      ],
+      "OwnHouseWeight": 0.85,
+      "CooldownMinutes": 20,
+      "Attractors": [
+        {
+          "HouseSpecies": "sheep",
+          "Features": [
+            "grass"
+          ],
+          "Weight": 0.25
+        }
+      ],
+      "Rare": {
+        "Role": "CozyRanchWild_Goat_Slate",
+        "NameKey": "cozyranch_wildlife.rare.goat",
+        "Chance": 0.25,
+        "CooldownMinutes": 60,
+        "Features": [
+          "rocky_ground",
+          "browse"
+        ],
+        "MinHabitatScore": 0.9
+      }
+    }
+  }
+}

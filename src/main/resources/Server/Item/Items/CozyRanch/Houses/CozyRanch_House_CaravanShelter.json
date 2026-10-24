@@ -1,0 +1,100 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_models_a.items.CozyRanch_House_CaravanShelter.name",
+    "Description": "cozyranch_models_a.items.CozyRanch_House_CaravanShelter.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_House_CaravanShelter.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "ItemLevel": 16,
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_All",
+        "Quantity": 24
+      },
+      {
+        "ItemId": "Ingredient_Fabric_Scrap_Linen",
+        "Quantity": 12
+      },
+      {
+        "ItemId": "Soil_Sand",
+        "Quantity": 20
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 10
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Farming"
+        ],
+        "Id": "Farmingbench",
+        "RequiredTierLevel": 3
+      }
+    ],
+    "TimeSeconds": 3
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/CozyRanch/Houses/CaravanShelter/CaravanShelter.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/Houses/CaravanShelter/CaravanShelter_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CozyRanchUseHouse"
+          }
+        ]
+      }
+    },
+    "InteractionHint": "cozyranch_house.hint.use",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_House_CaravanShelter"
+      }
+    },
+    "BlockParticleSetId": "Wood",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "ParticleColor": "#C9875B",
+    "HitboxType": "CozyRanch_House_CaravanShelter",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "TextureComputedColor": "#C99A6E"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.22,
+    "Translation": [
+      0,
+      -26
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 0.5,
+  "MaxStack": 1,
+  "ItemSoundSetId": "ISS_Blocks_Wood"
+}
