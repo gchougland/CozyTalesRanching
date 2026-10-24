@@ -244,7 +244,8 @@ public final class AnimalInteractions {
         rememberPosition(record, animal, store);
         Ranch.animals().markDirty(record);
         FollowSystem.forget(record.animalId);
-        AnimalControl.applyFollow(animal, record, player.getReference(), store);
+        Ref<EntityStore> owner = player.getReference();
+        AnimalControl.applyFollow(animal, record, owner != null && owner.isValid() ? FollowAnchor.of(owner, store) : owner, store);
         RanchChat.tell(player, Message.translation(following ? "cozyranch_taming.follow.on" : "cozyranch_taming.follow.off").param("animal", AnimalControl.displayName(record)));
     }
 

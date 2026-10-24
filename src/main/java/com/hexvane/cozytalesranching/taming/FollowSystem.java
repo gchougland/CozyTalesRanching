@@ -25,8 +25,8 @@ import javax.annotation.Nonnull;
 import org.joml.Vector3d;
 
 /**
- * Once a second per world: points following animals at their owner and brings back any that fell too far
- * behind or got stuck. Walks owners in the world and their records, never entities, so the cost is
+ * Once a second per world: points following animals at their owner (or the mount the owner rides, see
+ * {@link FollowAnchor}) and brings back any that fell too far behind or got stuck. Walks owners in the world and their records, never entities, so the cost is
  * players × owned animals per second. Owners in another world or offline are left alone: the animal waits.
  */
 final class FollowSystem extends TickingSystem<EntityStore> {
@@ -36,6 +36,7 @@ final class FollowSystem extends TickingSystem<EntityStore> {
     private record Track(double x, double y, double z, double stuckSeconds) {}
 
     private static final Map<UUID, Track> TRACKS = new ConcurrentHashMap<>();
+    private static final Map<UUID, Boolean> RIDING = new ConcurrentHashMap<>();
     private final Map<String, Float> elapsed = new ConcurrentHashMap<>();
 
     static void forget(@Nonnull UUID animalId) {
@@ -58,13 +59,16 @@ final class FollowSystem extends TickingSystem<EntityStore> {
         for (PlayerRef owner : world.getPlayerRefs()) {
             Ref<EntityStore> ownerRef = owner.getReference();
             if (ownerRef == null || !ownerRef.isValid()) continue;
-            TransformComponent ownerT = store.getComponent(ownerRef, TransformComponent.getComponentType());
+            // While the owner rides an NPC mount the mount carries the real position: follow it (FollowAnchor).
+            Ref<EntityStore> anchor = FollowAnchor.of(ownerRef, store);
+            TransformComponent ownerT = store.getComponent(anchor, TransformComponent.getComponentType());
             if (ownerT == null) continue;
+            noteAnchor(owner.getUuid(), ownerRef, anchor, ownerT, store);
             for (AnimalRecord record : Ranch.animals().ownedBy(owner.getUuid())) {
                 if (!record.following || record.state != AnimalRecord.State.ACTIVE || record.entityUuid == null) continue;
                 Ref<EntityStore> animal = world.getEntityStore().getRefFromUUID(record.entityUuid);
                 if (animal == null || !animal.isValid() || !isRanchRole(animal, store)) continue;
-                AnimalControl.applyFollow(animal, record, ownerRef, store);
+                AnimalControl.applyFollow(animal, record, anchor, store);
                 TransformComponent t = store.getComponent(animal, TransformComponent.getComponentType());
                 if (t == null) continue;
                 Vector3d pos = t.getPosition();
@@ -83,6 +87,22 @@ final class FollowSystem extends TickingSystem<EntityStore> {
                 }
             }
         }
+    }
+
+    /** Logs when an owner gets on or off a mount, so a run's log shows which entity the followers are after. */
+    private static void noteAnchor(@Nonnull UUID ownerId, @Nonnull Ref<EntityStore> ownerRef, @Nonnull Ref<EntityStore> anchor, @Nonnull TransformComponent anchorT, @Nonnull Store<EntityStore> store) {
+        boolean riding = !anchor.equals(ownerRef);
+        Boolean before = RIDING.put(ownerId, riding);
+        if (before == null ? !riding : before == riding) return;
+        Vector3d p = anchorT.getPosition();
+        LOG.info(String.format(java.util.Locale.ROOT, "Ranch followers of %s now follow %s at %.1f %.1f %.1f",
+            ownerId, riding ? "the mount " + uuidOf(anchor, store) : "their owner", p.x, p.y, p.z));
+    }
+
+    @Nonnull
+    private static String uuidOf(@Nonnull Ref<EntityStore> ref, @Nonnull Store<EntityStore> store) {
+        com.hypixel.hytale.server.core.entity.UUIDComponent id = store.getComponent(ref, com.hypixel.hytale.server.core.entity.UUIDComponent.getComponentType());
+        return id != null ? id.getUuid().toString() : "?";
     }
 
     /**
