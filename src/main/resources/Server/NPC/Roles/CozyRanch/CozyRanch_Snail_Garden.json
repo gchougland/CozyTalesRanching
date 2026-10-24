@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Snail_Garden",
+    "SeparationDistance": 0.5,
+    "DropList": "Empty",
+    "MaxHealth": 61,
+    "MaxSpeed": 2.5,
+    "ParticleOffset": [
+      0,
+      1.0,
+      0
+    ],
+    "WanderRadius": 4,
+    "FoodItems": [
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Cauliflower_Item",
+      "Plant_Crop_Mushroom_Cap_Brown",
+      "Plant_Crop_Tomato_Item",
+      "Plant_Fruit_Spiral"
+    ],
+    "FollowStopDistance": 1.5,
+    "NameTranslationKey": "cozyranch_species.snail.garden.name"
+  }
+}

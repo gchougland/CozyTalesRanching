@@ -124,6 +124,8 @@ public final class JournalView {
         right.add(wildlife(e, s, c));
         right.add(breeding(e, s, c));
         right.add(products(e, s, c));
+        Section looks = looks(e, page);
+        if (looks != null) right.add(looks);
         right.add(traits(e, c));
         right.add(behaviours(e, page));
         Section rare = rare(e, s, page, c);
@@ -197,7 +199,7 @@ public final class JournalView {
     @Nonnull
     private static Section products(@Nonnull Entry e, @Nonnull SpeciesDefinition s, @Nonnull Context c) {
         Set<String> all = new LinkedHashSet<>();
-        for (SpeciesDefinition.Product p : s.Products) if (p != null && p.Item != null && !p.Item.isBlank()) all.add(p.Item);
+        for (SpeciesDefinition.Product p : s.allProducts()) if (p != null && p.Item != null && !p.Item.isBlank()) all.add(p.Item);
         List<String> known = all.stream().filter(e.Products::contains).toList();
         if (all.isEmpty()) {
             return e.knows(Fact.CARE) ? new Section(Txt.j("section.products"), List.of(muted(Txt.j("products.none"))))
@@ -209,6 +211,21 @@ public final class JournalView {
         int more = all.size() - known.size();
         if (more > 0) lines.add(muted(more(more)));
         return new Section(Txt.j("section.products"), lines);
+    }
+
+    /** The species' looks and how to get each one, once the species has been seen; null when the page lists none. */
+    @Nullable
+    static Section looks(@Nonnull Entry e, @Nonnull JournalBook.SpeciesPage page) {
+        if (page.Looks == null || page.Looks.isEmpty()) return null;
+        Txt title = page.LooksTitleKey != null && !page.LooksTitleKey.isBlank() ? Txt.key(page.LooksTitleKey) : Txt.j("section.looks");
+        if (!e.knows(Fact.SEEN)) return new Section(title, List.of(muted(Txt.j("hint.looks"))));
+        List<Line> lines = new ArrayList<>();
+        for (JournalBook.Look l : page.Looks) {
+            if (l == null || l.NameKey == null || l.NameKey.isBlank()) continue;
+            lines.add(new Line(Txt.key(l.NameKey), Style.STRONG));
+            if (l.HowKey != null && !l.HowKey.isBlank()) lines.add(body(Txt.key(l.HowKey)));
+        }
+        return lines.isEmpty() ? null : new Section(title, lines);
     }
 
     /** Each trait seen on this species: its name, then what it does. */

@@ -4,9 +4,11 @@ import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
@@ -142,6 +144,45 @@ public final class BreedingRules {
         if (parentRole != null && species.RanchBabyRoleVariants.containsKey(parentRole)) return species.RanchBabyRoleVariants.get(parentRole);
         if (species.RanchBabyRole.isEmpty() && parentRole != null && species.RanchRoleVariants.containsValue(parentRole)) return parentRole;
         return species.ranchRoleFor(parentRole, true);
+    }
+
+    /**
+     * The look a newborn gets from the species' {@link SpeciesDefinition#BirthVariants}, or null when no rule fires (the
+     * baby then takes a parent's look). Rules are tried in order; a rule fires when its feature is present (when it
+     * names one) and its parents match (when it names any), and its {@code Chance} roll succeeds. Parent roles are
+     * compared as adult ranch roles, so a wild-role parent counts as the look it would become.
+     */
+    @Nullable
+    public static String birthLook(@Nonnull SpeciesDefinition species, @Nullable String parentA, @Nullable String parentB,
+                                   @Nonnull Predicate<String> featurePresent, @Nonnull RandomGenerator rng) {
+        if (species.BirthVariants.isEmpty()) return null;
+        String a = parentA == null ? null : adultRole(species, parentA);
+        String b = parentB == null ? null : adultRole(species, parentB);
+        for (SpeciesDefinition.BirthVariant rule : species.BirthVariants) {
+            if (!rule.Feature.isBlank() && !featurePresent.test(rule.Feature)) continue;
+            if (!parentsMatch(rule.Parents, a, b)) continue;
+            if (rule.Chance <= 0) continue;
+            if (rule.Chance >= 1 || rng.nextDouble() < rule.Chance) return rule.Role;
+        }
+        return null;
+    }
+
+    static boolean parentsMatch(@Nonnull List<String> wanted, @Nullable String a, @Nullable String b) {
+        if (wanted.isEmpty()) return true;
+        if (wanted.size() == 1) return wanted.getFirst().equals(a) || wanted.getFirst().equals(b);
+        String x = wanted.get(0), y = wanted.get(1);
+        return (x.equals(a) && y.equals(b)) || (x.equals(b) && y.equals(a));
+    }
+
+    /**
+     * Habitat features present at a house, as far as its last scan tells: a feature counts when the house was scanned,
+     * the species watches it (required, preferred or a liked toy) and the scan did not report it missing.
+     */
+    @Nonnull
+    public static Predicate<String> featuresPresent(@Nonnull HouseRecord house, @Nonnull SpeciesDefinition species, @Nonnull Collection<String> toys) {
+        if (house.habitatScannedAtMs <= 0) return f -> false;
+        List<String> missing = house.habitatMissing == null ? List.of() : List.copyOf(house.habitatMissing);
+        return f -> (species.HabitatRequires.contains(f) || species.HabitatPrefers.contains(f) || toys.contains(f)) && !missing.contains(f);
     }
 
     /** The adult role for a baby whose role is {@code currentRole}; keeps a colour variant. */

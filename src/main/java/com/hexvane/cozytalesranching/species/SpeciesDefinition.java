@@ -1,7 +1,11 @@
 package com.hexvane.cozytalesranching.species;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -45,6 +49,16 @@ public final class SpeciesDefinition {
     public double GrowUpMinutes = 60;
     public double BreedCooldownMinutes = 40;
     public List<Product> Products = List.of();
+    /**
+     * A look's ranch role (adult) to the products it makes instead of {@link #Products} (a Magma snail makes fire
+     * essence). Babies of a look read their adult look's list. Optional; read it through {@link #productsFor}.
+     */
+    public Map<String, List<Product>> VariantProducts = Map.of();
+    /**
+     * Rules that give a newborn a look of its own instead of a parent's, tried in order; the first whose condition
+     * holds and whose {@code Chance} roll succeeds wins. Optional.
+     */
+    public List<BirthVariant> BirthVariants = List.of();
     public List<String> HabitatRequires = List.of();
     public List<String> HabitatPrefers = List.of();
 
@@ -56,8 +70,20 @@ public final class SpeciesDefinition {
         public String Collect = "House";
     }
 
+    /**
+     * One birth rule. Set {@code Feature} (a habitat feature id present at the house) or {@code Parents} (one or two
+     * ranch roles: with two, the pair in either order; with one, either parent having it), or both. {@code Role} is the
+     * adult look the baby gets (its baby role comes from {@link #RanchBabyRoleVariants}), with probability {@code Chance}.
+     */
+    public static final class BirthVariant {
+        public String Feature = "";
+        public List<String> Parents = List.of();
+        public String Role = "";
+        public double Chance = 1.0;
+    }
+
     @Nonnull
-    SpeciesDefinition normalise() {
+    public SpeciesDefinition normalise() {
         WildRoles = orEmpty(WildRoles);
         WildBabyRoles = orEmpty(WildBabyRoles);
         AdoptRoles = orEmpty(AdoptRoles);
@@ -72,13 +98,73 @@ public final class SpeciesDefinition {
         BaitItems = orEmpty(BaitItems);
         if (!(CalmMinutes > 0)) CalmMinutes = 3.0;
         RanchBabyRoleVariants = RanchBabyRoleVariants == null ? Map.of() : Map.copyOf(RanchBabyRoleVariants);
+        Map<String, List<Product>> vp = new LinkedHashMap<>();
+        if (VariantProducts != null) {
+            VariantProducts.forEach((role, list) -> {
+                if (role != null && !role.isBlank()) vp.put(role, list == null ? List.of() : list.stream().filter(Objects::nonNull).toList());
+            });
+        }
+        VariantProducts = Collections.unmodifiableMap(vp);
+        List<BirthVariant> bv = new ArrayList<>();
+        if (BirthVariants != null) {
+            for (BirthVariant b : BirthVariants) {
+                if (b == null || b.Role == null || b.Role.isBlank()) continue;
+                if (b.Feature == null) b.Feature = "";
+                b.Parents = orEmpty(b.Parents);
+                if (b.Feature.isBlank() && b.Parents.isEmpty()) continue;
+                bv.add(b);
+            }
+        }
+        BirthVariants = List.copyOf(bv);
         return this;
     }
 
-    /** The ranch role an animal with {@code fromRole} becomes; empty string if the species has none. */
+    /**
+     * The products an animal with ranch role {@code role} makes: its look's {@link #VariantProducts} (a baby look's
+     * adult look counts), else {@link #Products}. Null or unknown roles get {@link #Products}.
+     */
+    @Nonnull
+    public List<Product> productsFor(@Nullable String role) {
+        if (role != null && !VariantProducts.isEmpty()) {
+            List<Product> own = VariantProducts.get(role);
+            if (own != null) return own;
+            for (Map.Entry<String, String> e : RanchBabyRoleVariants.entrySet()) {
+                if (e.getValue().equals(role)) {
+                    List<Product> adult = VariantProducts.get(e.getKey());
+                    if (adult != null) return adult;
+                }
+            }
+        }
+        return Products;
+    }
+
+    /** Every product any look of this species makes, each item once, {@link #Products} first. For lists and summaries. */
+    @Nonnull
+    public List<Product> allProducts() {
+        if (VariantProducts.isEmpty()) return Products;
+        Map<String, Product> byItem = new LinkedHashMap<>();
+        for (Product p : Products) if (p != null && p.Item != null) byItem.putIfAbsent(p.Item, p);
+        for (List<Product> list : VariantProducts.values()) for (Product p : list) if (p.Item != null) byItem.putIfAbsent(p.Item, p);
+        return List.copyOf(byItem.values());
+    }
+
+    /**
+     * The ranch role an animal with {@code fromRole} becomes; empty string if the species has none. A baby whose wild or
+     * adopt role is a variant ({@code Boar_Piglet} to the adult look {@code CozyRanch_Pig_Boar}) becomes that look's baby
+     * ({@link #RanchBabyRoleVariants}); other babies become {@link #RanchBabyRole}.
+     */
     @Nonnull
     public String ranchRoleFor(@Nullable String fromRole, boolean baby) {
-        if (baby && !RanchBabyRole.isEmpty()) return RanchBabyRole;
+        if (baby) {
+            if (fromRole != null) {
+                String adult = RanchRoleVariants.get(fromRole);
+                if (adult == null && RanchRoleVariants.containsValue(fromRole)) adult = fromRole;
+                String look = adult != null ? RanchBabyRoleVariants.get(adult) : null;
+                if (look != null) return look;
+                if (RanchBabyRoleVariants.containsValue(fromRole)) return fromRole;
+            }
+            if (!RanchBabyRole.isEmpty()) return RanchBabyRole;
+        }
         if (fromRole != null) {
             String variant = RanchRoleVariants.get(fromRole);
             if (variant != null) return variant;
@@ -87,12 +173,30 @@ public final class SpeciesDefinition {
         return RanchRole;
     }
 
-    /** The wild role a ranch animal with {@code currentRole} goes back to; empty string if the species has none. */
+    /**
+     * The wild role a ranch animal with {@code currentRole} goes back to; empty string if the species has none. A variant
+     * baby goes back to the wild baby of its look ({@code CozyRanch_Pig_Boar_Piglet} to {@code Boar_Piglet}), else to the
+     * wild role of its adult look.
+     */
     @Nonnull
     public String wildRoleFor(@Nullable String currentRole, boolean baby) {
         if (currentRole != null) {
+            if (baby) {
+                for (Map.Entry<String, String> e : RanchRoleVariants.entrySet()) {
+                    if (WildBabyRoles.contains(e.getKey()) && currentRole.equals(RanchBabyRoleVariants.get(e.getValue()))) return e.getKey();
+                }
+            }
             for (Map.Entry<String, String> e : RanchRoleVariants.entrySet()) {
                 if (e.getValue().equals(currentRole) && WildRoles.contains(e.getKey())) return e.getKey();
+            }
+            if (baby && WildBabyRoles.isEmpty()) {
+                // no wild babies: a look's baby goes back as the wild adult of that look
+                for (Map.Entry<String, String> b : RanchBabyRoleVariants.entrySet()) {
+                    if (!b.getValue().equals(currentRole)) continue;
+                    for (Map.Entry<String, String> e : RanchRoleVariants.entrySet()) {
+                        if (e.getValue().equals(b.getKey()) && WildRoles.contains(e.getKey())) return e.getKey();
+                    }
+                }
             }
         }
         if (baby && !WildBabyRoles.isEmpty()) return WildBabyRoles.getFirst();

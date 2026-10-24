@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 import org.joml.Vector3d;
 
 /**
- * {@code /ranch breed testhouse <species> [--traits=a+b] [--role=<ranch role>]}: two adult residents asleep in a house, five
+ * {@code /ranch breed testhouse <species> [--traits=a+b] [--role=<ranch role>[+<ranch role>]]}: two adult residents asleep in a house, five
  * hearts and full happiness, ready to breed. The house is the admin's own house of that species within 8 blocks if there is
  * one (place it first with {@code /ranch house debug place}), else a bare record at their feet. A test fixture: it places no
  * block, and the house day system removes a bare record once it sees no block there.
@@ -69,14 +69,18 @@ final class BreedTestHouseCommand extends AbstractPlayerCommand {
         List<String> traits = context.provided(traitsArg)
             ? Arrays.stream(context.get(traitsArg).split("[,+;]")).map(String::trim).filter(book::has).toList()
             : List.of();
-        String role = species.RanchRole;
+        // --role=A, or --role=A+B for two parents of different looks (a Frost and a Magma snail).
+        String[] roles = {species.RanchRole, species.RanchRole};
         if (context.provided(roleArg)) {
-            String wanted = context.get(roleArg);
-            if (!SpeciesRegistry.byRole(wanted).map(m -> m.species() == species && m.kind() == RoleKind.RANCH).orElse(false)) {
-                context.sendMessage(Message.translation("cozyranch_breeding.debug.testhouse.badRole").param("role", wanted));
-                return;
+            String[] wanted = context.get(roleArg).split("\\+");
+            for (int i = 0; i < 2; i++) {
+                String w = wanted[Math.min(i, wanted.length - 1)].trim();
+                if (!SpeciesRegistry.byRole(w).map(m -> m.species() == species && m.kind() == RoleKind.RANCH).orElse(false)) {
+                    context.sendMessage(Message.translation("cozyranch_breeding.debug.testhouse.badRole").param("role", w));
+                    return;
+                }
+                roles[i] = w;
             }
-            role = wanted;
         }
         List<String> ids = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
@@ -86,6 +90,7 @@ final class BreedTestHouseCommand extends AbstractPlayerCommand {
             r.hearts = 5;
             r.happiness = 1f;
             r.traits = new ArrayList<>(traits);
+            String role = roles[i];
             r.spawnRole = role.isEmpty() ? null : role;
             r.lastX = house.doorX;
             r.lastY = house.doorY;

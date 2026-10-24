@@ -1,0 +1,2244 @@
+{
+  "cases": [
+    {
+      "name": "snail assets",
+      "description": "Every new snail asset passes the engine schema; the pack validates.",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "_worktrees/CozyTales-Ranching-050-snail"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Frost.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Snail_Frost.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Frost_Baby.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Snail_Frost_Baby.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Snail_Magma.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma_Baby.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Snail_Magma_Baby.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Garden.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Snail_Garden.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Garden_Baby.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Snail_Garden_Baby.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Tide.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Snail_Tide.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Tide_Baby.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Snail_Tide_Baby.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Void.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Snail_Void.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Void_Baby.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Snail_Void_Baby.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Snail_Storm.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanch/Rare/CozyRanch_Snail_Storm.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Snail_Storm_Baby.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanch/Rare/CozyRanch_Snail_Storm_Baby.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/NPC/Roles/CozyRanchWild/CozyRanchWild_Snail_Storm.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_SnailTerrarium.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_SnailTerrarium.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "snail looks",
+      "description": "The six shells (vanilla snail model, Garden, Tide, Storm and Void repainted from the vanilla textures), their hatchlings and the Snail Terrarium.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Frost.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 300,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Frost.png",
+          "name": "CozyRanch_Snail_Frost"
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Frost_Baby.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Frost_Baby.png",
+          "name": "CozyRanch_Snail_Frost_Baby"
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 300,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Magma.png",
+          "name": "CozyRanch_Snail_Magma"
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma_Baby.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Magma_Baby.png",
+          "name": "CozyRanch_Snail_Magma_Baby"
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Garden.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 300,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Garden.png",
+          "name": "CozyRanch_Snail_Garden"
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Garden_Baby.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Garden_Baby.png",
+          "name": "CozyRanch_Snail_Garden_Baby"
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Tide.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 300,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Tide.png",
+          "name": "CozyRanch_Snail_Tide"
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Tide_Baby.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Tide_Baby.png",
+          "name": "CozyRanch_Snail_Tide_Baby"
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Void.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 300,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Void.png",
+          "name": "CozyRanch_Snail_Void"
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Void_Baby.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Void_Baby.png",
+          "name": "CozyRanch_Snail_Void_Baby"
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Snail_Storm.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 300,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Storm.png",
+          "name": "CozyRanch_Snail_Storm"
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Snail_Storm_Baby.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Storm_Baby.png",
+          "name": "CozyRanch_Snail_Storm_Baby"
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_SnailTerrarium.json",
+            "views": [
+              "three_quarter",
+              "front",
+              "right",
+              "back"
+            ],
+            "size": 300,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/SnailTerrarium.png",
+          "name": "SnailTerrarium"
+        },
+        {
+          "tool": "texture_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_SnailTerrarium.json"
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Garden.json"
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Tide.json"
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Void.json"
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/Rare/CozyRanch_Snail_Storm.json"
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "snail clips",
+      "description": "The snail's ranch clips on the vanilla snail model.",
+      "steps": [
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Snail Happy",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma.json",
+            "animation": "Happy",
+            "frames": 6,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Happy.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Snail Love",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma.json",
+            "animation": "Love",
+            "frames": 6,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Love.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Snail EatTrough",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma.json",
+            "animation": "EatTrough",
+            "frames": 6,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_EatTrough.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Snail ShellTuck",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma.json",
+            "animation": "ShellTuck",
+            "frames": 6,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_ShellTuck.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Snail Nibble",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma.json",
+            "animation": "Nibble",
+            "frames": 6,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Nibble.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Snail LookAround",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma.json",
+            "animation": "LookAround",
+            "frames": 6,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_LookAround.png"
+        }
+      ]
+    },
+    {
+      "name": "snail pages",
+      "description": "The snail's journal page (commands written by JournalLooksTest with SNAIL_WRITE_COMMANDS=true) and the Snail Terrarium's house page.",
+      "steps": [
+        {
+          "tool": "ui_render",
+          "name": "snail journal page, everything discovered, with the shells",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
+            "commands": [
+              {
+                "type": "Append",
+                "text": "CozyRanch/JournalSpecies.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesName.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_species.snail.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesTagline.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.first_met",
+                  "MessageParams": {
+                    "date": {
+                      "MessageId": "cozyranch_journal.date",
+                      "Params": {
+                        "day": "14",
+                        "year": "2026"
+                      },
+                      "MessageParams": {
+                        "month": {
+                          "MessageId": "cozyranch_journal.month.11"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesArt.AssetPath",
+                "data": "UI/Custom/CozyRanch/Journal/Snail.png"
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesDesc.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.desc"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesNumber.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.number",
+                  "Params": {
+                    "number": "23",
+                    "total": "25"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[0].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.diet"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[1].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.diet.eats",
+                  "MessageParams": {
+                    "foods": {
+                      "MessageId": "cozyranch_journal.list.2",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Plant_Crop_Lettuce.name"
+                        },
+                        "b": {
+                          "MessageId": "server.items.Plant_Crop_Cauliflower.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[2].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.diet.prefers",
+                  "MessageParams": {
+                    "foods": {
+                      "MessageId": "cozyranch_journal.list.2",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Plant_Crop_Mushroom_Cap_Brown.name"
+                        },
+                        "b": {
+                          "MessageId": "server.items.Plant_Crop_Tomato.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[3].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.treats"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[4].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.treats.line",
+                  "MessageParams": {
+                    "foods": {
+                      "MessageId": "cozyranch_journal.list.1",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Plant_Fruit_Spiral.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[0].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.care"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[1].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.care.tame.many",
+                  "Params": {
+                    "count": "3"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[2].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.care.daily"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[3].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.home"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[4].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.home.house",
+                  "Params": {
+                    "count": "4"
+                  },
+                  "MessageParams": {
+                    "house": {
+                      "MessageId": "cozyranch_models_a.items.CozyRanch_House_SnailTerrarium.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[5].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.home.needs",
+                  "MessageParams": {
+                    "things": {
+                      "MessageId": "cozyranch_journal.list.1",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "cozyranch_houseui.habitat.snail_moss"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[6].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.home.likes",
+                  "MessageParams": {
+                    "things": {
+                      "MessageId": "cozyranch_journal.list.4",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "cozyranch_houseui.habitat.flowers"
+                        },
+                        "b": {
+                          "MessageId": "cozyranch_houseui.habitat.vegetables"
+                        },
+                        "c": {
+                          "MessageId": "cozyranch_houseui.habitat.water"
+                        },
+                        "d": {
+                          "MessageId": "cozyranch_houseui.habitat.shade"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[7].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.wildlife"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[8].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_wildlife.hint.snail"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[9].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.breeding"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[10].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.breeding.pair.many",
+                  "Params": {
+                    "hearts": "3"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[11].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.breeding.grow.many",
+                  "Params": {
+                    "minutes": "40"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[12].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.products"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[13].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.products.line",
+                  "MessageParams": {
+                    "items": {
+                      "MessageId": "cozyranch_journal.list.many",
+                      "Params": {
+                        "count": "3"
+                      },
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Ingredient_Ice_Essence.name"
+                        },
+                        "b": {
+                          "MessageId": "server.items.Ingredient_Fire_Essence.name"
+                        },
+                        "c": {
+                          "MessageId": "server.items.Ingredient_Life_Essence.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[14].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.shells"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[15].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.shell.frost"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[16].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.shell.frost.how"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[17].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.shell.magma"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[18].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.shell.magma.how"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[19].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.shell.garden"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[20].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.shell.garden.how"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[21].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.shell.tide"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[22].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.shell.tide.how"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[23].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.shell.storm"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[24].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.shell.storm.how"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[25].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.shell.void"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[26].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.snail.shell.void.how"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[27].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.traits"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[28].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.bountiful.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[29].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.bountiful.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[30].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.affectionate.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[31].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.affectionate.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[32].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.hardy.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[33].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.hardy.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[34].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.lucky.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[35].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.lucky.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineMuted.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[36].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.more.many",
+                  "Params": {
+                    "count": "5"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[37].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.behaviours"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[38].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.snail_tuck.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[39].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.snail_munch.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[40].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.eye_peek.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[41].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.trough_snack.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[42].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.follow_parent.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[43].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.socialise.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[44].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.nap.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[45].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.toy_log.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[46].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.toy_ball.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[47].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.rare"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineRare.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[48].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_wildlife.hint.snail.rare"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NavContents.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.nav.contents"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NavPrev.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.nav.previous"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NavNext.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.nav.next"
+                }
+              }
+            ]
+          },
+          "expect": {
+            "valid": true,
+            "errors": 0,
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/journal.png"
+        },
+        {
+          "tool": "ui_render",
+          "name": "SnailTerrarium house page, one liked feature missing",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-050-snail/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "commands": [
+              {
+                "type": "Append",
+                "text": "CozyRanch/HousePage.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#HouseTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_models_a.items.CozyRanch_House_SnailTerrarium.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesLine.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.header.species",
+                  "MessageParams": {
+                    "species": {
+                      "MessageId": "cozyranch_species.snail.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentCount.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.header.count",
+                  "Params": {
+                    "count": "2",
+                    "capacity": "4"
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#JournalButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.journal"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NoticeBox.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.products.title"
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#ProductList"
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsMore.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsEmpty.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsEmpty.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.products.empty"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#CollectButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.collect"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#CollectButton.Disabled",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#MilkHint.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentsTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.residents.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#EmptyResidents.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#EmptyResidentsText.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.residents.empty",
+                  "MessageParams": {
+                    "species": {
+                      "MessageId": "cozyranch_species.snail.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#ResidentList"
+              },
+              {
+                "type": "Append",
+                "selector": "#ResidentList",
+                "text": "CozyRanch/HouseResidentRow.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RSelected.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RName.TextSpans",
+                "data": {
+                  "RawText": "Shelly"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RFaceHappy.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RFaceOkay.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RFaceSad.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RMood.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.mood.sad"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RBaby.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RFeed.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RPersonality.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RTrait1.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RTrait2.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RNameButton.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RNameButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RHeart1.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RHeart2.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RHeart3.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RHeart4.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RHeart5.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RWhere.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.where.outside"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#ResidentList",
+                "text": "CozyRanch/HouseResidentRow.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RSelected.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RName.TextSpans",
+                "data": {
+                  "RawText": "Dew"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RFaceHappy.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RFaceOkay.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RFaceSad.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RMood.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.mood.okay"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RBaby.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RFeed.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RPersonality.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RTrait1.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RTrait1.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.hardy.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RTrait1.TooltipText",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.hardy.desc"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RTrait2.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RNameButton.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RNameButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RHeart1.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RHeart2.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RHeart3.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RHeart4.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RHeart5.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RWhere.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.where.inside"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#DetailCard.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#MoveCard.Visible",
+                "data": false
+              },
+              {
+                "type": "Clear",
+                "selector": "#MoveList"
+              },
+              {
+                "type": "Set",
+                "selector": "#DetailName.TextSpans",
+                "data": {
+                  "RawText": "Shelly"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#LocateButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.locate"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResummonButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.callback"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#MoveButton.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#MoveOutButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.moveout"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowersTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.followers.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowerList.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#NoFollowers.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#NoFollowersText.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.followers.empty",
+                  "MessageParams": {
+                    "species": {
+                      "MessageId": "cozyranch_species.snail.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#FollowerList"
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFace.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFaceHappy.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFaceOkay.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFaceSad.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatSummary.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.poor"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatDetail.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.detail.some"
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#HabitatMissing"
+              },
+              {
+                "type": "Append",
+                "selector": "#HabitatMissing",
+                "text": "CozyRanch/HouseMissingRow.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MNeed.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MWant.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MWant.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.want"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MName.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.snail_moss"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RefreshButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.refresh"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RefreshButton.TooltipText",
+                "data": {
+                  "MessageId": "cozyranch_houseui.tooltip.refresh"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#AreaButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.area.show"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#AreaButton.TooltipText",
+                "data": {
+                  "MessageId": "cozyranch_houseui.tooltip.area"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#BreedingTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.breeding.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#BreedingState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.breeding.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#BreedingToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.rename.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameField.Value",
+                "data": ""
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.rename.button"
+                }
+              }
+            ]
+          },
+          "expect": {
+            "valid": true,
+            "errors": 0,
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/housepage.png"
+        }
+      ]
+    }
+  ]
+}

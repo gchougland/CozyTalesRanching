@@ -79,7 +79,7 @@ public final class ProduceService implements Ranch.ProduceStorage {
     static ProduceRules.Mode modeOf(@Nonnull String speciesId, @Nonnull String itemId) {
         SpeciesDefinition s = SpeciesRegistry.byId(speciesId).orElse(null);
         if (s != null) {
-            for (SpeciesDefinition.Product p : s.Products) {
+            for (SpeciesDefinition.Product p : s.allProducts()) {
                 if (itemId.equals(p.Item)) {
                     ProduceRules.Mode m = ProduceRules.mode(p.Collect);
                     return m == ProduceRules.Mode.NONE ? ProduceRules.Mode.HOUSE : m;
@@ -137,7 +137,7 @@ public final class ProduceService implements Ranch.ProduceStorage {
                 double traitMultiplier = traits.multiplier(r.traits, ProduceRules.PRODUCTION_MULTIPLIER);
                 double bonusChance = traits.chance(r.traits, ProduceRules.BONUS_PRODUCT_CHANCE);
                 double premium = ProduceRules.premiumMinutes(r.feedBonus, r.feedBonusUntilMs, nowMs, minutes);
-                for (SpeciesDefinition.Product p : species.Products) {
+                for (SpeciesDefinition.Product p : species.productsFor(roleOf(world, r))) {
                     if (ProduceRules.mode(p.Collect) == ProduceRules.Mode.NONE || !itemExists(p.Item)) continue;
                     double before = store.progress(w, r.animalId, p.Item);
                     ProduceRules.Step step = ProduceRules.step(t, before, minutes, p.IntervalMinutes, p.Quantity, r.happiness, r.hearts,
@@ -167,6 +167,22 @@ public final class ProduceService implements Ranch.ProduceStorage {
         }
         for (AnimalProducedEvent e : events) RanchEvents.fire(e);
         return new PassResult(producedHouses, events.size(), items, minutes);
+    }
+
+    /**
+     * The animal's ranch role, for its look's products: the live entity's role when it is out, else the role it was
+     * stored with; null (the species' default products) when neither is known.
+     */
+    @javax.annotation.Nullable
+    static String roleOf(@Nonnull World world, @Nonnull AnimalRecord r) {
+        if (r.state == AnimalRecord.State.ACTIVE && r.entityUuid != null) {
+            var ref = world.getEntityStore().getRefFromUUID(r.entityUuid);
+            if (ref != null && ref.isValid()) {
+                var npc = world.getEntityStore().getStore().getComponent(ref, com.hypixel.hytale.server.npc.entities.NPCEntity.getComponentType());
+                if (npc != null && npc.getRoleName() != null) return npc.getRoleName();
+            }
+        }
+        return r.spawnRole == null || r.spawnRole.isEmpty() ? null : r.spawnRole;
     }
 
     private static final Set<String> WARNED = java.util.concurrent.ConcurrentHashMap.newKeySet();

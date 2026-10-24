@@ -1,0 +1,18 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_Beasts_Passive_Critter",
+  "Modify": {
+    "Appearance": "CozyRanch_Snail_Storm",
+    "DropList": "Empty",
+    "MaxHealth": 61,
+    "MaxSpeed": 1,
+    "MotionNothingTimer": [
+      8,
+      12
+    ],
+    "IsMemory": true,
+    "MemoriesCategory": "Critter",
+    "MemoriesNameOverride": "Snail_Frost",
+    "NameTranslationKey": "cozyranch_wildlife.role.snail_storm"
+  }
+}

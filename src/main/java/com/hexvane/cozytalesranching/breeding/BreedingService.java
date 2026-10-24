@@ -9,6 +9,7 @@ import com.hexvane.cozytalesranching.api.event.AnimalBredEvent;
 import com.hexvane.cozytalesranching.api.event.AnimalFriendshipChangedEvent;
 import com.hexvane.cozytalesranching.api.event.AnimalGrewUpEvent;
 import com.hexvane.cozytalesranching.api.event.RanchEvents;
+import com.hexvane.cozytalesranching.care.CareApi;
 import com.hexvane.cozytalesranching.config.RanchConfig;
 import com.hexvane.cozytalesranching.house.HouseDayHooks;
 import com.hexvane.cozytalesranching.house.HouseRecord;
@@ -83,6 +84,10 @@ final class BreedingService implements HouseDayHooks.Hook {
         AnimalRecord b = plan.parentB();
         if (a == null || b == null) return;
         ThreadLocalRandom rng = ThreadLocalRandom.current();
+        String roleA = roleOf(world, a);
+        String roleB = roleOf(world, b);
+        java.util.function.Predicate<String> features = species.BirthVariants.isEmpty() ? f -> false
+            : BreedingRules.featuresPresent(house, species, CareApi.toysLiked(species.Id));
         List<AnimalRecord> born = new ArrayList<>();
         for (int i = 0; i < plan.babies(); i++) {
             AnimalRecord baby = Ranch.animals().create(species.Id, house.ownerId, world.getName(), true);
@@ -93,7 +98,8 @@ final class BreedingService implements HouseDayHooks.Hook {
             baby.parentB = b.animalId;
             baby.traits = new ArrayList<>(BreedingRules.inheritTraits(a.traits, b.traits, book, rng));
             baby.hearts = BreedingRules.BABY_HEARTS;
-            baby.spawnRole = BreedingRules.babyRole(species, roleOf(world, rng.nextBoolean() ? a : b));
+            String look = BreedingRules.birthLook(species, roleA, roleB, features, rng);
+            baby.spawnRole = BreedingRules.babyRole(species, look != null ? look : (rng.nextBoolean() ? roleA : roleB));
             baby.lastX = house.doorX;
             baby.lastY = house.doorY;
             baby.lastZ = house.doorZ;
