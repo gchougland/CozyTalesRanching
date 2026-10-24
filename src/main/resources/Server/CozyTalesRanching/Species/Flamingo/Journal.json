@@ -1,0 +1,24 @@
+{
+  "Species": [
+    {
+      "Id": "flamingo",
+      "Order": 260,
+      "DescriptionKey": "cozyranch_journal.species.flamingo.desc",
+      "RareKey": "cozyranch_journal.species.flamingo.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Flamingo.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/FlamingoSilhouette.png",
+      "Behaviours": [
+        "one_leg",
+        "filter_feed",
+        "head_flag",
+        "preen",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_duck",
+        "toy_ball"
+      ]
+    }
+  ]
+}

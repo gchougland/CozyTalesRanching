@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Flamingo",
+    "SeparationDistance": 0.7,
+    "DropList": "Drop_Flamingo",
+    "MaxHealth": 49,
+    "MaxSpeed": 6,
+    "ParticleOffset": [
+      0,
+      2.0,
+      0
+    ],
+    "WanderRadius": 6,
+    "FoodItems": [
+      "Plant_Seaweed_Grass",
+      "Plant_Flower_Water_Duckweed",
+      "Plant_Seaweed_Grass_Bulbs",
+      "Plant_Crop_Rice_Item",
+      "Fish_Minnow_Item"
+    ],
+    "FollowStopDistance": 2.2,
+    "NameTranslationKey": "server.npcRoles.Flamingo.name"
+  }
+}

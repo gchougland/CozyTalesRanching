@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Penguin_Baby",
+    "SeparationDistance": 0.35,
+    "DropList": "Empty",
+    "MaxHealth": 15,
+    "MaxSpeed": 3.5,
+    "ParticleOffset": [
+      0,
+      0.65,
+      0
+    ],
+    "WanderRadius": 6,
+    "FoodItems": [
+      "Food_Fish_Raw",
+      "Fish_Minnow_Item",
+      "Fish_Frostgill_Item",
+      "Fish_Bluegill_Item",
+      "Fish_Salmon_Item"
+    ],
+    "FollowStopDistance": 1.4,
+    "NameTranslationKey": "cozyranch_species.penguin.baby.name"
+  }
+}
