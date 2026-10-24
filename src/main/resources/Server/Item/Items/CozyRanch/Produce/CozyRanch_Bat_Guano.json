@@ -1,0 +1,56 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Bat_Guano.name",
+    "Description": "cozyranch_items.items.CozyRanch_Bat_Guano.description"
+  },
+  "Categories": [
+    "Items.Tools"
+  ],
+  "Quality": "Common",
+  "Model": "Items/CozyRanch/Produce/Bat_Guano.blockymodel",
+  "Texture": "Items/CozyRanch/Produce/Bat_Guano_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Bat_Guano.png",
+  "IconProperties": {
+    "Scale": 0.75,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Tool"
+    ]
+  },
+  "MaxStack": 50,
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Cloth",
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "CozyRanchGuanoSpread",
+          "Radius": 1,
+          "Next": {
+            "Type": "ModifyInventory",
+            "AdjustHeldItemQuantity": -1,
+            "Next": {
+              "Type": "Simple",
+              "RunTime": 0.15,
+              "Effects": {
+                "WorldSoundEventId": "SFX_Crops_Grow"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

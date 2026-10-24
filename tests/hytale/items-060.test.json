@@ -1,0 +1,612 @@
+{
+  "cases": [
+    {
+      "name": "items-060 gate",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0,
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-060 assets",
+      "description": "Owl Pellet, Skrill Egg, Roasted Skrill Egg, Bat Guano, the three feather decor blocks with their hitboxes and the recipes pass the engine schema (CozyRanchGuanoSpread is our plugin type).",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Owl_Pellet",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Owl_Pellet.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Skrill_Egg",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Skrill_Egg.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Bat_Guano",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Bat_Guano.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Roasted_Skrill_Egg",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Cooking/CozyRanch_Roasted_Skrill_Egg.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Feather_Pillow",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Decor/CozyRanch_Feather_Pillow.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Feather_Pillow hitbox",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_Feather_Pillow.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Ranch_Ledger",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Decor/CozyRanch_Ranch_Ledger.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Ranch_Ledger hitbox",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_Ranch_Ledger.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Dreamcatcher",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Decor/CozyRanch_Dreamcatcher.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Dreamcatcher hitbox",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_Dreamcatcher.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Bone_Fragments_From_Owl_Pellet",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Bone_Fragments_From_Owl_Pellet.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Salvage_Owl_Pellet",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Salvage_Owl_Pellet.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Dough_With_Skrill_Egg",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Dough_With_Skrill_Egg.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Truffle_Omelette_Skrill_Egg",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Truffle_Omelette_Skrill_Egg.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-060 textures",
+      "description": "Painted, not pixelled: no new texture FAILs the style rules.",
+      "steps": [
+        {
+          "tool": "texture_check",
+          "name": "Owl_Pellet texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Owl_Pellet_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Owl_Pellet.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Skrill_Egg texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Skrill_Egg_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Skrill_Egg.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Roasted_Skrill_Egg texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Food/Roasted_Skrill_Egg_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Food/Roasted_Skrill_Egg.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Bat_Guano texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Bat_Guano_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Bat_Guano.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Feather_Pillow texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Feather_Pillow_Texture.png",
+            "category": "blockmodel",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Feather_Pillow.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Ranch_Ledger texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Ranch_Ledger_Texture.png",
+            "category": "blockmodel",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Ranch_Ledger.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Dreamcatcher texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Dreamcatcher_Texture.png",
+            "category": "blockmodel",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Dreamcatcher.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-060 models",
+      "description": "Each new model with its texture, three-quarter, against a golden that was looked at.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "Owl_Pellet",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Owl_Pellet.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Owl_Pellet_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items060/CozyRanch_Owl_Pellet.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Skrill_Egg",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Skrill_Egg.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Skrill_Egg_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items060/CozyRanch_Skrill_Egg.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Roasted_Skrill_Egg",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Food/Roasted_Skrill_Egg.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Food/Roasted_Skrill_Egg_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items060/CozyRanch_Roasted_Skrill_Egg.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Bat_Guano",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Bat_Guano.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Bat_Guano_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items060/CozyRanch_Bat_Guano.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Feather_Pillow",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Feather_Pillow.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Feather_Pillow_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 1.1
+              },
+              "height": {
+                "$lte": 1
+              },
+              "depth": {
+                "$lte": 1
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items060/CozyRanch_Feather_Pillow.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Ranch_Ledger",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Ranch_Ledger.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Ranch_Ledger_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 1.1
+              },
+              "height": {
+                "$lte": 1
+              },
+              "depth": {
+                "$lte": 1
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items060/CozyRanch_Ranch_Ledger.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Dreamcatcher",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Dreamcatcher.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Dreamcatcher_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 1.1
+              },
+              "height": {
+                "$lte": 1
+              },
+              "depth": {
+                "$lte": 1
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items060/CozyRanch_Dreamcatcher.png"
+        }
+      ]
+    }
+  ]
+}
