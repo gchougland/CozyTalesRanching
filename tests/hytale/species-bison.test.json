@@ -1,0 +1,1932 @@
+{
+  "cases": [
+    {
+      "name": "bison gate",
+      "description": "Every new bison asset passes its engine schema, and the pack validates.",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0,
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Bison.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Bison.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Bison_Calf.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Bison_Calf.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Bison.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Bison_Calf.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison_Calf.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_House_BisonBarn.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BisonBarn.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_House_BisonBarn.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_BisonBarn.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "bison textures",
+      "description": "The house atlas is painted, not pixelled.",
+      "steps": [
+        {
+          "tool": "texture_check",
+          "name": "BisonBarn texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BisonBarn.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": "PASS"
+          }
+        }
+      ]
+    },
+    {
+      "name": "bison renders",
+      "description": "The bison, its looks, its baby and its house as the game binds them, and every new clip on the vanilla rig.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "Bison",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 256,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/Bison.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Bison Calf",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison_Calf.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 256,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": [
+              {
+                "$contains": "outside the texture on: Neck."
+              }
+            ]
+          },
+          "golden": "tests/hytale/golden/species-bison/Bison_Calf.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "BisonBarn",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BisonBarn.json",
+            "views": [
+              "three_quarter"
+            ],
+            "grid": true,
+            "size": 320
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 4.05
+              },
+              "depth": {
+                "$lte": 4.05
+              },
+              "height": {
+                "$lte": 4
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/CozyRanch_House_BisonBarn.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Bison Happy",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison.json",
+            "animation": "Happy",
+            "frames": 6,
+            "yaw": 60,
+            "pitch": 12,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/CozyRanch_Bison_Happy.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Bison Love",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison.json",
+            "animation": "Love",
+            "frames": 6,
+            "yaw": 60,
+            "pitch": 12,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/CozyRanch_Bison_Love.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Bison EatTrough",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison.json",
+            "animation": "EatTrough",
+            "frames": 6,
+            "yaw": 60,
+            "pitch": 12,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/CozyRanch_Bison_EatTrough.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Bison Graze",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison.json",
+            "animation": "Graze",
+            "frames": 6,
+            "yaw": 60,
+            "pitch": 12,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/CozyRanch_Bison_Graze.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Bison DustWallow",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison.json",
+            "animation": "DustWallow",
+            "frames": 6,
+            "yaw": 60,
+            "pitch": 12,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/CozyRanch_Bison_DustWallow.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Bison HeadShake",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison.json",
+            "animation": "HeadShake",
+            "frames": 6,
+            "yaw": 60,
+            "pitch": 12,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/CozyRanch_Bison_HeadShake.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Bison PostRub",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison.json",
+            "animation": "PostRub",
+            "frames": 6,
+            "yaw": 60,
+            "pitch": 12,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/CozyRanch_Bison_PostRub.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Bison_Calf Happy",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison_Calf.json",
+            "animation": "Happy",
+            "frames": 6,
+            "yaw": 60,
+            "pitch": 12,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/CozyRanch_Bison_Calf_Happy.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Bison_Calf Graze",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison_Calf.json",
+            "animation": "Graze",
+            "frames": 6,
+            "yaw": 60,
+            "pitch": 12,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/CozyRanch_Bison_Calf_Graze.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Bison_Calf HeadShake",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Bison_Calf.json",
+            "animation": "HeadShake",
+            "frames": 6,
+            "yaw": 60,
+            "pitch": 12,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/CozyRanch_Bison_Calf_HeadShake.png"
+        }
+      ]
+    },
+    {
+      "name": "bison pages",
+      "description": "The journal page and the house page for the bison.",
+      "steps": [
+        {
+          "tool": "ui_render",
+          "name": "bison journal page, everything discovered (the cow page's commands with bison keys: real layout, approximate content)",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
+            "commands": [
+              {
+                "type": "Append",
+                "text": "CozyRanch/JournalSpecies.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesName.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_species.bison.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesTagline.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.first_met",
+                  "MessageParams": {
+                    "date": {
+                      "MessageId": "cozyranch_journal.date",
+                      "Params": {
+                        "day": "23",
+                        "year": "2026"
+                      },
+                      "MessageParams": {
+                        "month": {
+                          "MessageId": "cozyranch_journal.month.10"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesArt.AssetPath",
+                "data": "UI/Custom/CozyRanch/Journal/Bison.png"
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesDesc.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.bison.desc"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesNumber.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.number",
+                  "Params": {
+                    "number": "1",
+                    "total": "16"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[0].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.diet"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[1].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.diet.eats",
+                  "MessageParams": {
+                    "foods": {
+                      "MessageId": "cozyranch_journal.list.2",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Plant_Crop_Wheat.name"
+                        },
+                        "b": {
+                          "MessageId": "server.items.Plant_Hay_Bundle.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[2].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.diet.prefers",
+                  "MessageParams": {
+                    "foods": {
+                      "MessageId": "cozyranch_journal.list.2",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Plant_Crop_Wheat.name"
+                        },
+                        "b": {
+                          "MessageId": "server.items.Plant_Crop_Cauliflower.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[3].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.treats"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[4].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.treats.line",
+                  "MessageParams": {
+                    "foods": {
+                      "MessageId": "cozyranch_journal.list.1",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Plant_Crop_Cauliflower.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[0].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.care"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[1].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.care.tame.many",
+                  "Params": {
+                    "count": "3"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[2].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.care.daily"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[3].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.home"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[4].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.home.house",
+                  "Params": {
+                    "count": "4"
+                  },
+                  "MessageParams": {
+                    "house": {
+                      "MessageId": "cozyranch_models_a.items.CozyRanch_House_BisonBarn.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[5].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.home.needs",
+                  "MessageParams": {
+                    "things": {
+                      "MessageId": "cozyranch_journal.list.1",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "cozyranch_houseui.habitat.food"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[6].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.home.likes",
+                  "MessageParams": {
+                    "things": {
+                      "MessageId": "cozyranch_journal.list.3",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "cozyranch_houseui.habitat.grass"
+                        },
+                        "b": {
+                          "MessageId": "cozyranch_houseui.habitat.dust"
+                        },
+                        "c": {
+                          "MessageId": "cozyranch_houseui.habitat.open_space"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[7].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.wildlife"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[8].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_wildlife.hint.bison"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[9].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.breeding"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[10].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.breeding.pair.many",
+                  "Params": {
+                    "hearts": "3"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[11].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.breeding.grow.many",
+                  "Params": {
+                    "minutes": "90"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[12].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.products"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[13].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.products.line",
+                  "MessageParams": {
+                    "items": {
+                      "MessageId": "cozyranch_journal.list.1",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Container_Bucket_Milk.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[14].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.traits"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[15].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.bountiful.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[16].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.bountiful.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[17].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.swift_grower.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[18].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.swift_grower.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[19].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.fertile.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[20].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.fertile.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[21].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.affectionate.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[22].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.affectionate.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[23].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.hardy.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[24].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.hardy.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[25].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.gourmet.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[26].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.gourmet.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[27].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.twinborn.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[28].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.twinborn.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[29].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.efficient_eater.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[30].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.efficient_eater.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[31].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.lucky.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[32].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.lucky.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[33].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.behaviours"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[34].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.graze.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[35].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.dust_wallow.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[36].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.trough_snack.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[37].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.follow_parent.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[38].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.socialise.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[39].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.nap.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[40].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.head_shake.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[41].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.toy_post.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[42].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.rare"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineRare.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[43].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_wildlife.hint.bison.rare"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NavContents.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.nav.contents"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NavPrev.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.nav.previous"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NavNext.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.nav.next"
+                }
+              }
+            ]
+          },
+          "expect": {
+            "valid": true,
+            "errors": 0,
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/journal-bison.png"
+        },
+        {
+          "tool": "ui_render",
+          "name": "BisonBarn house page, three bisons (the typical barn page's commands with bison keys)",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "commands": [
+              {
+                "type": "Append",
+                "text": "CozyRanch/HousePage.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#HouseTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_models_a.items.CozyRanch_House_BisonBarn.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesLine.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.header.species",
+                  "MessageParams": {
+                    "species": {
+                      "MessageId": "cozyranch_species.bison.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentCount.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.header.count",
+                  "Params": {
+                    "count": "3",
+                    "capacity": "4"
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#JournalButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.journal"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NoticeBox.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.products.title"
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#ProductList"
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsMore.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsEmpty.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsEmpty.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.products.empty"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#CollectButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.collect"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#CollectButton.Disabled",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#MilkHint.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentsTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.residents.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#EmptyResidents.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#EmptyResidentsText.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.residents.empty",
+                  "MessageParams": {
+                    "species": {
+                      "MessageId": "cozyranch_species.bison.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#ResidentList"
+              },
+              {
+                "type": "Append",
+                "selector": "#ResidentList",
+                "text": "CozyRanch/HouseResidentRow.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RSelected.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RName.TextSpans",
+                "data": {
+                  "RawText": "Buttercup"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RFaceHappy.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RFaceOkay.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RFaceSad.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RMood.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.mood.happy"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RBaby.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RFeed.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RPersonality.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RTrait1.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RTrait1.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.efficient_eater.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RTrait1.TooltipText",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.efficient_eater.desc"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RTrait2.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RNameButton.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RNameButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RHeart1.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RHeart2.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RHeart3.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RHeart4.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RHeart5.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[0] #RWhere.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.where.outside"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#ResidentList",
+                "text": "CozyRanch/HouseResidentRow.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RSelected.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RName.TextSpans",
+                "data": {
+                  "RawText": "Moose"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RFaceHappy.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RFaceOkay.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RFaceSad.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RMood.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.mood.okay"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RBaby.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RFeed.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RPersonality.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RTrait1.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RTrait2.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RNameButton.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RNameButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RHeart1.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RHeart2.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RHeart3.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RHeart4.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RHeart5.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[1] #RWhere.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.where.inside"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#ResidentList",
+                "text": "CozyRanch/HouseResidentRow.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RSelected.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RName.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_species.bison.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RFaceHappy.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RFaceOkay.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RFaceSad.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RMood.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.mood.sad"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RBaby.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RFeed.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RPersonality.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RTrait1.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RTrait2.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RNameButton.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RNameButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RHeart1.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RHeart2.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RHeart3.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RHeart4.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RHeart5.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList[2] #RWhere.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.where.outside"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#DetailCard.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#MoveCard.Visible",
+                "data": false
+              },
+              {
+                "type": "Clear",
+                "selector": "#MoveList"
+              },
+              {
+                "type": "Set",
+                "selector": "#DetailName.TextSpans",
+                "data": {
+                  "RawText": "Buttercup"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#LocateButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.locate"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResummonButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.callback"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#MoveButton.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#MoveOutButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.moveout"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowersTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.followers.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowerList.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#NoFollowers.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#NoFollowersText.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.followers.empty",
+                  "MessageParams": {
+                    "species": {
+                      "MessageId": "cozyranch_species.bison.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#FollowerList"
+              },
+              {
+                "type": "Append",
+                "selector": "#FollowerList",
+                "text": "CozyRanch/HouseFollowerRow.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowerList[0] #FName.TextSpans",
+                "data": {
+                  "RawText": "Daisy"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowerList[0] #FHeart1.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowerList[0] #FHeart2.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowerList[0] #FHeart3.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowerList[0] #FHeart4.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowerList[0] #FHeart5.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowerList[0] #FMoveIn.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.movein"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowerList[0] #FMoveIn.Disabled",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFace.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFaceHappy.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFaceOkay.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFaceSad.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatSummary.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.good"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatDetail.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.detail.some"
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#HabitatMissing"
+              },
+              {
+                "type": "Append",
+                "selector": "#HabitatMissing",
+                "text": "CozyRanch/HouseMissingRow.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MNeed.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MWant.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MWant.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.want"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MName.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.open_space"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RefreshButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.refresh"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RefreshButton.TooltipText",
+                "data": {
+                  "MessageId": "cozyranch_houseui.tooltip.refresh"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#AreaButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.area.show"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#AreaButton.TooltipText",
+                "data": {
+                  "MessageId": "cozyranch_houseui.tooltip.area"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#BreedingTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.breeding.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#BreedingState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.breeding.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#BreedingToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.rename.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameField.Value",
+                "data": ""
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.rename.button"
+                }
+              }
+            ]
+          },
+          "expect": {
+            "valid": true,
+            "errors": 0,
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-bison/houseui-bison.png"
+        }
+      ]
+    }
+  ]
+}

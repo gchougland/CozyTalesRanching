@@ -1,0 +1,24 @@
+{
+  "Species": [
+    {
+      "Id": "deer",
+      "Order": 190,
+      "DescriptionKey": "cozyranch_journal.species.deer.desc",
+      "RareKey": "cozyranch_journal.species.deer.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Deer.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/DeerSilhouette.png",
+      "Behaviours": [
+        "graze",
+        "ear_flick",
+        "prance",
+        "grass_bed",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_log",
+        "toy_ball"
+      ]
+    }
+  ]
+}

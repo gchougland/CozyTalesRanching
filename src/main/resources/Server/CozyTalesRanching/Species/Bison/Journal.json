@@ -1,0 +1,25 @@
+{
+  "Species": [
+    {
+      "Id": "bison",
+      "Order": 200,
+      "DescriptionKey": "cozyranch_journal.species.bison.desc",
+      "RareKey": "cozyranch_journal.species.bison.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Bison.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/BisonSilhouette.png",
+      "Behaviours": [
+        "graze",
+        "dust_wallow",
+        "head_shake",
+        "post_rub",
+        "herd_graze",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_post",
+        "toy_ball"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "Id": "bison",
+  "NameKey": "cozyranch_species.bison.name",
+  "WildRoles": [
+    "Bison"
+  ],
+  "WildBabyRoles": [
+    "Bison_Calf"
+  ],
+  "AdoptRoles": [
+    "Tamed_Bison"
+  ],
+  "AdoptBabyRoles": [
+    "Tamed_Bison_Calf"
+  ],
+  "RanchRole": "CozyRanch_Bison",
+  "RanchBabyRole": "CozyRanch_Bison_Calf",
+  "HouseBlock": "CozyRanch_House_BisonBarn",
+  "HouseCapacity": 3,
+  "BasicFoods": [
+    "Plant_Crop_Lettuce_Item",
+    "Plant_Crop_Carrot_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Hay_Bundle",
+    "Plant_Crop_Wheat_Item"
+  ],
+  "FavoriteTreats": [
+    "Plant_Crop_Cauliflower_Item"
+  ],
+  "FeedingsToTame": 4,
+  "Shyness": 0.2,
+  "GrowUpMinutes": 110,
+  "BreedCooldownMinutes": 75,
+  "Products": [
+    {
+      "Item": "CozyRanch_Bison_Wool",
+      "Quantity": 1,
+      "IntervalMinutes": 45,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "food",
+    "grass"
+  ],
+  "HabitatPrefers": [
+    "open_space",
+    "hay",
+    "dust"
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "Ground": {
+    "tall_grass_bed": [
+      {
+        "At": [
+          "Plant_Grass_Lush_Tall",
+          "Plant_Grass_Wet_Tall",
+          "Plant_Grass_Wet_Overgrown",
+          "Plant_Grass_Wet_Wild",
+          "Plant_Grass_Sharp_Tall",
+          "Plant_Grass_Sharp_Overgrown",
+          "Plant_Grass_Sharp_Wild",
+          "Plant_Grass_Jungle_Tall",
+          "Plant_Grass_Rocky_Tall",
+          "Plant_Grass_Gnarled_Tall",
+          "Plant_Grass_Dry_Tall",
+          "Plant_Grass_Arid_Tall",
+          "Plant_Grass_Snowy_Tall",
+          "Plant_Grass_Winter_Tall",
+          "Plant_Fern_Tall"
+        ]
+      },
+      {
+        "Near": [
+          "Plant_Grass_Lush_Tall",
+          "Plant_Grass_Wet_Tall",
+          "Plant_Grass_Wet_Overgrown",
+          "Plant_Grass_Wet_Wild",
+          "Plant_Grass_Sharp_Tall",
+          "Plant_Grass_Sharp_Overgrown",
+          "Plant_Grass_Sharp_Wild",
+          "Plant_Grass_Jungle_Tall",
+          "Plant_Grass_Rocky_Tall",
+          "Plant_Grass_Gnarled_Tall",
+          "Plant_Grass_Dry_Tall",
+          "Plant_Grass_Arid_Tall",
+          "Plant_Grass_Snowy_Tall",
+          "Plant_Grass_Winter_Tall",
+          "Plant_Fern_Tall"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "ear_flick": {
+      "Kind": "here",
+      "Weight": 2.5,
+      "CooldownSeconds": 45,
+      "Seconds": [
+        3,
+        4
+      ]
+    },
+    "prance": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 100,
+      "Seconds": [
+        2,
+        3
+      ],
+      "RepeatSeconds": 2
+    },
+    "grass_bed": {
+      "Kind": "here",
+      "Ground": "tall_grass_bed",
+      "Weight": 4,
+      "CooldownSeconds": 240,
+      "Seconds": [
+        10,
+        12
+      ]
+    }
+  },
+  "Species": {
+    "deer": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "graze": [
+          "Graze"
+        ],
+        "ear_flick": [
+          "EarFlick"
+        ],
+        "prance": [
+          "Prance"
+        ],
+        "grass_bed": [
+          "GrassBed"
+        ],
+        "socialise": [
+          "Love"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Prance"
+        ],
+        "toy_ball": [
+          "Graze"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "graze": [
+          "Graze"
+        ],
+        "ear_flick": [
+          "EarFlick"
+        ],
+        "prance": [
+          "Prance"
+        ],
+        "grass_bed": [
+          "GrassBed"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Prance"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "prance": 2
+      }
+    },
+    "shy": {
+      "Weights": {
+        "ear_flick": 2,
+        "prance": 0.5
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "grass_bed": 2
+      }
+    }
+  }
+}
