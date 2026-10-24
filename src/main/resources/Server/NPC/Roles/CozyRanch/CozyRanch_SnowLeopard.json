@@ -1,0 +1,27 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_SnowLeopard",
+    "AttitudeGroup": "Empty",
+    "SeparationDistance": 1.5,
+    "DropList": "Drop_Leopard_Snow",
+    "MaxHealth": 103,
+    "MaxSpeed": 5,
+    "ParticleOffset": [
+      0,
+      1.5,
+      0
+    ],
+    "FoodItems": [
+      "Food_Wildmeat_Raw",
+      "Food_Chicken_Raw",
+      "Food_Fish_Raw",
+      "Food_Beef_Raw",
+      "Food_Fish_Grilled"
+    ],
+    "FollowStopDistance": 3,
+    "NameTranslationKey": "server.npcRoles.Leopard_Snow.name",
+    "WanderRadius": 7
+  }
+}

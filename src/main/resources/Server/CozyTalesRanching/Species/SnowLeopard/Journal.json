@@ -1,0 +1,24 @@
+{
+  "Species": [
+    {
+      "Id": "snowleopard",
+      "Order": 160,
+      "DescriptionKey": "cozyranch_journal.species.snowleopard.desc",
+      "RareKey": "cozyranch_journal.species.snowleopard.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/SnowLeopard.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/SnowLeopardSilhouette.png",
+      "Behaviours": [
+        "stalk_pounce",
+        "groom",
+        "perch_watch",
+        "snow_paw",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_ball",
+        "toy_post"
+      ]
+    }
+  ]
+}

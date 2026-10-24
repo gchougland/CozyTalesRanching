@@ -1,0 +1,156 @@
+{
+  "Ground": {
+    "snowy": [
+      {
+        "Under": [
+          "Soil_Snow",
+          "Rock_Ice"
+        ]
+      },
+      {
+        "At": [
+          "Plant_Grass_Snowy",
+          "Soil_Snow_Half"
+        ]
+      }
+    ],
+    "rock_perch": [
+      {
+        "Under": [
+          "Rock_"
+        ],
+        "Exclude": [
+          "Ore",
+          "Crystal"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "stalk_pounce": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 80,
+      "Seconds": [
+        3,
+        5
+      ]
+    },
+    "groom": {
+      "Kind": "here",
+      "Weight": 2.5,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        6,
+        10
+      ]
+    },
+    "perch_watch": {
+      "Kind": "here",
+      "Ground": "rock_perch",
+      "Weight": 5,
+      "CooldownSeconds": 80,
+      "Seconds": [
+        10,
+        18
+      ]
+    },
+    "snow_paw": {
+      "Kind": "here",
+      "Ground": "snowy",
+      "Weight": 4,
+      "CooldownSeconds": 70,
+      "Seconds": [
+        3,
+        5
+      ],
+      "RepeatSeconds": 2
+    }
+  },
+  "Species": {
+    "snowleopard": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "stalk_pounce": [
+          "StalkPounce"
+        ],
+        "groom": [
+          "Groom"
+        ],
+        "perch_watch": [
+          "PerchWatch"
+        ],
+        "snow_paw": [
+          "SnowPaw"
+        ],
+        "socialise": [
+          "Love",
+          "Happy"
+        ],
+        "nap": [
+          "CurlUp",
+          "Sleep"
+        ],
+        "toy_ball": [
+          "StalkPounce"
+        ],
+        "toy_post": [
+          "ClawStretch"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "stalk_pounce": [
+          "StalkPounce"
+        ],
+        "snow_paw": [
+          "SnowPaw"
+        ],
+        "groom": [
+          "Groom"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "CurlUp",
+          "Sleep"
+        ],
+        "toy_ball": [
+          "StalkPounce"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "stalk_pounce": 2,
+        "snow_paw": 1.5
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "groom": 1.5,
+        "perch_watch": 1.4,
+        "stalk_pounce": 0.6
+      }
+    },
+    "shy": {
+      "Weights": {
+        "perch_watch": 1.5,
+        "groom": 1.2
+      }
+    }
+  }
+}

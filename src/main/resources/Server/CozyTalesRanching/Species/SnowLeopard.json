@@ -1,0 +1,54 @@
+{
+  "Id": "snowleopard",
+  "NameKey": "cozyranch_species.snowleopard.name",
+  "WildRoles": [
+    "Leopard_Snow"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_SnowLeopard",
+  "RanchBabyRole": "CozyRanch_SnowLeopard_Cub",
+  "Predator": true,
+  "BaitItems": [
+    "Food_Wildmeat_Raw",
+    "Food_Fish_Raw",
+    "Food_Chicken_Raw"
+  ],
+  "CalmMinutes": 3,
+  "HouseBlock": "CozyRanch_House_SnowyDen",
+  "HouseCapacity": 2,
+  "BasicFoods": [
+    "Food_Wildmeat_Raw",
+    "Food_Chicken_Raw"
+  ],
+  "PreferredFoods": [
+    "Food_Fish_Raw",
+    "Food_Beef_Raw"
+  ],
+  "FavoriteTreats": [
+    "Food_Fish_Grilled"
+  ],
+  "FeedingsToTame": 5,
+  "Shyness": 0.7,
+  "GrowUpMinutes": 80,
+  "BreedCooldownMinutes": 70,
+  "Products": [
+    {
+      "Item": "CozyRanch_Spotted_Pelt",
+      "Quantity": 1,
+      "IntervalMinutes": 60,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "food",
+    "snow_cover"
+  ],
+  "HabitatPrefers": [
+    "rocky_ground",
+    "frozen_ice",
+    "snowy_firs",
+    "open_space"
+  ]
+}
