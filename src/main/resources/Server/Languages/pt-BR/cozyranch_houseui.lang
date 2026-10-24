@@ -1,0 +1,144 @@
+title.fallback = {species} Casa
+header.species = Página inicial para: {species}
+header.count = {count} de residentes de {capacity}
+
+residents.title = Moradores
+residents.empty = Ninguém mora aqui ainda. Leve um {species} amigo até lá e convide-o para morar.
+resident.baby = Bebê
+trait.nodesc = Uma característica sobre a qual este rancho ainda não possui anotações.
+
+mood.happy = Feliz
+mood.okay = Contente
+mood.sad = Um pouco para baixo
+
+where.inside = Dentro
+where.outside = Fora
+where.lost = Me afastei.
+
+button.callback = Ligar de volta
+button.moveout = Sair
+button.movein = Mude-se para cá.
+button.full = Casa cheia
+button.locate = Localizar
+button.move = Mover
+button.movehere = Mova-se para cá.
+button.cancel = Cancelar
+button.collect = Coletar
+button.journal = Jornal
+button.name = Nome
+button.refresh = Confira agora
+button.area.show = Área de exposição
+button.area.hide = Área oculta
+
+tooltip.refresh = Observe a casa novamente agora: decorações, água, sombra e bebedouros.
+tooltip.area = A casa é iluminada por pequenas luzes durante alguns minutos, visíveis apenas para você. Tudo o que estiver dentro do círculo de luz conta para esta casa. Luzes azuis mostram a distância que os animais que dormem em casa conseguem alcançar o cocho.
+
+products.title = Esperando na casa
+products.empty = Nada ainda. Os moradores felizes deixam pequenos presentes aqui.
+products.count = x{count}
+products.more = +{count} mais
+products.buckets = Cada pessoa precisa de um balde vazio para coletar leite. Leve os baldes quando for coletar.
+
+feed.hearty = Refeição farta
+feed.sweet = Ração doce
+feed.breeders = Ração do criador
+feed.premium = Ração premium
+feed.other = {name} alimentação
+
+move.title = Mova {name} para:
+move.house.at = {name} em {x}, {z}
+
+locate.inside = {name} está dentro de casa, aconchegante e seguro.
+locate.lost = {name} se perdeu. Uma nova chamada o traz de volta.
+locate.elsewhere = {name} está em outro mundo agora.
+locate.unknown = {name} não foi encontrado no momento. Tente ligar novamente.
+locate.near = {name} está bem ao seu lado.
+locate.far = {name} é {distance} bloqueia {direction} de você.
+locate.last.near = {name} foi visto pela última vez bem ao seu lado.
+locate.last = {name} foi visto pela última vez a {distance} blocos de {direction} de você.
+dir.north = norte
+dir.northeast = nordeste
+dir.east = leste
+dir.southeast = sudeste
+dir.south = sul
+dir.southwest = sudoeste
+dir.west = oeste
+dir.northwest = noroeste
+
+journal.unavailable = O Diário do Fazendeiro ainda não está pronto.
+
+followers.title = Seguindo você
+followers.empty = Animais desse tipo que te seguem podem se mudar para cá. Faça amizade com um {species} e traga-o com você.
+
+habitat.title = Habitat
+habitat.unchecked = Ainda não verificado.
+habitat.unchecked.detail = A casa dá uma olhadinha de vez em quando, ou pressione Verificar agora.
+habitat.great = Aconchegante e completo
+habitat.good = Confortável e com espaço para crescer.
+habitat.poor = Faltando algo importante
+habitat.detail.none = Tudo o que eles amam está por perto.
+habitat.detail.some = Coisas para adicionar nas proximidades:
+habitat.need = Precisa
+habitat.want = Adoraria!
+habitat.food = Comida
+habitat.hay = Feno
+habitat.grass = Grama
+habitat.flowers = Flores
+habitat.dust = Uma área empoeirada
+habitat.mud = Lama
+habitat.water = Água
+habitat.vegetables = Culturas de hortaliças
+habitat.open_space = pasto aberto
+habitat.lily_pads = folhas de lírio
+habitat.reeds = Juncos
+habitat.tall_grass = Grama alta
+habitat.shade = Sombra
+habitat.toy_ball = Jogar bola
+habitat.toy_post = Poste de arranhar
+habitat.toy_bell = Sino suspenso
+habitat.toy_duck = pato flutuante
+habitat.toy_log = Tronco de escalada
+
+breeding.title = Reprodução
+breeding.on = Bebês são bem-vindos aqui.
+breeding.off = Nada de bebês por enquanto.
+breeding.turnon = Ligar
+breeding.turnoff = Desligar
+
+rename.title = Nome da casa
+rename.button = Renomear
+
+result.assigned = {name} se mudou!
+result.unassigned = {name} saiu.
+result.resummoned = {name} está a caminho da porta.
+result.breeding.on = A reprodução está aberta. Filhotes são bem-vindos.
+result.breeding.off = A reprodução está suspensa.
+result.renamed = Casa renomeada.
+result.renamed.reset = A casa voltou a ter seu nome habitual.
+result.not_owner = Somente o proprietário pode fazer alterações nesta casa.
+result.no_permission = Você não tem permissão para fazer isso aqui.
+result.wrong_species = Esse animal não pode viver nesta casa.
+result.house_full = Esta casa está cheia.
+result.not_found = O animal não foi encontrado.
+result.unavailable = A casa ainda está se acomodando. Tente novamente em breve.
+result.error = Algo deu errado. Tente novamente.
+result.gone = Esta casa não existe mais.
+result.ok = Feito.
+result.moved = {name} foi movido para {house}.
+result.move.gone = Aquela casa não tem mais espaço.
+result.collected = Em suas malas: {count}.
+result.collected.buckets = Em seus sacos: {count}. O leite aguarda baldes vazios.
+result.collect.nothing = Ainda não há nada para coletar.
+result.collect.buckets = O leite aguarda baldes vazios, um para cada um.
+result.collect.full = Suas malas estão cheias.
+result.refreshed = Dei uma nova olhada na casa.
+result.refresh.wait = Aguarde um instante antes de olhar novamente.
+result.refresh.elsewhere = Para isso, esteja no mesmo mundo que a casa.
+result.border.on = Luzes circundam a casa por alguns minutos. O que está dentro do círculo é o que importa.
+result.border.on.trough = Luzes circundam a casa por alguns minutos: cor de mel para o que importa, azul para quem alcança o comedouro.
+result.border.off = As luzes da área estão apagadas.
+
+commands.housepage.desc = Abre a página da casa em uma casa fictícia (típica, cheia, vazia, sem inspeção, faltando, reprodução, produtos, leite, mudança, personalidade, longa).
+commands.housepage.arg = Qual casa inventada mostrar?
+commands.housepage.unknown = Casa desconhecida. Tente típico, cheio, vazio, sem verificação, desaparecido, reprodução, produtos, leite, mudança, personalidade ou longo.
+commands.housepage.failed = Não foi possível abrir a página inicial.
