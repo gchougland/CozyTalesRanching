@@ -1,0 +1,19 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Sheep_Ram",
+    "AttitudeGroup": "PreyBig",
+    "DropList": "Drop_Ram",
+    "MaxHealth": 124,
+    "MaxSpeed": 6,
+    "FoodItems": [
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Cauliflower_Item",
+      "Plant_Crop_Carrot_Item"
+    ],
+    "FollowStopDistance": 3,
+    "NameTranslationKey": "server.npcRoles.Ram.name"
+  }
+}

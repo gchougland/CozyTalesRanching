@@ -1,0 +1,120 @@
+{
+  "Behaviours": {
+    "one_leg": {
+      "Kind": "here",
+      "Weight": 4,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        10,
+        18
+      ]
+    },
+    "filter_feed": {
+      "Kind": "here",
+      "Ground": "pond",
+      "Weight": 5,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        6,
+        10
+      ]
+    },
+    "head_flag": {
+      "Kind": "social",
+      "Weight": 2,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        4,
+        7
+      ]
+    }
+  },
+  "Species": {
+    "flamingo": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "one_leg": [
+          "OneLeg",
+          "IdlePassive"
+        ],
+        "filter_feed": [
+          "FilterFeed"
+        ],
+        "head_flag": [
+          "HeadFlag"
+        ],
+        "preen": [
+          "Preen"
+        ],
+        "socialise": [
+          "HeadFlag",
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "toy_duck": [
+          "FilterFeed",
+          "Happy"
+        ],
+        "approach_player": [
+          "IdlePassive"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "one_leg": [
+          "OneLeg"
+        ],
+        "filter_feed": [
+          "FilterFeed"
+        ],
+        "preen": [
+          "Preen"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "approach_player": [
+          "IdlePassive"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "lazy": {
+      "Weights": {
+        "one_leg": 1.8
+      }
+    },
+    "playful": {
+      "Weights": {
+        "head_flag": 1.6
+      }
+    },
+    "curious": {
+      "Weights": {
+        "filter_feed": 1.4
+      }
+    }
+  }
+}

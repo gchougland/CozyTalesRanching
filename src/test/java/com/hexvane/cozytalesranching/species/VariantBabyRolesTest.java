@@ -79,4 +79,28 @@ class VariantBabyRolesTest {
         assertEquals("CozyRanch_Cow_Calf", cow.ranchRoleFor("Cow_Calf", true));
         assertEquals("Cow_Calf", cow.wildRoleFor("CozyRanch_Cow_Calf", true));
     }
+
+    /** The bundled pig, sheep and chicken files: every wild or adopted baby that maps to a look gets that look's baby. */
+    @Test
+    void bundledVariantBabiesKeepTheirLook() throws Exception {
+        for (String name : new String[] {"Pig", "Sheep", "Chicken"}) {
+            try (var in = getClass().getResourceAsStream("/Server/CozyTalesRanching/Species/" + name + ".json")) {
+                org.junit.jupiter.api.Assertions.assertNotNull(in, name);
+                SpeciesDefinition s = new com.google.gson.Gson().fromJson(new java.io.InputStreamReader(in, java.nio.charset.StandardCharsets.UTF_8),
+                    SpeciesDefinition.class).normalise();
+                for (String baby : concat(s.WildBabyRoles, s.AdoptBabyRoles)) {
+                    String look = s.RanchRoleVariants.get(baby);
+                    String want = look != null && s.RanchBabyRoleVariants.containsKey(look) ? s.RanchBabyRoleVariants.get(look) : s.RanchBabyRole;
+                    assertEquals(want, s.ranchRoleFor(baby, true), name + " " + baby);
+                    if (s.WildBabyRoles.contains(baby) && look != null) assertEquals(baby, s.wildRoleFor(want, true), name + " " + baby);
+                }
+            }
+        }
+    }
+
+    private static List<String> concat(List<String> a, List<String> b) {
+        List<String> out = new java.util.ArrayList<>(a);
+        out.addAll(b);
+        return out;
+    }
 }

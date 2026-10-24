@@ -1,0 +1,47 @@
+{
+  "Id": "flamingo",
+  "NameKey": "cozyranch_species.flamingo.name",
+  "WildRoles": [
+    "Flamingo"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Flamingo",
+  "RanchBabyRole": "CozyRanch_Flamingo_Baby",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_FlamingoNest",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Plant_Seaweed_Grass",
+    "Plant_Flower_Water_Duckweed"
+  ],
+  "PreferredFoods": [
+    "Plant_Seaweed_Grass_Bulbs",
+    "Plant_Crop_Rice_Item"
+  ],
+  "FavoriteTreats": [
+    "Fish_Minnow_Item"
+  ],
+  "FeedingsToTame": 4,
+  "Shyness": 0.6,
+  "GrowUpMinutes": 45,
+  "BreedCooldownMinutes": 40,
+  "Products": [
+    {
+      "Item": "Ingredient_Feathers_Red",
+      "Quantity": 1,
+      "IntervalMinutes": 50,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "water"
+  ],
+  "HabitatPrefers": [
+    "reeds",
+    "mud",
+    "lily_pads",
+    "open_space"
+  ]
+}

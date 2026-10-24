@@ -1,0 +1,17 @@
+{
+  "Parent": "Ram_Lamb",
+  "Model": "NPC/Livestock/Ram_Lamb/Models/Model.blockymodel",
+  "Texture": "NPC/Livestock/Ram_Lamb/Models/Texture.png",
+  "AnimationSets": {
+    "Happy": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Sheep/Animations/Ram/Lamb_Happy.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    }
+  },
+  "Icon": "Icons/ModelsGenerated/Ram_Lamb.png"
+}

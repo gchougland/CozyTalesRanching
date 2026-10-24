@@ -1,0 +1,50 @@
+{
+  "Parent": "Boar",
+  "Model": "NPC/Livestock/Boar/Models/Model.blockymodel",
+  "Texture": "NPC/Livestock/Boar/Models/Texture.png",
+  "AnimationSets": {
+    "EatTrough": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Pig/Animations/Boar/EatTrough.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Happy": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Pig/Animations/Boar/Happy.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    },
+    "Love": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Pig/Animations/Boar/Love.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    },
+    "MudRoll": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Pig/Animations/Boar/MudRoll.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Snuffle": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Pig/Animations/Boar/Snuffle.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    }
+  },
+  "Icon": "Icons/ModelsGenerated/Boar.png"
+}

@@ -1,0 +1,35 @@
+{
+  "Species": {
+    "flamingo": {
+      "Roles": [
+        "Flamingo"
+      ],
+      "OwnHouseWeight": 0.9,
+      "CooldownMinutes": 15,
+      "Attractors": [
+        {
+          "HouseSpecies": "duck",
+          "Features": [
+            "water",
+            "reeds"
+          ],
+          "Weight": 0.25
+        },
+        {
+          "HouseSpecies": "crab",
+          "Features": [
+            "beach_sand"
+          ],
+          "Weight": 0.15
+        },
+        {
+          "HouseSpecies": "frog",
+          "Features": [
+            "water"
+          ],
+          "Weight": 0.1
+        }
+      ]
+    }
+  }
+}
