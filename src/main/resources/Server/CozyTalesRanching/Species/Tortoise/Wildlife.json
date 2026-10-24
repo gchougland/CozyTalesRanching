@@ -1,0 +1,27 @@
+{
+  "Species": {
+    "tortoise": {
+      "Roles": [
+        "Tortoise"
+      ],
+      "OwnHouseWeight": 0.85,
+      "CooldownMinutes": 30,
+      "Attractors": [
+        {
+          "HouseSpecies": "camel",
+          "Features": [
+            "desert_sand"
+          ],
+          "Weight": 0.25
+        },
+        {
+          "HouseSpecies": "rabbit",
+          "Features": [
+            "carrot_patch"
+          ],
+          "Weight": 0.2
+        }
+      ]
+    }
+  }
+}

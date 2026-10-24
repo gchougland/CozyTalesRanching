@@ -1,0 +1,99 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_models_a.items.CozyRanch_House_TortoiseBurrow.name",
+    "Description": "cozyranch_models_a.items.CozyRanch_House_TortoiseBurrow.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_House_TortoiseBurrow.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "ItemLevel": 5,
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "Soil_Sand",
+        "Quantity": 16
+      },
+      {
+        "ItemId": "Rock_Sandstone",
+        "Quantity": 6
+      },
+      {
+        "ItemId": "Plant_Crop_Lettuce_Item",
+        "Quantity": 2
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 4
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Farming"
+        ],
+        "Id": "Farmingbench"
+      }
+    ],
+    "TimeSeconds": 3
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/CozyRanch/Houses/TortoiseBurrow/TortoiseBurrow.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/Houses/TortoiseBurrow/TortoiseBurrow_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CozyRanchUseHouse"
+          }
+        ]
+      }
+    },
+    "InteractionHint": "cozyranch_house.hint.use",
+    "HitboxType": "CozyRanch_House_TortoiseBurrow",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_House_TortoiseBurrow"
+      }
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "BlockParticleSetId": "Sand",
+    "ParticleColor": "#D6B47C",
+    "BlockSoundSetId": "Sand",
+    "PhysicalMaterialId": "Dirt",
+    "TextureComputedColor": "#D6B47C"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.26,
+    "Translation": [
+      0,
+      -16
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 0.5,
+  "MaxStack": 4,
+  "ItemSoundSetId": "ISS_Blocks_Gravel"
+}

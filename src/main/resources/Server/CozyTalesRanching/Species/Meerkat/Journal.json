@@ -1,0 +1,24 @@
+{
+  "Species": [
+    {
+      "Id": "meerkat",
+      "Order": 220,
+      "DescriptionKey": "cozyranch_journal.species.meerkat.desc",
+      "RareKey": "cozyranch_journal.species.meerkat.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Meerkat.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/MeerkatSilhouette.png",
+      "Behaviours": [
+        "sentry",
+        "forage_dig",
+        "huddle",
+        "chitter",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_log",
+        "toy_bell"
+      ]
+    }
+  ]
+}

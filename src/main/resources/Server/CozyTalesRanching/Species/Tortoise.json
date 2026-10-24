@@ -1,0 +1,47 @@
+{
+  "Id": "tortoise",
+  "NameKey": "cozyranch_species.tortoise.name",
+  "WildRoles": [
+    "Tortoise"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Tortoise",
+  "RanchBabyRole": "CozyRanch_Tortoise_Baby",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_TortoiseBurrow",
+  "HouseCapacity": 3,
+  "BasicFoods": [
+    "Plant_Crop_Lettuce_Item",
+    "Plant_Fruit_Berries_Red"
+  ],
+  "PreferredFoods": [
+    "Plant_Petals_Yellow",
+    "Plant_Crop_Pumpkin_Item",
+    "Plant_Crop_Cauliflower_Item"
+  ],
+  "FavoriteTreats": [
+    "Plant_Cactus_Flower"
+  ],
+  "FeedingsToTame": 2,
+  "Shyness": 0.1,
+  "GrowUpMinutes": 75,
+  "BreedCooldownMinutes": 70,
+  "Products": [
+    {
+      "Item": "CozyRanch_Tortoise_Scute",
+      "Quantity": 1,
+      "IntervalMinutes": 120,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "open_space"
+  ],
+  "HabitatPrefers": [
+    "leafy_greens",
+    "flowers",
+    "desert_sand"
+  ]
+}

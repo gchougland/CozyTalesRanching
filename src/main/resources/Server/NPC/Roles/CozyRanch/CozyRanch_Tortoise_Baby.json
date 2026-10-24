@@ -1,0 +1,27 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Tortoise_Baby",
+    "SeparationDistance": 0.7,
+    "DropList": "Empty",
+    "MaxHealth": 40,
+    "MaxSpeed": 2.5,
+    "ParticleOffset": [
+      0,
+      0.8,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Fruit_Berries_Red",
+      "Plant_Petals_Yellow",
+      "Plant_Crop_Pumpkin_Item",
+      "Plant_Crop_Cauliflower_Item",
+      "Plant_Cactus_Flower"
+    ],
+    "FollowStopDistance": 2,
+    "NameTranslationKey": "server.cozyranch_species.tortoise.baby.name"
+  }
+}

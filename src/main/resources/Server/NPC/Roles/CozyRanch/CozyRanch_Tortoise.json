@@ -1,0 +1,28 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Tortoise",
+    "SeparationDistance": 1.2,
+    "DropList": "Drop_Tortoise",
+    "MaxHealth": 103,
+    "MaxSpeed": 3,
+    "ParticleOffset": [
+      0,
+      1.4,
+      0
+    ],
+    "WanderRadius": 5,
+    "AttitudeGroup": "PreyBig",
+    "FoodItems": [
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Fruit_Berries_Red",
+      "Plant_Petals_Yellow",
+      "Plant_Crop_Pumpkin_Item",
+      "Plant_Crop_Cauliflower_Item",
+      "Plant_Cactus_Flower"
+    ],
+    "FollowStopDistance": 3,
+    "NameTranslationKey": "server.npcRoles.Tortoise.name"
+  }
+}
