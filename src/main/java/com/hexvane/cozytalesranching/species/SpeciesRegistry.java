@@ -26,7 +26,8 @@ public final class SpeciesRegistry {
     /** Bundled species, in load order. Adding a species = a JSON file plus its id here. */
     public static final String[] BUNDLED = {
         "Cow", "Chicken", "Pig", "Sheep", "Frog",
-        "Rabbit", "Camel", "Squirrel", "Mouse", "Crab", "Mosshorn", "Goat", "Turkey", "Duck"
+        "Rabbit", "Camel", "Squirrel", "Mouse", "Crab", "Mosshorn", "Goat", "Turkey", "Duck",
+        "Fox", "Wolf", "Bear", "SnowLeopard", "Deer", "Bison", "Tortoise", "Meerkat"
     };
     private static final String RESOURCE_DIR = "/Server/CozyTalesRanching/Species/";
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");

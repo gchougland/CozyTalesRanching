@@ -26,6 +26,14 @@ public final class SpeciesDefinition {
     public Map<String, String> RanchRoleVariants = Map.of();
     /** A colour variant's ranch role to its baby role (Bunny parents have Bunny kits). Optional. */
     public Map<String, String> RanchBabyRoleVariants = Map.of();
+    /**
+     * A predator is never befriended by walking up with food: it attacks. It is tamed with bait (a Bait Bowl holding one
+     * of {@link #BaitItems}); eating it leaves the predator Calm for {@link #CalmMinutes}, and only a calm predator can
+     * be fed by hand. The bait system lives in the {@code predator} package.
+     */
+    public boolean Predator = false;
+    public List<String> BaitItems = List.of();
+    public double CalmMinutes = 3.0;
     public String HouseBlock = "";
     public int HouseCapacity = 4;
     public List<String> BasicFoods = List.of();
@@ -61,6 +69,8 @@ public final class SpeciesDefinition {
         HabitatRequires = orEmpty(HabitatRequires);
         HabitatPrefers = orEmpty(HabitatPrefers);
         RanchRoleVariants = RanchRoleVariants == null ? Map.of() : Map.copyOf(RanchRoleVariants);
+        BaitItems = orEmpty(BaitItems);
+        if (!(CalmMinutes > 0)) CalmMinutes = 3.0;
         RanchBabyRoleVariants = RanchBabyRoleVariants == null ? Map.of() : Map.copyOf(RanchBabyRoleVariants);
         return this;
     }
