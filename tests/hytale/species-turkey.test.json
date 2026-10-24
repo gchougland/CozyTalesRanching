@@ -1,0 +1,1197 @@
+{
+  "cases": [
+    {
+      "name": "species-turkey gate",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "asset_check CozyRanch_Turkey.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Turkey.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "asset_check CozyRanch_Turkey_Chick.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Turkey_Chick.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "asset_check CozyRanch_Turkey.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Turkey.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "asset_check CozyRanch_Turkey_Chick.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Turkey_Chick.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "asset_check CozyRanch_House_TurkeyRoost.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_TurkeyRoost.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "asset_check CozyRanch_House_TurkeyRoost.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_TurkeyRoost.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "species-turkey art",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "CozyRanch_Turkey adult",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Turkey.json",
+            "views": [
+              "three_quarter",
+              "right"
+            ],
+            "size": 240
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/CozyRanch_Turkey.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "CozyRanch_Turkey_Chick chick",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Turkey_Chick.json",
+            "views": [
+              "three_quarter",
+              "right"
+            ],
+            "size": 240
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/CozyRanch_Turkey_Chick.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Turkey StrutFan",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Turkey.json",
+            "animation": "StrutFan",
+            "frames": 5,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/CozyRanch_Turkey_StrutFan.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Turkey Gobble",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Turkey.json",
+            "animation": "Gobble",
+            "frames": 5,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/CozyRanch_Turkey_Gobble.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Turkey PeckGround",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Turkey.json",
+            "animation": "PeckGround",
+            "frames": 5,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/CozyRanch_Turkey_PeckGround.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Turkey DustBathe",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Turkey.json",
+            "animation": "DustBathe",
+            "frames": 5,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/CozyRanch_Turkey_DustBathe.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Turkey Happy",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Turkey.json",
+            "animation": "Happy",
+            "frames": 5,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/CozyRanch_Turkey_Happy.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Turkey Love",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Turkey.json",
+            "animation": "Love",
+            "frames": 5,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/CozyRanch_Turkey_Love.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Turkey EatTrough",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Turkey.json",
+            "animation": "EatTrough",
+            "frames": 5,
+            "yaw": 50,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/CozyRanch_Turkey_EatTrough.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Turkey_Chick Happy",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Turkey_Chick.json",
+            "animation": "Happy",
+            "frames": 5,
+            "yaw": 40,
+            "pitch": 15,
+            "size": 200,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/CozyRanch_Turkey_Chick_Happy.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "CozyRanch_House_TurkeyRoost four sides",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_TurkeyRoost.json",
+            "views": [
+              "three_quarter",
+              "front",
+              "right",
+              "back"
+            ],
+            "size": 220
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 3.0
+              },
+              "height": {
+                "$lte": 3.0
+              },
+              "depth": {
+                "$lte": 3.05
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/CozyRanch_House_TurkeyRoost.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "CozyRanch_House_TurkeyRoost texture",
+          "arguments": {
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_TurkeyRoost.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": "PASS"
+          }
+        }
+      ]
+    },
+    {
+      "name": "species-turkey pages",
+      "steps": [
+        {
+          "tool": "ui_render",
+          "name": "empty CozyRanch_House_TurkeyRoost, two habitat things missing",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "commands": [
+              {
+                "type": "Append",
+                "text": "CozyRanch/HousePage.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#HouseTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_models_a.items.CozyRanch_House_TurkeyRoost.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesLine.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.header.species",
+                  "MessageParams": {
+                    "species": {
+                      "MessageId": "cozyranch_species.turkey.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentCount.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.header.count",
+                  "Params": {
+                    "count": "0",
+                    "capacity": "4"
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#JournalButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.journal"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NoticeBox.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.products.title"
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#ProductList"
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsMore.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsEmpty.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#ProductsEmpty.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.products.empty"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#CollectButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.collect"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#CollectButton.Disabled",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#MilkHint.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentsTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.residents.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#ResidentList.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#EmptyResidents.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#EmptyResidentsText.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.residents.empty",
+                  "MessageParams": {
+                    "species": {
+                      "MessageId": "cozyranch_species.turkey.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#ResidentList"
+              },
+              {
+                "type": "Set",
+                "selector": "#DetailCard.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#MoveCard.Visible",
+                "data": false
+              },
+              {
+                "type": "Clear",
+                "selector": "#MoveList"
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowersTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.followers.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#FollowerList.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#NoFollowers.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#NoFollowersText.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.followers.empty",
+                  "MessageParams": {
+                    "species": {
+                      "MessageId": "cozyranch_species.turkey.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#FollowerList"
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFace.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFaceHappy.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFaceOkay.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatFaceSad.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatSummary.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.good"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatDetail.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.detail.some"
+                }
+              },
+              {
+                "type": "Clear",
+                "selector": "#HabitatMissing"
+              },
+              {
+                "type": "Append",
+                "selector": "#HabitatMissing",
+                "text": "CozyRanch/HouseMissingRow.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MNeed.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MWant.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MWant.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.want"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[0] #MName.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.perch"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#HabitatMissing",
+                "text": "CozyRanch/HouseMissingRow.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[1] #MNeed.Visible",
+                "data": false
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[1] #MWant.Visible",
+                "data": true
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[1] #MWant.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.want"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#HabitatMissing[1] #MName.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.habitat.open_space"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RefreshButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.refresh"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RefreshButton.TooltipText",
+                "data": {
+                  "MessageId": "cozyranch_houseui.tooltip.refresh"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#AreaButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.button.area.show"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#AreaButton.TooltipText",
+                "data": {
+                  "MessageId": "cozyranch_houseui.tooltip.area"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#BreedingTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.breeding.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#BreedingState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.breeding.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#BreedingToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameTitle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.rename.title"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameField.Value",
+                "data": ""
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameButton.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.rename.button"
+                }
+              }
+            ]
+          },
+          "expect": {
+            "valid": true,
+            "errors": 0,
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/house-page.png"
+        },
+        {
+          "tool": "ui_render",
+          "name": "turkey journal page, befriended and housed, two habits and one trait seen",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
+            "commands": [
+              {
+                "type": "Append",
+                "text": "CozyRanch/JournalSpecies.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesName.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_species.turkey.name"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesTagline.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.first_met",
+                  "MessageParams": {
+                    "date": {
+                      "MessageId": "cozyranch_journal.date",
+                      "Params": {
+                        "day": "22",
+                        "year": "2026"
+                      },
+                      "MessageParams": {
+                        "month": {
+                          "MessageId": "cozyranch_journal.month.10"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesArt.AssetPath",
+                "data": "UI/Custom/CozyRanch/Journal/Turkey.png"
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesDesc.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.turkey.desc"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#SpeciesNumber.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.species.number",
+                  "Params": {
+                    "number": "1",
+                    "total": "7"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[0].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.diet"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[1].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.diet.eats",
+                  "MessageParams": {
+                    "foods": {
+                      "MessageId": "cozyranch_journal.list.2",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Plant_Crop_Wheat.name"
+                        },
+                        "b": {
+                          "MessageId": "server.items.Plant_Crop_Corn.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[2].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.diet.prefers",
+                  "MessageParams": {
+                    "foods": {
+                      "MessageId": "cozyranch_journal.list.2",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Plant_Fruit_Berries_Red.name"
+                        },
+                        "b": {
+                          "MessageId": "server.items.Plant_Crop_Rice.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[3].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.treats"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#LeftNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#LeftNotes[4].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.treats.line",
+                  "MessageParams": {
+                    "foods": {
+                      "MessageId": "cozyranch_journal.list.1",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "server.items.Plant_Crop_Corn.name"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[0].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.care"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[1].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.care.tame.many",
+                  "Params": {
+                    "count": "3"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[2].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.care.daily"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[3].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.home"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[4].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.home.house",
+                  "Params": {
+                    "count": "4"
+                  },
+                  "MessageParams": {
+                    "house": {
+                      "MessageId": "cozyranch_models_a.items.CozyRanch_House_TurkeyRoost.name"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[5].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.home.needs",
+                  "MessageParams": {
+                    "things": {
+                      "MessageId": "cozyranch_journal.list.1",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "cozyranch_houseui.habitat.food"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[6].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.home.likes",
+                  "MessageParams": {
+                    "things": {
+                      "MessageId": "cozyranch_journal.list.3",
+                      "MessageParams": {
+                        "a": {
+                          "MessageId": "cozyranch_houseui.habitat.grass"
+                        },
+                        "b": {
+                          "MessageId": "cozyranch_houseui.habitat.open_space"
+                        },
+                        "c": {
+                          "MessageId": "cozyranch_houseui.habitat.perch"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[7].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.wildlife"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[8].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_wildlife.hint.turkey"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[9].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.breeding"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineMuted.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[10].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.hint.breeding"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[11].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.products"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineMuted.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[12].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.hint.products"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[13].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.traits"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineStrong.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[14].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.bountiful.name"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[15].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_breeding.trait.bountiful.desc"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineMuted.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[16].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.more.many",
+                  "Params": {
+                    "count": "8"
+                  }
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalHeading.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[17].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.section.behaviours"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[18].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.strut.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLine.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[19].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.behaviour.gobble.note"
+                }
+              },
+              {
+                "type": "Append",
+                "selector": "#RightNotes",
+                "text": "CozyRanch/JournalLineMuted.ui"
+              },
+              {
+                "type": "Set",
+                "selector": "#RightNotes[20].TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.more.many",
+                  "Params": {
+                    "count": "6"
+                  }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NavContents.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.nav.contents"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NavPrev.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.nav.previous"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#NavNext.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_journal.nav.next"
+                }
+              }
+            ]
+          },
+          "expect": {
+            "valid": true,
+            "errors": 0,
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/species-turkey/journal-page.png"
+        }
+      ]
+    }
+  ]
+}

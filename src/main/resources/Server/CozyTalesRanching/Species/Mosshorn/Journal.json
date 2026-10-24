@@ -1,0 +1,24 @@
+{
+  "Species": [
+    {
+      "Id": "mosshorn",
+      "Order": 110,
+      "DescriptionKey": "cozyranch_journal.species.mosshorn.desc",
+      "RareKey": "cozyranch_journal.species.mosshorn.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Mosshorn.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/MosshornSilhouette.png",
+      "Behaviours": [
+        "moss_graze",
+        "shake_moss",
+        "antler_rub",
+        "mushroom_nibble",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_post",
+        "toy_log"
+      ]
+    }
+  ]
+}

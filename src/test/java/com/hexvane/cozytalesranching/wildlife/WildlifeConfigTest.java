@@ -24,9 +24,12 @@ class WildlifeConfigTest {
     @Test
     void bundledCoversEverySpecies() {
         WildlifeConfig c = WildlifeConfig.bundled();
-        assertEquals(SPECIES_FILES.keySet(), c.Species.keySet());
-        for (SpeciesWildlife sw : c.Species.values()) {
+        // the five baseline species carry a rare; species added later (Species/<Name>/Wildlife.json) may have none
+        assertTrue(c.Species.keySet().containsAll(SPECIES_FILES.keySet()));
+        for (Map.Entry<String, SpeciesWildlife> e : c.Species.entrySet()) {
+            SpeciesWildlife sw = e.getValue();
             assertFalse(sw.Roles.isEmpty());
+            if (!SPECIES_FILES.containsKey(e.getKey())) continue;
             assertNotNull(sw.Rare);
             assertFalse(sw.Rare.Role.isEmpty());
         }

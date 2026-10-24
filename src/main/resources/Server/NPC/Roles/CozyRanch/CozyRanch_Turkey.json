@@ -1,0 +1,24 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Turkey",
+    "SeparationDistance": 0.7,
+    "DropList": "Drop_Turkey",
+    "MaxHealth": 38,
+    "MaxSpeed": 5,
+    "ParticleOffset": [
+      0,
+      1.0,
+      0
+    ],
+    "FoodItems": [
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Corn_Item",
+      "Plant_Fruit_Berries_Red",
+      "Plant_Crop_Rice_Item"
+    ],
+    "FollowStopDistance": 2,
+    "NameTranslationKey": "server.npcRoles.Turkey.name"
+  }
+}

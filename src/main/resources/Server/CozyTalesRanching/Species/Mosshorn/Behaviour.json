@@ -1,0 +1,192 @@
+{
+  "Ground": {
+    "tree_trunk": [
+      {
+        "Near": [
+          "Wood_Amber_Trunk",
+          "Wood_Apple_Trunk",
+          "Wood_Ash_Trunk",
+          "Wood_Aspen_Trunk",
+          "Wood_Azure_Trunk",
+          "Wood_Banyan_Trunk",
+          "Wood_Beech_Trunk",
+          "Wood_Birch_Trunk",
+          "Wood_Bottletree_Trunk",
+          "Wood_Camphor_Trunk",
+          "Wood_Cedar_Trunk",
+          "Wood_Fir_Trunk",
+          "Wood_Gumboab_Trunk",
+          "Wood_Jungle_Trunk",
+          "Wood_Maple_Trunk",
+          "Wood_Oak_Trunk",
+          "Wood_Palm_Trunk",
+          "Wood_Palo_Trunk",
+          "Wood_Redwood_Trunk",
+          "Wood_Sadwillow_Trunk",
+          "Wood_Sallow_Trunk",
+          "Wood_Spiral_Trunk",
+          "Wood_Stormbark_Trunk",
+          "Wood_Windwillow_Trunk"
+        ]
+      }
+    ],
+    "mushrooms": [
+      {
+        "At": [
+          "Plant_Crop_Mushroom_Common_",
+          "Plant_Crop_Mushroom_Cap_Brown",
+          "Plant_Crop_Mushroom_Cap_White",
+          "Plant_Crop_Mushroom_Cap_Red",
+          "Plant_Crop_Mushroom_Flatcap_",
+          "Plant_Crop_Mushroom_Shelve_"
+        ]
+      },
+      {
+        "Near": [
+          "Plant_Crop_Mushroom_Common_",
+          "Plant_Crop_Mushroom_Cap_Brown",
+          "Plant_Crop_Mushroom_Cap_White",
+          "Plant_Crop_Mushroom_Cap_Red",
+          "Plant_Crop_Mushroom_Flatcap_",
+          "Plant_Crop_Mushroom_Shelve_"
+        ]
+      }
+    ],
+    "mossy": [
+      {
+        "Under": [
+          "Plant_Moss_Block_"
+        ]
+      },
+      {
+        "At": [
+          "Plant_Moss_",
+          "Plant_Fern"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "moss_graze": {
+      "Kind": "here",
+      "Ground": "mossy",
+      "Weight": 4,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        6,
+        10
+      ]
+    },
+    "shake_moss": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        3,
+        4
+      ],
+      "RepeatSeconds": 3
+    },
+    "antler_rub": {
+      "Kind": "here",
+      "Ground": "tree_trunk",
+      "Weight": 4,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "mushroom_nibble": {
+      "Kind": "here",
+      "Ground": "mushrooms",
+      "Weight": 4,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        4,
+        7
+      ]
+    }
+  },
+  "Species": {
+    "mosshorn": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "graze": [
+          "Graze"
+        ],
+        "moss_graze": [
+          "Graze"
+        ],
+        "shake_moss": [
+          "ShakeMoss"
+        ],
+        "antler_rub": [
+          "AntlerRub"
+        ],
+        "mushroom_nibble": [
+          "EatTrough"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_post": [
+          "AntlerRub"
+        ],
+        "toy_log": [
+          "ShakeMoss"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "graze": [
+          "Graze"
+        ],
+        "shake_moss": [
+          "ShakeMoss"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Happy"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "shake_moss": 2
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "antler_rub": 1.5,
+        "shake_moss": 0.5
+      }
+    }
+  }
+}

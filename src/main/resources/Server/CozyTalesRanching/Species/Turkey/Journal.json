@@ -1,0 +1,24 @@
+{
+  "Species": [
+    {
+      "Id": "turkey",
+      "Order": 120,
+      "DescriptionKey": "cozyranch_journal.species.turkey.desc",
+      "RareKey": "cozyranch_journal.species.turkey.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Turkey.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/TurkeySilhouette.png",
+      "Behaviours": [
+        "strut",
+        "gobble",
+        "peck",
+        "dust_bathe",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_ball",
+        "toy_bell"
+      ]
+    }
+  ]
+}

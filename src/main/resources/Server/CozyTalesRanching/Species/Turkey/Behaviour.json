@@ -1,0 +1,100 @@
+{
+  "Behaviours": {
+    "strut": {
+      "Kind": "here",
+      "Weight": 3,
+      "CooldownSeconds": 75,
+      "Seconds": [
+        4,
+        6
+      ],
+      "RepeatSeconds": 4
+    },
+    "gobble": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        2,
+        3
+      ],
+      "RepeatSeconds": 2
+    }
+  },
+  "Species": {
+    "turkey": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "strut": [
+          "StrutFan"
+        ],
+        "gobble": [
+          "Gobble"
+        ],
+        "peck": [
+          "PeckGround"
+        ],
+        "dust_bathe": [
+          "DustBathe"
+        ],
+        "socialise": [
+          "Gobble",
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "StrutFan"
+        ],
+        "toy_bell": [
+          "PeckGround"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_bell": [
+          "Happy"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "strut": 2,
+        "gobble": 1.5
+      }
+    },
+    "shy": {
+      "Weights": {
+        "gobble": 0.5,
+        "strut": 0.6
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "strut": 0.5
+      }
+    }
+  }
+}

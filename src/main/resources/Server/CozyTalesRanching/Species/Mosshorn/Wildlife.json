@@ -1,0 +1,22 @@
+{
+  "Species": {
+    "mosshorn": {
+      "Roles": [
+        "Mosshorn",
+        "Mosshorn_Plain"
+      ],
+      "OwnHouseWeight": 0.85,
+      "CooldownMinutes": 30,
+      "Attractors": [
+        {
+          "HouseSpecies": "pig",
+          "Features": [
+            "mushrooms",
+            "shade"
+          ],
+          "Weight": 0.2
+        }
+      ]
+    }
+  }
+}
