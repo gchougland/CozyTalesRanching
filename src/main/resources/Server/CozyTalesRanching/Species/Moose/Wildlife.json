@@ -1,0 +1,38 @@
+{
+  "Species": {
+    "moose": {
+      "Roles": [
+        "Moose_Cow",
+        "Moose_Bull"
+      ],
+      "OwnHouseWeight": 0.85,
+      "CooldownMinutes": 35,
+      "Attractors": [
+        {
+          "HouseSpecies": "duck",
+          "Features": [
+            "water",
+            "reeds"
+          ],
+          "Weight": 0.3
+        },
+        {
+          "HouseSpecies": "frog",
+          "Features": [
+            "water",
+            "lily_pads"
+          ],
+          "Weight": 0.25
+        },
+        {
+          "HouseSpecies": "deer",
+          "Features": [
+            "forest_edge",
+            "water"
+          ],
+          "Weight": 0.2
+        }
+      ]
+    }
+  }
+}

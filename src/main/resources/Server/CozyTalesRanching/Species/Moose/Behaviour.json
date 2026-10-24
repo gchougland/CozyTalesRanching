@@ -1,0 +1,122 @@
+{
+  "Behaviours": {
+    "pond_browse": {
+      "Kind": "here",
+      "Ground": "pond",
+      "Weight": 4,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        8,
+        12
+      ]
+    },
+    "browse_high": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 100,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "shake_off": {
+      "Kind": "here",
+      "Weight": 1.2,
+      "CooldownSeconds": 150,
+      "Seconds": [
+        2,
+        3
+      ]
+    }
+  },
+  "Species": {
+    "moose": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "graze": [
+          "Graze"
+        ],
+        "pond_browse": [
+          "PondBrowse"
+        ],
+        "browse_high": [
+          "BrowseHigh"
+        ],
+        "shake_off": [
+          "ShakeOff"
+        ],
+        "antler_rub": [
+          "AntlerRub"
+        ],
+        "socialise": [
+          "Love",
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Graze"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "approach_player": [
+          "Alerted"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "graze": [
+          "Graze"
+        ],
+        "pond_browse": [
+          "PondBrowse"
+        ],
+        "shake_off": [
+          "ShakeOff"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "approach_player": [
+          "Alerted"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "lazy": {
+      "Weights": {
+        "pond_browse": 1.5,
+        "browse_high": 0.6
+      }
+    },
+    "curious": {
+      "Weights": {
+        "browse_high": 1.6
+      }
+    },
+    "playful": {
+      "Weights": {
+        "shake_off": 2
+      }
+    }
+  }
+}

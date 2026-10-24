@@ -1,0 +1,27 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Armadillo_Baby",
+    "AttitudeGroup": "PreyBig",
+    "SeparationDistance": 0.7,
+    "DropList": "Empty",
+    "MaxHealth": 40,
+    "ParticleOffset": [
+      0,
+      0.9,
+      0
+    ],
+    "FoodItems": [
+      "Plant_Fruit_Berries_Red",
+      "Plant_Crop_Potato_Item",
+      "Plant_Crop_Corn_Item",
+      "Food_Egg",
+      "CozyRanch_Food_Crickets"
+    ],
+    "FollowStopDistance": 2,
+    "NameTranslationKey": "cozyranch_species.armadillo.baby.name",
+    "MaxSpeed": 3,
+    "WanderRadius": 5
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "Id": "moose",
+  "NameKey": "cozyranch_species.moose.name",
+  "WildRoles": [
+    "Moose_Cow",
+    "Moose_Bull"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Moose",
+  "RanchBabyRole": "CozyRanch_Moose_Calf",
+  "RanchRoleVariants": {
+    "Moose_Bull": "CozyRanch_Moose_Bull"
+  },
+  "RanchBabyRoleVariants": {
+    "CozyRanch_Moose_Bull": "CozyRanch_Moose_Bull_Calf"
+  },
+  "HouseBlock": "CozyRanch_House_MooseLodge",
+  "HouseCapacity": 3,
+  "BasicFoods": [
+    "Plant_Crop_Lettuce_Item",
+    "Plant_Leaves_Birch"
+  ],
+  "PreferredFoods": [
+    "Plant_Flower_Water_Duckweed",
+    "Plant_Crop_Turnip_Item"
+  ],
+  "FavoriteTreats": [
+    "Plant_Fruit_Apple"
+  ],
+  "FeedingsToTame": 5,
+  "Shyness": 0.45,
+  "GrowUpMinutes": 100,
+  "BreedCooldownMinutes": 75,
+  "Products": [
+    {
+      "Item": "CozyRanch_Pond_Weed",
+      "Quantity": 1,
+      "IntervalMinutes": 45,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "food",
+    "water"
+  ],
+  "HabitatPrefers": [
+    "lily_pads",
+    "reeds",
+    "marsh"
+  ]
+}
