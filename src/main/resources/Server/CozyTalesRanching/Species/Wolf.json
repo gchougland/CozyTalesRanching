@@ -1,0 +1,59 @@
+{
+  "Id": "wolf",
+  "NameKey": "cozyranch_species.wolf.name",
+  "WildRoles": [
+    "Wolf_Black",
+    "Wolf_White"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Wolf",
+  "RanchBabyRole": "CozyRanch_Wolf_Baby",
+  "RanchRoleVariants": {
+    "Wolf_White": "CozyRanch_Wolf_White"
+  },
+  "RanchBabyRoleVariants": {
+    "CozyRanch_Wolf_White": "CozyRanch_Wolf_White_Baby"
+  },
+  "Predator": true,
+  "BaitItems": [
+    "Food_Wildmeat_Raw",
+    "Food_Beef_Raw",
+    "Food_Pork_Raw"
+  ],
+  "CalmMinutes": 3,
+  "HouseBlock": "CozyRanch_House_WolfLodge",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Food_Wildmeat_Raw",
+    "Food_Fish_Raw"
+  ],
+  "PreferredFoods": [
+    "Food_Beef_Raw",
+    "Food_Pork_Raw"
+  ],
+  "FavoriteTreats": [
+    "Food_Wildmeat_Cooked"
+  ],
+  "FeedingsToTame": 5,
+  "Shyness": 0.5,
+  "GrowUpMinutes": 45,
+  "BreedCooldownMinutes": 45,
+  "Products": [
+    {
+      "Item": "CozyRanch_Wolf_Fur",
+      "Quantity": 1,
+      "IntervalMinutes": 50,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "grass"
+  ],
+  "HabitatPrefers": [
+    "woodland",
+    "rocky_ground",
+    "open_space"
+  ]
+}

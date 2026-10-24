@@ -1,0 +1,23 @@
+{
+  "Species": [
+    {
+      "Id": "wolf",
+      "Order": 160,
+      "DescriptionKey": "cozyranch_journal.species.wolf.desc",
+      "RareKey": "cozyranch_journal.species.wolf.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Wolf.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/WolfSilhouette.png",
+      "Behaviours": [
+        "howl",
+        "play_bow",
+        "lie_watch",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_ball",
+        "toy_log"
+      ]
+    }
+  ]
+}

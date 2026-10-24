@@ -1,0 +1,52 @@
+{
+  "Id": "fox",
+  "NameKey": "cozyranch_species.fox.name",
+  "WildRoles": [
+    "Fox"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Fox",
+  "RanchBabyRole": "CozyRanch_Fox_Baby",
+  "Predator": true,
+  "BaitItems": [
+    "Food_Chicken_Raw",
+    "Food_Fish_Raw",
+    "Food_Wildmeat_Raw"
+  ],
+  "CalmMinutes": 3,
+  "HouseBlock": "CozyRanch_House_FoxDen",
+  "HouseCapacity": 3,
+  "BasicFoods": [
+    "Plant_Fruit_Berries_Red",
+    "Food_Fish_Raw"
+  ],
+  "PreferredFoods": [
+    "Food_Chicken_Raw",
+    "Food_Wildmeat_Raw"
+  ],
+  "FavoriteTreats": [
+    "Food_Egg"
+  ],
+  "FeedingsToTame": 4,
+  "Shyness": 0.7,
+  "GrowUpMinutes": 35,
+  "BreedCooldownMinutes": 40,
+  "Products": [
+    {
+      "Item": "CozyRanch_Fox_Trinket",
+      "Quantity": 1,
+      "IntervalMinutes": 60,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "grass"
+  ],
+  "HabitatPrefers": [
+    "berry_brambles",
+    "tall_grass",
+    "shade"
+  ]
+}

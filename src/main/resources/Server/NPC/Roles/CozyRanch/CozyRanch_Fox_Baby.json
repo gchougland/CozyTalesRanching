@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Fox_Baby",
+    "SeparationDistance": 0.4,
+    "DropList": "Empty",
+    "MaxHealth": 18,
+    "MaxSpeed": 5,
+    "ParticleOffset": [
+      0,
+      0.6,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Plant_Fruit_Berries_Red",
+      "Food_Fish_Raw",
+      "Food_Chicken_Raw",
+      "Food_Wildmeat_Raw",
+      "Food_Egg"
+    ],
+    "FollowStopDistance": 1.5,
+    "NameTranslationKey": "server.cozyranch_species.fox.baby.name"
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "Ground": {
+    "pounce_ground": [
+      {
+        "Under": [
+          "Soil_Grass",
+          "Soil_Snow"
+        ],
+        "Exclude": [
+          "Burnt",
+          "Poisoned",
+          "Tilled"
+        ]
+      },
+      {
+        "At": [
+          "Plant_Grass_"
+        ],
+        "Exclude": [
+          "Burnt",
+          "Poisoned",
+          "Cave"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "pounce": {
+      "Kind": "here",
+      "Ground": "pounce_ground",
+      "Weight": 2,
+      "CooldownSeconds": 75,
+      "Seconds": [
+        3,
+        5
+      ],
+      "RepeatSeconds": 2
+    },
+    "head_tilt": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        2,
+        3
+      ]
+    },
+    "trinket": {
+      "Kind": "here",
+      "Weight": 1,
+      "CooldownSeconds": 180,
+      "Seconds": [
+        3,
+        4
+      ]
+    }
+  },
+  "Species": {
+    "fox": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "pounce": [
+          "Pounce"
+        ],
+        "head_tilt": [
+          "TiltHead"
+        ],
+        "trinket": [
+          "Present"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Pounce",
+          "Happy"
+        ],
+        "toy_log": [
+          "TiltHead",
+          "Happy"
+        ],
+        "approach_player": [
+          "TiltHead"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "pounce": [
+          "Pounce"
+        ],
+        "head_tilt": [
+          "TiltHead"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Pounce",
+          "Happy"
+        ],
+        "approach_player": [
+          "TiltHead"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "pounce": 2
+      }
+    },
+    "curious": {
+      "Weights": {
+        "head_tilt": 2
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "pounce": 0.5
+      }
+    }
+  }
+}
