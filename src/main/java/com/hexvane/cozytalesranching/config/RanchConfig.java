@@ -44,6 +44,8 @@ public final class RanchConfig {
     private double breedingMinHappiness = 0.7;
     private boolean showNameplates = true;
     private boolean debugLogging = false;
+    /** With QuestLinesClaims installed, houses inside a claim follow the claim's permissions. */
+    private boolean claimsIntegration = true;
 
     @Nonnull
     public static final BuilderCodec<RanchConfig> CODEC = BuilderCodec.builder(RanchConfig.class, RanchConfig::new)
@@ -69,6 +71,7 @@ public final class RanchConfig {
         .append(new KeyedCodec<>("BreedingMinHappiness", Codec.DOUBLE), (c, v) -> c.breedingMinHappiness = v, c -> c.breedingMinHappiness).add()
         .append(new KeyedCodec<>("ShowNameplates", Codec.BOOLEAN), (c, v) -> c.showNameplates = v, c -> c.showNameplates).add()
         .append(new KeyedCodec<>("DebugLogging", Codec.BOOLEAN), (c, v) -> c.debugLogging = v, c -> c.debugLogging).add()
+        .append(new KeyedCodec<>("ClaimsIntegration", Codec.BOOLEAN), (c, v) -> c.claimsIntegration = v, c -> c.claimsIntegration).add()
         .build();
 
     @Nullable
@@ -139,4 +142,5 @@ public final class RanchConfig {
     /** Owned animals show their name (or species name) above their head. */
     public boolean showNameplates() { return showNameplates; }
     public boolean debugLogging() { return debugLogging; }
+    public boolean claimsIntegration() { return claimsIntegration; }
 }

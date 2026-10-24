@@ -97,4 +97,42 @@ class HouseRulesTest {
         assertNull(HouseRules.cleanName(null));
         assertEquals(HouseRules.MAX_NAME_LENGTH, HouseRules.cleanName("x".repeat(40)).length());
     }
+    /** Claims integration: a claim that allows the action stands in for house ownership; the manage node is still needed. */
+    @Test
+    void claimPermissionStandsInForOwnership() {
+        assertEquals(Result.OK, HouseRules.checkManage(OTHER, OWNER, true, false, true));
+        assertEquals(Result.NO_PERMISSION, HouseRules.checkManage(OTHER, OWNER, false, false, true));
+        assertEquals(Result.NOT_OWNER, HouseRules.checkManage(OTHER, OWNER, true, false, false));
+        assertEquals(Result.OK, HouseRules.checkManage(OWNER, OWNER, true, false, false), "the house owner keeps managing without the claim");
+        assertEquals(Result.OK, HouseRules.checkManage(OTHER, OWNER, false, true, false));
+    }
+
+    /** Outside claims claimAllows is always false: exactly the old owner-only rule. */
+    @Test
+    void withoutAClaimTheOldRuleIsUnchanged() {
+        for (boolean manage : new boolean[] {true, false}) {
+            for (boolean any : new boolean[] {true, false}) {
+                for (UUID actor : new UUID[] {OWNER, OTHER}) {
+                    assertEquals(HouseRules.checkManage(actor, OWNER, manage, any), HouseRules.checkManage(actor, OWNER, manage, any, false));
+                }
+            }
+        }
+    }
+
+    @Test
+    void whoMayBreakAHouse() {
+        assertTrue(HouseRules.mayBreak(OWNER, OWNER, false, false), "its owner");
+        assertTrue(HouseRules.mayBreak(OTHER, OWNER, true, false), "manageany");
+        assertTrue(HouseRules.mayBreak(OTHER, OWNER, false, true), "the claim's owner, or a member with BREAK");
+        assertFalse(HouseRules.mayBreak(OTHER, OWNER, false, false), "anyone else, as before");
+        assertFalse(HouseRules.mayBreak(OTHER, null, false, false));
+    }
+
+    /** A claim lets a member look after the house, never move their own animals into someone else's house. */
+    @Test
+    void claimAccessNeverMixesOwners() {
+        Result manage = HouseRules.checkManage(OTHER, OWNER, true, false, true);
+        assertEquals(Result.NOT_OWNER, HouseRules.checkAssign(manage, OTHER, OWNER, "cow", "cow", false, 0, 4));
+        assertEquals(Result.OK, HouseRules.checkAssign(manage, OWNER, OWNER, "cow", "cow", false, 0, 4));
+    }
 }

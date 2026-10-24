@@ -62,6 +62,40 @@ public final class HouseCommand extends AbstractCommandCollection {
             this.addSubCommand(new ClaimCommand());
             this.addSubCommand(new NightfallCommand());
             this.addSubCommand(new MorningCommand());
+            this.addSubCommand(new AccessCommand());
+        }
+    }
+
+    /**
+     * What the nearest house lets you do, and why: the claims mod in use, the claim around the house, and the
+     * manage, collect and break answers ({@link HouseAccess}). Also logged, for console-driven tests.
+     */
+    private static final class AccessCommand extends AbstractPlayerCommand {
+        AccessCommand() {
+            super("access", "cozyranch_house.commands.access.desc");
+            this.requirePermission(RanchPermissions.ADMIN);
+        }
+
+        @Override
+        protected void execute(@Nonnull CommandContext context, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef playerRef, @Nonnull World world) {
+            HouseRecord house = nearestHouse(world, store, ref);
+            if (house == null) {
+                context.sendMessage(Message.translation("cozyranch_house.debug.no_house"));
+                return;
+            }
+            UUID id = playerRef.getUuid();
+            com.hexvane.cozytalesranching.compat.claims.ClaimsAdapter claims = com.hexvane.cozytalesranching.compat.claims.Claims.adapter();
+            com.hexvane.cozytalesranching.compat.claims.ClaimsAdapter.Claim claim = claims.claimAt(house.worldName, house.x, house.y, house.z);
+            String claimText = claim == null ? "-" : claim.kind() + ":" + claim.id() + (claims.isOwner(claim, id) ? " (yours)" : "");
+            String manage = HouseAccess.manage(id, house).name();
+            String collect = HouseAccess.collect(id, house).name();
+            boolean mayBreak = HouseAccess.mayBreak(id, house);
+            HouseResidents.log("access " + playerRef.getUsername() + " house " + house.houseId + " owner " + house.ownerId + " claims " + claims.name()
+                + " claim " + claimText + " manage " + manage + " collect " + collect + " break " + mayBreak);
+            context.sendMessage(Message.translation("cozyranch_house.debug.access")
+                .param("house", HouseBlocks.displayName(house)).param("owner", HousePlacement.ownerName(house.ownerId))
+                .param("claims", claims.name()).param("claim", claimText)
+                .param("manage", manage).param("collect", collect).param("break", String.valueOf(mayBreak)));
         }
     }
 
