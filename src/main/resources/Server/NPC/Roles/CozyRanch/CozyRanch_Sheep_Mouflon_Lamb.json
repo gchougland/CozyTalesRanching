@@ -1,0 +1,17 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Sheep_Mouflon_Lamb",
+    "DropList": "Drop_Mouflon_Lamb",
+    "MaxHealth": 29,
+    "FoodItems": [
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Cauliflower_Item",
+      "Plant_Crop_Carrot_Item"
+    ],
+    "FollowStopDistance": 2,
+    "NameTranslationKey": "server.npcRoles.Mouflon_Lamb.name"
+  }
+}

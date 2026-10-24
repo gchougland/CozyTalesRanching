@@ -1,0 +1,1356 @@
+{
+ "cases": [
+  {
+   "name": "variant assets",
+   "description": "Every new look's model asset and ranch role passes the engine schema; the pack validates.",
+   "steps": [
+    {
+     "tool": "asset_validate",
+     "arguments": {
+      "project": "CozyTales-Ranching"
+     },
+     "expect": {
+      "valid": true,
+      "schemaErrors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Ram.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Sheep_Ram.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Mouflon.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Sheep_Mouflon.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Ram_Lamb.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Sheep_Ram_Lamb.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Mouflon_Lamb.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Sheep_Mouflon_Lamb.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Boar.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig_Boar.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Boar_Piglet.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig_Boar_Piglet.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Wild.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig_Wild.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Wild_Piglet.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Pig_Wild_Piglet.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Chicken_Desert.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Chicken_Desert.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Chicken_Desert_Chick.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    },
+    {
+     "tool": "asset_check",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Chicken_Desert_Chick.json"
+     },
+     "expect": {
+      "errors": 0
+     }
+    }
+   ]
+  },
+  {
+   "name": "variant looks",
+   "description": "Each new look (Ram, Mouflon, Boar, Wild Pig, Desert Chicken and their babies) on its vanilla model.",
+   "steps": [
+    {
+     "tool": "model_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Ram.json",
+      "views": [
+       "three_quarter"
+      ],
+      "size": 300,
+      "hitbox": false
+     },
+     "expect": {
+      "coverage": {
+       "$gt": 0.02
+      },
+      "notes": {
+       "$length": 0
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Ram.png",
+     "name": "CozyRanch_Sheep_Ram"
+    },
+    {
+     "tool": "model_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Mouflon.json",
+      "views": [
+       "three_quarter"
+      ],
+      "size": 300,
+      "hitbox": false
+     },
+     "expect": {
+      "coverage": {
+       "$gt": 0.02
+      },
+      "notes": {
+       "$length": 0
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Mouflon.png",
+     "name": "CozyRanch_Sheep_Mouflon"
+    },
+    {
+     "tool": "model_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Ram_Lamb.json",
+      "views": [
+       "three_quarter"
+      ],
+      "size": 300,
+      "hitbox": false
+     },
+     "expect": {
+      "coverage": {
+       "$gt": 0.02
+      },
+      "notes": {
+       "$length": 0
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Ram_Lamb.png",
+     "name": "CozyRanch_Sheep_Ram_Lamb"
+    },
+    {
+     "tool": "model_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Mouflon_Lamb.json",
+      "views": [
+       "three_quarter"
+      ],
+      "size": 300,
+      "hitbox": false
+     },
+     "expect": {
+      "coverage": {
+       "$gt": 0.02
+      },
+      "notes": {
+       "$length": 0
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Mouflon_Lamb.png",
+     "name": "CozyRanch_Sheep_Mouflon_Lamb"
+    },
+    {
+     "tool": "model_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Boar.json",
+      "views": [
+       "three_quarter"
+      ],
+      "size": 300,
+      "hitbox": false
+     },
+     "expect": {
+      "coverage": {
+       "$gt": 0.02
+      },
+      "notes": {
+       "$length": 0
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Boar.png",
+     "name": "CozyRanch_Pig_Boar"
+    },
+    {
+     "tool": "model_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Boar_Piglet.json",
+      "views": [
+       "three_quarter"
+      ],
+      "size": 300,
+      "hitbox": false
+     },
+     "expect": {
+      "coverage": {
+       "$gt": 0.02
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Boar_Piglet.png",
+     "name": "CozyRanch_Pig_Boar_Piglet"
+    },
+    {
+     "tool": "model_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Wild.json",
+      "views": [
+       "three_quarter"
+      ],
+      "size": 300,
+      "hitbox": false
+     },
+     "expect": {
+      "coverage": {
+       "$gt": 0.02
+      },
+      "notes": {
+       "$length": 0
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Wild.png",
+     "name": "CozyRanch_Pig_Wild"
+    },
+    {
+     "tool": "model_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Wild_Piglet.json",
+      "views": [
+       "three_quarter"
+      ],
+      "size": 300,
+      "hitbox": false
+     },
+     "expect": {
+      "coverage": {
+       "$gt": 0.02
+      },
+      "notes": {
+       "$length": 0
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Wild_Piglet.png",
+     "name": "CozyRanch_Pig_Wild_Piglet"
+    },
+    {
+     "tool": "model_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Chicken_Desert.json",
+      "views": [
+       "three_quarter"
+      ],
+      "size": 300,
+      "hitbox": false
+     },
+     "expect": {
+      "coverage": {
+       "$gt": 0.02
+      },
+      "notes": {
+       "$length": 0
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Chicken_Desert.png",
+     "name": "CozyRanch_Chicken_Desert"
+    },
+    {
+     "tool": "model_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Chicken_Desert_Chick.json",
+      "views": [
+       "three_quarter"
+      ],
+      "size": 300,
+      "hitbox": false
+     },
+     "expect": {
+      "coverage": {
+       "$gt": 0.02
+      },
+      "notes": {
+       "$length": 0
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Chicken_Desert_Chick.png",
+     "name": "CozyRanch_Chicken_Desert_Chick"
+    }
+   ]
+  },
+  {
+   "name": "variant clips",
+   "description": "Every ranch clip on every new look, each retargeted to that rig (no node the model lacks).",
+   "steps": [
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Ram.json",
+      "animation": "Happy",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Ram_Happy.png",
+     "name": "CozyRanch_Sheep_Ram Happy"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Ram.json",
+      "animation": "Love",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Ram_Love.png",
+     "name": "CozyRanch_Sheep_Ram Love"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Ram.json",
+      "animation": "EatTrough",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Ram_EatTrough.png",
+     "name": "CozyRanch_Sheep_Ram EatTrough"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Ram.json",
+      "animation": "Graze",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Ram_Graze.png",
+     "name": "CozyRanch_Sheep_Ram Graze"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Ram.json",
+      "animation": "Pronk",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Ram_Pronk.png",
+     "name": "CozyRanch_Sheep_Ram Pronk"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Mouflon.json",
+      "animation": "Happy",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Mouflon_Happy.png",
+     "name": "CozyRanch_Sheep_Mouflon Happy"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Mouflon.json",
+      "animation": "Love",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Mouflon_Love.png",
+     "name": "CozyRanch_Sheep_Mouflon Love"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Mouflon.json",
+      "animation": "EatTrough",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Mouflon_EatTrough.png",
+     "name": "CozyRanch_Sheep_Mouflon EatTrough"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Mouflon.json",
+      "animation": "Graze",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Mouflon_Graze.png",
+     "name": "CozyRanch_Sheep_Mouflon Graze"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Mouflon.json",
+      "animation": "Pronk",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Mouflon_Pronk.png",
+     "name": "CozyRanch_Sheep_Mouflon Pronk"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Ram_Lamb.json",
+      "animation": "Happy",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Ram_Lamb_Happy.png",
+     "name": "CozyRanch_Sheep_Ram_Lamb Happy"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Sheep_Mouflon_Lamb.json",
+      "animation": "Happy",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Sheep_Mouflon_Lamb_Happy.png",
+     "name": "CozyRanch_Sheep_Mouflon_Lamb Happy"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Boar.json",
+      "animation": "Happy",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Boar_Happy.png",
+     "name": "CozyRanch_Pig_Boar Happy"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Boar.json",
+      "animation": "Love",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Boar_Love.png",
+     "name": "CozyRanch_Pig_Boar Love"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Boar.json",
+      "animation": "EatTrough",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Boar_EatTrough.png",
+     "name": "CozyRanch_Pig_Boar EatTrough"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Boar.json",
+      "animation": "MudRoll",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Boar_MudRoll.png",
+     "name": "CozyRanch_Pig_Boar MudRoll"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Boar.json",
+      "animation": "Snuffle",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Boar_Snuffle.png",
+     "name": "CozyRanch_Pig_Boar Snuffle"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Boar_Piglet.json",
+      "animation": "Happy",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Boar_Piglet_Happy.png",
+     "name": "CozyRanch_Pig_Boar_Piglet Happy"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Wild.json",
+      "animation": "Happy",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Wild_Happy.png",
+     "name": "CozyRanch_Pig_Wild Happy"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Wild.json",
+      "animation": "Love",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Wild_Love.png",
+     "name": "CozyRanch_Pig_Wild Love"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Wild.json",
+      "animation": "EatTrough",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Wild_EatTrough.png",
+     "name": "CozyRanch_Pig_Wild EatTrough"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Wild.json",
+      "animation": "MudRoll",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Wild_MudRoll.png",
+     "name": "CozyRanch_Pig_Wild MudRoll"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Wild.json",
+      "animation": "Snuffle",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Wild_Snuffle.png",
+     "name": "CozyRanch_Pig_Wild Snuffle"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pig_Wild_Piglet.json",
+      "animation": "Happy",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Pig_Wild_Piglet_Happy.png",
+     "name": "CozyRanch_Pig_Wild_Piglet Happy"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Chicken_Desert.json",
+      "animation": "Happy",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Chicken_Desert_Happy.png",
+     "name": "CozyRanch_Chicken_Desert Happy"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Chicken_Desert.json",
+      "animation": "Love",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Chicken_Desert_Love.png",
+     "name": "CozyRanch_Chicken_Desert Love"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Chicken_Desert.json",
+      "animation": "EatTrough",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Chicken_Desert_EatTrough.png",
+     "name": "CozyRanch_Chicken_Desert EatTrough"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Chicken_Desert.json",
+      "animation": "DustBathe",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Chicken_Desert_DustBathe.png",
+     "name": "CozyRanch_Chicken_Desert DustBathe"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Chicken_Desert.json",
+      "animation": "PeckGround",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Chicken_Desert_PeckGround.png",
+     "name": "CozyRanch_Chicken_Desert PeckGround"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Chicken_Desert.json",
+      "animation": "FlapHappy",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Chicken_Desert_FlapHappy.png",
+     "name": "CozyRanch_Chicken_Desert FlapHappy"
+    },
+    {
+     "tool": "animation_render",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Chicken_Desert_Chick.json",
+      "animation": "Happy",
+      "frames": 6,
+      "yaw": 50,
+      "pitch": 15,
+      "size": 220,
+      "hitbox": false
+     },
+     "expect": {
+      "animation": {
+       "nodesNotInModel": {
+        "$length": 0
+       }
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/CozyRanch_Chicken_Desert_Chick_Happy.png",
+     "name": "CozyRanch_Chicken_Desert_Chick Happy"
+    }
+   ]
+  },
+  {
+   "name": "variant journal pages",
+   "description": "Sheep, pig and chicken journal pages with the longer descriptions that mention the looks.",
+   "steps": [
+    {
+     "tool": "ui_render",
+     "name": "sheep journal page (top of the left page) with the new looks in its description",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
+      "commands": [
+       {
+        "type": "Append",
+        "text": "CozyRanch/JournalSpecies.ui"
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesName.TextSpans",
+        "data": {
+         "MessageId": "cozyranch_species.sheep.name"
+        }
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesTagline.TextSpans",
+        "data": {
+         "MessageId": "cozyranch_journal.species.first_met",
+         "MessageParams": {
+          "date": {
+           "MessageId": "cozyranch_journal.date",
+           "Params": {
+            "day": "28",
+            "year": "2026"
+           },
+           "MessageParams": {
+            "month": {
+             "MessageId": "cozyranch_journal.month.10"
+            }
+           }
+          }
+         }
+        }
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesArt.AssetPath",
+        "data": "UI/Custom/CozyRanch/Journal/Sheep.png"
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesDesc.TextSpans",
+        "data": {
+         "MessageId": "cozyranch_journal.species.sheep.desc"
+        }
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesNumber.TextSpans",
+        "data": {
+         "MessageId": "cozyranch_journal.species.number",
+         "Params": {
+          "number": "6",
+          "total": "7"
+         }
+        }
+       }
+      ]
+     },
+     "expect": {
+      "valid": true,
+      "errors": 0,
+      "notes": {
+       "$length": 0
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/journal-sheep.png"
+    },
+    {
+     "tool": "ui_render",
+     "name": "pig journal page (top of the left page) with the new looks in its description",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
+      "commands": [
+       {
+        "type": "Append",
+        "text": "CozyRanch/JournalSpecies.ui"
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesName.TextSpans",
+        "data": {
+         "MessageId": "cozyranch_species.pig.name"
+        }
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesTagline.TextSpans",
+        "data": {
+         "MessageId": "cozyranch_journal.species.first_met",
+         "MessageParams": {
+          "date": {
+           "MessageId": "cozyranch_journal.date",
+           "Params": {
+            "day": "28",
+            "year": "2026"
+           },
+           "MessageParams": {
+            "month": {
+             "MessageId": "cozyranch_journal.month.10"
+            }
+           }
+          }
+         }
+        }
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesArt.AssetPath",
+        "data": "UI/Custom/CozyRanch/Journal/Pig.png"
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesDesc.TextSpans",
+        "data": {
+         "MessageId": "cozyranch_journal.species.pig.desc"
+        }
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesNumber.TextSpans",
+        "data": {
+         "MessageId": "cozyranch_journal.species.number",
+         "Params": {
+          "number": "6",
+          "total": "7"
+         }
+        }
+       }
+      ]
+     },
+     "expect": {
+      "valid": true,
+      "errors": 0,
+      "notes": {
+       "$length": 0
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/journal-pig.png"
+    },
+    {
+     "tool": "ui_render",
+     "name": "chicken journal page (top of the left page) with the new looks in its description",
+     "arguments": {
+      "root": "projects",
+      "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
+      "commands": [
+       {
+        "type": "Append",
+        "text": "CozyRanch/JournalSpecies.ui"
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesName.TextSpans",
+        "data": {
+         "MessageId": "cozyranch_species.chicken.name"
+        }
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesTagline.TextSpans",
+        "data": {
+         "MessageId": "cozyranch_journal.species.first_met",
+         "MessageParams": {
+          "date": {
+           "MessageId": "cozyranch_journal.date",
+           "Params": {
+            "day": "28",
+            "year": "2026"
+           },
+           "MessageParams": {
+            "month": {
+             "MessageId": "cozyranch_journal.month.10"
+            }
+           }
+          }
+         }
+        }
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesArt.AssetPath",
+        "data": "UI/Custom/CozyRanch/Journal/Chicken.png"
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesDesc.TextSpans",
+        "data": {
+         "MessageId": "cozyranch_journal.species.chicken.desc"
+        }
+       },
+       {
+        "type": "Set",
+        "selector": "#SpeciesNumber.TextSpans",
+        "data": {
+         "MessageId": "cozyranch_journal.species.number",
+         "Params": {
+          "number": "6",
+          "total": "7"
+         }
+        }
+       }
+      ]
+     },
+     "expect": {
+      "valid": true,
+      "errors": 0,
+      "notes": {
+       "$length": 0
+      }
+     },
+     "golden": "tests/hytale/golden/variants-050/journal-chicken.png"
+    }
+   ]
+  }
+ ]
+}
