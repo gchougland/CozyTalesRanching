@@ -82,6 +82,7 @@ public final class SpeciesRegistry {
             if (!s.RanchRole.isEmpty()) roles.put(s.RanchRole, new RoleMatch(s, RoleKind.RANCH));
             if (!s.RanchBabyRole.isEmpty()) roles.put(s.RanchBabyRole, new RoleMatch(s, RoleKind.RANCH_BABY));
             s.RanchRoleVariants.values().forEach(r -> roles.putIfAbsent(r, new RoleMatch(s, RoleKind.RANCH)));
+            s.RanchBabyRoleVariants.values().forEach(r -> roles.putIfAbsent(r, new RoleMatch(s, RoleKind.RANCH_BABY)));
         }
         if (config.adoptVanillaTamed()) {
             config.extraAdoptRoles().forEach((role, speciesId) -> {

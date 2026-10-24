@@ -275,6 +275,20 @@ class BreedingRulesTest {
     // ---- roles
 
     @Test
+    void aColourVariantWithItsOwnBabyRoleHasThatBaby() {
+        SpeciesDefinition rabbit = new SpeciesDefinition();
+        rabbit.Id = "rabbit";
+        rabbit.RanchRole = "CozyRanch_Rabbit";
+        rabbit.RanchBabyRole = "CozyRanch_Rabbit_Baby";
+        rabbit.RanchRoleVariants = java.util.Map.of("Bunny", "CozyRanch_Rabbit_Bunny");
+        rabbit.RanchBabyRoleVariants = java.util.Map.of("CozyRanch_Rabbit_Bunny", "CozyRanch_Rabbit_Bunny_Baby");
+        assertEquals("CozyRanch_Rabbit_Bunny_Baby", BreedingRules.babyRole(rabbit, "CozyRanch_Rabbit_Bunny"));
+        assertEquals("CozyRanch_Rabbit_Baby", BreedingRules.babyRole(rabbit, "CozyRanch_Rabbit"));
+        assertEquals("CozyRanch_Rabbit_Bunny", BreedingRules.adultRole(rabbit, "CozyRanch_Rabbit_Bunny_Baby"));
+        assertEquals("CozyRanch_Rabbit", BreedingRules.adultRole(rabbit, "CozyRanch_Rabbit_Baby"));
+    }
+
+    @Test
     void babiesInheritAParentsColourAndKeepItWhenGrown() {
         SpeciesDefinition frog = frog();
         assertEquals("CozyRanch_Frog_Blue", BreedingRules.babyRole(frog, "CozyRanch_Frog_Blue"));

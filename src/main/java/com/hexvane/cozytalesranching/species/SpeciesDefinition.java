@@ -24,6 +24,8 @@ public final class SpeciesDefinition {
     public String RanchBabyRole = "";
     /** Wild or adopt role to the ranch role it becomes, for looks that must survive taming (frog colours). Adults only. */
     public Map<String, String> RanchRoleVariants = Map.of();
+    /** A colour variant's ranch role to its baby role (Bunny parents have Bunny kits). Optional. */
+    public Map<String, String> RanchBabyRoleVariants = Map.of();
     public String HouseBlock = "";
     public int HouseCapacity = 4;
     public List<String> BasicFoods = List.of();
@@ -59,6 +61,7 @@ public final class SpeciesDefinition {
         HabitatRequires = orEmpty(HabitatRequires);
         HabitatPrefers = orEmpty(HabitatPrefers);
         RanchRoleVariants = RanchRoleVariants == null ? Map.of() : Map.copyOf(RanchRoleVariants);
+        RanchBabyRoleVariants = RanchBabyRoleVariants == null ? Map.of() : Map.copyOf(RanchBabyRoleVariants);
         return this;
     }
 

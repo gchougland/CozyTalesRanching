@@ -6,6 +6,7 @@ import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
@@ -138,6 +139,7 @@ public final class BreedingRules {
      */
     @Nonnull
     public static String babyRole(@Nonnull SpeciesDefinition species, @Nullable String parentRole) {
+        if (parentRole != null && species.RanchBabyRoleVariants.containsKey(parentRole)) return species.RanchBabyRoleVariants.get(parentRole);
         if (species.RanchBabyRole.isEmpty() && parentRole != null && species.RanchRoleVariants.containsValue(parentRole)) return parentRole;
         return species.ranchRoleFor(parentRole, true);
     }
@@ -145,6 +147,7 @@ public final class BreedingRules {
     /** The adult role for a baby whose role is {@code currentRole}; keeps a colour variant. */
     @Nonnull
     public static String adultRole(@Nonnull SpeciesDefinition species, @Nullable String currentRole) {
+        for (Map.Entry<String, String> e : species.RanchBabyRoleVariants.entrySet()) if (e.getValue().equals(currentRole)) return e.getKey();
         if (currentRole != null && species.RanchRoleVariants.containsValue(currentRole)) return currentRole;
         return species.ranchRoleFor(currentRole, false);
     }
