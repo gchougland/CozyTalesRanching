@@ -238,6 +238,9 @@ final class BreedingService implements HouseDayHooks.Hook {
                 .orElse(false);
             if (!ours) return GrowResult.NOT_RANCH_ROLE;
             adult = BreedingRules.adultRole(species, current);
+            // A baby that is the adult model scaled down (rabbit, mouse, duck, ...) keeps its spawn scale through a role
+            // swap, since the new appearance is built with initialModelScale: reset it to full size first.
+            if (!adult.isEmpty() && npc != null) npc.setInitialModelScale(1f);
             if (adult.isEmpty() || !TamingApi.swapRole(ref, adult, null, store)) return GrowResult.SWAP_PENDING;
         } else {
             adult = BreedingRules.adultRole(species, r.spawnRole);
