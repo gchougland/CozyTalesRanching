@@ -1,0 +1,142 @@
+{
+  "Ground": {
+    "woodpecker_wood": [
+      {
+        "Near": [
+          "Wood_",
+          "CozyRanch_Toy_Log",
+          "CozyRanch_Toy_ScratchingPost",
+          "CozyRanch_House_WoodpeckerStump"
+        ]
+      },
+      {
+        "Under": [
+          "Wood_"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "woodpecker_drum": {
+      "Kind": "here",
+      "Ground": "woodpecker_wood",
+      "Weight": 4,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        4,
+        7
+      ]
+    },
+    "woodpecker_cling": {
+      "Kind": "here",
+      "Ground": "woodpecker_wood",
+      "Weight": 3,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "woodpecker_head_cock": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 50,
+      "Seconds": [
+        3,
+        5
+      ]
+    }
+  },
+  "Species": {
+    "woodpecker": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "woodpecker_drum": [
+          "Drum"
+        ],
+        "woodpecker_cling": [
+          "Cling"
+        ],
+        "woodpecker_head_cock": [
+          "HeadCock"
+        ],
+        "peck": [
+          "Peck"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "HeadCock",
+          "Love"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Drum"
+        ],
+        "toy_post": [
+          "Cling"
+        ],
+        "approach_player": [
+          "HeadCock"
+        ],
+        "greet_owner": [
+          "Flutter",
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "peck": [
+          "Peck"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "woodpecker_head_cock": [
+          "HeadCock"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Peck"
+        ],
+        "approach_player": [
+          "HeadCock"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "woodpecker_drum": 1.5,
+        "flap": 1.5
+      }
+    },
+    "curious": {
+      "Weights": {
+        "woodpecker_head_cock": 2
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "woodpecker_cling": 1.5,
+        "woodpecker_drum": 0.6
+      }
+    }
+  }
+}

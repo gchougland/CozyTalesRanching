@@ -1,0 +1,27 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Woodpecker_Chick",
+    "SeparationDistance": 0.3,
+    "DropList": "Empty",
+    "MaxHealth": 8,
+    "MaxSpeed": 3.5,
+    "ParticleOffset": [
+      0,
+      0.55,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "CozyRanch_Food_Crickets",
+      "Plant_Fruit_Berries_Red",
+      "Plant_Fruit_Apple",
+      "Plant_Seeds_Sunflower",
+      "Plant_Fruit_Pinkberry",
+      "Ingredient_Tree_Sap"
+    ],
+    "FollowStopDistance": 1.2,
+    "NameTranslationKey": "server.cozyranch_species.woodpecker.baby.name"
+  }
+}

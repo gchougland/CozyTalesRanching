@@ -1,0 +1,114 @@
+{
+  "Behaviours": {
+    "skrill_crest": {
+      "Kind": "here",
+      "Weight": 3,
+      "CooldownSeconds": 70,
+      "Seconds": [
+        4,
+        6
+      ]
+    },
+    "skrill_chatter": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 50,
+      "Seconds": [
+        2,
+        4
+      ],
+      "RepeatSeconds": 2
+    },
+    "skrill_sunbathe": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 150,
+      "Seconds": [
+        8,
+        14
+      ]
+    }
+  },
+  "Species": {
+    "skrill": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "skrill_crest": [
+          "CrestFan"
+        ],
+        "skrill_chatter": [
+          "Chatter"
+        ],
+        "skrill_sunbathe": [
+          "SunWings"
+        ],
+        "peck": [
+          "Peck"
+        ],
+        "socialise": [
+          "Chatter",
+          "Love"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "CrestFan"
+        ],
+        "toy_bell": [
+          "Peck"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "peck": [
+          "Peck"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_bell": [
+          "Peck"
+        ],
+        "approach_player": [
+          "Happy"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "skrill_crest": 1.5,
+        "skrill_chatter": 1.5
+      }
+    },
+    "shy": {
+      "Weights": {
+        "skrill_chatter": 0.5,
+        "skrill_crest": 0.6
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "skrill_sunbathe": 2
+      }
+    }
+  }
+}

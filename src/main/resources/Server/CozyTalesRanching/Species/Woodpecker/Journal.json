@@ -1,0 +1,25 @@
+{
+  "Species": [
+    {
+      "Id": "woodpecker",
+      "Order": 330,
+      "DescriptionKey": "cozyranch_journal.species.woodpecker.desc",
+      "RareKey": "cozyranch_journal.species.woodpecker.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Woodpecker.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/WoodpeckerSilhouette.png",
+      "Behaviours": [
+        "woodpecker_drum",
+        "woodpecker_cling",
+        "woodpecker_head_cock",
+        "peck",
+        "flap",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_log",
+        "toy_post"
+      ]
+    }
+  ]
+}

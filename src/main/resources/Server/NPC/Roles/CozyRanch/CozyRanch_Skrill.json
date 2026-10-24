@@ -1,0 +1,38 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Skrill",
+    "SeparationDistance": 0.6,
+    "DropList": "Drop_Skrill",
+    "MaxHealth": 30,
+    "MaxSpeed": 6,
+    "ParticleOffset": [
+      0,
+      1.0,
+      0
+    ],
+    "IsHarvestable": true,
+    "HarvestDropList": "Drop_Skrill_Harvest",
+    "HarvestInteractionContext": "Shear",
+    "HarvestInteractionRequiredItems": [
+      "Tool_Shears_Basic"
+    ],
+    "HarvestParticles": "Impact_Feathers_Black",
+    "HarvestSound": "SFX_Chicken_Alerted",
+    "HarvestTimeout": [
+      "PT11H",
+      "PT14H"
+    ],
+    "FoodItems": [
+      "Plant_Crop_Corn_Item",
+      "Plant_Crop_Wheat_Item",
+      "Plant_Fruit_Mango",
+      "Plant_Crop_Tomato_Item",
+      "Plant_Crop_Rice_Item",
+      "Plant_Crop_Chilli_Item"
+    ],
+    "FollowStopDistance": 2,
+    "NameTranslationKey": "server.npcRoles.Skrill.name"
+  }
+}

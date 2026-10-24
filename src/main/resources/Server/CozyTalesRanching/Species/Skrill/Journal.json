@@ -1,0 +1,24 @@
+{
+  "Species": [
+    {
+      "Id": "skrill",
+      "Order": 340,
+      "DescriptionKey": "cozyranch_journal.species.skrill.desc",
+      "RareKey": "cozyranch_journal.species.skrill.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Skrill.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/SkrillSilhouette.png",
+      "Behaviours": [
+        "skrill_crest",
+        "skrill_chatter",
+        "skrill_sunbathe",
+        "peck",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_ball",
+        "toy_bell"
+      ]
+    }
+  ]
+}
