@@ -1,0 +1,40 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Warthog_Tusk.name",
+    "Description": "cozyranch_items.items.CozyRanch_Warthog_Tusk.description"
+  },
+  "Categories": [
+    "Items.Ingredients"
+  ],
+  "Quality": "Common",
+  "Model": "Items/CozyRanch/Produce/Warthog_Tusk.blockymodel",
+  "Texture": "Items/CozyRanch/Produce/Warthog_Tusk_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Warthog_Tusk.png",
+  "IconProperties": {
+    "Scale": 0.65,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Ingredient"
+    ]
+  },
+  "MaxStack": 50,
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Bones",
+  "ResourceTypes": [
+    {
+      "Id": "Bone"
+    }
+  ]
+}

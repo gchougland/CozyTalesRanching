@@ -1,0 +1,52 @@
+{
+  "Parent": "Template_Weapon_Shield",
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Armadillo_Shield.name",
+    "Description": "cozyranch_items.items.CozyRanch_Armadillo_Shield.description"
+  },
+  "Model": "Items/CozyRanch/Tools/Armadillo_Shield.blockymodel",
+  "Texture": "Items/CozyRanch/Tools/Armadillo_Shield_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Armadillo_Shield.png",
+  "Quality": "Uncommon",
+  "ItemLevel": 20,
+  "Recipe": {
+    "TimeSeconds": 3,
+    "KnowledgeRequired": false,
+    "Input": [
+      {
+        "ItemId": "CozyRanch_Armadillo_Plate",
+        "Quantity": 4
+      },
+      {
+        "ItemId": "Ingredient_Leather_Light",
+        "Quantity": 2
+      },
+      {
+        "ResourceTypeId": "Wood_Trunk",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Armor_Bench",
+        "Categories": [
+          "Weapon_Shield"
+        ]
+      }
+    ]
+  },
+  "InteractionVars": {
+    "Guard_Wield": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Shield_Secondary_Guard_Wield",
+          "StaminaCost": {
+            "Value": 14,
+            "CostType": "Damage"
+          }
+        }
+      ]
+    }
+  }
+}

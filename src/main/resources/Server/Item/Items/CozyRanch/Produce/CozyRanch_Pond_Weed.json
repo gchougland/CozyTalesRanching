@@ -1,0 +1,35 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Pond_Weed.name",
+    "Description": "cozyranch_items.items.CozyRanch_Pond_Weed.description"
+  },
+  "Categories": [
+    "Items.Ingredients"
+  ],
+  "Quality": "Common",
+  "Model": "Items/CozyRanch/Produce/Pond_Weed.blockymodel",
+  "Texture": "Items/CozyRanch/Produce/Pond_Weed_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Pond_Weed.png",
+  "IconProperties": {
+    "Scale": 0.75,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Ingredient"
+    ]
+  },
+  "MaxStack": 50,
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Foliage"
+}

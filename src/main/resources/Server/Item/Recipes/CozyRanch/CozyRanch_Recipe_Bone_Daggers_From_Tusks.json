@@ -1,0 +1,38 @@
+{
+  "Input": [
+    {
+      "ItemId": "CozyRanch_Warthog_Tusk",
+      "Quantity": 4
+    },
+    {
+      "ItemId": "Ingredient_Leather_Medium",
+      "Quantity": 2
+    },
+    {
+      "ItemId": "Ingredient_Bar_Iron",
+      "Quantity": 2
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Weapon_Daggers_Bone",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Weapon_Daggers_Bone",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Weapon_Bench",
+      "Categories": [
+        "Weapon_Daggers"
+      ],
+      "RequiredTierLevel": 2
+    }
+  ],
+  "TimeSeconds": 3
+}
