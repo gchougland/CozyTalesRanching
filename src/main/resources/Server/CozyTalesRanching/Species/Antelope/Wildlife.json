@@ -1,0 +1,28 @@
+{
+  "Species": {
+    "antelope": {
+      "Roles": [
+        "Antelope"
+      ],
+      "OwnHouseWeight": 0.8,
+      "CooldownMinutes": 35,
+      "Attractors": [
+        {
+          "HouseSpecies": "bison",
+          "Features": [
+            "open_space",
+            "grass"
+          ],
+          "Weight": 0.25
+        },
+        {
+          "HouseSpecies": "camel",
+          "Features": [
+            "dry_scrub"
+          ],
+          "Weight": 0.2
+        }
+      ]
+    }
+  }
+}

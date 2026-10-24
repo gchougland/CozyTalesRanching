@@ -1,0 +1,19 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Antelope",
+    "AttitudeGroup": "PreyBig",
+    "DropList": "Drop_Antelope",
+    "MaxHealth": 81,
+    "FoodItems": [
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Hay_Bundle",
+      "Plant_Crop_Carrot_Item",
+      "Plant_Cactus_Flower"
+    ],
+    "FollowStopDistance": 2.5,
+    "NameTranslationKey": "server.npcRoles.Antelope.name"
+  }
+}

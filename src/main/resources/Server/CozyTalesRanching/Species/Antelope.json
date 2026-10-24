@@ -1,0 +1,46 @@
+{
+  "Id": "antelope",
+  "NameKey": "cozyranch_species.antelope.name",
+  "WildRoles": [
+    "Antelope"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Antelope",
+  "RanchBabyRole": "CozyRanch_Antelope_Baby",
+  "HouseBlock": "CozyRanch_House_AntelopeShelter",
+  "HouseCapacity": 3,
+  "BasicFoods": [
+    "Plant_Crop_Wheat_Item",
+    "Plant_Crop_Lettuce_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Hay_Bundle",
+    "Plant_Crop_Carrot_Item"
+  ],
+  "FavoriteTreats": [
+    "Plant_Cactus_Flower"
+  ],
+  "FeedingsToTame": 6,
+  "Shyness": 0.85,
+  "GrowUpMinutes": 70,
+  "BreedCooldownMinutes": 60,
+  "Products": [
+    {
+      "Item": "CozyRanch_Antelope_Horn",
+      "Quantity": 1,
+      "IntervalMinutes": 75,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "food",
+    "open_space"
+  ],
+  "HabitatPrefers": [
+    "grass",
+    "tall_grass",
+    "dry_scrub"
+  ]
+}

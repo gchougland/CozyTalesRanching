@@ -1,0 +1,134 @@
+{
+  "Ground": {
+    "root_ground": [
+      {
+        "Under": [
+          "Soil_Dirt",
+          "Soil_Grass",
+          "Soil_Sand",
+          "Soil_Gravel",
+          "Soil_Mud"
+        ],
+        "Exclude": [
+          "Tilled",
+          "Poisoned",
+          "Burnt",
+          "Cave"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "kneel_root": {
+      "Kind": "here",
+      "Ground": "root_ground",
+      "Weight": 4,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        4,
+        4
+      ]
+    },
+    "mud_wallow": {
+      "Kind": "here",
+      "Ground": "mud",
+      "Weight": 5,
+      "CooldownSeconds": 180,
+      "Seconds": [
+        9,
+        10
+      ]
+    },
+    "tail_flag": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        2,
+        2
+      ]
+    }
+  },
+  "Species": {
+    "warthog": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "graze": [
+          "Graze"
+        ],
+        "kneel_root": [
+          "KneelRoot"
+        ],
+        "mud_wallow": [
+          "Wallow"
+        ],
+        "tail_flag": [
+          "TailFlag"
+        ],
+        "socialise": [
+          "Love"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "KneelRoot"
+        ],
+        "toy_log": [
+          "TailFlag"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "kneel_root": [
+          "KneelRoot"
+        ],
+        "tail_flag": [
+          "TailFlag"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "toy_ball": [
+          "KneelRoot"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "tail_flag": 2
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "mud_wallow": 2
+      }
+    },
+    "curious": {
+      "Weights": {
+        "kneel_root": 1.5
+      }
+    }
+  }
+}

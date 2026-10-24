@@ -1,0 +1,52 @@
+{
+  "Id": "warthog",
+  "NameKey": "cozyranch_species.warthog.name",
+  "WildRoles": [
+    "Warthog"
+  ],
+  "WildBabyRoles": [
+    "Warthog_Piglet"
+  ],
+  "AdoptRoles": [
+    "Tamed_Warthog"
+  ],
+  "AdoptBabyRoles": [
+    "Tamed_Warthog_Piglet"
+  ],
+  "RanchRole": "CozyRanch_Warthog",
+  "RanchBabyRole": "CozyRanch_Warthog_Piglet",
+  "HouseBlock": "CozyRanch_House_WarthogWallow",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Plant_Crop_Corn_Item",
+    "Plant_Crop_Wheat_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Mushroom_Common_Brown",
+    "Plant_Fruit_Berries_Red"
+  ],
+  "FavoriteTreats": [
+    "Plant_Crop_Onion_Item"
+  ],
+  "FeedingsToTame": 4,
+  "Shyness": 0.45,
+  "GrowUpMinutes": 55,
+  "BreedCooldownMinutes": 45,
+  "Products": [
+    {
+      "Item": "CozyRanch_Warthog_Tusk",
+      "Quantity": 1,
+      "IntervalMinutes": 70,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "food",
+    "dust"
+  ],
+  "HabitatPrefers": [
+    "mud",
+    "dry_scrub",
+    "open_space"
+  ]
+}
