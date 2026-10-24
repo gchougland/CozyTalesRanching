@@ -1,0 +1,29 @@
+{
+  "Input": [
+    {
+      "ItemId": "CozyRanch_Owl_Pellet",
+      "Quantity": 1
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Ingredient_Bone_Fragment",
+    "Quantity": 2
+  },
+  "Output": [
+    {
+      "ItemId": "Ingredient_Bone_Fragment",
+      "Quantity": 2
+    }
+  ],
+  "OutputQuantity": 2,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Workbench",
+      "Categories": [
+        "Workbench_Survival"
+      ]
+    }
+  ],
+  "TimeSeconds": 1
+}

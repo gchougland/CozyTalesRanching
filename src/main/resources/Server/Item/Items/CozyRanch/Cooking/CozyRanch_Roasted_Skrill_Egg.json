@@ -1,0 +1,96 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Roasted_Skrill_Egg.name",
+    "Description": "cozyranch_items.items.CozyRanch_Roasted_Skrill_Egg.description"
+  },
+  "Parent": "Template_Food",
+  "Quality": "Uncommon",
+  "Categories": [
+    "Items.Foods"
+  ],
+  "Interactions": {
+    "Secondary": "Root_Secondary_Consume_Food_T2"
+  },
+  "InteractionVars": {
+    "Consume_Charge": {
+      "Interactions": [
+        {
+          "Parent": "Consume_Charge_Food_T1_Inner",
+          "Effects": {
+            "ItemPlayerAnimationsId": "Item",
+            "ItemAnimationId": "ConsumeSide",
+            "Particles": [
+              {
+                "SystemId": "Food_Eat",
+                "Color": "#F4A63A",
+                "TargetNodeName": "Mouth",
+                "TargetEntityPart": "Entity"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "Effect": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Food_Instant_Heal_T2"
+        },
+        "HealthRegen_TierCheck_T2",
+        "Meat_TierCheck_T2"
+      ]
+    }
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Roasted_Skrill_Egg.png",
+  "IconProperties": {
+    "Scale": 0.62,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "BlockType": {
+    "Material": "Empty",
+    "DrawType": "Model",
+    "CustomModel": "Items/CozyRanch/Food/Roasted_Skrill_Egg.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/CozyRanch/Food/Roasted_Skrill_Egg_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelScale": 0.5,
+    "HitboxType": "Food_Medium",
+    "ParticleColor": "#f2ecdc",
+    "TextureComputedColor": "#C8885E"
+  },
+  "Tags": {
+    "Type": [
+      "Food"
+    ]
+  },
+  "MaxStack": 25,
+  "Consumable": true,
+  "DropOnDeath": true,
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "CozyRanch_Skrill_Egg",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Processing",
+        "Id": "Campfire"
+      }
+    ],
+    "TimeSeconds": 4
+  }
+}

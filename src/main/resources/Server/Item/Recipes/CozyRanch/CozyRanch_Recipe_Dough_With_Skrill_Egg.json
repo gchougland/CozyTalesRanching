@@ -1,0 +1,37 @@
+{
+  "Input": [
+    {
+      "ItemId": "Ingredient_Flour",
+      "Quantity": 1
+    },
+    {
+      "ItemId": "CozyRanch_Skrill_Egg",
+      "Quantity": 1
+    },
+    {
+      "ItemId": "*Deco_Tankard_State_Filled_Water",
+      "Quantity": 1
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Ingredient_Dough",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Ingredient_Dough",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Cookingbench",
+      "Categories": [
+        "Ingredients"
+      ]
+    }
+  ],
+  "TimeSeconds": 1
+}

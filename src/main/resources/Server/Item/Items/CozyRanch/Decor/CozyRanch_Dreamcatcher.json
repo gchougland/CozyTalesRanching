@@ -1,0 +1,117 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Dreamcatcher.name",
+    "Description": "cozyranch_items.items.CozyRanch_Dreamcatcher.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Dreamcatcher.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "Ingredient_Feathers_Blue",
+        "Quantity": 3
+      },
+      {
+        "ItemId": "Ingredient_Stick",
+        "Quantity": 2
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 2
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Furniture_Bench",
+        "Categories": [
+          "Furniture_Misc"
+        ]
+      }
+    ],
+    "TimeSeconds": 2
+  },
+  "Interactions": {
+    "Primary": "Block_Primary",
+    "Secondary": "Block_Secondary"
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/CozyRanch/Decor/Dreamcatcher.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/Decor/Dreamcatcher_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "HitboxType": "CozyRanch_Dreamcatcher",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_Dreamcatcher"
+      }
+    },
+    "Support": {
+      "Up": [
+        {
+          "FaceType": "Full"
+        },
+        {
+          "FaceType": "Branch"
+        },
+        {
+          "FaceType": "Rock_Beam"
+        },
+        {
+          "FaceType": "Wood_Beam"
+        },
+        {
+          "FaceType": "Fence"
+        },
+        {
+          "FaceType": "Fence_Corner"
+        },
+        {
+          "FaceType": "Wall"
+        },
+        {
+          "FaceType": "Wall_Corner"
+        },
+        {
+          "FaceType": "Rope"
+        }
+      ]
+    },
+    "BlockParticleSetId": "Dust",
+    "ParticleColor": "#7a5a3a",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "TextureComputedColor": "#7A5A3A"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.45,
+    "Translation": [
+      0,
+      -14
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 0.5,
+  "MaxStack": 16,
+  "Tags": {
+    "Type": [
+      "Deco"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Foliage"
+}

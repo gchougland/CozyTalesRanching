@@ -1,0 +1,41 @@
+{
+  "Input": [
+    {
+      "ItemId": "CozyRanch_Skrill_Egg",
+      "Quantity": 1
+    },
+    {
+      "ItemId": "CozyRanch_Truffle",
+      "Quantity": 1
+    },
+    {
+      "ItemId": "Food_Cheese",
+      "Quantity": 1
+    },
+    {
+      "ResourceTypeId": "Fuel",
+      "Quantity": 2
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "CozyRanch_Truffle_Omelette",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "CozyRanch_Truffle_Omelette",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Cookingbench",
+      "Categories": [
+        "Baked"
+      ]
+    }
+  ],
+  "TimeSeconds": 5
+}
