@@ -1,6 +1,6 @@
 {
   "Behaviours": {
-    "shell_tuck": {
+    "snail_tuck": {
       "Kind": "here",
       "Weight": 2,
       "CooldownSeconds": 70,
@@ -9,7 +9,7 @@
         7
       ]
     },
-    "leaf_munch": {
+    "snail_munch": {
       "Kind": "here",
       "Weight": 2,
       "CooldownSeconds": 60,
@@ -34,10 +34,10 @@
         "trough_snack": [
           "EatTrough"
         ],
-        "shell_tuck": [
+        "snail_tuck": [
           "ShellTuck"
         ],
-        "leaf_munch": [
+        "snail_munch": [
           "Nibble"
         ],
         "eye_peek": [
@@ -69,7 +69,7 @@
         "eye_peek": [
           "LookAround"
         ],
-        "shell_tuck": [
+        "snail_tuck": [
           "ShellTuck"
         ],
         "socialise": [
@@ -94,7 +94,7 @@
   "Personalities": {
     "shy": {
       "Weights": {
-        "shell_tuck": 2
+        "snail_tuck": 2
       }
     },
     "curious": {
@@ -104,7 +104,7 @@
     },
     "lazy": {
       "Weights": {
-        "leaf_munch": 1.5
+        "snail_munch": 1.5
       }
     }
   }
