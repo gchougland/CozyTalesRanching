@@ -1,0 +1,99 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_models_a.items.CozyRanch_House_SkrillRoost.name",
+    "Description": "cozyranch_models_a.items.CozyRanch_House_SkrillRoost.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_House_SkrillRoost.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "ItemLevel": 5,
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_All",
+        "Quantity": 18
+      },
+      {
+        "ItemId": "Plant_Crop_Wheat_Item",
+        "Quantity": 8
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 6
+      },
+      {
+        "ItemId": "Plant_Crop_Chilli_Item",
+        "Quantity": 3
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Farming"
+        ],
+        "Id": "Farmingbench"
+      }
+    ],
+    "TimeSeconds": 3
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/CozyRanch/Houses/SkrillRoost/SkrillRoost.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/Houses/SkrillRoost/SkrillRoost_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CozyRanchUseHouse"
+          }
+        ]
+      }
+    },
+    "InteractionHint": "cozyranch_house.hint.use",
+    "HitboxType": "CozyRanch_House_SkrillRoost",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_House_SkrillRoost"
+      }
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "BlockParticleSetId": "Wood",
+    "ParticleColor": "#B89A4E",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "TextureComputedColor": "#B89A4E"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.22,
+    "Translation": [
+      0,
+      -20
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 0.5,
+  "MaxStack": 4,
+  "ItemSoundSetId": "ISS_Blocks_Wood"
+}

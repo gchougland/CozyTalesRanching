@@ -1,0 +1,27 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_Animal_Neutral",
+  "Modify": {
+    "Appearance": "CozyRanch_Woodpecker",
+    "FlockArray": [
+      "CozyRanchWild_Woodpecker"
+    ],
+    "AttractiveItemSet": [
+      "Plant_Fruit_Berries_Red"
+    ],
+    "DropList": "Drop_Woodpecker",
+    "MaxHealth": 15,
+    "MaxSpeed": 4,
+    "WanderRadius": 8,
+    "ViewRange": 8,
+    "ViewSector": 300,
+    "HearingRange": 5,
+    "AlertedRange": 10,
+    "AlertedActionRange": 4,
+    "AbsoluteDetectionRange": 1.5,
+    "IsMemory": true,
+    "MemoriesCategory": "Avian",
+    "MemoriesNameOverride": "Woodpecker",
+    "NameTranslationKey": "server.npcRoles.Woodpecker.name"
+  }
+}

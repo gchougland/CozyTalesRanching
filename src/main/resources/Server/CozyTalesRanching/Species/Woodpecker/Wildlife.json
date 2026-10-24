@@ -1,0 +1,21 @@
+{
+  "Species": {
+    "woodpecker": {
+      "Roles": [
+        "CozyRanchWild_Woodpecker"
+      ],
+      "OwnHouseWeight": 0.9,
+      "CooldownMinutes": 20,
+      "Attractors": [
+        {
+          "HouseSpecies": "squirrel",
+          "Features": [
+            "tree_trunks",
+            "woodpecker_deadwood"
+          ],
+          "Weight": 0.3
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "Features": {
+    "woodpecker_deadwood": {
+      "BlockPrefixes": [
+        "Wood_Dry_Trunk",
+        "Wood_Deadwood_Planks",
+        "Wood_Deadwood_Beam",
+        "Wood_Deadwood_Fence",
+        "CozyRanch_Toy_Log"
+      ],
+      "Exclude": [
+        "Stairs"
+      ],
+      "MinCount": 2
+    }
+  },
+  "SpeciesToys": {
+    "woodpecker": [
+      "toy_log",
+      "toy_post"
+    ]
+  }
+}

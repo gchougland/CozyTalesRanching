@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Skrill_Chick",
+    "SeparationDistance": 0.4,
+    "DropList": "Drop_Skrill_Chick",
+    "MaxHealth": 15,
+    "MaxSpeed": 4,
+    "ParticleOffset": [
+      0,
+      0.55,
+      0
+    ],
+    "FoodItems": [
+      "Plant_Crop_Corn_Item",
+      "Plant_Crop_Wheat_Item",
+      "Plant_Fruit_Mango",
+      "Plant_Crop_Tomato_Item",
+      "Plant_Crop_Rice_Item",
+      "Plant_Crop_Chilli_Item"
+    ],
+    "FollowStopDistance": 1.5,
+    "NameTranslationKey": "server.npcRoles.Skrill_Chick.name"
+  }
+}

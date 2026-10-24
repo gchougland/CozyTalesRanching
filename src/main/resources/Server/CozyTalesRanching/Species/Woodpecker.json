@@ -1,0 +1,49 @@
+{
+  "Id": "woodpecker",
+  "NameKey": "cozyranch_species.woodpecker.name",
+  "WildRoles": [
+    "CozyRanchWild_Woodpecker",
+    "Woodpecker"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Woodpecker",
+  "RanchBabyRole": "CozyRanch_Woodpecker_Chick",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_WoodpeckerStump",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "CozyRanch_Food_Crickets",
+    "Plant_Fruit_Berries_Red"
+  ],
+  "PreferredFoods": [
+    "Plant_Fruit_Apple",
+    "Plant_Seeds_Sunflower",
+    "Plant_Fruit_Pinkberry"
+  ],
+  "FavoriteTreats": [
+    "Ingredient_Tree_Sap"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.55,
+  "GrowUpMinutes": 30,
+  "BreedCooldownMinutes": 35,
+  "Products": [
+    {
+      "Item": "Ingredient_Feathers_Red",
+      "Quantity": 1,
+      "IntervalMinutes": 45,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "tree_trunks"
+  ],
+  "HabitatPrefers": [
+    "woodpecker_deadwood",
+    "berry_brambles",
+    "shade",
+    "flowers"
+  ]
+}
