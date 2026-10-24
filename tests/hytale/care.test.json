@@ -34,7 +34,7 @@
       "name": "feed in the trough",
       "description": "A new house is scanned within seconds; breeder's feed goes into a trough, two test-house cows eat it from the trough and get the breeders bonus; the bonus command gives another.",
       "steps": [
-        { "tool": "server_start", "arguments": { "artifacts": ["CozyTales-Ranching/build/libs/CozyTalesRanching-0.2.0.jar"], "authMode": "insecure" }, "waitReady": true, "save": "server" },
+        { "tool": "server_start", "arguments": { "artifacts": ["CozyTales-Ranching/build/libs/CozyTalesRanching-0.4.0.jar"], "authMode": "insecure" }, "waitReady": true, "save": "server" },
         { "tool": "server_command", "arguments": { "jobId": "${server.id}", "command": "op add 11111111-2222-4333-8444-555555555555" } },
         { "tool": "bot_start", "arguments": { "jobId": "${server.id}", "uuid": "11111111-2222-4333-8444-555555555555" }, "expect": { "state": "ready" }, "save": "bot" },
         { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/ranch house debug place cow" }, "save": "placed" },
