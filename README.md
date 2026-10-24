@@ -2,20 +2,20 @@
 
 A cozy ranching mod for Hytale, part of the Cozy Tales series by Hexvane.
 
-Befriend wild Cows, Chickens, Pigs, Sheep and Frogs, give them names and a home, and watch your ranch grow. Keep them happy, raise their babies, collect what they make, and fill your journal with everything you learn along the way. Nothing ever starves and friendship never fades, so play at your own pace.
+Befriend wild Cows, Chickens, Pigs, Sheep, Frogs, Rabbits, Mice, Squirrels, Crabs, Camels, Goats, Mosshorns, Turkeys and Ducks, give them names and a home, and watch your ranch grow. Keep them happy, raise their babies, collect what they make, and fill your journal with everything you learn along the way. Nothing ever starves and friendship never fades, so play at your own pace.
 
 ## Features
 
 - **Befriend wild animals** by feeding them the food they like. Crouch and walk up slowly, or shy animals run off. Animals you tamed the vanilla way join the ranch too.
 - **Name your friends** right after you befriend them. Their names show above their heads.
-- **Animal houses:** a Chicken Coop, Cow Barn, Pigsty, Sheepfold and Frog Pond. Animals spend the day around their house and go inside to sleep.
+- **Animal houses:** a Chicken Coop, Cow Barn, Pigsty, Sheepfold, Frog Pond, Rabbit Hutch, Mouse Cottage, Squirrel Drey, Tide Pool, Caravan Shelter, Goat Shed, Mossy Lodge, Turkey Roost and Duck House. Animals spend the day around their house and go inside to sleep.
 - **The house page** shows every resident's hearts, mood, traits and personality. Move animals between houses, call them back, collect produce, rename the house, turn breeding on or off, and light up the yard the house checks.
 - **Friendship:** five hearts per animal, earned by petting once a day and by feeding. Favourite treats count for more.
 - **Care:** troughs feed animals nearby on their own. Each species likes its own ground, plants and decorations around its house, and happy animals do better at everything.
 - **Breeding:** two happy friends of the same kind who share a house may have a baby in the morning.
 - **Traits and personalities:** animals carry up to two of nine traits that babies can inherit, and each one is Shy, Playful, Curious, Lazy or Affectionate.
 - **Lively animals:** cows graze, chickens dust-bathe, pigs roll in the mud, sheep pronk and frogs hop on lily pads. They nap, visit the trough, follow their parents and play with toys, and the toys move while they play.
-- **Produce:** eggs, milk, wool, truffles and more wait in each house for you to collect.
+- **Produce:** eggs, milk, wool, truffles, fluff, nuts, shells, feathers, moss and more wait in each house for you to collect, and every one of them has a use: new foods like the Truffle Omelette and Trail Mix, seed pouches, crop-growing moss, crafting scraps and decorations.
 - **Wildlife visitors:** a well kept ranch attracts visiting animals, and now and then a rare one.
 - **Ranch journal:** every animal you have met, what it likes, its traits and habits, your ranch memories and a short How to ranch guide.
 - **Rehoming:** give animals to friends, move them between your houses, or take them to the Butcher's Block.

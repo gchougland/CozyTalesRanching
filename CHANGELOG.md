@@ -6,6 +6,35 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 ### Added
 
+- **Nine new animals,** each with its own house, foods, habitat, behaviours, journal page and babies:
+  - **Rabbits** in two coats (and a rare Snowy Rabbit) live in a **Rabbit Hutch**. They binky, dig, thump and wash their ears, and leave Rabbit Fluff.
+  - **Mice** (and a rare Golden Mouse) live in a **Mouse Cottage** made from a wheel of cheese. They scurry, nibble and wash, and bring you Seed Pouches.
+  - **Squirrels** live in a hollow-stump **Squirrel Drey**. They sit up to nibble, bury nuts and flick their tails, and gather Mixed Nuts.
+  - **Crabs** live in a **Tide Pool** on the sand. They wave their claws, dig into the sand and blow bubbles, and leave Sea Shells.
+  - **Camels** (and a rare Moonlit Camel) live in a striped **Caravan Shelter**. They kneel to chew and snort, love cactus flowers, and give milk.
+  - **Goats** (and a rare Slate Goat) live in a **Goat Shed** with rocks to climb. They rear up on ledges and butt heads in play, and give milk and Goat Hair.
+  - **Mosshorns** in two coats live in a **Mossy Lodge**. They graze moss, shake it off and rub their antlers on trees, and grow Moss Tufts.
+  - **Turkeys** live in a **Turkey Roost**. They strut with their tails fanned and gobble, and drop Turkey Feathers.
+  - **Ducks** live in a **Duck House** over a little pond. They dabble, preen and paddle, and lay Duck Eggs. Wild ducks fly, so befriend the ones that waddle up to visit your ranch near water.
+- **New produce with real uses:**
+  - **Rabbit Fluff** and **Goat Hair** spin into Cotton and Linen Scraps for the Loom and armour.
+  - **Seed Pouch:** open it for three random crop seeds.
+  - **Moss Tuft:** use it on a growing crop to grow it a stage, or craft mossy blocks and a moss rug.
+  - **Turkey Feather:** fletch eight arrows at once instead of four.
+  - **Sea Shell:** craft shell decorations.
+  - **Mixed Nuts:** a snack, and Trail Mix for health and stamina on the go.
+  - **Duck Egg:** fry it on the campfire, or use it in baking.
+- **Truffle Omelette:** truffles finally have a use: a rare dish at the Cooking Bench with a duck egg (or two hen eggs) and cheese.
+
+### Changed
+
+- **Bunny kits:** Bunny parents now have Bunny kits.
+
+### Fixed
+
+- **Growing up:** Babies that are a small copy of their parents grow to full size when they grow up.
+- **Frog Pond:** The pond water is see-through again.
+
 ## [0.2.0] - 10/24/2026
 
 ### Added
