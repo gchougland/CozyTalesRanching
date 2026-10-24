@@ -114,7 +114,7 @@
       "position": {
         "x": -16,
         "y": 20,
-        "z": -16
+        "z": -18
       },
       "orientation": {
         "x": 0,
@@ -138,7 +138,7 @@
           "size": {
             "x": 92,
             "y": 28,
-            "z": 88
+            "z": 84
           }
         },
         "textureLayout": {
@@ -177,8 +177,180 @@
           },
           "right": {
             "offset": {
+              "x": 5,
+              "y": 695
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "152",
+      "name": "StoneFrontL",
+      "position": {
+        "x": -47.5,
+        "y": 20,
+        "z": 26
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 29,
+            "y": 28,
+            "z": 4
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 1,
+              "y": 665
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 273,
+              "y": 665
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 273,
+              "y": 665
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 1,
+              "y": 665
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "153",
+      "name": "StoneFrontR",
+      "position": {
+        "x": 15.5,
+        "y": 20,
+        "z": 26
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 29,
+            "y": 28,
+            "z": 4
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 64,
+              "y": 665
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
               "x": 1,
               "y": 695
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 1,
+              "y": 695
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 64,
+              "y": 665
             },
             "mirror": {
               "x": false,
@@ -5037,8 +5209,8 @@
       "name": "Plaque",
       "position": {
         "x": -16,
-        "y": 92,
-        "z": 27.7
+        "y": 91,
+        "z": 26.5
       },
       "orientation": {
         "x": 0,
@@ -5060,27 +5232,16 @@
         },
         "settings": {
           "size": {
-            "x": 24,
-            "y": 24,
+            "x": 32,
+            "y": 22,
             "z": 1
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 91,
-              "y": 695
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "back": {
-            "offset": {
-              "x": 117,
-              "y": 695
+              "x": 309,
+              "y": 1
             },
             "mirror": {
               "x": false,
@@ -5090,8 +5251,8 @@
           },
           "left": {
             "offset": {
-              "x": 199,
-              "y": 695
+              "x": 309,
+              "y": 1
             },
             "mirror": {
               "x": false,
@@ -5101,8 +5262,8 @@
           },
           "right": {
             "offset": {
-              "x": 202,
-              "y": 695
+              "x": 340,
+              "y": 1
             },
             "mirror": {
               "x": false,
@@ -5112,8 +5273,8 @@
           },
           "top": {
             "offset": {
-              "x": 129,
-              "y": 1013
+              "x": 309,
+              "y": 1
             },
             "mirror": {
               "x": false,
@@ -5123,8 +5284,2239 @@
           },
           "bottom": {
             "offset": {
-              "x": 155,
-              "y": 1013
+              "x": 309,
+              "y": 22
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "129",
+      "name": "WolfSign0",
+      "position": {
+        "x": -20,
+        "y": 99.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 2,
+            "y": 1,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 320,
+              "y": 26
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 49
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 49
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 320,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 320,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "130",
+      "name": "WolfSign1",
+      "position": {
+        "x": -18.5,
+        "y": 98.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 3,
+            "y": 1,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 321,
+              "y": 27
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 50
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 50
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 321,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 321,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "131",
+      "name": "WolfSign2",
+      "position": {
+        "x": -11.5,
+        "y": 90.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 17,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 329,
+              "y": 27
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 50
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 50
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 329,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 329,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "132",
+      "name": "WolfSign3",
+      "position": {
+        "x": -17.5,
+        "y": 97.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 3,
+            "y": 1,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 322,
+              "y": 28
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 51
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 51
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 322,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 322,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "133",
+      "name": "WolfSign4",
+      "position": {
+        "x": -12.5,
+        "y": 90,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 16,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 328,
+              "y": 28
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 51
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 51
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 328,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 328,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "134",
+      "name": "WolfSign5",
+      "position": {
+        "x": -21,
+        "y": 96.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 2,
+            "y": 1,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 319,
+              "y": 29
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 52
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 52
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 319,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 319,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "135",
+      "name": "WolfSign6",
+      "position": {
+        "x": -15.5,
+        "y": 92,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 5,
+            "y": 10,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 323,
+              "y": 29
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 52
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 52
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 323,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 323,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "136",
+      "name": "WolfSign7",
+      "position": {
+        "x": -19.5,
+        "y": 95.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 3,
+            "y": 1,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 320,
+              "y": 30
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 53
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 53
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 320,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 320,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "137",
+      "name": "WolfSign8",
+      "position": {
+        "x": -18.5,
+        "y": 94.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 1,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 322,
+              "y": 31
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 54
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 54
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 322,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 322,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "138",
+      "name": "WolfSign9",
+      "position": {
+        "x": -10.5,
+        "y": 87.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 11,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 330,
+              "y": 33
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 56
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 56
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 330,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 330,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "139",
+      "name": "WolfSign10",
+      "position": {
+        "x": -9.5,
+        "y": 87,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 10,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 331,
+              "y": 34
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 57
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 57
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 331,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 331,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "140",
+      "name": "WolfSign11",
+      "position": {
+        "x": -18.5,
+        "y": 89.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 3,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 322,
+              "y": 35
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 58
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 58
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 322,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 322,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "141",
+      "name": "WolfSign12",
+      "position": {
+        "x": -8.5,
+        "y": 86.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 9,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 332,
+              "y": 35
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 58
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 58
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 332,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 332,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "142",
+      "name": "WolfSign13",
+      "position": {
+        "x": -7.5,
+        "y": 86,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 8,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 333,
+              "y": 36
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 59
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 59
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 333,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 333,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "143",
+      "name": "WolfSign14",
+      "position": {
+        "x": -6.5,
+        "y": 85.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 7,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 334,
+              "y": 37
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 60
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 60
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 334,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 334,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "144",
+      "name": "WolfSign15",
+      "position": {
+        "x": -5.5,
+        "y": 85,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 6,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 335,
+              "y": 38
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 61
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 61
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 335,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 335,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "145",
+      "name": "WolfSign16",
+      "position": {
+        "x": -17,
+        "y": 84.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 2,
+            "y": 5,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 323,
+              "y": 39
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 62
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 62
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 323,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 323,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "146",
+      "name": "WolfSign17",
+      "position": {
+        "x": -14,
+        "y": 86,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 2,
+            "y": 2,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 326,
+              "y": 39
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 62
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 62
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 326,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 326,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "147",
+      "name": "WolfSign18",
+      "position": {
+        "x": -2.5,
+        "y": 84,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 4,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 338,
+              "y": 40
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 63
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 63
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 338,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 338,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "148",
+      "name": "WolfSign19",
+      "position": {
+        "x": -13.5,
+        "y": 83.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 3,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 327,
+              "y": 41
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 64
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 64
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 327,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 327,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "149",
+      "name": "WolfSign20",
+      "position": {
+        "x": -4,
+        "y": 83.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 2,
+            "y": 3,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 336,
+              "y": 41
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 64
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 64
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 336,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 336,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "150",
+      "name": "WolfSign21",
+      "position": {
+        "x": -18.5,
+        "y": 82.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 1,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 322,
+              "y": 43
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 66
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 66
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 322,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 322,
+              "y": 71
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "151",
+      "name": "WolfSign22",
+      "position": {
+        "x": -14.5,
+        "y": 82.5,
+        "z": 28
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 1,
+            "y": 1,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 326,
+              "y": 43
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 309,
+              "y": 66
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 311,
+              "y": 66
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 326,
+              "y": 69
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 326,
+              "y": 71
             },
             "mirror": {
               "x": false,
@@ -7629,8 +10021,8 @@
       "name": "Step",
       "position": {
         "x": -16,
-        "y": 2.5,
-        "z": 36
+        "y": 3,
+        "z": 35
       },
       "orientation": {
         "x": 0,
@@ -7647,8 +10039,8 @@
         },
         "stretch": {
           "x": 1,
-          "y": 1,
-          "z": 1
+          "y": 1.4,
+          "z": 1.1666666666666667
         },
         "settings": {
           "size": {
@@ -7737,7 +10129,7 @@
       "name": "Bone",
       "position": {
         "x": -7,
-        "y": 6.2,
+        "y": 7.7,
         "z": 37
       },
       "orientation": {
@@ -7845,7 +10237,7 @@
       "name": "BoneKnob0",
       "position": {
         "x": -11.078385,
-        "y": 6.4,
+        "y": 7.9,
         "z": 38.901782
       },
       "orientation": {
@@ -7953,7 +10345,7 @@
       "name": "BoneKnob1",
       "position": {
         "x": -11.078385,
-        "y": 6.4,
+        "y": 7.9,
         "z": 38.901782
       },
       "orientation": {
@@ -8061,7 +10453,7 @@
       "name": "BoneKnob2",
       "position": {
         "x": -11.078385,
-        "y": 6.4,
+        "y": 7.9,
         "z": 38.901782
       },
       "orientation": {
@@ -8169,7 +10561,7 @@
       "name": "BoneKnob3",
       "position": {
         "x": -11.078385,
-        "y": 6.4,
+        "y": 7.9,
         "z": 38.901782
       },
       "orientation": {
@@ -8277,7 +10669,7 @@
       "name": "BoneKnob02",
       "position": {
         "x": -2.921615,
-        "y": 6.4,
+        "y": 7.9,
         "z": 35.098218
       },
       "orientation": {
@@ -8385,7 +10777,7 @@
       "name": "BoneKnob12",
       "position": {
         "x": -2.921615,
-        "y": 6.4,
+        "y": 7.9,
         "z": 35.098218
       },
       "orientation": {
@@ -8493,7 +10885,7 @@
       "name": "BoneKnob22",
       "position": {
         "x": -2.921615,
-        "y": 6.4,
+        "y": 7.9,
         "z": 35.098218
       },
       "orientation": {
@@ -8601,7 +10993,7 @@
       "name": "BoneKnob32",
       "position": {
         "x": -2.921615,
-        "y": 6.4,
+        "y": 7.9,
         "z": 35.098218
       },
       "orientation": {
@@ -10112,8 +12504,8 @@
       "id": "95",
       "name": "PileLog0",
       "position": {
-        "x": -70,
-        "y": 4.8,
+        "x": -74.5,
+        "y": 4,
         "z": -19
       },
       "orientation": {
@@ -10130,7 +12522,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 1,
+          "x": 0.666667,
           "y": 1,
           "z": 1
         },
@@ -10220,8 +12612,8 @@
       "id": "96",
       "name": "PileLog1",
       "position": {
-        "x": -70,
-        "y": 4.8,
+        "x": -74.5,
+        "y": 4,
         "z": -19
       },
       "orientation": {
@@ -10238,7 +12630,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.995833,
+          "x": 0.663889,
           "y": 1,
           "z": 1
         },
@@ -10328,8 +12720,8 @@
       "id": "97",
       "name": "PileLog2",
       "position": {
-        "x": -70,
-        "y": 4.8,
+        "x": -74.5,
+        "y": 4,
         "z": -19
       },
       "orientation": {
@@ -10346,7 +12738,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.991667,
+          "x": 0.661111,
           "y": 1,
           "z": 1
         },
@@ -10436,8 +12828,8 @@
       "id": "98",
       "name": "PileLog3",
       "position": {
-        "x": -70,
-        "y": 4.8,
+        "x": -74.5,
+        "y": 4,
         "z": -19
       },
       "orientation": {
@@ -10454,7 +12846,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.9875,
+          "x": 0.658333,
           "y": 1,
           "z": 1
         },
@@ -10544,8 +12936,8 @@
       "id": "99",
       "name": "PileLog02",
       "position": {
-        "x": -69.6,
-        "y": 4.8,
+        "x": -74,
+        "y": 4,
         "z": -10
       },
       "orientation": {
@@ -10562,7 +12954,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 1,
+          "x": 0.652174,
           "y": 1,
           "z": 1
         },
@@ -10652,8 +13044,8 @@
       "id": "100",
       "name": "PileLog12",
       "position": {
-        "x": -69.6,
-        "y": 4.8,
+        "x": -74,
+        "y": 4,
         "z": -10
       },
       "orientation": {
@@ -10670,7 +13062,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.995652,
+          "x": 0.649338,
           "y": 1,
           "z": 1
         },
@@ -10760,8 +13152,8 @@
       "id": "101",
       "name": "PileLog22",
       "position": {
-        "x": -69.6,
-        "y": 4.8,
+        "x": -74,
+        "y": 4,
         "z": -10
       },
       "orientation": {
@@ -10778,7 +13170,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.991304,
+          "x": 0.646503,
           "y": 1,
           "z": 1
         },
@@ -10868,8 +13260,8 @@
       "id": "102",
       "name": "PileLog32",
       "position": {
-        "x": -69.6,
-        "y": 4.8,
+        "x": -74,
+        "y": 4,
         "z": -10
       },
       "orientation": {
@@ -10886,7 +13278,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.986957,
+          "x": 0.643668,
           "y": 1,
           "z": 1
         },
@@ -10976,8 +13368,8 @@
       "id": "103",
       "name": "PileLog03",
       "position": {
-        "x": -70,
-        "y": 4.8,
+        "x": -73.5,
+        "y": 4,
         "z": -1
       },
       "orientation": {
@@ -10994,7 +13386,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 1,
+          "x": 0.636364,
           "y": 1,
           "z": 1
         },
@@ -11084,8 +13476,8 @@
       "id": "104",
       "name": "PileLog13",
       "position": {
-        "x": -70,
-        "y": 4.8,
+        "x": -73.5,
+        "y": 4,
         "z": -1
       },
       "orientation": {
@@ -11102,7 +13494,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.995455,
+          "x": 0.633471,
           "y": 1,
           "z": 1
         },
@@ -11192,8 +13584,8 @@
       "id": "105",
       "name": "PileLog23",
       "position": {
-        "x": -70,
-        "y": 4.8,
+        "x": -73.5,
+        "y": 4,
         "z": -1
       },
       "orientation": {
@@ -11210,7 +13602,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.990909,
+          "x": 0.630578,
           "y": 1,
           "z": 1
         },
@@ -11300,8 +13692,8 @@
       "id": "106",
       "name": "PileLog33",
       "position": {
-        "x": -70,
-        "y": 4.8,
+        "x": -73.5,
+        "y": 4,
         "z": -1
       },
       "orientation": {
@@ -11318,7 +13710,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.986364,
+          "x": 0.627686,
           "y": 1,
           "z": 1
         },
@@ -11408,8 +13800,8 @@
       "id": "107",
       "name": "PileLog04",
       "position": {
-        "x": -69.6,
-        "y": 12.3,
+        "x": -74.5,
+        "y": 11.5,
         "z": -14.5
       },
       "orientation": {
@@ -11426,7 +13818,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 1,
+          "x": 0.666667,
           "y": 1,
           "z": 1
         },
@@ -11516,8 +13908,8 @@
       "id": "108",
       "name": "PileLog14",
       "position": {
-        "x": -69.6,
-        "y": 12.3,
+        "x": -74.5,
+        "y": 11.5,
         "z": -14.5
       },
       "orientation": {
@@ -11534,7 +13926,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.995833,
+          "x": 0.663889,
           "y": 1,
           "z": 1
         },
@@ -11624,8 +14016,8 @@
       "id": "109",
       "name": "PileLog24",
       "position": {
-        "x": -69.6,
-        "y": 12.3,
+        "x": -74.5,
+        "y": 11.5,
         "z": -14.5
       },
       "orientation": {
@@ -11642,7 +14034,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.991667,
+          "x": 0.661111,
           "y": 1,
           "z": 1
         },
@@ -11732,8 +14124,8 @@
       "id": "110",
       "name": "PileLog34",
       "position": {
-        "x": -69.6,
-        "y": 12.3,
+        "x": -74.5,
+        "y": 11.5,
         "z": -14.5
       },
       "orientation": {
@@ -11750,7 +14142,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.9875,
+          "x": 0.658333,
           "y": 1,
           "z": 1
         },
@@ -11840,8 +14232,8 @@
       "id": "111",
       "name": "PileLog05",
       "position": {
-        "x": -70,
-        "y": 12.3,
+        "x": -74,
+        "y": 11.5,
         "z": -5.5
       },
       "orientation": {
@@ -11858,7 +14250,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 1,
+          "x": 0.652174,
           "y": 1,
           "z": 1
         },
@@ -11948,8 +14340,8 @@
       "id": "112",
       "name": "PileLog15",
       "position": {
-        "x": -70,
-        "y": 12.3,
+        "x": -74,
+        "y": 11.5,
         "z": -5.5
       },
       "orientation": {
@@ -11966,7 +14358,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.995652,
+          "x": 0.649338,
           "y": 1,
           "z": 1
         },
@@ -12056,8 +14448,8 @@
       "id": "113",
       "name": "PileLog25",
       "position": {
-        "x": -70,
-        "y": 12.3,
+        "x": -74,
+        "y": 11.5,
         "z": -5.5
       },
       "orientation": {
@@ -12074,7 +14466,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.991304,
+          "x": 0.646503,
           "y": 1,
           "z": 1
         },
@@ -12164,8 +14556,8 @@
       "id": "114",
       "name": "PileLog35",
       "position": {
-        "x": -70,
-        "y": 12.3,
+        "x": -74,
+        "y": 11.5,
         "z": -5.5
       },
       "orientation": {
@@ -12182,7 +14574,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.986957,
+          "x": 0.643668,
           "y": 1,
           "z": 1
         },
@@ -12272,8 +14664,8 @@
       "id": "115",
       "name": "PileLog06",
       "position": {
-        "x": -69.6,
-        "y": 19.8,
+        "x": -73.5,
+        "y": 19,
         "z": -10
       },
       "orientation": {
@@ -12290,7 +14682,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 1,
+          "x": 0.636364,
           "y": 1,
           "z": 1
         },
@@ -12380,8 +14772,8 @@
       "id": "116",
       "name": "PileLog16",
       "position": {
-        "x": -69.6,
-        "y": 19.8,
+        "x": -73.5,
+        "y": 19,
         "z": -10
       },
       "orientation": {
@@ -12398,7 +14790,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.995455,
+          "x": 0.633471,
           "y": 1,
           "z": 1
         },
@@ -12488,8 +14880,8 @@
       "id": "117",
       "name": "PileLog26",
       "position": {
-        "x": -69.6,
-        "y": 19.8,
+        "x": -73.5,
+        "y": 19,
         "z": -10
       },
       "orientation": {
@@ -12506,7 +14898,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.990909,
+          "x": 0.630578,
           "y": 1,
           "z": 1
         },
@@ -12596,8 +14988,8 @@
       "id": "118",
       "name": "PileLog36",
       "position": {
-        "x": -69.6,
-        "y": 19.8,
+        "x": -73.5,
+        "y": 19,
         "z": -10
       },
       "orientation": {
@@ -12614,7 +15006,7 @@
           "z": 0
         },
         "stretch": {
-          "x": 0.986364,
+          "x": 0.627686,
           "y": 1,
           "z": 1
         },
