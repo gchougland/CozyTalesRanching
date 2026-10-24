@@ -1,0 +1,35 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Rabbit_Fluff.name",
+    "Description": "cozyranch_items.items.CozyRanch_Rabbit_Fluff.description"
+  },
+  "Categories": [
+    "Items.Ingredients"
+  ],
+  "Quality": "Common",
+  "Model": "Items/CozyRanch/Produce/Rabbit_Fluff.blockymodel",
+  "Texture": "Items/CozyRanch/Produce/Rabbit_Fluff_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Rabbit_Fluff.png",
+  "IconProperties": {
+    "Scale": 0.85,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Ingredient"
+    ]
+  },
+  "MaxStack": 50,
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Cloth"
+}

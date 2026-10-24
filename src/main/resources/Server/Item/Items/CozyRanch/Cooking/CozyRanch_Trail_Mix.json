@@ -1,0 +1,110 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Trail_Mix.name",
+    "Description": "cozyranch_items.items.CozyRanch_Trail_Mix.description"
+  },
+  "Parent": "Template_Food",
+  "Quality": "Uncommon",
+  "Categories": [
+    "Items.Foods"
+  ],
+  "Interactions": {
+    "Secondary": "Root_Secondary_Consume_Food_T2"
+  },
+  "InteractionVars": {
+    "Consume_Charge": {
+      "Interactions": [
+        {
+          "Parent": "Consume_Charge_Food_T1_Inner",
+          "Effects": {
+            "ItemPlayerAnimationsId": "Item",
+            "ItemAnimationId": "ConsumeSide",
+            "Particles": [
+              {
+                "SystemId": "Food_Eat",
+                "Color": "#9C6236",
+                "TargetNodeName": "Mouth",
+                "TargetEntityPart": "Entity"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "Effect": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Food_Instant_Heal_T1"
+        },
+        "HealthRegen_TierCheck_T2",
+        "FruitVeggie_TierCheck_T2"
+      ]
+    }
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Trail_Mix.png",
+  "IconProperties": {
+    "Scale": 0.72,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "BlockType": {
+    "Material": "Empty",
+    "DrawType": "Model",
+    "CustomModel": "Items/CozyRanch/Food/Trail_Mix.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/CozyRanch/Food/Trail_Mix_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelScale": 0.5,
+    "HitboxType": "Food_Medium",
+    "ParticleColor": "#a2703f",
+    "TextureComputedColor": "#7E5634"
+  },
+  "Tags": {
+    "Type": [
+      "Food"
+    ]
+  },
+  "MaxStack": 25,
+  "Consumable": true,
+  "DropOnDeath": true,
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "CozyRanch_Mixed_Nuts",
+        "Quantity": 3
+      },
+      {
+        "ResourceTypeId": "Fruits",
+        "Quantity": 2
+      }
+    ],
+    "Output": [
+      {
+        "ItemId": "CozyRanch_Trail_Mix",
+        "Quantity": 2
+      }
+    ],
+    "OutputQuantity": 2,
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Cookingbench",
+        "Categories": [
+          "Prepared"
+        ]
+      }
+    ],
+    "TimeSeconds": 1
+  }
+}

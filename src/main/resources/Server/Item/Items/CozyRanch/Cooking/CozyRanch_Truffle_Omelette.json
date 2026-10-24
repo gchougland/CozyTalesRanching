@@ -1,0 +1,109 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Truffle_Omelette.name",
+    "Description": "cozyranch_items.items.CozyRanch_Truffle_Omelette.description"
+  },
+  "Parent": "Template_Food",
+  "Quality": "Rare",
+  "Categories": [
+    "Items.Foods"
+  ],
+  "Interactions": {
+    "Secondary": "Root_Secondary_Consume_Food_T3"
+  },
+  "InteractionVars": {
+    "Consume_Charge": {
+      "Interactions": [
+        {
+          "Parent": "Consume_Charge_Food_T1_Inner",
+          "Effects": {
+            "Particles": [
+              {
+                "SystemId": "Food_Eat",
+                "Color": "#E9C25A",
+                "TargetNodeName": "Mouth",
+                "TargetEntityPart": "Entity"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "Effect": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Food_Instant_Heal_T1"
+        },
+        "HealthRegen_TierCheck_T3",
+        "Meat_TierCheck_T3"
+      ]
+    }
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Truffle_Omelette.png",
+  "IconProperties": {
+    "Scale": 0.62,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "BlockType": {
+    "Material": "Empty",
+    "DrawType": "Model",
+    "CustomModel": "Items/CozyRanch/Food/Truffle_Omelette.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/CozyRanch/Food/Truffle_Omelette_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelScale": 0.5,
+    "HitboxType": "Food_Medium",
+    "ParticleColor": "#e9c25a",
+    "TextureComputedColor": "#B38A4E"
+  },
+  "Tags": {
+    "Type": [
+      "Food"
+    ]
+  },
+  "MaxStack": 25,
+  "Consumable": true,
+  "DropOnDeath": true,
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "CozyRanch_Duck_Egg",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "CozyRanch_Truffle",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Food_Cheese",
+        "Quantity": 1
+      },
+      {
+        "ResourceTypeId": "Fuel",
+        "Quantity": 2
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Cookingbench",
+        "Categories": [
+          "Baked"
+        ]
+      }
+    ],
+    "TimeSeconds": 5
+  }
+}

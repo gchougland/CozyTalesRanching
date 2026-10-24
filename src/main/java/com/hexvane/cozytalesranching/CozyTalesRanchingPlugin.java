@@ -63,6 +63,7 @@ public final class CozyTalesRanchingPlugin extends JavaPlugin {
         com.hexvane.cozytalesranching.journal.JournalFeature.register(this);
         com.hexvane.cozytalesranching.wildlife.WildlifeFeature.register(this);
         com.hexvane.cozytalesranching.rehome.RehomeFeature.register(this);
+        com.hexvane.cozytalesranching.items.ItemsFeature.register(this);
 
         this.getCommandRegistry().registerCommand(new RanchCommand());
         getLogger().atInfo().log("Cozy Tales: Ranching v%s ready.", modVersion);

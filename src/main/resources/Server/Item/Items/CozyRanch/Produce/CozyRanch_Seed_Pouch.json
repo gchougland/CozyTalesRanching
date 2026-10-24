@@ -1,0 +1,62 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Seed_Pouch.name",
+    "Description": "cozyranch_items.items.CozyRanch_Seed_Pouch.description"
+  },
+  "Categories": [
+    "Items.Tools"
+  ],
+  "Quality": "Uncommon",
+  "Model": "Items/CozyRanch/Produce/Seed_Pouch.blockymodel",
+  "Texture": "Items/CozyRanch/Produce/Seed_Pouch_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Seed_Pouch.png",
+  "IconProperties": {
+    "Scale": 0.8,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Tool"
+    ]
+  },
+  "MaxStack": 25,
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Cloth",
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "CozyRanchOpenSeedPouch",
+          "Rolls": 3,
+          "Seeds": {
+            "Plant_Seeds_Wheat": 14,
+            "Plant_Seeds_Carrot": 12,
+            "Plant_Seeds_Lettuce": 12,
+            "Plant_Seeds_Potato": 10,
+            "Plant_Seeds_Corn": 10,
+            "Plant_Seeds_Tomato": 8,
+            "Plant_Seeds_Turnip": 8,
+            "Plant_Seeds_Pumpkin": 6,
+            "Plant_Seeds_Cauliflower": 5,
+            "Plant_Seeds_Onion": 4,
+            "Plant_Seeds_Rice": 4,
+            "Plant_Seeds_Chilli": 3,
+            "Plant_Seeds_Aubergine": 3,
+            "Plant_Seeds_Cotton": 2,
+            "Plant_Seeds_Sunflower": 2
+          }
+        }
+      ]
+    }
+  }
+}

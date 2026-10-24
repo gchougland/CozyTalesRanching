@@ -1,0 +1,78 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Mixed_Nuts.name",
+    "Description": "cozyranch_items.items.CozyRanch_Mixed_Nuts.description"
+  },
+  "Parent": "Template_Food",
+  "Quality": "Common",
+  "Categories": [
+    "Items.Foods"
+  ],
+  "Interactions": {
+    "Secondary": "Root_Secondary_Consume_Food_T1"
+  },
+  "InteractionVars": {
+    "Consume_Charge": {
+      "Interactions": [
+        {
+          "Parent": "Consume_Charge_Food_T1_Inner",
+          "Effects": {
+            "Particles": [
+              {
+                "SystemId": "Food_Eat",
+                "Color": "#B7803F",
+                "TargetNodeName": "Mouth",
+                "TargetEntityPart": "Entity"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "Effect": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Food_Instant_Heal_T1"
+        },
+        "FruitVeggie_TierCheck_T1"
+      ]
+    }
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Mixed_Nuts.png",
+  "IconProperties": {
+    "Scale": 0.85,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "BlockType": {
+    "Material": "Empty",
+    "DrawType": "Model",
+    "CustomModel": "Items/CozyRanch/Produce/Mixed_Nuts.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/CozyRanch/Produce/Mixed_Nuts_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelScale": 0.5,
+    "HitboxType": "Food_Medium",
+    "ParticleColor": "#a8743c",
+    "TextureComputedColor": "#8E6236"
+  },
+  "Tags": {
+    "Type": [
+      "Food"
+    ]
+  },
+  "MaxStack": 25,
+  "Consumable": true,
+  "DropOnDeath": true
+}

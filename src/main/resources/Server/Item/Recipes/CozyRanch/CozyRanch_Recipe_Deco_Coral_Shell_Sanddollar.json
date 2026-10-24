@@ -1,0 +1,29 @@
+{
+  "Input": [
+    {
+      "ItemId": "CozyRanch_Sea_Shell",
+      "Quantity": 2
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Deco_Coral_Shell_Sanddollar",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Deco_Coral_Shell_Sanddollar",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Furniture_Bench",
+      "Categories": [
+        "Furniture_Misc"
+      ]
+    }
+  ],
+  "TimeSeconds": 1
+}

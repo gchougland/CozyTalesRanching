@@ -1,0 +1,962 @@
+{
+  "cases": [
+    {
+      "name": "items-030 gate",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "_worktrees/CozyTales-Ranching-030-items"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0,
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-030 assets",
+      "description": "Every new product, food and recipe passes the engine schema with no errors (our two interaction types are plugin types).",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Duck_Egg",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Duck_Egg.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Goat_Hair",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Goat_Hair.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Mixed_Nuts",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Mixed_Nuts.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Moss_Tuft",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Moss_Tuft.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Rabbit_Fluff",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Rabbit_Fluff.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Sea_Shell",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Sea_Shell.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Seed_Pouch",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Seed_Pouch.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Truffle",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Truffle.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Turkey_Feather",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Turkey_Feather.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Fried_Duck_Egg",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Items/CozyRanch/Cooking/CozyRanch_Fried_Duck_Egg.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Trail_Mix",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Items/CozyRanch/Cooking/CozyRanch_Trail_Mix.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Truffle_Omelette",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Items/CozyRanch/Cooking/CozyRanch_Truffle_Omelette.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Cotton_Scrap_From_Rabbit_Fluff",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Cotton_Scrap_From_Rabbit_Fluff.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Deco_Coral_Shell",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Deco_Coral_Shell.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Deco_Coral_Shell_Purple",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Deco_Coral_Shell_Purple.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Deco_Coral_Shell_Sanddollar",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Deco_Coral_Shell_Sanddollar.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Deco_Coral_Shell_Swirly",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Deco_Coral_Shell_Swirly.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Dough_With_Duck_Egg",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Dough_With_Duck_Egg.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Fletched_Arrows",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Fletched_Arrows.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Linen_Scrap_From_Goat_Hair",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Linen_Scrap_From_Goat_Hair.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Moss_Block",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Moss_Block.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Moss_Rug",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Moss_Rug.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Mossy_Cobble",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Mossy_Cobble.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Truffle_Omelette_Hen_Eggs",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Truffle_Omelette_Hen_Eggs.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-030 textures",
+      "description": "Painted, not pixelled: no product or food texture FAILs the style rules.",
+      "steps": [
+        {
+          "tool": "texture_check",
+          "name": "Rabbit_Fluff texture",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Rabbit_Fluff_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Rabbit_Fluff.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Seed_Pouch texture",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Seed_Pouch_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Seed_Pouch.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Mixed_Nuts texture",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Mixed_Nuts_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Mixed_Nuts.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Sea_Shell texture",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Sea_Shell_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Sea_Shell.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Goat_Hair texture",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Goat_Hair_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Goat_Hair.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Moss_Tuft texture",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Moss_Tuft_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Moss_Tuft.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Turkey_Feather texture",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Turkey_Feather_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Turkey_Feather.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Duck_Egg texture",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Duck_Egg_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Duck_Egg.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Fried_Duck_Egg texture",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Food/Fried_Duck_Egg_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Food/Fried_Duck_Egg.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Truffle_Omelette texture",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Food/Truffle_Omelette_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Food/Truffle_Omelette.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Trail_Mix texture",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Food/Trail_Mix_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Food/Trail_Mix.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-030 models",
+      "description": "Each product and food model with its texture, three-quarter, against a golden that was looked at.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "Rabbit_Fluff",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Rabbit_Fluff.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Rabbit_Fluff_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.5
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items030/CozyRanch_Rabbit_Fluff.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Seed_Pouch",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Seed_Pouch.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Seed_Pouch_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.5
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items030/CozyRanch_Seed_Pouch.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Mixed_Nuts",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Mixed_Nuts.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Mixed_Nuts_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.5
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items030/CozyRanch_Mixed_Nuts.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Sea_Shell",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Sea_Shell.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Sea_Shell_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.5
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items030/CozyRanch_Sea_Shell.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Goat_Hair",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Goat_Hair.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Goat_Hair_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.5
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items030/CozyRanch_Goat_Hair.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Moss_Tuft",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Moss_Tuft.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Moss_Tuft_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.5
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items030/CozyRanch_Moss_Tuft.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Turkey_Feather",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Turkey_Feather.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Turkey_Feather_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.5
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items030/CozyRanch_Turkey_Feather.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Duck_Egg",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Duck_Egg.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Produce/Duck_Egg_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.5
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items030/CozyRanch_Duck_Egg.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Fried_Duck_Egg",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Food/Fried_Duck_Egg.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Food/Fried_Duck_Egg_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.5
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items030/CozyRanch_Fried_Duck_Egg.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Truffle_Omelette",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Food/Truffle_Omelette.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Food/Truffle_Omelette_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.5
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items030/CozyRanch_Truffle_Omelette.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Trail_Mix",
+          "arguments": {
+            "root": "projects",
+            "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Food/Trail_Mix.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "_worktrees/CozyTales-Ranching-030-items/src/main/resources/Common/Items/CozyRanch/Food/Trail_Mix_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.5
+              },
+              "height": {
+                "$lte": 0.5
+              },
+              "depth": {
+                "$lte": 0.5
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items030/CozyRanch_Trail_Mix.png"
+        }
+      ]
+    }
+  ]
+}
