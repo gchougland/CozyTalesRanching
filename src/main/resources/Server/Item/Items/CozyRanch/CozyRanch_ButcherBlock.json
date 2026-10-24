@@ -5,7 +5,8 @@
   },
   "Icon": "Icons/ItemsGenerated/CozyRanch_ButcherBlock.png",
   "Categories": [
-    "Furniture.Furniture"
+    "Furniture.Furniture",
+    "CozyRanch.Tools"
   ],
   "ItemLevel": 5,
   "Recipe": {
@@ -23,9 +24,9 @@
       {
         "Type": "Crafting",
         "Categories": [
-          "Farming"
+          "CozyRanch_FeedCare"
         ],
-        "Id": "Farmingbench",
+        "Id": "CozyRanch_RanchingBench",
         "RequiredTierLevel": 1
       }
     ],

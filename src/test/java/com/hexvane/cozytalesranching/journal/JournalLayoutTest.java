@@ -202,7 +202,7 @@ class JournalLayoutTest {
         }
         assertTrue(lines <= 20, "a short page: " + lines + " lines");
         String all = String.join(" ", text.values());
-        for (String must : new String[] {"Crouch", "name", "Farmer's Workbench", "trough", "decorations", "Show area", "once a day", "baby", "Collect", "Jar of Crickets"}) {
+        for (String must : new String[] {"Crouch", "name", "Ranching Bench", "trough", "decorations", "Show area", "once a day", "baby", "Collect", "Jar of Crickets"}) {
             assertTrue(concat(g.left(), g.right()).stream().flatMap(s -> s.lines().stream()).anyMatch(l -> text.get(l.text().key()).contains(must)), "the guide mentions " + must);
         }
         assertFalse(all.isEmpty());

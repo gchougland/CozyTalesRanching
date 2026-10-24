@@ -5,7 +5,8 @@
   },
   "Icon": "Icons/ItemsGenerated/CozyRanch_Dreamcatcher.png",
   "Categories": [
-    "Furniture.Furniture"
+    "Furniture.Furniture",
+    "CozyRanch.Decor"
   ],
   "Recipe": {
     "Input": [
@@ -29,6 +30,13 @@
         "Categories": [
           "Furniture_Misc"
         ]
+      },
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "CozyRanch_ToysDecor"
+        ],
+        "Id": "CozyRanch_RanchingBench"
       }
     ],
     "TimeSeconds": 2

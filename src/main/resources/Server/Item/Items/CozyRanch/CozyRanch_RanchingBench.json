@@ -1,0 +1,175 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_catalog.items.CozyRanch_RanchingBench.name",
+    "Description": "cozyranch_catalog.items.CozyRanch_RanchingBench.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_RanchingBench.png",
+  "Categories": [
+    "Furniture.Benches",
+    "CozyRanch.Tools"
+  ],
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/CozyRanch/RanchingBench/RanchingBench.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/RanchingBench/RanchingBench_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "CozyRanch_RanchingBench",
+    "VariantRotation": "NESW",
+    "Bench": {
+      "Type": "Crafting",
+      "Categories": [
+        {
+          "Id": "CozyRanch_Houses",
+          "Icon": "Icons/CraftingCategories/CozyRanch/Houses.png",
+          "Name": "cozyranch_catalog.benchCategories.houses"
+        },
+        {
+          "Id": "CozyRanch_FeedCare",
+          "Icon": "Icons/CraftingCategories/CozyRanch/FeedCare.png",
+          "Name": "cozyranch_catalog.benchCategories.feedCare"
+        },
+        {
+          "Id": "CozyRanch_ToysDecor",
+          "Icon": "Icons/CraftingCategories/CozyRanch/ToysDecor.png",
+          "Name": "cozyranch_catalog.benchCategories.toysDecor"
+        }
+      ],
+      "LocalOpenSoundEventId": "SFX_Workbench_Open",
+      "LocalCloseSoundEventId": "SFX_Workbench_Close",
+      "CompletedSoundEventId": "SFX_Workbench_Craft",
+      "FailedSoundEventId": "SFX_Generic_Crafting_Failed",
+      "BenchUpgradeSoundEventId": "SFX_Workbench_Upgrade_Start_Default",
+      "BenchUpgradeCompletedSoundEventId": "SFX_Workbench_Upgrade_Complete_Default",
+      "Id": "CozyRanch_RanchingBench",
+      "TierLevels": [
+        {
+          "CraftingTimeReductionModifier": 0.0,
+          "UpgradeRequirement": {
+            "Material": [
+              {
+                "ItemId": "Plant_Hay_Bundle",
+                "Quantity": 6
+              },
+              {
+                "ItemId": "Ingredient_Hide_Light",
+                "Quantity": 4
+              },
+              {
+                "ItemId": "Plant_Crop_Wheat_Item",
+                "Quantity": 10
+              },
+              {
+                "ResourceTypeId": "Wood_Softwood_Trunk",
+                "Quantity": 10
+              }
+            ],
+            "TimeSeconds": 3
+          }
+        },
+        {
+          "CraftingTimeReductionModifier": 0.15,
+          "UpgradeRequirement": {
+            "Material": [
+              {
+                "ItemId": "Ingredient_Bar_Iron",
+                "Quantity": 4
+              },
+              {
+                "ItemId": "Ingredient_Leather_Light",
+                "Quantity": 6
+              },
+              {
+                "ItemId": "Plant_Crop_Carrot_Item",
+                "Quantity": 15
+              },
+              {
+                "ResourceTypeId": "Wood_Hardwood_Trunk",
+                "Quantity": 15
+              }
+            ],
+            "TimeSeconds": 3
+          }
+        },
+        {
+          "CraftingTimeReductionModifier": 0.3
+        }
+      ]
+    },
+    "BlockEntity": {
+      "Components": {
+        "BenchBlock": {}
+      }
+    },
+    "State": {
+      "Definitions": {
+        "CraftCompleted": {}
+      }
+    },
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches"
+      }
+    },
+    "BlockParticleSetId": "Wood",
+    "ParticleColor": "#8A5E3A",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "TextureComputedColor": "#7C5634"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.35,
+    "Translation": [
+      11.4,
+      -19.8
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Tags": {
+    "Type": [
+      "Bench"
+    ]
+  },
+  "Recipe": {
+    "TimeSeconds": 3,
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_Trunk",
+        "Quantity": 6
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 16
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Workbench",
+        "Categories": [
+          "Workbench_Crafting"
+        ]
+      }
+    ]
+  },
+  "MaxStack": 1,
+  "ItemLevel": 4,
+  "ItemSoundSetId": "ISS_Blocks_Wood"
+}
