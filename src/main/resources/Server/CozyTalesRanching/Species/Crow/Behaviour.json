@@ -1,0 +1,127 @@
+{
+  "Behaviours": {
+    "crow_hop": {
+      "Kind": "here",
+      "Weight": 2.5,
+      "CooldownSeconds": 50,
+      "Seconds": [
+        2,
+        4
+      ],
+      "RepeatSeconds": 1
+    },
+    "crow_caw": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        3,
+        5
+      ]
+    },
+    "crow_trinket": {
+      "Kind": "here",
+      "Weight": 1,
+      "CooldownSeconds": 150,
+      "Seconds": [
+        4,
+        6
+      ]
+    }
+  },
+  "Species": {
+    "crow": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "crow_hop": [
+          "Hop"
+        ],
+        "crow_caw": [
+          "Caw"
+        ],
+        "head_tilt": [
+          "TiltHead"
+        ],
+        "crow_trinket": [
+          "Trinket"
+        ],
+        "peck": [
+          "Peck"
+        ],
+        "preen": [
+          "Preen"
+        ],
+        "socialise": [
+          "Caw",
+          "Love"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_bell": [
+          "TiltHead",
+          "Peck"
+        ],
+        "toy_ball": [
+          "Hop"
+        ],
+        "approach_player": [
+          "TiltHead"
+        ],
+        "greet_owner": [
+          "Hop",
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "crow_hop": [
+          "Hop"
+        ],
+        "head_tilt": [
+          "TiltHead"
+        ],
+        "peck": [
+          "Peck"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_bell": [
+          "TiltHead"
+        ],
+        "approach_player": [
+          "TiltHead"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "crow_hop": 2
+      }
+    },
+    "curious": {
+      "Weights": {
+        "crow_trinket": 2,
+        "head_tilt": 1.5
+      }
+    },
+    "affectionate": {
+      "Weights": {
+        "crow_caw": 1.5
+      }
+    }
+  }
+}

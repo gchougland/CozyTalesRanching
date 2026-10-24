@@ -1,0 +1,35 @@
+{
+  "Species": [
+    {
+      "Id": "owl",
+      "Order": 300,
+      "DescriptionKey": "cozyranch_journal.species.owl.desc",
+      "RareKey": "cozyranch_journal.species.owl.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Owl.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/OwlSilhouette.png",
+      "Behaviours": [
+        "owl_hoot",
+        "owl_swivel",
+        "owl_roost",
+        "preen",
+        "flap",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_log",
+        "toy_ball"
+      ],
+      "Looks": [
+        {
+          "NameKey": "cozyranch_journal.species.owl.look.brown",
+          "HowKey": "cozyranch_journal.species.owl.look.brown.how"
+        },
+        {
+          "NameKey": "cozyranch_journal.species.owl.look.snow",
+          "HowKey": "cozyranch_journal.species.owl.look.snow.how"
+        }
+      ]
+    }
+  ]
+}

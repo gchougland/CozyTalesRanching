@@ -1,0 +1,28 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Crow",
+    "SeparationDistance": 0.4,
+    "DropList": "Drop_Crow",
+    "MaxHealth": 20,
+    "MaxSpeed": 4,
+    "ParticleOffset": [
+      0,
+      0.9,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Plant_Crop_Corn_Item",
+      "Plant_Seeds_Wheat",
+      "Food_Wildmeat_Raw",
+      "Plant_Fruit_Berries_Red",
+      "Plant_Fruit_Apple",
+      "Food_Egg",
+      "Food_Cheese"
+    ],
+    "FollowStopDistance": 1.5,
+    "NameTranslationKey": "server.npcRoles.Crow.name"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_models_a.items.CozyRanch_House_Rookery.name",
+    "Description": "cozyranch_models_a.items.CozyRanch_House_Rookery.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_House_Rookery.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "ItemLevel": 5,
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_All",
+        "Quantity": 24
+      },
+      {
+        "ItemId": "Ingredient_Stick",
+        "Quantity": 16
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 6
+      },
+      {
+        "ItemId": "Plant_Crop_Corn_Item",
+        "Quantity": 2
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Farming"
+        ],
+        "Id": "Farmingbench"
+      }
+    ],
+    "TimeSeconds": 3
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/CozyRanch/Houses/Rookery/Rookery.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/Houses/Rookery/Rookery_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CozyRanchUseHouse"
+          }
+        ]
+      }
+    },
+    "InteractionHint": "cozyranch_house.hint.use",
+    "HitboxType": "CozyRanch_House_Rookery",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_House_Rookery"
+      }
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "BlockParticleSetId": "Wood",
+    "ParticleColor": "#5E4632",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "TextureComputedColor": "#5E4632"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.24,
+    "Translation": [
+      0,
+      -22
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 0.5,
+  "MaxStack": 4,
+  "ItemSoundSetId": "ISS_Blocks_Wood"
+}

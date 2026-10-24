@@ -1,0 +1,36 @@
+{
+  "Species": [
+    {
+      "Id": "crow",
+      "Order": 305,
+      "DescriptionKey": "cozyranch_journal.species.crow.desc",
+      "RareKey": "cozyranch_journal.species.crow.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Crow.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/CrowSilhouette.png",
+      "Behaviours": [
+        "crow_hop",
+        "crow_caw",
+        "head_tilt",
+        "crow_trinket",
+        "peck",
+        "preen",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_bell",
+        "toy_ball"
+      ],
+      "Looks": [
+        {
+          "NameKey": "cozyranch_journal.species.crow.look.crow",
+          "HowKey": "cozyranch_journal.species.crow.look.crow.how"
+        },
+        {
+          "NameKey": "cozyranch_journal.species.crow.look.raven",
+          "HowKey": "cozyranch_journal.species.crow.look.raven.how"
+        }
+      ]
+    }
+  ]
+}

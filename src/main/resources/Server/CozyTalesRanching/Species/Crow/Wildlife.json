@@ -1,0 +1,29 @@
+{
+  "Species": {
+    "crow": {
+      "Roles": [
+        "CozyRanchWild_Crow",
+        "CozyRanchWild_Raven"
+      ],
+      "OwnHouseWeight": 0.9,
+      "CooldownMinutes": 15,
+      "Attractors": [
+        {
+          "HouseSpecies": "turkey",
+          "Features": [
+            "perch"
+          ],
+          "Weight": 0.25
+        },
+        {
+          "HouseSpecies": "pigeon",
+          "Features": [
+            "perch",
+            "open_space"
+          ],
+          "Weight": 0.2
+        }
+      ]
+    }
+  }
+}

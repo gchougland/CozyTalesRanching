@@ -1,0 +1,119 @@
+{
+  "Behaviours": {
+    "owl_hoot": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 75,
+      "Seconds": [
+        4,
+        6
+      ]
+    },
+    "owl_swivel": {
+      "Kind": "here",
+      "Weight": 2.5,
+      "CooldownSeconds": 45,
+      "Seconds": [
+        3,
+        5
+      ]
+    },
+    "owl_roost": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        10,
+        16
+      ]
+    }
+  },
+  "Species": {
+    "owl": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "owl_hoot": [
+          "Hoot"
+        ],
+        "owl_swivel": [
+          "Swivel"
+        ],
+        "owl_roost": [
+          "Roost"
+        ],
+        "preen": [
+          "Preen"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "Hoot",
+          "Love"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Roost"
+        ],
+        "toy_ball": [
+          "Flutter",
+          "Happy"
+        ],
+        "approach_player": [
+          "Swivel"
+        ],
+        "greet_owner": [
+          "Hoot",
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "owl_swivel": [
+          "Swivel"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Flutter"
+        ],
+        "approach_player": [
+          "Swivel"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "lazy": {
+      "Weights": {
+        "owl_roost": 2
+      }
+    },
+    "curious": {
+      "Weights": {
+        "owl_swivel": 2
+      }
+    },
+    "affectionate": {
+      "Weights": {
+        "owl_hoot": 1.5
+      }
+    }
+  }
+}
