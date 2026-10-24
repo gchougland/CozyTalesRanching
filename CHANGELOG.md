@@ -6,6 +6,30 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 ### Added
 
+- **Taming predators:** Wild foxes, wolves, bears and snow leopards bite, so walking up with food will not work. Craft a **Bait Bowl** at the Farmer's bench and fill it with bait they love. A wild one nearby comes to eat and turns **calm** for a few minutes: while calm it will not attack you or your animals, and you can crouch, walk up and feed it by hand like any other animal. Startle it and it runs off instead of fighting. Tamed predators are as gentle as the rest of your ranch. The journal's How to page has a new Wild ones section.
+- **Eight new animals,** each with its own house, foods, habitat, behaviours, journal page and babies:
+  - **Foxes** live in a **Fox Den** under a mossy log. They pounce into the grass, tilt their heads and bring home Fox Trinkets.
+  - **Wolves** in black or white live in a **Wolf Lodge**. They play-bow, keep watch and howl, and shed Wolf Fur.
+  - **Bears** in grizzly or polar coats live in a **Bear Cave**. They sit and scratch, roll on their backs and swipe at fish, and bring Wild Honey.
+  - **Snow Leopards** live in a **Snowy Den** hung with icicles. They stalk and pounce in play and curl up in their long tails, and leave Spotted Pelts.
+  - **Deer** as does and stags live in a **Deer Shelter**. They are very shy, prance and bed down in tall grass, and shed antlers.
+  - **Bison** live in a **Bison Barn** with a sod roof. They wallow in dust, shake their shaggy heads and rub on posts, and give Bison Wool.
+  - **Tortoises** live in a **Tortoise Burrow**. They bask in the sun and tuck into their shells, and shed Tortoise Scutes.
+  - **Meerkats** live in a **Meerkat Mound**. They stand sentry, dig and huddle together, and find Shiny Pebbles.
+- **New produce with real uses:**
+  - **Fox Trinket:** unwrap it for a small find, from metal bars to feathers and the odd bit of silk.
+  - **Wolf Fur:** tan two into leather.
+  - **Wild Honey:** a food, the bear's favourite treat and bait, and the key to the new **Honey Cake**.
+  - **Spotted Pelt:** sew three into a **Spotted Rug**.
+  - **Shed Antler:** mount two on a log for an **Antler Mount**, or break one into bone fragments.
+  - **Bison Wool:** spin it into wool scraps.
+  - **Tortoise Scute:** turn it into sturdy chitin.
+  - **Shiny Pebble:** crack it open for rubble, ore or, rarely, a crystal shard.
+
+### Fixed
+
+- **Rare animal names:** Baby and rare animals now show their proper names instead of a raw text key.
+
 ## [0.3.0] - 10/24/2026
 
 ### Added

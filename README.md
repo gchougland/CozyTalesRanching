@@ -2,13 +2,13 @@
 
 A cozy ranching mod for Hytale, part of the Cozy Tales series by Hexvane.
 
-Befriend wild Cows, Chickens, Pigs, Sheep, Frogs, Rabbits, Mice, Squirrels, Crabs, Camels, Goats, Mosshorns, Turkeys and Ducks, give them names and a home, and watch your ranch grow. Keep them happy, raise their babies, collect what they make, and fill your journal with everything you learn along the way. Nothing ever starves and friendship never fades, so play at your own pace.
+Befriend wild Cows, Chickens, Pigs, Sheep, Frogs, Rabbits, Mice, Squirrels, Crabs, Camels, Goats, Mosshorns, Turkeys, Ducks, Deer, Bison, Tortoises and Meerkats, and even tame Foxes, Wolves, Bears and Snow Leopards with a little bait, give them names and a home, and watch your ranch grow. Keep them happy, raise their babies, collect what they make, and fill your journal with everything you learn along the way. Nothing ever starves and friendship never fades, so play at your own pace.
 
 ## Features
 
 - **Befriend wild animals** by feeding them the food they like. Crouch and walk up slowly, or shy animals run off. Animals you tamed the vanilla way join the ranch too.
 - **Name your friends** right after you befriend them. Their names show above their heads.
-- **Animal houses:** a Chicken Coop, Cow Barn, Pigsty, Sheepfold, Frog Pond, Rabbit Hutch, Mouse Cottage, Squirrel Drey, Tide Pool, Caravan Shelter, Goat Shed, Mossy Lodge, Turkey Roost and Duck House. Animals spend the day around their house and go inside to sleep.
+- **Animal houses:** a Chicken Coop, Cow Barn, Pigsty, Sheepfold, Frog Pond, Rabbit Hutch, Mouse Cottage, Squirrel Drey, Tide Pool, Caravan Shelter, Goat Shed, Mossy Lodge, Turkey Roost, Duck House, Fox Den, Wolf Lodge, Bear Cave, Snowy Den, Deer Shelter, Bison Barn, Tortoise Burrow and Meerkat Mound. Animals spend the day around their house and go inside to sleep.
 - **The house page** shows every resident's hearts, mood, traits and personality. Move animals between houses, call them back, collect produce, rename the house, turn breeding on or off, and light up the yard the house checks.
 - **Friendship:** five hearts per animal, earned by petting once a day and by feeding. Favourite treats count for more.
 - **Care:** troughs feed animals nearby on their own. Each species likes its own ground, plants and decorations around its house, and happy animals do better at everything.
@@ -31,6 +31,8 @@ Befriend wild Cows, Chickens, Pigs, Sheep, Frogs, Rabbits, Mice, Squirrels, Crab
 6. Craft the **Ranch Journal** at the Workbench to see everything you have learned. Its Settings page turns the mod's chat messages and sounds off for you.
 
 Tip: in Creative mode animals only follow you if Allow NPC detection is on in your Creative settings.
+
+Tip: predators bite. Fill a Bait Bowl with the bait they love, step back, and feed them by hand once they are calm.
 
 Tip: frogs only eat crickets. Craft a **Jar of Crickets** from fibre and wheat, then right-click a frog to offer it. Crouch and right-click to set the jar down.
 
