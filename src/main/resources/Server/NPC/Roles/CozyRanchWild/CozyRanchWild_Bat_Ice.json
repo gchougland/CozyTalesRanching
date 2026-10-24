@@ -1,0 +1,30 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_Animal_Neutral",
+  "Modify": {
+    "Appearance": "CozyRanch_Bat_Ice",
+    "FlockArray": [
+      "CozyRanchWild_Bat_Ice"
+    ],
+    "AttractiveItemSet": [
+      "Plant_Fruit_Berries_Red"
+    ],
+    "AttractiveItemSetParticles": "Want_Food_Carrot",
+    "DropList": "Drop_Bat_Ice",
+    "MaxHealth": 25,
+    "MaxSpeed": 4,
+    "WanderRadius": 8,
+    "ViewRange": 8,
+    "ViewSector": 300,
+    "HearingRange": 6,
+    "AlertedRange": 10,
+    "AlertedActionRange": 4,
+    "AbsoluteDetectionRange": 1.5,
+    "DayTimeNapWeight": 6,
+    "DayFlavorAnimation": "WingWrap",
+    "IsMemory": true,
+    "MemoriesCategory": "Avian",
+    "MemoriesNameOverride": "Bat_Ice",
+    "NameTranslationKey": "server.npcRoles.Bat_Ice.name"
+  }
+}

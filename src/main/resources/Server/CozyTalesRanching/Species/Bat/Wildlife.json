@@ -1,0 +1,38 @@
+{
+  "Species": {
+    "bat": {
+      "Roles": [
+        "CozyRanchWild_Bat"
+      ],
+      "OwnHouseWeight": 0.9,
+      "CooldownMinutes": 20,
+      "Attractors": [
+        {
+          "HouseSpecies": "bear",
+          "Features": [
+            "shade"
+          ],
+          "Weight": 0.2
+        },
+        {
+          "HouseSpecies": "fox",
+          "Features": [
+            "berry_brambles"
+          ],
+          "Weight": 0.15
+        }
+      ],
+      "Rare": {
+        "Role": "CozyRanchWild_Bat_Ice",
+        "NameKey": "cozyranch_wildlife.rare.bat",
+        "Chance": 0.25,
+        "CooldownMinutes": 60,
+        "Features": [
+          "frozen_ice"
+        ],
+        "MinResidents": 1,
+        "MinAvgHappiness": 0.5
+      }
+    }
+  }
+}

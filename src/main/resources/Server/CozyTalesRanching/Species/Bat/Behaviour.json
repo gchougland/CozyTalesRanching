@@ -1,0 +1,142 @@
+{
+  "Ground": {
+    "bat_wall": [
+      {
+        "Near": [
+          "Rock_",
+          "Wood_",
+          "Soil_Dirt",
+          "Soil_Clay",
+          "CozyRanch_House_BatRoost"
+        ],
+        "Exclude": [
+          "Fence",
+          "Leaves",
+          "Stairs",
+          "Slab"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "bat_hang": {
+      "Kind": "here",
+      "Ground": "bat_wall",
+      "Weight": 4,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        10,
+        18
+      ],
+      "AllowStill": true
+    },
+    "bat_wing_wrap": {
+      "Kind": "here",
+      "Weight": 2.5,
+      "CooldownSeconds": 70,
+      "Seconds": [
+        5,
+        9
+      ]
+    },
+    "bat_squeak": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 45,
+      "Seconds": [
+        2,
+        3
+      ],
+      "RepeatSeconds": 1
+    }
+  },
+  "Species": {
+    "bat": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "bat_hang": [
+          "HangUpsideDown"
+        ],
+        "bat_wing_wrap": [
+          "WingWrap"
+        ],
+        "bat_squeak": [
+          "Squeak"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "Squeak",
+          "Love"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_bell": [
+          "Squeak",
+          "Flutter"
+        ],
+        "toy_ball": [
+          "Flutter"
+        ],
+        "approach_player": [
+          "Squeak"
+        ],
+        "greet_owner": [
+          "Flutter",
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "bat_wing_wrap": [
+          "WingWrap"
+        ],
+        "bat_squeak": [
+          "Squeak"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_bell": [
+          "Squeak"
+        ],
+        "approach_player": [
+          "Squeak"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "lazy": {
+      "Weights": {
+        "bat_hang": 2,
+        "bat_wing_wrap": 1.5
+      }
+    },
+    "playful": {
+      "Weights": {
+        "flap": 1.5
+      }
+    },
+    "curious": {
+      "Weights": {
+        "bat_squeak": 1.5
+      }
+    }
+  }
+}

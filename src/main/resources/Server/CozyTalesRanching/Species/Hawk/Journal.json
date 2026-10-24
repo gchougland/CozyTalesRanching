@@ -1,0 +1,25 @@
+{
+  "Species": [
+    {
+      "Id": "hawk",
+      "Order": 370,
+      "DescriptionKey": "cozyranch_journal.species.hawk.desc",
+      "RareKey": "cozyranch_journal.species.hawk.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Hawk.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/HawkSilhouette.png",
+      "Behaviours": [
+        "hawk_scan",
+        "hawk_mantle",
+        "hawk_screech",
+        "preen",
+        "flap",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_log",
+        "toy_ball"
+      ]
+    }
+  ]
+}

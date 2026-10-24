@@ -1,0 +1,56 @@
+{
+  "Id": "hawk",
+  "NameKey": "cozyranch_species.hawk.name",
+  "WildRoles": [
+    "CozyRanchWild_Hawk",
+    "Hawk"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Hawk",
+  "RanchBabyRole": "CozyRanch_Hawk_Chick",
+  "RanchRoleVariants": {},
+  "Predator": true,
+  "BaitItems": [
+    "Food_Wildmeat_Raw",
+    "Food_Chicken_Raw",
+    "Food_Beef_Raw",
+    "Food_Pork_Raw"
+  ],
+  "CalmMinutes": 3,
+  "HouseBlock": "CozyRanch_House_HawkMews",
+  "HouseCapacity": 3,
+  "BasicFoods": [
+    "Food_Fish_Raw",
+    "Food_Pork_Raw"
+  ],
+  "PreferredFoods": [
+    "Food_Wildmeat_Raw",
+    "Food_Beef_Raw"
+  ],
+  "FavoriteTreats": [
+    "Food_Chicken_Raw"
+  ],
+  "FeedingsToTame": 4,
+  "Shyness": 0.65,
+  "GrowUpMinutes": 40,
+  "BreedCooldownMinutes": 45,
+  "Products": [
+    {
+      "Item": "Ingredient_Feathers_Dark",
+      "Quantity": 1,
+      "IntervalMinutes": 50,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "open_space"
+  ],
+  "HabitatPrefers": [
+    "perch",
+    "tall_grass",
+    "rocky_ground",
+    "tree_trunks"
+  ]
+}

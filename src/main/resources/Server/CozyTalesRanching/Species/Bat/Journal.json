@@ -1,0 +1,35 @@
+{
+  "Species": [
+    {
+      "Id": "bat",
+      "Order": 380,
+      "DescriptionKey": "cozyranch_journal.species.bat.desc",
+      "RareKey": "cozyranch_journal.species.bat.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Bat.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/BatSilhouette.png",
+      "Behaviours": [
+        "bat_hang",
+        "bat_wing_wrap",
+        "bat_squeak",
+        "flap",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_bell",
+        "toy_ball"
+      ],
+      "Looks": [
+        {
+          "NameKey": "cozyranch_journal.species.bat.look.cave",
+          "HowKey": "cozyranch_journal.species.bat.look.cave.how"
+        },
+        {
+          "NameKey": "cozyranch_journal.species.bat.look.ice",
+          "HowKey": "cozyranch_journal.species.bat.look.ice.how"
+        }
+      ],
+      "LooksTitleKey": "cozyranch_journal.section.looks"
+    }
+  ]
+}

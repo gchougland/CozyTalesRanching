@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Hawk_Chick",
+    "SeparationDistance": 0.35,
+    "DropList": "Empty",
+    "MaxHealth": 12,
+    "MaxSpeed": 4,
+    "ParticleOffset": [
+      0,
+      0.7,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Food_Fish_Raw",
+      "Food_Pork_Raw",
+      "Food_Wildmeat_Raw",
+      "Food_Beef_Raw",
+      "Food_Chicken_Raw"
+    ],
+    "FollowStopDistance": 1.3,
+    "NameTranslationKey": "cozyranch_species.hawk.baby.name"
+  }
+}
