@@ -73,7 +73,7 @@ class WildlifeConfigTest {
         String lang = Files.readString(RES.resolve("Server/Languages/en-US/cozyranch_wildlife.lang"), StandardCharsets.UTF_8);
         for (String id : SPECIES_FILES.keySet()) {
             assertTrue(lang.contains("\nhint." + id + "=") || lang.startsWith("hint." + id + "="), id);
-            assertTrue(lang.contains("\nhint." + id + ".rare="), id + " rare");
+            if (hasRare(WildlifeConfig.bundled().species(id))) assertTrue(lang.contains("\nhint." + id + ".rare="), id + " rare");
         }
     }
 
