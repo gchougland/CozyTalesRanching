@@ -25,6 +25,8 @@ import com.hypixel.hytale.protocol.ComponentUpdate;
 import com.hypixel.hytale.protocol.InteractableUpdate;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.event.events.ecs.InventorySetActiveSlotEvent;
+import com.hypixel.hytale.server.core.entity.UUIDComponent;
+import com.hexvane.cozytalesranching.predator.PredatorApi;
 import com.hypixel.hytale.server.core.inventory.InventoryComponent;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.modules.entity.component.Interactable;
@@ -83,10 +85,24 @@ public final class WildPrompts {
     }
 
     @Nonnull
-    static String hintFor(@Nonnull SpeciesDefinition species, @Nonnull Ref<EntityStore> viewer, @Nonnull ComponentAccessor<EntityStore> accessor) {
+    static String hintFor(@Nonnull SpeciesDefinition species, @Nonnull Ref<EntityStore> animal, @Nonnull Ref<EntityStore> viewer, @Nonnull ComponentAccessor<EntityStore> accessor) {
         ItemStack held = InventoryComponent.getItemInHand(accessor, viewer);
-        String itemId = ItemStack.isEmpty(held) ? null : held.getItemId();
-        return TamingRules.wildHintKey(TamingRules.foodKind(species, itemId));
+        return hintKey(species, animal, ItemStack.isEmpty(held) ? null : held.getItemId(), accessor);
+    }
+
+    /**
+     * The prompt for this held item. A predator is only interactable while a Bait Bowl has it calm (the predator
+     * feature adds the marker then): "offer food" with a food it eats, "calm, bring food" otherwise, and no prompt at
+     * all if it is somehow interactable while not calm.
+     */
+    @Nonnull
+    static String hintKey(@Nonnull SpeciesDefinition species, @Nonnull Ref<EntityStore> animal, @Nullable String itemId, @Nonnull ComponentAccessor<EntityStore> accessor) {
+        TamingRules.FoodKind food = TamingRules.foodKind(species, itemId);
+        if (species.Predator) {
+            UUIDComponent id = accessor.getComponent(animal, UUIDComponent.getComponentType());
+            return TamingRules.predatorHintKey(PredatorApi.feedGate(species, id == null ? null : id.getUuid()), food);
+        }
+        return TamingRules.wildHintKey(food);
     }
 
     /**
@@ -132,7 +148,7 @@ public final class WildPrompts {
                 if (species == null) return;
                 Ref<EntityStore> player = e.getKey();
                 if (!player.isValid() || !viewer.visible.contains(ref) || cb.getComponent(player, PlayerRef.getComponentType()) == null) continue;
-                viewer.queueUpdate(ref, new InteractableUpdate(hintFor(species, player, cb)));
+                viewer.queueUpdate(ref, new InteractableUpdate(hintFor(species, ref, player, cb)));
             }
         }
 
@@ -141,7 +157,7 @@ public final class WildPrompts {
             if (updates == null) return false;
             for (int i = updates.length - 1; i >= 0; i--) {
                 if (updates[i] instanceof InteractableUpdate u) {
-                    return u.interactionHint == null || !(u.interactionHint.equals(TamingRules.wildHintKey(TamingRules.FoodKind.NONE)) || u.interactionHint.equals(TamingRules.wildHintKey(TamingRules.FoodKind.BASIC)));
+                    return u.interactionHint == null || !TamingRules.isOurWildHint(u.interactionHint);
                 }
             }
             return false;
@@ -182,7 +198,7 @@ public final class WildPrompts {
                 if (t == null || t.getPosition().distanceSquared(p) > r2) continue;
                 SpeciesDefinition species = wildSpecies(animal, cb);
                 if (species == null) continue;
-                viewer.queueUpdate(animal, new InteractableUpdate(TamingRules.wildHintKey(TamingRules.foodKind(species, ItemStack.isEmpty(held) ? null : held.getItemId()))));
+                viewer.queueUpdate(animal, new InteractableUpdate(hintKey(species, animal, ItemStack.isEmpty(held) ? null : held.getItemId(), cb)));
             }
         }
     }

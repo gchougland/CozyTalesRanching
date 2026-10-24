@@ -126,6 +126,22 @@ public final class TamingRules {
         return held == FoodKind.NONE ? "cozyranch_taming.hint.greet" : "cozyranch_taming.hint.befriend";
     }
 
+    public static final String PREDATOR_HINT_OFFER = "cozyranch_predator.hint.offer";
+    public static final String PREDATOR_HINT_CALM = "cozyranch_predator.hint.calm";
+
+    /** A wild predator's prompt: none unless calm; then "offer food" with a food it eats, "calm, bring food" without. */
+    @Nonnull
+    public static String predatorHintKey(@Nonnull com.hexvane.cozytalesranching.predator.CalmRules.FeedGate gate, @Nonnull FoodKind held) {
+        if (gate != com.hexvane.cozytalesranching.predator.CalmRules.FeedGate.CALM_PREDATOR) return "";
+        return held == FoodKind.NONE ? PREDATOR_HINT_CALM : PREDATOR_HINT_OFFER;
+    }
+
+    /** Whether an Interactable hint is one this mod sends for wild animals (so it is not repaired again). */
+    public static boolean isOurWildHint(@Nonnull String hint) {
+        return hint.equals(wildHintKey(FoodKind.NONE)) || hint.equals(wildHintKey(FoodKind.BASIC))
+            || hint.equals(PREDATOR_HINT_OFFER) || hint.equals(PREDATOR_HINT_CALM);
+    }
+
     /**
      * Nameplate text for an owned animal: its name when plates are on, otherwise none. An unnamed animal has no
      * plate; every new friend is asked for a name when it is tamed or claimed.
