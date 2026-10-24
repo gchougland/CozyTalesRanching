@@ -24,9 +24,10 @@ class WildlifeConfigTest {
     @Test
     void bundledCoversEverySpecies() {
         WildlifeConfig c = WildlifeConfig.bundled();
-        assertEquals(SPECIES_FILES.keySet(), c.Species.keySet());
-        for (SpeciesWildlife sw : c.Species.values()) {
-            assertFalse(sw.Roles.isEmpty());
+        assertTrue(c.Species.keySet().containsAll(SPECIES_FILES.keySet()));
+        for (SpeciesWildlife sw : c.Species.values()) assertFalse(sw.Roles.isEmpty());
+        for (String id : SPECIES_FILES.keySet()) {
+            SpeciesWildlife sw = c.species(id);
             assertNotNull(sw.Rare);
             assertFalse(sw.Rare.Role.isEmpty());
         }

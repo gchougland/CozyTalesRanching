@@ -1,0 +1,50 @@
+{
+  "Id": "duck",
+  "NameKey": "cozyranch_species.duck.name",
+  "WildRoles": [
+    "CozyRanchWild_Duck",
+    "Duck"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Duck",
+  "RanchBabyRole": "CozyRanch_Duck_Duckling",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_DuckHouse",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Plant_Seeds_Wheat",
+    "Plant_Seeds_Wild",
+    "Plant_Crop_Wheat_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Lettuce_Item",
+    "Plant_Crop_Rice_Item",
+    "Plant_Flower_Water_Duckweed"
+  ],
+  "FavoriteTreats": [
+    "Food_Bread"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.45,
+  "GrowUpMinutes": 40,
+  "BreedCooldownMinutes": 30,
+  "Products": [
+    {
+      "Item": "CozyRanch_Duck_Egg",
+      "Quantity": 1,
+      "IntervalMinutes": 30,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "water"
+  ],
+  "HabitatPrefers": [
+    "lily_pads",
+    "reeds",
+    "tall_grass",
+    "grass"
+  ]
+}
