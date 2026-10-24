@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Many branches add lang lines at once: keep both sides
+*.lang merge=union

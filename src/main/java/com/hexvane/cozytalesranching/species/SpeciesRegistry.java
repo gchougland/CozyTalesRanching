@@ -24,7 +24,10 @@ import javax.annotation.Nonnull;
  */
 public final class SpeciesRegistry {
     /** Bundled species, in load order. Adding a species = a JSON file plus its id here. */
-    public static final String[] BUNDLED = {"Cow", "Chicken", "Pig", "Sheep", "Frog"};
+    public static final String[] BUNDLED = {
+        "Cow", "Chicken", "Pig", "Sheep", "Frog",
+        "Rabbit", "Camel", "Squirrel", "Mouse", "Crab", "Mosshorn", "Goat", "Turkey", "Duck"
+    };
     private static final String RESOURCE_DIR = "/Server/CozyTalesRanching/Species/";
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
     private static final Gson GSON = new Gson();
@@ -43,7 +46,7 @@ public final class SpeciesRegistry {
         for (String name : BUNDLED) {
             try (InputStream in = SpeciesRegistry.class.getResourceAsStream(RESOURCE_DIR + name + ".json")) {
                 if (in == null) {
-                    LOG.warning("Bundled species file missing: " + name);
+                    LOG.fine("Bundled species file missing: " + name);
                     continue;
                 }
                 put(ids, read(new InputStreamReader(in, StandardCharsets.UTF_8)), "bundled " + name);

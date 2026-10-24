@@ -1,5 +1,6 @@
 package com.hexvane.cozytalesranching.behaviour;
 
+import com.hexvane.cozytalesranching.species.SpeciesOverlay;
 import com.hexvane.cozytalesranching.CozyTalesRanchingPlugin;
 import com.hexvane.cozytalesranching.api.event.AnimalBehaviourEvent;
 import com.hexvane.cozytalesranching.config.RanchConfig;
@@ -95,7 +96,7 @@ public final class BehaviourFeature {
                 LOG.warning("Bundled Behaviour.json missing");
                 return new BehaviourConfig().normalise();
             }
-            return BehaviourConfig.read(new InputStreamReader(in, StandardCharsets.UTF_8));
+            return BehaviourConfig.read(SpeciesOverlay.merged(in, "Behaviour"));
         } catch (IOException | RuntimeException e) {
             LOG.log(Level.WARNING, "Could not read the bundled Behaviour.json", e);
             return new BehaviourConfig().normalise();

@@ -1,5 +1,6 @@
 package com.hexvane.cozytalesranching.produce;
 
+import com.hexvane.cozytalesranching.species.SpeciesOverlay;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
@@ -100,7 +101,7 @@ public final class PoopTuning {
         if (loaded == null) {
             try (InputStream in = PoopTuning.class.getResourceAsStream(RESOURCE)) {
                 if (in == null) LOG.warning("Bundled Poop.json missing; using defaults");
-                else loaded = read(new InputStreamReader(in, StandardCharsets.UTF_8));
+                else loaded = read(SpeciesOverlay.merged(in, "Poop"));
             } catch (IOException | RuntimeException e) {
                 LOG.log(Level.WARNING, "Could not read bundled Poop.json", e);
             }

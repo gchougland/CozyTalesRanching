@@ -1,5 +1,6 @@
 package com.hexvane.cozytalesranching.care;
 
+import com.hexvane.cozytalesranching.species.SpeciesOverlay;
 import com.hexvane.cozytalesranching.config.RanchConfig;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import java.io.IOException;
@@ -88,7 +89,7 @@ final class CareService {
         }
         if (loaded == null) {
             try (InputStream in = CareService.class.getResourceAsStream(HABITAT_RESOURCE)) {
-                if (in != null) loaded = HabitatConfig.read(new InputStreamReader(in, StandardCharsets.UTF_8));
+                if (in != null) loaded = HabitatConfig.read(SpeciesOverlay.merged(in, "Habitat"));
                 else LOG.warning("Bundled Habitat.json missing");
             } catch (IOException | RuntimeException e) {
                 LOG.log(Level.WARNING, "Could not read bundled Habitat.json", e);

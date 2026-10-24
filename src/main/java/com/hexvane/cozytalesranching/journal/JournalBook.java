@@ -1,5 +1,6 @@
 package com.hexvane.cozytalesranching.journal;
 
+import com.hexvane.cozytalesranching.species.SpeciesOverlay;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
@@ -78,7 +79,7 @@ public final class JournalBook {
             }
         }
         try (InputStream in = JournalBook.class.getResourceAsStream(RESOURCE)) {
-            if (in != null) return read(new InputStreamReader(in, StandardCharsets.UTF_8));
+            if (in != null) return read(SpeciesOverlay.merged(in, "Journal"));
             LOG.warning("Bundled Journal.json missing");
         } catch (IOException | RuntimeException e) {
             LOG.log(Level.WARNING, "Could not read bundled Journal.json", e);

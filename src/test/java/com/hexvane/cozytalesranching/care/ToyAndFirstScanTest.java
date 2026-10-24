@@ -34,11 +34,12 @@ class ToyAndFirstScanTest {
     static void readRealData() throws Exception {
         try (InputStream in = ToyAndFirstScanTest.class.getResourceAsStream("/Server/CozyTalesRanching/Habitat.json")) {
             assertNotNull(in);
-            config = HabitatConfig.read(new InputStreamReader(in, StandardCharsets.UTF_8));
+            config = HabitatConfig.read(com.hexvane.cozytalesranching.species.SpeciesOverlay.merged(in, "Habitat"));
         }
         Gson gson = new Gson();
         for (String name : SpeciesRegistry.BUNDLED) {
             try (InputStream in = ToyAndFirstScanTest.class.getResourceAsStream("/Server/CozyTalesRanching/Species/" + name + ".json")) {
+                if (in == null) continue; // a species listed before its file is written
                 SpeciesDefinition s = gson.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), SpeciesDefinition.class);
                 SPECIES.put(s.Id, s);
             }

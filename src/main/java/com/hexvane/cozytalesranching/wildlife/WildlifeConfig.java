@@ -1,5 +1,6 @@
 package com.hexvane.cozytalesranching.wildlife;
 
+import com.hexvane.cozytalesranching.species.SpeciesOverlay;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
@@ -166,7 +167,7 @@ public final class WildlifeConfig {
                 LOG.warning("Bundled Wildlife.json missing; no visitors will come");
                 return new WildlifeConfig().normalise();
             }
-            return parse(new InputStreamReader(in, StandardCharsets.UTF_8));
+            return parse(SpeciesOverlay.merged(in, "Wildlife"));
         } catch (IOException | RuntimeException e) {
             LOG.log(Level.WARNING, "Could not read the bundled Wildlife.json", e);
             return new WildlifeConfig().normalise();

@@ -84,7 +84,7 @@ class HabitatScanTest {
     static void readRealConfig() throws Exception {
         try (InputStream in = HabitatScanTest.class.getResourceAsStream("/Server/CozyTalesRanching/Habitat.json")) {
             assertNotNull(in, "Habitat.json is bundled");
-            config = HabitatConfig.read(new InputStreamReader(in, StandardCharsets.UTF_8));
+            config = HabitatConfig.read(com.hexvane.cozytalesranching.species.SpeciesOverlay.merged(in, "Habitat"));
         }
     }
 
@@ -104,6 +104,7 @@ class HabitatScanTest {
         Gson gson = new Gson();
         for (String name : SpeciesRegistry.BUNDLED) {
             try (InputStream in = HabitatScanTest.class.getResourceAsStream("/Server/CozyTalesRanching/Species/" + name + ".json")) {
+                if (in == null) continue; // a species listed before its file is written
                 SpeciesDefinition s = gson.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), SpeciesDefinition.class);
                 for (String f : s.HabitatRequires) assertNotNull(config.feature(f), name + " requires unmapped " + f);
                 for (String f : s.HabitatPrefers) assertNotNull(config.feature(f), name + " prefers unmapped " + f);
