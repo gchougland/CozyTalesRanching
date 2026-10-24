@@ -1,0 +1,21 @@
+{
+  "Features": {
+    "grain_patch": {
+      "BlockPrefixes": [
+        "Plant_Crop_Wheat_Block",
+        "Plant_Crop_Corn_Block",
+        "Plant_Crop_Rice_Block"
+      ],
+      "Exclude": [
+        "Burnt"
+      ],
+      "MinCount": 3
+    }
+  },
+  "SpeciesToys": {
+    "mouse": [
+      "toy_log",
+      "toy_bell"
+    ]
+  }
+}

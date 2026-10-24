@@ -1,0 +1,20 @@
+{
+  "Features": {
+    "carrot_patch": {
+      "BlockPrefixes": [
+        "Plant_Crop_Carrot_Block",
+        "Plant_Crop_Lettuce_Block"
+      ],
+      "Exclude": [
+        "Burnt"
+      ],
+      "MinCount": 3
+    }
+  },
+  "SpeciesToys": {
+    "rabbit": [
+      "toy_ball",
+      "toy_log"
+    ]
+  }
+}

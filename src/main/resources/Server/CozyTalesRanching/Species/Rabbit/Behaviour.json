@@ -1,0 +1,135 @@
+{
+  "Ground": {
+    "burrow_soil": [
+      {
+        "Under": [
+          "Soil_Grass",
+          "Soil_Dirt",
+          "Soil_Sand"
+        ],
+        "Exclude": [
+          "Burnt",
+          "Poisoned",
+          "Tilled",
+          "Wet"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "binky": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 75,
+      "Seconds": [
+        3,
+        5
+      ],
+      "RepeatSeconds": 2
+    },
+    "burrow": {
+      "Kind": "here",
+      "Ground": "burrow_soil",
+      "Weight": 2,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        4,
+        7
+      ]
+    },
+    "thump": {
+      "Kind": "here",
+      "Weight": 1,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        2,
+        3
+      ]
+    },
+    "ear_wash": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        3,
+        5
+      ]
+    }
+  },
+  "Species": {
+    "rabbit": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "binky": [
+          "Binky"
+        ],
+        "burrow": [
+          "Dig"
+        ],
+        "thump": [
+          "Thump"
+        ],
+        "ear_wash": [
+          "Groom"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Binky",
+          "Happy"
+        ],
+        "toy_log": [
+          "Thump",
+          "Happy"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "binky": [
+          "Binky"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "binky": 2
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "binky": 0.5
+      }
+    }
+  }
+}

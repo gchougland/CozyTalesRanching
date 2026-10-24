@@ -1,0 +1,25 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Rabbit_Bunny_Baby",
+    "SeparationDistance": 0.4,
+    "DropList": "Empty",
+    "MaxHealth": 15,
+    "MaxSpeed": 4,
+    "ParticleOffset": [
+      0,
+      0.5,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Plant_Crop_Carrot_Item",
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Cauliflower_Item",
+      "Plant_Crop_Turnip_Item"
+    ],
+    "FollowStopDistance": 1.5,
+    "NameTranslationKey": "server.cozyranch_species.rabbit.baby.name"
+  }
+}

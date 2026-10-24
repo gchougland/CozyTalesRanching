@@ -74,7 +74,7 @@ class ToyAndFirstScanTest {
         List<String> prefers = config.prefers("pig", pig.HabitatPrefers);
         assertEquals(pig.HabitatPrefers.size() + 1, prefers.size());
         assertEquals("toy_ball", prefers.getLast());
-        assertEquals(pig.HabitatPrefers, config.prefers("rabbit", pig.HabitatPrefers), "a species with no toys keeps its own list");
+        assertEquals(pig.HabitatPrefers, config.prefers("nobody", pig.HabitatPrefers), "a species with no toys keeps its own list");
     }
 
     @Test

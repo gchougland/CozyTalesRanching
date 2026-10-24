@@ -1,0 +1,50 @@
+{
+  "Id": "mouse",
+  "NameKey": "cozyranch_species.mouse.name",
+  "WildRoles": [
+    "Mouse",
+    "CozyRanchWild_Mouse_Golden"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Mouse",
+  "RanchBabyRole": "CozyRanch_Mouse_Baby",
+  "RanchRoleVariants": {
+    "CozyRanchWild_Mouse_Golden": "CozyRanch_Mouse_Golden"
+  },
+  "HouseBlock": "CozyRanch_House_MouseCottage",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Plant_Crop_Wheat_Item",
+    "Plant_Crop_Corn_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Rice_Item",
+    "Plant_Seeds_Wheat",
+    "Plant_Seeds_Sunflower"
+  ],
+  "FavoriteTreats": [
+    "Food_Cheese"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.8,
+  "GrowUpMinutes": 25,
+  "BreedCooldownMinutes": 25,
+  "Products": [
+    {
+      "Item": "CozyRanch_Seed_Pouch",
+      "Quantity": 1,
+      "IntervalMinutes": 60,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "hay"
+  ],
+  "HabitatPrefers": [
+    "grain_patch",
+    "tall_grass",
+    "shade"
+  ]
+}

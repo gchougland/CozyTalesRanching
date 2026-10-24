@@ -1,0 +1,40 @@
+{
+  "Species": {
+    "rabbit": {
+      "Roles": [
+        "Rabbit",
+        "Bunny"
+      ],
+      "OwnHouseWeight": 0.85,
+      "CooldownMinutes": 20,
+      "Attractors": [
+        {
+          "HouseSpecies": "pig",
+          "Features": [
+            "vegetables"
+          ],
+          "Weight": 0.3
+        },
+        {
+          "HouseSpecies": "sheep",
+          "Features": [
+            "grass",
+            "flowers"
+          ],
+          "Weight": 0.25
+        }
+      ],
+      "Rare": {
+        "Role": "CozyRanchWild_Rabbit_Snow",
+        "NameKey": "cozyranch_wildlife.rare.rabbit",
+        "Chance": 0.25,
+        "CooldownMinutes": 60,
+        "Features": [
+          "carrot_patch",
+          "flowers"
+        ],
+        "MinResidents": 2
+      }
+    }
+  }
+}
