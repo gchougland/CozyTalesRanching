@@ -1,0 +1,125 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Shiny_Pebble.name",
+    "Description": "cozyranch_items.items.CozyRanch_Shiny_Pebble.description"
+  },
+  "Categories": [
+    "Items.Tools"
+  ],
+  "Quality": "Uncommon",
+  "Model": "Items/CozyRanch/Produce/Shiny_Pebble.blockymodel",
+  "Texture": "Items/CozyRanch/Produce/Shiny_Pebble_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Shiny_Pebble.png",
+  "IconProperties": {
+    "Scale": 0.85,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Tool"
+    ]
+  },
+  "MaxStack": 25,
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Gems",
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "CozyRanchOpenFind",
+          "Finds": [
+            {
+              "Item": "Rubble_Stone",
+              "Weight": 14,
+              "Min": 2,
+              "Max": 4
+            },
+            {
+              "Item": "Ore_Copper",
+              "Weight": 16,
+              "Min": 1,
+              "Max": 2
+            },
+            {
+              "Item": "Ore_Iron",
+              "Weight": 12,
+              "Min": 1,
+              "Max": 2
+            },
+            {
+              "Item": "Ore_Silver",
+              "Weight": 5,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ore_Gold",
+              "Weight": 3,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ingredient_Crystal_Blue",
+              "Weight": 3,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ingredient_Crystal_Cyan",
+              "Weight": 3,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ingredient_Crystal_Green",
+              "Weight": 3,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ingredient_Crystal_Pink",
+              "Weight": 3,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ingredient_Crystal_Purple",
+              "Weight": 3,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ingredient_Crystal_Red",
+              "Weight": 3,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ingredient_Crystal_Yellow",
+              "Weight": 3,
+              "Min": 1,
+              "Max": 1
+            },
+            {
+              "Item": "Ingredient_Crystal_White",
+              "Weight": 3,
+              "Min": 1,
+              "Max": 1
+            }
+          ],
+          "Message": "cozyranch_items.shiny_pebble.opened"
+        }
+      ]
+    }
+  }
+}

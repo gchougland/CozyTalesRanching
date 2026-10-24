@@ -1,0 +1,35 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Wolf_Fur.name",
+    "Description": "cozyranch_items.items.CozyRanch_Wolf_Fur.description"
+  },
+  "Categories": [
+    "Items.Ingredients"
+  ],
+  "Quality": "Common",
+  "Model": "Items/CozyRanch/Produce/Wolf_Fur.blockymodel",
+  "Texture": "Items/CozyRanch/Produce/Wolf_Fur_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Wolf_Fur.png",
+  "IconProperties": {
+    "Scale": 0.7,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Ingredient"
+    ]
+  },
+  "MaxStack": 50,
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Leather"
+}

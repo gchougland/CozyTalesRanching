@@ -1,0 +1,40 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Shed_Antler.name",
+    "Description": "cozyranch_items.items.CozyRanch_Shed_Antler.description"
+  },
+  "Categories": [
+    "Items.Ingredients"
+  ],
+  "Quality": "Common",
+  "Model": "Items/CozyRanch/Produce/Shed_Antler.blockymodel",
+  "Texture": "Items/CozyRanch/Produce/Shed_Antler_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Shed_Antler.png",
+  "IconProperties": {
+    "Scale": 0.6,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Ingredient"
+    ]
+  },
+  "MaxStack": 50,
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Bones",
+  "ResourceTypes": [
+    {
+      "Id": "Bone"
+    }
+  ]
+}
