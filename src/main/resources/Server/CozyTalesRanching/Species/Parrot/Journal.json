@@ -1,0 +1,24 @@
+{
+  "Species": [
+    {
+      "Id": "parrot",
+      "Order": 320,
+      "DescriptionKey": "cozyranch_journal.species.parrot.desc",
+      "RareKey": "cozyranch_journal.species.parrot.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Parrot.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/ParrotSilhouette.png",
+      "Behaviours": [
+        "parrot_dance",
+        "parrot_wing_stretch",
+        "parrot_squawk",
+        "flap",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_bell",
+        "toy_ball"
+      ]
+    }
+  ]
+}

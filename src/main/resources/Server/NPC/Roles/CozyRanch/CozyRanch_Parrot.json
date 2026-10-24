@@ -1,0 +1,28 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Parrot",
+    "SeparationDistance": 0.45,
+    "DropList": "Drop_Parrot",
+    "MaxHealth": 29,
+    "MaxSpeed": 3.5,
+    "ParticleOffset": [
+      0,
+      1.0,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Plant_Fruit_Berries_Red",
+      "Plant_Seeds_Sunflower",
+      "Plant_Fruit_Apple",
+      "Plant_Fruit_Coconut",
+      "Plant_Fruit_Pinkberry",
+      "Plant_Crop_Corn_Item",
+      "Plant_Fruit_Mango"
+    ],
+    "FollowStopDistance": 1.5,
+    "NameTranslationKey": "server.npcRoles.Parrot.name"
+  }
+}

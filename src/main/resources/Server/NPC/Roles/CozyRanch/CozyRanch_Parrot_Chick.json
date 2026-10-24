@@ -1,0 +1,28 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Parrot_Chick",
+    "SeparationDistance": 0.3,
+    "DropList": "Empty",
+    "MaxHealth": 10,
+    "MaxSpeed": 3,
+    "ParticleOffset": [
+      0,
+      0.65,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Plant_Fruit_Berries_Red",
+      "Plant_Seeds_Sunflower",
+      "Plant_Fruit_Apple",
+      "Plant_Fruit_Coconut",
+      "Plant_Fruit_Pinkberry",
+      "Plant_Crop_Corn_Item",
+      "Plant_Fruit_Mango"
+    ],
+    "FollowStopDistance": 1.2,
+    "NameTranslationKey": "server.cozyranch_species.parrot.baby.name"
+  }
+}

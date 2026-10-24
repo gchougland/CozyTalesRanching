@@ -1,0 +1,110 @@
+{
+  "Behaviours": {
+    "songbird_sing": {
+      "Kind": "here",
+      "Weight": 3,
+      "CooldownSeconds": 50,
+      "Seconds": [
+        4,
+        6
+      ]
+    },
+    "songbird_hop": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        3,
+        5
+      ]
+    }
+  },
+  "Species": {
+    "songbird": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "peck": [
+          "Peck"
+        ],
+        "songbird_sing": [
+          "Sing"
+        ],
+        "songbird_hop": [
+          "Hop"
+        ],
+        "dust_bathe": [
+          "DustBath"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "Sing",
+          "Love"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_bell": [
+          "Peck"
+        ],
+        "approach_player": [
+          "Hop"
+        ],
+        "greet_owner": [
+          "Flutter",
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "peck": [
+          "Peck"
+        ],
+        "songbird_hop": [
+          "Hop"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_bell": [
+          "Peck"
+        ],
+        "approach_player": [
+          "Hop"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "affectionate": {
+      "Weights": {
+        "songbird_sing": 1.5
+      }
+    },
+    "playful": {
+      "Weights": {
+        "songbird_hop": 1.5,
+        "flap": 1.5
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "dust_bathe": 1.5
+      }
+    }
+  }
+}

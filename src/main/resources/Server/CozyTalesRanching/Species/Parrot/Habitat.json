@@ -1,0 +1,29 @@
+{
+  "Features": {
+    "parrot_jungle": {
+      "BlockPrefixes": [
+        "Plant_Leaves_Jungle",
+        "Plant_Leaves_Palm",
+        "Plant_Leaves_Banyan",
+        "Plant_Leaves_Bamboo",
+        "Wood_Jungle_",
+        "Wood_Palm_",
+        "Wood_Banyan_",
+        "Wood_Bamboo_",
+        "Plant_Vine_Jungle",
+        "Plant_Vine_Liana"
+      ],
+      "Exclude": [
+        "Burnt",
+        "Dead"
+      ],
+      "MinCount": 4
+    }
+  },
+  "SpeciesToys": {
+    "parrot": [
+      "toy_bell",
+      "toy_ball"
+    ]
+  }
+}

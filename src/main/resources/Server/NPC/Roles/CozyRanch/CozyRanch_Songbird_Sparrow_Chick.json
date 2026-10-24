@@ -1,0 +1,27 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Songbird_Sparrow_Chick",
+    "SeparationDistance": 0.25,
+    "DropList": "Empty",
+    "MaxHealth": 6,
+    "MaxSpeed": 3,
+    "ParticleOffset": [
+      0,
+      0.4,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Plant_Seeds_Wild",
+      "Plant_Seeds_Wheat",
+      "Plant_Seeds_Sunflower",
+      "Plant_Fruit_Berries_Red",
+      "Plant_Crop_Rice_Item",
+      "CozyRanch_Food_Crickets"
+    ],
+    "FollowStopDistance": 1.1,
+    "NameTranslationKey": "server.cozyranch_species.songbird.sparrow.baby.name"
+  }
+}
