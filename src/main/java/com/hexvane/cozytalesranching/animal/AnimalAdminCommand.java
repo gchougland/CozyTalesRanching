@@ -18,6 +18,7 @@ public final class AnimalAdminCommand extends AbstractCommandCollection {
         this.addSubCommand(new AdminInspectCommand());
         this.addSubCommand(new AdminListCommand());
         this.addSubCommand(new AdminResummonCommand());
+        this.addSubCommand(new AdminRelinkCommand());
     }
 
     /** One line describing a record, shared by inspect and list. */
