@@ -2,6 +2,42 @@
 
 All notable changes to Cozy Tales: Ranching are documented in this file.
 
+## [0.5.0] - Unreleased
+
+### Added
+
+- **Snails and essences:** Tame Frost and Magma snails and keep them in a glass **Snail Terrarium**. Each shell makes its own essence:
+  - **Frost** snails make Ice Essence and **Magma** snails make Fire Essence.
+  - **Garden** snails make Life Essence. Babies can hatch with a Garden shell when the terrarium has flowers or crops nearby.
+  - **Tide** snails make Water Essence. Babies can hatch with a Tide shell when there is water nearby.
+  - **Storm** snails make Lightning Essence. They are a rare visitor to happy terrariums near water.
+  - **Void** snails make Void Essence. Once in a while, a Frost and a Magma snail hatch one together.
+  - The snail's journal page lists every shell and how to get it.
+- **Eight new animals,** each with its own house, foods, habitat, behaviours, journal page and babies:
+  - **Moose** cows and bulls live in a **Moose Lodge** with a lily pond. They dunk their heads in ponds, stretch for high branches and shake off, and bring up Pond Weed.
+  - **Armadillos** live in an **Armadillo Burrow** of red earth. They dig, sniff for grubs and curl into a ball, and shed Armadillo Plates.
+  - **Penguins** live in a **Penguin Igloo**. They belly-slide on snow, flap and huddle, and bring you raw fish and Penguin Down.
+  - **Flamingos** live in a **Flamingo Nest** on a lagoon. They stand on one leg, filter-feed and march together, and drop red feathers.
+  - **Warthogs** live in a **Warthog Wallow**. They kneel to root, roll in mud and run with their tails up, and shed Warthog Tusks.
+  - **Antelopes** live in an **Antelope Shelter**. They are the shyest animal yet, pronk, leap and stamp in alarm, and shed Antelope Horns.
+  - **Geckos** live in a **Gecko Terrarium** with a heat lamp. They bask, do push-ups and wave their tails, and leave Shed Skin.
+  - **Pigeons** live in an octagonal **Dovecote**. They coo, strut and peck, and drop Pigeon Feathers.
+- **New looks for familiar animals:** Rams and Mouflons are now sheep, Boars and Wild Pigs are pigs, and Desert Chickens are chickens. Each keeps its look through taming, breeding and growing up. Mouflons, Wild Pigs and Desert Chickens can also turn up as visitors.
+- **New produce with real uses:**
+  - **Pond Weed:** mix it with poop and a little Life Essence into Fertilizer.
+  - **Armadillo Plate:** craft an **Armadillo Shield** at the Armour bench.
+  - **Penguin Down:** stuff the Frozen Castle Bed and the Village Bed.
+  - **Warthog Tusk:** counts as bone, and makes Bone Daggers at the Weapon bench.
+  - **Antelope Horn:** make a **Herding Horn** (blow it and your nearby animals start following you) or a **Swiftness Tonic**.
+  - **Shed Skin:** brew a **Fireward Tonic** that keeps fire off you for two minutes.
+  - **Pigeon Feather:** brew the Pigeon Morph potion for far less than the usual recipe.
+  - **Red feathers:** arrange them in a **Feather Vase**.
+- **Uses for essences:** the Swiftness Tonic takes Lightning Essence and the Fireward Tonic takes Water Essence, which had no recipes before.
+
+### Fixed
+
+- **Animal names in sentences:** Lines like "Befriend a Armadillo" are now worded so every animal name reads correctly.
+
 ## [0.4.0] - Unreleased
 
 ### Added
