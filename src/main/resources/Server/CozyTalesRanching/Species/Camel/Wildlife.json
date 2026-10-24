@@ -1,0 +1,23 @@
+{
+  "Species": {
+    "camel": {
+      "Roles": [
+        "Camel"
+      ],
+      "OwnHouseWeight": 0.85,
+      "CooldownMinutes": 25,
+      "Attractors": [],
+      "Rare": {
+        "Role": "CozyRanchWild_Camel_Moonlit",
+        "NameKey": "cozyranch_wildlife.rare.camel",
+        "Chance": 0.25,
+        "CooldownMinutes": 60,
+        "Features": [
+          "cacti"
+        ],
+        "MinResidents": 2,
+        "MinAvgHappiness": 0.8
+      }
+    }
+  }
+}

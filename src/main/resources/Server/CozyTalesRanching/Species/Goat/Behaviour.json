@@ -1,0 +1,138 @@
+{
+  "Ground": {
+    "rocky": [
+      {
+        "Under": [
+          "Rock_"
+        ]
+      },
+      {
+        "Near": [
+          "Rock_"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "rock_hop": {
+      "Kind": "here",
+      "Ground": "rocky",
+      "Weight": 4,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        3,
+        3
+      ]
+    },
+    "headbutt": {
+      "Kind": "social",
+      "Weight": 1.5,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        2,
+        3
+      ],
+      "RepeatSeconds": 2
+    },
+    "bleat": {
+      "Kind": "here",
+      "Weight": 1,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        2,
+        3
+      ]
+    },
+    "browse": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 75,
+      "Seconds": [
+        5,
+        8
+      ]
+    }
+  },
+  "Species": {
+    "goat": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "rock_hop": [
+          "RockHop"
+        ],
+        "headbutt": [
+          "Headbutt"
+        ],
+        "bleat": [
+          "GreetAnimation"
+        ],
+        "browse": [
+          "Eat",
+          "Chew"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Headbutt"
+        ],
+        "toy_post": [
+          "Headbutt"
+        ],
+        "toy_log": [
+          "RockHop"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "rock_hop": [
+          "RockHop"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "toy_log": [
+          "RockHop"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "rock_hop": 2,
+        "headbutt": 2
+      }
+    },
+    "shy": {
+      "Weights": {
+        "headbutt": 0.5
+      }
+    }
+  }
+}

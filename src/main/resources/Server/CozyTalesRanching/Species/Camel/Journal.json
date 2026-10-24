@@ -1,0 +1,22 @@
+{
+  "Species": [
+    {
+      "Id": "camel",
+      "Order": 110,
+      "DescriptionKey": "cozyranch_journal.species.camel.desc",
+      "RareKey": "cozyranch_journal.species.camel.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Camel.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/CamelSilhouette.png",
+      "Behaviours": [
+        "cud_chew",
+        "spit_snort",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_post",
+        "toy_log"
+      ]
+    }
+  ]
+}

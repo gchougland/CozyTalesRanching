@@ -1,0 +1,64 @@
+{
+  "Id": "goat",
+  "NameKey": "cozyranch_species.goat.name",
+  "WildRoles": [
+    "Goat",
+    "CozyRanchWild_Goat_Slate"
+  ],
+  "WildBabyRoles": [
+    "Goat_Kid"
+  ],
+  "AdoptRoles": [
+    "Tamed_Goat"
+  ],
+  "AdoptBabyRoles": [
+    "Tamed_Goat_Kid"
+  ],
+  "RanchRole": "CozyRanch_Goat",
+  "RanchBabyRole": "CozyRanch_Goat_Kid",
+  "RanchRoleVariants": {
+    "CozyRanchWild_Goat_Slate": "CozyRanch_Goat_Slate"
+  },
+  "HouseBlock": "CozyRanch_House_GoatShed",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Plant_Crop_Wheat_Item",
+    "Plant_Crop_Carrot_Item",
+    "Plant_Hay_Bundle"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Lettuce_Item",
+    "Plant_Crop_Cauliflower_Item",
+    "Plant_Leaves_Oak"
+  ],
+  "FavoriteTreats": [
+    "Plant_Fruit_Apple"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.35,
+  "GrowUpMinutes": 70,
+  "BreedCooldownMinutes": 50,
+  "Products": [
+    {
+      "Item": "*Container_Bucket_State_Filled_Milk",
+      "Quantity": 1,
+      "IntervalMinutes": 45,
+      "Collect": "Bucket"
+    },
+    {
+      "Item": "CozyRanch_Goat_Hair",
+      "Quantity": 1,
+      "IntervalMinutes": 40,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "food",
+    "rocky_ground"
+  ],
+  "HabitatPrefers": [
+    "browse",
+    "grass",
+    "open_space"
+  ]
+}

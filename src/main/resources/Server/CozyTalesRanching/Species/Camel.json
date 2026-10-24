@@ -1,0 +1,56 @@
+{
+  "Id": "camel",
+  "NameKey": "cozyranch_species.camel.name",
+  "WildRoles": [
+    "Camel",
+    "CozyRanchWild_Camel_Moonlit"
+  ],
+  "WildBabyRoles": [
+    "Camel_Calf"
+  ],
+  "AdoptRoles": [
+    "Tamed_Camel"
+  ],
+  "AdoptBabyRoles": [
+    "Tamed_Camel_Calf"
+  ],
+  "RanchRole": "CozyRanch_Camel",
+  "RanchBabyRole": "CozyRanch_Camel_Calf",
+  "RanchRoleVariants": {
+    "CozyRanchWild_Camel_Moonlit": "CozyRanch_Camel_Moonlit"
+  },
+  "HouseBlock": "CozyRanch_House_CaravanShelter",
+  "HouseCapacity": 3,
+  "BasicFoods": [
+    "Plant_Crop_Wheat_Item",
+    "Plant_Hay_Bundle"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Tomato_Item",
+    "Plant_Fruit_Coconut"
+  ],
+  "FavoriteTreats": [
+    "Plant_Cactus_Flower"
+  ],
+  "FeedingsToTame": 4,
+  "Shyness": 0.25,
+  "GrowUpMinutes": 100,
+  "BreedCooldownMinutes": 70,
+  "Products": [
+    {
+      "Item": "*Container_Bucket_State_Filled_Milk",
+      "Quantity": 1,
+      "IntervalMinutes": 50,
+      "Collect": "Bucket"
+    }
+  ],
+  "HabitatRequires": [
+    "food",
+    "desert_sand"
+  ],
+  "HabitatPrefers": [
+    "cacti",
+    "open_space",
+    "dry_scrub"
+  ]
+}
