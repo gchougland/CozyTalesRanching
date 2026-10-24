@@ -78,7 +78,7 @@ public final class JournalView {
 
     /** The How to sections, in reading order, with how many lines each has ({@code guide.<id>.title}, {@code guide.<id>.<n>}). */
     static final String[][] GUIDE_LEFT = {{"friend", "4"}, {"home", "3"}, {"happy", "3"}};
-    static final String[][] GUIDE_RIGHT = {{"babies", "2"}, {"produce", "2"}, {"frogs", "2"}};
+    static final String[][] GUIDE_RIGHT = {{"babies", "2"}, {"produce", "2"}, {"frogs", "2"}, {"wild", "3"}};
 
     private JournalView() {}
 

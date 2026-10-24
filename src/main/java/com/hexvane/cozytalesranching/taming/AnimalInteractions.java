@@ -38,6 +38,8 @@ import com.hexvane.cozytalesranching.breeding.BreedingRules;
 import com.hexvane.cozytalesranching.breeding.TraitRegistry;
 import com.hexvane.cozytalesranching.care.CareApi;
 import java.util.concurrent.ThreadLocalRandom;
+import com.hexvane.cozytalesranching.predator.CalmRules;
+import com.hexvane.cozytalesranching.predator.PredatorApi;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.joml.Vector3d;
@@ -79,7 +81,7 @@ public final class AnimalInteractions {
         String itemId = ItemStack.isEmpty(held) ? null : held.getItemId();
         MovementStates moves = movement(playerEntity, accessor);
         boolean crouching = moves != null && moves.crouching;
-        Use use = new Use(player, world, animalUuid.getUuid(), species, match.get().kind(), itemId, crouching);
+        Use use = new Use(player, world, animalUuid.getUuid(), species, match.get().kind(), itemId, crouching, false);
         Optional<AnimalRecord> record = Ranch.animals().byEntity(use.animalUuid);
         RoleKind kind = use.kind;
 
@@ -100,7 +102,9 @@ public final class AnimalInteractions {
         SpeciesDefinition species,
         RoleKind kind,
         @Nullable String itemId,
-        boolean crouching
+        boolean crouching,
+        /** Admin test path: the food is not taken from the hand. */
+        boolean free
     ) {
         UUID playerId() {
             return player.getUuid();
@@ -115,6 +119,12 @@ public final class AnimalInteractions {
 
     private static void wild(@Nonnull Use use, @Nonnull Ref<EntityStore> animal, @Nullable MovementStates moves, @Nonnull ComponentAccessor<EntityStore> accessor) {
         Message animalName = AnimalControl.speciesName(use.species);
+        CalmRules.FeedGate predator = PredatorApi.feedGate(use.species, use.animalUuid);
+        if (predator == CalmRules.FeedGate.TOO_WILD) {
+            // a wild predator takes no food from a hand until a Bait Bowl has calmed it; nothing else happens
+            use.player.sendMessage(Message.translation("cozyranch_predator.too_wild").param("animal", animalName));
+            return;
+        }
         TamingRules.FoodKind food = TamingRules.foodKind(use.species, use.itemId);
         if (food == TamingRules.FoodKind.NONE) {
             use.player.sendMessage(Message.translation(use.itemId == null ? "cozyranch_taming.tame.hint" : "cozyranch_taming.tame.not_food").param("animal", animalName));
@@ -123,6 +133,12 @@ public final class AnimalInteractions {
         if (!gateOk(use)) return;
         boolean hurried = moves != null && (moves.sprinting || moves.running);
         if (TamingRules.startles(use.species.Shyness, use.crouching, hurried, ThreadLocalRandom.current().nextDouble())) {
+            if (predator == CalmRules.FeedGate.CALM_PREDATOR) {
+                UUID who = use.playerId();
+                use.world.execute(() -> PredatorApi.startle(use.world, use.animalUuid, who));
+                use.player.sendMessage(Message.translation("cozyranch_taming.tame.startled").param("animal", animalName));
+                return;
+            }
             use.world.execute(() -> {
                 Ref<EntityStore> ref = use.world.getEntityStore().getRefFromUUID(use.animalUuid);
                 if (ref != null && ref.isValid()) AnimalControl.startle(ref, use.world.getEntityStore().getStore());
@@ -139,7 +155,13 @@ public final class AnimalInteractions {
         Ref<EntityStore> playerEntity = use.player.getReference();
         if (animal == null || !animal.isValid() || playerEntity == null || !playerEntity.isValid()) return;
         if (Ranch.animals().byEntity(use.animalUuid).isPresent()) return;
-        if (!takeHeldItem(playerEntity, use.itemId, store)) return;
+        // checked again on the world thread: Calm may have ended (or the animal been startled) since the click
+        if (PredatorApi.feedGate(use.species, use.animalUuid) == CalmRules.FeedGate.TOO_WILD) {
+            use.player.sendMessage(Message.translation("cozyranch_predator.too_wild").param("animal", AnimalControl.speciesName(use.species)));
+            return;
+        }
+        if (!use.free && !takeHeldItem(playerEntity, use.itemId, store)) return;
+        if (use.species.Predator) PredatorApi.handFed(use.animalUuid, use.species);
 
         Message animalName = AnimalControl.speciesName(use.species);
         int needed = TamingRules.feedingsToTame(use.species);
@@ -173,11 +195,13 @@ public final class AnimalInteractions {
         record.traits = BreedingRules.tamedTraits(TraitRegistry.get(), ThreadLocalRandom.current());
         rememberPosition(record, animal, store);
         Ranch.animals().bindEntity(record, animal, use.animalUuid, store);
+        PredatorApi.tamed(use.animalUuid);
         if (!AnimalControl.swapRole(animal, ranchRole.get(), AnimalControl.STATE_FOLLOW, store)) {
             Ranch.animals().remove(record.animalId);
             return;
         }
         Ranch.animals().markDirty(record);
+        com.hypixel.hytale.logger.HytaleLogger.forEnclosingClass().atInfo().log("Befriended %s %s (%s) as %s for %s", use.species.Id, use.animalUuid, npc.getRoleName(), ranchRole.get(), use.playerId());
         RanchEvents.fire(new AnimalTamedEvent(record.view(), use.playerId(), AnimalTamedEvent.Source.TAMED));
         AnimalControl.cheer(animal, AnimalControl.HEARTS, store);
         AnimalControl.sound(animal, RanchSounds.ANIMAL_TAMED, store);
@@ -215,10 +239,48 @@ public final class AnimalInteractions {
         });
         if (best[0] == null) return null;
         RoleMatch match = (RoleMatch) best[1];
-        Use use = new Use(player, world, (UUID) best[0], match.species(), match.kind(), null, false);
+        Use use = new Use(player, world, (UUID) best[0], match.species(), match.kind(), null, false, true);
         Ref<EntityStore> animal = world.getEntityStore().getRefFromUUID(use.animalUuid);
         if (animal == null || !animal.isValid()) return null;
         befriendNow(use, animal, store);
+        return match.species().Id;
+    }
+
+    /**
+     * Admin test path ({@code /ranch admin feed <item>}): offers {@code itemId} by hand to the nearest supported wild
+     * animal within {@code radius} blocks through the same code as a Use with that item in hand (gates, predator Calm,
+     * startle, progress, befriending), except that the item is not taken. Returns the species id, or null.
+     */
+    @Nullable
+    public static String debugFeedNearest(@Nonnull PlayerRef player, @Nonnull Ref<EntityStore> playerEntity, @Nonnull World world,
+                                          @Nonnull Store<EntityStore> store, double radius, @Nonnull String itemId) {
+        TransformComponent pt = store.getComponent(playerEntity, TransformComponent.getComponentType());
+        if (pt == null) return null;
+        Vector3d p = pt.getPosition();
+        Object[] best = {null, null, Double.MAX_VALUE};
+        store.forEachChunk(NPCEntity.getComponentType(), (chunk, buffer) -> {
+            for (int i = 0; i < chunk.size(); i++) {
+                NPCEntity npc = chunk.getComponent(i, NPCEntity.getComponentType());
+                TransformComponent t = chunk.getComponent(i, TransformComponent.getComponentType());
+                UUIDComponent id = chunk.getComponent(i, UUIDComponent.getComponentType());
+                if (npc == null || t == null || id == null || npc.getRoleName() == null) continue;
+                Optional<RoleMatch> m = SpeciesRegistry.byRole(npc.getRoleName());
+                if (m.isEmpty() || (m.get().kind() != RoleKind.WILD && m.get().kind() != RoleKind.WILD_BABY)) continue;
+                if (Ranch.animals().byEntity(id.getUuid()).isPresent()) continue;
+                double d = t.getPosition().distance(p);
+                if (d <= radius && d < (double) best[2]) {
+                    best[0] = id.getUuid();
+                    best[1] = m.get();
+                    best[2] = d;
+                }
+            }
+        });
+        if (best[0] == null) return null;
+        RoleMatch match = (RoleMatch) best[1];
+        Use use = new Use(player, world, (UUID) best[0], match.species(), match.kind(), itemId, false, true);
+        Ref<EntityStore> animal = world.getEntityStore().getRefFromUUID(use.animalUuid);
+        if (animal == null || !animal.isValid()) return null;
+        wild(use, animal, null, store);
         return match.species().Id;
     }
 

@@ -1,0 +1,192 @@
+{
+  "cases": [
+    {
+      "name": "bait bowl gate",
+      "description": "The Bait Bowl item, block, hitbox and the four models pass their engine checks; the texture is in Hytale's painted style; the pack validates.",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0,
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Bait_Bowl.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Bait_Bowl.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "Bait bowl hitbox",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_Bait_Bowl.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Bait bowl texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Bait_Bowl.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": "PASS"
+          }
+        },
+        {
+          "tool": "model_inspect",
+          "name": "Bait_Bowl model",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/BaitBowl/Bait_Bowl.blockymodel"
+          },
+          "expect": {
+            "diagnostics": {
+              "$length": 0
+            }
+          }
+        },
+        {
+          "tool": "model_inspect",
+          "name": "Bait_Bowl_Meat model",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/BaitBowl/Bait_Bowl_Meat.blockymodel"
+          },
+          "expect": {
+            "diagnostics": {
+              "$length": 0
+            }
+          }
+        },
+        {
+          "tool": "model_inspect",
+          "name": "Bait_Bowl_Fish model",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/BaitBowl/Bait_Bowl_Fish.blockymodel"
+          },
+          "expect": {
+            "diagnostics": {
+              "$length": 0
+            }
+          }
+        },
+        {
+          "tool": "model_inspect",
+          "name": "Bait_Bowl_Berries model",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/BaitBowl/Bait_Bowl_Berries.blockymodel"
+          },
+          "expect": {
+            "diagnostics": {
+              "$length": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "bait bowl renders",
+      "description": "The bowl empty and with each bait look, three-quarter view, against goldens that were looked at.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "Bait bowl Empty",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Bait_Bowl.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 256,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/predator/Bait_Bowl_Empty.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Bait bowl Meat",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Bait_Bowl.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 256,
+            "hitbox": false,
+            "blockState": "Meat"
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/predator/Bait_Bowl_Meat.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Bait bowl Fish",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Bait_Bowl.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 256,
+            "hitbox": false,
+            "blockState": "Fish"
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/predator/Bait_Bowl_Fish.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Bait bowl Berries",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Bait_Bowl.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 256,
+            "hitbox": false,
+            "blockState": "Berries"
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/predator/Bait_Bowl_Berries.png"
+        }
+      ]
+    }
+  ]
+}
