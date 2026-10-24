@@ -81,7 +81,11 @@ final class HousePlacement {
         }
     }
 
-    /** Player breaks a block: a house may only be broken by its owner or {@code cozyranch.admin.manageany}. */
+    /**
+     * Player breaks a block: a house may be broken by its owner or {@code cozyranch.admin.manageany}, and inside
+     * a land claim by the claim's owner or anyone the claim lets break blocks there ({@link HouseAccess#mayBreak}).
+     * A claims mod cancels the event itself for players it does not allow; this system then sees it cancelled.
+     */
     static final class BreakSystem extends EntityEventSystem<EntityStore, BreakBlockEvent> {
         BreakSystem() {
             super(BreakBlockEvent.class);
@@ -99,7 +103,7 @@ final class HousePlacement {
             if (found.isEmpty()) return;
             HouseRecord house = found.get();
             PlayerRef player = chunk.getComponent(index, PlayerRef.getComponentType());
-            if (player != null && !player.getUuid().equals(house.ownerId) && !RanchPermissions.has(player.getUuid(), RanchPermissions.ADMIN_MANAGE_ANY)) {
+            if (player != null && !HouseAccess.mayBreak(player.getUuid(), house)) {
                 event.setCancelled(true);
                 player.sendMessage(Message.translation("cozyranch_house.break.not_owner").param("owner", ownerName(house.ownerId)));
                 return;
@@ -173,7 +177,13 @@ final class HousePlacement {
         LOG.info("House " + house.houseId + " removed (block gone" + (breaker != null ? ", broken by " + breaker : "") + "); " + residents.size() + " resident(s) unassigned");
         PlayerRef owner = house.ownerId != null ? Universe.get().getPlayer(house.ownerId) : null;
         if (owner != null) {
-            RanchChat.tell(owner, Message.translation("cozyranch_house.break.done").param("house", HouseBlocks.displayName(house)).param("count", residents.size()));
+            if (breaker != null && !breaker.equals(house.ownerId)) {
+                // someone else took it down (a claim owner, or a member the claim lets break): always say so
+                owner.sendMessage(Message.translation("cozyranch_house.break.by_other").param("breaker", ownerName(breaker))
+                    .param("house", HouseBlocks.displayName(house)).param("count", residents.size()));
+            } else {
+                RanchChat.tell(owner, Message.translation("cozyranch_house.break.done").param("house", HouseBlocks.displayName(house)).param("count", residents.size()));
+            }
         }
     }
 

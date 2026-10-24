@@ -53,9 +53,28 @@ final class HouseRules {
     /** Owner or {@code manageany}; the owner also needs {@code cozyranch.house.manage}. */
     @Nonnull
     static Result checkManage(@Nonnull UUID actor, @Nullable UUID houseOwner, boolean hasManage, boolean hasManageAny) {
+        return checkManage(actor, houseOwner, hasManage, hasManageAny, false);
+    }
+
+    /**
+     * As above, where {@code claimAllows} means the house stands in a land claim whose rules let the actor do
+     * this (claims integration): the claim stands in for house ownership; {@code cozyranch.house.manage} is still
+     * needed. Outside claims {@code claimAllows} is always false and this is the owner-only rule.
+     */
+    @Nonnull
+    static Result checkManage(@Nonnull UUID actor, @Nullable UUID houseOwner, boolean hasManage, boolean hasManageAny, boolean claimAllows) {
         if (hasManageAny) return Result.OK;
-        if (!actor.equals(houseOwner)) return Result.NOT_OWNER;
+        if (!actor.equals(houseOwner) && !claimAllows) return Result.NOT_OWNER;
         return hasManage ? Result.OK : Result.NO_PERMISSION;
+    }
+
+    /**
+     * Who may break (pick up) a house block: its owner, {@code manageany}, or, inside a land claim, the claim's
+     * owner or anyone the claim lets break blocks there. Breaking never deletes an animal record
+     * ({@link HousePlacement#houseBroken}); the house item drops for the breaker as for any block.
+     */
+    static boolean mayBreak(@Nonnull UUID actor, @Nullable UUID houseOwner, boolean hasManageAny, boolean claimAllows) {
+        return hasManageAny || actor.equals(houseOwner) || claimAllows;
     }
 
     /**

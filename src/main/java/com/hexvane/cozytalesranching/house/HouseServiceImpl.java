@@ -21,11 +21,10 @@ import javax.annotation.Nullable;
  * Every method checks permissions and ownership itself; events fire after the record is saved.
  */
 final class HouseServiceImpl implements HouseService {
+    /** House owner, or the land claim around the house ({@link HouseAccess}). */
     @Nonnull
     private static Result manage(@Nonnull PlayerRef actor, @Nonnull HouseRecord house) {
-        UUID id = actor.getUuid();
-        return HouseRules.checkManage(id, house.ownerId,
-            RanchPermissions.has(id, RanchPermissions.HOUSE_MANAGE), RanchPermissions.has(id, RanchPermissions.ADMIN_MANAGE_ANY));
+        return HouseAccess.manage(actor.getUuid(), house);
     }
 
     @Nonnull
@@ -42,6 +41,9 @@ final class HouseServiceImpl implements HouseService {
         int residents = Ranch.animals().inHouse(house.houseId).size();
         Result check = HouseRules.checkAssign(manage(actor, house), animal.ownerId, house.ownerId, animal.speciesId, house.speciesId, already, residents, house.capacity);
         if (check != Result.OK || already) return check;
+        // moving out of another house needs the right to manage that one too (it may stand in a different claim)
+        HouseRecord from = animal.houseId != null ? Ranch.houses().get(animal.houseId).orElse(null) : null;
+        if (from != null && (check = manage(actor, from)) != Result.OK) return check;
         UUID previous = animal.houseId;
         animal.houseId = house.houseId;
         animal.following = false;
@@ -58,10 +60,10 @@ final class HouseServiceImpl implements HouseService {
     @Nonnull @Override
     public Result unassign(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal) {
         if (animal.houseId == null) return Result.NOT_FOUND;
-        Result check = manageAnimal(actor, animal);
-        if (check != Result.OK) return check;
         UUID previous = animal.houseId;
         HouseRecord house = Ranch.houses().get(previous).orElse(null);
+        Result check = house != null ? manage(actor, house) : manageAnimal(actor, animal);
+        if (check != Result.OK) return check;
         World world = house != null ? Universe.get().getWorld(house.worldName) : null;
         if (animal.state == AnimalRecord.State.STORED) {
             boolean out = house != null && world != null && HouseResidents.bringOut(world, world.getEntityStore().getStore(), house, animal);

@@ -3,6 +3,7 @@ package com.hexvane.cozytalesranching.houseui;
 import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.config.RanchConfig;
+import com.hexvane.cozytalesranching.house.HouseAccess;
 import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.house.HouseService;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
@@ -190,8 +191,8 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
     /** Collect, then a short line: how many items came, or why nothing did. */
     @Nonnull
     private Txt collect(@Nonnull HouseRecord house, @Nonnull Ref<EntityStore> ref, @Nonnull Store<EntityStore> store) {
-        Txt denied = manageCheck(house);
-        if (denied != null) return denied;
+        HouseService.Result access = HouseAccess.collect(playerRef.getUuid(), house);
+        if (access != HouseService.Result.OK) return failure(access);
         Map<String, Integer> before = source.stored(house);
         if (before.values().stream().noneMatch(n -> n != null && n > 0)) return Txt.ui("result.collect.nothing");
         int moved = source.collect(ref, store, house);
@@ -234,13 +235,11 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
         return id.equals(animal.ownerId) || RanchPermissions.has(id, RanchPermissions.ADMIN_MANAGE_ANY);
     }
 
-    /** Owner with {@code cozyranch.house.manage}, or {@code cozyranch.admin.manageany}; null when allowed. */
+    /** The house rule ({@link HouseAccess}: owner, a land claim allowing it, or manageany); null when allowed. */
     @Nullable
     private Txt manageCheck(@Nonnull HouseRecord house) {
-        UUID id = playerRef.getUuid();
-        if (RanchPermissions.has(id, RanchPermissions.ADMIN_MANAGE_ANY)) return null;
-        if (!id.equals(house.ownerId)) return failure(HouseService.Result.NOT_OWNER);
-        return RanchPermissions.has(id, RanchPermissions.HOUSE_MANAGE) ? null : failure(HouseService.Result.NO_PERMISSION);
+        HouseService.Result result = HouseAccess.manage(playerRef.getUuid(), house);
+        return result == HouseService.Result.OK ? null : failure(result);
     }
 
     @Nonnull

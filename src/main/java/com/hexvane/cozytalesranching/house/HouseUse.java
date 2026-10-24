@@ -43,7 +43,13 @@ final class HouseUse {
                     .param("count", moved).param("house", HouseBlocks.displayName(house))
                     .param("residents", residents).param("capacity", house.capacity));
             }
-            if (last != Result.OK) player.sendMessage(refusal(last, house, residents));
+            if (last == Result.NOT_OWNER && !player.getUuid().equals(house.ownerId) && HouseAccess.manage(player.getUuid(), house) == Result.OK) {
+                // a claim lets this player look after the house, but animals only live in their own owner's houses
+                player.sendMessage(Message.translation("cozyranch_house.assign.other_owner")
+                    .param("house", HouseBlocks.displayName(house)).param("owner", HousePlacement.ownerName(house.ownerId)));
+            } else if (last != Result.OK) {
+                player.sendMessage(refusal(last, house, residents));
+            }
             return;
         }
         if (Ranch.housePages().open(playerEntity, store, house)) return;
