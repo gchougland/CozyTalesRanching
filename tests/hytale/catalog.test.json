@@ -7,7 +7,7 @@
         {
           "tool": "asset_validate",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix4-catalog"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true,
@@ -20,7 +20,7 @@
           "name": "CozyRanch.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Server/Item/Category/CreativeLibrary/CozyRanch.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Category/CreativeLibrary/CozyRanch.json"
           },
           "expect": {
             "errors": 0
@@ -31,7 +31,7 @@
           "name": "CozyRanch_RanchingBench.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json"
           },
           "expect": {
             "errors": 0
@@ -42,7 +42,7 @@
           "name": "CozyRanch_RanchingBench.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_RanchingBench.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_RanchingBench.json"
           },
           "expect": {
             "errors": 0
@@ -53,7 +53,7 @@
           "name": "CozyRanch_House_CowBarn.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_CowBarn.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_CowBarn.json"
           },
           "expect": {
             "errors": 0
@@ -64,7 +64,7 @@
           "name": "CozyRanch_Toy_Ball.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_Ball.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_Ball.json"
           },
           "expect": {
             "errors": 0
@@ -75,7 +75,7 @@
           "name": "CozyRanch_Tonic_Fireward.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Server/Item/Items/CozyRanch/Tonics/CozyRanch_Tonic_Fireward.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Tonics/CozyRanch_Tonic_Fireward.json"
           },
           "expect": {
             "errors": 0
@@ -92,7 +92,7 @@
           "name": "RanchingBench three quarter",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json",
             "views": [
               "three_quarter",
               "front",
@@ -127,7 +127,7 @@
           "name": "RanchingBench texture",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json",
             "image": false
           },
           "expect": {
@@ -150,7 +150,7 @@
           "name": "CozyRanch_RanchingBench.png",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/ItemsGenerated/CozyRanch_RanchingBench.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemsGenerated/CozyRanch_RanchingBench.png"
           },
           "expect": {
             "width": 64,
@@ -162,7 +162,7 @@
           "name": "CozyRanch.png",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/ItemCategories/CozyRanch.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanch.png"
           },
           "expect": {
             "width": 88,
@@ -174,7 +174,7 @@
           "name": "CozyRanchActive.png",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/ItemCategories/CozyRanchActive.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanchActive.png"
           },
           "expect": {
             "width": 88,
@@ -186,7 +186,7 @@
           "name": "CozyRanch-Houses.png",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/ItemCategories/CozyRanch-Houses.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanch-Houses.png"
           },
           "expect": {
             "width": 48,
@@ -198,7 +198,7 @@
           "name": "CozyRanch-Produce.png",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/ItemCategories/CozyRanch-Produce.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanch-Produce.png"
           },
           "expect": {
             "width": 48,
@@ -210,7 +210,7 @@
           "name": "Houses.png",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/CraftingCategories/CozyRanch/Houses.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/CraftingCategories/CozyRanch/Houses.png"
           },
           "expect": {
             "width": 64,
@@ -222,7 +222,7 @@
           "name": "FeedCare.png",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/CraftingCategories/CozyRanch/FeedCare.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/CraftingCategories/CozyRanch/FeedCare.png"
           },
           "expect": {
             "width": 64,
@@ -234,7 +234,7 @@
           "name": "ToysDecor.png",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/CraftingCategories/CozyRanch/ToysDecor.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/CraftingCategories/CozyRanch/ToysDecor.png"
           },
           "expect": {
             "width": 64,
@@ -246,7 +246,7 @@
           "name": "CozyRanch",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/ItemCategories/CozyRanch.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanch.png"
           },
           "golden": "tests/hytale/golden/catalog/CozyRanch.png"
         },
@@ -255,7 +255,7 @@
           "name": "CozyRanchActive",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/ItemCategories/CozyRanchActive.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanchActive.png"
           },
           "golden": "tests/hytale/golden/catalog/CozyRanchActive.png"
         },
@@ -264,7 +264,7 @@
           "name": "CozyRanch-Houses",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/ItemCategories/CozyRanch-Houses.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanch-Houses.png"
           },
           "golden": "tests/hytale/golden/catalog/CozyRanch-Houses.png"
         },
@@ -273,7 +273,7 @@
           "name": "CozyRanch-Produce",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/ItemCategories/CozyRanch-Produce.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanch-Produce.png"
           },
           "golden": "tests/hytale/golden/catalog/CozyRanch-Produce.png"
         },
@@ -282,7 +282,7 @@
           "name": "bench icon",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix4-catalog/src/main/resources/Common/Icons/ItemsGenerated/CozyRanch_RanchingBench.png"
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemsGenerated/CozyRanch_RanchingBench.png"
           },
           "golden": "tests/hytale/golden/catalog/CozyRanch_RanchingBench_icon.png"
         }
