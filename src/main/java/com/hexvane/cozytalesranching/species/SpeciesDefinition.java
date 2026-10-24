@@ -181,20 +181,22 @@ public final class SpeciesDefinition {
     @Nonnull
     public String wildRoleFor(@Nullable String currentRole, boolean baby) {
         if (currentRole != null) {
+            // walk the role lists in order, so a look with a walking and a flying wild role goes back as the first
             if (baby) {
-                for (Map.Entry<String, String> e : RanchRoleVariants.entrySet()) {
-                    if (WildBabyRoles.contains(e.getKey()) && currentRole.equals(RanchBabyRoleVariants.get(e.getValue()))) return e.getKey();
+                for (String wild : WildBabyRoles) {
+                    String look = RanchRoleVariants.get(wild);
+                    if (look != null && currentRole.equals(RanchBabyRoleVariants.get(look))) return wild;
                 }
             }
-            for (Map.Entry<String, String> e : RanchRoleVariants.entrySet()) {
-                if (e.getValue().equals(currentRole) && WildRoles.contains(e.getKey())) return e.getKey();
+            for (String wild : WildRoles) {
+                if (currentRole.equals(RanchRoleVariants.get(wild))) return wild;
             }
             if (baby && WildBabyRoles.isEmpty()) {
                 // no wild babies: a look's baby goes back as the wild adult of that look
                 for (Map.Entry<String, String> b : RanchBabyRoleVariants.entrySet()) {
                     if (!b.getValue().equals(currentRole)) continue;
-                    for (Map.Entry<String, String> e : RanchRoleVariants.entrySet()) {
-                        if (e.getValue().equals(b.getKey()) && WildRoles.contains(e.getKey())) return e.getKey();
+                    for (String wild : WildRoles) {
+                        if (b.getKey().equals(RanchRoleVariants.get(wild))) return wild;
                     }
                 }
             }
