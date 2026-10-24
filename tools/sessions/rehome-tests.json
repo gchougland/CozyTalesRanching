@@ -1,4 +1,0 @@
-[
-  { "tool": "test_run", "args": { "project": "CozyTales-Ranching", "directory": "build/tests-copy" }, "save": "t1" },
-  { "tool": "job_status", "args": { "jobId": "$t1", "waitMs": 5000 }, "until": "finishedAt", "timeoutMs": 1200000, "maxChars": 60000 }
-]

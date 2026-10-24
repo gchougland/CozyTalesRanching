@@ -84,12 +84,7 @@ Java 25 and Hytale installed through the launcher.
 .\gradlew.bat runServer
 ```
 
-The jar is `build\libs\CozyTalesRanching-<version>.jar`. After changing any English `.lang` file, update the translations (only new or changed lines are retranslated):
-
-```bat
-python tools\translate-lang.py
-python tools\translate-lang.py --check
-```
+The jar is `build\libs\CozyTalesRanching-<version>.jar`.
 
 Metrics go to [hstats.dev](https://hstats.dev) only when `COZYTALESRANCHING_HSTATS_MOD_UUID` (or `hstats_mod_uuid` in `gradle.properties`) is set at build time. Only change the package name in `HStats.java`, never its metrics logic, per the HStats license.
 

@@ -1,6 +1,0 @@
-[
-  {"tool":"server_start","args":{"artifacts":["CozyTales-Ranching/build/libs/CozyTalesRanching-0.2.0.jar"],"port":15530},"save":"job"},
-  {"tool":"job_status","args":{"jobId":"$job","waitMs":5000},"until":"ready","timeoutMs":300000,"maxChars":1500},
-  {"tool":"job_logs","args":{"jobId":"$job","maxChars":64000},"maxChars":64000,"always":true},
-  {"tool":"job_stop","args":{"jobId":"$job"},"always":true}
-]
