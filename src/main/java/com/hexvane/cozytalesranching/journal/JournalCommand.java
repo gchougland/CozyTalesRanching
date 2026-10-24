@@ -141,7 +141,7 @@ public final class JournalCommand extends AbstractPlayerCommand {
                     return JournalRules.traits(j, s.Id, next.isEmpty() ? List.of() : List.of(next), now);
                 };
                 case "product" -> j -> {
-                    String item = s.Products.isEmpty() ? "" : s.Products.getFirst().Item;
+                    String item = s.allProducts().isEmpty() ? "" : s.allProducts().getFirst().Item;
                     return JournalRules.produced(j, s.Id, item, now);
                 };
                 case "hearts" -> j -> JournalRules.hearts(j, s.Id, null, 4, 5, now);

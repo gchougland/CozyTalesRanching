@@ -1,0 +1,50 @@
+{
+  "Species": [
+    {
+      "Id": "snail",
+      "Order": 230,
+      "DescriptionKey": "cozyranch_journal.species.snail.desc",
+      "RareKey": "cozyranch_journal.species.snail.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Snail.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/SnailSilhouette.png",
+      "Behaviours": [
+        "shell_tuck",
+        "leaf_munch",
+        "eye_peek",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_log",
+        "toy_ball"
+      ],
+      "Looks": [
+        {
+          "NameKey": "cozyranch_journal.species.snail.shell.frost",
+          "HowKey": "cozyranch_journal.species.snail.shell.frost.how"
+        },
+        {
+          "NameKey": "cozyranch_journal.species.snail.shell.magma",
+          "HowKey": "cozyranch_journal.species.snail.shell.magma.how"
+        },
+        {
+          "NameKey": "cozyranch_journal.species.snail.shell.garden",
+          "HowKey": "cozyranch_journal.species.snail.shell.garden.how"
+        },
+        {
+          "NameKey": "cozyranch_journal.species.snail.shell.tide",
+          "HowKey": "cozyranch_journal.species.snail.shell.tide.how"
+        },
+        {
+          "NameKey": "cozyranch_journal.species.snail.shell.storm",
+          "HowKey": "cozyranch_journal.species.snail.shell.storm.how"
+        },
+        {
+          "NameKey": "cozyranch_journal.species.snail.shell.void",
+          "HowKey": "cozyranch_journal.species.snail.shell.void.how"
+        }
+      ],
+      "LooksTitleKey": "cozyranch_journal.section.shells"
+    }
+  ]
+}

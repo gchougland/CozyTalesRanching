@@ -1,0 +1,131 @@
+{
+  "Id": "snail",
+  "NameKey": "cozyranch_species.snail.name",
+  "WildRoles": [
+    "Snail_Frost",
+    "Snail_Magma",
+    "CozyRanchWild_Snail_Storm"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Snail_Frost",
+  "RanchBabyRole": "CozyRanch_Snail_Frost_Baby",
+  "RanchRoleVariants": {
+    "Snail_Frost": "CozyRanch_Snail_Frost",
+    "Snail_Magma": "CozyRanch_Snail_Magma",
+    "CozyRanchWild_Snail_Storm": "CozyRanch_Snail_Storm",
+    "CozyRanch_Snail_Garden": "CozyRanch_Snail_Garden",
+    "CozyRanch_Snail_Tide": "CozyRanch_Snail_Tide",
+    "CozyRanch_Snail_Void": "CozyRanch_Snail_Void"
+  },
+  "RanchBabyRoleVariants": {
+    "CozyRanch_Snail_Frost": "CozyRanch_Snail_Frost_Baby",
+    "CozyRanch_Snail_Magma": "CozyRanch_Snail_Magma_Baby",
+    "CozyRanch_Snail_Garden": "CozyRanch_Snail_Garden_Baby",
+    "CozyRanch_Snail_Tide": "CozyRanch_Snail_Tide_Baby",
+    "CozyRanch_Snail_Storm": "CozyRanch_Snail_Storm_Baby",
+    "CozyRanch_Snail_Void": "CozyRanch_Snail_Void_Baby"
+  },
+  "HouseBlock": "CozyRanch_House_SnailTerrarium",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Plant_Crop_Lettuce_Item",
+    "Plant_Crop_Cauliflower_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Mushroom_Cap_Brown",
+    "Plant_Crop_Tomato_Item"
+  ],
+  "FavoriteTreats": [
+    "Plant_Fruit_Spiral"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.3,
+  "GrowUpMinutes": 40,
+  "BreedCooldownMinutes": 45,
+  "Products": [
+    {
+      "Item": "Ingredient_Ice_Essence",
+      "Quantity": 1,
+      "IntervalMinutes": 50,
+      "Collect": "House"
+    }
+  ],
+  "VariantProducts": {
+    "CozyRanch_Snail_Magma": [
+      {
+        "Item": "Ingredient_Fire_Essence",
+        "Quantity": 1,
+        "IntervalMinutes": 50,
+        "Collect": "House"
+      }
+    ],
+    "CozyRanch_Snail_Garden": [
+      {
+        "Item": "Ingredient_Life_Essence",
+        "Quantity": 1,
+        "IntervalMinutes": 45,
+        "Collect": "House"
+      }
+    ],
+    "CozyRanch_Snail_Tide": [
+      {
+        "Item": "Ingredient_Water_Essence",
+        "Quantity": 1,
+        "IntervalMinutes": 45,
+        "Collect": "House"
+      }
+    ],
+    "CozyRanch_Snail_Storm": [
+      {
+        "Item": "Ingredient_Lightning_Essence",
+        "Quantity": 1,
+        "IntervalMinutes": 80,
+        "Collect": "House"
+      }
+    ],
+    "CozyRanch_Snail_Void": [
+      {
+        "Item": "Ingredient_Void_Essence",
+        "Quantity": 1,
+        "IntervalMinutes": 90,
+        "Collect": "House"
+      }
+    ]
+  },
+  "BirthVariants": [
+    {
+      "Parents": [
+        "CozyRanch_Snail_Frost",
+        "CozyRanch_Snail_Magma"
+      ],
+      "Role": "CozyRanch_Snail_Void",
+      "Chance": 0.1
+    },
+    {
+      "Feature": "flowers",
+      "Role": "CozyRanch_Snail_Garden",
+      "Chance": 0.5
+    },
+    {
+      "Feature": "vegetables",
+      "Role": "CozyRanch_Snail_Garden",
+      "Chance": 0.5
+    },
+    {
+      "Feature": "water",
+      "Role": "CozyRanch_Snail_Tide",
+      "Chance": 0.5
+    }
+  ],
+  "HabitatRequires": [
+    "snail_moss"
+  ],
+  "HabitatPrefers": [
+    "flowers",
+    "vegetables",
+    "water",
+    "shade"
+  ]
+}

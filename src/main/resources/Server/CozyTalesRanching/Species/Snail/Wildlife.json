@@ -1,0 +1,39 @@
+{
+  "Species": {
+    "snail": {
+      "Roles": [
+        "Snail_Frost",
+        "Snail_Magma"
+      ],
+      "OwnHouseWeight": 0.9,
+      "CooldownMinutes": 20,
+      "Attractors": [
+        {
+          "HouseSpecies": "frog",
+          "Features": [
+            "water"
+          ],
+          "Weight": 0.25
+        },
+        {
+          "HouseSpecies": "rabbit",
+          "Features": [
+            "flowers"
+          ],
+          "Weight": 0.2
+        }
+      ],
+      "Rare": {
+        "Role": "CozyRanchWild_Snail_Storm",
+        "NameKey": "cozyranch_wildlife.rare.snail",
+        "Chance": 0.2,
+        "CooldownMinutes": 90,
+        "Features": [
+          "water"
+        ],
+        "MinResidents": 2,
+        "MinAvgHappiness": 0.7
+      }
+    }
+  }
+}

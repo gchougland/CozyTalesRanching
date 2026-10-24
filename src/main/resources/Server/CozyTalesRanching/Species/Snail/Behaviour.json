@@ -1,0 +1,111 @@
+{
+  "Behaviours": {
+    "shell_tuck": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 70,
+      "Seconds": [
+        4,
+        7
+      ]
+    },
+    "leaf_munch": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        4,
+        7
+      ]
+    },
+    "eye_peek": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 50,
+      "Seconds": [
+        3,
+        5
+      ]
+    }
+  },
+  "Species": {
+    "snail": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "shell_tuck": [
+          "ShellTuck"
+        ],
+        "leaf_munch": [
+          "Nibble"
+        ],
+        "eye_peek": [
+          "LookAround"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Nibble",
+          "LookAround"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "approach_player": [
+          "LookAround"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "eye_peek": [
+          "LookAround"
+        ],
+        "shell_tuck": [
+          "ShellTuck"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "LookAround"
+        ],
+        "approach_player": [
+          "LookAround"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "shy": {
+      "Weights": {
+        "shell_tuck": 2
+      }
+    },
+    "curious": {
+      "Weights": {
+        "eye_peek": 1.5
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "leaf_munch": 1.5
+      }
+    }
+  }
+}

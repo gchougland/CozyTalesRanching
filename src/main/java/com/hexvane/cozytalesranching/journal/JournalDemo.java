@@ -69,7 +69,7 @@ public final class JournalDemo {
                     JournalRules.housed(j, s.Id, true, t + 3_600_000);
                     for (String b : book.page(s.Id).Behaviours) JournalRules.behaviour(j, s.Id, b, name, t + 7_200_000);
                     JournalRules.bred(j, s.Id, name, rotate(traitIds, i + 2, 2), t + 10_800_000);
-                    for (SpeciesDefinition.Product p : s.Products) JournalRules.produced(j, s.Id, p.Item, t + 14_400_000);
+                    for (SpeciesDefinition.Product p : s.allProducts()) JournalRules.produced(j, s.Id, p.Item, t + 14_400_000);
                     JournalRules.hearts(j, s.Id, name, 4, 5, t + 18_000_000);
                     JournalRules.visitor(j, s.Id, true, t + 21_600_000);
                     // The first species has raised every trait there is: its page shows the longest traits list.

@@ -51,6 +51,17 @@ public final class JournalBook {
         @Nullable public String Silhouette;
         /** Behaviour ids the page lists (as {@code ???} until seen). Each has {@code cozyranch_journal.behaviour.<id>}. */
         public List<String> Behaviours = List.of();
+        /**
+         * Looks of the species the page explains (snail shells): a name and how to get it, each a lang key. Optional; the
+         * section's title is {@code LooksTitleKey}, else {@code cozyranch_journal.section.looks}.
+         */
+        public List<Look> Looks = List.of();
+        @Nullable public String LooksTitleKey;
+    }
+
+    public static final class Look {
+        public String NameKey = "";
+        public String HowKey = "";
     }
 
     private transient Map<String, SpeciesPage> byId = Map.of();
@@ -103,6 +114,7 @@ public final class JournalBook {
                 p.Id = p.Id.toLowerCase(Locale.ROOT);
                 if (p.Behaviours == null) p.Behaviours = List.of();
                 p.Behaviours = p.Behaviours.stream().filter(s -> s != null && !s.isBlank()).distinct().toList();
+                p.Looks = p.Looks == null ? List.of() : p.Looks.stream().filter(l -> l != null && l.NameKey != null && !l.NameKey.isBlank()).toList();
                 ids.put(p.Id, p);
             }
         }

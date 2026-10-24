@@ -67,7 +67,7 @@ public final class ProduceFeature {
         ProduceTuning t = ProduceTuning.get();
         StringBuilder b = new StringBuilder();
         for (SpeciesDefinition s : SpeciesRegistry.all()) {
-            for (SpeciesDefinition.Product p : s.Products) {
+            for (SpeciesDefinition.Product p : s.allProducts()) {
                 ProduceRules.Mode m = ProduceRules.mode(p.Collect);
                 if (m == ProduceRules.Mode.NONE) continue;
                 if (!b.isEmpty()) b.append(", ");
