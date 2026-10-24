@@ -6,7 +6,7 @@
         {
           "tool": "asset_validate",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-030-species-e"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true,
@@ -16,7 +16,7 @@
         {
           "tool": "ui_check_java",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-030-species-e"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true
@@ -27,7 +27,7 @@
           "name": "asset_check CozyRanch_Duck.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Duck.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Duck.json"
           },
           "expect": {
             "errors": 0
@@ -38,7 +38,7 @@
           "name": "asset_check CozyRanch_Duck_Duckling.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Duck_Duckling.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanch/CozyRanch_Duck_Duckling.json"
           },
           "expect": {
             "errors": 0
@@ -49,7 +49,7 @@
           "name": "asset_check CozyRanchWild_Duck.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/NPC/Roles/CozyRanchWild/CozyRanchWild_Duck.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanchWild/CozyRanchWild_Duck.json"
           },
           "expect": {
             "errors": 0
@@ -60,7 +60,7 @@
           "name": "asset_check CozyRanch_Duck.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json"
           },
           "expect": {
             "errors": 0
@@ -71,7 +71,7 @@
           "name": "asset_check CozyRanch_Duck_Duckling.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck_Duckling.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck_Duckling.json"
           },
           "expect": {
             "errors": 0
@@ -82,7 +82,7 @@
           "name": "asset_check CozyRanch_House_DuckHouse.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_DuckHouse.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_DuckHouse.json"
           },
           "expect": {
             "errors": 0
@@ -93,7 +93,7 @@
           "name": "asset_check CozyRanch_House_DuckHouse.json",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_DuckHouse.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_DuckHouse.json"
           },
           "expect": {
             "errors": 0
@@ -103,7 +103,7 @@
           "tool": "texture_check",
           "name": "duck house texture",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_DuckHouse.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_DuckHouse.json",
             "image": false
           },
           "expect": {
@@ -119,7 +119,7 @@
           "tool": "texture_check",
           "name": "duckling texture",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck_Duckling.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck_Duckling.json",
             "image": false
           },
           "expect": {
@@ -141,7 +141,7 @@
           "name": "adult duck",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "size": 260,
             "views": [
               "three_quarter"
@@ -160,7 +160,7 @@
           "name": "duckling",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck_Duckling.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck_Duckling.json",
             "size": 260,
             "views": [
               "three_quarter"
@@ -179,7 +179,7 @@
           "name": "duck house, three sides",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_DuckHouse.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_DuckHouse.json",
             "size": 260,
             "views": [
               "three_quarter",
@@ -205,7 +205,7 @@
           "name": "clip Happy",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "animation": "Happy",
             "frames": 6,
             "yaw": 60,
@@ -226,7 +226,7 @@
           "name": "clip Love",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "animation": "Love",
             "frames": 6,
             "yaw": 60,
@@ -247,7 +247,7 @@
           "name": "clip EatTrough",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "animation": "EatTrough",
             "frames": 6,
             "yaw": 60,
@@ -268,7 +268,7 @@
           "name": "clip Dabble",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "animation": "Dabble",
             "frames": 6,
             "yaw": 60,
@@ -289,7 +289,7 @@
           "name": "clip Preen",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "animation": "Preen",
             "frames": 6,
             "yaw": 60,
@@ -310,7 +310,7 @@
           "name": "clip Paddle",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "animation": "Paddle",
             "frames": 6,
             "yaw": 60,
@@ -331,7 +331,7 @@
           "name": "clip QuackCall",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "animation": "QuackCall",
             "frames": 6,
             "yaw": 60,
@@ -352,7 +352,7 @@
           "name": "Eat through our asset",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "animation": "Eat",
             "frames": 2,
             "size": 96
@@ -370,7 +370,7 @@
           "name": "Curious through our asset",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "animation": "Curious",
             "frames": 2,
             "size": 96
@@ -388,7 +388,7 @@
           "name": "FluidIdle through our asset",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "animation": "FluidIdle",
             "frames": 2,
             "size": 96
@@ -406,7 +406,7 @@
           "name": "FluidWalk through our asset",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "animation": "FluidWalk",
             "frames": 2,
             "size": 96
@@ -424,7 +424,7 @@
           "name": "Sleep through our asset",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Duck.json",
             "animation": "Sleep",
             "frames": 2,
             "size": 96
@@ -447,7 +447,7 @@
           "name": "journal duck page, everything discovered (commands captured from a live server)",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
             "commands": [
               {
                 "type": "Append",
@@ -981,7 +981,7 @@
           "name": "duck house page missing water (needed) and reeds (liked)",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-030-species-e/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
