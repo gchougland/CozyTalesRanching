@@ -1,0 +1,27 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Bat",
+    "SeparationDistance": 0.5,
+    "DropList": "Drop_Bat",
+    "MaxHealth": 15,
+    "MaxSpeed": 4,
+    "ParticleOffset": [
+      0,
+      1.0,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Plant_Fruit_Berries_Red",
+      "Plant_Fruit_Apple",
+      "Plant_Fruit_Mango",
+      "Plant_Fruit_Pinkberry",
+      "Plant_Fruit_Azure",
+      "CozyRanch_Food_Crickets"
+    ],
+    "FollowStopDistance": 1.6,
+    "NameTranslationKey": "server.npcRoles.Bat.name"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_Animal_Neutral",
+  "Modify": {
+    "Appearance": "CozyRanch_Hawk",
+    "FlockArray": [
+      "CozyRanchWild_Hawk"
+    ],
+    "DropList": "Drop_Hawk",
+    "MaxHealth": 38,
+    "MaxSpeed": 5,
+    "WanderRadius": 10,
+    "ViewRange": 16,
+    "ViewSector": 300,
+    "HearingRange": 8,
+    "AlertedRange": 14,
+    "AlertedActionRange": 8,
+    "AbsoluteDetectionRange": 3,
+    "Timid": true,
+    "DayFlavorAnimation": "Scan",
+    "IsMemory": true,
+    "MemoriesCategory": "Avian",
+    "MemoriesNameOverride": "Hawk",
+    "NameTranslationKey": "server.npcRoles.Hawk.name"
+  }
+}

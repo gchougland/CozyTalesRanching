@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Hawk",
+    "SeparationDistance": 0.5,
+    "DropList": "Drop_Hawk",
+    "MaxHealth": 38,
+    "MaxSpeed": 5,
+    "ParticleOffset": [
+      0,
+      1.1,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Food_Fish_Raw",
+      "Food_Pork_Raw",
+      "Food_Wildmeat_Raw",
+      "Food_Beef_Raw",
+      "Food_Chicken_Raw"
+    ],
+    "FollowStopDistance": 1.8,
+    "NameTranslationKey": "server.npcRoles.Hawk.name"
+  }
+}

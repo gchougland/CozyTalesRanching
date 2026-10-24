@@ -1,0 +1,27 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Bat_Ice_Pup",
+    "SeparationDistance": 0.35,
+    "DropList": "Empty",
+    "MaxHealth": 10,
+    "MaxSpeed": 3.5,
+    "ParticleOffset": [
+      0,
+      0.65,
+      0
+    ],
+    "WanderRadius": 5,
+    "FoodItems": [
+      "Plant_Fruit_Berries_Red",
+      "Plant_Fruit_Apple",
+      "Plant_Fruit_Mango",
+      "Plant_Fruit_Pinkberry",
+      "Plant_Fruit_Azure",
+      "CozyRanch_Food_Crickets"
+    ],
+    "FollowStopDistance": 1.2,
+    "NameTranslationKey": "cozyranch_species.bat.ice.baby.name"
+  }
+}

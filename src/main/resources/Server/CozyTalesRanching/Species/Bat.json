@@ -1,0 +1,65 @@
+{
+  "Id": "bat",
+  "NameKey": "cozyranch_species.bat.name",
+  "WildRoles": [
+    "CozyRanchWild_Bat",
+    "CozyRanchWild_Bat_Ice",
+    "Bat",
+    "Bat_Ice"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Bat",
+  "RanchBabyRole": "CozyRanch_Bat_Pup",
+  "RanchRoleVariants": {
+    "CozyRanchWild_Bat": "CozyRanch_Bat",
+    "CozyRanchWild_Bat_Ice": "CozyRanch_Bat_Ice"
+  },
+  "RanchBabyRoleVariants": {
+    "CozyRanch_Bat": "CozyRanch_Bat_Pup",
+    "CozyRanch_Bat_Ice": "CozyRanch_Bat_Ice_Pup"
+  },
+  "HouseBlock": "CozyRanch_House_BatRoost",
+  "HouseCapacity": 6,
+  "BasicFoods": [
+    "Plant_Fruit_Berries_Red",
+    "Plant_Fruit_Apple"
+  ],
+  "PreferredFoods": [
+    "Plant_Fruit_Mango",
+    "Plant_Fruit_Pinkberry",
+    "Plant_Fruit_Azure"
+  ],
+  "FavoriteTreats": [
+    "CozyRanch_Food_Crickets"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.5,
+  "GrowUpMinutes": 30,
+  "BreedCooldownMinutes": 35,
+  "Products": [
+    {
+      "Item": "CozyRanch_Bat_Guano",
+      "Quantity": 2,
+      "IntervalMinutes": 40,
+      "Collect": "House"
+    }
+  ],
+  "BirthVariants": [
+    {
+      "Feature": "frozen_ice",
+      "Role": "CozyRanch_Bat_Ice",
+      "Chance": 0.35
+    }
+  ],
+  "HabitatRequires": [
+    "shade"
+  ],
+  "HabitatPrefers": [
+    "rocky_ground",
+    "berry_brambles",
+    "mushrooms",
+    "water"
+  ]
+}

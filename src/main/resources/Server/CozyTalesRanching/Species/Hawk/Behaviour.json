@@ -1,0 +1,122 @@
+{
+  "Behaviours": {
+    "hawk_screech": {
+      "Kind": "here",
+      "Weight": 1.2,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        2,
+        3
+      ]
+    },
+    "hawk_mantle": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        4,
+        6
+      ]
+    },
+    "hawk_scan": {
+      "Kind": "here",
+      "Weight": 2.5,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        4,
+        7
+      ]
+    }
+  },
+  "Species": {
+    "hawk": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "hawk_screech": [
+          "Screech"
+        ],
+        "hawk_mantle": [
+          "Mantle"
+        ],
+        "hawk_scan": [
+          "Scan"
+        ],
+        "preen": [
+          "Preen"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "Scan",
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Scan"
+        ],
+        "toy_ball": [
+          "Mantle"
+        ],
+        "approach_player": [
+          "Scan"
+        ],
+        "greet_owner": [
+          "Flutter",
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "hawk_scan": [
+          "Scan"
+        ],
+        "preen": [
+          "Preen"
+        ],
+        "flap": [
+          "Flutter"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Mantle"
+        ],
+        "approach_player": [
+          "Scan"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "curious": {
+      "Weights": {
+        "hawk_scan": 2
+      }
+    },
+    "playful": {
+      "Weights": {
+        "flap": 1.5,
+        "hawk_mantle": 1.5
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "preen": 1.5
+      }
+    }
+  }
+}
