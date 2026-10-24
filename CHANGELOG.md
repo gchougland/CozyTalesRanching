@@ -2,6 +2,31 @@
 
 All notable changes to Cozy Tales: Ranching are documented in this file.
 
+## [0.6.0] - Unreleased
+
+### Added
+
+- **Birds and bats:** Eight new animals, each with its own house, foods, habitat, behaviours, journal page and babies. Wild birds that only fly in vanilla now have walking cousins you can walk up to and befriend.
+  - **Owls** in brown or snowy feathers live in an **Owl Barn**. They hoot, swivel their heads almost all the way round and doze on one leg by day. Brown owls drop dark feathers, snowy owls red ones, and both cough up Owl Pellets.
+  - **Crows** and **Ravens** live in a hollow-oak **Rookery**. They hop, caw, tilt their heads and tuck shiny things under a wing, and drop dark feathers.
+  - **Songbirds** come as **Sparrows**, **Greenfinches** and **Bluebirds** and live in a **Songbird Aviary**. They sing, hop and dust-bathe. Sparrows drop dark feathers, finches red and bluebirds blue.
+  - **Parrots** live in a bamboo **Parrot Perch** near jungle trees. They dance, stretch their wings and squawk, and drop red feathers.
+  - **Woodpeckers** live in a **Woodpecker Stump**. They drum and cling beside wood, and drop red feathers.
+  - **Skrill** live in a **Skrill Roost** on stilts. They fan their crests, chatter and sunbathe with wings spread, and lay Skrill Eggs and drop red feathers.
+  - **Hawks** live in a **Hawk Mews**. They are wild hunters: tame one with a Bait Bowl of raw meat, like a fox. They scan, mantle and screech, and drop dark feathers. Walking hawks now roam the plains and mountains of Zone 1 by day.
+  - **Bats** (and the rare **Ice Bat**) live in a mossy **Bat Roost**. They hang upside down, wrap their wings and squeak, and leave Bat Guano. A pup born near ice may be an Ice Bat.
+- **Every feather from your ranch:** Light (chickens), Red, Dark and Blue feathers can all be farmed now. Bluebirds are the only source of Blue.
+- **New produce and decor:**
+  - **Bat Guano:** use it on tilled soil to fertilise the whole 3 by 3 patch around it.
+  - **Skrill Egg:** eat it, bake it into dough, or roast it on a campfire.
+  - **Owl Pellet:** breaks into bone fragments.
+  - **Feather Pillow**, **Rancher's Ledger** with a dark quill, and a **Dreamcatcher** that hangs from beams and branches.
+
+### Changed
+
+- **Bait Bowl message:** bait that several wild animals love no longer always names the fox.
+- **Released birds** go back to the wild as their walking kind.
+
 ## [0.5.0] - Unreleased
 
 ### Added

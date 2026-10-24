@@ -91,8 +91,11 @@ public final class BaitBowlInteraction extends SimpleBlockInteraction {
             BaitBowls.show(world, pos.x, pos.y, pos.z, itemId);
             RanchSounds.play(RanchSounds.TROUGH_FILL, pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, store);
             List<SpeciesDefinition> who = BaitBowls.speciesFor(itemId);
-            Message animal = who.isEmpty() ? Message.raw("?") : Message.translation(who.getFirst().NameKey);
-            RanchChat.tell(player, Message.translation("cozyranch_predator.bowl.filled").param("item", BaitBowls.itemName(itemId)).param("animal", animal));
+            // name the animal only when this bait draws one kind; raw meat suits several predators
+            Message filled = who.size() == 1
+                ? Message.translation("cozyranch_predator.bowl.filled").param("animal", Message.translation(who.getFirst().NameKey))
+                : Message.translation("cozyranch_predator.bowl.filled_any");
+            RanchChat.tell(player, filled.param("item", BaitBowls.itemName(itemId)));
             return true;
         }
 
