@@ -69,6 +69,11 @@ final class FollowSystem extends TickingSystem<EntityStore> {
                 Ref<EntityStore> animal = world.getEntityStore().getRefFromUUID(record.entityUuid);
                 if (animal == null || !animal.isValid() || !isRanchRole(animal, store)) continue;
                 AnimalControl.applyFollow(animal, record, anchor, store);
+                // A follower plays no behaviour: drop any clip nobody is timing (a Sleep from the wild role or a lost nap).
+                String clip = com.hexvane.cozytalesranching.behaviour.AnimalClips.current(store, animal);
+                if (clip != null && com.hexvane.cozytalesranching.behaviour.AnimalClips.clearUntimed(store, animal)) {
+                    LOG.info("Ranch animal " + record.animalId + " stops " + clip + " to follow its owner");
+                }
                 TransformComponent t = store.getComponent(animal, TransformComponent.getComponentType());
                 if (t == null) continue;
                 Vector3d pos = t.getPosition();

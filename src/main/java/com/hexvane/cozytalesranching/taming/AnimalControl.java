@@ -108,7 +108,7 @@ final class AnimalControl {
         if (states != null) states.setState(animal, STATE_PANIC, null, accessor);
     }
 
-    /** Asks the engine to swap the animal's role next tick, keeping its UUID and components. */
+    /** Asks the engine to swap the animal's role next tick, keeping its UUID and components (its ref changes). */
     static boolean swapRole(@Nonnull Ref<EntityStore> animal, @Nonnull String roleId, @Nullable String state, @Nonnull Store<EntityStore> store) {
         NPCEntity npc = store.getComponent(animal, NPCEntity.getComponentType());
         if (npc == null || npc.getRole() == null) return false;
@@ -119,6 +119,9 @@ final class AnimalControl {
             LOGGER.atWarning().log("Role %s is not loaded; cannot swap %s", roleId, npc.getRoleName());
             return false;
         }
+        // The status slot rides along into the new role: a wild animal asleep (or eating) when befriended would keep
+        // that clip as a ranch animal, following its owner while it plays Sleep. Start the new role with a clear slot.
+        AnimalClips.stop(store, animal);
         RoleChangeSystem.requestRoleChange(animal, npc.getRole(), index, true, state, null, true, store);
         return true;
     }

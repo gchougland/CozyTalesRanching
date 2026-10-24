@@ -348,6 +348,7 @@ final class WildlifeWorld {
         SpeciesDefinition s = SpeciesRegistry.byId(house.speciesId).orElse(null);
         Set<String> watched = new LinkedHashSet<>();
         List<String> favourites = List.of();
+        List<String> loves = s != null ? s.HabitatPrefers : List.of();
         if (s != null) {
             watched.addAll(s.HabitatRequires);
             watched.addAll(s.HabitatPrefers);
@@ -373,7 +374,8 @@ final class WildlifeWorld {
         }
         Map<String, Integer> stored = Ranch.produce().stored(house.houseId);
         return new HouseFacts(house.houseId, house.ownerId, house.speciesId, scanned, house.habitatRequirementsMet, house.habitatScore,
-            present, residents, residents == 0 ? 0 : happiness / residents, favourite, stored);
+            present, residents, residents == 0 ? 0 : happiness / residents, favourite, stored,
+            WildlifeRules.countLovesMet(loves, present), new LinkedHashSet<>(loves).size());
     }
 
     /** Visitors that are here now (loaded, or unloaded but not yet due to leave). */

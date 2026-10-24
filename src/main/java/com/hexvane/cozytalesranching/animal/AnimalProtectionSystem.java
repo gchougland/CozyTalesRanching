@@ -24,10 +24,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * Cancels damage to owned ranch animals: from every player (the owner included, so a stray swing never
- * kills a pet) when {@code ProtectOwnedAnimals} is on, and from other creatures, anywhere, when
- * {@code ProtectFromHostileMobs} is on (on by default).
- * Falls, fire and drowning still hurt; recovery covers deaths.
+ * Makes owned ranch animals invulnerable ({@link ProtectionRules}): with {@code ProtectOwnedAnimals} on (default) no
+ * player (the owner included, so a stray swing never kills a pet) and nothing in the world (falls, drowning, fire,
+ * suffocation) hurts them; with {@code ProtectFromHostileMobs} on (default) no creature does either. Below the world's
+ * floor the engine kills without a damage event; recovery brings the animal back.
  * Unowned adopted animals are left as vanilla had them. Runs only on damage events, only for entities
  * carrying the ranch marker.
  */
@@ -67,8 +67,6 @@ final class AnimalProtectionSystem extends DamageEventSystem {
         boolean players = config.protectOwnedAnimals();
         boolean mobs = config.protectFromHostileMobs();
         if (!players && !mobs) return;
-        if (!(damage.getSource() instanceof Damage.EntitySource source)) return;
-
         AnimalMarker marker = chunk.getComponent(index, markerType);
         UUIDComponent uuid = chunk.getComponent(index, uuidType);
         NPCEntity npc = chunk.getComponent(index, npcType);
@@ -78,13 +76,13 @@ final class AnimalProtectionSystem extends DamageEventSystem {
         Ref<EntityStore> self = chunk.getReferenceTo(index);
         if (!CompatGuard.isManageable(self, cb, npc.getRoleName())) return;
 
-        Ref<EntityStore> attacker = source.getRef();
-        if (!attacker.isValid()) return;
-        boolean fromPlayer = cb.getComponent(attacker, Player.getComponentType()) != null;
-        if (fromPlayer ? players : mobs) {
-            damage.setCancelled(true);
-            if (!fromPlayer) noteMobBlocked(r, attacker, cb, damage.getAmount());
-        }
+        Ref<EntityStore> attacker = damage.getSource() instanceof Damage.EntitySource source ? source.getRef() : null;
+        ProtectionRules.Source from;
+        if (attacker == null || !attacker.isValid()) from = attacker == null ? ProtectionRules.Source.WORLD : ProtectionRules.Source.PLAYER;
+        else from = cb.getComponent(attacker, Player.getComponentType()) != null ? ProtectionRules.Source.PLAYER : ProtectionRules.Source.CREATURE;
+        if (!ProtectionRules.cancels(true, from, players, mobs)) return;
+        damage.setCancelled(true);
+        if (from == ProtectionRules.Source.CREATURE) noteMobBlocked(r, attacker, cb, damage.getAmount());
     }
 
     /** One INFO line per animal per {@link #MOB_LOG_INTERVAL_MS}, so a mob gnawing at a cow does not flood the log. */

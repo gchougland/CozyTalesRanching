@@ -20,6 +20,7 @@ public final class AnimalAdminCommand extends AbstractCommandCollection {
         this.addSubCommand(new AdminResummonCommand());
         this.addSubCommand(new AdminRelinkCommand());
         this.addSubCommand(new AdminBefriendCommand());
+        this.addSubCommand(new AdminHurtCommand());
         this.addSubCommand(new com.hexvane.cozytalesranching.predator.PredatorAdminCommands.Bait());
         this.addSubCommand(new com.hexvane.cozytalesranching.predator.PredatorAdminCommands.Feed());
         this.addSubCommand(new com.hexvane.cozytalesranching.predator.PredatorAdminCommands.Calm());

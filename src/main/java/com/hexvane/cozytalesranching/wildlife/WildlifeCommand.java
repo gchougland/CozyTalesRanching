@@ -35,6 +35,7 @@ import org.joml.Vector3d;
  * A house is {@code near} (the nearest house), its name, or the start of its id.
  */
 public final class WildlifeCommand extends AbstractCommandCollection {
+    private static final java.util.logging.Logger LOG_STATUS = java.util.logging.Logger.getLogger("CozyTalesRanching");
     public WildlifeCommand() {
         super("wildlife", "cozyranch_wildlife.commands.wildlife.desc");
         this.requireNoPermission();
@@ -99,6 +100,11 @@ public final class WildlifeCommand extends AbstractCommandCollection {
                     .param("next", next)
                     .param("chances", chances)
                     .param("rare", rare));
+                player.sendMessage(Message.translation("cozyranch_wildlife.status.loves")
+                    .param("met", facts.lovesMet()).param("total", facts.lovesTotal())
+                    .param("enough", WildlifeRules.lovesMet(facts.lovesMet(), facts.lovesTotal())));
+                LOG_STATUS.info("Wildlife status: house " + h.houseId + " (" + h.speciesId + ") loves " + facts.lovesMet() + "/" + facts.lovesTotal()
+                    + ", features " + facts.features() + ", chances " + chances + ", rare " + rare);
             }
             List<Visitor> visitors = service.store().inWorld(world.getName());
             player.sendMessage(Message.translation("cozyranch_wildlife.status.visitors").param("count", visitors.size()));

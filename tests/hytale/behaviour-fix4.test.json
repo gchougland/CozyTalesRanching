@@ -1,0 +1,431 @@
+{
+  "cases": [
+    {
+      "name": "behaviour fix4 gate",
+      "description": "Assets and UI selectors of the worktree.",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "_worktrees/CozyTales-Ranching-fix4-behaviour"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0
+          }
+        },
+        {
+          "tool": "ui_check_java",
+          "arguments": {
+            "project": "_worktrees/CozyTales-Ranching-fix4-behaviour"
+          },
+          "expect": {
+            "valid": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "fix4 behaviour live: no sleeping followers, no dying ranch animals",
+      "description": "Note 11: a wild wolf playing Sleep when befriended does not keep it as a ranch animal, and a Sleep put on a follower is dropped by the follow pass within a second. Note 12: owned ranch animals (a wolf, the rare Storm Snail, a penguin) survive a player's 1000-damage hit and a 1000-damage fall.",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "_worktrees/CozyTales-Ranching-fix4-behaviour/build/libs/CozyTalesRanching-0.6.0.jar"
+            ],
+            "authMode": "insecure",
+            "port": 5595
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555"
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch ping"
+          },
+          "save": "ping"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${ping.cursor}",
+            "where": {}
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/npc spawn Wolf_Black"
+          },
+          "save": "wolf"
+        },
+        {
+          "tool": "server_scenario",
+          "arguments": {
+            "jobId": "${server.id}",
+            "steps": [
+              {
+                "expect": "Wolf_Black created with id",
+                "timeoutMs": 15000
+              }
+            ]
+          },
+          "waitJob": true,
+          "expect": {
+            "state": "succeeded"
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch behaviour clip Sleep"
+          },
+          "save": "sleep1"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${sleep1.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_behaviour.clip.done",
+                "params": {
+                  "clip": {
+                    "value": "Sleep"
+                  },
+                  "role": {
+                    "value": "Wolf_Black"
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin befriend"
+          },
+          "save": "bf1"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${bf1.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.befriend.done",
+                "params": {
+                  "species": {
+                    "value": "wolf"
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "server_scenario",
+          "arguments": {
+            "jobId": "${server.id}",
+            "steps": [
+              {
+                "expect": "Befriended wolf",
+                "timeoutMs": 15000
+              }
+            ]
+          },
+          "waitJob": true,
+          "expect": {
+            "state": "succeeded"
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch behaviour clip Sleep"
+          },
+          "save": "sleep2"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${sleep2.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_behaviour.clip.done",
+                "params": {
+                  "clip": {
+                    "value": "Sleep"
+                  },
+                  "role": {
+                    "value": "CozyRanch_Wolf"
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "server_scenario",
+          "arguments": {
+            "jobId": "${server.id}",
+            "steps": [
+              {
+                "expect": "stops Sleep to follow its owner",
+                "timeoutMs": 8000
+              }
+            ]
+          },
+          "waitJob": true,
+          "expect": {
+            "state": "succeeded"
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/npc spawn CozyRanchWild_Snail_Storm"
+          },
+          "save": "snail"
+        },
+        {
+          "tool": "server_scenario",
+          "arguments": {
+            "jobId": "${server.id}",
+            "steps": [
+              {
+                "expect": "CozyRanchWild_Snail_Storm created with id",
+                "timeoutMs": 15000
+              }
+            ]
+          },
+          "waitJob": true,
+          "expect": {
+            "state": "succeeded"
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin befriend"
+          },
+          "save": "bf2"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${bf2.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.befriend.done",
+                "params": {
+                  "species": {
+                    "value": "snail"
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/npc spawn Penguin"
+          },
+          "save": "peng"
+        },
+        {
+          "tool": "server_scenario",
+          "arguments": {
+            "jobId": "${server.id}",
+            "steps": [
+              {
+                "expect": "Penguin created with id",
+                "timeoutMs": 15000
+              }
+            ]
+          },
+          "waitJob": true,
+          "expect": {
+            "state": "succeeded"
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin befriend"
+          },
+          "save": "bf3"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${bf3.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.befriend.done",
+                "params": {
+                  "species": {
+                    "value": "penguin"
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "server_scenario",
+          "arguments": {
+            "jobId": "${server.id}",
+            "steps": [
+              {
+                "expect": "Befriended penguin",
+                "timeoutMs": 15000
+              }
+            ]
+          },
+          "waitJob": true,
+          "expect": {
+            "state": "succeeded"
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin hurt --amount=1000"
+          },
+          "save": "hurt1"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${hurt1.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.hurt.done",
+                "params": {
+                  "hit": {
+                    "value": 3
+                  },
+                  "survived": {
+                    "value": 3
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin hurt --by=fall --amount=1000"
+          },
+          "save": "hurt2"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${hurt2.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.hurt.done",
+                "params": {
+                  "hit": {
+                    "value": 3
+                  },
+                  "survived": {
+                    "value": 3
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        }
+      ]
+    }
+  ]
+}
