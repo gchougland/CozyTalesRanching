@@ -1,0 +1,30 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_Animal_Neutral",
+  "Modify": {
+    "Appearance": "CozyRanch_Rabbit_Snow",
+    "FlockArray": [
+      "Rabbit",
+      "Bunny"
+    ],
+    "AttractiveItemSet": [
+      "Plant_Crop_Carrot_Item"
+    ],
+    "AttractiveItemSetParticles": "Want_Food_Carrot",
+    "DropList": "Drop_Rabbit",
+    "MaxHealth": 49,
+    "MaxSpeed": 8,
+    "ViewRange": 20,
+    "ViewSector": 350,
+    "HearingRange": 14,
+    "AlertedRange": 22,
+    "AlertedActionRange": 6,
+    "AbsoluteDetectionRange": 3,
+    "Timid": true,
+    "IsTameable": true,
+    "TameRoleChange": "Tamed_Rabbit",
+    "IsMemory": true,
+    "MemoriesNameOverride": "Rabbit",
+    "NameTranslationKey": "server.cozyranch_wildlife.role.rabbit_snow"
+  }
+}

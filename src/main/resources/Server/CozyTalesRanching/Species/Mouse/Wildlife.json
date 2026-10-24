@@ -1,0 +1,40 @@
+{
+  "Species": {
+    "mouse": {
+      "Roles": [
+        "Mouse"
+      ],
+      "OwnHouseWeight": 0.9,
+      "CooldownMinutes": 15,
+      "Attractors": [
+        {
+          "HouseSpecies": "chicken",
+          "Features": [
+            "food",
+            "hay"
+          ],
+          "Weight": 0.3
+        },
+        {
+          "HouseSpecies": "cow",
+          "Features": [
+            "hay"
+          ],
+          "Weight": 0.25
+        }
+      ],
+      "Rare": {
+        "Role": "CozyRanchWild_Mouse_Golden",
+        "NameKey": "cozyranch_wildlife.rare.mouse",
+        "Chance": 0.25,
+        "CooldownMinutes": 60,
+        "Features": [
+          "grain_patch"
+        ],
+        "StoredItems": {
+          "CozyRanch_Seed_Pouch": 3
+        }
+      }
+    }
+  }
+}

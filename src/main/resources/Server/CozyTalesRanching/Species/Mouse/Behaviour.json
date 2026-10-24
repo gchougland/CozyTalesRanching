@@ -1,0 +1,117 @@
+{
+  "Behaviours": {
+    "scurry": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        2,
+        4
+      ]
+    },
+    "seed_nibble": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 70,
+      "Seconds": [
+        3,
+        6
+      ]
+    },
+    "whisker_sniff": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 50,
+      "Seconds": [
+        2,
+        4
+      ],
+      "RepeatSeconds": 1.5
+    },
+    "face_wash": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        3,
+        5
+      ]
+    }
+  },
+  "Species": {
+    "mouse": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "scurry": [
+          "Scurry"
+        ],
+        "seed_nibble": [
+          "Eat"
+        ],
+        "whisker_sniff": [
+          "SniffStand",
+          "Sniff"
+        ],
+        "face_wash": [
+          "Groom"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Search",
+          "Sniff"
+        ],
+        "toy_bell": [
+          "SniffStand"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "scurry": [
+          "Scurry"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Search"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "scurry": 2
+      }
+    },
+    "curious": {
+      "Weights": {
+        "whisker_sniff": 1.5
+      }
+    }
+  }
+}

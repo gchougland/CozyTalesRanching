@@ -1,0 +1,55 @@
+{
+  "Id": "rabbit",
+  "NameKey": "cozyranch_species.rabbit.name",
+  "WildRoles": [
+    "Rabbit",
+    "Bunny",
+    "CozyRanchWild_Rabbit_Snow"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [
+    "Tamed_Rabbit",
+    "Tamed_Bunny"
+  ],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Rabbit",
+  "RanchBabyRole": "CozyRanch_Rabbit_Baby",
+  "RanchRoleVariants": {
+    "Bunny": "CozyRanch_Rabbit_Bunny",
+    "Tamed_Bunny": "CozyRanch_Rabbit_Bunny",
+    "CozyRanchWild_Rabbit_Snow": "CozyRanch_Rabbit_Snow"
+  },
+  "HouseBlock": "CozyRanch_House_RabbitHutch",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Plant_Crop_Carrot_Item",
+    "Plant_Crop_Lettuce_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Cauliflower_Item",
+    "Plant_Crop_Turnip_Item"
+  ],
+  "FavoriteTreats": [
+    "Plant_Crop_Carrot_Item"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.6,
+  "GrowUpMinutes": 30,
+  "BreedCooldownMinutes": 30,
+  "Products": [
+    {
+      "Item": "CozyRanch_Rabbit_Fluff",
+      "Quantity": 1,
+      "IntervalMinutes": 45,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "grass"
+  ],
+  "HabitatPrefers": [
+    "carrot_patch",
+    "tall_grass",
+    "flowers"
+  ]
+}

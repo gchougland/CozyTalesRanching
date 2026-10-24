@@ -1,0 +1,24 @@
+{
+  "Species": [
+    {
+      "Id": "rabbit",
+      "Order": 60,
+      "DescriptionKey": "cozyranch_journal.species.rabbit.desc",
+      "RareKey": "cozyranch_journal.species.rabbit.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Rabbit.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/RabbitSilhouette.png",
+      "Behaviours": [
+        "binky",
+        "burrow",
+        "thump",
+        "ear_wash",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_ball",
+        "toy_log"
+      ]
+    }
+  ]
+}
