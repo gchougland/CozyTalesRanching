@@ -5,7 +5,8 @@
   },
   "Quality": "Common",
   "Categories": [
-    "Items.Foods"
+    "Items.Foods",
+    "CozyRanch.Food"
   ],
   "PlayerAnimationsId": "Item",
   "Icon": "Icons/ItemsGenerated/CozyRanch_Food_Crickets.png",
@@ -65,11 +66,11 @@
         ]
       },
       {
-        "Id": "Farmingbench",
         "Type": "Crafting",
         "Categories": [
-          "Farming"
-        ]
+          "CozyRanch_FeedCare"
+        ],
+        "Id": "CozyRanch_RanchingBench"
       }
     ],
     "OutputQuantity": 2

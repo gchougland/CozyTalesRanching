@@ -5,7 +5,8 @@
   },
   "Quality": "Common",
   "Categories": [
-    "Items.Tools"
+    "Items.Tools",
+    "CozyRanch.Tools"
   ],
   "PlayerAnimationsId": "Item",
   "Icon": "Icons/ItemsGenerated/CozyRanch_Journal.png",
@@ -44,6 +45,13 @@
         "Categories": [
           "Workbench_Crafting"
         ]
+      },
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "CozyRanch_FeedCare"
+        ],
+        "Id": "CozyRanch_RanchingBench"
       }
     ]
   },
