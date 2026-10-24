@@ -1,0 +1,100 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_models_a.items.CozyRanch_House_TidePool.name",
+    "Description": "cozyranch_models_a.items.CozyRanch_House_TidePool.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CozyRanch_House_TidePool.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "ItemLevel": 5,
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "Soil_Sand",
+        "Quantity": 12
+      },
+      {
+        "ItemId": "Rock_Stone_Cobble",
+        "Quantity": 12
+      },
+      {
+        "ItemId": "Plant_Seaweed_Grass",
+        "Quantity": 4
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 4
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Farming"
+        ],
+        "Id": "Farmingbench"
+      }
+    ],
+    "TimeSeconds": 3
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "RequiresAlphaBlending": true,
+    "CustomModel": "Blocks/CozyRanch/Houses/TidePool/TidePool.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/CozyRanch/Houses/TidePool/TidePool_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CozyRanchUseHouse"
+          }
+        ]
+      }
+    },
+    "InteractionHint": "cozyranch_house.hint.use",
+    "HitboxType": "CozyRanch_House_TidePool",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches",
+        "ItemId": "CozyRanch_House_TidePool"
+      }
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "BlockParticleSetId": "Stone",
+    "ParticleColor": "#9A8C76",
+    "BlockSoundSetId": "Stone",
+    "PhysicalMaterialId": "Stone",
+    "TextureComputedColor": "#9A8C76"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.32,
+    "Translation": [
+      0,
+      -14
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 0.5,
+  "MaxStack": 4,
+  "ItemSoundSetId": "ISS_Blocks_Stone"
+}

@@ -1,0 +1,23 @@
+{
+  "Species": [
+    {
+      "Id": "squirrel",
+      "Order": 80,
+      "DescriptionKey": "cozyranch_journal.species.squirrel.desc",
+      "RareKey": "cozyranch_journal.species.squirrel.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Squirrel.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/SquirrelSilhouette.png",
+      "Behaviours": [
+        "nibble",
+        "bury_nut",
+        "tail_flick",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_post",
+        "toy_log"
+      ]
+    }
+  ]
+}

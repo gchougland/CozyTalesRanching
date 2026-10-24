@@ -1,0 +1,27 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Crab_Baby",
+    "SeparationDistance": 0.6,
+    "DropList": "Empty",
+    "MaxHealth": 25,
+    "MaxSpeed": 3,
+    "ParticleOffset": [
+      0,
+      0.4,
+      0
+    ],
+    "BreathesInWater": true,
+    "WanderRadius": 4,
+    "FoodItems": [
+      "Plant_Seaweed_Grass",
+      "Food_Fish_Raw",
+      "Plant_Seaweed_Grass_Bulbs",
+      "Fish_Minnow_Item",
+      "Plant_Fruit_Coconut"
+    ],
+    "FollowStopDistance": 2,
+    "NameTranslationKey": "server.npcRoles.Crab.name"
+  }
+}

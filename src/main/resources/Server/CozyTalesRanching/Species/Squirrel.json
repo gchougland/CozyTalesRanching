@@ -1,0 +1,47 @@
+{
+  "Id": "squirrel",
+  "NameKey": "cozyranch_species.squirrel.name",
+  "WildRoles": [
+    "Squirrel"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Squirrel",
+  "RanchBabyRole": "CozyRanch_Squirrel_Baby",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_SquirrelDrey",
+  "HouseCapacity": 4,
+  "BasicFoods": [
+    "Plant_Seeds_Pine",
+    "Plant_Seeds_Oak",
+    "Plant_Fruit_Berries_Red"
+  ],
+  "PreferredFoods": [
+    "Plant_Seeds_Beech",
+    "Plant_Fruit_Apple"
+  ],
+  "FavoriteTreats": [
+    "Plant_Seeds_Sunflower"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.75,
+  "GrowUpMinutes": 30,
+  "BreedCooldownMinutes": 30,
+  "Products": [
+    {
+      "Item": "CozyRanch_Mixed_Nuts",
+      "Quantity": 1,
+      "IntervalMinutes": 60,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "tree_trunks"
+  ],
+  "HabitatPrefers": [
+    "shade",
+    "flowers",
+    "tall_grass"
+  ]
+}

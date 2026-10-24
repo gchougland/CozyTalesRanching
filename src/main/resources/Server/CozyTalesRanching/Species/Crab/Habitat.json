@@ -1,0 +1,33 @@
+{
+  "Features": {
+    "beach_sand": {
+      "BlockPrefixes": [
+        "Soil_Sand",
+        "Soil_Gravel_Sand"
+      ],
+      "Surface": true,
+      "MinCount": 8
+    },
+    "seaweed": {
+      "BlockPrefixes": [
+        "Plant_Seaweed_"
+      ],
+      "Exclude": [
+        "Dead"
+      ],
+      "MinCount": 2
+    },
+    "shells": {
+      "BlockPrefixes": [
+        "Deco_Coral_Shell"
+      ],
+      "MinCount": 1
+    }
+  },
+  "SpeciesToys": {
+    "crab": [
+      "toy_ball",
+      "toy_duck"
+    ]
+  }
+}
