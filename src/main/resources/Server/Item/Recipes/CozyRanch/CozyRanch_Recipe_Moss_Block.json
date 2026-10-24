@@ -1,0 +1,33 @@
+{
+  "Input": [
+    {
+      "ItemId": "CozyRanch_Moss_Tuft",
+      "Quantity": 4
+    },
+    {
+      "ItemId": "Ingredient_Fibre",
+      "Quantity": 2
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Plant_Moss_Block_Green",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Plant_Moss_Block_Green",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Farmingbench",
+      "Categories": [
+        "Decorative"
+      ]
+    }
+  ],
+  "TimeSeconds": 1
+}

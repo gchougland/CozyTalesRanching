@@ -1,0 +1,44 @@
+{
+  "Input": [
+    {
+      "ItemId": "CozyRanch_Turkey_Feather",
+      "Quantity": 1
+    },
+    {
+      "ItemId": "Ingredient_Stick",
+      "Quantity": 4
+    },
+    {
+      "ResourceTypeId": "Rubble",
+      "Quantity": 1
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Weapon_Arrow_Crude",
+    "Quantity": 8
+  },
+  "Output": [
+    {
+      "ItemId": "Weapon_Arrow_Crude",
+      "Quantity": 8
+    }
+  ],
+  "OutputQuantity": 8,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Workbench",
+      "Categories": [
+        "Workbench_Survival"
+      ]
+    },
+    {
+      "Type": "Crafting",
+      "Id": "Weapon_Bench",
+      "Categories": [
+        "Weapon_Bow"
+      ]
+    }
+  ],
+  "TimeSeconds": 1
+}

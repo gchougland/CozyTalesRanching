@@ -1,0 +1,29 @@
+{
+  "Input": [
+    {
+      "ItemId": "CozyRanch_Rabbit_Fluff",
+      "Quantity": 2
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Ingredient_Fabric_Scrap_Cotton",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Ingredient_Fabric_Scrap_Cotton",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Furniture_Bench",
+      "Categories": [
+        "Furniture_Textiles"
+      ]
+    }
+  ],
+  "TimeSeconds": 2
+}

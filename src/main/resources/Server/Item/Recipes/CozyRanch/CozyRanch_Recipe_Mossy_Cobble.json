@@ -1,0 +1,33 @@
+{
+  "Input": [
+    {
+      "ItemId": "Rock_Stone_Cobble",
+      "Quantity": 1
+    },
+    {
+      "ItemId": "CozyRanch_Moss_Tuft",
+      "Quantity": 1
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Rock_Stone_Cobble_Mossy",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Rock_Stone_Cobble_Mossy",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Farmingbench",
+      "Categories": [
+        "Decorative"
+      ]
+    }
+  ],
+  "TimeSeconds": 1
+}
