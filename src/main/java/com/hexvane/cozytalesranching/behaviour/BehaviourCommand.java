@@ -32,6 +32,7 @@ import org.joml.Vector3d;
  * start of its animal id, or its name.
  */
 public final class BehaviourCommand extends AbstractCommandCollection {
+    private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger("CozyTalesRanching");
     /** Lang file prefix, for keys built from ids (personality, behaviour and reason ids). */
     private static final String LANG = "cozyranch_behaviour";
 
@@ -44,6 +45,42 @@ public final class BehaviourCommand extends AbstractCommandCollection {
         this.addSubCommand(new Toy());
         this.addSubCommand(new Log());
         this.addSubCommand(new Gentle());
+        this.addSubCommand(new Clip());
+    }
+
+    /**
+     * Test: puts a clip on the status slot of the nearest creature of a ranch species (wild ones too) within 16 blocks,
+     * as a vanilla role does when its animal falls asleep. Shows that taming or following clears what the wild role left.
+     */
+    static final class Clip extends AbstractPlayerCommand {
+        private final RequiredArg<String> clipArg;
+
+        Clip() {
+            super("clip", "cozyranch_behaviour.commands.behaviour.clip.desc");
+            this.requirePermission(RanchPermissions.ADMIN);
+            this.clipArg = withRequiredArg("clip", "cozyranch_behaviour.commands.behaviour.arg.clip", ArgTypes.STRING);
+        }
+
+        @Override
+        protected void execute(@Nonnull CommandContext context, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef player, @Nonnull World world) {
+            Vector3d from = where(store, ref);
+            Ref<EntityStore> best = null;
+            double bestD = 16 * 16;
+            for (Ref<EntityStore> e : java.util.List.copyOf(com.hypixel.hytale.server.core.util.TargetUtil.getAllEntitiesInSphere(from, 16, store))) {
+                com.hypixel.hytale.server.npc.entities.NPCEntity npc = store.getComponent(e, com.hypixel.hytale.server.npc.entities.NPCEntity.getComponentType());
+                if (npc == null || npc.getRoleName() == null || com.hexvane.cozytalesranching.species.SpeciesRegistry.byRole(npc.getRoleName()).isEmpty()) continue;
+                double d = BehaviourPlanner.position(store, e).distanceSquared(from);
+                if (d < bestD) {
+                    bestD = d;
+                    best = e;
+                }
+            }
+            String clip = context.get(clipArg);
+            boolean played = best != null && AnimalClips.play(store, best, clip);
+            String role = best == null ? "-" : store.getComponent(best, com.hypixel.hytale.server.npc.entities.NPCEntity.getComponentType()).getRoleName();
+            LOG.info("Behaviour clip: " + clip + " on " + role + " played " + played);
+            player.sendMessage(Message.translation(played ? "cozyranch_behaviour.clip.done" : "cozyranch_behaviour.clip.failed").param("clip", clip).param("role", role));
+        }
     }
 
     /**
@@ -144,7 +181,13 @@ public final class BehaviourCommand extends AbstractCommandCollection {
                 .param("state", states != null ? states.getStateName() : "-")
                 .param("doing", s == null ? Message.translation("cozyranch_behaviour.status.nothing") : Message.translation(LANG + ".name." + s.id))
                 .param("next", next <= 0 ? -1 : Math.max(0, (next - System.currentTimeMillis()) / 1000)));
-            if (animal != null) location(player, store, ref, animal);
+            if (animal != null) {
+                location(player, store, ref, animal);
+                String clip = AnimalClips.current(store, animal);
+                player.sendMessage(Message.translation("cozyranch_behaviour.status.clip").param("clip", clip == null ? "-" : clip));
+                LOG.info("Behaviour status: " + r.animalId + " state " + (states != null ? states.getStateName() : "-") + ", status clip " + (clip == null ? "-" : clip)
+                    + ", following " + r.following);
+            }
         }
 
         /** Where it is, how far from you, its leash point and what its LockedTarget holds (follow and tag debugging). */
