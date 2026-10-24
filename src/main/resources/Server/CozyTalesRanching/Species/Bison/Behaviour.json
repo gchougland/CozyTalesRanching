@@ -1,0 +1,146 @@
+{
+  "Ground": {
+    "rubbing_post": [
+      {
+        "Near": [
+          "Wood_",
+          "CozyRanch_Toy_ScratchingPost"
+        ],
+        "Exclude": [
+          "Leaves",
+          "Sapling",
+          "Planks_Stairs"
+        ]
+      }
+    ]
+  },
+  "Behaviours": {
+    "dust_wallow": {
+      "Kind": "here",
+      "Ground": "dust",
+      "Weight": 4,
+      "CooldownSeconds": 180,
+      "Seconds": [
+        8,
+        10
+      ]
+    },
+    "head_shake": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 75,
+      "Seconds": [
+        2,
+        3
+      ],
+      "RepeatSeconds": 3
+    },
+    "post_rub": {
+      "Kind": "here",
+      "Ground": "rubbing_post",
+      "Weight": 4,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "herd_graze": {
+      "Kind": "social",
+      "Weight": 2.5,
+      "CooldownSeconds": 150,
+      "Seconds": [
+        6,
+        10
+      ]
+    }
+  },
+  "Species": {
+    "bison": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "graze": [
+          "Graze"
+        ],
+        "dust_wallow": [
+          "DustWallow"
+        ],
+        "head_shake": [
+          "HeadShake"
+        ],
+        "post_rub": [
+          "PostRub"
+        ],
+        "herd_graze": [
+          "Graze"
+        ],
+        "socialise": [
+          "HeadShake"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_post": [
+          "PostRub"
+        ],
+        "toy_ball": [
+          "HeadShake"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "graze": [
+          "Graze"
+        ],
+        "head_shake": [
+          "HeadShake"
+        ],
+        "herd_graze": [
+          "Graze"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "head_shake": 2
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "dust_wallow": 2
+      }
+    },
+    "affectionate": {
+      "Weights": {
+        "herd_graze": 1.5
+      }
+    }
+  }
+}

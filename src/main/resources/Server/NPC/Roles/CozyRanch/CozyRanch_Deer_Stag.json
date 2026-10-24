@@ -1,0 +1,19 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Deer_Stag",
+    "AttitudeGroup": "PreyBig",
+    "DropList": "Drop_Deer_Stag",
+    "MaxHealth": 103,
+    "FoodItems": [
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Carrot_Item",
+      "Plant_Fruit_Berries_Red",
+      "Plant_Leaves_Oak",
+      "Plant_Fruit_Apple"
+    ],
+    "FollowStopDistance": 2.5,
+    "NameTranslationKey": "server.npcRoles.Deer_Stag.name"
+  }
+}

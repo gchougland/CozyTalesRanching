@@ -1,0 +1,53 @@
+{
+  "Id": "deer",
+  "NameKey": "cozyranch_species.deer.name",
+  "WildRoles": [
+    "Deer_Doe",
+    "Deer_Stag"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Deer",
+  "RanchBabyRole": "CozyRanch_Deer_Fawn",
+  "RanchRoleVariants": {
+    "Deer_Stag": "CozyRanch_Deer_Stag"
+  },
+  "RanchBabyRoleVariants": {
+    "CozyRanch_Deer_Stag": "CozyRanch_Deer_Stag_Fawn"
+  },
+  "HouseBlock": "CozyRanch_House_DeerShelter",
+  "HouseCapacity": 3,
+  "BasicFoods": [
+    "Plant_Crop_Lettuce_Item",
+    "Plant_Crop_Carrot_Item"
+  ],
+  "PreferredFoods": [
+    "Plant_Fruit_Berries_Red",
+    "Plant_Leaves_Oak"
+  ],
+  "FavoriteTreats": [
+    "Plant_Fruit_Apple"
+  ],
+  "FeedingsToTame": 5,
+  "Shyness": 0.75,
+  "GrowUpMinutes": 80,
+  "BreedCooldownMinutes": 60,
+  "Products": [
+    {
+      "Item": "CozyRanch_Shed_Antler",
+      "Quantity": 1,
+      "IntervalMinutes": 60,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "food",
+    "forest_edge"
+  ],
+  "HabitatPrefers": [
+    "tall_grass",
+    "flowers",
+    "shade"
+  ]
+}
