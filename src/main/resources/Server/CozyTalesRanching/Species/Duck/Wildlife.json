@@ -1,0 +1,22 @@
+{
+  "Species": {
+    "duck": {
+      "Roles": [
+        "CozyRanchWild_Duck"
+      ],
+      "OwnHouseWeight": 0.9,
+      "CooldownMinutes": 20,
+      "NearWater": true,
+      "Attractors": [
+        {
+          "HouseSpecies": "frog",
+          "Features": [
+            "water",
+            "lily_pads"
+          ],
+          "Weight": 0.35
+        }
+      ]
+    }
+  }
+}

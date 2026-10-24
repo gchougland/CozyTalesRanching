@@ -1,0 +1,29 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_Animal_Neutral",
+  "Modify": {
+    "Appearance": "CozyRanch_Duck",
+    "FlockArray": [
+      "CozyRanchWild_Duck"
+    ],
+    "AttractiveItemSet": [
+      "Plant_Crop_Lettuce_Item"
+    ],
+    "AttractiveItemSetParticles": "Want_Food_Lettuce",
+    "DropList": "Drop_Duck",
+    "MaxHealth": 25,
+    "MaxSpeed": 4,
+    "WanderRadius": 8,
+    "ViewRange": 8,
+    "ViewSector": 300,
+    "HearingRange": 4,
+    "AlertedRange": 12,
+    "AlertedActionRange": 5,
+    "AbsoluteDetectionRange": 1.5,
+    "GrazingBlockSet": "Grass",
+    "IsMemory": true,
+    "MemoriesCategory": "Avian",
+    "MemoriesNameOverride": "Duck",
+    "NameTranslationKey": "server.npcRoles.Duck.name"
+  }
+}

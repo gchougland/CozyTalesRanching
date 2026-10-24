@@ -1,0 +1,27 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Duck_Duckling",
+    "SeparationDistance": 0.35,
+    "DropList": "Empty",
+    "MaxHealth": 8,
+    "MaxSpeed": 3,
+    "ParticleOffset": [
+      0,
+      0.5,
+      0
+    ],
+    "FoodItems": [
+      "Plant_Seeds_Wheat",
+      "Plant_Seeds_Wild",
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Rice_Item",
+      "Plant_Flower_Water_Duckweed",
+      "Food_Bread"
+    ],
+    "FollowStopDistance": 1.5,
+    "NameTranslationKey": "server.cozyranch_species.duckling.name"
+  }
+}

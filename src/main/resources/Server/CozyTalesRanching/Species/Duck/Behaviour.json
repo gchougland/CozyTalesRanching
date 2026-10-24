@@ -1,0 +1,115 @@
+{
+  "Behaviours": {
+    "dabble": {
+      "Kind": "here",
+      "Ground": "pond",
+      "Weight": 4,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "preen": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 80,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "paddle": {
+      "Kind": "here",
+      "Ground": "pond",
+      "Weight": 3,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        6,
+        10
+      ]
+    },
+    "quack": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 45,
+      "Seconds": [
+        2,
+        3
+      ],
+      "RepeatSeconds": 1
+    }
+  },
+  "Species": {
+    "duck": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "dabble": [
+          "Dabble"
+        ],
+        "preen": [
+          "Preen"
+        ],
+        "paddle": [
+          "Paddle"
+        ],
+        "quack": [
+          "QuackCall",
+          "Quack"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_duck": [
+          "Paddle",
+          "Happy"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "preen": [
+          "Preen"
+        ],
+        "toy_duck": [
+          "Happy"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "paddle": 1.5,
+        "dabble": 1.3
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "paddle": 1.5,
+        "preen": 1.3
+      }
+    }
+  }
+}
