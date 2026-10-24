@@ -28,7 +28,8 @@ public final class SpeciesRegistry {
         "Cow", "Chicken", "Pig", "Sheep", "Frog",
         "Rabbit", "Camel", "Squirrel", "Mouse", "Crab", "Mosshorn", "Goat", "Turkey", "Duck",
         "Fox", "Wolf", "Bear", "SnowLeopard", "Deer", "Bison", "Tortoise", "Meerkat",
-        "Snail", "Moose", "Armadillo", "Penguin", "Flamingo", "Warthog", "Antelope", "Gecko", "Pigeon"
+        "Snail", "Moose", "Armadillo", "Penguin", "Flamingo", "Warthog", "Antelope", "Gecko", "Pigeon",
+        "Owl", "Crow", "Songbird", "Parrot", "Woodpecker", "Skrill", "Hawk", "Bat"
     };
     private static final String RESOURCE_DIR = "/Server/CozyTalesRanching/Species/";
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
