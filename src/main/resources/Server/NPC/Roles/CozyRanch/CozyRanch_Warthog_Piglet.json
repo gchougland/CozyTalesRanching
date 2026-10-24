@@ -1,0 +1,25 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Warthog_Piglet",
+    "AttitudeGroup": "PreyBig",
+    "SeparationDistance": 0.3,
+    "ParticleOffset": [
+      0,
+      0.6,
+      0
+    ],
+    "DropList": "Empty",
+    "MaxHealth": 40,
+    "FoodItems": [
+      "Plant_Crop_Corn_Item",
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Mushroom_Common_Brown",
+      "Plant_Fruit_Berries_Red",
+      "Plant_Crop_Onion_Item"
+    ],
+    "FollowStopDistance": 2,
+    "NameTranslationKey": "server.npcRoles.Warthog_Piglet.name"
+  }
+}

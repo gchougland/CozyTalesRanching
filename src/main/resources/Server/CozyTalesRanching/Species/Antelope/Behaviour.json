@@ -1,0 +1,116 @@
+{
+  "Behaviours": {
+    "long_leap": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        2,
+        2
+      ],
+      "RepeatSeconds": 2
+    },
+    "alarm_stamp": {
+      "Kind": "here",
+      "Weight": 2.5,
+      "CooldownSeconds": 50,
+      "Seconds": [
+        2,
+        3
+      ]
+    }
+  },
+  "Species": {
+    "antelope": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "graze": [
+          "Graze"
+        ],
+        "pronk": [
+          "Pronk"
+        ],
+        "long_leap": [
+          "Leap"
+        ],
+        "alarm_stamp": [
+          "Alarm"
+        ],
+        "socialise": [
+          "Love"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_log": [
+          "Leap"
+        ],
+        "toy_ball": [
+          "Pronk"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "graze": [
+          "Graze"
+        ],
+        "pronk": [
+          "Pronk"
+        ],
+        "long_leap": [
+          "Leap"
+        ],
+        "alarm_stamp": [
+          "Alarm"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "toy_log": [
+          "Leap"
+        ],
+        "toy_ball": [
+          "Pronk"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "pronk": 2,
+        "long_leap": 2
+      }
+    },
+    "shy": {
+      "Weights": {
+        "alarm_stamp": 2,
+        "long_leap": 0.5
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "graze": 1.5
+      }
+    }
+  }
+}
