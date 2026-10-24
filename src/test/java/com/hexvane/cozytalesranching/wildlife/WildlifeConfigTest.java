@@ -18,9 +18,27 @@ import org.junit.jupiter.api.Test;
 
 class WildlifeConfigTest {
     private static final Path RES = Path.of("src/main/resources");
-    private static final Map<String, String> SPECIES_FILES = Map.of(
-        "chicken", "Chicken.json", "cow", "Cow.json", "pig", "Pig.json", "sheep", "Sheep.json", "frog", "Frog.json",
-        "camel", "Camel.json", "goat", "Goat.json");
+    /** Every bundled species that has a file: id to file name. Read from the list, so a new species needs no edit here. */
+    private static final Map<String, String> SPECIES_FILES = speciesFiles();
+
+    private static Map<String, String> speciesFiles() {
+        Map<String, String> out = new java.util.LinkedHashMap<>();
+        for (String name : com.hexvane.cozytalesranching.species.SpeciesRegistry.BUNDLED) {
+            Path file = RES.resolve("Server/CozyTalesRanching/Species/" + name + ".json");
+            if (!Files.isRegularFile(file)) continue;
+            try {
+                out.put(JsonParser.parseString(Files.readString(file, StandardCharsets.UTF_8)).getAsJsonObject().get("Id").getAsString(), name + ".json");
+            } catch (java.io.IOException e) {
+                throw new java.io.UncheckedIOException(e);
+            }
+        }
+        return out;
+    }
+
+    /** A rare variant is optional (the duck has none). */
+    private static boolean hasRare(SpeciesWildlife sw) {
+        return sw.Rare != null && sw.Rare.Role != null && !sw.Rare.Role.isEmpty();
+    }
 
     @Test
     void bundledCoversEverySpecies() {
@@ -29,8 +47,7 @@ class WildlifeConfigTest {
         for (SpeciesWildlife sw : c.Species.values()) assertFalse(sw.Roles.isEmpty());
         for (String id : SPECIES_FILES.keySet()) {
             SpeciesWildlife sw = c.species(id);
-            assertNotNull(sw.Rare);
-            assertFalse(sw.Rare.Role.isEmpty());
+            if (hasRare(sw)) assertFalse(sw.Rare.Role.isEmpty());
         }
         assertTrue(c.species("frog").NearWater);
     }
@@ -43,6 +60,7 @@ class WildlifeConfigTest {
             List<String> wild = species.getAsJsonArray("WildRoles").asList().stream().map(j -> j.getAsString()).toList();
             SpeciesWildlife sw = c.species(e.getKey());
             for (String r : sw.Roles) assertTrue(wild.contains(r), e.getKey() + " visitor role " + r + " is a wild role of the species");
+            if (!hasRare(sw)) continue;
             assertTrue(wild.contains(sw.Rare.Role), "rare wild role is tameable as " + e.getKey());
             String ranch = species.getAsJsonObject("RanchRoleVariants").get(sw.Rare.Role).getAsString();
             assertTrue(Files.isRegularFile(RES.resolve("Server/NPC/Roles/CozyRanchWild/" + sw.Rare.Role + ".json")), sw.Rare.Role);
