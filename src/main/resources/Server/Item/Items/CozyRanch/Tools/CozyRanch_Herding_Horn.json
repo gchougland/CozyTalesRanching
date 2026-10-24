@@ -1,0 +1,72 @@
+{
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Herding_Horn.name",
+    "Description": "cozyranch_items.items.CozyRanch_Herding_Horn.description"
+  },
+  "Categories": [
+    "Items.Tools"
+  ],
+  "Quality": "Uncommon",
+  "Model": "Items/CozyRanch/Tools/Herding_Horn.blockymodel",
+  "Texture": "Items/CozyRanch/Tools/Herding_Horn_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Herding_Horn.png",
+  "IconProperties": {
+    "Scale": 0.6,
+    "Translation": [
+      0,
+      -6
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Scale": 1,
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Tool"
+    ]
+  },
+  "MaxStack": 1,
+  "DropOnDeath": true,
+  "ItemSoundSetId": "ISS_Items_Bones",
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "CozyRanch_Antelope_Horn",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Strap_Leather",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Bar_Copper",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Workbench",
+        "Categories": [
+          "Workbench_Tools"
+        ]
+      }
+    ],
+    "TimeSeconds": 2
+  },
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "CozyRanchHerdingHorn",
+          "Radius": 32,
+          "Sound": "SFX_CozyRanch_Herding_Horn"
+        }
+      ]
+    }
+  }
+}

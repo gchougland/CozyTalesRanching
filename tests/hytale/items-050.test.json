@@ -1,0 +1,869 @@
+{
+  "cases": [
+    {
+      "name": "items-050 gate",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0,
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-050 assets",
+      "description": "The seven 0.5.0 products, the Herding Horn, Armadillo Shield, Feather Vase, two tonics with their effects, the horn sound and the recipes pass the engine schema (CozyRanchHerdingHorn is our plugin type).",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Pond_Weed",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Pond_Weed.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Armadillo_Plate",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Armadillo_Plate.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Penguin_Down",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Penguin_Down.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Warthog_Tusk",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Warthog_Tusk.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Antelope_Horn",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Antelope_Horn.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Shed_Skin",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Shed_Skin.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Pigeon_Feather",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Pigeon_Feather.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Herding_Horn",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Tools/CozyRanch_Herding_Horn.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Armadillo_Shield",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Tools/CozyRanch_Armadillo_Shield.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Feather_Vase",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Decor/CozyRanch_Feather_Vase.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Feather_Vase hitbox",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_Feather_Vase.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Tonic_Fireward",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Tonics/CozyRanch_Tonic_Fireward.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Tonic_Swiftness",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Tonics/CozyRanch_Tonic_Swiftness.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Fireward",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Entity/Effects/CozyRanch/CozyRanch_Fireward.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Swiftness",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Entity/Effects/CozyRanch/CozyRanch_Swiftness.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "SFX_CozyRanch_Herding_Horn",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Audio/SoundEvents/CozyRanch/Items/SFX_CozyRanch_Herding_Horn.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Fertilizer_From_Pond_Weed",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Fertilizer_From_Pond_Weed.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Frozen_Castle_Bed_With_Down",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Frozen_Castle_Bed_With_Down.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Village_Bed_With_Down",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Village_Bed_With_Down.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Bone_Daggers_From_Tusks",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Bone_Daggers_From_Tusks.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Pigeon_Morph_With_Feathers",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Pigeon_Morph_With_Feathers.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-050 textures",
+      "description": "Painted, not pixelled: no new texture FAILs the style rules.",
+      "steps": [
+        {
+          "tool": "texture_check",
+          "name": "Pond_Weed texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Pond_Weed_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Pond_Weed.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Armadillo_Plate texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Armadillo_Plate_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Armadillo_Plate.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Penguin_Down texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Penguin_Down_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Penguin_Down.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Warthog_Tusk texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Warthog_Tusk_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Warthog_Tusk.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Antelope_Horn texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Antelope_Horn_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Antelope_Horn.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Shed_Skin texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Shed_Skin_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Shed_Skin.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Pigeon_Feather texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Pigeon_Feather_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Pigeon_Feather.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Herding_Horn texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Tools/Herding_Horn_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Tools/Herding_Horn.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Armadillo_Shield texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Tools/Armadillo_Shield_Texture.png",
+            "category": "item",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Tools/Armadillo_Shield.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Feather_Vase texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Feather_Vase_Texture.png",
+            "category": "blockmodel",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Feather_Vase.blockymodel"
+            },
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-050 models",
+      "description": "Each new model with its texture, three-quarter, against a golden that was looked at.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "Pond_Weed",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Pond_Weed.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Pond_Weed_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items050/CozyRanch_Pond_Weed.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Armadillo_Plate",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Armadillo_Plate.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Armadillo_Plate_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items050/CozyRanch_Armadillo_Plate.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Penguin_Down",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Penguin_Down.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Penguin_Down_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items050/CozyRanch_Penguin_Down.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Warthog_Tusk",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Warthog_Tusk.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Warthog_Tusk_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items050/CozyRanch_Warthog_Tusk.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Antelope_Horn",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Antelope_Horn.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Antelope_Horn_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items050/CozyRanch_Antelope_Horn.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Shed_Skin",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Shed_Skin.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Shed_Skin_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items050/CozyRanch_Shed_Skin.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Pigeon_Feather",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Pigeon_Feather.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Pigeon_Feather_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items050/CozyRanch_Pigeon_Feather.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Herding_Horn",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Tools/Herding_Horn.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Tools/Herding_Horn_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items050/CozyRanch_Herding_Horn.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Armadillo_Shield",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Tools/Armadillo_Shield.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Tools/Armadillo_Shield_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 0.65
+              },
+              "height": {
+                "$lte": 0.95
+              },
+              "depth": {
+                "$lte": 0.55
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items050/CozyRanch_Armadillo_Shield.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Feather_Vase",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Feather_Vase.blockymodel",
+            "texture": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Feather_Vase_Texture.png"
+            },
+            "yaw": 35,
+            "pitch": 25,
+            "projection": "orthographic",
+            "grid": false,
+            "hitbox": false,
+            "size": 200
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 2
+              },
+              "height": {
+                "$lte": 1
+              },
+              "depth": {
+                "$lte": 1
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/items050/CozyRanch_Feather_Vase.png"
+        }
+      ]
+    }
+  ]
+}

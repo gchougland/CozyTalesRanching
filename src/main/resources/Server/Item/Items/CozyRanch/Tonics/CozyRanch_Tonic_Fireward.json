@@ -1,0 +1,113 @@
+{
+  "Parent": "Potion_Template",
+  "TranslationProperties": {
+    "Name": "cozyranch_items.items.CozyRanch_Tonic_Fireward.name",
+    "Description": "cozyranch_items.items.CozyRanch_Tonic_Fireward.description"
+  },
+  "Quality": "Uncommon",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Tonic_Fireward.png",
+  "IconProperties": {
+    "Scale": 0.9,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -9
+    ]
+  },
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "Potion_Empty",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Water_Essence",
+        "Quantity": 3
+      },
+      {
+        "ItemId": "CozyRanch_Shed_Skin",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Alchemybench",
+        "Categories": [
+          "Alchemy_Potions"
+        ]
+      }
+    ],
+    "OutputQuantity": 1,
+    "TimeSeconds": 1
+  },
+  "Interactions": {
+    "Primary": "Block_Primary",
+    "Secondary": "Root_Secondary_Consume_Potion"
+  },
+  "InteractionVars": {
+    "RemoveEffect": {
+      "Interactions": [
+        {
+          "Type": "Simple"
+        }
+      ]
+    },
+    "Effect": {
+      "Interactions": [
+        {
+          "Type": "Serial",
+          "Interactions": [
+            {
+              "Type": "ApplyEffect",
+              "EffectId": "CozyRanch_Fireward"
+            }
+          ]
+        }
+      ]
+    },
+    "ConsumeSFX": {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0,
+          "Effects": {
+            "LocalSoundEventId": "SFX_Health_Potion_Low_Drink",
+            "ClearSoundEventOnFinish": true
+          }
+        }
+      ]
+    },
+    "ConsumedSFX": {
+      "Interactions": [
+        {
+          "Parent": "Consumed_SFX",
+          "Effects": {
+            "LocalSoundEventId": "SFX_Potion_Drink_Success"
+          }
+        }
+      ]
+    }
+  },
+  "BlockType": {
+    "CustomModel": "Items/Consumables/Potions/Potion_Normal.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/CozyRanch/Tonics/Fireward_Tonic.png",
+        "Weight": 1
+      }
+    ],
+    "BlockParticleSetId": "GlassMagic",
+    "ParticleColor": "#2ec4b0",
+    "Light": {
+      "Color": "#134"
+    },
+    "TextureComputedColor": "#7CC4BC"
+  },
+  "DropOnDeath": true,
+  "ItemLevel": 12
+}

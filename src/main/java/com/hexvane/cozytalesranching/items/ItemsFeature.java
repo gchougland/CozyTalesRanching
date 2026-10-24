@@ -18,5 +18,6 @@ public final class ItemsFeature {
         plugin.getCodecRegistry(Interaction.CODEC).register(SeedPouchInteraction.TYPE, SeedPouchInteraction.class, SeedPouchInteraction.CODEC);
         plugin.getCodecRegistry(Interaction.CODEC).register(MossGrowthInteraction.TYPE, MossGrowthInteraction.class, MossGrowthInteraction.CODEC);
         plugin.getCodecRegistry(Interaction.CODEC).register(OpenFindInteraction.TYPE, OpenFindInteraction.class, OpenFindInteraction.CODEC);
+        plugin.getCodecRegistry(Interaction.CODEC).register(HerdingHornInteraction.TYPE, HerdingHornInteraction.class, HerdingHornInteraction.CODEC);
     }
 }

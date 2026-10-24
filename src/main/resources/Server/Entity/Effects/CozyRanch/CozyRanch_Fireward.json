@@ -1,0 +1,14 @@
+{
+  "$Comment": "Fireward Tonic: two minutes of the vanilla fire immunity (Immunity_Fire takes all Fire damage).",
+  "Duration": 120,
+  "OverlapBehavior": "Overwrite",
+  "DamageResistance": {
+    "Fire": [
+      {
+        "Amount": 1.0,
+        "CalculationType": "Percent"
+      }
+    ]
+  },
+  "StatusEffectIcon": "Icons/ItemsGenerated/CozyRanch_Tonic_Fireward.png"
+}

@@ -1,0 +1,37 @@
+{
+  "Input": [
+    {
+      "ItemId": "CozyRanch_Penguin_Down",
+      "Quantity": 6
+    },
+    {
+      "ResourceTypeId": "Wood_Planks",
+      "Quantity": 3
+    },
+    {
+      "ItemId": "Cloth_Block_Wool_White",
+      "Quantity": 2
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Furniture_Frozen_Castle_Bed",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Furniture_Frozen_Castle_Bed",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Furniture_Bench",
+      "Categories": [
+        "Furniture_Beds"
+      ]
+    }
+  ],
+  "TimeSeconds": 3
+}

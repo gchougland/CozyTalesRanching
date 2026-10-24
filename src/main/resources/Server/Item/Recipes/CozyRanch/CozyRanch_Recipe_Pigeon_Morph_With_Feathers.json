@@ -1,0 +1,38 @@
+{
+  "Input": [
+    {
+      "ItemId": "Potion_Empty",
+      "Quantity": 1
+    },
+    {
+      "ItemId": "CozyRanch_Pigeon_Feather",
+      "Quantity": 3
+    },
+    {
+      "ItemId": "Ingredient_Life_Essence",
+      "Quantity": 3
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Potion_Morph_Pigeon",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Potion_Morph_Pigeon",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Alchemybench",
+      "Categories": [
+        "Alchemy_Potions_Misc"
+      ]
+    }
+  ],
+  "TimeSeconds": 1,
+  "RequiredMemoriesLevel": 4
+}
