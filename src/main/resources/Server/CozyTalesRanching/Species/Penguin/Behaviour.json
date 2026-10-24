@@ -1,0 +1,135 @@
+{
+  "Behaviours": {
+    "belly_slide": {
+      "Kind": "here",
+      "Ground": "snowy",
+      "Weight": 4,
+      "CooldownSeconds": 70,
+      "Seconds": [
+        4,
+        7
+      ]
+    },
+    "flipper_flap": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        2,
+        4
+      ],
+      "RepeatSeconds": 2
+    },
+    "penguin_huddle": {
+      "Kind": "social",
+      "Weight": 2,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        6,
+        10
+      ]
+    },
+    "penguin_call": {
+      "Kind": "here",
+      "Weight": 1.5,
+      "CooldownSeconds": 75,
+      "Seconds": [
+        2,
+        4
+      ]
+    }
+  },
+  "Species": {
+    "penguin": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "belly_slide": [
+          "BellySlide"
+        ],
+        "flipper_flap": [
+          "FlipperFlap"
+        ],
+        "penguin_huddle": [
+          "Huddle"
+        ],
+        "penguin_call": [
+          "Call",
+          "IdlePassive"
+        ],
+        "preen": [
+          "Preen"
+        ],
+        "socialise": [
+          "Call",
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "BellySlide",
+          "Happy"
+        ],
+        "toy_duck": [
+          "FlipperFlap",
+          "Happy"
+        ],
+        "approach_player": [
+          "IdlePassive"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "belly_slide": [
+          "BellySlide"
+        ],
+        "flipper_flap": [
+          "FlipperFlap"
+        ],
+        "penguin_huddle": [
+          "Huddle"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Happy"
+        ],
+        "approach_player": [
+          "IdlePassive"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "belly_slide": 1.6,
+        "flipper_flap": 1.4
+      }
+    },
+    "affectionate": {
+      "Weights": {
+        "penguin_huddle": 2
+      }
+    },
+    "curious": {
+      "Weights": {
+        "penguin_call": 1.5
+      }
+    }
+  }
+}

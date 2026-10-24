@@ -1,0 +1,53 @@
+{
+  "Id": "penguin",
+  "NameKey": "cozyranch_species.penguin.name",
+  "WildRoles": [
+    "Penguin"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Penguin",
+  "RanchBabyRole": "CozyRanch_Penguin_Baby",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_PenguinIgloo",
+  "HouseCapacity": 6,
+  "BasicFoods": [
+    "Food_Fish_Raw",
+    "Fish_Minnow_Item"
+  ],
+  "PreferredFoods": [
+    "Fish_Frostgill_Item",
+    "Fish_Bluegill_Item"
+  ],
+  "FavoriteTreats": [
+    "Fish_Salmon_Item"
+  ],
+  "FeedingsToTame": 3,
+  "Shyness": 0.35,
+  "GrowUpMinutes": 35,
+  "BreedCooldownMinutes": 35,
+  "Products": [
+    {
+      "Item": "Food_Fish_Raw",
+      "Quantity": 1,
+      "IntervalMinutes": 40,
+      "Collect": "House"
+    },
+    {
+      "Item": "CozyRanch_Penguin_Down",
+      "Quantity": 1,
+      "IntervalMinutes": 60,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "snow_cover"
+  ],
+  "HabitatPrefers": [
+    "water",
+    "frozen_ice",
+    "nest_pebbles",
+    "open_space"
+  ]
+}

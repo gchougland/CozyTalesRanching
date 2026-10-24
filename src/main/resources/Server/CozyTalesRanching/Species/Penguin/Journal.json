@@ -1,0 +1,25 @@
+{
+  "Species": [
+    {
+      "Id": "penguin",
+      "Order": 250,
+      "DescriptionKey": "cozyranch_journal.species.penguin.desc",
+      "RareKey": "cozyranch_journal.species.penguin.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Penguin.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/PenguinSilhouette.png",
+      "Behaviours": [
+        "belly_slide",
+        "flipper_flap",
+        "penguin_huddle",
+        "penguin_call",
+        "preen",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_ball",
+        "toy_duck"
+      ]
+    }
+  ]
+}
