@@ -1,0 +1,29 @@
+{
+  "Parent": "Boar_Piglet",
+  "Model": "NPC/Livestock/Boar_Piglet/Models/Model.blockymodel",
+  "Texture": "NPC/Livestock/Boar_Piglet/Models/Texture.png",
+  "AnimationSets": {
+    "Happy": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Pig/Animations/Piglet/Happy.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    }
+  },
+  "Icon": "Icons/ModelsGenerated/Boar_Piglet.png",
+  "IconProperties": {
+    "Scale": 0.5,
+    "Rotation": [
+      0,
+      -45,
+      0
+    ],
+    "Translation": [
+      3,
+      -17
+    ]
+  }
+}

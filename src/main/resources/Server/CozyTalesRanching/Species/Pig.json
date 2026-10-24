@@ -4,24 +4,40 @@
   "WildRoles": [
     "Pig",
     "Pig_Wild",
-    "CozyRanchWild_Pig_Spotted"
+    "CozyRanchWild_Pig_Spotted",
+    "Boar"
   ],
   "WildBabyRoles": [
     "Pig_Piglet",
-    "Pig_Wild_Piglet"
+    "Pig_Wild_Piglet",
+    "Boar_Piglet"
   ],
   "AdoptRoles": [
     "Tamed_Pig",
-    "Tamed_Pig_Wild"
+    "Tamed_Pig_Wild",
+    "Tamed_Boar"
   ],
   "AdoptBabyRoles": [
     "Tamed_Pig_Piglet",
-    "Tamed_Pig_Wild_Piglet"
+    "Tamed_Pig_Wild_Piglet",
+    "Tamed_Boar_Piglet"
   ],
   "RanchRole": "CozyRanch_Pig",
   "RanchBabyRole": "CozyRanch_Pig_Piglet",
   "RanchRoleVariants": {
-    "CozyRanchWild_Pig_Spotted": "CozyRanch_Pig_Spotted"
+    "CozyRanchWild_Pig_Spotted": "CozyRanch_Pig_Spotted",
+    "Boar": "CozyRanch_Pig_Boar",
+    "Tamed_Boar": "CozyRanch_Pig_Boar",
+    "Boar_Piglet": "CozyRanch_Pig_Boar",
+    "Tamed_Boar_Piglet": "CozyRanch_Pig_Boar",
+    "Pig_Wild": "CozyRanch_Pig_Wild",
+    "Tamed_Pig_Wild": "CozyRanch_Pig_Wild",
+    "Pig_Wild_Piglet": "CozyRanch_Pig_Wild",
+    "Tamed_Pig_Wild_Piglet": "CozyRanch_Pig_Wild"
+  },
+  "RanchBabyRoleVariants": {
+    "CozyRanch_Pig_Boar": "CozyRanch_Pig_Boar_Piglet",
+    "CozyRanch_Pig_Wild": "CozyRanch_Pig_Wild_Piglet"
   },
   "HouseBlock": "CozyRanch_House_Pigsty",
   "HouseCapacity": 4,

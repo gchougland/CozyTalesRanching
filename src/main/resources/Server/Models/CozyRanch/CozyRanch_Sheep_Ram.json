@@ -1,0 +1,51 @@
+{
+  "Parent": "Ram",
+  "Model": "NPC/Livestock/Ram/Models/Model.blockymodel",
+  "Texture": "NPC/Livestock/Ram/Models/Texture.png",
+  "AnimationSets": {
+    "Happy": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Sheep/Animations/Ram/Happy.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    },
+    "EatTrough": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Sheep/Animations/Ram/EatTrough.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Love": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Sheep/Animations/Ram/Love.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    },
+    "Graze": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Sheep/Animations/Ram/Graze.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Pronk": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Sheep/Animations/Ram/Pronk.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    }
+  },
+  "Icon": "Icons/ModelsGenerated/Ram.png"
+}

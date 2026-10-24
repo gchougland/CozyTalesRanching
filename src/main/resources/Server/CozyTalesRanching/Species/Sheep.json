@@ -3,21 +3,41 @@
   "NameKey": "cozyranch_species.sheep.name",
   "WildRoles": [
     "Sheep",
-    "CozyRanchWild_Sheep_Black"
+    "CozyRanchWild_Sheep_Black",
+    "Ram",
+    "Mouflon"
   ],
   "WildBabyRoles": [
-    "Sheep_Lamb"
+    "Sheep_Lamb",
+    "Ram_Lamb",
+    "Mouflon_Lamb"
   ],
   "AdoptRoles": [
-    "Tamed_Sheep"
+    "Tamed_Sheep",
+    "Tamed_Ram",
+    "Tamed_Mouflon"
   ],
   "AdoptBabyRoles": [
-    "Tamed_Sheep_Lamb"
+    "Tamed_Sheep_Lamb",
+    "Tamed_Ram_Lamb",
+    "Tamed_Mouflon_Lamb"
   ],
   "RanchRole": "CozyRanch_Sheep",
   "RanchBabyRole": "CozyRanch_Sheep_Lamb",
   "RanchRoleVariants": {
-    "CozyRanchWild_Sheep_Black": "CozyRanch_Sheep_Black"
+    "CozyRanchWild_Sheep_Black": "CozyRanch_Sheep_Black",
+    "Ram": "CozyRanch_Sheep_Ram",
+    "Tamed_Ram": "CozyRanch_Sheep_Ram",
+    "Ram_Lamb": "CozyRanch_Sheep_Ram",
+    "Tamed_Ram_Lamb": "CozyRanch_Sheep_Ram",
+    "Mouflon": "CozyRanch_Sheep_Mouflon",
+    "Tamed_Mouflon": "CozyRanch_Sheep_Mouflon",
+    "Mouflon_Lamb": "CozyRanch_Sheep_Mouflon",
+    "Tamed_Mouflon_Lamb": "CozyRanch_Sheep_Mouflon"
+  },
+  "RanchBabyRoleVariants": {
+    "CozyRanch_Sheep_Ram": "CozyRanch_Sheep_Ram_Lamb",
+    "CozyRanch_Sheep_Mouflon": "CozyRanch_Sheep_Mouflon_Lamb"
   },
   "HouseBlock": "CozyRanch_House_Sheepfold",
   "HouseCapacity": 4,

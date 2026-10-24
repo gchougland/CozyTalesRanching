@@ -1,0 +1,51 @@
+{
+  "Parent": "Mouflon",
+  "Model": "NPC/Livestock/Mouflon/Models/Model.blockymodel",
+  "Texture": "NPC/Livestock/Mouflon/Models/Texture.png",
+  "AnimationSets": {
+    "Happy": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Sheep/Animations/Mouflon/Happy.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    },
+    "EatTrough": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Sheep/Animations/Mouflon/EatTrough.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Love": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Sheep/Animations/Mouflon/Love.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    },
+    "Graze": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Sheep/Animations/Mouflon/Graze.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Pronk": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Sheep/Animations/Mouflon/Pronk.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    }
+  },
+  "Icon": "Icons/ModelsGenerated/Mouflon.png"
+}

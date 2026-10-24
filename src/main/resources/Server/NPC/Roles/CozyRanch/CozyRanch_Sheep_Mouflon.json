@@ -1,0 +1,19 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Sheep_Mouflon",
+    "AttitudeGroup": "PreyBig",
+    "DropList": "Drop_Mouflon",
+    "MaxHealth": 81,
+    "MaxSpeed": 6,
+    "FoodItems": [
+      "Plant_Crop_Wheat_Item",
+      "Plant_Crop_Lettuce_Item",
+      "Plant_Crop_Cauliflower_Item",
+      "Plant_Crop_Carrot_Item"
+    ],
+    "FollowStopDistance": 2.5,
+    "NameTranslationKey": "server.npcRoles.Mouflon.name"
+  }
+}
