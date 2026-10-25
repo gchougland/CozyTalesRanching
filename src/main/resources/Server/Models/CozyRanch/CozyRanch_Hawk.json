@@ -53,7 +53,7 @@
     "WalkBackward": {
       "Animations": [
         {
-          "Animation": "NPC/Flying_Wildlife/Hawk/Animations/Default/Walk_Backward.blockyanim"
+          "Animation": "NPC/CozyRanch/Hawk/Animations/WalkBackward.blockyanim"
         }
       ]
     },
@@ -67,7 +67,7 @@
     "RunBackward": {
       "Animations": [
         {
-          "Animation": "NPC/Flying_Wildlife/Hawk/Animations/Default/Run_Backward.blockyanim"
+          "Animation": "NPC/CozyRanch/Hawk/Animations/RunBackward.blockyanim"
         }
       ]
     },
@@ -465,6 +465,14 @@
           "Animation": "NPC/CozyRanch/Hawk/Animations/Flutter.blockyanim",
           "BlendingDuration": 0.15,
           "Looping": false
+        }
+      ]
+    },
+    "Curious": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Hawk/Animations/Scan.blockyanim",
+          "BlendingDuration": 0.2
         }
       ]
     }

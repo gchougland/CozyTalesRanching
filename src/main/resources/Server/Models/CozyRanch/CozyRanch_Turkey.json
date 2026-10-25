@@ -41,7 +41,7 @@
     "Walk": {
       "Animations": [
         {
-          "Animation": "NPC/Livestock/Turkey/Animations/Default/Walk.blockyanim",
+          "Animation": "NPC/CozyRanch/Turkey/Animations/Walk.blockyanim",
           "Speed": 1
         }
       ]
@@ -49,14 +49,14 @@
     "WalkBackward": {
       "Animations": [
         {
-          "Animation": "NPC/Livestock/Turkey/Animations/Default/Walk_Backward.blockyanim"
+          "Animation": "NPC/CozyRanch/Turkey/Animations/WalkBackward.blockyanim"
         }
       ]
     },
     "Run": {
       "Animations": [
         {
-          "Animation": "NPC/Livestock/Turkey/Animations/Default/Run.blockyanim",
+          "Animation": "NPC/CozyRanch/Turkey/Animations/Run.blockyanim",
           "Speed": 1.6
         }
       ]
@@ -312,8 +312,8 @@
     "Eat": {
       "Animations": [
         {
-          "Animation": "NPC/Livestock/Turkey/Animations/Default/Idle.blockyanim",
-          "Speed": 0.6
+          "Animation": "NPC/CozyRanch/Turkey/Animations/PeckGround.blockyanim",
+          "BlendingDuration": 0.3
         }
       ]
     },

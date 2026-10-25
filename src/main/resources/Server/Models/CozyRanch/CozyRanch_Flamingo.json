@@ -81,7 +81,7 @@
     "Crouch": {
       "Animations": [
         {
-          "Animation": "NPC/Flying_Wildlife/Flamingo/Animations/Default/Crouch.blockyanim",
+          "Animation": "NPC/CozyRanch/Flamingo/Animations/Crouch.blockyanim",
           "BlendingDuration": 0.1
         }
       ]
@@ -89,7 +89,7 @@
     "CrouchWalk": {
       "Animations": [
         {
-          "Animation": "NPC/Flying_Wildlife/Flamingo/Animations/Default/Crouch_Walk.blockyanim",
+          "Animation": "NPC/CozyRanch/Flamingo/Animations/CrouchWalk.blockyanim",
           "BlendingDuration": 0.1,
           "Speed": 2
         }
@@ -98,7 +98,7 @@
     "CrouchWalkBackward": {
       "Animations": [
         {
-          "Animation": "NPC/Flying_Wildlife/Flamingo/Animations/Default/Crouch_Walk_Backward.blockyanim",
+          "Animation": "NPC/CozyRanch/Flamingo/Animations/CrouchWalkBackward.blockyanim",
           "BlendingDuration": 0.1,
           "Speed": 1.8
         }
@@ -461,8 +461,8 @@
     "Eat": {
       "Animations": [
         {
-          "Animation": "NPC/Flying_Wildlife/Flamingo/Animations/Default/Idle.blockyanim",
-          "Speed": 0.6
+          "Animation": "NPC/CozyRanch/Flamingo/Animations/EatTrough.blockyanim",
+          "BlendingDuration": 0.3
         }
       ]
     },
