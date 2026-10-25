@@ -21,11 +21,30 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
   - **Skrill Egg:** eat it, bake it into dough, or roast it on a campfire.
   - **Owl Pellet:** breaks into bone fragments.
   - **Feather Pillow**, **Rancher's Ledger** with a dark quill, and a **Dreamcatcher** that hangs from beams and branches.
+- **Rancher's Ledger page:** use a placed ledger to see your whole ranch at a glance: every house with its products waiting, every animal with its hearts and where it is, and the ones still without a home.
+- **Ranching Bench:** a new bench, made at the Workbench, with tabs for Animal Houses, Feed and Care, and Toys and Decor. Houses, feeds, troughs, the Bait Bowl, the Butcher's Block and toys are crafted here now.
+- **Creative tab:** everything from the mod has its own **Cozy Tales: Ranching** tab in the creative inventory.
+- **Animals at home:** at night, the animals inside show at their houses: birds on their perches, snails and geckos in their terrariums, frogs on the lily pads and more, in their own looks.
 
 ### Changed
 
 - **Bait Bowl message:** bait that several wild animals love no longer always names the fox.
 - **Released birds** go back to the wild as their walking kind.
+- **Wild visitors** only come to a house when more than half of the things its animals love are nearby.
+- **Wolf Lodge:** a proper howling wolf on the sign, an open doorway and a tidy log pile.
+- **Bear Cave:** a clear entrance and neatly set rocks.
+- **Spotted Rug** is now a flat rug in the style of the game's carpets.
+- **Eggs:** Skrill Eggs, Duck Eggs and Roasted Skrill Eggs look like the game's own eggs.
+- **Animations:** feet stay on the ground across the animals' animations, the wolf lies down level, the bear sits back properly to scratch its belly, and snail eye stalks no longer poke into the shell.
+- **Performance:** the ranch saves far less often and writes smaller save files, and the mod's download is smaller.
+
+### Fixed
+
+- **House hitboxes** now line up with the houses, notably the Antelope Shelter, Deer Shelter, Warthog Wallow, Bison Barn, Fox Den, Meerkat Mound and Rookery. Placed Bison Barns shift by half a block.
+- **Sleeping while following:** an animal tamed while asleep no longer follows you in its sleeping pose.
+- **Your animals can no longer die** from falls, fire, drowning or suffocation.
+- **Snails** no longer show up at rabbit hutches.
+- **Birds standing still** play their idle instead of a walk.
 
 ## [0.5.0] - Unreleased
 
