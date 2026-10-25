@@ -45,7 +45,7 @@ public final class HabitatCounts {
         group("leaves", "^Plant_Leaves_?"),
         group("vines", "^Plant_Vine_?"),
         group("water_lilies", "^Plant_Flower_Water_?"),
-        group("flowers", "^Plant_(Flower_?|Sunflower)"),
+        group("flowers", "^Plant_(Flower_?|Sunflower|Lavender_Block)"),
         group("reeds", "^Plant_Reeds_?"),
         group("tall_grass", "^Plant_(Grass_[A-Za-z]+_(Tall|Overgrown|Wild)|Fern_Tall)$"),
         group("dry_grass", "^Plant_Grass_(Arid|Dry)"),

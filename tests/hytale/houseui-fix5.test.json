@@ -4357,7 +4357,7 @@
                     "counts": {
                       "MessageId": "cozyranch_houseui.counts.yard.many",
                       "Params": {
-                        "count": "3"
+                        "count": "2"
                       },
                       "MessageParams": {
                         "things": {
@@ -4377,7 +4377,7 @@
                     "counts": {
                       "MessageId": "cozyranch_houseui.counts.yard.many",
                       "Params": {
-                        "count": "3"
+                        "count": "2"
                       },
                       "MessageParams": {
                         "things": {
@@ -15247,7 +15247,7 @@
                   "MessageId": "cozyranch_journal.species.number",
                   "Params": {
                     "number": "1",
-                    "total": "39"
+                    "total": "40"
                   }
                 }
               },
@@ -15549,7 +15549,15 @@
                       },
                       "MessageParams": {
                         "things": {
-                          "MessageId": "server.items.Plant_Hay_Bundle.name"
+                          "MessageId": "cozyranch_houseui.counts.list",
+                          "MessageParams": {
+                            "a": {
+                              "MessageId": "server.items.Plant_Hay_Bundle.name"
+                            },
+                            "b": {
+                              "MessageId": "server.items.Ingredient_Hay.name"
+                            }
+                          }
                         }
                       }
                     }
@@ -16129,7 +16137,7 @@
                   "MessageId": "cozyranch_journal.species.number",
                   "Params": {
                     "number": "1",
-                    "total": "39"
+                    "total": "40"
                   }
                 }
               },
@@ -16431,7 +16439,15 @@
                       },
                       "MessageParams": {
                         "things": {
-                          "MessageId": "server.items.Plant_Hay_Bundle.name"
+                          "MessageId": "cozyranch_houseui.counts.list",
+                          "MessageParams": {
+                            "a": {
+                              "MessageId": "server.items.Plant_Hay_Bundle.name"
+                            },
+                            "b": {
+                              "MessageId": "server.items.Ingredient_Hay.name"
+                            }
+                          }
                         }
                       }
                     }
@@ -16725,7 +16741,7 @@
                   "MessageId": "cozyranch_journal.species.number",
                   "Params": {
                     "number": "13",
-                    "total": "39"
+                    "total": "40"
                   }
                 }
               },
@@ -17053,21 +17069,34 @@
                       },
                       "MessageParams": {
                         "things": {
-                          "MessageId": "cozyranch_houseui.counts.list",
+                          "MessageId": "cozyranch_houseui.counts.more",
                           "MessageParams": {
-                            "a": {
+                            "list": {
                               "MessageId": "cozyranch_houseui.counts.list",
                               "MessageParams": {
                                 "a": {
-                                  "MessageId": "cozyranch_houseui.counts.group.fences"
+                                  "MessageId": "cozyranch_houseui.counts.list",
+                                  "MessageParams": {
+                                    "a": {
+                                      "MessageId": "cozyranch_houseui.counts.list",
+                                      "MessageParams": {
+                                        "a": {
+                                          "MessageId": "cozyranch_houseui.counts.group.fences"
+                                        },
+                                        "b": {
+                                          "MessageId": "server.items.Plant_Hay_Bundle.name"
+                                        }
+                                      }
+                                    },
+                                    "b": {
+                                      "MessageId": "server.items.Ingredient_Hay.name"
+                                    }
+                                  }
                                 },
                                 "b": {
                                   "MessageId": "cozyranch_care.items.CozyRanch_Toy_Log.name"
                                 }
                               }
-                            },
-                            "b": {
-                              "MessageId": "server.items.Plant_Hay_Bundle.name"
                             }
                           }
                         }
@@ -17093,7 +17122,7 @@
                     "counts": {
                       "MessageId": "cozyranch_houseui.counts.yard.many",
                       "Params": {
-                        "count": "3"
+                        "count": "2"
                       },
                       "MessageParams": {
                         "things": {

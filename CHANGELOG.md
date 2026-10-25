@@ -6,6 +6,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 ### Added
 
+- **Wildlife skins stay on:** tamed animals keep the skin they had in the wild (for skin packs such as Celly's Wildlife Skins), through houses, breeding and release.
 - **Tetrabird:** a new animal with its own **Fossil Nest** of fossil ribs and a horned skull. Tetrabirds fan their tails, scratch and crow, and drop dark feathers.
 - **Raven's Thrift:** the Raven Leather armour made at the Armour Bench now says on its tooltip that it sometimes gives back the arrows you shoot.
 - **Birds and bats:** Eight new animals, each with its own house, foods, habitat, behaviours, journal page and babies. Wild birds that only fly in vanilla now have walking cousins you can walk up to and befriend.
@@ -38,6 +39,9 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 - **Hay Bales** count as hay and as a perch, two flowers are enough for flowers, and houses re-check their surroundings a moment after you build nearby.
 - **The naming page** says how to make your new friend stay or follow you (Crouch + Interact), and where to rename it later.
 - **The Jar of Crickets** is made at the Ranching Bench only.
+- **Poop piles** can be picked up with the Use key (F), the whole pile at once.
+- **House tiers** at the Ranching Bench now follow how valuable an animal's produce is: farm animals at tier 1, snails, predators and rare producers at tier 3. The Cow Barn and Rabbit Hutch use copper instead of iron.
+- **The trough** has a new look, with a proper heap of carrots, apples and hay when it's full.
 - **Bait Bowl message:** bait that several wild animals love no longer always names the fox.
 - **Released birds** go back to the wild as their walking kind.
 - **Moss Tufts** no longer grow crops; they make mossy blocks. Bat Guano is the ranch's fertiliser.
@@ -55,6 +59,8 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 ### Fixed
 
 - **"What counts" tooltips** show their text instead of "{counts}".
+- **The Climbing Log** recipe accepts any tree log.
+- **The Fossil Nest's doorway** no longer has see-through gaps.
 - **Squirrel Drey and Parrot Perch** can be built: their recipes no longer need Tree Bark or Magic Mango, which can't be found in survival. Parrots now love Coconut and geckos Azure Fruit.
 - **The Rookery's nests and perches** no longer flicker.
 - **House hitboxes** now line up with the houses, notably the Antelope Shelter, Deer Shelter, Warthog Wallow, Bison Barn, Fox Den, Meerkat Mound and Rookery. Placed Bison Barns shift by half a block.

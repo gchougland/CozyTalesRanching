@@ -26,3 +26,10 @@ commands.admin.hurt.arg.by=jogador (padrão), queda, multidão ou sumiu
 commands.admin.hurt.arg.amount=Quanto dano (padrão 1000)
 commands.admin.hurt.arg.radius=Até onde olhar, em blocos (padrão 24)
 admin.hurt.done=Atingiu {hit} animais de rancho; {survived} estão ilesos ou ainda de pé.
+commands.admin.skins.desc=Mostre as skins (modelos anexos) das espécies de rancho perto de você e o que seus registros guardam.
+commands.admin.skins.arg.radius=Até onde olhar, em blocos (padrão 16)
+admin.skins.line={role} modelo {model}: conjuntos {ids}, {count} anexos {textures}; registro {record}
+admin.skins.none=Não há animais de espécies nativas de fazenda por perto.
+commands.admin.skins.arg.set=Teste: primeiro, atribua a animais selvagens próximos estes IDs de anexos, como Base=2001+Eyes=2002
+commands.admin.skins.arg.release=Teste: solte todos os animais do rancho que estiverem por perto.
+admin.skins.released=Liberou um {role} para a natureza.
