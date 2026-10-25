@@ -2,131 +2,53 @@
 
 All notable changes to Cozy Tales: Ranching are documented in this file.
 
-## [0.6.0] - Unreleased
+## [0.6.0] - 10/25/2026
 
 ### Added
 
-- **House rules:** each house page has a **Wild visitors** switch next to Breeding. Turn it off and that house draws no wild animals (one already there wanders off); turn it on again any time.
-- **Wildlife skins stay on:** tamed animals keep the skin they had in the wild (for skin packs such as Celly's Wildlife Skins), through houses, breeding and release.
-- **Tetrabird:** a new animal with its own **Fossil Nest** of fossil ribs and a horned skull. Tetrabirds fan their tails, scratch and crow, and drop dark feathers.
-- **Raven's Thrift:** the Raven Leather armour made at the Armour Bench now says on its tooltip that it sometimes gives back the arrows you shoot.
-- **Birds and bats:** Eight new animals, each with its own house, foods, habitat, behaviours, journal page and babies. Wild birds that only fly in vanilla now have walking cousins you can walk up to and befriend.
+- **Twenty-six new animals,** each with its own house, foods, habitat, behaviours, journal page and babies:
+  - **Foxes** live in a **Fox Den** under a mossy log. They pounce into the grass, tilt their heads and bring home Fox Trinkets.
+  - **Wolves** in black or white live in a **Wolf Lodge**. They play-bow, keep watch and howl, and shed Wolf Fur.
+  - **Bears** in grizzly or polar coats live in a **Bear Cave**. They sit back to scratch, roll onto their backs and swipe at fish, and bring Wild Honey.
+  - **Snow Leopards** live in a **Snowy Den** hung with icicles. They stalk and pounce in play, stretch like house cats and curl up in their long tails, and leave Spotted Pelts.
+  - **Deer** as does and stags live in a **Deer Shelter**. They are very shy, prance and bed down in tall grass, and shed antlers.
+  - **Bison** live in a **Bison Barn** with a sod roof. They wallow in dust, shake their shaggy heads and rub on posts, and give Bison Wool.
+  - **Tortoises** live in a **Tortoise Burrow**. They bask in the sun and tuck into their shells, and give Sturdy Chitin.
+  - **Meerkats** live in a **Meerkat Mound**. They stand sentry, dig and huddle together, and find Shiny Pebbles.
+  - **Snails** in Frost and Magma shells live in a glass **Snail Terrarium**, and each shell makes its own essence:
+    - **Frost** snails make Ice Essence and **Magma** snails make Fire Essence.
+    - **Garden** snails make Life Essence. Babies can hatch with a Garden shell when the terrarium has flowers or crops nearby.
+    - **Tide** snails make Water Essence. Babies can hatch with a Tide shell when there is water nearby.
+    - **Storm** snails make Lightning Essence. They are a rare visitor to happy terrariums near water.
+    - **Void** snails make Void Essence. Once in a while, a Frost and a Magma snail hatch one together.
+  - **Moose** cows and bulls live in a **Moose Lodge** with a lily pond. They dunk their heads in ponds, stretch for high branches and shake off, and shed their thick winter coat.
+  - **Armadillos** live in an **Armadillo Burrow** dug into a red-earth mound. They dig, sniff for grubs and curl into a ball, and shed Armadillo Plates.
+  - **Penguins** live in a **Penguin Igloo**. They belly-slide on snow, flap and huddle, and bring you raw fish and Penguin Down.
+  - **Flamingos** live in a **Flamingo Nest** on a lagoon. They stand on one leg, filter-feed and march together, and drop red feathers.
+  - **Warthogs** live in a **Warthog Wallow**. They kneel to root, roll in mud and run with their tails up, and shed Warthog Tusks.
+  - **Antelopes** live in an **Antelope Shelter**. They are the shyest animal yet, pronk, leap and stamp in alarm, and shed Antelope Horns.
+  - **Geckos** live in a **Gecko Terrarium** with a heat lamp. They bask, do push-ups and wave their tails, and leave Shed Skin.
+  - **Pigeons** live in an octagonal **Dovecote**. They coo, strut and peck, and drop Pigeon Feathers. Now and then one pulls a handgun from under its wing, strikes a pose and tucks it away again.
   - **Owls** in brown or snowy feathers live in an **Owl Barn**. They hoot, swivel their heads almost all the way round and doze on one leg by day. Brown owls drop dark feathers, snowy owls red ones, and both cough up Owl Pellets.
   - **Crows** and **Ravens** live in a hollow-oak **Rookery**. They hop, caw, tilt their heads and tuck shiny things under a wing, and drop dark feathers.
   - **Songbirds** come as **Sparrows**, **Greenfinches** and **Bluebirds** and live in a **Songbird Aviary**. They sing, hop and dust-bathe. Sparrows drop dark feathers, finches red and bluebirds blue.
   - **Parrots** live in a bamboo **Parrot Perch** near jungle trees. They dance, stretch their wings and squawk, and drop red feathers.
   - **Woodpeckers** live in a **Woodpecker Stump**. They drum and cling beside wood, and drop red feathers.
   - **Skrill** live in a **Skrill Roost** on stilts. They fan their crests, chatter and sunbathe with wings spread, and lay Skrill Eggs and drop red feathers.
-  - **Hawks** live in a **Hawk Mews**. They are wild hunters: tame one with a Bait Bowl of raw meat, like a fox. They scan, mantle and screech, and drop dark feathers. Walking hawks now roam the plains and mountains of Zone 1 by day.
+  - **Hawks** live in a **Hawk Mews**. They scan, mantle and screech, and drop dark feathers. Walking hawks roam the plains and mountains of Zone 1 by day.
   - **Bats** (and the rare **Ice Bat**) live in a mossy **Bat Roost**. They hang upside down, wrap their wings and squeak, and leave Bat Guano. A pup born near ice may be an Ice Bat.
-- **Every feather from your ranch:** Light (chickens), Red, Dark and Blue feathers can all be farmed now. Bluebirds are the only source of Blue.
-- **New produce and decor:**
-  - **Bat Guano:** use it on tilled soil to fertilise the whole 3 by 3 patch around it.
-  - **Skrill Egg:** eat it, bake it into dough, or roast it on a campfire.
-  - **Owl Pellet:** salvage it into bone fragments.
-  - **Rancher's Ledger** with a dark quill, and a **Dreamcatcher** that hangs from beams and branches.
-- **Rancher's Ledger page:** use a placed ledger to see your whole ranch at a glance: every house with its products waiting, every animal with its hearts and where it is, and the ones still without a home.
-- **Ranching Bench:** a new bench, made at the Workbench, with tabs for Animal Houses, Feed and Care, and Toys and Decor. Houses, feeds, troughs, the Bait Bowl, the Butcher's Block and toys are crafted here now.
-- **Hay Bundles** can be made from 6 Wheat at the Ranching Bench.
-- **Creative tab:** everything from the mod has its own **Cozy Tales: Ranching** tab in the creative inventory.
-- **Raven armour:** the Raven leather armour can now be made at the Armour Bench from heavy leather, dark feathers and cotton. Each piece worn gives a chance that an arrow you shoot comes back, up to one in four with the full set.
-- **A pigeon with a secret:** now and then a pigeon pulls a handgun from under its wing, strikes a pose and tucks it away again.
+  - **Tetrabirds** live in a **Fossil Nest** of fossil ribs and a horned skull. They fan their tails, scratch and crow, and drop dark feathers.
+- **Wild birds you can befriend:** birds that only fly in vanilla have walking cousins you can walk up to and befriend.
+- **Taming predators:** wild foxes, wolves, bears, snow leopards and hawks are too wild to feed by hand. Fill a **Bait Bowl** with bait they love and step back: a wild one nearby comes to eat and turns **calm** for a few minutes. While calm it won't attack you or your animals, and you can crouch, walk up and feed it by hand like any other animal. Startle it and it runs off instead of fighting. Tamed predators are as gentle as the rest of your ranch. The journal's How to page has a Wild ones section.
+- **New looks for familiar animals:** Rams and Mouflons are now sheep, Boars and Wild Pigs are pigs, and Desert Chickens are chickens. Each keeps its look through taming, breeding and growing up, and some turn up as visitors.
+- **Every look has its own name:** a Raven, a Frost Snail, a Sparrow, an Ice Bat or a White Wolf goes by its own name on the house page, in the Rancher's Ledger and in chat.
+- **Wildlife skins stay on:** tamed animals keep the skin they had in the wild (for skin packs such as Celly's Wildlife Skins), through houses, breeding and release.
+- **Ranching Bench:** a new bench, made at the Workbench, with tabs for Animal Houses, Feed and Care, and Toys and Decor. Houses, feeds, troughs, the Bait Bowl, the Butcher's Block and toys are crafted here. Upgrade it to unlock more houses: tier 1 for farm animals and small critters, tier 2 for more exotic animals, and tier 3 for predators, snails and rare producers.
+- **House rules:** each house page has a **Breeding** switch and a **Wild visitors** switch. Turn visitors off and that house draws no wild animals (one already there wanders off).
 - **What counts:** hover a need or want on the house page to see exactly what counts for it, and each animal's journal page lists it too.
 - **Animals at home:** at night, the animals inside show at their houses: birds on their perches, snails and geckos in their terrariums, frogs on the lily pads and more, in their own looks.
-
-### Changed
-
-- **Moose shed their winter coat** instead of bringing up Pond Weed: salvage a **Shed Moose Coat** into Heavy Hide at the Salvager's Workbench. No other animal gives Heavy Hide.
-- **Houses run on game time:** sleeping through the night, or skipping time, counts for production, breeding, growing up and meals, the way furnaces and crops work.
-- **Hay Bales** count as hay and as a perch, two flowers are enough for flowers, and houses re-check their surroundings a moment after you build nearby.
-- **The naming page** says how to make your new friend stay or follow you (Crouch + Interact), and where to rename it later.
-- **The Jar of Crickets** is made at the Ranching Bench only.
-- **Poop piles** can be picked up with the Use key (F), the whole pile at once.
-- **House tiers** at the Ranching Bench now follow how valuable an animal's produce is: farm animals at tier 1, snails, predators and rare producers at tier 3. The Cow Barn and Rabbit Hutch use copper instead of iron.
-- **The trough** has a new look, with a proper heap of carrots, apples and hay when it's full.
-- **Bait Bowl message:** bait that several wild animals love no longer always names the fox.
-- **Released birds** go back to the wild as their walking kind.
-- **Moss Tufts** no longer grow crops; they make mossy blocks. Bat Guano is the ranch's fertiliser.
-- **Poop Piles** can no longer be crafted.
-- **Using a full house** while animals follow you now opens its page and says it is full; they keep following.
-- **House page messages** no longer push the page off the bottom of the screen.
-- **Wild visitors** only come to a house of their own kind, and only when more than half of the things its animals love are nearby: no more frogs at the pigsty or snails at the rabbit hutch.
-- **Wolf Lodge:** a proper howling wolf on the sign, an open doorway and a tidy log pile.
-- **Bear Cave:** a clear entrance and neatly set rocks.
-- **Spotted Rug** is now a flat rug in the style of the game's carpets.
-- **Eggs:** Skrill Eggs, Duck Eggs and Roasted Skrill Eggs look like the game's own eggs.
-- **Animations:** feet stay on the ground across the animals' animations, the wolf lies down level, the bear sits back properly to scratch its belly, and snail eye stalks no longer poke into the shell.
-- **Performance:** the ranch saves far less often and writes smaller save files, and the mod's download is smaller.
-
-### Fixed
-
-- **Animal habits that looked wrong:** bears (grizzly and polar) roll sideways onto their backs for a slow back scratch instead of tipping into a headstand; the polar bear sits back and scratches its belly without a leg through its body; the fox's present is a sniff, a proud head-up and a playful bow; the snow leopard's stretch is a proper cat stretch on the ground.
-- **The Armadillo Burrow's entrance** is dug into the mound now: an earthen hood over a dark tunnel with roots and a dug-out apron, instead of a stone doorway with slabs stacked on top.
-- **The Goat Shed's rock pile** no longer has a slab hanging in the air: every rock rests on the ground or the rock below it.
-- **"What counts" tooltips** show their text instead of "{counts}".
-- **The Climbing Log** recipe accepts any tree log.
-- **The Fossil Nest's doorway** no longer has see-through gaps.
-- **Animals go by their own kind:** ravens are no longer called crows, and a Frost Snail, Sparrow, Ice Bat, Polar Bear or White Wolf keeps its name on the house page, in the Rancher's Ledger and in chat.
-- **Baby birds and geckos** show their names above their heads instead of a text key, and blue and orange frogs have names.
-- **Squirrel Drey and Parrot Perch** can be built: their recipes no longer need Tree Bark or Magic Mango, which can't be found in survival. Parrots now love Coconut and geckos Azure Fruit.
-- **The Rookery's nests and perches** no longer flicker.
-- **House hitboxes** now line up with the houses, notably the Antelope Shelter, Deer Shelter, Warthog Wallow, Bison Barn, Fox Den, Meerkat Mound and Rookery. Placed Bison Barns shift by half a block.
-- **Sleeping while following:** an animal tamed while asleep no longer follows you in its sleeping pose.
-- **Your animals can no longer die** from falls, fire, drowning or suffocation, or from burns, poison, arrows and bombs left behind by enemies you have already beaten. A blocked hit no longer knocks them back either.
-- **Birds standing still** play their idle instead of a walk.
-- **Taming a bird** now plays its happy cheer, and no tamed animal keeps a leftover walk or sleep pose.
-- **Armadillo Shield:** your hand no longer clips through it.
-
-## [0.5.0] - Unreleased
-
-### Added
-
-- **Snails and essences:** Tame Frost and Magma snails and keep them in a glass **Snail Terrarium**. Each shell makes its own essence:
-  - **Frost** snails make Ice Essence and **Magma** snails make Fire Essence.
-  - **Garden** snails make Life Essence. Babies can hatch with a Garden shell when the terrarium has flowers or crops nearby.
-  - **Tide** snails make Water Essence. Babies can hatch with a Tide shell when there is water nearby.
-  - **Storm** snails make Lightning Essence. They are a rare visitor to happy terrariums near water.
-  - **Void** snails make Void Essence. Once in a while, a Frost and a Magma snail hatch one together.
-  - The snail's journal page lists every shell and how to get it.
-- **Eight new animals,** each with its own house, foods, habitat, behaviours, journal page and babies:
-  - **Moose** cows and bulls live in a **Moose Lodge** with a lily pond. They dunk their heads in ponds, stretch for high branches and shake off, and bring up Pond Weed.
-  - **Armadillos** live in an **Armadillo Burrow** of red earth. They dig, sniff for grubs and curl into a ball, and shed Armadillo Plates.
-  - **Penguins** live in a **Penguin Igloo**. They belly-slide on snow, flap and huddle, and bring you raw fish and Penguin Down.
-  - **Flamingos** live in a **Flamingo Nest** on a lagoon. They stand on one leg, filter-feed and march together, and drop red feathers.
-  - **Warthogs** live in a **Warthog Wallow**. They kneel to root, roll in mud and run with their tails up, and shed Warthog Tusks.
-  - **Antelopes** live in an **Antelope Shelter**. They are the shyest animal yet, pronk, leap and stamp in alarm, and shed Antelope Horns.
-  - **Geckos** live in a **Gecko Terrarium** with a heat lamp. They bask, do push-ups and wave their tails, and leave Shed Skin.
-  - **Pigeons** live in an octagonal **Dovecote**. They coo, strut and peck, and drop Pigeon Feathers.
-- **New looks for familiar animals:** Rams and Mouflons are now sheep, Boars and Wild Pigs are pigs, and Desert Chickens are chickens. Each keeps its look through taming, breeding and growing up. Mouflons, Wild Pigs and Desert Chickens can also turn up as visitors.
-- **New produce with real uses:**
-  - **Pond Weed:** salvage it into plant fiber.
-  - **Armadillo Plate:** craft an **Armadillo Shield** at the Armour bench.
-  - **Penguin Down:** stuff the Frozen Castle Bed and the Village Bed.
-  - **Warthog Tusk:** counts as bone, and makes Bone Daggers at the Weapon bench.
-  - **Antelope Horn:** make a **Herding Horn** (blow it and your nearby animals start following you) or a **Swiftness Tonic**.
-  - **Shed Skin:** brew a **Fireward Tonic** that keeps fire off you for two minutes.
-  - **Pigeon Feather:** brew the Pigeon Morph potion for far less than the usual recipe.
-  - **Red feathers:** arrange them in a **Feather Vase**.
-- **Uses for essences:** the Swiftness Tonic takes Lightning Essence and the Fireward Tonic takes Water Essence, which had no recipes before.
-
-### Fixed
-
-- **Animal names in sentences:** Lines like "Befriend a Armadillo" are now worded so every animal name reads correctly.
-
-## [0.4.0] - Unreleased
-
-### Added
-
-- **Taming predators:** Wild foxes, wolves, bears and snow leopards bite, so walking up with food will not work. Craft a **Bait Bowl** at the Ranching Bench and fill it with bait they love. A wild one nearby comes to eat and turns **calm** for a few minutes: while calm it will not attack you or your animals, and you can crouch, walk up and feed it by hand like any other animal. Startle it and it runs off instead of fighting. Tamed predators are as gentle as the rest of your ranch. The journal's How to page has a new Wild ones section.
-- **Eight new animals,** each with its own house, foods, habitat, behaviours, journal page and babies:
-  - **Foxes** live in a **Fox Den** under a mossy log. They pounce into the grass, tilt their heads and bring home Fox Trinkets.
-  - **Wolves** in black or white live in a **Wolf Lodge**. They play-bow, keep watch and howl, and shed Wolf Fur.
-  - **Bears** in grizzly or polar coats live in a **Bear Cave**. They sit and scratch, roll on their backs and swipe at fish, and bring Wild Honey.
-  - **Snow Leopards** live in a **Snowy Den** hung with icicles. They stalk and pounce in play and curl up in their long tails, and leave Spotted Pelts.
-  - **Deer** as does and stags live in a **Deer Shelter**. They are very shy, prance and bed down in tall grass, and shed antlers.
-  - **Bison** live in a **Bison Barn** with a sod roof. They wallow in dust, shake their shaggy heads and rub on posts, and give Bison Wool.
-  - **Tortoises** live in a **Tortoise Burrow**. They bask in the sun and tuck into their shells, and give Sturdy Chitin.
-  - **Meerkats** live in a **Meerkat Mound**. They stand sentry, dig and huddle together, and find Shiny Pebbles.
+- **Rancher's Ledger:** a book you place and use to see your whole ranch at a glance: every house with its products waiting, every animal with its hearts and where it is, and the ones still without a home.
+- **Every feather from your ranch:** Light (chickens), Red, Dark and Blue feathers can all be farmed. Bluebirds are the only source of Blue.
 - **New produce with real uses:**
   - **Fox Trinket:** unwrap it for a small find, from metal bars to feathers and the odd bit of silk.
   - **Wolf Fur:** tan two into leather.
@@ -135,10 +57,49 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
   - **Shed Antler:** mount two on a log for an **Antler Mount**, or salvage one into bone fragments.
   - **Bison Wool:** spin it into wool scraps.
   - **Shiny Pebble:** crack it open for rubble, ore or, rarely, a crystal shard.
+  - **Shed Moose Coat:** salvage it into Heavy Hide. No other animal gives Heavy Hide.
+  - **Armadillo Plate:** craft an **Armadillo Shield** at the Armour Bench.
+  - **Penguin Down:** stuff the Frozen Castle Bed and the Village Bed.
+  - **Warthog Tusk:** counts as bone, and makes Bone Daggers at the Weapon Bench.
+  - **Antelope Horn:** make a **Herding Horn** (blow it and your nearby animals start following you) or a **Swiftness Tonic**.
+  - **Shed Skin:** brew a **Fireward Tonic** that keeps fire off you for two minutes.
+  - **Pigeon Feather:** brew the Pigeon Morph potion for far less than the usual recipe.
+  - **Red feathers:** arrange them in a **Feather Vase**.
+  - **Bat Guano:** use it on tilled soil to fertilise the whole 3 by 3 patch around it.
+  - **Skrill Egg:** eat it, bake it into dough, or roast it on a campfire.
+  - **Owl Pellet:** salvage it into bone fragments.
+  - **Essences:** the Swiftness Tonic takes Lightning Essence and the Fireward Tonic takes Water Essence, which had no recipes before.
+- **Raven armour:** Raven leather armour can be made at the Armour Bench from heavy leather, dark feathers and cotton. Each piece worn gives a chance that an arrow you shoot comes back, up to one in four with the full set, and its tooltip says so.
+- **Decor:** a **Dreamcatcher** that hangs from beams and branches.
+- **Hay Bundles** can be made from 6 Wheat at the Ranching Bench.
+- **Creative tab:** everything from the mod has its own **Cozy Tales: Ranching** tab in the creative inventory.
+
+### Changed
+
+- **Houses run on game time:** sleeping through the night, or skipping time, counts for production, breeding, growing up and meals, the way furnaces and crops work.
+- **Wild visitors** only come to a house of their own kind, and only when more than half of the things its animals love are nearby.
+- **Hay Bales** count as hay and as a perch, two flowers are enough for flowers, and houses re-check their surroundings a moment after you build nearby.
+- **The naming page** says how to make your new friend stay or follow you (Crouch + Interact), and where to rename it later.
+- **The Jar of Crickets** is made at the Ranching Bench only.
+- **Poop piles** can be picked up with the Use key (F), the whole pile at once, and can no longer be crafted.
+- **Moss Tufts** no longer grow crops; they make mossy blocks. Bat Guano is the ranch's fertiliser.
+- **The trough** has a new look, with a proper heap of carrots, apples and hay when it's full.
+- **Duck Eggs** look like the game's own eggs.
+- **The Cow Barn and Rabbit Hutch** use copper instead of iron.
+- **Using a full house** while animals follow you opens its page and says it is full; they keep following.
+- **House page messages** no longer push the page off the bottom of the screen.
+- **Animations:** feet stay on the ground across the animals' animations.
+- **Performance:** the ranch saves far less often and writes smaller save files, and the mod's download is smaller.
 
 ### Fixed
 
-- **Rare animal names:** Baby and rare animals now show their proper names instead of a raw text key.
+- **Your animals can no longer die** from falls, fire, drowning or suffocation, or from burns, poison, arrows and bombs left behind by enemies you have already beaten. A blocked hit no longer knocks them back either.
+- **Leftover poses:** an animal tamed while asleep no longer follows you in its sleeping pose, and no tamed animal keeps a leftover walk or sleep pose.
+- **The Squirrel Drey** can be built: its recipe no longer needs Tree Bark, which can't be found in survival.
+- **The Climbing Log** recipe accepts any tree log.
+- **The Goat Shed's rock pile** no longer has a slab hanging in the air.
+- **Rare and baby animals** show their proper names instead of a raw text key, and blue and orange frogs have names.
+- **Animal names in sentences:** lines like "Befriend a Armadillo" are worded so every animal name reads correctly.
 
 ## [0.3.0] - 10/24/2026
 
