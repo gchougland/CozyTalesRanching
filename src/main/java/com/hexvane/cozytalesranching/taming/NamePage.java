@@ -30,7 +30,9 @@ import javax.annotation.Nullable;
 
 /**
  * The naming page: a text field prefilled with the current name, Save and Not now. Opened right after an animal is
- * tamed or claimed, and by the house page's rename button. Same name rules as {@code /ranch name}. World thread.
+ * tamed or claimed, and by the house page's rename button. Same name rules as {@code /ranch name}. Under the field it
+ * says how to make the animal stay or follow (Crouch + Use, the player's real keys) and how to rename it later.
+ * World thread.
  */
 public final class NamePage extends InteractiveCustomUIPage<NamePage.Event> {
     public static final String DOCUMENT = "CozyRanch/NamePage.ui";
@@ -76,6 +78,9 @@ public final class NamePage extends InteractiveCustomUIPage<NamePage.Event> {
             : Message.translation("cozyranch_taming.namepage.prompt").param("animal", species));
         commands.set("#NameField.Value", named ? record.name : "");
         commands.set("#NameHint.TextSpans", Message.translation("cozyranch_taming.namepage.limit").param("max", NameCommand.MAX_NAME_LENGTH));
+        // the key caps beside #StayText are the player's own Crouch and Use keys, drawn by the client (HotkeyLabel)
+        commands.set("#StayText.TextSpans", Message.translation("cozyranch_taming.namepage.stay"));
+        commands.set("#RenameLater.TextSpans", Message.translation("cozyranch_taming.namepage.rename_later"));
         commands.set("#NameNotice.TextSpans", noticeKey == null ? Message.raw("") : Message.translation(noticeKey));
         commands.set("#SaveButton.TextSpans", Message.translation("cozyranch_taming.namepage.save"));
         commands.set("#CancelButton.TextSpans", Message.translation("cozyranch_taming.namepage.cancel"));

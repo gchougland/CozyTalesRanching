@@ -175,7 +175,7 @@
     },
     {
       "name": "name page",
-      "description": "The naming page as NamePage.build() sends it: just tamed (empty), renaming, and the longest name with the refusal notice. Prompts with a species or name parameter are given as the rendered English text.",
+      "description": "The naming page as NamePage.build() sends it: just tamed (empty), renaming, and the longest name with the refusal notice. Prompts with a species or name parameter are given as the rendered English text. Under the card: the player's own Crouch and Use keys (HotkeyLabel, drawn by the client; key caps here) with how to make it stay or follow, and how to rename it later.",
       "steps": [
         {
           "tool": "ui_render",
@@ -215,6 +215,20 @@
                   "Params": {
                     "max": 24
                   }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#StayText.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.stay"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameLater.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.rename_later"
                 }
               },
               {
@@ -289,6 +303,20 @@
               },
               {
                 "type": "Set",
+                "selector": "#StayText.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.stay"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameLater.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.rename_later"
+                }
+              },
+              {
+                "type": "Set",
                 "selector": "#NameNotice.TextSpans",
                 "data": {
                   "RawText": ""
@@ -355,6 +383,20 @@
                   "Params": {
                     "max": 24
                   }
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#StayText.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.stay"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#RenameLater.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_taming.namepage.rename_later"
                 }
               },
               {
