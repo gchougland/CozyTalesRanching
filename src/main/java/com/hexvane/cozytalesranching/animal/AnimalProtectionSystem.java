@@ -10,6 +10,8 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.SystemGroup;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.server.core.entity.UUIDComponent;
+import com.hypixel.hytale.server.core.entity.effect.ActiveEntityEffect;
+import com.hypixel.hytale.server.core.entity.knockback.KnockbackComponent;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.modules.entity.damage.Damage;
 import com.hypixel.hytale.server.core.modules.entity.damage.DamageEventSystem;
@@ -26,7 +28,9 @@ import javax.annotation.Nullable;
 /**
  * Makes owned ranch animals invulnerable ({@link ProtectionRules}): with {@code ProtectOwnedAnimals} on (default) no
  * player (the owner included, so a stray swing never kills a pet) and nothing in the world (falls, drowning, fire,
- * suffocation) hurts them; with {@code ProtectFromHostileMobs} on (default) no creature does either. Below the world's
+ * suffocation) hurts them; with {@code ProtectFromHostileMobs} on (default) no creature does either. A hit whose attacker
+ * is gone (an arrow or bomb still flying, a burn or poison still ticking after the mob that started it died) is cancelled
+ * under either switch. A cancelled hit does not knock the animal back either. Below the world's
  * floor the engine kills without a damage event; recovery brings the animal back.
  * Unowned adopted animals are left as vanilla had them. Runs only on damage events, only for entities
  * carrying the ranch marker.
@@ -35,6 +39,7 @@ final class AnimalProtectionSystem extends DamageEventSystem {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
     private static final long MOB_LOG_INTERVAL_MS = 10_000;
     private static final Map<UUID, Long> MOB_LOGGED = new ConcurrentHashMap<>();
+    private static final Map<UUID, Long> GONE_LOGGED = new ConcurrentHashMap<>();
 
     private final PersistentAnimalRegistry registry;
     private final ComponentType<EntityStore, AnimalMarker> markerType;
@@ -76,23 +81,32 @@ final class AnimalProtectionSystem extends DamageEventSystem {
         Ref<EntityStore> self = chunk.getReferenceTo(index);
         if (!CompatGuard.isManageable(self, cb, npc.getRoleName())) return;
 
-        Ref<EntityStore> attacker = damage.getSource() instanceof Damage.EntitySource source ? source.getRef() : null;
-        ProtectionRules.Source from;
-        if (attacker == null || !attacker.isValid()) from = attacker == null ? ProtectionRules.Source.WORLD : ProtectionRules.Source.PLAYER;
-        else from = cb.getComponent(attacker, Player.getComponentType()) != null ? ProtectionRules.Source.PLAYER : ProtectionRules.Source.CREATURE;
+        Damage.Source src = damage.getSource();
+        Ref<EntityStore> attacker = src instanceof Damage.EntitySource source ? source.getRef() : null;
+        boolean attackerValid = attacker != null && attacker.isValid();
+        boolean orphanEffect = src instanceof ActiveEntityEffect effect && effect.getOwner() != null;
+        ProtectionRules.Source from = ProtectionRules.classify(attacker != null, attackerValid,
+            attackerValid && cb.getComponent(attacker, Player.getComponentType()) != null, orphanEffect);
         if (!ProtectionRules.cancels(true, from, players, mobs)) return;
         damage.setCancelled(true);
-        if (from == ProtectionRules.Source.CREATURE) noteMobBlocked(r, attacker, cb, damage.getAmount());
+        // as vanilla does for a cancelled hit (spawn protection, no PvP): the blow does not fling the animal either
+        if (damage.getIfPresentMetaObject(Damage.KNOCKBACK_COMPONENT) != null) cb.tryRemoveComponent(self, KnockbackComponent.getComponentType());
+        if (from == ProtectionRules.Source.CREATURE || from == ProtectionRules.Source.GONE) noteMobBlocked(r, from == ProtectionRules.Source.CREATURE ? attacker : null, cb, damage.getAmount());
+        else if (from == ProtectionRules.Source.WORLD) AnimalEntitySystem.debug("Blocked " + damage.getAmount() + " world damage to owned " + r.speciesId + " " + r.animalId);
     }
 
-    /** One INFO line per animal per {@link #MOB_LOG_INTERVAL_MS}, so a mob gnawing at a cow does not flood the log. */
-    private static void noteMobBlocked(@Nonnull AnimalRecord r, @Nonnull Ref<EntityStore> attacker, @Nonnull CommandBuffer<EntityStore> cb, float amount) {
+    /**
+     * One INFO line per animal per {@link #MOB_LOG_INTERVAL_MS} (counted apart for live mobs and for attackers that are
+     * gone), so a mob gnawing at a cow or a burn ticking on it does not flood the log.
+     */
+    private static void noteMobBlocked(@Nonnull AnimalRecord r, @Nullable Ref<EntityStore> attacker, @Nonnull CommandBuffer<EntityStore> cb, float amount) {
         long now = System.currentTimeMillis();
-        Long last = MOB_LOGGED.get(r.animalId);
+        Map<UUID, Long> logged = attacker == null ? GONE_LOGGED : MOB_LOGGED;
+        Long last = logged.get(r.animalId);
         if (last != null && now - last < MOB_LOG_INTERVAL_MS) return;
-        MOB_LOGGED.put(r.animalId, now);
-        NPCEntity npc = cb.getComponent(attacker, NPCEntity.getComponentType());
-        String who = npc != null && npc.getRoleName() != null ? npc.getRoleName() : "a creature";
+        logged.put(r.animalId, now);
+        NPCEntity npc = attacker == null ? null : cb.getComponent(attacker, NPCEntity.getComponentType());
+        String who = attacker == null ? "an attacker that is gone" : npc != null && npc.getRoleName() != null ? npc.getRoleName() : "a creature";
         LOG.info("Blocked " + amount + " damage from " + who + " to owned " + r.speciesId + " " + r.animalId + " (hostile-mob protection)");
     }
 }
