@@ -43,6 +43,7 @@ public final class ProduceFeature {
         Ranch.installProduce(s);
 
         plugin.getEntityStoreRegistry().registerSystem(new ProduceSystem(s));
+        plugin.getEntityStoreRegistry().registerSystem(new GameTimeSystem());
         PoopTuning.load(plugin.getDataDirectory());
         PoopService ps = new PoopService();
         poop = ps;
@@ -75,8 +76,8 @@ public final class ProduceFeature {
                 if (m == ProduceRules.Mode.BUCKET) b.append(" (bucket)");
             }
         }
-        plugin.getLogger().atInfo().log("Produce registered: pass every %.0f s, house cap %d, catch-up cap %.0f min; %s",
-            t.PassSeconds, t.HouseCap, t.CatchUpCapMinutes, b.toString());
+        plugin.getLogger().atInfo().log("Produce registered: pass every %.0f s, house cap %d, catch-up cap %.0f min, game-time jumps up to %.1f in-game days; %s",
+            t.PassSeconds, t.HouseCap, t.CatchUpCapMinutes, t.TimeJumpCapGameDays, b.toString());
         PoopTuning pt = PoopTuning.get();
         plugin.getLogger().atInfo().log("Poop piles %s: pass every %.0f s, %.2f per minute after %.1f min, merge radius %d, cap %d, %d per house, off for %s",
             pt.Enabled ? "on" : "off", pt.PassSeconds, pt.ChancePerMinute, pt.CooldownMinutes, pt.MergeRadius, pt.MaxCount, pt.MaxPilesPerHouse,

@@ -28,6 +28,11 @@ public final class ProduceTuning {
     public int HouseCap = 64;
     /** Most real minutes credited for time the world was not loaded (a restart, a long stop). */
     public double CatchUpCapMinutes = 480;
+    /**
+     * Most in-game days one jump of game time (a night slept through, {@code /time set}) lets the ranch live through.
+     * 3 days is 144 real-equivalent minutes with the default 48-minute day; a night's sleep is about 17.
+     */
+    public double TimeJumpCapGameDays = 3;
     /** Rate factor of an animal at happiness 0; it rises linearly to 1 at happiness 1. */
     public double HappinessRateAtZero = 0.5;
     /** The rate never falls below this factor, whatever the inputs. */
@@ -55,6 +60,7 @@ public final class ProduceTuning {
         PassSeconds = Math.clamp(PassSeconds, 5.0, 600.0);
         HouseCap = Math.max(1, HouseCap);
         CatchUpCapMinutes = Math.max(0.0, CatchUpCapMinutes);
+        TimeJumpCapGameDays = Double.isFinite(TimeJumpCapGameDays) ? Math.clamp(TimeJumpCapGameDays, 0.0, 30.0) : 3.0;
         HappinessRateAtZero = Math.clamp(HappinessRateAtZero, 0.0, 1.0);
         MinRateFactor = Math.clamp(MinRateFactor, 0.01, 1.0);
         HeartRateBonus = Math.max(0.0, HeartRateBonus);
