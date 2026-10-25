@@ -60,6 +60,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 ### Fixed
 
+- **Animal habits that looked wrong:** bears (grizzly and polar) roll sideways onto their backs for a slow back scratch instead of tipping into a headstand; the polar bear sits back and scratches its belly without a leg through its body; the fox's present is a sniff, a proud head-up and a playful bow; the snow leopard's stretch is a proper cat stretch on the ground.
 - **The Armadillo Burrow's entrance** is dug into the mound now: an earthen hood over a dark tunnel with roots and a dug-out apron, instead of a stone doorway with slabs stacked on top.
 - **The Goat Shed's rock pile** no longer has a slab hanging in the air: every rock rests on the ground or the rock below it.
 - **"What counts" tooltips** show their text instead of "{counts}".
