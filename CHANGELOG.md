@@ -42,7 +42,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 - **House hitboxes** now line up with the houses, notably the Antelope Shelter, Deer Shelter, Warthog Wallow, Bison Barn, Fox Den, Meerkat Mound and Rookery. Placed Bison Barns shift by half a block.
 - **Sleeping while following:** an animal tamed while asleep no longer follows you in its sleeping pose.
-- **Your animals can no longer die** from falls, fire, drowning or suffocation.
+- **Your animals can no longer die** from falls, fire, drowning or suffocation, or from burns, poison, arrows and bombs left behind by enemies you have already beaten. A blocked hit no longer knocks them back either.
 - **Snails** no longer show up at rabbit hutches.
 - **Birds standing still** play their idle instead of a walk.
 
