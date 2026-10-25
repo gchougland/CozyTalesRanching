@@ -21,7 +21,11 @@
     ],
     "RandomRotation": "YawStep1",
     "HitboxType": "Plant_Small",
+    "InteractionHint": "server.interactionHints.gather",
     "Gathering": {
+      "Harvest": {
+        "DropList": "Drops_CozyRanch_Poop_1"
+      },
       "Soft": {
         "IsWeaponBreakable": false,
         "DropList": "Drops_CozyRanch_Poop_1"
@@ -39,6 +43,9 @@
           ],
           "HitboxType": "Plant_Small",
           "Gathering": {
+            "Harvest": {
+              "DropList": "Drops_CozyRanch_Poop_2"
+            },
             "Soft": {
               "IsWeaponBreakable": false,
               "DropList": "Drops_CozyRanch_Poop_2"
@@ -56,6 +63,9 @@
           ],
           "HitboxType": "Plant_Small",
           "Gathering": {
+            "Harvest": {
+              "DropList": "Drops_CozyRanch_Poop_3"
+            },
             "Soft": {
               "IsWeaponBreakable": false,
               "DropList": "Drops_CozyRanch_Poop_3"
@@ -73,6 +83,9 @@
           ],
           "HitboxType": "Plant_Medium",
           "Gathering": {
+            "Harvest": {
+              "DropList": "Drops_CozyRanch_Poop_4"
+            },
             "Soft": {
               "IsWeaponBreakable": false,
               "DropList": "Drops_CozyRanch_Poop_4"
@@ -96,6 +109,9 @@
           ],
           "HitboxType": "Plant_Medium",
           "Gathering": {
+            "Harvest": {
+              "DropList": "Drops_CozyRanch_Poop_5"
+            },
             "Soft": {
               "IsWeaponBreakable": false,
               "DropList": "Drops_CozyRanch_Poop_5"
@@ -119,6 +135,9 @@
           ],
           "HitboxType": "Plant_Medium",
           "Gathering": {
+            "Harvest": {
+              "DropList": "Drops_CozyRanch_Poop_6"
+            },
             "Soft": {
               "IsWeaponBreakable": false,
               "DropList": "Drops_CozyRanch_Poop_6"
@@ -142,6 +161,9 @@
           ],
           "HitboxType": "Plant_Medium",
           "Gathering": {
+            "Harvest": {
+              "DropList": "Drops_CozyRanch_Poop_7"
+            },
             "Soft": {
               "IsWeaponBreakable": false,
               "DropList": "Drops_CozyRanch_Poop_7"
@@ -165,6 +187,9 @@
           ],
           "HitboxType": "Plant_Medium",
           "Gathering": {
+            "Harvest": {
+              "DropList": "Drops_CozyRanch_Poop_8"
+            },
             "Soft": {
               "IsWeaponBreakable": false,
               "DropList": "Drops_CozyRanch_Poop_8"
@@ -192,7 +217,7 @@
     "BlockSoundSetId": "Mud",
     "PhysicalMaterialId": "Dirt",
     "TextureComputedColor": "#6F4A2D",
-    "CustomModelScale": 1.0
+    "CustomModelScale": 1
   },
   "PlayerAnimationsId": "Block",
   "IconProperties": {

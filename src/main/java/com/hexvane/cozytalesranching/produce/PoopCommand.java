@@ -11,7 +11,10 @@ import com.hypixel.hytale.server.core.command.system.basecommands.AbstractComman
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.modules.entity.item.ItemComponent;
+import com.hypixel.hytale.server.core.asset.type.blocktype.config.BlockType;
+import com.hypixel.hytale.server.core.inventory.InventoryComponent;
 import com.hypixel.hytale.server.core.modules.interaction.BlockHarvestUtils;
+import com.hypixel.hytale.server.core.universe.world.chunk.section.BlockSection;
 import com.hypixel.hytale.server.core.universe.world.SetBlockSettings;
 import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import org.joml.Vector3i;
@@ -23,7 +26,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.joml.Vector3d;
 
-/** {@code /ranch produce poop status|now|here|break|logon|logoff}: admin test tools for poop piles, usable by the headless player. */
+/** {@code /ranch produce poop status|now|here|break|pick|logon|logoff}: admin test tools for poop piles, usable by the headless player. */
 final class PoopCommand extends AbstractCommandCollection {
     PoopCommand() {
         super("poop", "cozyranch_produce.commands.poop.desc");
@@ -32,6 +35,7 @@ final class PoopCommand extends AbstractCommandCollection {
         this.addSubCommand(new Now());
         this.addSubCommand(new Here());
         this.addSubCommand(new Break());
+        this.addSubCommand(new Pick());
         this.addSubCommand(new Log(true));
         this.addSubCommand(new Log(false));
     }
@@ -155,6 +159,75 @@ final class PoopCommand extends AbstractCommandCollection {
                     .param("broke", String.valueOf(broke)).param("dropped", dropped).param("after", after));
             }));
         }
+    }
+
+    /** The nearest known pile within 10 blocks, or null. */
+    @Nullable
+    static PoopRules.Pile nearestPile(@Nonnull PoopService s, @Nonnull World world, @Nonnull Vector3d p) {
+        PoopRules.Pile best = null;
+        double bestD = 10 * 10;
+        for (PoopRules.Pile pile : s.known(world)) {
+            double dx = pile.x() + 0.5 - p.x, dz = pile.z() + 0.5 - p.z, d = dx * dx + dz * dz;
+            if (d < bestD) {
+                bestD = d;
+                best = pile;
+            }
+        }
+        return best;
+    }
+
+    /**
+     * Picks up the nearest known pile within 10 blocks the way the use key does: the same checks and the same engine call
+     * as the unarmed Use chain's {@code BreakBlock} with {@code Harvest: true}, so the block's {@code Gathering.Harvest}
+     * drop list decides what goes into the inventory. Reports the hint the client shows, the poop in the inventory before
+     * and after, and what is left of the pile.
+     */
+    static final class Pick extends AbstractPlayerCommand {
+        Pick() {
+            super("pick", "cozyranch_produce.commands.poop.pick.desc");
+            this.requirePermission(RanchPermissions.ADMIN);
+        }
+
+        @Override
+        protected void execute(@Nonnull CommandContext context, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef player, @Nonnull World world) {
+            PoopService s = ProduceFeature.poop();
+            TransformComponent t = store.getComponent(ref, TransformComponent.getComponentType());
+            if (s == null || t == null) return;
+            PoopRules.Pile pile = nearestPile(s, world, t.getPosition());
+            if (pile == null) {
+                context.sendMessage(Message.translation("cozyranch_produce.poop.break.none"));
+                return;
+            }
+            Ref<ChunkStore> section = world.getChunkStore().getChunkSectionReferenceAtBlock(pile.x(), pile.y(), pile.z());
+            if (section == null || !section.isValid()) return;
+            Store<ChunkStore> chunks = world.getChunkStore().getStore();
+            BlockSection blocks = chunks.getComponent(section, BlockSection.getComponentType());
+            if (blocks == null) return;
+            BlockType type = BlockType.getAssetMap().getAsset(blocks.get(pile.x(), pile.y(), pile.z()));
+            boolean harvestable = BlockHarvestUtils.shouldPickupByInteraction(type)
+                && world.getGameplayConfig().getWorldConfig().isBlockGatheringAllowed();
+            String hint = type == null || type.getInteractionHint() == null ? "none" : type.getInteractionHint();
+            int before = poopHeld(store, ref);
+            if (harvestable) {
+                BlockHarvestUtils.performPickupByInteraction(ref, new Vector3i(pile.x(), pile.y(), pile.z()), type,
+                    blocks.getFiller(pile.x(), pile.y(), pile.z()), section, blocks, store, chunks);
+            }
+            world.execute(() -> world.execute(() -> {
+                int held = poopHeld(store, ref) - before;
+                int after = new PoopBlocks(world).count(pile.x(), pile.y(), pile.z());
+                context.sendMessage(Message.translation("cozyranch_produce.poop.pick.done")
+                    .param("x", pile.x()).param("y", pile.y()).param("z", pile.z()).param("count", pile.count())
+                    .param("harvestable", String.valueOf(harvestable)).param("hint", hint)
+                    .param("picked", held).param("after", after));
+            }));
+        }
+    }
+
+    /** Poop in the player's inventory. */
+    static int poopHeld(@Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref) {
+        if (!ref.isValid()) return 0;
+        return InventoryComponent.getCombined(store, ref, InventoryComponent.EVERYTHING)
+            .countItemStacks(i -> PoopRules.ITEM_DROP.equals(i.getItemId()));
     }
 
     /** Poop lying as dropped items within 3 blocks of a pile cell. */
