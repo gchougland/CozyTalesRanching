@@ -7,7 +7,7 @@
         {
           "tool": "asset_validate",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix7-compat"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true,
@@ -17,7 +17,7 @@
         {
           "tool": "ui_check_java",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix7-compat"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true
@@ -31,7 +31,7 @@
         {
           "tool": "project_build",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix7-compat",
+            "project": "CozyTales-Ranching",
             "system": "gradle",
             "tasks": [
               "build"
@@ -52,8 +52,8 @@
           "tool": "server_start",
           "arguments": {
             "artifacts": [
-              "_worktrees/CozyTales-Ranching-fix7-compat/build/libs/CozyTalesRanching-0.6.0.jar",
-              "_worktrees/CozyTales-Ranching-fix7-compat/build/skinsmod/Cellys_Wildlife_Skins_v1.3.1.zip"
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.0.jar",
+              "CozyTales-Ranching/build/skinsmod/Cellys_Wildlife_Skins_v1.3.1.zip"
             ],
             "authMode": "insecure",
             "port": 5622
@@ -724,8 +724,8 @@
           "tool": "server_start",
           "arguments": {
             "artifacts": [
-              "_worktrees/CozyTales-Ranching-fix7-compat/build/libs/CozyTalesRanching-0.6.0.jar",
-              "_worktrees/CozyTales-Ranching-fix7-compat/build/skinsmod/Cellys_Wildlife_Skins_v1.3.1.zip"
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.0.jar",
+              "CozyTales-Ranching/build/skinsmod/Cellys_Wildlife_Skins_v1.3.1.zip"
             ],
             "authMode": "insecure",
             "port": 5622
