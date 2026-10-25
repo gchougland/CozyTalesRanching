@@ -38,7 +38,7 @@ class HousePageLayoutTest {
         {"FULL", "full chicken coop: six residents, long names, a baby, traits, eggs waiting, every resident action", "houseui-full"},
         {"UNCHECKED", "frog pond whose habitat has not been checked", "houseui-unchecked"},
         {"MISSING", "frog pond missing lily pads (needed) and reeds (liked)", "houseui-missing"},
-        {"BREEDINGOFF", "sheepfold with breeding off", "houseui-breedingoff"},
+        {"BREEDINGOFF", "sheepfold with breeding and wild visitors off", "houseui-breedingoff"},
         {"TYPICAL", "a button pressed before the house service is installed", "houseui-unavailable", "result.unavailable"},
         {"PRODUCTS", "seven kinds of products waiting, huge counts", "houseui-products"},
         {"MILK", "milk waiting and no buckets: the bucket hint", "houseui-milk"},

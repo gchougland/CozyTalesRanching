@@ -863,7 +863,7 @@
                       "MessageId": "cozyranch_journal.list.1",
                       "MessageParams": {
                         "a": {
-                          "MessageId": "server.items.CozyRanch_Pond_Weed.name"
+                          "MessageId": "server.items.CozyRanch_Moose_Coat.name"
                         }
                       }
                     }
@@ -1755,6 +1755,20 @@
                 "selector": "#BreedingToggle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
                 }
               },
               {

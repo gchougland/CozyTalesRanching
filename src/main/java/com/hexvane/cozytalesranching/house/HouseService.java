@@ -24,6 +24,9 @@ public interface HouseService {
 
     @Nonnull Result setBreeding(@Nonnull PlayerRef actor, @Nonnull HouseRecord house, boolean enabled);
 
+    /** Lets wild animals of the house's kind come to visit, or stops them (a visitor there walks off). */
+    @Nonnull Result setVisitors(@Nonnull PlayerRef actor, @Nonnull HouseRecord house, boolean enabled);
+
     /** Brings a resident back to the door: from inside, or if lost or far away. */
     @Nonnull Result resummon(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal);
 
@@ -35,6 +38,7 @@ public interface HouseService {
         @Nonnull @Override public Result unassign(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal) { return Result.UNAVAILABLE; }
         @Nonnull @Override public Result rename(@Nonnull PlayerRef actor, @Nonnull HouseRecord house, @Nullable String name) { return Result.UNAVAILABLE; }
         @Nonnull @Override public Result setBreeding(@Nonnull PlayerRef actor, @Nonnull HouseRecord house, boolean enabled) { return Result.UNAVAILABLE; }
+        @Nonnull @Override public Result setVisitors(@Nonnull PlayerRef actor, @Nonnull HouseRecord house, boolean enabled) { return Result.UNAVAILABLE; }
         @Nonnull @Override public Result resummon(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal) { return Result.UNAVAILABLE; }
         @Override public boolean isInside(@Nonnull UUID animalId) { return false; }
     };

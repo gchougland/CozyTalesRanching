@@ -99,11 +99,15 @@ habitat.toy_bell = Sino suspenso
 habitat.toy_duck = pato flutuante
 habitat.toy_log = Tronco de escalada
 
-breeding.title = Reprodução
+breeding.title = Regras da casa
 breeding.on = Bebês são bem-vindos aqui.
 breeding.off = Nada de bebês por enquanto.
 breeding.turnon = Ligar
 breeding.turnoff = Desligar
+visitors.on = Visitantes selvagens são bem-vindos.
+visitors.off = Sem visitantes selvagens.
+visitors.turnon = Ligar
+visitors.turnoff = Desligar
 
 rename.title = Nome da casa
 rename.button = Renomear
@@ -113,6 +117,8 @@ result.unassigned = {name} saiu.
 result.resummoned = {name} está a caminho da porta.
 result.breeding.on = A reprodução está aberta. Filhotes são bem-vindos.
 result.breeding.off = A reprodução está suspensa.
+result.visitors.on = Animais selvagens desse tipo podem voltar a aparecer.
+result.visitors.off = Nada de visitantes selvagens nesta casa.
 result.renamed = Casa renomeada.
 result.renamed.reset = A casa voltou a ter seu nome habitual.
 result.not_owner = Somente o proprietário pode fazer alterações nesta casa.

@@ -22,10 +22,10 @@
       "steps": [
         {
           "tool": "asset_check",
-          "name": "CozyRanch_Pond_Weed",
+          "name": "CozyRanch_Moose_Coat",
           "arguments": {
             "root": "projects",
-            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Pond_Weed.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Moose_Coat.json"
           },
           "expect": {
             "errors": 0
@@ -198,10 +198,10 @@
         },
         {
           "tool": "asset_check",
-          "name": "CozyRanch_Recipe_Salvage_Pond_Weed",
+          "name": "CozyRanch_Recipe_Salvage_Moose_Coat",
           "arguments": {
             "root": "projects",
-            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Salvage_Pond_Weed.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Salvage_Moose_Coat.json"
           },
           "expect": {
             "errors": 0
@@ -259,14 +259,14 @@
       "steps": [
         {
           "tool": "texture_check",
-          "name": "Pond_Weed texture",
+          "name": "Moose_Coat texture",
           "arguments": {
             "root": "projects",
-            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Pond_Weed_Texture.png",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Moose_Coat_Texture.png",
             "category": "item",
             "model": {
               "root": "projects",
-              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Pond_Weed.blockymodel"
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Moose_Coat.blockymodel"
             },
             "image": false
           },
@@ -485,13 +485,13 @@
       "steps": [
         {
           "tool": "model_render",
-          "name": "Pond_Weed",
+          "name": "Moose_Coat",
           "arguments": {
             "root": "projects",
-            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Pond_Weed.blockymodel",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Moose_Coat.blockymodel",
             "texture": {
               "root": "projects",
-              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Pond_Weed_Texture.png"
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Moose_Coat_Texture.png"
             },
             "yaw": 35,
             "pitch": 25,
@@ -519,7 +519,7 @@
               }
             }
           },
-          "golden": "tests/hytale/golden/items050/CozyRanch_Pond_Weed.png"
+          "golden": "tests/hytale/golden/items050/CozyRanch_Moose_Coat.png"
         },
         {
           "tool": "model_render",

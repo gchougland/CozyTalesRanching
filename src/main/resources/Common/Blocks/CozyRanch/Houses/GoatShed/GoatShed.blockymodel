@@ -4390,7 +4390,7 @@
       "position": {
         "x": -6,
         "y": 48,
-        "z": 36.6
+        "z": 35.1
       },
       "orientation": {
         "x": 0,
@@ -4498,7 +4498,7 @@
       "position": {
         "x": -9,
         "y": 48.5,
-        "z": 37.3
+        "z": 35.8
       },
       "orientation": {
         "x": 0,
@@ -4606,7 +4606,7 @@
       "position": {
         "x": -3,
         "y": 48.5,
-        "z": 37.3
+        "z": 35.8
       },
       "orientation": {
         "x": 0,
@@ -4714,7 +4714,7 @@
       "position": {
         "x": -6,
         "y": 47,
-        "z": 37.3
+        "z": 35.8
       },
       "orientation": {
         "x": 0,
@@ -5685,7 +5685,7 @@
       "name": "Pail0",
       "position": {
         "x": -42,
-        "y": 4.7,
+        "y": 4,
         "z": -22
       },
       "orientation": {
@@ -5793,7 +5793,7 @@
       "name": "Pail1",
       "position": {
         "x": -42,
-        "y": 4.7,
+        "y": 4,
         "z": -22
       },
       "orientation": {
@@ -5901,7 +5901,7 @@
       "name": "Pail2",
       "position": {
         "x": -42,
-        "y": 4.7,
+        "y": 4,
         "z": -22
       },
       "orientation": {
@@ -6009,7 +6009,7 @@
       "name": "Pail3",
       "position": {
         "x": -42,
-        "y": 4.7,
+        "y": 4,
         "z": -22
       },
       "orientation": {
@@ -6117,7 +6117,7 @@
       "name": "PailRim0",
       "position": {
         "x": -42,
-        "y": 9.5,
+        "y": 8.8,
         "z": -22
       },
       "orientation": {
@@ -6225,7 +6225,7 @@
       "name": "PailRim1",
       "position": {
         "x": -42,
-        "y": 9.5,
+        "y": 8.8,
         "z": -22
       },
       "orientation": {
@@ -6333,7 +6333,7 @@
       "name": "PailRim2",
       "position": {
         "x": -42,
-        "y": 9.5,
+        "y": 8.8,
         "z": -22
       },
       "orientation": {
@@ -6441,7 +6441,7 @@
       "name": "PailRim3",
       "position": {
         "x": -42,
-        "y": 9.5,
+        "y": 8.8,
         "z": -22
       },
       "orientation": {
@@ -6548,15 +6548,15 @@
       "id": "62",
       "name": "Boulder",
       "position": {
-        "x": 32,
-        "y": 7,
-        "z": 24
+        "x": 30.5,
+        "y": 6,
+        "z": 12
       },
       "orientation": {
-        "x": 0.029998,
-        "y": 0.102039,
-        "z": 0.064496,
-        "w": 0.992234
+        "x": 0,
+        "y": 0.052336,
+        "z": 0,
+        "w": 0.99863
       },
       "shape": {
         "type": "box",
@@ -6656,9 +6656,9 @@
       "id": "63",
       "name": "BoulderRound",
       "position": {
-        "x": 32,
-        "y": 6.44,
-        "z": 24
+        "x": 30.5,
+        "y": 5.5,
+        "z": 12
       },
       "orientation": {
         "x": 0,
@@ -6764,9 +6764,9 @@
       "id": "64",
       "name": "BoulderCap",
       "position": {
-        "x": 32,
-        "y": 15.5,
-        "z": 24
+        "x": 30.5,
+        "y": 14,
+        "z": 12
       },
       "orientation": {
         "x": 0,
@@ -6872,15 +6872,15 @@
       "id": "65",
       "name": "Boulder2",
       "position": {
-        "x": 33,
-        "y": 7.5,
-        "z": 4
+        "x": 30.5,
+        "y": 5,
+        "z": -25
       },
       "orientation": {
-        "x": -0.03494,
-        "y": -0.071266,
-        "z": -0.049995,
-        "w": 0.995591
+        "x": 0,
+        "y": -0.043619,
+        "z": 0,
+        "w": 0.999048
       },
       "shape": {
         "type": "box",
@@ -6980,9 +6980,9 @@
       "id": "66",
       "name": "Boulder2Round",
       "position": {
-        "x": 33,
-        "y": 7.02,
-        "z": 4
+        "x": 30.5,
+        "y": 4.5,
+        "z": -25
       },
       "orientation": {
         "x": 0,
@@ -7085,126 +7085,18 @@
       "children": []
     },
     {
-      "id": "67",
-      "name": "Boulder2Cap",
-      "position": {
-        "x": 33,
-        "y": 15,
-        "z": 4
-      },
-      "orientation": {
-        "x": 0,
-        "y": 0.104528,
-        "z": 0,
-        "w": 0.994522
-      },
-      "shape": {
-        "type": "box",
-        "offset": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "stretch": {
-          "x": 1,
-          "y": 1,
-          "z": 1
-        },
-        "settings": {
-          "size": {
-            "x": 10,
-            "y": 3,
-            "z": 11
-          }
-        },
-        "textureLayout": {
-          "front": {
-            "offset": {
-              "x": 257,
-              "y": 276
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "back": {
-            "offset": {
-              "x": 269,
-              "y": 276
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "left": {
-            "offset": {
-              "x": 181,
-              "y": 276
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "right": {
-            "offset": {
-              "x": 194,
-              "y": 276
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "top": {
-            "offset": {
-              "x": 395,
-              "y": 211
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "bottom": {
-            "offset": {
-              "x": 407,
-              "y": 211
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          }
-        },
-        "unwrapMode": "custom",
-        "visible": true,
-        "doubleSided": false,
-        "shadingMode": "standard"
-      },
-      "children": []
-    },
-    {
       "id": "68",
       "name": "Boulder3",
       "position": {
-        "x": 32,
-        "y": 9.4,
-        "z": -16
+        "x": 31,
+        "y": 7,
+        "z": -6
       },
       "orientation": {
         "x": 0,
-        "y": -0.121869,
+        "y": -0.061049,
         "z": 0,
-        "w": 0.992546
+        "w": 0.998135
       },
       "shape": {
         "type": "box",
@@ -7304,9 +7196,9 @@
       "id": "69",
       "name": "Boulder3Round",
       "position": {
-        "x": 32,
-        "y": 8.68,
-        "z": -16
+        "x": 31,
+        "y": 6,
+        "z": -6
       },
       "orientation": {
         "x": 0,
@@ -7412,9 +7304,9 @@
       "id": "70",
       "name": "Boulder3Cap",
       "position": {
-        "x": 32,
-        "y": 19.9,
-        "z": -16
+        "x": 31,
+        "y": 17,
+        "z": -6
       },
       "orientation": {
         "x": 0,
@@ -7520,15 +7412,15 @@
       "id": "71",
       "name": "Boulder4",
       "position": {
-        "x": 30,
-        "y": 21,
-        "z": -6
+        "x": 29.2,
+        "y": 16.5,
+        "z": -25
       },
       "orientation": {
-        "x": 0.043498,
-        "y": 0.039744,
-        "z": 0.080346,
-        "w": 0.995024
+        "x": 0,
+        "y": 0.043619,
+        "z": 0,
+        "w": 0.999048
       },
       "shape": {
         "type": "box",
@@ -7628,9 +7520,9 @@
       "id": "72",
       "name": "Boulder4Round",
       "position": {
-        "x": 30,
-        "y": 20.52,
-        "z": -6
+        "x": 29.2,
+        "y": 15.5,
+        "z": -25
       },
       "orientation": {
         "x": 0,
@@ -7733,126 +7625,18 @@
       "children": []
     },
     {
-      "id": "73",
-      "name": "Boulder4Cap",
-      "position": {
-        "x": 30,
-        "y": 28.5,
-        "z": -6
-      },
-      "orientation": {
-        "x": 0,
-        "y": 0.21644,
-        "z": 0,
-        "w": 0.976296
-      },
-      "shape": {
-        "type": "box",
-        "offset": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "stretch": {
-          "x": 1,
-          "y": 1,
-          "z": 1
-        },
-        "settings": {
-          "size": {
-            "x": 8,
-            "y": 3,
-            "z": 9
-          }
-        },
-        "textureLayout": {
-          "front": {
-            "offset": {
-              "x": 345,
-              "y": 276
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "back": {
-            "offset": {
-              "x": 355,
-              "y": 276
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "left": {
-            "offset": {
-              "x": 281,
-              "y": 276
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "right": {
-            "offset": {
-              "x": 292,
-              "y": 276
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "top": {
-            "offset": {
-              "x": 78,
-              "y": 225
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "bottom": {
-            "offset": {
-              "x": 88,
-              "y": 225
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          }
-        },
-        "unwrapMode": "custom",
-        "visible": true,
-        "doubleSided": false,
-        "shadingMode": "standard"
-      },
-      "children": []
-    },
-    {
       "id": "74",
       "name": "Boulder5",
       "position": {
-        "x": 30,
-        "y": 32,
-        "z": -22
+        "x": 29,
+        "y": 3,
+        "z": 28
       },
       "orientation": {
-        "x": -0.027708,
-        "y": 0.18731,
-        "z": -0.076386,
-        "w": 0.978934
+        "x": 0,
+        "y": 0.069756,
+        "z": 0,
+        "w": 0.997564
       },
       "shape": {
         "type": "box",
@@ -7952,15 +7736,15 @@
       "id": "75",
       "name": "Boulder5Round",
       "position": {
-        "x": 30,
-        "y": 31.6,
-        "z": -22
+        "x": 29,
+        "y": 3,
+        "z": 28
       },
       "orientation": {
         "x": 0,
-        "y": 0.551937,
+        "y": 0.529919,
         "z": 0,
-        "w": 0.833886
+        "w": 0.848048
       },
       "shape": {
         "type": "box",
@@ -8060,15 +7844,15 @@
       "id": "76",
       "name": "Boulder5Cap",
       "position": {
-        "x": 30,
-        "y": 38.5,
-        "z": -22
+        "x": 29,
+        "y": 9,
+        "z": 28
       },
       "orientation": {
         "x": 0,
-        "y": 0.358368,
+        "y": 0.309017,
         "z": 0,
-        "w": 0.93358
+        "w": 0.951057
       },
       "shape": {
         "type": "box",
@@ -8168,15 +7952,15 @@
       "id": "77",
       "name": "Ledge",
       "position": {
-        "x": 31,
-        "y": 42,
-        "z": -10
+        "x": 29,
+        "y": 24,
+        "z": -25
       },
       "orientation": {
         "x": 0,
-        "y": -0.034899,
+        "y": 0.017452,
         "z": 0,
-        "w": 0.999391
+        "w": 0.999848
       },
       "shape": {
         "type": "box",
@@ -8192,9 +7976,9 @@
         },
         "settings": {
           "size": {
-            "x": 14,
+            "x": 11,
             "y": 4,
-            "z": 30
+            "z": 12
           }
         },
         "textureLayout": {
@@ -8273,120 +8057,12 @@
       "children": []
     },
     {
-      "id": "78",
-      "name": "LedgeLip",
-      "position": {
-        "x": 31,
-        "y": 39.5,
-        "z": -10
-      },
-      "orientation": {
-        "x": 0,
-        "y": -0.087156,
-        "z": 0,
-        "w": 0.996195
-      },
-      "shape": {
-        "type": "box",
-        "offset": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "stretch": {
-          "x": 1,
-          "y": 1,
-          "z": 1
-        },
-        "settings": {
-          "size": {
-            "x": 12,
-            "y": 2,
-            "z": 26
-          }
-        },
-        "textureLayout": {
-          "front": {
-            "offset": {
-              "x": 89,
-              "y": 281
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "back": {
-            "offset": {
-              "x": 103,
-              "y": 281
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "left": {
-            "offset": {
-              "x": 501,
-              "y": 276
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "right": {
-            "offset": {
-              "x": 529,
-              "y": 276
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "top": {
-            "offset": {
-              "x": 265,
-              "y": 161
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "bottom": {
-            "offset": {
-              "x": 279,
-              "y": 161
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          }
-        },
-        "unwrapMode": "custom",
-        "visible": true,
-        "doubleSided": false,
-        "shadingMode": "standard"
-      },
-      "children": []
-    },
-    {
       "id": "79",
       "name": "WinInset",
       "position": {
         "x": -6,
         "y": 44,
-        "z": -36.5
+        "z": -35
       },
       "orientation": {
         "x": 0,
@@ -8494,7 +8170,7 @@
       "position": {
         "x": -17,
         "y": 44,
-        "z": -37.5
+        "z": -36
       },
       "orientation": {
         "x": 0,
@@ -8602,7 +8278,7 @@
       "position": {
         "x": 5,
         "y": 44,
-        "z": -37.5
+        "z": -36
       },
       "orientation": {
         "x": 0,
@@ -8710,7 +8386,7 @@
       "position": {
         "x": -6,
         "y": 37,
-        "z": -38
+        "z": -36.5
       },
       "orientation": {
         "x": 0,

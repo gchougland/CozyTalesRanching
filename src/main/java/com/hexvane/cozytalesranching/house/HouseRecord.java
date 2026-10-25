@@ -33,6 +33,8 @@ public final class HouseRecord {
     public long lastMorningDay = -1;
     /** The house page's breeding toggle. Written by the house service, read by breeding. */
     public boolean breedingEnabled = true;
+    /** The house page's wild visitors toggle: false and no wild animal comes to visit this house. */
+    public boolean visitorsEnabled = true;
     /** Habitat around the house, written by care at most every HabitatScanIntervalSeconds. */
     public boolean habitatRequirementsMet;
     /** 0..1: required features present plus the share of preferred features present. */

@@ -377,6 +377,20 @@
               },
               {
                 "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
+                }
+              },
+              {
+                "type": "Set",
                 "selector": "#RenameTitle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.rename.title"
@@ -1159,6 +1173,20 @@
                 "selector": "#BreedingToggle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
                 }
               },
               {
@@ -2345,6 +2373,20 @@
               },
               {
                 "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
+                }
+              },
+              {
+                "type": "Set",
                 "selector": "#RenameTitle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.rename.title"
@@ -2960,6 +3002,20 @@
                 "selector": "#BreedingToggle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
                 }
               },
               {
@@ -3672,6 +3728,20 @@
               },
               {
                 "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
+                }
+              },
+              {
+                "type": "Set",
                 "selector": "#RenameTitle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.rename.title"
@@ -3702,7 +3772,7 @@
         },
         {
           "tool": "ui_render",
-          "name": "sheepfold with breeding off",
+          "name": "sheepfold with breeding and wild visitors off",
           "arguments": {
             "root": "projects",
             "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
@@ -4435,6 +4505,20 @@
                 "selector": "#BreedingToggle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.breeding.turnon"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.off"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnon"
                 }
               },
               {
@@ -5232,6 +5316,20 @@
               },
               {
                 "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
+                }
+              },
+              {
+                "type": "Set",
                 "selector": "#RenameTitle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.rename.title"
@@ -6007,6 +6105,20 @@
               },
               {
                 "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
+                }
+              },
+              {
+                "type": "Set",
                 "selector": "#RenameTitle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.rename.title"
@@ -6593,6 +6705,20 @@
                 "selector": "#BreedingToggle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
                 }
               },
               {
@@ -7867,6 +7993,20 @@
               },
               {
                 "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
+                }
+              },
+              {
+                "type": "Set",
                 "selector": "#RenameTitle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.rename.title"
@@ -8857,6 +8997,20 @@
                 "selector": "#BreedingToggle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
                 }
               },
               {
@@ -10095,6 +10249,20 @@
               },
               {
                 "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
+                }
+              },
+              {
+                "type": "Set",
                 "selector": "#RenameTitle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.rename.title"
@@ -10688,6 +10856,20 @@
                 "selector": "#BreedingToggle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
                 }
               },
               {
@@ -11881,6 +12063,20 @@
               },
               {
                 "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
+                }
+              },
+              {
+                "type": "Set",
                 "selector": "#RenameTitle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.rename.title"
@@ -12670,6 +12866,20 @@
                 "selector": "#BreedingToggle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
                 }
               },
               {
@@ -13859,6 +14069,20 @@
                 "selector": "#BreedingToggle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
                 }
               },
               {
@@ -15151,6 +15375,20 @@
                 "selector": "#BreedingToggle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.breeding.turnoff"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
                 }
               },
               {

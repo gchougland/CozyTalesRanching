@@ -24,6 +24,7 @@ public record HouseView(
     @Nonnull List<Resident> residents,
     @Nonnull Habitat habitat,
     boolean breeding,
+    boolean visitors,
     @Nonnull List<Follower> followers,
     @Nullable String customName,
     @Nullable Txt notice,
@@ -130,7 +131,7 @@ public record HouseView(
         boolean picking = state.picking() && !targets.isEmpty();
         int capacity = Math.max(1, house.capacity);
         return new HouseView(title, speciesName, residents.size(), capacity, rows, habitat(house, species, counts),
-            house.breedingEnabled, follow, custom, notice, products, selected, picking, targets, borderOn);
+            house.breedingEnabled, house.visitorsEnabled, follow, custom, notice, products, selected, picking, targets, borderOn);
     }
 
     /** The house's own name, else its item's name, else "{species} House". */

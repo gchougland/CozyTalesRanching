@@ -1926,6 +1926,20 @@
               },
               {
                 "type": "Set",
+                "selector": "#VisitorsState.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.on"
+                }
+              },
+              {
+                "type": "Set",
+                "selector": "#VisitorsToggle.TextSpans",
+                "data": {
+                  "MessageId": "cozyranch_houseui.visitors.turnoff"
+                }
+              },
+              {
+                "type": "Set",
                 "selector": "#RenameTitle.TextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.rename.title"

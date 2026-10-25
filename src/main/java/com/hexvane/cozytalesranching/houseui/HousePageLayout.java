@@ -20,6 +20,7 @@ public final class HousePageLayout {
     public static final String ACTION_CALL_BACK = "CallBack";
     public static final String ACTION_MOVE_IN = "MoveIn";
     public static final String ACTION_BREEDING = "Breeding";
+    public static final String ACTION_VISITORS = "Visitors";
     public static final String ACTION_RENAME = "Rename";
     public static final String ACTION_SELECT = "Select";
     public static final String ACTION_LOCATE = "Locate";
@@ -64,6 +65,9 @@ public final class HousePageLayout {
         ui.text("#BreedingState", Txt.ui(view.breeding() ? "breeding.on" : "breeding.off"));
         ui.text("#BreedingToggle", Txt.ui(view.breeding() ? "breeding.turnoff" : "breeding.turnon"));
         ui.click("#BreedingToggle", ACTION_BREEDING, "");
+        ui.text("#VisitorsState", Txt.ui(view.visitors() ? "visitors.on" : "visitors.off"));
+        ui.text("#VisitorsToggle", Txt.ui(view.visitors() ? "visitors.turnoff" : "visitors.turnon"));
+        ui.click("#VisitorsToggle", ACTION_VISITORS, "");
 
         ui.text("#RenameTitle", Txt.ui("rename.title"));
         ui.set("#RenameField.Value", view.customName() == null ? "" : view.customName());

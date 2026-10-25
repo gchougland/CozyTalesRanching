@@ -102,6 +102,16 @@ final class HouseServiceImpl implements HouseService {
     }
 
     @Nonnull @Override
+    public Result setVisitors(@Nonnull PlayerRef actor, @Nonnull HouseRecord house, boolean enabled) {
+        if (Ranch.houses().get(house.houseId).isEmpty()) return Result.NOT_FOUND;
+        Result check = manage(actor, house);
+        if (check != Result.OK) return check;
+        house.visitorsEnabled = enabled;
+        Ranch.houses().markDirty(house);
+        return Result.OK;
+    }
+
+    @Nonnull @Override
     public Result resummon(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal) {
         if (animal.houseId == null) return Result.NOT_FOUND;
         HouseRecord house = Ranch.houses().get(animal.houseId).orElse(null);

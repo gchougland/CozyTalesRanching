@@ -117,6 +117,7 @@ final class WildlifeWorld {
 
     /** Loaded origin, owner online, and a player near. */
     static boolean eligible(@Nonnull World world, @Nonnull HouseRecord house, @Nonnull List<Vector3d> players, @Nonnull WildlifeConfig config) {
+        if (!house.visitorsEnabled) return false;
         if (house.ownerId == null || !chunkLoaded(world, house.x, house.z)) return false;
         Universe universe = Universe.get();
         if (universe == null || universe.getPlayer(house.ownerId) == null) return false;
@@ -161,6 +162,12 @@ final class WildlifeWorld {
                     visitors.markDirty(world.getName());
                     continue;
                 }
+                if (!welcome(v)) {
+                    LOG.info("Wildlife: visitor " + v.entityUuid + " (" + v.speciesId + ") walks off: house " + v.houseId + " turned wild visitors off");
+                    startLeaving(world, store, ref, v, now);
+                    visitors.markDirty(world.getName());
+                    continue;
+                }
                 if (now >= v.leaveAtMs) {
                     startLeaving(world, store, ref, v, now);
                     visitors.markDirty(world.getName());
@@ -182,6 +189,12 @@ final class WildlifeWorld {
     static boolean atOwnKindsHouse(@Nonnull Visitor v) {
         HouseRecord house = v.houseId == null ? null : Ranch.houses().get(v.houseId).orElse(null);
         return house != null && v.speciesId != null && WildlifeRules.visitsHouse(v.speciesId, house.speciesId);
+    }
+
+    /** The visitor's house still welcomes wild visitors (its page's toggle). */
+    static boolean welcome(@Nonnull Visitor v) {
+        HouseRecord house = v.houseId == null ? null : Ranch.houses().get(v.houseId).orElse(null);
+        return house == null || house.visitorsEnabled;
     }
 
     /** The entity is still the wild visitor we spawned: same role, and nobody has made it a ranch animal. */

@@ -300,14 +300,34 @@ $C.@PageOverlay {
                 Text: "";
               }
 
-              Label #BreedingState {
-                Style: (...$H.@BodyStyle, FontSize: 14, Wrap: true);
-                Anchor: (Bottom: 10);
-                Text: "";
+              Group #BreedingRow {
+                LayoutMode: Left;
+                Anchor: (Height: 36, Bottom: 6);
+
+                Label #BreedingState {
+                  FlexWeight: 1;
+                  Style: (...$H.@BodyStyle, FontSize: 13, VerticalAlignment: Center, Wrap: true);
+                  Text: "";
+                }
+
+                $C.@SmallSecondaryTextButton #BreedingToggle {
+                  @Anchor = (Width: 112, Height: 32, Left: 8);
+                }
               }
 
-              $C.@SmallSecondaryTextButton #BreedingToggle {
-                @Anchor = (Height: 32);
+              Group #VisitorsRow {
+                LayoutMode: Left;
+                Anchor: (Height: 36);
+
+                Label #VisitorsState {
+                  FlexWeight: 1;
+                  Style: (...$H.@BodyStyle, FontSize: 13, VerticalAlignment: Center, Wrap: true);
+                  Text: "";
+                }
+
+                $C.@SmallSecondaryTextButton #VisitorsToggle {
+                  @Anchor = (Width: 112, Height: 32, Left: 8);
+                }
               }
             }
 

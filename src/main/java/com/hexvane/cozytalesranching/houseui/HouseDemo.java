@@ -125,6 +125,7 @@ public final class HouseDemo implements HouseSource {
             case BREEDINGOFF -> {
                 HouseDemo d = new HouseDemo(owner, "sheep", "CozyRanch_House_Sheepfold", 4);
                 d.house.breedingEnabled = false;
+                d.house.visitorsEnabled = false;
                 d.habitat(true, 0.8f, "flowers");
                 d.resident("Woolliam", 5, 0.9f, false, false, "gourmet");
                 d.resident("Cotton", 3, 0.74f, false, false);
@@ -382,6 +383,12 @@ public final class HouseDemo implements HouseSource {
         @Nonnull @Override
         public Result setBreeding(@Nonnull PlayerRef actor, @Nonnull HouseRecord h, boolean enabled) {
             h.breedingEnabled = enabled;
+            return Result.OK;
+        }
+
+        @Nonnull @Override
+        public Result setVisitors(@Nonnull PlayerRef actor, @Nonnull HouseRecord h, boolean enabled) {
+            h.visitorsEnabled = enabled;
             return Result.OK;
         }
 

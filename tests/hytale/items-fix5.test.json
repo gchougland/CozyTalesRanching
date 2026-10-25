@@ -78,7 +78,7 @@
     },
     {
       "name": "fertiliser and salvage",
-      "description": "Notes 2, 3, 5, 6: Bat Guano is the one fertiliser; Moss Tuft is a crafting moss only; Pond Weed salvages into Plant Fiber; antler and pellet salvage only; the poop pile has no recipe; the tortoise gives Sturdy Chitin.",
+      "description": "Notes 2, 3, 5, 6: Bat Guano is the one fertiliser; Moss Tuft is a crafting moss only; Shed Moose Coat salvages into Heavy Hide; antler and pellet salvage only; the poop pile has no recipe; the tortoise gives Sturdy Chitin.",
       "steps": [
         {
           "tool": "asset_check",
@@ -104,10 +104,10 @@
         },
         {
           "tool": "asset_check",
-          "name": "CozyRanch_Recipe_Salvage_Pond_Weed",
+          "name": "CozyRanch_Recipe_Salvage_Moose_Coat",
           "arguments": {
             "root": "projects",
-            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Salvage_Pond_Weed.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Salvage_Moose_Coat.json"
           },
           "expect": {
             "errors": 0
@@ -126,10 +126,10 @@
         },
         {
           "tool": "asset_check",
-          "name": "CozyRanch_Pond_Weed",
+          "name": "CozyRanch_Moose_Coat",
           "arguments": {
             "root": "projects",
-            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Pond_Weed.json"
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Moose_Coat.json"
           },
           "expect": {
             "errors": 0

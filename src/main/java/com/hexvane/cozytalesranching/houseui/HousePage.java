@@ -117,6 +117,11 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
                 HouseService.Result result = service.setBreeding(playerRef, house, enable);
                 return result == HouseService.Result.OK ? Txt.ui(enable ? "result.breeding.on" : "result.breeding.off") : failure(result);
             }
+            case HousePageLayout.ACTION_VISITORS -> {
+                boolean enable = !house.visitorsEnabled;
+                HouseService.Result result = service.setVisitors(playerRef, house, enable);
+                return result == HouseService.Result.OK ? Txt.ui(enable ? "result.visitors.on" : "result.visitors.off") : failure(result);
+            }
             case HousePageLayout.ACTION_RENAME -> {
                 String name = HouseView.cleanName(data.name);
                 HouseService.Result result = service.rename(playerRef, house, name);

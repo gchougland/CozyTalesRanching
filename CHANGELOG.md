@@ -6,6 +6,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 ### Added
 
+- **House rules:** each house page has a **Wild visitors** switch next to Breeding. Turn it off and that house draws no wild animals (one already there wanders off); turn it on again any time.
 - **Wildlife skins stay on:** tamed animals keep the skin they had in the wild (for skin packs such as Celly's Wildlife Skins), through houses, breeding and release.
 - **Tetrabird:** a new animal with its own **Fossil Nest** of fossil ribs and a horned skull. Tetrabirds fan their tails, scratch and crow, and drop dark feathers.
 - **Raven's Thrift:** the Raven Leather armour made at the Armour Bench now says on its tooltip that it sometimes gives back the arrows you shoot.
@@ -35,6 +36,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 ### Changed
 
+- **Moose shed their winter coat** instead of bringing up Pond Weed: salvage a **Shed Moose Coat** into Heavy Hide at the Salvager's Workbench. No other animal gives Heavy Hide.
 - **Houses run on game time:** sleeping through the night, or skipping time, counts for production, breeding, growing up and meals, the way furnaces and crops work.
 - **Hay Bales** count as hay and as a perch, two flowers are enough for flowers, and houses re-check their surroundings a moment after you build nearby.
 - **The naming page** says how to make your new friend stay or follow you (Crouch + Interact), and where to rename it later.
@@ -58,6 +60,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 ### Fixed
 
+- **The Goat Shed's rock pile** no longer has a slab hanging in the air: every rock rests on the ground or the rock below it.
 - **"What counts" tooltips** show their text instead of "{counts}".
 - **The Climbing Log** recipe accepts any tree log.
 - **The Fossil Nest's doorway** no longer has see-through gaps.

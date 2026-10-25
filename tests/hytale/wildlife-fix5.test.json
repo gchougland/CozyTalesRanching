@@ -27,7 +27,7 @@
     },
     {
       "name": "fix5 wildlife live: a house draws only its own kind",
-      "description": "Note 17. In a stone test yard in the sky: a pigsty with mud and a pool of water (2 of its 3 loves) right next to a frog-friendly spot (the pool, a lily pad, reeds, tall grass) draws no frog (chances -; before fix 5 it listed frog 0.30), and the admin spawn of a frog at the sty is refused (OTHER_SPECIES). A frog pond beside the same pool lists frog as its chance.",
+      "description": "Note 17. In a stone test yard in the sky: a pigsty with mud and a pool of water (2 of its 3 loves) right next to a frog-friendly spot (the pool, a lily pad, reeds, tall grass) draws no frog (chances -; before fix 5 it listed frog 0.30), and the admin spawn of a frog at the sty is refused (OTHER_SPECIES). A frog pond beside the same pool lists frog as its chance. Then the frog pond's page turns wild visitors off: the pond is no longer eligible for visitors, and turned back on it is again.",
       "steps": [
         {
           "tool": "server_start",
@@ -1078,6 +1078,173 @@
             "where": {
               "message": {
                 "messageId": "cozyranch_wildlife.pass.done"
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch wildlife status"
+          },
+          "save": "st_before"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${st_before.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_wildlife.status.house",
+                "params": {
+                  "species": {
+                    "value": "frog"
+                  },
+                  "eligible": {
+                    "value": true
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug use"
+          },
+          "save": "use"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 2000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "ui_event",
+            "data": {
+              "Action": "Visitors"
+            }
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 1500
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch wildlife status"
+          },
+          "save": "st_off"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${st_off.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_wildlife.status.house",
+                "params": {
+                  "species": {
+                    "value": "frog"
+                  },
+                  "eligible": {
+                    "value": false
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "ui_event",
+            "data": {
+              "Action": "Visitors"
+            }
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 1500
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch wildlife status"
+          },
+          "save": "st_on"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${st_on.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_wildlife.status.house",
+                "params": {
+                  "species": {
+                    "value": "frog"
+                  },
+                  "eligible": {
+                    "value": true
+                  }
+                }
               }
             },
             "timeoutMs": 10000

@@ -1,16 +1,16 @@
 {
   "TranslationProperties": {
-    "Name": "cozyranch_items.items.CozyRanch_Pond_Weed.name",
-    "Description": "cozyranch_items.items.CozyRanch_Pond_Weed.description"
+    "Name": "cozyranch_items.items.CozyRanch_Moose_Coat.name",
+    "Description": "cozyranch_items.items.CozyRanch_Moose_Coat.description"
   },
   "Categories": [
     "Items.Ingredients",
     "CozyRanch.Produce"
   ],
   "Quality": "Common",
-  "Model": "Items/CozyRanch/Produce/Pond_Weed.blockymodel",
-  "Texture": "Items/CozyRanch/Produce/Pond_Weed_Texture.png",
-  "Icon": "Icons/ItemsGenerated/CozyRanch_Pond_Weed.png",
+  "Model": "Items/CozyRanch/Produce/Moose_Coat.blockymodel",
+  "Texture": "Items/CozyRanch/Produce/Moose_Coat_Texture.png",
+  "Icon": "Icons/ItemsGenerated/CozyRanch_Moose_Coat.png",
   "IconProperties": {
     "Scale": 0.75,
     "Translation": [
@@ -32,5 +32,5 @@
   },
   "MaxStack": 50,
   "DropOnDeath": true,
-  "ItemSoundSetId": "ISS_Items_Foliage"
+  "ItemSoundSetId": "ISS_Items_Leather"
 }
