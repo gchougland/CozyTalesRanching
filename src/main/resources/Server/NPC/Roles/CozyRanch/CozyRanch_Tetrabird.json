@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Tetrabird",
+    "SeparationDistance": 0.8,
+    "DropList": "Drop_Tetrabird",
+    "MaxHealth": 38,
+    "MaxSpeed": 6,
+    "ParticleOffset": [
+      0,
+      2.2,
+      0
+    ],
+    "WanderRadius": 8,
+    "FoodItems": [
+      "Plant_Crop_Corn_Item",
+      "Plant_Fruit_Berries_Red",
+      "Plant_Crop_Pumpkin_Item",
+      "Plant_Seeds_Sunflower",
+      "CozyRanch_Food_Crickets"
+    ],
+    "FollowStopDistance": 2.4,
+    "NameTranslationKey": "server.npcRoles.Tetrabird.name"
+  }
+}

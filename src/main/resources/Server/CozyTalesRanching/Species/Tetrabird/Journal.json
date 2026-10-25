@@ -1,0 +1,24 @@
+{
+  "Species": [
+    {
+      "Id": "tetrabird",
+      "Order": 390,
+      "DescriptionKey": "cozyranch_journal.species.tetrabird.desc",
+      "RareKey": "cozyranch_journal.species.tetrabird.rare",
+      "Art": "UI/Custom/CozyRanch/Journal/Tetrabird.png",
+      "Silhouette": "UI/Custom/CozyRanch/Journal/TetrabirdSilhouette.png",
+      "Behaviours": [
+        "tetrabird_crow",
+        "tetrabird_display",
+        "tetrabird_scratch",
+        "peck",
+        "trough_snack",
+        "follow_parent",
+        "socialise",
+        "nap",
+        "toy_ball",
+        "toy_log"
+      ]
+    }
+  ]
+}

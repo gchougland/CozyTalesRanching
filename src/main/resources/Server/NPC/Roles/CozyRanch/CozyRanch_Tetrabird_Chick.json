@@ -1,0 +1,26 @@
+{
+  "Type": "Variant",
+  "Reference": "Template_CozyRanch_Animal",
+  "Modify": {
+    "Appearance": "CozyRanch_Tetrabird_Chick",
+    "SeparationDistance": 0.5,
+    "DropList": "Empty",
+    "MaxHealth": 19,
+    "MaxSpeed": 5,
+    "ParticleOffset": [
+      0,
+      1.2,
+      0
+    ],
+    "WanderRadius": 6,
+    "FoodItems": [
+      "Plant_Crop_Corn_Item",
+      "Plant_Fruit_Berries_Red",
+      "Plant_Crop_Pumpkin_Item",
+      "Plant_Seeds_Sunflower",
+      "CozyRanch_Food_Crickets"
+    ],
+    "FollowStopDistance": 1.6,
+    "NameTranslationKey": "cozyranch_species.tetrabird.baby.name"
+  }
+}
