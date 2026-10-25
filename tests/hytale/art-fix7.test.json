@@ -1,0 +1,306 @@
+{
+  "cases": [
+    {
+      "name": "art-fix7 gate",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0,
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "art-fix7 Fossil Nest doorway",
+      "description": "Gibson's note 4: see-through holes in the Fossil Nest doorway. The dark opening was a 34-high panel plus a narrower 6-high arch panel, leaving two 4 x 6 notches at the top corners that looked into the house (the moss roof underside and the back wall showed through from an angle). Now one dark panel fills the opening up under the lintel and stepped stone corner blocks, sunk into the jambs and lintel, make the round top. Also two near-coplanar pairs fixed (rib knob 2 vs its rib, femur end vs nest/femur). Display point unchanged. Before close-ups: tests/hytale/golden/art-fix7/before/FossilNest_*.png; after close-ups: tests/hytale/golden/art-fix7/closeups/FossilNest_*.png.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "FossilNest views",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FossilNest.json",
+            "views": [
+              "front",
+              "three_quarter",
+              "left",
+              "back_three_quarter"
+            ],
+            "size": 420
+          },
+          "golden": "tests/hytale/golden/art-fix7/FossilNest.png",
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 3.3
+              },
+              "depth": {
+                "$lte": 3.3
+              },
+              "height": {
+                "$lte": 3.3
+              }
+            }
+          }
+        },
+        {
+          "tool": "model_render",
+          "name": "FossilNest doorway straight on",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Houses/FossilNest/FossilNest.blockymodel",
+            "yaw": 0,
+            "pitch": 0,
+            "size": 1024,
+            "grid": false,
+            "hitbox": false,
+            "projection": "orthographic",
+            "background": "#FF00FF"
+          },
+          "golden": "tests/hytale/golden/art-fix7/FossilNest_door_front.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "FossilNest doorway from the right",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FossilNest.json",
+            "yaw": 40,
+            "pitch": 10,
+            "size": 1024,
+            "grid": false,
+            "hitbox": false,
+            "background": "#FF00FF"
+          },
+          "golden": "tests/hytale/golden/art-fix7/FossilNest_door_right.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "FossilNest doorway from the left",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FossilNest.json",
+            "yaw": -40,
+            "pitch": 10,
+            "size": 1024,
+            "grid": false,
+            "hitbox": false,
+            "background": "#FF00FF"
+          },
+          "golden": "tests/hytale/golden/art-fix7/FossilNest_door_left.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "FossilNest from below",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FossilNest.json",
+            "yaw": 0,
+            "pitch": -25,
+            "size": 1024,
+            "grid": false,
+            "hitbox": false,
+            "background": "#FF00FF"
+          },
+          "golden": "tests/hytale/golden/art-fix7/FossilNest_below.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "FossilNest all sides",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FossilNest.json",
+            "views": [
+              "front",
+              "right",
+              "back",
+              "left",
+              "top",
+              "bottom",
+              "three_quarter",
+              "back_three_quarter"
+            ],
+            "size": 400,
+            "grid": false,
+            "hitbox": false,
+            "background": "#FF00FF"
+          },
+          "golden": "tests/hytale/golden/art-fix7/FossilNest_sides.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "FossilNest texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FossilNest.json"
+          },
+          "expect": {
+            "verdict": "PASS"
+          }
+        },
+        {
+          "tool": "texture_preview",
+          "name": "FossilNest icon",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemsGenerated/CozyRanch_House_FossilNest.png"
+          },
+          "golden": "tests/hytale/golden/art-fix7/FossilNest_icon.png"
+        }
+      ]
+    },
+    {
+      "name": "art-fix7 Trough",
+      "description": "Gibson: improve the look of the trough, especially the carrots. Rebuilt the vanilla way: squared corner posts as legs with end braces, two-plank sides, a lighter rim, iron straps with rivets; the Filled state holds a hay mash bed, loose hay heaps with straw strands (crossed cut-out planes), six carrots as stepped tapering bodies with crossed leafy cut-out tops lying at angles, and three apples with stems and leaves. Same outer box (2 x 1 cells, 0.625 high body), hitbox and Filled state. Before: tests/hytale/golden/art-fix7/before/Trough_*.png.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "Trough empty",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json",
+            "views": [
+              "three_quarter",
+              "front",
+              "right",
+              "back_three_quarter"
+            ],
+            "size": 320
+          },
+          "golden": "tests/hytale/golden/art-fix7/Trough.png",
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 2
+              },
+              "depth": {
+                "$lte": 1
+              },
+              "height": {
+                "$lte": 1
+              }
+            }
+          }
+        },
+        {
+          "tool": "model_render",
+          "name": "Trough filled",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json",
+            "blockState": "Filled",
+            "views": [
+              "three_quarter",
+              "front",
+              "right",
+              "top"
+            ],
+            "size": 320
+          },
+          "golden": "tests/hytale/golden/art-fix7/Trough_Filled.png",
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 2
+              },
+              "depth": {
+                "$lte": 1
+              },
+              "height": {
+                "$lte": 1
+              }
+            }
+          }
+        },
+        {
+          "tool": "model_render",
+          "name": "Trough filled close",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json",
+            "blockState": "Filled",
+            "yaw": 30,
+            "pitch": 40,
+            "size": 900,
+            "grid": false,
+            "hitbox": false
+          },
+          "golden": "tests/hytale/golden/art-fix7/Trough_Filled_close.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Trough filled low",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json",
+            "blockState": "Filled",
+            "yaw": -20,
+            "pitch": 15,
+            "size": 900,
+            "grid": false,
+            "hitbox": false
+          },
+          "golden": "tests/hytale/golden/art-fix7/Trough_Filled_low.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Trough empty close",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json",
+            "yaw": 30,
+            "pitch": 40,
+            "size": 900,
+            "grid": false,
+            "hitbox": false
+          },
+          "golden": "tests/hytale/golden/art-fix7/Trough_close.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "Trough texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_Trough.json"
+          },
+          "expect": {
+            "verdict": "PASS"
+          }
+        },
+        {
+          "tool": "texture_preview",
+          "name": "Trough icon",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemsGenerated/CozyRanch_Trough.png"
+          },
+          "golden": "tests/hytale/golden/art-fix7/Trough_icon.png"
+        }
+      ]
+    }
+  ]
+}
