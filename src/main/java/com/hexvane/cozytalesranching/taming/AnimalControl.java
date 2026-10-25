@@ -94,7 +94,8 @@ final class AnimalControl {
             Vector3d p = new Vector3d(t.getPosition()).add(0, 1.0, 0);
             ParticleUtil.spawnParticleEffect(particles, p, store);
         }
-        AnimalClips.playFor(store, animal, HAPPY_ANIMATION, HAPPY_SECONDS);
+        // after a befriend or claim the role swap is still pending: Happy plays on the new entity once it exists
+        AnimalClips.playForAfterSwap(store, animal, HAPPY_ANIMATION, HAPPY_SECONDS);
     }
 
     /** One of {@link RanchSounds} at the animal, heard by players nearby. */
@@ -123,6 +124,9 @@ final class AnimalControl {
         // that clip as a ranch animal, following its owner while it plays Sleep. Start the new role with a clear slot.
         AnimalClips.stop(store, animal);
         RoleChangeSystem.requestRoleChange(animal, npc.getRole(), index, true, state, null, true, store);
+        // ... and clear it again on the new entity: the old role can put a clip back before the swap applies (vanilla
+        // fliers play Walk on Status while blocked), and the ranch role would keep it.
+        AnimalClips.clearAfterSwap(store, animal);
         return true;
     }
 
