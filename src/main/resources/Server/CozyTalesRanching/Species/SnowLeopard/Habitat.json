@@ -18,11 +18,15 @@
       "MinCount": 3
     },
     "snowy_firs": {
-      "Blocks": [
+      "BlockPrefixes": [
         "Wood_Fir_Trunk",
         "Plant_Leaves_Fir_Snow",
         "Plant_Leaves_Fir_Tip_Snow",
+        "Plant_Leaves_Snow",
         "Plant_Bush_Winter_Snow"
+      ],
+      "Exclude": [
+        "Stairs"
       ],
       "MinCount": 4
     }

@@ -67,13 +67,15 @@
     },
     "hay": {
       "Blocks": [
-        "Plant_Hay_Bundle"
+        "Plant_Hay_Bundle",
+        "Ingredient_Hay"
       ],
       "MinCount": 1
     },
     "flowers": {
       "Blocks": [
-        "Plant_Sunflower_Block"
+        "Plant_Sunflower_Block",
+        "Plant_Lavender_Block"
       ],
       "BlockPrefixes": [
         "Plant_Flower_"
@@ -81,18 +83,21 @@
       "Exclude": [
         "Poisoned"
       ],
-      "MinCount": 3
+      "MinCount": 2
     },
     "dust": {
-      "Blocks": [
-        "Soil_Dirt",
-        "Soil_Dirt_Dry",
-        "Soil_Dirt_Half",
-        "Soil_Dirt_Dry_Half"
-      ],
       "BlockPrefixes": [
+        "Soil_Dirt",
+        "Soil_Pathway",
         "Soil_Sand",
         "Soil_Gravel_Sand"
+      ],
+      "Exclude": [
+        "Wet",
+        "Burnt",
+        "Poisoned",
+        "Crystal",
+        "Stairs"
       ],
       "Surface": true,
       "MinCount": 4
@@ -114,7 +119,9 @@
         "Wild_Grass",
         "Cotton",
         "Apple",
-        "_Item"
+        "_Item",
+        "Burnt",
+        "Burnt"
       ],
       "MinCount": 4
     },

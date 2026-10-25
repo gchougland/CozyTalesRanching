@@ -1,0 +1,56 @@
+{
+  "cases": [
+    {
+      "name": "habitat fix6 gate",
+      "description": "The mod's assets parse and match the engine schemas, and the Java's UI strings check out.",
+      "steps": [
+        { "tool": "asset_validate", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true, "schemaErrors": 0 } },
+        { "tool": "ui_check_java", "arguments": { "project": "CozyTales-Ranching" }, "expect": { "valid": true, "errors": 0 } }
+      ]
+    },
+    {
+      "name": "habitat fix6 dandelions poppies and hay bales",
+      "description": "Notes 7 and 8: by a new chicken coop, a Dandelion and a Poppy are 2 flowers (enough) and 3 Hay Bale blocks are hay; the probe shows each block's placed id and the features it counts for; the rescan (as the house page's Check now) finds them and nothing reports them missing.",
+      "steps": [
+        { "tool": "server_start", "arguments": { "artifacts": ["CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.0.jar"], "authMode": "insecure", "port": 5614 }, "waitReady": true, "save": "server" },
+        { "tool": "server_command", "arguments": { "jobId": "${server.id}", "command": "op add 11111111-2222-4333-8444-555555555555" } },
+        { "tool": "bot_start", "arguments": { "jobId": "${server.id}", "uuid": "11111111-2222-4333-8444-555555555555" }, "expect": { "state": "ready" }, "save": "bot" },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/ranch house debug place chicken" }, "save": "placed" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${placed.cursor}",
+            "where": { "message": { "messageId": "cozyranch_house.debug.placed" } } }, "expect": { "matched": true } },
+        { "tool": "server_scenario", "arguments": { "jobId": "${server.id}", "steps": [
+            { "expect": "Care: first habitat scan of new house", "timeoutMs": 30000 } ] },
+          "waitJob": true, "expect": { "state": "succeeded" } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/block set ~4 ~ ~ Plant_Flower_Common_Yellow2" }, "save": "dandelion" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${dandelion.cursor}",
+            "where": { "message": { "messageId": "server.commands.block.set.success" } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/block set ~4 ~ ~1 Plant_Flower_Common_Red2" }, "save": "poppy" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${poppy.cursor}",
+            "where": { "message": { "messageId": "server.commands.block.set.success" } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/block set ~-4 ~ ~-1 Ingredient_Hay" }, "save": "hay1" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${hay1.cursor}",
+            "where": { "message": { "messageId": "server.commands.block.set.success" } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/block set ~-4 ~ ~ Ingredient_Hay" }, "save": "hay2" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${hay2.cursor}",
+            "where": { "message": { "messageId": "server.commands.block.set.success" } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/block set ~-4 ~ ~1 Ingredient_Hay" }, "save": "hay3" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${hay3.cursor}",
+            "where": { "message": { "messageId": "server.commands.block.set.success" } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/ranch care probe ~4 ~ ~" }, "save": "probeD" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${probeD.cursor}",
+            "where": { "message": { "messageId": "cozyranch_care.probe.line", "params": { "block": { "value": "Plant_Flower_Common_Yellow2" }, "features": { "value": "flowers" } } } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/ranch care probe ~-4 ~ ~" }, "save": "probeH" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${probeH.cursor}",
+            "where": { "message": { "messageId": "cozyranch_care.probe.line", "params": { "block": { "value": "Ingredient_Hay" }, "features": { "value": { "$contains": "hay" } } } } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/ranch care counts" }, "save": "counts" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${counts.cursor}",
+            "where": { "message": { "messageId": "cozyranch_care.counts.line", "params": { "feature": { "value": "flowers" }, "count": { "value": { "$gte": 2 } }, "met": { "value": true } } } } }, "expect": { "matched": true } },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${counts.cursor}",
+            "where": { "message": { "messageId": "cozyranch_care.counts.line", "params": { "feature": { "value": "hay" }, "count": { "value": { "$gte": 3 } }, "met": { "value": true } } } } }, "expect": { "matched": true } },
+        { "tool": "bot_send", "arguments": { "botId": "${bot.botId}", "op": "chat", "text": "/ranch care status" }, "save": "status" },
+        { "tool": "bot_expect", "arguments": { "botId": "${bot.botId}", "packet": "ServerMessage", "cursor": "${status.cursor}",
+            "where": { "message": { "messageId": "cozyranch_care.status.house", "params": { "species": { "value": "chicken" }, "missing": { "value": { "$matches": "^(?!.*(flowers|hay)).*$" } } } } } }, "expect": { "matched": true } }
+      ]
+    }
+  ]
+}

@@ -54,13 +54,17 @@ public class HabitatCountsTest {
         }
     }
 
-    /** {@code Item.getTranslationKey} stand-in: our items' TranslationProperties name, else the vanilla ones above. */
+    /**
+     * {@code Item.getTranslationKey} stand-in: our items' TranslationProperties name, else the vanilla ones above, else
+     * the vanilla pattern {@code server.items.<id>.name} for any other id (habitat ids are checked against the real
+     * vanilla items in {@code HabitatVanillaBlocksTest}).
+     */
     public static String itemNameKey(String itemId) {
         String vanilla = VANILLA.get(itemId);
         if (vanilla != null) return vanilla;
         try (Stream<Path> files = Files.walk(RES.resolve("Server/Item/Items"))) {
             Path f = files.filter(p -> p.getFileName().toString().equals(itemId + ".json")).findFirst().orElse(null);
-            if (f == null) return null;
+            if (f == null) return itemId.startsWith("CozyRanch_") ? null : "server.items." + itemId + ".name";
             Matcher m = Pattern.compile("\"Name\"\\s*:\\s*\"([^\"]+)\"").matcher(Files.readString(f, StandardCharsets.UTF_8));
             return m.find() ? m.group(1) : null;
         } catch (IOException e) {
@@ -77,11 +81,24 @@ public class HabitatCountsTest {
         Txt perch = explain("perch");
         assertEquals("cozyranch_houseui.counts.yard.many", perch.key());
         assertEquals(2, perch.params().get("count"));
-        List<String> keys = keys((Txt) perch.params().get("things"));
-        assertEquals(3, keys.size(), keys.toString());
+        Txt things = (Txt) perch.params().get("things");
+        assertEquals("cozyranch_houseui.counts.more", things.key(), "gates and painted or metal fences count too");
+        List<String> keys = keys(things);
+        assertEquals(4, keys.size(), keys.toString());
         assertEquals("cozyranch_houseui.counts.group.fences", keys.get(0));
-        assertTrue(keys.get(1).endsWith("CozyRanch_Toy_Log.name"), keys.get(1));
-        assertEquals("server.items.Plant_Hay_Bundle.name", keys.get(2));
+        assertEquals("server.items.Plant_Hay_Bundle.name", keys.get(1));
+        assertEquals("server.items.Ingredient_Hay.name", keys.get(2));
+        assertTrue(keys.get(3).endsWith("CozyRanch_Toy_Log.name"), keys.get(3));
+    }
+
+    @Test
+    void hayNamesTheBundleAndTheBale() {
+        Txt hay = explain("hay");
+        assertEquals("cozyranch_houseui.counts.yard.one", hay.key());
+        assertEquals(List.of("server.items.Plant_Hay_Bundle.name", "server.items.Ingredient_Hay.name"), keys((Txt) hay.params().get("things")));
+        Txt flowers = explain("flowers");
+        assertEquals(2, flowers.params().get("count"));
+        assertEquals("cozyranch_houseui.counts.group.flowers", keys((Txt) flowers.params().get("things")).getFirst());
     }
 
     @Test

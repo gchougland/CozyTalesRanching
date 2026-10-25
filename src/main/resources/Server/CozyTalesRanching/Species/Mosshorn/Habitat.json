@@ -30,7 +30,7 @@
       "MinCount": 3
     },
     "woodland": {
-      "Blocks": [
+      "BlockPrefixes": [
         "Wood_Amber_Trunk",
         "Wood_Apple_Trunk",
         "Wood_Ash_Trunk",
@@ -42,6 +42,7 @@
         "Wood_Bottletree_Trunk",
         "Wood_Camphor_Trunk",
         "Wood_Cedar_Trunk",
+        "Wood_Fig_Blue_Trunk",
         "Wood_Fir_Trunk",
         "Wood_Gumboab_Trunk",
         "Wood_Jungle_Trunk",
@@ -54,7 +55,11 @@
         "Wood_Sallow_Trunk",
         "Wood_Spiral_Trunk",
         "Wood_Stormbark_Trunk",
-        "Wood_Windwillow_Trunk"
+        "Wood_Windwillow_Trunk",
+        "Wood_Wisteria_Wild_Trunk"
+      ],
+      "Exclude": [
+        "Stairs"
       ],
       "MinCount": 6
     }

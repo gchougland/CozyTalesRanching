@@ -18,7 +18,11 @@ import com.hypixel.hytale.server.core.command.system.basecommands.AbstractComman
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
+import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import com.hexvane.cozytalesranching.species.SpeciesDefinition;
+import java.util.ArrayList;
+import org.joml.Vector3d;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -26,7 +30,7 @@ import javax.annotation.Nonnull;
 import org.joml.Vector3i;
 
 /**
- * {@code /ranch care status|animals|run|fill}: admin tools for troughs, habitat and happiness, also usable by
+ * {@code /ranch care status|animals|run|fill|bonus|counts|probe}: admin tools for troughs, habitat and happiness, also usable by
  * the headless test player (which cannot use blocks).
  */
 public final class CareCommand extends AbstractCommandCollection {
@@ -38,6 +42,8 @@ public final class CareCommand extends AbstractCommandCollection {
         this.addSubCommand(new Run());
         this.addSubCommand(new Fill());
         this.addSubCommand(new Bonus());
+        this.addSubCommand(new Counts());
+        this.addSubCommand(new Probe());
     }
 
     @Nonnull
@@ -224,6 +230,85 @@ public final class CareCommand extends AbstractCommandCollection {
             if (put > 0) RanchSounds.play(RanchSounds.TROUGH_FILL, pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, store);
             player.sendMessage(Message.translation("cozyranch_care.fill.done").param("count", put).param("item", TroughInteraction.itemName(itemId))
                 .param("x", pos.x).param("y", pos.y).param("z", pos.z));
+        }
+    }
+
+    /**
+     * Rescans the house nearest the player (within 64 blocks) now, as the house page's Check now does, and lists every
+     * habitat feature its species needs or likes with the count found and the count needed.
+     */
+    static final class Counts extends AbstractPlayerCommand {
+        Counts() {
+            super("counts", "cozyranch_care.commands.care.counts.desc");
+            this.requirePermission(RanchPermissions.ADMIN);
+        }
+
+        @Override
+        protected void execute(@Nonnull CommandContext context, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef player, @Nonnull World world) {
+            CareService care = CareService.get();
+            TransformComponent t = store.getComponent(ref, TransformComponent.getComponentType());
+            if (care == null || t == null) return;
+            Vector3d p = t.getPosition();
+            HouseRecord best = null;
+            double bestD = 64.0 * 64.0;
+            for (HouseRecord h : Ranch.houses().inWorld(world.getName())) {
+                double dx = h.x + 0.5 - p.x, dy = h.y - p.y, dz = h.z + 0.5 - p.z;
+                double d = dx * dx + dy * dy + dz * dz;
+                if (d <= bestD) {
+                    bestD = d;
+                    best = h;
+                }
+            }
+            if (best == null) {
+                player.sendMessage(Message.translation("cozyranch_care.counts.no_house"));
+                return;
+            }
+            HabitatScan scan = CareWorld.of(world).rescanHouse(world, care, best, System.currentTimeMillis());
+            player.sendMessage(Message.translation("cozyranch_care.counts.header")
+                .param("species", best.speciesId).param("x", best.x).param("y", best.y).param("z", best.z)
+                .param("columns", scan.columnsScanned()).param("skipped", scan.columnsSkipped()));
+            SpeciesDefinition species = SpeciesRegistry.byId(best.speciesId).orElse(null);
+            if (species == null) return;
+            HabitatConfig config = care.habitat();
+            List<String> ids = new ArrayList<>(species.HabitatRequires);
+            for (String id : config.prefers(species.Id, species.HabitatPrefers)) if (!ids.contains(id)) ids.add(id);
+            for (String id : ids) {
+                HabitatConfig.Feature f = config.feature(id);
+                if (f == null || HabitatConfig.SPECIAL_TROUGH_FOOD.equals(f.Special)) continue;
+                player.sendMessage(Message.translation("cozyranch_care.counts.line")
+                    .param("feature", id).param("count", scan.count(id)).param("needed", f.MinCount)
+                    .param("met", !best.habitatMissing.contains(id)));
+            }
+        }
+    }
+
+    /** What a habitat scan reads at one cell: the base block id, its fluid, and the features it counts for. */
+    static final class Probe extends AbstractPlayerCommand {
+        private final RequiredArg<RelativeIntPosition> coords;
+
+        Probe() {
+            super("probe", "cozyranch_care.commands.care.probe.desc");
+            this.requirePermission(RanchPermissions.ADMIN);
+            this.coords = this.withRequiredArg("x y z", "cozyranch_care.commands.care.probe.arg.coords", ArgTypes.RELATIVE_BLOCK_POSITION);
+        }
+
+        @Override
+        protected void execute(@Nonnull CommandContext context, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef player, @Nonnull World world) {
+            CareService care = CareService.get();
+            if (care == null) return;
+            Vector3i pos = new Vector3i(context.get(coords).getBlockPosition(context, store));
+            WorldHabitatGrid grid = new WorldHabitatGrid(world);
+            boolean loaded = grid.loaded(pos.x, pos.y, pos.z);
+            String block = loaded ? grid.block(pos.x, pos.y, pos.z) : null;
+            String fluid = loaded ? grid.fluid(pos.x, pos.y, pos.z) : null;
+            List<String> features = new ArrayList<>();
+            care.habitat().Features.forEach((id, f) -> {
+                if ((block != null && f.matchesBlock(block)) || (fluid != null && f.matchesFluid(fluid))) features.add(id);
+            });
+            player.sendMessage(Message.translation("cozyranch_care.probe.line")
+                .param("x", pos.x).param("y", pos.y).param("z", pos.z)
+                .param("block", block == null ? "-" : block).param("fluid", fluid == null ? "-" : fluid)
+                .param("features", features.isEmpty() ? "-" : String.join(", ", features)));
         }
     }
 }

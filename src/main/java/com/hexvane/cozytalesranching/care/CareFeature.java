@@ -29,6 +29,8 @@ public final class CareFeature {
         plugin.getCodecRegistry(Interaction.CODEC).register(TroughInteraction.TYPE, TroughInteraction.class, TroughInteraction.CODEC);
         plugin.getCodecRegistry(Interaction.CODEC).register(GiveFeedInteraction.TYPE, GiveFeedInteraction.class, GiveFeedInteraction.CODEC);
         plugin.getEntityStoreRegistry().registerSystem(new TroughBreakSystem());
+        plugin.getEntityStoreRegistry().registerSystem(new HabitatEditSystems.Place());
+        plugin.getEntityStoreRegistry().registerSystem(new HabitatEditSystems.Break());
         plugin.getEntityStoreRegistry().registerSystem(new CareSystem());
         plugin.getEventRegistry().register(RanchHousePlacedEvent.class, event -> CareWorld.of(event.getWorldName()).housePlaced(event.getHouseId()));
         HouseDayHooks.register(new HouseDayHooks.Hook() {

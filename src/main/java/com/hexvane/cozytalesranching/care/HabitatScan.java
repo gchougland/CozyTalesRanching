@@ -5,6 +5,7 @@ import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,7 @@ public final class HabitatScan {
 
     private final List<String> plainIds = new ArrayList<>();
     private final List<Feature> plain = new ArrayList<>();
-    private final Map<String, Long> maskCache = new HashMap<>();
+    private final Map<String, BitSet> maskCache = new HashMap<>();
     private final int[] counts;
     private int columnsScanned;
     private int columnsSkipped;
@@ -62,12 +63,18 @@ public final class HabitatScan {
             colDz[i] = cols.get(i)[1];
         }
         config.Features.forEach((id, f) -> {
-            if (!f.isSpecial() && plain.size() < 64) {
+            if (!f.isSpecial()) {
                 plainIds.add(id);
                 plain.add(f);
             }
         });
         counts = new int[plain.size()];
+    }
+
+    /** Whether the cell is inside the scan area of a house at the given origin. */
+    public static boolean covers(int hx, int hy, int hz, int radius, @Nonnull HabitatConfig config, int x, int y, int z) {
+        int dx = x - hx, dz = z - hz, r = Math.max(0, radius);
+        return dx * dx + dz * dz <= r * r && y >= hy - config.ScanBelow && y <= hy + config.ScanAbove;
     }
 
     public boolean done() {
@@ -121,9 +128,9 @@ public final class HabitatScan {
                 String fluid = grid.fluid(x, y, z);
                 boolean solid = block != null && grid.solid(x, y, z);
                 if (block != null) {
-                    long mask = mask(block);
-                    for (int i = 0; mask != 0 && i < plain.size(); i++, mask >>>= 1) {
-                        if ((mask & 1L) != 0 && (!plain.get(i).Surface || aboveEmpty)) col[i]++;
+                    BitSet mask = mask(block);
+                    for (int i = mask.nextSetBit(0); i >= 0; i = mask.nextSetBit(i + 1)) {
+                        if (!plain.get(i).Surface || aboveEmpty) col[i]++;
                     }
                 }
                 if (fluid != null) {
@@ -227,11 +234,11 @@ public final class HabitatScan {
         return new int[] {have, known};
     }
 
-    private long mask(@Nonnull String block) {
-        Long cached = maskCache.get(block);
+    private BitSet mask(@Nonnull String block) {
+        BitSet cached = maskCache.get(block);
         if (cached != null) return cached;
-        long m = 0;
-        for (int i = 0; i < plain.size(); i++) if (plain.get(i).matchesBlock(block)) m |= 1L << i;
+        BitSet m = new BitSet(plain.size());
+        for (int i = 0; i < plain.size(); i++) if (plain.get(i).matchesBlock(block)) m.set(i);
         maskCache.put(block, m);
         return m;
     }
