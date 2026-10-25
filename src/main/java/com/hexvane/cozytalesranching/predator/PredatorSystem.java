@@ -173,7 +173,7 @@ final class PredatorSystem extends TickingSystem<EntityStore> {
             TransformComponent t = store.getComponent(ref, TransformComponent.getComponentType());
             if (t != null) {
                 Vector3d at = new Vector3d(t.getPosition());
-                Message line = Message.translation("cozyranch_predator.calm.restless").param("animal", Message.translation(species.NameKey));
+                Message line = Message.translation("cozyranch_predator.calm.restless").param("animal", Predators.lookName(ref, species, store));
                 world.execute(() -> Predators.tellNear(world, at.x, at.y, at.z, line));
             }
         }

@@ -44,4 +44,10 @@ public interface AnimalRegistry {
 
     /** Deletes the record for good (released, butchered, died). */
     void remove(@Nonnull UUID animalId);
+
+    /** The role the animal's entity last had (CozyRanch_Raven, CozyRanch_Snail_Frost), or null when none was seen. */
+    @Nullable
+    default String lastRole(@Nonnull UUID animalId) {
+        return null;
+    }
 }

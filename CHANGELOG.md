@@ -61,6 +61,8 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 - **"What counts" tooltips** show their text instead of "{counts}".
 - **The Climbing Log** recipe accepts any tree log.
 - **The Fossil Nest's doorway** no longer has see-through gaps.
+- **Animals go by their own kind:** ravens are no longer called crows, and a Frost Snail, Sparrow, Ice Bat, Polar Bear or White Wolf keeps its name on the house page, in the Rancher's Ledger and in chat.
+- **Baby birds and geckos** show their names above their heads instead of a text key, and blue and orange frogs have names.
 - **Squirrel Drey and Parrot Perch** can be built: their recipes no longer need Tree Bark or Magic Mango, which can't be found in survival. Parrots now love Coconut and geckos Azure Fruit.
 - **The Rookery's nests and perches** no longer flicker.
 - **House hitboxes** now line up with the houses, notably the Antelope Shelter, Deer Shelter, Warthog Wallow, Bison Barn, Fox Den, Meerkat Mound and Rookery. Placed Bison Barns shift by half a block.

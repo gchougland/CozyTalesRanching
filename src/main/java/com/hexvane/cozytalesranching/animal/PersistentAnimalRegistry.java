@@ -131,6 +131,12 @@ public final class PersistentAnimalRegistry implements AnimalRegistry {
         scheduleSave();
     }
 
+    @Nullable
+    @Override
+    public String lastRole(@Nonnull UUID animalId) {
+        return store.role(animalId);
+    }
+
     /** First change starts the timer; later changes ride along, so a save is at most the debounce late. */
     void scheduleSave() {
         if (closed || !saveScheduled.compareAndSet(false, true)) return;

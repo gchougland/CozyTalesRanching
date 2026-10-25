@@ -1,0 +1,143 @@
+{
+  "cases": [
+    {
+      "name": "names live: a befriended raven is called a Raven, not a Crow",
+      "description": "Ravens share the crow species and the Rookery. Chat names an animal by its look (its role's name, as over its head): the befriend line and /ranch animals say Raven.",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.0.jar"
+            ],
+            "authMode": "insecure",
+            "port": 5622
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555",
+            "name": "RanchBot"
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/npc spawn Raven"
+          },
+          "save": "raven"
+        },
+        {
+          "tool": "server_scenario",
+          "arguments": {
+            "jobId": "${server.id}",
+            "steps": [
+              {
+                "expect": "Raven created with id",
+                "timeoutMs": 15000
+              }
+            ]
+          },
+          "waitJob": true,
+          "expect": {
+            "state": "succeeded"
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin befriend"
+          },
+          "save": "bf"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${bf.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_taming.tame.done",
+                "messageParams": {
+                  "animal": {
+                    "messageId": "server.npcRoles.Raven.name"
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 2000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch animals"
+          },
+          "save": "list"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${list.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_taming.animals.line_following",
+                "messageParams": {
+                  "animal": {
+                    "messageId": "server.npcRoles.Raven.name"
+                  },
+                  "species": {
+                    "messageId": "server.npcRoles.Raven.name"
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        }
+      ]
+    }
+  ]
+}

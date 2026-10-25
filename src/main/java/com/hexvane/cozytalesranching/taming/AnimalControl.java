@@ -1,12 +1,12 @@
 package com.hexvane.cozytalesranching.taming;
 
 import com.hexvane.cozytalesranching.RanchSounds;
+import com.hexvane.cozytalesranching.animal.AnimalNames;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.behaviour.AnimalClips;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
-import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hypixel.hytale.component.ComponentAccessor;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
@@ -44,7 +44,15 @@ final class AnimalControl {
     @Nonnull
     static Message displayName(@Nonnull AnimalRecord record) {
         if (record.name != null && !record.name.isEmpty()) return Message.raw(record.name);
-        return SpeciesRegistry.byId(record.speciesId).map(AnimalControl::speciesName).orElse(Message.raw(record.speciesId));
+        String look = AnimalNames.key(record);
+        return look != null ? Message.translation(look) : Message.raw(record.speciesId);
+    }
+
+    /** A live animal of this role: its look's name (Raven, Frost Snail), else the species name. */
+    @Nonnull
+    static Message lookName(@Nullable String roleId, @Nonnull SpeciesDefinition species) {
+        String look = AnimalNames.key(roleId, species);
+        return look != null ? Message.translation(look) : speciesName(species);
     }
 
     @Nonnull

@@ -1,6 +1,7 @@
 package com.hexvane.cozytalesranching.wildlife;
 
 import com.hexvane.cozytalesranching.RanchSounds;
+import com.hexvane.cozytalesranching.animal.AnimalNames;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.api.event.RanchEvents;
@@ -309,7 +310,7 @@ final class WildlifeWorld {
             Math.hypot(at.x - house.x - 0.5, at.z - house.z - 0.5), (v.leaveAtMs - now) / 1000));
         RanchEvents.fire(new RanchVisitorArrivedEvent(house.ownerId, house.houseId, speciesId, role, rare, world.getName()));
         RanchSounds.play(RanchSounds.VISITOR_ARRIVED, at.x, at.y, at.z, store);
-        tellOwner(world, store, house, sw, species, rare, config);
+        tellOwner(world, store, house, sw, species, role, rare, config);
         return new Arrival(Outcome.ARRIVED, v, role);
     }
 
@@ -336,9 +337,16 @@ final class WildlifeWorld {
         }
     }
 
+    /** The visitor's look name (a Raven at the Rookery, a Sparrow at the Birdhouse), as over its head. */
+    @Nonnull
+    private static Message lookName(@Nonnull String role, @Nonnull SpeciesDefinition species) {
+        String look = AnimalNames.key(role, species);
+        return look != null ? Message.translation(look) : Message.translation(species.NameKey);
+    }
+
     /** A quiet line to the owner, only when the owner is near the house. */
     private static void tellOwner(@Nonnull World world, @Nonnull Store<EntityStore> store, @Nonnull HouseRecord house, @Nonnull SpeciesWildlife sw,
-                                  @Nonnull SpeciesDefinition species, boolean rare, @Nonnull WildlifeConfig config) {
+                                  @Nonnull SpeciesDefinition species, @Nonnull String role, boolean rare, @Nonnull WildlifeConfig config) {
         for (PlayerRef p : world.getPlayerRefs()) {
             if (!house.ownerId.equals(p.getUuid())) continue;
             Ref<EntityStore> pr = p.getReference();
@@ -346,7 +354,7 @@ final class WildlifeWorld {
             TransformComponent t = store.getComponent(pr, TransformComponent.getComponentType());
             if (t == null || t.getPosition().distance(house.x + 0.5, house.y, house.z + 0.5) > config.PlayerRange) return;
             Message animal = rare && sw.Rare != null && !sw.Rare.NameKey.isEmpty()
-                ? Message.translation(sw.Rare.NameKey) : Message.translation(species.NameKey);
+                ? Message.translation(sw.Rare.NameKey) : lookName(role, species);
             RanchChat.tell(p, Message.translation(rare ? "cozyranch_wildlife.arrived.rare" : "cozyranch_wildlife.arrived")
                 .param("animal", animal).param("house", houseName(house)));
             return;

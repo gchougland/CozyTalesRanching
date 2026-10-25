@@ -1,5 +1,6 @@
 package com.hexvane.cozytalesranching.items;
 
+import com.hexvane.cozytalesranching.animal.AnimalNames;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.houseui.HouseView;
@@ -99,8 +100,11 @@ public record LedgerView(int animals, int houses, int waiting, @Nonnull List<Hou
 
     @Nonnull
     private static Animal animal(@Nonnull AnimalRecord a, @Nonnull Txt speciesName, @Nonnull Where where) {
-        Txt name = a.name == null || a.name.isBlank() ? speciesName : Txt.raw(a.name);
-        return new Animal(name, speciesName, Math.clamp(a.hearts, 0, MAX_HEARTS), a.baby, where);
+        // its look's name (Raven, Frost Snail), as over its head
+        String lookKey = AnimalNames.key(a);
+        Txt look = lookKey != null ? Txt.key(lookKey) : speciesName;
+        Txt name = a.name == null || a.name.isBlank() ? look : Txt.raw(a.name);
+        return new Animal(name, look, Math.clamp(a.hearts, 0, MAX_HEARTS), a.baby, where);
     }
 
     @Nonnull

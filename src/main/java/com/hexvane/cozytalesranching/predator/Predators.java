@@ -2,6 +2,7 @@ package com.hexvane.cozytalesranching.predator;
 
 import com.hexvane.cozytalesranching.RanchSounds;
 import com.hexvane.cozytalesranching.animal.AnimalMarker;
+import com.hexvane.cozytalesranching.animal.AnimalNames;
 import com.hexvane.cozytalesranching.behaviour.AnimalClips;
 import com.hexvane.cozytalesranching.compat.CompatGuard;
 import com.hexvane.cozytalesranching.config.RanchConfig;
@@ -204,7 +205,7 @@ public final class Predators {
             RanchSounds.play(RanchSounds.ANIMAL_HAPPY, t.getPosition().x, t.getPosition().y + 0.5, t.getPosition().z, store);
         }
         tellNear(world, e.bowlX + 0.5, e.bowlY, e.bowlZ + 0.5, Message.translation(inPlace ? "cozyranch_predator.eat.in_place" : "cozyranch_predator.eat.start")
-            .param("animal", Message.translation(species.NameKey)));
+            .param("animal", lookName(ref, species, store)));
         LOGGER.atInfo().log("Predator %s %s ate %s at the bowl %d %d %d and is calm for %.1f min%s", species.Id, e.entity, bait, e.bowlX, e.bowlY, e.bowlZ,
             CalmRules.calmMillis(species) / 60000.0, inPlace ? " (calmed in place)" : "");
     }
@@ -235,7 +236,7 @@ public final class Predators {
         SpeciesDefinition species = SpeciesRegistry.byId(e.speciesId).orElse(null);
         TransformComponent t = store.getComponent(ref, TransformComponent.getComponentType());
         if (species != null && t != null) {
-            tellNear(world, t.getPosition().x, t.getPosition().y, t.getPosition().z, Message.translation("cozyranch_predator.startled").param("animal", Message.translation(species.NameKey)));
+            tellNear(world, t.getPosition().x, t.getPosition().y, t.getPosition().z, Message.translation("cozyranch_predator.startled").param("animal", lookName(ref, species, store)));
         }
         LOGGER.atInfo().log("Predator %s %s startled by %s; it flees", e.speciesId, entity, player);
     }
@@ -254,6 +255,14 @@ public final class Predators {
         }
     }
 
+    /** The predator's look name (Grizzly Bear, White Wolf), as over its head. */
+    @Nonnull
+    static Message lookName(@Nonnull Ref<EntityStore> ref, @Nonnull SpeciesDefinition species, @Nonnull ComponentAccessor<EntityStore> store) {
+        NPCEntity npc = ref.isValid() ? store.getComponent(ref, NPCEntity.getComponentType()) : null;
+        String look = AnimalNames.key(npc != null ? npc.getRoleName() : null, species);
+        return Message.translation(look != null ? look : species.NameKey);
+    }
+
     /** Calm (or a spook, or a lure) is over: it is an ordinary wild animal again. World thread. */
     void end(@Nonnull World world, @Nonnull UUID entity, boolean tellRestless) {
         Entry e = book.remove(entity);
@@ -266,7 +275,7 @@ public final class Predators {
             TransformComponent t = store.getComponent(ref, TransformComponent.getComponentType());
             SpeciesDefinition species = SpeciesRegistry.byId(e.speciesId).orElse(null);
             if (t != null && species != null) {
-                tellNear(world, t.getPosition().x, t.getPosition().y, t.getPosition().z, Message.translation("cozyranch_predator.calm.over").param("animal", Message.translation(species.NameKey)));
+                tellNear(world, t.getPosition().x, t.getPosition().y, t.getPosition().z, Message.translation("cozyranch_predator.calm.over").param("animal", lookName(ref, species, store)));
             }
         }
         LOGGER.atInfo().log("Predator %s %s is wild again (%s ended)", e.speciesId, entity, e.phase);

@@ -118,8 +118,15 @@ public final class AnimalInteractions {
 
     // ---- befriending wild animals ----
 
+    /** The wild animal's look name (Raven, Frost Snail), as over its head. */
+    @Nonnull
+    private static Message lookName(@Nonnull Use use, @Nonnull Ref<EntityStore> animal, @Nonnull ComponentAccessor<EntityStore> accessor) {
+        NPCEntity npc = animal.isValid() ? accessor.getComponent(animal, NPCEntity.getComponentType()) : null;
+        return AnimalControl.lookName(npc != null ? npc.getRoleName() : null, use.species);
+    }
+
     private static void wild(@Nonnull Use use, @Nonnull Ref<EntityStore> animal, @Nullable MovementStates moves, @Nonnull ComponentAccessor<EntityStore> accessor) {
-        Message animalName = AnimalControl.speciesName(use.species);
+        Message animalName = lookName(use, animal, accessor);
         CalmRules.FeedGate predator = PredatorApi.feedGate(use.species, use.animalUuid);
         if (predator == CalmRules.FeedGate.TOO_WILD) {
             // a wild predator takes no food from a hand until a Bait Bowl has calmed it; nothing else happens
@@ -158,13 +165,13 @@ public final class AnimalInteractions {
         if (Ranch.animals().byEntity(use.animalUuid).isPresent()) return;
         // checked again on the world thread: Calm may have ended (or the animal been startled) since the click
         if (PredatorApi.feedGate(use.species, use.animalUuid) == CalmRules.FeedGate.TOO_WILD) {
-            use.player.sendMessage(Message.translation("cozyranch_predator.too_wild").param("animal", AnimalControl.speciesName(use.species)));
+            use.player.sendMessage(Message.translation("cozyranch_predator.too_wild").param("animal", lookName(use, animal, store)));
             return;
         }
         if (!use.free && !takeHeldItem(playerEntity, use.itemId, store)) return;
         if (use.species.Predator) PredatorApi.handFed(use.animalUuid, use.species);
 
-        Message animalName = AnimalControl.speciesName(use.species);
+        Message animalName = lookName(use, animal, store);
         int needed = TamingRules.feedingsToTame(use.species);
         int total = PROGRESS.add(use.animalUuid, use.playerId(), TamingRules.tamePoints(food), System.currentTimeMillis());
         if (total < needed) {
@@ -180,7 +187,7 @@ public final class AnimalInteractions {
 
     /** The wild animal trusts the player now: record, ranch role in Follow, events, cheer, name page. World thread. */
     private static void befriendNow(@Nonnull Use use, @Nonnull Ref<EntityStore> animal, @Nonnull Store<EntityStore> store) {
-        Message animalName = AnimalControl.speciesName(use.species);
+        Message animalName = lookName(use, animal, store);
         NPCEntity npc = store.getComponent(animal, NPCEntity.getComponentType());
         if (npc == null || npc.getRoleName() == null) return;
         Optional<String> ranchRole = AnimalControl.ranchRole(use.species, npc.getRoleName(), use.baby());

@@ -1,9 +1,9 @@
 package com.hexvane.cozytalesranching.taming.command;
 
+import com.hexvane.cozytalesranching.animal.AnimalNames;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.config.RanchConfig;
-import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hexvane.cozytalesranching.taming.TamingApi;
 import com.hexvane.cozytalesranching.taming.TamingRules;
 import com.hypixel.hytale.component.Ref;
@@ -33,7 +33,8 @@ public final class AnimalsCommand extends AbstractPlayerCommand {
         }
         playerRef.sendMessage(Message.translation("cozyranch_taming.animals.header").param("count", mine.size()).param("max", RanchConfig.get().maxAnimalsPerPlayer()));
         for (AnimalRecord r : mine) {
-            Message species = SpeciesRegistry.byId(r.speciesId).map(s -> Message.translation(s.NameKey)).orElse(Message.raw(r.speciesId));
+            String look = AnimalNames.key(r);
+                Message species = look != null ? Message.translation(look) : Message.raw(r.speciesId);
             playerRef.sendMessage(Message.translation(r.following ? "cozyranch_taming.animals.line_following" : "cozyranch_taming.animals.line")
                 .param("animal", TamingApi.displayName(r))
                 .param("species", species)

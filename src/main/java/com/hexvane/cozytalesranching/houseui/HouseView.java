@@ -1,5 +1,6 @@
 package com.hexvane.cozytalesranching.houseui;
 
+import com.hexvane.cozytalesranching.animal.AnimalNames;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
@@ -221,7 +222,10 @@ public record HouseView(
 
     @Nonnull
     static Txt animalName(@Nonnull AnimalRecord r, @Nonnull Txt speciesName) {
-        return r.name == null || r.name.isBlank() ? speciesName : Txt.raw(r.name);
+        if (r.name != null && !r.name.isBlank()) return Txt.raw(r.name);
+        // its look's name (a Raven in the Rookery, a Frost Snail), as over its head
+        String look = AnimalNames.key(r);
+        return look != null ? Txt.key(look) : speciesName;
     }
 
     /** Adults first, then by when they were tamed or born, so rows keep their places between renders. */

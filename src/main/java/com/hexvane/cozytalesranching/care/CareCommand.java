@@ -2,6 +2,7 @@ package com.hexvane.cozytalesranching.care;
 
 import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.RanchSounds;
+import com.hexvane.cozytalesranching.animal.AnimalNames;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.house.HouseRecord;
@@ -104,7 +105,8 @@ public final class CareCommand extends AbstractCommandCollection {
             for (AnimalRecord r : mine) {
                 CareRules.Breakdown b = CareApi.happinessBreakdown(r);
                 long fedAgo = r.lastFedAtMs <= 0 ? -1 : (now - r.lastFedAtMs) / 1000;
-                Message species = SpeciesRegistry.byId(r.speciesId).map(s -> Message.translation(s.NameKey)).orElse(Message.raw(r.speciesId));
+                String look = AnimalNames.key(r);
+                Message species = look != null ? Message.translation(look) : Message.raw(r.speciesId);
                 player.sendMessage(Message.translation("cozyranch_care.animals.line")
                     .param("animal", TamingApi.displayName(r))
                     .param("species", species)
