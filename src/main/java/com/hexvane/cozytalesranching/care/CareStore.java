@@ -160,6 +160,8 @@ final class CareStore {
 
     void loadAll() {
         if (dir == null || !Files.isDirectory(dir)) return;
+        // a save cut off between its two renames is finished first, so the listing below sees it
+        com.hexvane.cozytalesranching.persist.SafeWrite.healDir(dir);
         try (Stream<Path> files = Files.list(dir)) {
             for (Path f : files.filter(p -> p.getFileName().toString().endsWith(CareSaveFile.EXT) && Files.isRegularFile(p)).sorted().toList()) {
                 load(CareSaveFile.read(f));

@@ -5,14 +5,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.hexvane.cozytalesranching.taming.TamingRules.FoodKind;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,7 +25,7 @@ final class CareSaveFile {
     static final String EXT = ".json";
     private static final String TMP = ".tmp";
     private static final String PREV = ".prev";
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+    private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
 
     /** Field names are the save format. */
     static final class Data {
@@ -92,27 +87,13 @@ final class CareSaveFile {
     }
 
     static void write(@Nonnull Path file, @Nonnull String json) throws IOException {
-        Files.createDirectories(file.getParent());
-        Path tmp = file.resolveSibling(file.getFileName() + TMP);
-        byte[] bytes = json.getBytes(StandardCharsets.UTF_8);
-        try (FileChannel ch = FileChannel.open(tmp, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)) {
-            ByteBuffer buf = ByteBuffer.wrap(bytes);
-            while (buf.hasRemaining()) ch.write(buf);
-            ch.force(true);
-        }
-        if (Files.isRegularFile(file)) {
-            Files.copy(file, file.resolveSibling(file.getFileName() + PREV), StandardCopyOption.REPLACE_EXISTING);
-        }
-        try {
-            Files.move(tmp, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
-        } catch (AtomicMoveNotSupportedException e) {
-            Files.move(tmp, file, StandardCopyOption.REPLACE_EXISTING);
-        }
+        com.hexvane.cozytalesranching.persist.SafeWrite.write(file, json);
     }
 
     /** The main file, else the previous good copy, else empty. A leftover temp file is never trusted. */
     @Nonnull
     static Data read(@Nonnull Path file) {
+        com.hexvane.cozytalesranching.persist.SafeWrite.heal(file);
         Path tmp = file.resolveSibling(file.getFileName() + TMP);
         Path prev = file.resolveSibling(file.getFileName() + PREV);
         try {

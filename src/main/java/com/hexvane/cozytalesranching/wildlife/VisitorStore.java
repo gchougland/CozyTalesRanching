@@ -4,17 +4,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.Reader;
-import java.io.Writer;
-import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -34,7 +32,7 @@ import javax.annotation.Nullable;
  */
 public final class VisitorStore {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private static final Gson GSON = new GsonBuilder().create();
     static final int FORMAT_VERSION = 1;
 
     /** One visitor. Field names are the save format. */
@@ -81,6 +79,8 @@ public final class VisitorStore {
     private final Map<UUID, HouseState> houses = new HashMap<>();
     private final Map<UUID, String> houseWorlds = new HashMap<>();
     private final Set<String> dirty = new HashSet<>();
+    /** Worlds where only visitor positions changed: written with the next real save, and at shutdown. */
+    private final Set<String> moved = new HashSet<>();
 
     public VisitorStore(@Nonnull Path dataDirectory) {
         this.directory = dataDirectory.resolve("Visitors");
@@ -121,6 +121,11 @@ public final class VisitorStore {
         dirty.add(worldName);
     }
 
+    /** Only positions changed: no save of its own, they go with the next one (or shutdown). */
+    public synchronized void markMoved(@Nonnull String worldName) {
+        moved.add(worldName);
+    }
+
     // ---- houses ----
 
     @Nonnull
@@ -141,6 +146,8 @@ public final class VisitorStore {
     /** Reads every world file. Call once at start, before worlds tick. */
     public synchronized void load() {
         if (!Files.isDirectory(directory)) return;
+        // a save cut off between its two renames is finished first, so the listing below sees it
+        com.hexvane.cozytalesranching.persist.SafeWrite.healDir(directory);
         try (Stream<Path> files = Files.list(directory)) {
             for (Path file : files.filter(p -> p.getFileName().toString().endsWith(".json")).toList()) {
                 FileData data = read(file);
@@ -167,6 +174,7 @@ public final class VisitorStore {
 
     @Nullable
     private static FileData read(@Nonnull Path file) {
+        com.hexvane.cozytalesranching.persist.SafeWrite.heal(file);
         Path prev = sibling(file, ".prev");
         try {
             return parse(file);
@@ -202,8 +210,17 @@ public final class VisitorStore {
     /** The JSON of each dirty world, taken under the lock; the dirty set is cleared. */
     @Nonnull
     synchronized Map<String, String> drainDirty() {
+        return drainDirty(false);
+    }
+
+    /** As {@link #drainDirty()}; {@code includeMoved} adds worlds where only positions changed (shutdown). */
+    @Nonnull
+    synchronized Map<String, String> drainDirty(boolean includeMoved) {
         Map<String, String> out = new LinkedHashMap<>();
-        for (String world : dirty) {
+        Set<String> worlds = new LinkedHashSet<>(dirty);
+        if (includeMoved) worlds.addAll(moved);
+        for (String world : worlds) {
+            moved.remove(world);
             FileData d = new FileData();
             d.World = world;
             d.SavedAtMs = System.currentTimeMillis();
@@ -219,6 +236,10 @@ public final class VisitorStore {
 
     synchronized boolean hasDirty() {
         return !dirty.isEmpty();
+    }
+
+    synchronized boolean hasDirty(boolean includeMoved) {
+        return !dirty.isEmpty() || (includeMoved && !moved.isEmpty());
     }
 
     /** Writes the given world JSON. Off the world thread. Failed worlds are marked dirty again. */
@@ -239,16 +260,7 @@ public final class VisitorStore {
     }
 
     private static void writeAtomically(@Nonnull Path file, @Nonnull String json) throws IOException {
-        Files.createDirectories(file.getParent());
-        Path tmp = sibling(file, ".tmp");
-        try (FileChannel ch = FileChannel.open(tmp, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE);
-             Writer w = java.nio.channels.Channels.newWriter(ch, StandardCharsets.UTF_8)) {
-            w.write(json);
-            w.flush();
-            ch.force(true);
-        }
-        if (Files.isRegularFile(file)) Files.copy(file, sibling(file, ".prev"), StandardCopyOption.REPLACE_EXISTING);
-        Files.move(tmp, file, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+        com.hexvane.cozytalesranching.persist.SafeWrite.write(file, json);
     }
 
     @Nonnull

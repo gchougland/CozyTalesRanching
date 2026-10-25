@@ -46,7 +46,17 @@ public final class CozyTalesRanchingPlugin extends JavaPlugin {
         String hstatsModUuid = HstatsBuildMetadata.HSTATS_MOD_UUID;
         String modVersion = this.getManifest().getVersion().toString();
         if (!hstatsModUuid.isBlank()) {
-            new HStats(hstatsModUuid, modVersion);
+            // HStats posts to hstats.dev from its constructor with no timeout; never on the setup thread, so a slow or
+            // unreachable metrics host cannot hold the server's boot. HStats.java itself must stay unmodified (its licence).
+            Thread metrics = new Thread(() -> {
+                try {
+                    new HStats(hstatsModUuid, modVersion);
+                } catch (RuntimeException e) {
+                    getLogger().atWarning().log("HStats metrics did not start: %s", e.toString());
+                }
+            }, "CozyRanch-HStats");
+            metrics.setDaemon(true);
+            metrics.start();
         }
 
         RanchPermissions.register();

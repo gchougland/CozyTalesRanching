@@ -4,14 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -31,7 +26,7 @@ final class AnimalSaveFile {
     static final String TMP = ".tmp";
     static final String PREV = ".prev";
 
-    static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+    static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
 
     /** The JSON document. Field names are the save format. */
     static final class Data {
@@ -85,22 +80,7 @@ final class AnimalSaveFile {
 
     /** Atomic replace. Throws on failure; the old file is untouched in that case. */
     static void write(@Nonnull Path file, @Nonnull String json) throws IOException {
-        Files.createDirectories(file.getParent());
-        Path tmp = file.resolveSibling(file.getFileName() + TMP);
-        byte[] bytes = json.getBytes(StandardCharsets.UTF_8);
-        try (FileChannel ch = FileChannel.open(tmp, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)) {
-            ByteBuffer buf = ByteBuffer.wrap(bytes);
-            while (buf.hasRemaining()) ch.write(buf);
-            ch.force(true);
-        }
-        if (Files.isRegularFile(file)) {
-            Files.copy(file, file.resolveSibling(file.getFileName() + PREV), StandardCopyOption.REPLACE_EXISTING);
-        }
-        try {
-            Files.move(tmp, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
-        } catch (AtomicMoveNotSupportedException e) {
-            Files.move(tmp, file, StandardCopyOption.REPLACE_EXISTING);
-        }
+        com.hexvane.cozytalesranching.persist.SafeWrite.write(file, json);
     }
 
     /**
@@ -110,6 +90,7 @@ final class AnimalSaveFile {
      */
     @Nonnull
     static Loaded read(@Nonnull Path file) {
+        com.hexvane.cozytalesranching.persist.SafeWrite.heal(file);
         Path tmp = file.resolveSibling(file.getFileName() + TMP);
         Path prev = file.resolveSibling(file.getFileName() + PREV);
         try {

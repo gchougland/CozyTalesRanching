@@ -20,8 +20,9 @@ import javax.annotation.Nullable;
 
 /**
  * The real {@link AnimalRegistry}: records in {@link AnimalStore}, saved per world as JSON a few
- * seconds after the last change ({@code SaveDebounceSeconds}) on the ranch's own background thread,
- * and flushed on shutdown.
+ * seconds after the last real change ({@code SaveDebounceSeconds}) on the ranch's own background thread,
+ * and flushed on shutdown. Wander positions alone do not start a save: they go with the next one, when an
+ * entity unloads, and at shutdown.
  */
 public final class PersistentAnimalRegistry implements AnimalRegistry {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
@@ -106,10 +107,17 @@ public final class PersistentAnimalRegistry implements AnimalRegistry {
         return store.isCurrent(animalId, entityUuid, generation);
     }
 
+    /** Saves soon only if a saved field changed; a position-only change waits for the next real save or shutdown. */
     @Override
     public void markDirty(@Nonnull AnimalRecord record) {
         store.touch(record);
-        scheduleSave();
+        if (store.hasPending(false)) scheduleSave();
+    }
+
+    /** As {@link #markDirty}, but a moved position alone is saved too: the entity is going away (chunk unload, removal). */
+    public void markDirtyWithPosition(@Nonnull AnimalRecord record) {
+        store.touch(record, true);
+        if (store.hasPending(false)) scheduleSave();
     }
 
     @Override
@@ -145,7 +153,7 @@ public final class PersistentAnimalRegistry implements AnimalRegistry {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        int failed = store.saveDirty();
+        int failed = store.saveDirty(true);
         if (failed > 0) LOG.severe(failed + " ranch animal world file(s) could not be saved at shutdown");
         else LOG.info("Saved ranch animals.");
     }

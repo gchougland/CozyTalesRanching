@@ -227,7 +227,8 @@ final class AnimalEntitySystem extends RefSystem<EntityStore> {
             if (r.ownerId != null) LOG.info("Ranch animal " + animalId + " (" + r.speciesId + ", owner " + r.ownerId + ") entity was removed; marked missing, recovery will bring it back");
             else debug("Ranch animal " + animalId + " entity removed; marked missing");
         }
-        registry.markDirty(r);
+        // the entity is going (chunk unload, removal): its last spot is saved even if nothing else changed
+        registry.markDirtyWithPosition(r);
     }
 
     private void removeStale(Ref<EntityStore> ref, CommandBuffer<EntityStore> cb, UUID animalId, String why) {

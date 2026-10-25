@@ -138,7 +138,7 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
                 if (now < OUT_RETRY_AT.getOrDefault(r.animalId, 0L)) continue;
                 if (HouseResidents.bringOut(world, store, house, r)) {
                     OUT_RETRY_AT.remove(r.animalId);
-                    HouseResidents.log("Ranch animal " + r.animalId + " came out of house " + house.houseId + " (generation " + r.generation + ")");
+                    HouseResidents.debug("Ranch animal " + r.animalId + " came out of house " + house.houseId + " (generation " + r.generation + ")");
                 } else {
                     OUT_RETRY_AT.put(r.animalId, now + OUT_RETRY_MS);
                 }
@@ -181,7 +181,7 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
                 }
                 case MISSING -> {
                     HouseResidents.storeInside(store, house, r, null);
-                    HouseResidents.log("Ranch animal " + r.animalId + " went into house " + house.houseId + " (it was missing)");
+                    HouseResidents.debug("Ranch animal " + r.animalId + " went into house " + house.houseId + " (it was missing)");
                 }
                 case ACTIVE -> {
                     if (r.following) continue;
@@ -201,7 +201,7 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
         Ref<EntityStore> ref = HouseResidents.live(world, r);
         if (ref == null) {
             HouseResidents.storeInside(store, house, r, null);
-            HouseResidents.log("Ranch animal " + r.animalId + " went into house " + house.houseId + " while unloaded");
+            HouseResidents.debug("Ranch animal " + r.animalId + " went into house " + house.houseId + " while unloaded");
             return true;
         }
         NPCEntity npc = store.getComponent(ref, NPCEntity.getComponentType());
@@ -214,7 +214,7 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
         if (started == null) {
             started = now;
             WALKING_SINCE.put(r.animalId, now);
-            HouseResidents.log("Ranch animal " + r.animalId + " walks home to house " + house.houseId + " from " + where(p, house));
+            HouseResidents.debug("Ranch animal " + r.animalId + " walks home to house " + house.houseId + " from " + where(p, house));
         }
         boolean arrived = HouseRules.arrived(p.x - house.doorX, p.y - house.doorY, p.z - house.doorZ);
         if (arrived || !HouseResidents.hasHomeStates(npc) || HouseRules.walkTimedOut(started, now)) {
@@ -222,7 +222,7 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
             StateSupport states = store.getComponent(ref, StateSupport.getComponentType());
             String detail = arrived ? " at the door" : " (did not reach the door in time; " + where(p, house) + ", state " + (states != null ? HouseResidents.stateName(states) : "?") + ")";
             HouseResidents.storeInside(store, house, r, ref);
-            HouseResidents.log("Ranch animal " + r.animalId + " went into house " + house.houseId + detail);
+            HouseResidents.debug("Ranch animal " + r.animalId + " went into house " + house.houseId + detail);
             return true;
         }
         HouseResidents.leashToDoor(npc, house);

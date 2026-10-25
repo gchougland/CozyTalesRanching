@@ -54,6 +54,18 @@ final class AnimalStore {
     private final Map<UUID, Tombstone> tombstones = new HashMap<>();
     private final Map<UUID, String> roles = new HashMap<>();
     private final Set<String> dirtyWorlds = new LinkedHashSet<>();
+    /**
+     * Worlds where only positions (or a small happiness drift) changed since their last save, with when that began.
+     * They ride along with the next real save, are written on their own after {@link #SOFT_SAVE_MS}, and always at
+     * shutdown and when an entity unloads ({@link #touch(AnimalRecord, boolean)} with true), so a wandering herd does
+     * not rewrite the file every sweep.
+     */
+    private final Map<String, Long> movedWorlds = new LinkedHashMap<>();
+    /** Position and small happiness changes are written at most this late on their own (a crash loses no more). */
+    static final long SOFT_SAVE_MS = TimeUnit.MINUTES.toMillis(5);
+    private java.util.function.LongSupplier clock = System::currentTimeMillis;
+    /** Each record's saved fields as last marked for saving, to tell a real change from a position-only one. */
+    private final Map<UUID, AnimalRecord> snapshots = new HashMap<>();
     /** Worlds whose file could not be read; their files are only replaced once a save succeeds. */
     private final Set<String> loadProblems = new LinkedHashSet<>();
 
@@ -145,6 +157,7 @@ final class AnimalStore {
         records.put(animalId, r);
         tombstones.remove(animalId);
         reindex(r);
+        changed(r);
         return r;
     }
 
@@ -160,6 +173,7 @@ final class AnimalStore {
         r.adopted = true;
         r.entityUuid = entityUuid;
         reindex(r);
+        changed(r);
         return new AdoptResult(r, true);
     }
 
@@ -169,6 +183,7 @@ final class AnimalStore {
         r.entityUuid = entityUuid;
         r.state = AnimalRecord.State.ACTIVE;
         reindex(r);
+        changed(r);
         return r.generation;
     }
 
@@ -186,6 +201,7 @@ final class AnimalStore {
             r.entityUuid = entityUuid;
             if (r.state != AnimalRecord.State.STORED) r.state = AnimalRecord.State.ACTIVE;
             reindex(r);
+            changed(r);
             return Verdict.CURRENT_CAUGHT_UP;
         }
         if (generation == r.generation && entityUuid.equals(r.entityUuid)) return Verdict.CURRENT;
@@ -202,6 +218,7 @@ final class AnimalStore {
         r.generation = generation;
         r.entityUuid = entityUuid;
         reindex(r);
+        changed(r);
         return r;
     }
 
@@ -211,10 +228,54 @@ final class AnimalStore {
         if (!role.equals(roles.put(animalId, role))) dirtyWorlds.add(r.worldName);
     }
 
-    /** After a field changed: moves the record in the indexes and marks its world (and its old world) for saving. */
+    /**
+     * After a field changed: moves the record in the indexes and marks its world (and its old world) for saving, but
+     * only if a saved field other than the position changed. A position-only change waits for the next real save, or
+     * for shutdown.
+     */
     synchronized void touch(@Nonnull AnimalRecord r) {
+        touch(r, false);
+    }
+
+    /** As {@link #touch(AnimalRecord)}; with {@code savePosition} a moved position or small drift alone also marks the world (an entity unloading). */
+    synchronized void touch(@Nonnull AnimalRecord r, boolean savePosition) {
         if (records.get(r.animalId) != r) return;
         reindex(r);
+        AnimalRecord before = snapshots.get(r.animalId);
+        if (before == null || !RecordFields.sameExceptPosition(before, r)) {
+            changed(r);
+        } else if (!RecordFields.samePosition(before, r) || before.happiness != r.happiness) {
+            // a new position or a small happiness drift: kept for the next real save and shutdown
+            if (savePosition) changed(r);
+            else movedWorlds.putIfAbsent(r.worldName, clock.getAsLong());
+        }
+    }
+
+    /** True when a save is waiting: a real change, or (with {@code includeMoved}) a position-only one. */
+    synchronized boolean hasPending(boolean includeMoved) {
+        return !dirtyWorlds.isEmpty() || !softDue(includeMoved).isEmpty();
+    }
+
+    /** Worlds whose soft changes are due: waiting {@link #SOFT_SAVE_MS}, or all of them ({@code all}, shutdown). */
+    @Nonnull
+    private List<String> softDue(boolean all) {
+        if (movedWorlds.isEmpty()) return List.of();
+        long now = clock.getAsLong();
+        List<String> out = new ArrayList<>();
+        movedWorlds.forEach((w, since) -> {
+            if (all || now - since >= SOFT_SAVE_MS) out.add(w);
+        });
+        return out;
+    }
+
+    /** For tests: the clock that times soft saves. */
+    synchronized void setClock(@Nonnull java.util.function.LongSupplier clock) {
+        this.clock = clock;
+    }
+
+    private void changed(@Nonnull AnimalRecord r) {
+        dirtyWorlds.add(r.worldName);
+        snapshots.put(r.animalId, RecordFields.copy(r));
     }
 
     synchronized void remove(@Nonnull UUID animalId) {
@@ -222,6 +283,7 @@ final class AnimalStore {
         if (r == null) return;
         unindex(animalId);
         roles.remove(animalId);
+        snapshots.remove(animalId);
         tombstones.put(animalId, new Tombstone(r.worldName, System.currentTimeMillis()));
         dirtyWorlds.add(r.worldName);
     }
@@ -230,7 +292,6 @@ final class AnimalStore {
         if (r.worldName == null) r.worldName = "";
         Indexed old = indexed.get(r.animalId);
         Indexed now = new Indexed(r.entityUuid, r.ownerId, r.houseId, r.worldName);
-        dirtyWorlds.add(r.worldName);
         if (now.equals(old)) return;
         if (old != null) {
             if (old.entity != null && !Objects.equals(old.entity, now.entity)) byEntity.remove(old.entity, r.animalId);
@@ -272,22 +333,38 @@ final class AnimalStore {
 
     @Nonnull
     synchronized List<String> takeDirty() {
-        List<String> out = new ArrayList<>(dirtyWorlds);
+        return takeDirty(false);
+    }
+
+    /** The worlds to save now, cleared; {@code includeMoved} adds the position-only ones (shutdown). */
+    @Nonnull
+    synchronized List<String> takeDirty(boolean includeMoved) {
+        Set<String> out = new LinkedHashSet<>(dirtyWorlds);
+        out.addAll(softDue(includeMoved));
         dirtyWorlds.clear();
-        return out;
+        return new ArrayList<>(out);
     }
 
     synchronized void markWorldDirty(@Nonnull String worldName) {
         dirtyWorlds.add(worldName);
     }
 
-    /** The JSON for one world, built under the lock so it is one consistent picture of the indexes. */
+    /** The JSON for one world: a copy taken under the lock (one consistent picture), turned into text outside it. */
     @Nonnull
-    synchronized String serialize(@Nonnull String worldName) {
+    String serialize(@Nonnull String worldName) {
+        return AnimalSaveFile.serialize(snapshotWorld(worldName));
+    }
+
+    /** Copies of one world's records, tombstones and roles. Its positions are written with it, so it is no longer "moved". */
+    @Nonnull
+    synchronized AnimalSaveFile.Data snapshotWorld(@Nonnull String worldName) {
+        movedWorlds.remove(worldName);
         AnimalSaveFile.Data d = new AnimalSaveFile.Data();
         d.World = worldName;
         d.SavedAtMs = System.currentTimeMillis();
-        d.Records = new ArrayList<>(inWorld(worldName));
+        List<AnimalRecord> live = inWorld(worldName);
+        d.Records = new ArrayList<>(live.size());
+        for (AnimalRecord rec : live) d.Records.add(RecordFields.copy(rec));
         d.Records.sort((a, b) -> a.animalId.compareTo(b.animalId));
         long cutoff = d.SavedAtMs - TOMBSTONE_KEEP_MS;
         tombstones.entrySet().removeIf(e -> e.getValue().atMs < cutoff);
@@ -302,7 +379,7 @@ final class AnimalStore {
             if (role != null) r.put(rec.animalId, role);
         }
         d.Roles = r;
-        return AnimalSaveFile.serialize(d);
+        return d;
     }
 
     /** Writes one world's file. Off the world thread only. */
@@ -316,8 +393,13 @@ final class AnimalStore {
 
     /** Saves every dirty world; a world that fails stays dirty. Returns how many failed. */
     int saveDirty() {
+        return saveDirty(false);
+    }
+
+    /** As {@link #saveDirty()}; {@code includeMoved} also writes worlds where only positions changed (shutdown). */
+    int saveDirty(boolean includeMoved) {
         int failed = 0;
-        for (String world : takeDirty()) {
+        for (String world : takeDirty(includeMoved)) {
             try {
                 save(world);
             } catch (IOException | RuntimeException e) {
@@ -332,6 +414,8 @@ final class AnimalStore {
     /** Reads every world file. Called once at start, before any world adds entities. */
     synchronized void loadAll() {
         if (!Files.isDirectory(dir)) return;
+        // a save cut off between its two renames is finished first, so the listing below sees it
+        com.hexvane.cozytalesranching.persist.SafeWrite.healDir(dir);
         List<Path> files;
         try (Stream<Path> s = Files.list(dir)) {
             files = s.filter(AnimalSaveFile::isMainFile).sorted().toList();
@@ -365,6 +449,8 @@ final class AnimalStore {
             if (prior != null) unindex(prior.animalId);
             records.put(r.animalId, r);
             reindex(r);
+            snapshots.put(r.animalId, RecordFields.copy(r));
+            dirtyWorlds.add(r.worldName);
         }
         d.Tombstones.forEach((id, at) -> {
             if (id != null && at != null && !records.containsKey(id)) tombstones.put(id, new Tombstone(d.World, at));
