@@ -4,14 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,6 +20,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.DoubleSupplier;
+import java.util.function.LongSupplier;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,7 +37,7 @@ final class ProduceStore {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
     static final int FORMAT_VERSION = 1;
     static final String EXT = ".json";
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+    private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
 
     /** Products waiting in one house, with the point they drop at if the house goes. */
     static final class Stock {
@@ -96,6 +92,14 @@ final class ProduceStore {
     private final Map<String, Data> worlds = new HashMap<>();
     private final Map<UUID, Stock> byHouse = new HashMap<>();
     private final Set<String> dirty = new HashSet<>();
+    /**
+     * Worlds where only the pass clock or production progress changed, with when that first happened. Progress moves
+     * every pass for every producing animal, so it is written with the next real change (an item made, taken or
+     * dropped), at most {@link #PROGRESS_SAVE_MS} late on its own, and always at shutdown.
+     */
+    private final Map<String, Long> progressSince = new HashMap<>();
+    static final long PROGRESS_SAVE_MS = TimeUnit.MINUTES.toMillis(5);
+    private LongSupplier clock = System::currentTimeMillis;
     private final ScheduledThreadPoolExecutor executor;
     private final AtomicBoolean saveScheduled = new AtomicBoolean();
     private final AtomicBoolean closing = new AtomicBoolean();
@@ -115,6 +119,8 @@ final class ProduceStore {
 
     synchronized void loadAll() {
         if (!Files.isDirectory(dir)) return;
+        // a save cut off between its two renames is finished first, so the listing below sees it
+        com.hexvane.cozytalesranching.persist.SafeWrite.healDir(dir);
         try (Stream<Path> files = Files.list(dir)) {
             for (Path file : files.filter(p -> p.getFileName().toString().endsWith(EXT)).sorted().toList()) {
                 Data d = read(file);
@@ -146,7 +152,16 @@ final class ProduceStore {
 
     synchronized void setLastPass(@Nonnull String world, long ms) {
         world(world).LastPassMs = ms;
-        dirty.add(world);
+        progressChanged(world);
+    }
+
+    /** For tests: the clock that times progress-only saves. */
+    synchronized void setClock(@Nonnull LongSupplier clock) {
+        this.clock = clock;
+    }
+
+    private void progressChanged(@Nonnull String world) {
+        progressSince.putIfAbsent(world, clock.getAsLong());
     }
 
     /** Item id to count, in the order they first arrived. A copy. */
@@ -209,13 +224,13 @@ final class ProduceStore {
 
     synchronized void setProgress(@Nonnull String world, @Nonnull UUID animalId, @Nonnull String item, double value) {
         world(world).Progress.computeIfAbsent(animalId, k -> new LinkedHashMap<>()).put(item, value);
-        dirty.add(world);
+        progressChanged(world);
     }
 
     /** Forgets progress of animals that no longer produce here. */
     synchronized void keepProgress(@Nonnull String world, @Nonnull Predicate<UUID> keep) {
         Data d = worlds.get(world);
-        if (d != null && d.Progress.keySet().removeIf(id -> !keep.test(id))) dirty.add(world);
+        if (d != null && d.Progress.keySet().removeIf(id -> !keep.test(id))) progressChanged(world);
     }
 
     @Nonnull
@@ -251,8 +266,20 @@ final class ProduceStore {
         if (d != null && d.PendingDrops.remove(s)) dirty.add(s.World);
     }
 
+    /** A save is due: a real change, or progress that has waited {@link #PROGRESS_SAVE_MS}. */
     synchronized boolean hasDirty() {
-        return !dirty.isEmpty();
+        return !dirty.isEmpty() || !progressDue(false).isEmpty();
+    }
+
+    /** Worlds whose progress-only changes are due ({@code all}: every one, for shutdown). */
+    private Set<String> progressDue(boolean all) {
+        if (progressSince.isEmpty()) return Set.of();
+        long now = clock.getAsLong();
+        Set<String> out = new HashSet<>();
+        progressSince.forEach((w, since) -> {
+            if (all || now - since >= PROGRESS_SAVE_MS) out.add(w);
+        });
+        return out;
     }
 
     void scheduleSave() {
@@ -270,14 +297,22 @@ final class ProduceStore {
         if (saveDirty() > 0) scheduleSave();
     }
 
-    /** Writes every dirty world on the calling thread. Returns how many failed (they stay dirty). */
+    /** Writes every dirty world (and progress that is due) on the calling thread. Returns how many failed (they stay dirty). */
     int saveDirty() {
+        return saveDirty(false);
+    }
+
+    /** As {@link #saveDirty()}; {@code allProgress} also writes progress that is not due yet (shutdown). */
+    int saveDirty(boolean allProgress) {
         Map<String, String> json = new LinkedHashMap<>();
         synchronized (this) {
-            for (String w : dirty) {
+            Set<String> worldsToSave = new java.util.LinkedHashSet<>(dirty);
+            worldsToSave.addAll(progressDue(allProgress));
+            for (String w : worldsToSave) {
                 Data d = world(w);
                 d.SavedAtMs = System.currentTimeMillis();
                 json.put(w, GSON.toJson(d));
+                progressSince.remove(w);
             }
             dirty.clear();
         }
@@ -305,7 +340,7 @@ final class ProduceStore {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        int failed = saveDirty();
+        int failed = saveDirty(true);
         if (failed > 0) LOG.severe(failed + " ranch product file(s) could not be saved at shutdown");
         else LOG.info("Saved ranch products.");
     }
@@ -317,27 +352,13 @@ final class ProduceStore {
     }
 
     static void write(@Nonnull Path file, @Nonnull String json) throws IOException {
-        Files.createDirectories(file.getParent());
-        Path tmp = file.resolveSibling(file.getFileName() + ".tmp");
-        byte[] bytes = json.getBytes(StandardCharsets.UTF_8);
-        try (FileChannel ch = FileChannel.open(tmp, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)) {
-            ByteBuffer buf = ByteBuffer.wrap(bytes);
-            while (buf.hasRemaining()) ch.write(buf);
-            ch.force(true);
-        }
-        if (Files.isRegularFile(file)) {
-            Files.copy(file, file.resolveSibling(file.getFileName() + ".prev"), StandardCopyOption.REPLACE_EXISTING);
-        }
-        try {
-            Files.move(tmp, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
-        } catch (AtomicMoveNotSupportedException e) {
-            Files.move(tmp, file, StandardCopyOption.REPLACE_EXISTING);
-        }
+        com.hexvane.cozytalesranching.persist.SafeWrite.write(file, json);
     }
 
     /** The file, else its previous good copy. An unreadable file is renamed aside, never deleted. */
     @Nullable
     static Data read(@Nonnull Path file) {
+        com.hexvane.cozytalesranching.persist.SafeWrite.heal(file);
         Path prev = file.resolveSibling(file.getFileName() + ".prev");
         try {
             Files.deleteIfExists(file.resolveSibling(file.getFileName() + ".tmp"));

@@ -147,12 +147,16 @@ final class WildlifeWorld {
             TransformComponent t = store.getComponent(ref, TransformComponent.getComponentType());
             if (t != null) {
                 Vector3d p = t.getPosition();
+                if (p.x != v.x || p.y != v.y || p.z != v.z) visitors.markMoved(world.getName());
                 v.x = p.x;
                 v.y = p.y;
                 v.z = p.z;
             }
             if (!v.leaving()) {
-                if (now >= v.leaveAtMs) startLeaving(world, store, ref, v, now);
+                if (now >= v.leaveAtMs) {
+                    startLeaving(world, store, ref, v, now);
+                    visitors.markDirty(world.getName());
+                }
                 continue;
             }
             double nearest = nearest(players, v.x, v.y, v.z);
@@ -163,7 +167,7 @@ final class WildlifeWorld {
                     v.entityUuid, v.roleId, (now - v.leavingSinceMs) / 1000, nearest));
             }
         }
-        visitors.markDirty(world.getName());
+        // forget() marks the world itself; a visitor that only walked about waits for the next real save
     }
 
     /** The entity is still the wild visitor we spawned: same role, and nobody has made it a ranch animal. */

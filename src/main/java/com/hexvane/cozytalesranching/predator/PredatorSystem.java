@@ -40,14 +40,10 @@ import org.joml.Vector3d;
  */
 final class PredatorSystem extends TickingSystem<EntityStore> {
     private static final com.hypixel.hytale.logger.HytaleLogger LOGGER = com.hypixel.hytale.logger.HytaleLogger.forEnclosingClass();
-    private static final float SPRINT_PERIOD = 0.25f;
-    private static final float TIMER_PERIOD = 1.0f;
-    private static final float LURE_PERIOD = 2.0f;
 
     private final Set<Dependency<EntityStore>> dependencies = Set.of(new SystemDependency<>(Order.BEFORE, RoleSystems.BehaviourTickSystem.class));
-    private float sprintClock;
-    private float timerClock;
-    private float lureClock;
+    /** Per world: every world ticks this one instance on its own thread. */
+    private final PassClocks clocks = new PassClocks();
 
     @Nonnull
     @Override
@@ -60,20 +56,14 @@ final class PredatorSystem extends TickingSystem<EntityStore> {
         Predators p = Predators.get();
         if (p == null) return;
         World world = store.getExternalData().getWorld();
-        sprintClock += dt;
-        timerClock += dt;
-        lureClock += dt;
-        if (lureClock >= LURE_PERIOD) {
-            lureClock = 0;
-            lurePass(p, world, store);
-        }
+        PassClocks.Clock clock = clocks.of(world.getName());
+        clock.advance(dt);
+        if (clock.takeLure()) lurePass(p, world, store);
         if (p.book.isEmpty()) return;
         List<Entry> here = p.book.inWorld(world.getName());
         if (here.isEmpty()) return;
-        boolean sprintCheck = sprintClock >= SPRINT_PERIOD;
-        if (sprintCheck) sprintClock = 0;
-        boolean timers = timerClock >= TIMER_PERIOD;
-        if (timers) timerClock = 0;
+        boolean sprintCheck = clock.takeSprint();
+        boolean timers = clock.takeTimer();
         long now = System.currentTimeMillis();
         EntityStore entities = store.getExternalData();
         for (Entry e : here) {

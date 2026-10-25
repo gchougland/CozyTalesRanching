@@ -71,6 +71,8 @@ final class JournalStore {
     /** Reads every journal file. Setup thread. */
     void loadAll() {
         if (dir == null || !Files.isDirectory(dir)) return;
+        // a save cut off between its two renames is finished first, so the listing below sees it
+        com.hexvane.cozytalesranching.persist.SafeWrite.healDir(dir);
         try (Stream<Path> files = Files.list(dir)) {
             for (Path f : files.filter(p -> JournalSaveFile.playerOf(p) != null && Files.isRegularFile(p)).sorted().toList()) {
                 UUID player = JournalSaveFile.playerOf(f);

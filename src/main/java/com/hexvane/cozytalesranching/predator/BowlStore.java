@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
  */
 public final class BowlStore {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+    private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
 
     /** A baited bowl. */
     public record Bowl(@Nonnull String world, int x, int y, int z, @Nonnull String item) {}

@@ -61,12 +61,12 @@ public final class WildlifeService {
     public synchronized void scheduleSave() {
         if (closed || (pendingSave != null && !pendingSave.isDone())) return;
         long delayMs = Math.round(RanchConfig.get().saveDebounceSeconds() * 1000);
-        pendingSave = saver.schedule(this::saveNow, delayMs, TimeUnit.MILLISECONDS);
+        pendingSave = saver.schedule(() -> saveNow(false), delayMs, TimeUnit.MILLISECONDS);
     }
 
-    private void saveNow() {
+    private void saveNow(boolean includeMoved) {
         try {
-            Map<String, String> worlds = store.drainDirty();
+            Map<String, String> worlds = store.drainDirty(includeMoved);
             if (!worlds.isEmpty()) store.write(worlds);
         } catch (RuntimeException e) {
             LOG.log(Level.WARNING, "Saving visitors failed", e);
@@ -86,8 +86,8 @@ public final class WildlifeService {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        if (store.hasDirty()) {
-            saveNow();
+        if (store.hasDirty(true)) {
+            saveNow(true);
             LOG.info("Saved ranch visitors.");
         }
     }

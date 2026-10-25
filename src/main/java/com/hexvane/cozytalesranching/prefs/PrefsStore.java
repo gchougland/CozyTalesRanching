@@ -4,14 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -33,7 +28,7 @@ import javax.annotation.Nullable;
 public final class PrefsStore {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
     static final String EXT = ".json";
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+    private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
 
     @Nullable private final Path dir;
     private final Map<UUID, PlayerPrefs> prefs = new HashMap<>();
@@ -103,6 +98,8 @@ public final class PrefsStore {
     /** Reads every file. Setup thread. */
     public void loadAll() {
         if (dir == null || !Files.isDirectory(dir)) return;
+        // a save cut off between its two renames is finished first, so the listing below sees it
+        com.hexvane.cozytalesranching.persist.SafeWrite.healDir(dir);
         try (Stream<Path> files = Files.list(dir)) {
             for (Path f : files.filter(p -> playerOf(p) != null && Files.isRegularFile(p)).sorted().toList()) {
                 UUID player = playerOf(f);
@@ -160,26 +157,13 @@ public final class PrefsStore {
     }
 
     static void write(@Nonnull Path file, @Nonnull String json) throws IOException {
-        Files.createDirectories(file.getParent());
-        Path tmp = file.resolveSibling(file.getFileName() + ".tmp");
-        try (FileChannel ch = FileChannel.open(tmp, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)) {
-            ByteBuffer buf = ByteBuffer.wrap(json.getBytes(StandardCharsets.UTF_8));
-            while (buf.hasRemaining()) ch.write(buf);
-            ch.force(true);
-        }
-        if (Files.isRegularFile(file)) {
-            Files.copy(file, file.resolveSibling(file.getFileName() + ".prev"), StandardCopyOption.REPLACE_EXISTING);
-        }
-        try {
-            Files.move(tmp, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
-        } catch (AtomicMoveNotSupportedException e) {
-            Files.move(tmp, file, StandardCopyOption.REPLACE_EXISTING);
-        }
+        com.hexvane.cozytalesranching.persist.SafeWrite.write(file, json);
     }
 
     /** The file, else its previous copy, else the defaults (everything on). */
     @Nonnull
     static PlayerPrefs read(@Nonnull Path file) {
+        com.hexvane.cozytalesranching.persist.SafeWrite.heal(file);
         for (Path p : new Path[] {file, file.resolveSibling(file.getFileName() + ".prev")}) {
             if (!Files.isRegularFile(p)) continue;
             try {

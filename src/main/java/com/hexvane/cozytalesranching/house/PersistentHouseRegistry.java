@@ -58,6 +58,8 @@ public final class PersistentHouseRegistry implements HouseRegistry {
     /** Reads every world's file. Call once before worlds start. */
     public synchronized void load() {
         if (!Files.isDirectory(dir)) return;
+        // a save cut off between its two renames is finished first, so the listing below sees it
+        com.hexvane.cozytalesranching.persist.SafeWrite.healDir(dir);
         try (Stream<Path> files = Files.list(dir)) {
             for (Path file : files.filter(p -> p.getFileName().toString().endsWith(HouseSaveFile.EXT)).sorted().toList()) {
                 HouseSaveFile.Loaded loaded = HouseSaveFile.read(file);

@@ -27,6 +27,15 @@ dependencies {
 tasks.named<Jar>("jar") {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from(sourceSets.main.get().output.resourcesDir)
+    // Never ship prefab caches (a .lpf in a jar is loaded instead of its prefab, with no age check) or backups.
+    exclude("**/*.lpf", "**/*.bak")
+    // Jar only, never processResources: syncAssets copies build/resources/main back over src after runServer, so a
+    // stripped build folder would overwrite the hand-edited sources. JSON strings cannot hold a raw line break, so
+    // trimming each line keeps every document identical in meaning (the client parses ~10 MB less model text).
+    filteringCharset = "UTF-8"
+    filesMatching(listOf("**/*.blockymodel", "Server/**/*.json")) {
+        filter { line: String -> line.trim() }
+    }
 }
 
 tasks.register("verifyReleaseJar") {

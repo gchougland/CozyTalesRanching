@@ -76,12 +76,22 @@ public final class WildPrompts {
         NPCEntity npc = accessor.getComponent(animal, NPCEntity.getComponentType());
         if (npc == null || npc.getRoleName() == null) return null;
         RoleMatch match = SpeciesRegistry.byRole(npc.getRoleName()).orElse(null);
-        if (match == null || (match.kind() != RoleKind.WILD && match.kind() != RoleKind.WILD_BABY)) return null;
+        if (!isWildRanchKind(match)) return null;
         ComponentType<EntityStore, AnimalMarker> marker = AnimalMarker.type();
         if (marker != null && accessor.getComponent(animal, marker) != null) return null;
         if (!RanchConfig.get().isSpeciesEnabled(match.species().Id)) return null;
         if (!CompatGuard.isManageable(animal, accessor, npc.getRoleName())) return null;
         return match.species();
+    }
+
+    /** The role is one of our species' wild roles (the cheap first test: one map lookup, no components). */
+    static boolean isWildRanchKind(@Nullable RoleMatch match) {
+        return match != null && (match.kind() == RoleKind.WILD || match.kind() == RoleKind.WILD_BABY);
+    }
+
+    /** {@link #isWildRanchKind} by role name; false for a villager, a vanilla tamed animal or any other mod's NPC. */
+    static boolean isWildRanchRole(@Nullable String role) {
+        return role != null && isWildRanchKind(SpeciesRegistry.byRole(role).orElse(null));
     }
 
     @Nonnull
@@ -134,6 +144,9 @@ public final class WildPrompts {
         public void tick(float dt, int index, @Nonnull ArchetypeChunk<EntityStore> chunk, @Nonnull Store<EntityStore> store, @Nonnull CommandBuffer<EntityStore> cb) {
             EntityTrackerSystems.Visible visible = chunk.getComponent(index, EntityTrackerSystems.Visible.getComponentType());
             if (visible == null || visible.visibleTo.isEmpty()) return;
+            // not one of our wild roles: never copy its queued updates (toUpdatesArray makes a new array each call)
+            NPCEntity npc = chunk.getComponent(index, NPCEntity.getComponentType());
+            if (npc == null || !isWildRanchRole(npc.getRoleName())) return;
             Ref<EntityStore> ref = chunk.getReferenceTo(index);
             SpeciesDefinition species = null;
             boolean checked = false;

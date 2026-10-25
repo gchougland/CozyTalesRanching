@@ -310,4 +310,9 @@ final class HouseResidents {
     static void log(@Nonnull String msg) {
         LOG.info(msg);
     }
+
+    /** Per-animal comings and goings (three lines per animal per day): only with {@code DebugLogging} on. */
+    static void debug(@Nonnull String msg) {
+        if (com.hexvane.cozytalesranching.config.RanchConfig.get().debugLogging()) LOG.info(msg);
+    }
 }
