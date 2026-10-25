@@ -2,6 +2,7 @@ package com.hexvane.cozytalesranching.houseui;
 
 import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
+import com.hexvane.cozytalesranching.care.CareApi;
 import com.hexvane.cozytalesranching.config.RanchConfig;
 import com.hexvane.cozytalesranching.house.HouseAccess;
 import com.hexvane.cozytalesranching.house.HouseRecord;
@@ -56,14 +57,28 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
         return open(playerRef, store, HouseSource.live(house.houseId));
     }
 
+    /** The opener for using the house with followers none of whom could move in: the page opens with the reason. */
+    public static boolean open(@Nonnull Ref<EntityStore> playerRef, @Nonnull Store<EntityStore> store, @Nonnull HouseRecord house,
+                               @Nullable HouseService.Result refusal) {
+        return open(playerRef, store, HouseSource.live(house.houseId), HouseView.refusalNotice(refusal));
+    }
+
     public static boolean open(@Nonnull Ref<EntityStore> playerRef, @Nonnull Store<EntityStore> store, @Nonnull HouseSource source) {
+        return open(playerRef, store, source, null);
+    }
+
+    public static boolean open(@Nonnull Ref<EntityStore> playerRef, @Nonnull Store<EntityStore> store, @Nonnull HouseSource source,
+                               @Nullable Txt notice) {
         if (!playerRef.isValid()) return false;
         Player player = store.getComponent(playerRef, Player.getComponentType());
         PlayerRef ref = store.getComponent(playerRef, PlayerRef.getComponentType());
         if (player == null || ref == null || source.house() == null) return false;
-        player.getPageManager().openCustomPage(playerRef, store, new HousePage(ref, source));
+        HousePage page = new HousePage(ref, source);
+        page.notice = notice;
+        player.getPageManager().openCustomPage(playerRef, store, page);
         return true;
     }
+
 
     @Override
     public void build(@Nonnull Ref<EntityStore> ref, @Nonnull UICommandBuilder commands, @Nonnull UIEventBuilder events, @Nonnull Store<EntityStore> store) {
@@ -253,7 +268,20 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
             .toList();
         return HouseView.of(house, species, houseNameKey(house, species), residents, service::isInside, followers, notice,
             source.stored(house), state, targets, this::canName, HouseBorder.isOn(playerRef.getUuid(), house.houseId),
-            System.currentTimeMillis());
+            System.currentTimeMillis(), HousePage::counts);
+    }
+
+    /** What counts for a habitat feature, from care's habitat definitions and the item names. */
+    @Nonnull
+    static Txt counts(@Nonnull String featureId) {
+        return HabitatCounts.explain(CareApi.habitatFeature(featureId).orElse(null), HousePage::itemNameKey);
+    }
+
+    /** An item's name key from the asset map, or null when there is no such item. */
+    @Nullable
+    static String itemNameKey(@Nonnull String itemId) {
+        Item item = Item.getAssetMap().getAsset(itemId);
+        return item == null ? null : item.getTranslationKey();
     }
 
     @Nonnull
@@ -261,7 +289,7 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
         HouseRecord gone = new HouseRecord();
         gone.houseId = new UUID(0, 0);
         return HouseView.of(gone, null, null, List.of(), id -> false, List.of(), Txt.ui("result.gone"),
-            Map.of(), HouseView.PageState.NONE, List.of(), r -> false, false, System.currentTimeMillis());
+            Map.of(), HouseView.PageState.NONE, List.of(), r -> false, false, System.currentTimeMillis(), id -> null);
     }
 
     /** A house's name in the move picker: its own name, else its item's name with where it stands. */

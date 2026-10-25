@@ -19,8 +19,8 @@ import org.joml.Vector3d;
 
 /**
  * Using a house: the assign gesture. Owned, unassigned animals of the house's species that follow the
- * player and are within {@link HouseRules#ASSIGN_RADIUS} move in, up to capacity. Otherwise the house page
- * opens, or, while there is no page, a one-line summary. World thread, outside ticks.
+ * player and are within {@link HouseRules#ASSIGN_RADIUS} move in, up to capacity. Otherwise (no followers, or none could
+ * move in) the house page opens, saying why none moved in, or, while there is no page, a one-line summary. World thread, outside ticks.
  */
 final class HouseUse {
     private HouseUse() {}
@@ -38,10 +38,15 @@ final class HouseUse {
                 if (result == Result.HOUSE_FULL) break;
             }
             int residents = Ranch.animals().inHouse(house.houseId).size();
+            Decision decision = decide(followers.size(), moved, last);
             if (moved > 0) {
                 RanchChat.tell(player, Message.translation("cozyranch_house.assign.done")
                     .param("count", moved).param("house", HouseBlocks.displayName(house))
                     .param("residents", residents).param("capacity", house.capacity));
+            }
+            if (decision.openPage()) {
+                // nobody could move in (most often: the house is full); the page still opens and says why, followers keep following
+                if (Ranch.housePages().open(playerEntity, store, house, decision.refusal())) return;
             }
             if (last == Result.NOT_OWNER && !player.getUuid().equals(house.ownerId) && HouseAccess.manage(player.getUuid(), house) == Result.OK) {
                 // a claim lets this player look after the house, but animals only live in their own owner's houses
@@ -50,10 +55,25 @@ final class HouseUse {
             } else if (last != Result.OK) {
                 player.sendMessage(refusal(last, house, residents));
             }
+            if (decision.openPage()) sendSummary(player, house);
             return;
         }
         if (Ranch.housePages().open(playerEntity, store, house)) return;
         sendSummary(player, house);
+    }
+
+    /**
+     * What using a house does after trying to move the followers in. When at least one moved in, the gesture worked: chat
+     * says so and no page opens. When followers came but none could move in (full, wrong owner ...), the house page opens
+     * anyway with the reason as its notice, so a full house never locks its own page.
+     */
+    record Decision(boolean openPage, @javax.annotation.Nullable Result refusal) {}
+
+    @Nonnull
+    static Decision decide(int followers, int moved, @Nonnull Result last) {
+        if (followers <= 0) return new Decision(true, null);
+        if (moved > 0) return new Decision(false, null);
+        return new Decision(true, last == Result.OK ? null : last);
     }
 
     static void sendSummary(@Nonnull PlayerRef player, @Nonnull HouseRecord house) {

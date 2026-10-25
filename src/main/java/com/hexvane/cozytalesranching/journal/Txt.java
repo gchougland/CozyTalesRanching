@@ -28,6 +28,15 @@ public record Txt(@Nullable String key, @Nonnull Map<String, Object> params, @Nu
         return new Txt(null, Map.of(), text);
     }
 
+    /** The same text built for the house page ({@code houseui.Txt}), e.g. what counts for a habitat feature. */
+    @Nonnull
+    public static Txt from(@Nonnull com.hexvane.cozytalesranching.houseui.Txt t) {
+        if (t.key() == null) return raw(t.raw() == null ? "" : t.raw());
+        Txt out = key(t.key());
+        t.params().forEach((k, v) -> out.with(k, v instanceof com.hexvane.cozytalesranching.houseui.Txt inner ? from(inner) : v));
+        return out;
+    }
+
     @Nonnull
     public Txt with(@Nonnull String name, @Nonnull Object value) {
         params.put(name, value);

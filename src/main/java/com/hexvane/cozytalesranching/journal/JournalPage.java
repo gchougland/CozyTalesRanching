@@ -1,5 +1,7 @@
 package com.hexvane.cozytalesranching.journal;
 
+import com.hexvane.cozytalesranching.care.CareApi;
+import com.hexvane.cozytalesranching.care.HabitatConfig;
 import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.RanchSounds;
 import com.hexvane.cozytalesranching.breeding.TraitRegistry;
@@ -180,6 +182,12 @@ public final class JournalPage extends InteractiveCustomUIPage<JournalPage.Event
         public boolean hasKey(@Nonnull String key) {
             I18nModule i18n = I18nModule.get();
             return i18n != null && i18n.getMessage("en-US", key) != null;
+        }
+
+        @Nullable
+        @Override
+        public HabitatConfig.Feature habitatFeature(@Nonnull String featureId) {
+            return CareApi.habitatFeature(featureId).orElse(null);
         }
 
         @Override

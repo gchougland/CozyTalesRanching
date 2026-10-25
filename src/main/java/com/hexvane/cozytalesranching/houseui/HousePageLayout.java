@@ -2,6 +2,7 @@ package com.hexvane.cozytalesranching.houseui;
 
 import java.util.List;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Writes a {@link HouseView} as the commands and button bindings of {@code CozyRanch/HousePage.ui}. Every build sends
@@ -33,6 +34,8 @@ public final class HousePageLayout {
 
     /** Product chips that fit beside the Collect button; with more kinds, one chip's place shows "+N more". */
     public static final int MAX_CHIPS = 5;
+    /** Need and want rows the habitat card has room for; with more, the last row says how many more (hover for which). */
+    public static final int MAX_MISSING_ROWS = 4;
 
     private static final String[] MOOD_FACES = {"Happy", "Okay", "Sad"};
 
@@ -46,7 +49,9 @@ public final class HousePageLayout {
         ui.text("#JournalButton", Txt.ui("button.journal"));
         ui.click("#JournalButton", ACTION_JOURNAL, "");
 
+        // the notice takes the species line's place in the header, so it never pushes the page down
         ui.set("#NoticeBox.Visible", view.notice() != null);
+        ui.set("#SpeciesLine.Visible", view.notice() == null);
         if (view.notice() != null) ui.text("#NoticeText", view.notice());
 
         products(view, ui);
@@ -201,12 +206,18 @@ public final class HousePageLayout {
         for (String f : MOOD_FACES) ui.set("#HabitatFace" + f + ".Visible", f.equals(face));
         ui.text("#HabitatSummary", Txt.ui("habitat." + h.level().name().toLowerCase(java.util.Locale.ROOT)));
         String detail = h.level() == HouseView.HabitatLevel.UNCHECKED ? "habitat.unchecked.detail"
-            : h.missingRequired().isEmpty() && h.missingPreferred().isEmpty() ? "habitat.detail.none" : "habitat.detail.some";
+            : h.missingRequired().isEmpty() && h.missingPreferred().isEmpty() ? "habitat.detail.none"
+            : h.counts().isEmpty() ? "habitat.detail.some" : "habitat.detail.hover";
         ui.text("#HabitatDetail", Txt.ui(detail));
         ui.clear("#HabitatMissing");
-        int i = 0;
-        for (String id : h.missingRequired()) missingRow(ui, i++, id, true);
-        for (String id : h.missingPreferred()) missingRow(ui, i++, id, false);
+        List<String> missing = new java.util.ArrayList<>(h.missingRequired());
+        missing.addAll(h.missingPreferred());
+        int rows = missing.size() > MAX_MISSING_ROWS ? MAX_MISSING_ROWS - 1 : missing.size();
+        for (int i = 0; i < rows; i++) {
+            String id = missing.get(i);
+            missingRow(ui, i, id, h.missingRequired().contains(id), h.counts().get(id));
+        }
+        if (rows < missing.size()) moreRow(ui, rows, missing.subList(rows, missing.size()));
         ui.text("#RefreshButton", Txt.ui("button.refresh"));
         ui.tooltip("#RefreshButton", Txt.ui("tooltip.refresh"));
         ui.click("#RefreshButton", ACTION_REFRESH, "");
@@ -215,14 +226,35 @@ public final class HousePageLayout {
         ui.click("#AreaButton", ACTION_BORDER, "");
     }
 
-    private static void missingRow(@Nonnull UiOut ui, int index, @Nonnull String featureId, boolean required) {
+    /** One need or want; hovering its name (or its Needs / Would love tag) says what counts for it. */
+    private static void missingRow(@Nonnull UiOut ui, int index, @Nonnull String featureId, boolean required, @Nullable Txt counts) {
         String row = "#HabitatMissing[" + index + "] ";
         ui.append("#HabitatMissing", MISSING_ROW);
         ui.set(row + "#MNeed.Visible", required);
         ui.set(row + "#MWant.Visible", !required);
-        if (required) ui.text(row + "#MNeed", Txt.ui("habitat.need"));
-        else ui.text(row + "#MWant", Txt.ui("habitat.want"));
+        String tag = row + (required ? "#MNeed" : "#MWant");
+        ui.text(tag, Txt.ui(required ? "habitat.need" : "habitat.want"));
         ui.text(row + "#MName", Txt.ui("habitat." + featureId));
+        if (counts != null) {
+            Txt tip = Txt.ui("counts.tooltip").with("counts", counts);
+            ui.tooltip(tag, tip);
+            ui.tooltip(row + "#MName", tip);
+        }
+    }
+
+    /** The last row when there are more needs and wants than rows: "3 more", hover for their names. */
+    private static void moreRow(@Nonnull UiOut ui, int index, @Nonnull List<String> rest) {
+        String row = "#HabitatMissing[" + index + "] ";
+        ui.append("#HabitatMissing", MISSING_ROW);
+        ui.set(row + "#MNeed.Visible", false);
+        ui.set(row + "#MWant.Visible", true);
+        ui.text(row + "#MWant", Txt.ui("habitat.want"));
+        ui.text(row + "#MName", Txt.ui("habitat.more").with("count", rest.size()));
+        List<Txt> names = rest.stream().map(id -> Txt.ui("habitat." + id)).toList();
+        Txt list = names.getFirst();
+        for (int i = 1; i < names.size(); i++) list = Txt.ui("counts.list").with("a", list).with("b", names.get(i));
+        ui.tooltip(row + "#MName", list);
+        ui.tooltip(row + "#MWant", list);
     }
 
     private static void hearts(@Nonnull UiOut ui, @Nonnull String prefix, int hearts) {

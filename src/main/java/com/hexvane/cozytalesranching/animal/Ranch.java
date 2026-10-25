@@ -30,6 +30,15 @@ public final class Ranch {
         /** World thread. Returns false if no page could be opened. */
         boolean open(@Nonnull Ref<EntityStore> playerRef, @Nonnull Store<EntityStore> store, @Nonnull HouseRecord house);
 
+        /**
+         * Opens the page after using the house with followers none of whom could move in: the page says why
+         * ({@code refusal}, e.g. {@code HOUSE_FULL}) and the followers keep following. World thread.
+         */
+        default boolean open(@Nonnull Ref<EntityStore> playerRef, @Nonnull Store<EntityStore> store, @Nonnull HouseRecord house,
+                             @Nullable HouseService.Result refusal) {
+            return open(playerRef, store, house);
+        }
+
         HousePageOpener NONE = (p, s, h) -> false;
     }
 

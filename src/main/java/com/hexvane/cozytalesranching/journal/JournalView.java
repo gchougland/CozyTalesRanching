@@ -1,6 +1,8 @@
 package com.hexvane.cozytalesranching.journal;
 
 import com.hexvane.cozytalesranching.breeding.TraitBook;
+import com.hexvane.cozytalesranching.care.HabitatConfig;
+import com.hexvane.cozytalesranching.houseui.HabitatCounts;
 import com.hexvane.cozytalesranching.journal.PlayerJournal.Entry;
 import com.hexvane.cozytalesranching.journal.PlayerJournal.Fact;
 import com.hexvane.cozytalesranching.journal.PlayerJournal.Memory;
@@ -41,6 +43,12 @@ public final class JournalView {
 
         @Nonnull
         ZoneId zone();
+
+        /** A habitat feature's definition (care's {@code Habitat.json} and species fragments), or null when unknown. */
+        @Nullable
+        default HabitatConfig.Feature habitatFeature(@Nonnull String featureId) {
+            return null;
+        }
     }
 
     public record Context(@Nonnull JournalBook book, @Nonnull List<SpeciesDefinition> species, @Nonnull TraitBook traits, @Nonnull Lookup lookup) {}
@@ -121,6 +129,8 @@ public final class JournalView {
         List<Section> right = new ArrayList<>();
         right.add(care(e, s));
         right.add(home(e, s, c));
+        Section counts = counts(e, s, c);
+        if (counts != null) right.add(counts);
         right.add(wildlife(e, s, c));
         right.add(breeding(e, s, c));
         right.add(products(e, s, c));
@@ -175,6 +185,24 @@ public final class JournalView {
         if (!s.HabitatRequires.isEmpty()) lines.add(body(Txt.j("home.needs").with("things", list(habitats(s.HabitatRequires)))));
         if (!s.HabitatPrefers.isEmpty()) lines.add(body(Txt.j("home.likes").with("things", list(habitats(s.HabitatPrefers)))));
         return new Section(Txt.j("section.home"), lines);
+    }
+
+    /**
+     * What counts for each habitat feature on the home lines, one muted line each ("Perch: 2 or more blocks nearby: wooden
+     * fences, Bundle of Hay, Toy Log"), built from the feature definitions; null until the home is known or when it lists none.
+     */
+    @Nullable
+    static Section counts(@Nonnull Entry e, @Nonnull SpeciesDefinition s, @Nonnull Context c) {
+        if (!e.knows(Fact.HABITAT)) return null;
+        Set<String> ids = new LinkedHashSet<>(s.HabitatRequires);
+        ids.addAll(s.HabitatPrefers);
+        List<Line> lines = new ArrayList<>();
+        for (String id : ids) {
+            if (id == null || id.isBlank()) continue;
+            Txt what = Txt.from(HabitatCounts.explain(c.lookup().habitatFeature(id), c.lookup()::itemNameKey));
+            lines.add(muted(Txt.j("counts.line").with("name", Txt.key(habitatKey(id))).with("counts", what)));
+        }
+        return lines.isEmpty() ? null : new Section(Txt.j("section.counts"), lines);
     }
 
     @Nonnull
