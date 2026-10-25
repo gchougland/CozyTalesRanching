@@ -113,7 +113,7 @@
       "name": "RootFlare1",
       "position": {
         "x": 0,
-        "y": 4,
+        "y": 3.7,
         "z": 0
       },
       "orientation": {
@@ -131,7 +131,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.9875,
+          "y": 0.925,
           "z": 1
         },
         "settings": {
@@ -221,7 +221,7 @@
       "name": "RootFlare2",
       "position": {
         "x": 0,
-        "y": 4,
+        "y": 3.4,
         "z": 0
       },
       "orientation": {
@@ -239,7 +239,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.975,
+          "y": 0.85,
           "z": 1
         },
         "settings": {
@@ -329,7 +329,7 @@
       "name": "RootFlare3",
       "position": {
         "x": 0,
-        "y": 4,
+        "y": 3.1,
         "z": 0
       },
       "orientation": {
@@ -347,7 +347,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.9625,
+          "y": 0.775,
           "z": 1
         },
         "settings": {
@@ -437,7 +437,7 @@
       "name": "Trunk0",
       "position": {
         "x": 0,
-        "y": 38,
+        "y": 37,
         "z": 0
       },
       "orientation": {
@@ -455,7 +455,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 1,
+          "y": 1.033333,
           "z": 1
         },
         "settings": {
@@ -545,7 +545,7 @@
       "name": "Trunk1",
       "position": {
         "x": 0,
-        "y": 38,
+        "y": 37.15,
         "z": 0
       },
       "orientation": {
@@ -563,7 +563,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.998333,
+          "y": 1.038333,
           "z": 1
         },
         "settings": {
@@ -653,7 +653,7 @@
       "name": "Trunk2",
       "position": {
         "x": 0,
-        "y": 38,
+        "y": 37.3,
         "z": 0
       },
       "orientation": {
@@ -671,7 +671,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.996667,
+          "y": 1.043333,
           "z": 1
         },
         "settings": {
@@ -761,7 +761,7 @@
       "name": "Trunk3",
       "position": {
         "x": 0,
-        "y": 38,
+        "y": 37.45,
         "z": 0
       },
       "orientation": {
@@ -779,7 +779,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.995,
+          "y": 1.048333,
           "z": 1
         },
         "settings": {
@@ -3678,7 +3678,7 @@
       "position": {
         "x": 0,
         "y": 7.5,
-        "z": 17
+        "z": 17.5
       },
       "orientation": {
         "x": 0,
@@ -3912,7 +3912,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.996875
+          "z": 0.98125
         },
         "settings": {
           "size": {
@@ -4020,7 +4020,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.99375
+          "z": 0.9625
         },
         "settings": {
           "size": {
@@ -4128,7 +4128,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.990625
+          "z": 0.94375
         },
         "settings": {
           "size": {
@@ -4343,7 +4343,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.98,
+          "y": 0.88,
           "z": 1
         },
         "settings": {
@@ -4451,7 +4451,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.96,
+          "y": 0.76,
           "z": 1
         },
         "settings": {
@@ -4559,7 +4559,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.94,
+          "y": 0.64,
           "z": 1
         },
         "settings": {
@@ -4645,11 +4645,11 @@
       "children": []
     },
     {
-      "id": "44",
-      "name": "NestCup0",
+      "id": "199",
+      "name": "NestCupMid",
       "position": {
         "x": -31.658706,
-        "y": 74.649959,
+        "y": 74.149959,
         "z": 22.167665
       },
       "orientation": {
@@ -4667,7 +4667,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 1,
+          "y": 2,
           "z": 1
         },
         "settings": {
@@ -4753,18 +4753,18 @@
       "children": []
     },
     {
-      "id": "45",
-      "name": "NestCup1",
+      "id": "200",
+      "name": "NestCupN1",
       "position": {
         "x": -31.658706,
-        "y": 74.649959,
-        "z": 22.167665
+        "y": 74.149959,
+        "z": 18.667665
       },
       "orientation": {
         "x": 0,
-        "y": 0.707107,
+        "y": 0,
         "z": 0,
-        "w": 0.707107
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -4775,20 +4775,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.9,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 13,
+            "x": 9,
             "y": 1,
-            "z": 5
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 343,
+              "x": 315,
               "y": 298
             },
             "mirror": {
@@ -4799,7 +4799,7 @@
           },
           "back": {
             "offset": {
-              "x": 358,
+              "x": 330,
               "y": 298
             },
             "mirror": {
@@ -4810,7 +4810,7 @@
           },
           "left": {
             "offset": {
-              "x": 163,
+              "x": 150,
               "y": 310
             },
             "mirror": {
@@ -4821,7 +4821,7 @@
           },
           "right": {
             "offset": {
-              "x": 170,
+              "x": 157,
               "y": 310
             },
             "mirror": {
@@ -4832,8 +4832,8 @@
           },
           "top": {
             "offset": {
-              "x": 283,
-              "y": 242
+              "x": 255,
+              "y": 243
             },
             "mirror": {
               "x": false,
@@ -4843,8 +4843,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 298,
-              "y": 242
+              "x": 270,
+              "y": 243
             },
             "mirror": {
               "x": false,
@@ -4861,18 +4861,18 @@
       "children": []
     },
     {
-      "id": "46",
-      "name": "NestCup2",
+      "id": "201",
+      "name": "NestCupS1",
       "position": {
         "x": -31.658706,
-        "y": 74.649959,
-        "z": 22.167665
+        "y": 74.149959,
+        "z": 25.667665
       },
       "orientation": {
         "x": 0,
-        "y": 0.382683,
+        "y": 0,
         "z": 0,
-        "w": 0.92388
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -4883,20 +4883,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.8,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 13,
+            "x": 9,
             "y": 1,
-            "z": 5
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 373,
+              "x": 315,
               "y": 298
             },
             "mirror": {
@@ -4907,7 +4907,7 @@
           },
           "back": {
             "offset": {
-              "x": 388,
+              "x": 330,
               "y": 298
             },
             "mirror": {
@@ -4918,7 +4918,7 @@
           },
           "left": {
             "offset": {
-              "x": 177,
+              "x": 150,
               "y": 310
             },
             "mirror": {
@@ -4929,7 +4929,7 @@
           },
           "right": {
             "offset": {
-              "x": 184,
+              "x": 157,
               "y": 310
             },
             "mirror": {
@@ -4940,8 +4940,8 @@
           },
           "top": {
             "offset": {
-              "x": 313,
-              "y": 242
+              "x": 255,
+              "y": 243
             },
             "mirror": {
               "x": false,
@@ -4951,8 +4951,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 328,
-              "y": 242
+              "x": 270,
+              "y": 243
             },
             "mirror": {
               "x": false,
@@ -4969,18 +4969,18 @@
       "children": []
     },
     {
-      "id": "47",
-      "name": "NestCup3",
+      "id": "202",
+      "name": "NestCupN2",
       "position": {
         "x": -31.658706,
-        "y": 74.649959,
-        "z": 22.167665
+        "y": 74.149959,
+        "z": 16.667665
       },
       "orientation": {
         "x": 0,
-        "y": 0.92388,
+        "y": 0,
         "z": 0,
-        "w": 0.382683
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -4991,20 +4991,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.7,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 13,
+            "x": 5,
             "y": 1,
-            "z": 5
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 403,
+              "x": 317,
               "y": 298
             },
             "mirror": {
@@ -5015,7 +5015,7 @@
           },
           "back": {
             "offset": {
-              "x": 418,
+              "x": 332,
               "y": 298
             },
             "mirror": {
@@ -5026,7 +5026,7 @@
           },
           "left": {
             "offset": {
-              "x": 191,
+              "x": 150,
               "y": 310
             },
             "mirror": {
@@ -5037,7 +5037,7 @@
           },
           "right": {
             "offset": {
-              "x": 198,
+              "x": 157,
               "y": 310
             },
             "mirror": {
@@ -5048,8 +5048,8 @@
           },
           "top": {
             "offset": {
-              "x": 343,
-              "y": 242
+              "x": 257,
+              "y": 243
             },
             "mirror": {
               "x": false,
@@ -5059,8 +5059,116 @@
           },
           "bottom": {
             "offset": {
-              "x": 358,
-              "y": 242
+              "x": 272,
+              "y": 243
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "203",
+      "name": "NestCupS2",
+      "position": {
+        "x": -31.658706,
+        "y": 74.149959,
+        "z": 27.667665
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 2,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 5,
+            "y": 1,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 317,
+              "y": 298
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "back": {
+            "offset": {
+              "x": 332,
+              "y": 298
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 150,
+              "y": 310
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 157,
+              "y": 310
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 257,
+              "y": 243
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 272,
+              "y": 243
             },
             "mirror": {
               "x": false,
@@ -6396,7 +6504,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.996667
+          "z": 0.98
         },
         "settings": {
           "size": {
@@ -6504,7 +6612,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.993333
+          "z": 0.96
         },
         "settings": {
           "size": {
@@ -6612,7 +6720,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.99
+          "z": 0.94
         },
         "settings": {
           "size": {
@@ -6827,7 +6935,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.98,
+          "y": 0.88,
           "z": 1
         },
         "settings": {
@@ -6935,7 +7043,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.96,
+          "y": 0.76,
           "z": 1
         },
         "settings": {
@@ -7043,7 +7151,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.94,
+          "y": 0.64,
           "z": 1
         },
         "settings": {
@@ -7129,11 +7237,11 @@
       "children": []
     },
     {
-      "id": "66",
-      "name": "NestCup02",
+      "id": "204",
+      "name": "NestCup2Mid",
       "position": {
         "x": 32.180308,
-        "y": 86.3,
+        "y": 85.8,
         "z": 15.005924
       },
       "orientation": {
@@ -7151,14 +7259,14 @@
         },
         "stretch": {
           "x": 1,
-          "y": 1,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
             "x": 12,
             "y": 1,
-            "z": 5
+            "z": 4
           }
         },
         "textureLayout": {
@@ -7237,18 +7345,18 @@
       "children": []
     },
     {
-      "id": "67",
-      "name": "NestCup12",
+      "id": "205",
+      "name": "NestCup2N1",
       "position": {
         "x": 32.180308,
-        "y": 86.3,
-        "z": 15.005924
+        "y": 85.8,
+        "z": 12.005924
       },
       "orientation": {
         "x": 0,
-        "y": 0.707107,
+        "y": 0,
         "z": 0,
-        "w": 0.707107
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -7259,20 +7367,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.9,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 12,
+            "x": 8,
             "y": 1,
-            "z": 5
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 71,
+              "x": 45,
               "y": 301
             },
             "mirror": {
@@ -7283,7 +7391,7 @@
           },
           "back": {
             "offset": {
-              "x": 85,
+              "x": 59,
               "y": 301
             },
             "mirror": {
@@ -7294,7 +7402,7 @@
           },
           "left": {
             "offset": {
-              "x": 219,
+              "x": 206,
               "y": 310
             },
             "mirror": {
@@ -7305,7 +7413,7 @@
           },
           "right": {
             "offset": {
-              "x": 226,
+              "x": 213,
               "y": 310
             },
             "mirror": {
@@ -7316,8 +7424,8 @@
           },
           "top": {
             "offset": {
-              "x": 194,
-              "y": 249
+              "x": 168,
+              "y": 250
             },
             "mirror": {
               "x": false,
@@ -7327,8 +7435,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 208,
-              "y": 249
+              "x": 182,
+              "y": 250
             },
             "mirror": {
               "x": false,
@@ -7345,18 +7453,18 @@
       "children": []
     },
     {
-      "id": "68",
-      "name": "NestCup22",
+      "id": "206",
+      "name": "NestCup2S1",
       "position": {
         "x": 32.180308,
-        "y": 86.3,
-        "z": 15.005924
+        "y": 85.8,
+        "z": 18.005924
       },
       "orientation": {
         "x": 0,
-        "y": 0.382683,
+        "y": 0,
         "z": 0,
-        "w": 0.92388
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -7367,20 +7475,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.8,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 12,
+            "x": 8,
             "y": 1,
-            "z": 5
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 99,
+              "x": 45,
               "y": 301
             },
             "mirror": {
@@ -7391,7 +7499,7 @@
           },
           "back": {
             "offset": {
-              "x": 113,
+              "x": 59,
               "y": 301
             },
             "mirror": {
@@ -7402,7 +7510,7 @@
           },
           "left": {
             "offset": {
-              "x": 233,
+              "x": 206,
               "y": 310
             },
             "mirror": {
@@ -7413,7 +7521,7 @@
           },
           "right": {
             "offset": {
-              "x": 240,
+              "x": 213,
               "y": 310
             },
             "mirror": {
@@ -7424,8 +7532,8 @@
           },
           "top": {
             "offset": {
-              "x": 222,
-              "y": 249
+              "x": 168,
+              "y": 250
             },
             "mirror": {
               "x": false,
@@ -7435,8 +7543,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 236,
-              "y": 249
+              "x": 182,
+              "y": 250
             },
             "mirror": {
               "x": false,
@@ -7453,18 +7561,18 @@
       "children": []
     },
     {
-      "id": "69",
-      "name": "NestCup32",
+      "id": "207",
+      "name": "NestCup2N2",
       "position": {
         "x": 32.180308,
-        "y": 86.3,
-        "z": 15.005924
+        "y": 85.8,
+        "z": 10.005924
       },
       "orientation": {
         "x": 0,
-        "y": 0.92388,
+        "y": 0,
         "z": 0,
-        "w": 0.382683
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -7475,20 +7583,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.7,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 12,
+            "x": 4,
             "y": 1,
-            "z": 5
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 127,
+              "x": 47,
               "y": 301
             },
             "mirror": {
@@ -7499,7 +7607,7 @@
           },
           "back": {
             "offset": {
-              "x": 141,
+              "x": 61,
               "y": 301
             },
             "mirror": {
@@ -7510,7 +7618,7 @@
           },
           "left": {
             "offset": {
-              "x": 247,
+              "x": 206,
               "y": 310
             },
             "mirror": {
@@ -7521,7 +7629,7 @@
           },
           "right": {
             "offset": {
-              "x": 254,
+              "x": 213,
               "y": 310
             },
             "mirror": {
@@ -7532,8 +7640,8 @@
           },
           "top": {
             "offset": {
-              "x": 250,
-              "y": 249
+              "x": 170,
+              "y": 250
             },
             "mirror": {
               "x": false,
@@ -7543,8 +7651,116 @@
           },
           "bottom": {
             "offset": {
-              "x": 264,
-              "y": 249
+              "x": 184,
+              "y": 250
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "208",
+      "name": "NestCup2S2",
+      "position": {
+        "x": 32.180308,
+        "y": 85.8,
+        "z": 20.005924
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 2,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 4,
+            "y": 1,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 47,
+              "y": 301
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "back": {
+            "offset": {
+              "x": 61,
+              "y": 301
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 206,
+              "y": 310
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 213,
+              "y": 310
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 170,
+              "y": 250
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 184,
+              "y": 250
             },
             "mirror": {
               "x": false,
@@ -7780,7 +7996,7 @@
       "id": "72",
       "name": "NestStick9",
       "position": {
-        "x": 35.230833,
+        "x": 35.730833,
         "y": 82.5,
         "z": 8.154333
       },
@@ -8104,7 +8320,7 @@
       "id": "75",
       "name": "NestStick12",
       "position": {
-        "x": 29.129783,
+        "x": 28.629783,
         "y": 85,
         "z": 21.857515
       },
@@ -8320,9 +8536,9 @@
       "id": "77",
       "name": "KeyBow",
       "position": {
-        "x": 26.15,
-        "y": 87.2,
-        "z": 12.5943
+        "x": 29.121278,
+        "y": 87.35,
+        "z": 13.293759
       },
       "orientation": {
         "x": 0,
@@ -8988,7 +9204,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.996
+          "z": 0.976
         },
         "settings": {
           "size": {
@@ -9096,7 +9312,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.992
+          "z": 0.952
         },
         "settings": {
           "size": {
@@ -9204,7 +9420,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.988
+          "z": 0.928
         },
         "settings": {
           "size": {
@@ -9419,7 +9635,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.98,
+          "y": 0.88,
           "z": 1
         },
         "settings": {
@@ -9527,7 +9743,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.96,
+          "y": 0.76,
           "z": 1
         },
         "settings": {
@@ -9635,7 +9851,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.94,
+          "y": 0.64,
           "z": 1
         },
         "settings": {
@@ -9721,11 +9937,11 @@
       "children": []
     },
     {
-      "id": "89",
-      "name": "NestCup03",
+      "id": "209",
+      "name": "NestCup3Mid",
       "position": {
         "x": 0,
-        "y": 62.442519,
+        "y": 61.942519,
         "z": -32.887636
       },
       "orientation": {
@@ -9743,14 +9959,14 @@
         },
         "stretch": {
           "x": 1,
-          "y": 1,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
             "x": 12,
             "y": 1,
-            "z": 5
+            "z": 4
           }
         },
         "textureLayout": {
@@ -9829,18 +10045,18 @@
       "children": []
     },
     {
-      "id": "90",
-      "name": "NestCup13",
+      "id": "210",
+      "name": "NestCup3N1",
       "position": {
         "x": 0,
-        "y": 62.442519,
-        "z": -32.887636
+        "y": 61.942519,
+        "z": -35.887636
       },
       "orientation": {
         "x": 0,
-        "y": 0.707107,
+        "y": 0,
         "z": 0,
-        "w": 0.707107
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -9851,20 +10067,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.9,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 12,
+            "x": 8,
             "y": 1,
-            "z": 5
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 239,
+              "x": 213,
               "y": 301
             },
             "mirror": {
@@ -9875,7 +10091,7 @@
           },
           "back": {
             "offset": {
-              "x": 253,
+              "x": 227,
               "y": 301
             },
             "mirror": {
@@ -9886,7 +10102,7 @@
           },
           "left": {
             "offset": {
-              "x": 303,
+              "x": 290,
               "y": 310
             },
             "mirror": {
@@ -9897,7 +10113,7 @@
           },
           "right": {
             "offset": {
-              "x": 310,
+              "x": 297,
               "y": 310
             },
             "mirror": {
@@ -9908,8 +10124,8 @@
           },
           "top": {
             "offset": {
-              "x": 306,
-              "y": 249
+              "x": 280,
+              "y": 250
             },
             "mirror": {
               "x": false,
@@ -9919,8 +10135,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 320,
-              "y": 249
+              "x": 294,
+              "y": 250
             },
             "mirror": {
               "x": false,
@@ -9937,18 +10153,18 @@
       "children": []
     },
     {
-      "id": "91",
-      "name": "NestCup23",
+      "id": "211",
+      "name": "NestCup3S1",
       "position": {
         "x": 0,
-        "y": 62.442519,
-        "z": -32.887636
+        "y": 61.942519,
+        "z": -29.887636
       },
       "orientation": {
         "x": 0,
-        "y": 0.382683,
+        "y": 0,
         "z": 0,
-        "w": 0.92388
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -9959,20 +10175,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.8,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 12,
+            "x": 8,
             "y": 1,
-            "z": 5
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 267,
+              "x": 213,
               "y": 301
             },
             "mirror": {
@@ -9983,7 +10199,7 @@
           },
           "back": {
             "offset": {
-              "x": 281,
+              "x": 227,
               "y": 301
             },
             "mirror": {
@@ -9994,7 +10210,7 @@
           },
           "left": {
             "offset": {
-              "x": 317,
+              "x": 290,
               "y": 310
             },
             "mirror": {
@@ -10005,7 +10221,7 @@
           },
           "right": {
             "offset": {
-              "x": 324,
+              "x": 297,
               "y": 310
             },
             "mirror": {
@@ -10016,8 +10232,8 @@
           },
           "top": {
             "offset": {
-              "x": 334,
-              "y": 249
+              "x": 280,
+              "y": 250
             },
             "mirror": {
               "x": false,
@@ -10027,8 +10243,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 348,
-              "y": 249
+              "x": 294,
+              "y": 250
             },
             "mirror": {
               "x": false,
@@ -10045,18 +10261,18 @@
       "children": []
     },
     {
-      "id": "92",
-      "name": "NestCup33",
+      "id": "212",
+      "name": "NestCup3N2",
       "position": {
         "x": 0,
-        "y": 62.442519,
-        "z": -32.887636
+        "y": 61.942519,
+        "z": -37.887636
       },
       "orientation": {
         "x": 0,
-        "y": 0.92388,
+        "y": 0,
         "z": 0,
-        "w": 0.382683
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -10067,20 +10283,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.7,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 12,
+            "x": 4,
             "y": 1,
-            "z": 5
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 295,
+              "x": 215,
               "y": 301
             },
             "mirror": {
@@ -10091,7 +10307,7 @@
           },
           "back": {
             "offset": {
-              "x": 309,
+              "x": 229,
               "y": 301
             },
             "mirror": {
@@ -10102,7 +10318,7 @@
           },
           "left": {
             "offset": {
-              "x": 331,
+              "x": 290,
               "y": 310
             },
             "mirror": {
@@ -10113,7 +10329,7 @@
           },
           "right": {
             "offset": {
-              "x": 338,
+              "x": 297,
               "y": 310
             },
             "mirror": {
@@ -10124,8 +10340,8 @@
           },
           "top": {
             "offset": {
-              "x": 362,
-              "y": 249
+              "x": 282,
+              "y": 250
             },
             "mirror": {
               "x": false,
@@ -10135,8 +10351,116 @@
           },
           "bottom": {
             "offset": {
-              "x": 376,
-              "y": 249
+              "x": 296,
+              "y": 250
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "213",
+      "name": "NestCup3S2",
+      "position": {
+        "x": 0,
+        "y": 61.942519,
+        "z": -27.887636
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 2,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 4,
+            "y": 1,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 215,
+              "y": 301
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "back": {
+            "offset": {
+              "x": 229,
+              "y": 301
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 290,
+              "y": 310
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 297,
+              "y": 310
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 282,
+              "y": 250
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 296,
+              "y": 250
             },
             "mirror": {
               "x": false,
@@ -10372,7 +10696,7 @@
       "id": "95",
       "name": "NestStick15",
       "position": {
-        "x": 3.050525,
+        "x": 3.550525,
         "y": 58.642519,
         "z": -39.739227
       },
@@ -10696,7 +11020,7 @@
       "id": "98",
       "name": "NestStick18",
       "position": {
-        "x": -3.050525,
+        "x": -3.550525,
         "y": 61.142519,
         "z": -26.036046
       },
@@ -11364,7 +11688,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.995455
+          "z": 0.972727
         },
         "settings": {
           "size": {
@@ -11472,7 +11796,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.990909
+          "z": 0.945455
         },
         "settings": {
           "size": {
@@ -11580,7 +11904,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.986364
+          "z": 0.918182
         },
         "settings": {
           "size": {
@@ -11795,7 +12119,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.98,
+          "y": 0.88,
           "z": 1
         },
         "settings": {
@@ -11903,7 +12227,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.96,
+          "y": 0.76,
           "z": 1
         },
         "settings": {
@@ -12011,7 +12335,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.94,
+          "y": 0.64,
           "z": 1
         },
         "settings": {
@@ -12097,11 +12421,11 @@
       "children": []
     },
     {
-      "id": "110",
-      "name": "NestCup04",
+      "id": "214",
+      "name": "NestCup4Mid",
       "position": {
         "x": 23.692931,
-        "y": 58.253366,
+        "y": 57.753366,
         "z": -13.67912
       },
       "orientation": {
@@ -12119,14 +12443,14 @@
         },
         "stretch": {
           "x": 1,
-          "y": 1,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
             "x": 9,
             "y": 1,
-            "z": 4
+            "z": 3
           }
         },
         "textureLayout": {
@@ -12205,18 +12529,18 @@
       "children": []
     },
     {
-      "id": "111",
-      "name": "NestCup14",
+      "id": "215",
+      "name": "NestCup4N1",
       "position": {
         "x": 23.692931,
-        "y": 58.253366,
-        "z": -13.67912
+        "y": 57.753366,
+        "z": -16.17912
       },
       "orientation": {
         "x": 0,
-        "y": 0.707107,
+        "y": 0,
         "z": 0,
-        "w": 0.707107
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -12227,20 +12551,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.9,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 9,
+            "x": 6,
             "y": 1,
-            "z": 4
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 83,
+              "x": 62,
               "y": 307
             },
             "mirror": {
@@ -12251,7 +12575,7 @@
           },
           "back": {
             "offset": {
-              "x": 94,
+              "x": 73,
               "y": 307
             },
             "mirror": {
@@ -12262,7 +12586,7 @@
           },
           "left": {
             "offset": {
-              "x": 371,
+              "x": 360,
               "y": 310
             },
             "mirror": {
@@ -12273,7 +12597,7 @@
           },
           "right": {
             "offset": {
-              "x": 377,
+              "x": 366,
               "y": 310
             },
             "mirror": {
@@ -12284,8 +12608,8 @@
           },
           "top": {
             "offset": {
-              "x": 244,
-              "y": 263
+              "x": 223,
+              "y": 264
             },
             "mirror": {
               "x": false,
@@ -12295,8 +12619,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 255,
-              "y": 263
+              "x": 234,
+              "y": 264
             },
             "mirror": {
               "x": false,
@@ -12313,18 +12637,18 @@
       "children": []
     },
     {
-      "id": "112",
-      "name": "NestCup24",
+      "id": "216",
+      "name": "NestCup4S1",
       "position": {
         "x": 23.692931,
-        "y": 58.253366,
-        "z": -13.67912
+        "y": 57.753366,
+        "z": -11.17912
       },
       "orientation": {
         "x": 0,
-        "y": 0.382683,
+        "y": 0,
         "z": 0,
-        "w": 0.92388
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -12335,20 +12659,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.8,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 9,
+            "x": 6,
             "y": 1,
-            "z": 4
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 105,
+              "x": 62,
               "y": 307
             },
             "mirror": {
@@ -12359,7 +12683,7 @@
           },
           "back": {
             "offset": {
-              "x": 116,
+              "x": 73,
               "y": 307
             },
             "mirror": {
@@ -12370,7 +12694,7 @@
           },
           "left": {
             "offset": {
-              "x": 383,
+              "x": 360,
               "y": 310
             },
             "mirror": {
@@ -12381,7 +12705,7 @@
           },
           "right": {
             "offset": {
-              "x": 389,
+              "x": 366,
               "y": 310
             },
             "mirror": {
@@ -12392,8 +12716,8 @@
           },
           "top": {
             "offset": {
-              "x": 266,
-              "y": 263
+              "x": 223,
+              "y": 264
             },
             "mirror": {
               "x": false,
@@ -12403,8 +12727,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 277,
-              "y": 263
+              "x": 234,
+              "y": 264
             },
             "mirror": {
               "x": false,
@@ -12421,18 +12745,18 @@
       "children": []
     },
     {
-      "id": "113",
-      "name": "NestCup34",
+      "id": "217",
+      "name": "NestCup4N2",
       "position": {
         "x": 23.692931,
-        "y": 58.253366,
-        "z": -13.67912
+        "y": 57.753366,
+        "z": -17.67912
       },
       "orientation": {
         "x": 0,
-        "y": 0.92388,
+        "y": 0,
         "z": 0,
-        "w": 0.382683
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -12443,20 +12767,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.7,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 9,
+            "x": 3,
             "y": 1,
-            "z": 4
+            "z": 1
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 127,
+              "x": 64,
               "y": 307
             },
             "mirror": {
@@ -12467,7 +12791,7 @@
           },
           "back": {
             "offset": {
-              "x": 138,
+              "x": 75,
               "y": 307
             },
             "mirror": {
@@ -12478,7 +12802,7 @@
           },
           "left": {
             "offset": {
-              "x": 395,
+              "x": 360,
               "y": 310
             },
             "mirror": {
@@ -12489,7 +12813,7 @@
           },
           "right": {
             "offset": {
-              "x": 401,
+              "x": 366,
               "y": 310
             },
             "mirror": {
@@ -12500,8 +12824,8 @@
           },
           "top": {
             "offset": {
-              "x": 288,
-              "y": 263
+              "x": 225,
+              "y": 264
             },
             "mirror": {
               "x": false,
@@ -12511,8 +12835,116 @@
           },
           "bottom": {
             "offset": {
-              "x": 299,
-              "y": 263
+              "x": 236,
+              "y": 264
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "218",
+      "name": "NestCup4S2",
+      "position": {
+        "x": 23.692931,
+        "y": 57.753366,
+        "z": -9.67912
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 2,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 3,
+            "y": 1,
+            "z": 1
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 64,
+              "y": 307
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "back": {
+            "offset": {
+              "x": 75,
+              "y": 307
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 360,
+              "y": 310
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 366,
+              "y": 310
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 225,
+              "y": 264
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 236,
+              "y": 264
             },
             "mirror": {
               "x": false,
@@ -13739,7 +14171,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.983333,
+          "y": 0.9,
           "z": 1
         },
         "settings": {
@@ -13847,7 +14279,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.966667,
+          "y": 0.8,
           "z": 1
         },
         "settings": {
@@ -13955,7 +14387,7 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.95,
+          "y": 0.7,
           "z": 1
         },
         "settings": {
@@ -14041,11 +14473,11 @@
       "children": []
     },
     {
-      "id": "127",
-      "name": "TopNestCup0",
+      "id": "219",
+      "name": "TopNestCupMid",
       "position": {
         "x": 1,
-        "y": 84.8,
+        "y": 84.3,
         "z": -1
       },
       "orientation": {
@@ -14063,14 +14495,14 @@
         },
         "stretch": {
           "x": 1,
-          "y": 1,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
             "x": 26,
             "y": 1,
-            "z": 11
+            "z": 10
           }
         },
         "textureLayout": {
@@ -14149,18 +14581,18 @@
       "children": []
     },
     {
-      "id": "128",
-      "name": "TopNestCup1",
+      "id": "220",
+      "name": "TopNestCupN1",
       "position": {
         "x": 1,
-        "y": 84.8,
-        "z": -1
+        "y": 84.3,
+        "z": -8
       },
       "orientation": {
         "x": 0,
-        "y": 0.707107,
+        "y": 0,
         "z": 0,
-        "w": 0.707107
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -14171,20 +14603,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.9,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 26,
+            "x": 18,
             "y": 1,
-            "z": 11
+            "z": 4
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 377,
+              "x": 325,
               "y": 294
             },
             "mirror": {
@@ -14195,7 +14627,7 @@
           },
           "back": {
             "offset": {
-              "x": 405,
+              "x": 353,
               "y": 294
             },
             "mirror": {
@@ -14206,7 +14638,7 @@
           },
           "left": {
             "offset": {
-              "x": 95,
+              "x": 72,
               "y": 304
             },
             "mirror": {
@@ -14217,7 +14649,7 @@
           },
           "right": {
             "offset": {
-              "x": 108,
+              "x": 85,
               "y": 304
             },
             "mirror": {
@@ -14228,8 +14660,8 @@
           },
           "top": {
             "offset": {
-              "x": 29,
-              "y": 160
+              "x": 411,
+              "y": 150
             },
             "mirror": {
               "x": false,
@@ -14239,8 +14671,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 57,
-              "y": 160
+              "x": 5,
+              "y": 163
             },
             "mirror": {
               "x": false,
@@ -14257,18 +14689,18 @@
       "children": []
     },
     {
-      "id": "129",
-      "name": "TopNestCup2",
+      "id": "221",
+      "name": "TopNestCupS1",
       "position": {
         "x": 1,
-        "y": 84.8,
-        "z": -1
+        "y": 84.3,
+        "z": 6
       },
       "orientation": {
         "x": 0,
-        "y": 0.382683,
+        "y": 0,
         "z": 0,
-        "w": 0.92388
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -14279,21 +14711,21 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.8,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 26,
+            "x": 18,
             "y": 1,
-            "z": 11
+            "z": 4
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 1,
-              "y": 298
+              "x": 325,
+              "y": 294
             },
             "mirror": {
               "x": false,
@@ -14303,8 +14735,8 @@
           },
           "back": {
             "offset": {
-              "x": 29,
-              "y": 298
+              "x": 353,
+              "y": 294
             },
             "mirror": {
               "x": false,
@@ -14314,7 +14746,7 @@
           },
           "left": {
             "offset": {
-              "x": 121,
+              "x": 72,
               "y": 304
             },
             "mirror": {
@@ -14325,7 +14757,7 @@
           },
           "right": {
             "offset": {
-              "x": 134,
+              "x": 85,
               "y": 304
             },
             "mirror": {
@@ -14336,8 +14768,8 @@
           },
           "top": {
             "offset": {
-              "x": 85,
-              "y": 160
+              "x": 411,
+              "y": 150
             },
             "mirror": {
               "x": false,
@@ -14347,8 +14779,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 113,
-              "y": 160
+              "x": 5,
+              "y": 163
             },
             "mirror": {
               "x": false,
@@ -14365,18 +14797,18 @@
       "children": []
     },
     {
-      "id": "130",
-      "name": "TopNestCup3",
+      "id": "222",
+      "name": "TopNestCupN2",
       "position": {
         "x": 1,
-        "y": 84.8,
-        "z": -1
+        "y": 84.3,
+        "z": -12
       },
       "orientation": {
         "x": 0,
-        "y": 0.92388,
+        "y": 0,
         "z": 0,
-        "w": 0.382683
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -14387,21 +14819,21 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.7,
+          "y": 2,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 26,
+            "x": 10,
             "y": 1,
-            "z": 11
+            "z": 4
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 57,
-              "y": 298
+              "x": 329,
+              "y": 294
             },
             "mirror": {
               "x": false,
@@ -14411,8 +14843,8 @@
           },
           "back": {
             "offset": {
-              "x": 85,
-              "y": 298
+              "x": 357,
+              "y": 294
             },
             "mirror": {
               "x": false,
@@ -14422,7 +14854,7 @@
           },
           "left": {
             "offset": {
-              "x": 147,
+              "x": 72,
               "y": 304
             },
             "mirror": {
@@ -14433,7 +14865,7 @@
           },
           "right": {
             "offset": {
-              "x": 160,
+              "x": 85,
               "y": 304
             },
             "mirror": {
@@ -14444,8 +14876,8 @@
           },
           "top": {
             "offset": {
-              "x": 141,
-              "y": 160
+              "x": 415,
+              "y": 150
             },
             "mirror": {
               "x": false,
@@ -14455,8 +14887,116 @@
           },
           "bottom": {
             "offset": {
-              "x": 169,
-              "y": 160
+              "x": 9,
+              "y": 163
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "223",
+      "name": "TopNestCupS2",
+      "position": {
+        "x": 1,
+        "y": 84.3,
+        "z": 10
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 2,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 10,
+            "y": 1,
+            "z": 4
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 329,
+              "y": 294
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "back": {
+            "offset": {
+              "x": 357,
+              "y": 294
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 72,
+              "y": 304
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 85,
+              "y": 304
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 415,
+              "y": 150
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 9,
+              "y": 163
             },
             "mirror": {
               "x": false,
@@ -15121,8 +15661,8 @@
       "children": []
     },
     {
-      "id": "137",
-      "name": "Coin0",
+      "id": "224",
+      "name": "CoinMid",
       "position": {
         "x": -9,
         "y": 85.4,
@@ -15229,18 +15769,18 @@
       "children": []
     },
     {
-      "id": "138",
-      "name": "Coin1",
+      "id": "225",
+      "name": "CoinN1",
       "position": {
         "x": -9,
         "y": 85.4,
-        "z": -1
+        "z": -2.5
       },
       "orientation": {
         "x": 0,
-        "y": 0.707107,
+        "y": 0,
         "z": 0,
-        "w": 0.707107
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -15251,20 +15791,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.9,
+          "y": 1,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 4,
+            "x": 2,
             "y": 1,
-            "z": 2
+            "z": 1
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 419,
+              "x": 408,
               "y": 310
             },
             "mirror": {
@@ -15275,7 +15815,7 @@
           },
           "back": {
             "offset": {
-              "x": 425,
+              "x": 414,
               "y": 310
             },
             "mirror": {
@@ -15286,7 +15826,7 @@
           },
           "left": {
             "offset": {
-              "x": 61,
+              "x": 53,
               "y": 313
             },
             "mirror": {
@@ -15297,7 +15837,7 @@
           },
           "right": {
             "offset": {
-              "x": 65,
+              "x": 57,
               "y": 313
             },
             "mirror": {
@@ -15308,7 +15848,7 @@
           },
           "top": {
             "offset": {
-              "x": 165,
+              "x": 154,
               "y": 294
             },
             "mirror": {
@@ -15319,7 +15859,7 @@
           },
           "bottom": {
             "offset": {
-              "x": 171,
+              "x": 160,
               "y": 294
             },
             "mirror": {
@@ -15337,18 +15877,18 @@
       "children": []
     },
     {
-      "id": "139",
-      "name": "Coin2",
+      "id": "226",
+      "name": "CoinS1",
       "position": {
         "x": -9,
         "y": 85.4,
-        "z": -1
+        "z": 0.5
       },
       "orientation": {
         "x": 0,
-        "y": 0.382683,
+        "y": 0,
         "z": 0,
-        "w": 0.92388
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -15359,20 +15899,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.8,
+          "y": 1,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 4,
+            "x": 2,
             "y": 1,
-            "z": 2
+            "z": 1
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 431,
+              "x": 408,
               "y": 310
             },
             "mirror": {
@@ -15383,7 +15923,7 @@
           },
           "back": {
             "offset": {
-              "x": 437,
+              "x": 414,
               "y": 310
             },
             "mirror": {
@@ -15394,7 +15934,7 @@
           },
           "left": {
             "offset": {
-              "x": 69,
+              "x": 53,
               "y": 313
             },
             "mirror": {
@@ -15405,7 +15945,7 @@
           },
           "right": {
             "offset": {
-              "x": 73,
+              "x": 57,
               "y": 313
             },
             "mirror": {
@@ -15416,7 +15956,7 @@
           },
           "top": {
             "offset": {
-              "x": 177,
+              "x": 154,
               "y": 294
             },
             "mirror": {
@@ -15427,115 +15967,7 @@
           },
           "bottom": {
             "offset": {
-              "x": 183,
-              "y": 294
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          }
-        },
-        "unwrapMode": "custom",
-        "visible": true,
-        "doubleSided": false,
-        "shadingMode": "standard"
-      },
-      "children": []
-    },
-    {
-      "id": "140",
-      "name": "Coin3",
-      "position": {
-        "x": -9,
-        "y": 85.4,
-        "z": -1
-      },
-      "orientation": {
-        "x": 0,
-        "y": 0.92388,
-        "z": 0,
-        "w": 0.382683
-      },
-      "shape": {
-        "type": "box",
-        "offset": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "stretch": {
-          "x": 1,
-          "y": 0.7,
-          "z": 1
-        },
-        "settings": {
-          "size": {
-            "x": 4,
-            "y": 1,
-            "z": 2
-          }
-        },
-        "textureLayout": {
-          "front": {
-            "offset": {
-              "x": 443,
-              "y": 310
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "back": {
-            "offset": {
-              "x": 1,
-              "y": 313
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "left": {
-            "offset": {
-              "x": 77,
-              "y": 313
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "right": {
-            "offset": {
-              "x": 81,
-              "y": 313
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "top": {
-            "offset": {
-              "x": 189,
-              "y": 294
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "bottom": {
-            "offset": {
-              "x": 195,
+              "x": 160,
               "y": 294
             },
             "mirror": {
@@ -15557,7 +15989,7 @@
       "name": "SpoonHandle",
       "position": {
         "x": -12,
-        "y": 85.5,
+        "y": 85.9,
         "z": -2
       },
       "orientation": {
@@ -15665,7 +16097,7 @@
       "name": "SpoonBowl",
       "position": {
         "x": -9.2,
-        "y": 85.7,
+        "y": 86.2,
         "z": 0.4
       },
       "orientation": {
@@ -15900,7 +16332,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.995
+          "z": 0.97
         },
         "settings": {
           "size": {
@@ -16008,7 +16440,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.99
+          "z": 0.94
         },
         "settings": {
           "size": {
@@ -16116,7 +16548,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.985
+          "z": 0.91
         },
         "settings": {
           "size": {
@@ -16548,7 +16980,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.99375
+          "z": 0.9625
         },
         "settings": {
           "size": {
@@ -16656,7 +17088,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.9875
+          "z": 0.925
         },
         "settings": {
           "size": {
@@ -16764,7 +17196,7 @@
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.98125
+          "z": 0.8875
         },
         "settings": {
           "size": {
@@ -17515,12 +17947,12 @@
         "offset": {
           "x": 0,
           "y": 0,
-          "z": 0
+          "z": -0.3
         },
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.95
+          "z": 1
         },
         "settings": {
           "size": {
@@ -17623,12 +18055,12 @@
         "offset": {
           "x": 0,
           "y": 0,
-          "z": 0
+          "z": -0.6
         },
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.9
+          "z": 1
         },
         "settings": {
           "size": {
@@ -17731,12 +18163,12 @@
         "offset": {
           "x": 0,
           "y": 0,
-          "z": 0
+          "z": -0.9
         },
         "stretch": {
           "x": 1,
           "y": 1,
-          "z": 0.85
+          "z": 1
         },
         "settings": {
           "size": {
