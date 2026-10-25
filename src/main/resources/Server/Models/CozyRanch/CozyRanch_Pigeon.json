@@ -2,6 +2,12 @@
   "Parent": "Sparrow",
   "Model": "NPC/Flying_Critter/Pigeon/Models/Model.blockymodel",
   "Texture": "NPC/Flying_Critter/Pigeon/Models/Texture.png",
+  "DefaultAttachments": [
+    {
+      "Model": "NPC/CozyRanch/Pigeon/Models/Pigeon_Handgun.blockymodel",
+      "Texture": "Items/Hypixel/Minigames/GunPvP/Weapons/Handguns/Handgun_Texture.png"
+    }
+  ],
   "EyeHeight": 0.65,
   "CrouchOffset": -0.175,
   "HitBox": {
@@ -435,6 +441,15 @@
         {
           "Animation": "NPC/CozyRanch/Pigeon/Animations/Flutter.blockyanim",
           "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    },
+    "Handgun": {
+      "Animations": [
+        {
+          "Animation": "NPC/CozyRanch/Pigeon/Animations/Handgun.blockyanim",
+          "BlendingDuration": 0.3,
           "Looping": false
         }
       ]
