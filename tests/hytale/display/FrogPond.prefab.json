@@ -1,0 +1,109 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_FrogPond"
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": -0.23124999999999996,
+      "Y": 0.484375,
+      "Z": 0.69375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -150.00000000000003,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Frog",
+      "Scale": 0.5,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.590625,
+      "Y": 0.484375,
+      "Z": -0.16874999999999996
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -180,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Frog_Blue",
+      "Scale": 0.5,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.65625,
+      "Y": 0.484375,
+      "Z": 0.71875
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 149.99999999999997,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Frog_Orange",
+      "Scale": 0.5,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.359375,
+      "Y": 0.484375,
+      "Z": 1.10625
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 120.00000000000001,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Frog",
+      "Scale": 0.5,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}

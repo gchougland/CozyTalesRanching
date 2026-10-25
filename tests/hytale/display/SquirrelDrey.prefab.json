@@ -1,0 +1,63 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_SquirrelDrey"
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.8125,
+      "Y": 1.30625,
+      "Z": 1.09375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -90.00000000000001,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Squirrel",
+      "Scale": 0.5125,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1,
+      "Y": 2.375,
+      "Z": 1
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -180,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Squirrel",
+      "Scale": 0.5125,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}

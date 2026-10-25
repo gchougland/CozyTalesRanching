@@ -1,0 +1,87 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_SongbirdAviary",
+   "rotation": 2
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0,
+      "Y": 2.490625,
+      "Z": -0.34375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 0,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Songbird_Sparrow",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.65625,
+      "Y": 1.625,
+      "Z": -0.3125
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -14.999999999999998,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Songbird_Finch",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": -0.65625,
+      "Y": 1.625,
+      "Z": -0.3125
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 14.999999999999998,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Songbird_Bluebird",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}

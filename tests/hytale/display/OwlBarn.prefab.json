@@ -1,0 +1,86 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_OwlBarn"
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1,
+      "Y": 1.8375,
+      "Z": 1.78125
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -180,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Owl",
+      "Scale": 0.4,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.90625,
+      "Y": 1.34375,
+      "Z": 1.71875
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 170,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Owl_Snow",
+      "Scale": 0.35,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.109375,
+      "Y": 1.34375,
+      "Z": 1.71875
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -170,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Owl",
+      "Scale": 0.35,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}

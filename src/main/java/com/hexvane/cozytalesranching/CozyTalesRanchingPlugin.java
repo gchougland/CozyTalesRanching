@@ -65,6 +65,7 @@ public final class CozyTalesRanchingPlugin extends JavaPlugin {
         com.hexvane.cozytalesranching.rehome.RehomeFeature.register(this);
         com.hexvane.cozytalesranching.items.ItemsFeature.register(this);
         com.hexvane.cozytalesranching.predator.PredatorFeature.register(this);
+        com.hexvane.cozytalesranching.housedisplay.HouseDisplayFeature.register(this);
 
         this.getCommandRegistry().registerCommand(new RanchCommand());
         getLogger().atInfo().log("Cozy Tales: Ranching v%s ready.", modVersion);
@@ -111,6 +112,7 @@ public final class CozyTalesRanchingPlugin extends JavaPlugin {
         com.hexvane.cozytalesranching.journal.JournalFeature.reload();
         com.hexvane.cozytalesranching.wildlife.WildlifeFeature.reload();
         com.hexvane.cozytalesranching.rehome.RehomeFeature.reload();
+        com.hexvane.cozytalesranching.housedisplay.HouseDisplayFeature.reload();
         getLogger().atInfo().log("Reloaded RanchConfig.json, species, traits and habitat.");
     }
 }

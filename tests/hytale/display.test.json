@@ -1,0 +1,770 @@
+{
+  "cases": [
+    {
+      "name": "display gate",
+      "description": "Assets including HouseDisplay.json parse; Java and UI agree.",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "_worktrees/CozyTales-Ranching-fix4-display"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0
+          }
+        },
+        {
+          "tool": "ui_check_java",
+          "arguments": {
+            "project": "_worktrees/CozyTales-Ranching-fix4-display"
+          },
+          "expect": {
+            "valid": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "display points",
+      "description": "Each house with its HouseDisplay.json points filled by the species' real models (looks cycled through the variants), placed by the same math as DisplayMath (tools/display/prefabs.mjs writes the prefabs). Bind pose: the renderer does not play Idle.",
+      "steps": [
+        {
+          "tool": "prefab_render",
+          "name": "BatRoost",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/BatRoost.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/BatRoost.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "ChickenCoop",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/ChickenCoop.prefab.json",
+            "views": [
+              "south_east",
+              "east"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/ChickenCoop.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "Dovecote",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/Dovecote.prefab.json",
+            "views": [
+              "south_east",
+              "north_west"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/Dovecote.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "DuckHouse",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/DuckHouse.prefab.json",
+            "views": [
+              "south_east",
+              "top"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/DuckHouse.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "FlamingoNest",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/FlamingoNest.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/FlamingoNest.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "FrogPond",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/FrogPond.prefab.json",
+            "views": [
+              "south_east",
+              "top"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/FrogPond.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "GeckoTerrarium",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/GeckoTerrarium.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/GeckoTerrarium.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "HawkMews",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/HawkMews.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/HawkMews.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "MouseCottage",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/MouseCottage.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/MouseCottage.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "OwlBarn",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/OwlBarn.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/OwlBarn.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "ParrotPerch",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/ParrotPerch.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/ParrotPerch.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "PenguinIgloo",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/PenguinIgloo.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/PenguinIgloo.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "RabbitHutch",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/RabbitHutch.prefab.json",
+            "views": [
+              "south_east",
+              "north_west"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/RabbitHutch.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "Rookery",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/Rookery.prefab.json",
+            "views": [
+              "south_east",
+              "north_west"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/Rookery.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "SkrillRoost",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/SkrillRoost.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/SkrillRoost.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "SnailTerrarium",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/SnailTerrarium.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/SnailTerrarium.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "SongbirdAviary",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/SongbirdAviary.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/SongbirdAviary.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "SquirrelDrey",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/SquirrelDrey.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/SquirrelDrey.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "TidePool",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/TidePool.prefab.json",
+            "views": [
+              "south_east",
+              "top"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/TidePool.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "TurkeyRoost",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/TurkeyRoost.prefab.json",
+            "views": [
+              "south_east",
+              "north_west"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/TurkeyRoost.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "WoodpeckerStump",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/WoodpeckerStump.prefab.json",
+            "views": [
+              "south_east",
+              "south"
+            ],
+            "size": 450
+          },
+          "golden": "tests/hytale/golden/display/WoodpeckerStump.png"
+        }
+      ]
+    },
+    {
+      "name": "display rotations",
+      "description": "The aviary turned to yaw 1, 2 and 3: the birds stay on the perches in front of the holes and look out of the door side.",
+      "steps": [
+        {
+          "tool": "prefab_render",
+          "name": "rotation1",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/Rotation1.prefab.json",
+            "views": [
+              "east",
+              "top"
+            ],
+            "size": 400
+          },
+          "golden": "tests/hytale/golden/display/Rotation1.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "rotation2",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/Rotation2.prefab.json",
+            "views": [
+              "north",
+              "top"
+            ],
+            "size": 400
+          },
+          "golden": "tests/hytale/golden/display/Rotation2.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "rotation3",
+          "arguments": {
+            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/Rotation3.prefab.json",
+            "views": [
+              "west",
+              "top"
+            ],
+            "size": 400
+          },
+          "golden": "tests/hytale/golden/display/Rotation3.png"
+        }
+      ]
+    },
+    {
+      "name": "display live",
+      "description": "Port 5596. A songbird aviary turned once: two residents stored at night are shown (their own looks, scale 0.45, intangible) at the rotated points; a reload and refresh make no duplicates; the morning takes them down as they come out; three shown again at night; breaking the house takes them away. Waits are bot_expect on a packet that never comes (no server_scenario, which can hit the MCP job limit while other agents run).",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "_worktrees/CozyTales-Ranching-fix4-display/build/libs/CozyTalesRanching-0.6.0.jar"
+            ],
+            "authMode": "insecure",
+            "port": 5596
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555"
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug nightfall"
+          },
+          "save": "night"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${night.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.nightfall"
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug place songbird --rotation=1"
+          },
+          "save": "placed"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${placed.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.placed"
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch breed testhouse songbird --role=CozyRanch_Songbird_Bluebird+CozyRanch_Songbird_Finch"
+          },
+          "save": "house"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${house.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_breeding.debug.testhouse.done"
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display refresh"
+          },
+          "save": "refresh"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${refresh.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.refresh.done",
+                "params": {
+                  "shown": {
+                    "value": 2
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display status"
+          },
+          "save": "status1"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${status1.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.status.line",
+                "params": {
+                  "shown": {
+                    "value": 2
+                  },
+                  "points": {
+                    "value": 3
+                  },
+                  "inside": {
+                    "value": 2
+                  },
+                  "models": {
+                    "value": {
+                      "$matches": "^(?=.*\\[CozyRanch_Songbird_Bluebird x0\\.45 at [^\\]]* intangible\\])(?=.*\\[CozyRanch_Songbird_Finch x0\\.45 at [^\\]]* intangible\\])(?=.*yaw -90 intangible)(?=.*yaw -105 intangible)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch reload"
+          },
+          "save": "reload"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display refresh"
+          },
+          "save": "refresh2"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${refresh2.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.refresh.done",
+                "params": {
+                  "shown": {
+                    "value": 2
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug morning"
+          },
+          "save": "morning"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait for: came out of house",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 4000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display status"
+          },
+          "save": "status3"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${status3.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.status.line",
+                "params": {
+                  "shown": {
+                    "value": 0
+                  },
+                  "inside": {
+                    "value": 0
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug nightfall"
+          },
+          "save": "night2"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch breed testhouse songbird --role=CozyRanch_Songbird_Sparrow"
+          },
+          "save": "house2"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${house2.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_breeding.debug.testhouse.done"
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display refresh"
+          },
+          "save": "refresh3"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${refresh3.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.refresh.done",
+                "params": {
+                  "shown": {
+                    "value": {
+                      "$gte": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~ ~ ~ Empty"
+          },
+          "save": "broke"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait for: removed (block gone)",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 13000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display refresh"
+          },
+          "save": "refresh4"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${refresh4.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.refresh.done",
+                "params": {
+                  "shown": {
+                    "value": 0
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display status"
+          },
+          "save": "status5"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${status5.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.status.none"
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        }
+      ]
+    }
+  ]
+}
