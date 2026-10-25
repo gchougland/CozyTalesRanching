@@ -1,0 +1,118 @@
+{
+  "Behaviours": {
+    "tetrabird_crow": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 90,
+      "Seconds": [
+        3,
+        5
+      ],
+      "RepeatSeconds": 2
+    },
+    "tetrabird_display": {
+      "Kind": "here",
+      "Weight": 2,
+      "CooldownSeconds": 120,
+      "Seconds": [
+        5,
+        8
+      ]
+    },
+    "tetrabird_scratch": {
+      "Kind": "here",
+      "Weight": 3,
+      "CooldownSeconds": 60,
+      "Seconds": [
+        4,
+        7
+      ]
+    }
+  },
+  "Species": {
+    "tetrabird": {
+      "Adult": {
+        "trough_snack": [
+          "EatTrough"
+        ],
+        "tetrabird_crow": [
+          "Crow"
+        ],
+        "tetrabird_display": [
+          "TailFan"
+        ],
+        "tetrabird_scratch": [
+          "Scratch"
+        ],
+        "peck": [
+          "Eat"
+        ],
+        "socialise": [
+          "TailFan",
+          "Love"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Scratch"
+        ],
+        "toy_log": [
+          "Scratch",
+          "Eat"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      },
+      "Baby": {
+        "follow_parent": [],
+        "tetrabird_scratch": [
+          "Scratch"
+        ],
+        "peck": [
+          "Eat"
+        ],
+        "socialise": [
+          "Happy"
+        ],
+        "nap": [
+          "Sleep"
+        ],
+        "toy_ball": [
+          "Scratch"
+        ],
+        "approach_player": [
+          "Curious"
+        ],
+        "greet_owner": [
+          "Happy"
+        ],
+        "retreat": []
+      }
+    }
+  },
+  "Personalities": {
+    "playful": {
+      "Weights": {
+        "tetrabird_display": 1.5,
+        "tetrabird_crow": 1.3
+      }
+    },
+    "shy": {
+      "Weights": {
+        "tetrabird_crow": 0.5,
+        "tetrabird_display": 0.6
+      }
+    },
+    "lazy": {
+      "Weights": {
+        "tetrabird_scratch": 0.6
+      }
+    }
+  }
+}

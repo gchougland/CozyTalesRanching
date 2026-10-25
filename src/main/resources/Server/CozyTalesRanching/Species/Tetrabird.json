@@ -1,0 +1,47 @@
+{
+  "Id": "tetrabird",
+  "NameKey": "cozyranch_species.tetrabird.name",
+  "WildRoles": [
+    "Tetrabird"
+  ],
+  "WildBabyRoles": [],
+  "AdoptRoles": [],
+  "AdoptBabyRoles": [],
+  "RanchRole": "CozyRanch_Tetrabird",
+  "RanchBabyRole": "CozyRanch_Tetrabird_Chick",
+  "RanchRoleVariants": {},
+  "HouseBlock": "CozyRanch_House_FossilNest",
+  "HouseCapacity": 3,
+  "BasicFoods": [
+    "Plant_Crop_Corn_Item",
+    "Plant_Fruit_Berries_Red"
+  ],
+  "PreferredFoods": [
+    "Plant_Crop_Pumpkin_Item",
+    "Plant_Seeds_Sunflower"
+  ],
+  "FavoriteTreats": [
+    "CozyRanch_Food_Crickets"
+  ],
+  "FeedingsToTame": 4,
+  "Shyness": 0.6,
+  "GrowUpMinutes": 50,
+  "BreedCooldownMinutes": 45,
+  "Products": [
+    {
+      "Item": "Ingredient_Feathers_Dark",
+      "Quantity": 2,
+      "IntervalMinutes": 50,
+      "Collect": "House"
+    }
+  ],
+  "HabitatRequires": [
+    "food"
+  ],
+  "HabitatPrefers": [
+    "ferns",
+    "tall_grass",
+    "dust",
+    "open_space"
+  ]
+}
