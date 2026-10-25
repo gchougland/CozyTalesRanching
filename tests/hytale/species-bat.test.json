@@ -1519,7 +1519,7 @@
               },
               {
                 "type": "Set",
-                "selector": "#ResidentList[1] #RTrait1.TooltipText",
+                "selector": "#ResidentList[1] #RTrait1.TooltipTextSpans",
                 "data": {
                   "MessageId": "cozyranch_breeding.trait.hardy.desc"
                 }
@@ -1736,7 +1736,7 @@
               },
               {
                 "type": "Set",
-                "selector": "#RefreshButton.TooltipText",
+                "selector": "#RefreshButton.TooltipTextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.tooltip.refresh"
                 }
@@ -1750,7 +1750,7 @@
               },
               {
                 "type": "Set",
-                "selector": "#AreaButton.TooltipText",
+                "selector": "#AreaButton.TooltipTextSpans",
                 "data": {
                   "MessageId": "cozyranch_houseui.tooltip.area"
                 }
