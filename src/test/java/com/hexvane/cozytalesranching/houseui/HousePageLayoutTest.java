@@ -48,14 +48,23 @@ class HousePageLayoutTest {
         {"MILK", "after Collect with no buckets", "houseui-collected", "result.collect.buckets"},
         {"FULL", "area lights on: Hide area, the on notice", "houseui-border", "result.border.on.trough", "border"},
         {"TYPICAL", "no traits on any resident, a Refresh just done", "houseui-notraits", "result.refreshed"},
+        {"FULL", "full coop used while a hen follows: the page opens and says the house is full", "houseui-usefull", "result.use.full"},
+        {"CROWDED", "fullest page: longest names, eight needs and wants, picker open, the longest notice", "houseui-crowded", "result.border.on.trough"},
     };
 
     @TempDir static Path data;
+    static com.hexvane.cozytalesranching.care.HabitatConfig habitat;
 
     @BeforeAll
     static void loadSpecies() {
         SpeciesRegistry.load(data);
         com.hexvane.cozytalesranching.breeding.TraitRegistry.load(data);
+        habitat = HabitatCountsTest.config();
+    }
+
+    /** What counts for a feature, as {@code HousePage.counts} builds it on the server. */
+    static Txt counts(String featureId) {
+        return HabitatCounts.explain(habitat.feature(featureId), HabitatCountsTest::itemNameKey);
     }
 
     @Test
@@ -86,6 +95,44 @@ class HousePageLayoutTest {
         assertEquals(List.of("reeds"), h.missingPreferred());
         house.habitatScannedAtMs = 0;
         assertEquals(HouseView.HabitatLevel.UNCHECKED, HouseView.habitat(house, frog).level());
+    }
+
+    @Test
+    void eachNeedAndWantSaysWhatCountsOnHover() {
+        Recorder ui = render(HouseDemo.Scenario.MISSING);
+        assertTrue(ui.has("#HabitatDetail.TextSpans", "{\"MessageId\":\"cozyranch_houseui.habitat.detail.hover\"}"));
+        assertEquals(1, ui.count("#HabitatMissing[0] #MNeed.TooltipText\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts."));
+        assertEquals(1, ui.count("#HabitatMissing[0] #MName.TooltipText\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts."));
+        assertEquals(1, ui.count("#HabitatMissing[1] #MWant.TooltipText\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts."));
+        assertEquals(1, ui.count("#HabitatMissing[1] #MName.TooltipText\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts.tooltip\",\"MessageParams\":{\"counts\":{\"MessageId\":\"cozyranch_houseui.counts.yard.many\""), "reeds: 2 or more");
+    }
+
+    @Test
+    void moreNeedsThanRowsEndWithAHoverableMoreRow() {
+        Recorder ui = render(HouseDemo.Scenario.CROWDED);
+        assertEquals(HousePageLayout.MAX_MISSING_ROWS, ui.count("\"selector\":\"#HabitatMissing\",\"text\":\"CozyRanch/HouseMissingRow.ui\""));
+        int last = HousePageLayout.MAX_MISSING_ROWS - 1;
+        assertEquals(1, ui.count("#HabitatMissing[" + last + "] #MName.TextSpans\",\"data\":{\"MessageId\":\"cozyranch_houseui.habitat.more\",\"Params\":{\"count\":\"5\"}"));
+        assertEquals(1, ui.count("#HabitatMissing[" + last + "] #MName.TooltipText\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts.list\""));
+    }
+
+    @Test
+    void theNoticeTakesTheSpeciesLinesPlace() {
+        Recorder none = render(HouseDemo.Scenario.LONG);
+        assertTrue(none.has("#NoticeBox.Visible", "false"));
+        assertTrue(none.has("#SpeciesLine.Visible", "true"));
+        Recorder notice = render(HouseDemo.Scenario.CROWDED, "result.border.on.trough");
+        assertTrue(notice.has("#NoticeBox.Visible", "true"));
+        assertTrue(notice.has("#SpeciesLine.Visible", "false"));
+    }
+
+    @Test
+    void usingAFullHouseWithFollowersOpensThePageWithAReason() {
+        assertEquals("cozyranch_houseui.result.use.full", HouseView.refusalNotice(com.hexvane.cozytalesranching.house.HouseService.Result.HOUSE_FULL).key());
+        assertEquals("cozyranch_houseui.result.use.not_owner", HouseView.refusalNotice(com.hexvane.cozytalesranching.house.HouseService.Result.NOT_OWNER).key());
+        assertEquals("cozyranch_houseui.result.no_permission", HouseView.refusalNotice(com.hexvane.cozytalesranching.house.HouseService.Result.NO_PERMISSION).key());
+        assertEquals(null, HouseView.refusalNotice(null));
+        assertEquals(null, HouseView.refusalNotice(com.hexvane.cozytalesranching.house.HouseService.Result.OK));
     }
 
     @Test
@@ -163,7 +210,7 @@ class HousePageLayoutTest {
             .toList();
         return HouseView.of(house, species, houseNameKey(house.blockId), demo.residents(house), demo.service()::isInside,
             demo.followers(house, PLAYER), noticeKey == null ? null : Txt.ui(noticeKey),
-            demo.stored(house), demo.initialState(), targets, r -> PLAYER.equals(r.ownerId), border, NOW);
+            demo.stored(house), demo.initialState(), targets, r -> PLAYER.equals(r.ownerId), border, NOW, HousePageLayoutTest::counts);
     }
 
     @Test
@@ -302,7 +349,7 @@ class HousePageLayoutTest {
         HouseRecord house = demo.house();
         SpeciesDefinition species = SpeciesRegistry.byId(house.speciesId).orElseThrow();
         HouseView stranger = HouseView.of(house, species, null, demo.residents(house), id -> false, List.of(), null, Map.of(),
-            HouseView.PageState.NONE, List.of(), r -> false, false, NOW);
+            HouseView.PageState.NONE, List.of(), r -> false, false, NOW, id -> null);
         Recorder theirs = new Recorder();
         HousePageLayout.render(stranger, theirs);
         assertTrue(theirs.has("#ResidentList[0] #RNameButton.Visible", "false"));

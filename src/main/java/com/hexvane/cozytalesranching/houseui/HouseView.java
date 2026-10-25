@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -59,7 +60,13 @@ public record HouseView(
 
     public enum HabitatLevel { UNCHECKED, GREAT, GOOD, POOR }
 
-    public record Habitat(@Nonnull HabitatLevel level, @Nonnull List<String> missingRequired, @Nonnull List<String> missingPreferred) {}
+    /** {@code counts}: what counts for each missing feature, for its tooltip (missing when unknown). */
+    public record Habitat(@Nonnull HabitatLevel level, @Nonnull List<String> missingRequired, @Nonnull List<String> missingPreferred,
+                          @Nonnull Map<String, Txt> counts) {
+        public Habitat(@Nonnull HabitatLevel level, @Nonnull List<String> missingRequired, @Nonnull List<String> missingPreferred) {
+            this(level, missingRequired, missingPreferred, Map.of());
+        }
+    }
 
     /** An item waiting in the house. */
     public record Product(@Nonnull String itemId, int count) {}
@@ -88,6 +95,7 @@ public record HouseView(
      * @param moveTargets  the owner's other houses the selected resident could move to
      * @param canName      whether the viewer may name a resident (its owner, or an admin who manages any)
      * @param borderOn     whether the viewer has this house's area lights on
+     * @param counts       what counts for a habitat feature id ({@link HabitatCounts}), for the needs and wants tooltips
      */
     @Nonnull
     public static HouseView of(@Nonnull HouseRecord house, @Nullable SpeciesDefinition species, @Nullable String houseNameKey,
@@ -95,7 +103,7 @@ public record HouseView(
                                @Nonnull List<AnimalRecord> followers, @Nullable Txt notice,
                                @Nonnull Map<String, Integer> stored, @Nonnull PageState state,
                                @Nonnull List<MoveTarget> moveTargets, @Nonnull Predicate<AnimalRecord> canName,
-                               boolean borderOn, long nowMs) {
+                               boolean borderOn, long nowMs, @Nonnull Function<String, Txt> counts) {
         Txt speciesName = speciesName(species, house.speciesId);
         String custom = house.name == null || house.name.isBlank() ? null : house.name;
         Txt title = houseTitle(house, speciesName, houseNameKey);
@@ -120,7 +128,7 @@ public record HouseView(
             .limit(MAX_MOVE_TARGETS).toList();
         boolean picking = state.picking() && !targets.isEmpty();
         int capacity = Math.max(1, house.capacity);
-        return new HouseView(title, speciesName, residents.size(), capacity, rows, habitat(house, species),
+        return new HouseView(title, speciesName, residents.size(), capacity, rows, habitat(house, species, counts),
             house.breedingEnabled, follow, custom, notice, products, selected, picking, targets, borderOn);
     }
 
@@ -149,6 +157,11 @@ public record HouseView(
 
     @Nonnull
     static Habitat habitat(@Nonnull HouseRecord house, @Nullable SpeciesDefinition species) {
+        return habitat(house, species, id -> null);
+    }
+
+    @Nonnull
+    static Habitat habitat(@Nonnull HouseRecord house, @Nullable SpeciesDefinition species, @Nonnull Function<String, Txt> counts) {
         if (house.habitatScannedAtMs <= 0) return new Habitat(HabitatLevel.UNCHECKED, List.of(), List.of());
         List<String> required = new ArrayList<>(), preferred = new ArrayList<>();
         List<String> requires = species == null ? List.of() : species.HabitatRequires;
@@ -158,7 +171,19 @@ public record HouseView(
         }
         HabitatLevel level = !house.habitatRequirementsMet || !required.isEmpty() ? HabitatLevel.POOR
             : house.habitatScore >= HABITAT_GREAT_AT ? HabitatLevel.GREAT : HabitatLevel.GOOD;
-        return new Habitat(level, List.copyOf(required), List.copyOf(preferred));
+        Map<String, Txt> explained = new java.util.LinkedHashMap<>();
+        for (String id : concat(required, preferred)) {
+            Txt t = counts.apply(id);
+            if (t != null) explained.put(id, t);
+        }
+        return new Habitat(level, List.copyOf(required), List.copyOf(preferred), explained);
+    }
+
+    @Nonnull
+    private static List<String> concat(@Nonnull List<String> a, @Nonnull List<String> b) {
+        List<String> all = new ArrayList<>(a);
+        all.addAll(b);
+        return all;
     }
 
     @Nonnull
@@ -226,6 +251,17 @@ public record HouseView(
         Txt name = def != null && def.NameKey != null && !def.NameKey.isBlank() ? Txt.key(def.NameKey) : Txt.raw(humanise(id));
         Txt desc = def != null && def.DescKey != null && !def.DescKey.isBlank() ? Txt.key(def.DescKey) : Txt.ui("trait.nodesc");
         return new Trait(name, desc);
+    }
+
+    /** Why the followers did not move in, as the page's notice; a full house says the followers stay with the player. */
+    @Nullable
+    public static Txt refusalNotice(@Nullable com.hexvane.cozytalesranching.house.HouseService.Result refusal) {
+        if (refusal == null || refusal == com.hexvane.cozytalesranching.house.HouseService.Result.OK) return null;
+        return switch (refusal) {
+            case HOUSE_FULL -> Txt.ui("result.use.full");
+            case NOT_OWNER -> Txt.ui("result.use.not_owner");
+            default -> Txt.ui("result." + refusal.name().toLowerCase(Locale.ROOT));
+        };
     }
 
     /** {@code open_space} to {@code Open space}: for ids with no trait entry. */

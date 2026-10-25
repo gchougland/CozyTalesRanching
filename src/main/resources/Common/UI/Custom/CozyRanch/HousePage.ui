@@ -36,6 +36,24 @@ $C.@PageOverlay {
             Text: "";
           }
 
+          // A notice takes the species line's place (Java hides one and shows the other), so the page never grows.
+          Group #NoticeBox {
+            LayoutMode: Left;
+            FlexWeight: 1;
+            Anchor: (Right: 10);
+            Padding: (Horizontal: 12);
+            Background: (Color: #e8b25c(0.14));
+            OutlineSize: 1;
+            OutlineColor: #e8b25c(0.5);
+            Visible: false;
+
+            Label #NoticeText {
+              FlexWeight: 1;
+              Style: (FontSize: 14, TextColor: #f6d38e, RenderBold: true, VerticalAlignment: Center);
+              Text: "";
+            }
+          }
+
           $C.@SmallSecondaryTextButton #JournalButton {
             @Anchor = (Width: 120, Right: 10, Top: 1);
           }
@@ -52,22 +70,6 @@ $C.@PageOverlay {
               Style: (...$H.@HeadStyle, FontSize: 15, VerticalAlignment: Center);
               Text: "";
             }
-          }
-        }
-
-        Group #NoticeBox {
-          LayoutMode: Left;
-          Anchor: (Height: 32, Bottom: 8);
-          Padding: (Horizontal: 12);
-          Background: (Color: #e8b25c(0.14));
-          OutlineSize: 1;
-          OutlineColor: #e8b25c(0.5);
-          Visible: false;
-
-          Label #NoticeText {
-            FlexWeight: 1;
-            Style: (FontSize: 15, TextColor: #f6d38e, RenderBold: true, VerticalAlignment: Center);
-            Text: "";
           }
         }
 

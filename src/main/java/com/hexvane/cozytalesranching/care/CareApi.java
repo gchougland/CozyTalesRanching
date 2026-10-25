@@ -122,6 +122,13 @@ public final class CareApi {
         return care == null ? Optional.empty() : Optional.ofNullable(care.habitat().feedBonus(itemId));
     }
 
+    /** A habitat feature's definition (what blocks count, how many), from {@code Habitat.json} and the species fragments; read only. */
+    @Nonnull
+    public static Optional<HabitatConfig.Feature> habitatFeature(@Nonnull String featureId) {
+        CareService care = CareService.get();
+        return care == null ? Optional.empty() : Optional.ofNullable(care.habitat().feature(featureId));
+    }
+
     /** The toy feature ids (habitat preferences, e.g. {@code toy_ball}) a species likes, from {@code Habitat.json}. */
     @Nonnull
     public static List<String> toysLiked(@Nonnull String speciesId) {

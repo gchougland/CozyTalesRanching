@@ -50,6 +50,7 @@ class JournalLayoutTest {
         {"species", "PARTIAL", "cow", "cow page, befriended and housed, two habits and one trait seen", "journal-species-partial"},
         {"species", "PARTIAL", "chicken", "chicken page, fed once", "journal-species-fed"},
         {"species", "EMPTY", "cow", "cow page, not met yet", "journal-species-undiscovered"},
+        {"species", "FULL", "turkey", "turkey page, everything discovered: what counts as a perch", "journal-species-counts"},
         {"traits", "EMPTY", "0", "traits page, no trait seen", "journal-traits-empty"},
         {"traits", "PARTIAL", "0", "traits page, one trait seen", "journal-traits-partial"},
         {"traits", "FULL", "0", "traits page, every trait seen", "journal-traits-full"},
@@ -182,6 +183,17 @@ class JournalLayoutTest {
             assertEquals(r.id().equals("chat"), r.on());
             assertTrue(com.hexvane.cozytalesranching.prefs.PlayerPrefs.Setting.byId(r.id()) != null, r.id());
         }
+    }
+
+    @Test
+    void speciesPageSaysWhatCountsForEachHabitatFeature() {
+        Recorder turkey = render("species", "FULL", "turkey");
+        String json = turkey.json();
+        assertTrue(json.contains("\"MessageId\":\"cozyranch_journal.section.counts\""), "a What counts section");
+        assertTrue(json.contains("{\"MessageId\":\"cozyranch_journal.counts.line\",\"MessageParams\":{\"name\":{\"MessageId\":\"cozyranch_houseui.habitat.perch\"},"
+            + "\"counts\":{\"MessageId\":\"cozyranch_houseui.counts.yard.many\",\"Params\":{\"count\":\"2\"}"), json);
+        assertFalse(json.contains("counts.unknown"), "every feature the turkey names is defined");
+        assertFalse(render("species", "EMPTY", "cow").json().contains("section.counts"), "nothing until the home is known");
     }
 
     @Test
@@ -355,6 +367,7 @@ class JournalLayoutTest {
      * lists, not items.
      */
     static final class TestLookup implements JournalView.Lookup {
+        static final com.hexvane.cozytalesranching.care.HabitatConfig HABITAT = com.hexvane.cozytalesranching.houseui.HabitatCountsTest.config();
         private final Set<String> keys;
 
         TestLookup() {
@@ -383,6 +396,8 @@ class JournalLayoutTest {
         }
 
         @Override public boolean hasKey(String key) { return keys.contains(key); }
+
+        @Override public com.hexvane.cozytalesranching.care.HabitatConfig.Feature habitatFeature(String featureId) { return HABITAT.feature(featureId); }
 
         @Override public int breedingMinHearts() { return RanchConfig.get().breedingMinHearts(); }
 

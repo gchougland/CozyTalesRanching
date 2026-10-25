@@ -26,7 +26,7 @@ import javax.annotation.Nullable;
  * Products, other houses of the owner and the Locate positions are made up too; the journal is the real one.
  */
 public final class HouseDemo implements HouseSource {
-    public enum Scenario { TYPICAL, FULL, EMPTY, UNCHECKED, MISSING, BREEDINGOFF, PRODUCTS, MILK, MOVE, PERSONALITY, LONG }
+    public enum Scenario { TYPICAL, FULL, EMPTY, UNCHECKED, MISSING, BREEDINGOFF, PRODUCTS, MILK, MOVE, PERSONALITY, LONG, CROWDED }
 
     public static final String MILK = "*Container_Bucket_State_Filled_Milk";
     /** Where the demo pretends the player stands, for Locate. */
@@ -175,6 +175,23 @@ public final class HouseDemo implements HouseSource {
                 HouseDemo d = new HouseDemo(owner, "frog", "CozyRanch_House_FrogPond", 6);
                 d.house.name = "Lily Pad Lagoon Paradise";
                 d.habitat(false, 0.4f, "lily_pads", "reeds", "tall_grass", "shade");
+                d.resident("Bartholomew Ribbitson II", 5, 0.9f, false, false, "affectionate", "efficient_eater")
+                    .personality("affectionate").feed("breeders", Long.MAX_VALUE);
+                d.resident("Wilhelmina Croakington", 4, 0.3f, true, false, "swift_grower", "twinborn")
+                    .personality("curious").feed("premium", Long.MAX_VALUE);
+                d.resident("Sir Hops A Lot The Third", 2, 0.5f, false, true, "fertile", "bountiful").personality("playful");
+                d.follower("Maximilian Leapfrogger", 4);
+                d.product("Ingredient_Hide_Light", 999);
+                d.otherHouse("Grand Old Pond Of Frogs", 1, 6, 0, 0);
+                d.otherHouse(null, 2, 4, -1820, 3415);
+                d.initial = new HouseView.PageState(null, true);
+                yield d;
+            }
+            case CROWDED -> {
+                // the fullest page: LONG with every habitat feature a frog could miss (more than the card has rows for)
+                HouseDemo d = new HouseDemo(owner, "frog", "CozyRanch_House_FrogPond", 6);
+                d.house.name = "Lily Pad Lagoon Paradise";
+                d.habitat(false, 0.4f, "lily_pads", "water", "reeds", "tall_grass", "shade", "flowers", "toy_duck", "toy_log");
                 d.resident("Bartholomew Ribbitson II", 5, 0.9f, false, false, "affectionate", "efficient_eater")
                     .personality("affectionate").feed("breeders", Long.MAX_VALUE);
                 d.resident("Wilhelmina Croakington", 4, 0.3f, true, false, "swift_grower", "twinborn")
