@@ -24,7 +24,7 @@
     "Run": {
       "Animations": [
         {
-          "Animation": "NPC/Livestock/Skrill/Animations/Default/Run.blockyanim",
+          "Animation": "NPC/CozyRanch/Skrill/Animations/Run.blockyanim",
           "SoundEventId": "SFX_Chicken_Run"
         }
       ]
@@ -32,14 +32,14 @@
     "RunBackward": {
       "Animations": [
         {
-          "Animation": "NPC/Livestock/Chicken/Animations/Default/Run_Backward.blockyanim"
+          "Animation": "NPC/CozyRanch/Skrill/Animations/RunBackward.blockyanim"
         }
       ]
     },
     "Sprint": {
       "Animations": [
         {
-          "Animation": "NPC/Livestock/Chicken/Animations/Default/Sprint.blockyanim",
+          "Animation": "NPC/CozyRanch/Skrill/Animations/Sprint.blockyanim",
           "Speed": 1.2
         }
       ]
@@ -379,14 +379,14 @@
     "FleePAssive": {
       "Animations": [
         {
-          "Animation": "NPC/Livestock/Chicken/Animations/Flavor/Flee_Flap.blockyanim"
+          "Animation": "NPC/CozyRanch/Skrill/Animations/FleePAssive.blockyanim"
         }
       ]
     },
     "RunPassive": {
       "Animations": [
         {
-          "Animation": "NPC/Livestock/Chicken/Animations/Flavor/Run_Flap.blockyanim"
+          "Animation": "NPC/CozyRanch/Skrill/Animations/RunPassive.blockyanim"
         }
       ],
       "NextAnimationDelay": {

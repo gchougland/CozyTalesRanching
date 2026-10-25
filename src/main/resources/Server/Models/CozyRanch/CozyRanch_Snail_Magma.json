@@ -123,7 +123,7 @@
     "Fall": {
       "Animations": [
         {
-          "Animation": "NPC/Beast/Snail/Animations/Default/Fall.blockyanim",
+          "Animation": "NPC/CozyRanch/Snail/Animations/Fall.blockyanim",
           "BlendingDuration": 0.4
         }
       ]
@@ -140,7 +140,7 @@
     "Hurt": {
       "Animations": [
         {
-          "Animation": "NPC/Beast/Snail/Animations/Damage/Hurt.blockyanim",
+          "Animation": "NPC/CozyRanch/Snail/Animations/Hurt.blockyanim",
           "BlendingDuration": 0.1,
           "Looping": false
         }
@@ -149,7 +149,7 @@
     "Death": {
       "Animations": [
         {
-          "Animation": "NPC/Beast/Snail/Animations/Damage/Death.blockyanim",
+          "Animation": "NPC/CozyRanch/Snail/Animations/Death.blockyanim",
           "Looping": false
         }
       ]
@@ -157,7 +157,7 @@
     "Laydown": {
       "Animations": [
         {
-          "Animation": "NPC/Beast/Snail/Animations/Default/Laydown.blockyanim",
+          "Animation": "NPC/CozyRanch/Snail/Animations/Laydown.blockyanim",
           "Looping": false
         }
       ]
@@ -172,7 +172,7 @@
     "Wake": {
       "Animations": [
         {
-          "Animation": "NPC/Beast/Snail/Animations/Default/Wake.blockyanim",
+          "Animation": "NPC/CozyRanch/Snail/Animations/Wake.blockyanim",
           "Looping": false
         }
       ]
@@ -180,7 +180,7 @@
     "Spawn": {
       "Animations": [
         {
-          "Animation": "NPC/Beast/Snail/Animations/Default/Spawn.blockyanim",
+          "Animation": "NPC/CozyRanch/Snail/Animations/Spawn.blockyanim",
           "BlendingDuration": 0,
           "Looping": false
         }
@@ -200,8 +200,8 @@
     "Eat": {
       "Animations": [
         {
-          "Animation": "NPC/Beast/Snail/Animations/Default/Idle.blockyanim",
-          "Speed": 0.6
+          "Animation": "NPC/CozyRanch/Snail/Animations/Nibble.blockyanim",
+          "BlendingDuration": 0.3
         }
       ]
     },
@@ -261,6 +261,14 @@
         {
           "Animation": "NPC/Beast/Snail/Animations/Flavor/Look_Around.blockyanim",
           "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Curious": {
+      "Animations": [
+        {
+          "Animation": "NPC/Beast/Snail/Animations/Flavor/Look_Around.blockyanim",
+          "BlendingDuration": 0.2
         }
       ]
     }

@@ -791,6 +791,72 @@
             }
           },
           "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_LookAround.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Snail Laydown",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma.json",
+            "animation": "Laydown",
+            "frames": 8,
+            "yaw": 40,
+            "pitch": 15,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Laydown.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Snail Wake",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma.json",
+            "animation": "Wake",
+            "frames": 8,
+            "yaw": 40,
+            "pitch": 15,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Wake.png"
+        },
+        {
+          "tool": "animation_render",
+          "name": "CozyRanch_Snail Hurt",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Snail_Magma.json",
+            "animation": "Hurt",
+            "frames": 8,
+            "yaw": 40,
+            "pitch": 15,
+            "size": 220,
+            "hitbox": false
+          },
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/species-snail/CozyRanch_Snail_Hurt.png"
         }
       ]
     },
