@@ -60,7 +60,7 @@ final class WildlifeWorld {
     private WildlifeWorld() {}
 
     /** The outcome of an attempt to bring a visitor. */
-    enum Outcome { ARRIVED, NO_SPECIES, NO_ROLE, CAP_HOUSE, CAP_OWNER, CAP_WORLD, UNLOADED, NO_SPOT, FAILED }
+    enum Outcome { ARRIVED, OTHER_SPECIES, NO_SPECIES, NO_ROLE, CAP_HOUSE, CAP_OWNER, CAP_WORLD, UNLOADED, NO_SPOT, FAILED }
 
     record Arrival(@Nonnull Outcome outcome, @Nullable Visitor visitor, @Nonnull String detail) {}
 
@@ -153,6 +153,13 @@ final class WildlifeWorld {
                 v.z = p.z;
             }
             if (!v.leaving()) {
+                if (!atOwnKindsHouse(v)) {
+                    // a visitor saved before fix 5 may belong to another species' house, or its house is gone
+                    LOG.info("Wildlife: visitor " + v.entityUuid + " (" + v.speciesId + ") has no house of its own kind here; it walks off");
+                    startLeaving(world, store, ref, v, now);
+                    visitors.markDirty(world.getName());
+                    continue;
+                }
                 if (now >= v.leaveAtMs) {
                     startLeaving(world, store, ref, v, now);
                     visitors.markDirty(world.getName());
@@ -168,6 +175,12 @@ final class WildlifeWorld {
             }
         }
         // forget() marks the world itself; a visitor that only walked about waits for the next real save
+    }
+
+    /** The visitor's house still stands and is a house of the visitor's own species. */
+    static boolean atOwnKindsHouse(@Nonnull Visitor v) {
+        HouseRecord house = v.houseId == null ? null : Ranch.houses().get(v.houseId).orElse(null);
+        return house != null && v.speciesId != null && WildlifeRules.visitsHouse(v.speciesId, house.speciesId);
     }
 
     /** The entity is still the wild visitor we spawned: same role, and nobody has made it a ranch animal. */
@@ -218,7 +231,7 @@ final class WildlifeWorld {
     // ---- arrival ----
 
     /**
-     * Brings a visitor of {@code speciesId} to the house: role, caps, a safe spot at the edge of the ranch, spawn,
+     * Brings a visitor of {@code speciesId} to the house (only a house of that species): role, caps, a safe spot at the edge of the ranch, spawn,
      * home pointed at the house, saved, then the event, the owner's chat line and the sound. {@code stayMs} below 0
      * draws the stay from the config.
      */
@@ -226,6 +239,9 @@ final class WildlifeWorld {
     static Arrival bring(@Nonnull World world, @Nonnull Store<EntityStore> store, @Nonnull WildlifeService service, @Nonnull HouseRecord house,
                          @Nonnull String speciesId, boolean rare, long stayMs, boolean ignoreCaps, long now) {
         WildlifeConfig config = service.config();
+        if (!WildlifeRules.visitsHouse(speciesId, house.speciesId)) {
+            return new Arrival(Outcome.OTHER_SPECIES, null, speciesId + " never visits a " + house.speciesId + " house");
+        }
         SpeciesWildlife sw = config.species(speciesId);
         SpeciesDefinition species = SpeciesRegistry.byId(speciesId).orElse(null);
         if (sw == null || species == null) return new Arrival(Outcome.NO_SPECIES, null, speciesId);

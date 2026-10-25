@@ -24,10 +24,6 @@
       "Roles": ["Chicken"],
       "OwnHouseWeight": 0.9,
       "CooldownMinutes": 20,
-      "Attractors": [
-        { "HouseSpecies": "sheep", "Features": ["flowers"], "Weight": 0.3 },
-        { "HouseSpecies": "cow", "Features": ["hay"], "Weight": 0.25 }
-      ],
       "Rare": {
         "Role": "CozyRanchWild_Chicken_Golden",
         "NameKey": "cozyranch_wildlife.rare.chicken",
@@ -41,9 +37,6 @@
       "Roles": ["Cow"],
       "OwnHouseWeight": 0.8,
       "CooldownMinutes": 25,
-      "Attractors": [
-        { "HouseSpecies": "sheep", "Features": ["grass", "open_space"], "Weight": 0.25 }
-      ],
       "Rare": {
         "Role": "CozyRanchWild_Cow_Red",
         "NameKey": "cozyranch_wildlife.rare.cow",
@@ -58,7 +51,6 @@
       "Roles": ["Pig"],
       "OwnHouseWeight": 0.85,
       "CooldownMinutes": 20,
-      "Attractors": [],
       "Rare": {
         "Role": "CozyRanchWild_Pig_Spotted",
         "NameKey": "cozyranch_wildlife.rare.pig",
@@ -72,9 +64,6 @@
       "Roles": ["Sheep"],
       "OwnHouseWeight": 0.85,
       "CooldownMinutes": 20,
-      "Attractors": [
-        { "HouseSpecies": "cow", "Features": ["grass", "hay"], "Weight": 0.3 }
-      ],
       "Rare": {
         "Role": "CozyRanchWild_Sheep_Black",
         "NameKey": "cozyranch_wildlife.rare.sheep",
@@ -89,9 +78,6 @@
       "OwnHouseWeight": 1.0,
       "CooldownMinutes": 15,
       "NearWater": true,
-      "Attractors": [
-        { "HouseSpecies": "pig", "Features": ["water", "mud"], "Weight": 0.3 }
-      ],
       "Rare": {
         "Role": "CozyRanchWild_Frog_Purple",
         "NameKey": "cozyranch_wildlife.rare.frog",

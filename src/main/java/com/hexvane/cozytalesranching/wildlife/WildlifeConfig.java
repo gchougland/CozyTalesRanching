@@ -60,26 +60,21 @@ public final class WildlifeConfig {
     public double ForgetUnloadedHours = 72;
     public Map<String, SpeciesWildlife> Species = new LinkedHashMap<>();
 
-    /** What attracts one species to a ranch, and its rare variant. */
+    /**
+     * What draws one species to a ranch, and its rare variant. A species only ever visits a house of its own kind
+     * (Gibson, fix 5): there is no attraction to other species' houses, and an old {@code Attractors} list in a
+     * server's own file is ignored.
+     */
     public static final class SpeciesWildlife {
         /** Wild roles a normal visitor spawns as (vanilla roles). */
         public List<String> Roles = List.of();
         /** Weight at a house of its own species whose habitat is good. */
         public double OwnHouseWeight = 1.0;
-        /** Other houses that attract it: all of {@code Features} found there by the habitat scan. */
-        public List<Attractor> Attractors = List.of();
         /** The same species does not visit the same house again for this long. */
         public double CooldownMinutes = 20;
         /** Spawn only near water (frogs). */
         public boolean NearWater;
         @Nullable public Rare Rare;
-    }
-
-    public static final class Attractor {
-        /** Only houses of this species (empty: any house). */
-        public String HouseSpecies = "";
-        public List<String> Features = List.of();
-        public double Weight = 0.3;
     }
 
     /** One rare variant per species, only at a house of that species, under harder conditions. */
@@ -109,11 +104,6 @@ public final class WildlifeConfig {
         if (Species == null) Species = new LinkedHashMap<>();
         for (SpeciesWildlife s : Species.values()) {
             if (s.Roles == null) s.Roles = List.of();
-            if (s.Attractors == null) s.Attractors = List.of();
-            for (Attractor a : s.Attractors) {
-                if (a.Features == null) a.Features = List.of();
-                if (a.HouseSpecies == null) a.HouseSpecies = "";
-            }
             if (s.Rare != null) {
                 if (s.Rare.Features == null) s.Rare.Features = List.of();
                 if (s.Rare.StoredItems == null) s.Rare.StoredItems = Map.of();
