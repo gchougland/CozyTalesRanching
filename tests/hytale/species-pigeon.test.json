@@ -355,6 +355,36 @@
             }
           },
           "golden": "tests/hytale/golden/species-pigeon/CozyRanch_Pigeon_Flutter.png"
+        },
+        {
+          "tool": "animation_render",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pigeon.json",
+            "animation": "Handgun",
+            "frameList": [
+              30,
+              60,
+              74,
+              100,
+              120,
+              178,
+              214,
+              250
+            ],
+            "yaw": -25,
+            "pitch": 8,
+            "size": 220,
+            "hitbox": false
+          },
+          "golden": "tests/hytale/golden/species-pigeon/CozyRanch_Pigeon_Handgun.png",
+          "expect": {
+            "animation": {
+              "nodesNotInModel": {
+                "$length": 0
+              }
+            }
+          }
         }
       ]
     },
@@ -1663,6 +1693,128 @@
             }
           },
           "golden": "tests/hytale/golden/species-pigeon/housepage.png"
+        }
+      ]
+    },
+    {
+      "name": "pigeon handgun only in its clip",
+      "description": "The handgun attachment is hidden on the model, in the walking wild role and in every other clip; only the Handgun clip shows it (fix5 note 18). Squabs carry no gun at all.",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pigeon.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pigeon.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 128,
+            "hitbox": false
+          },
+          "expect": {
+            "attachments": {
+              "$length": 1
+            },
+            "hiddenShapes": 11,
+            "faces": 81
+          }
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/NPC/Roles/CozyRanchWild/CozyRanchWild_Pigeon.json",
+            "animation": "Walk",
+            "frame": 10,
+            "views": [
+              "three_quarter"
+            ],
+            "size": 128,
+            "hitbox": false
+          },
+          "expect": {
+            "faces": 81
+          }
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pigeon.json",
+            "animation": "Strut",
+            "frame": 30,
+            "views": [
+              "three_quarter"
+            ],
+            "size": 128,
+            "hitbox": false
+          },
+          "expect": {
+            "faces": 81
+          }
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pigeon.json",
+            "animation": "Handgun",
+            "frame": 100,
+            "views": [
+              "three_quarter"
+            ],
+            "size": 128,
+            "hitbox": false
+          },
+          "expect": {
+            "faces": {
+              "$gt": 81
+            }
+          }
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pigeon.json",
+            "animation": "Handgun",
+            "frame": 260,
+            "views": [
+              "three_quarter"
+            ],
+            "size": 128,
+            "hitbox": false
+          },
+          "expect": {
+            "faces": 81
+          }
+        },
+        {
+          "tool": "model_render",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Models/CozyRanch/CozyRanch_Pigeon_Squab.json",
+            "views": [
+              "three_quarter"
+            ],
+            "size": 128,
+            "hitbox": false
+          },
+          "expect": {
+            "attachments": {
+              "$length": 0
+            }
+          }
         }
       ]
     }

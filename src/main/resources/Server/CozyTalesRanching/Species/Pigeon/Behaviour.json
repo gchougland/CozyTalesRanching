@@ -17,6 +17,15 @@
         3,
         5
       ]
+    },
+    "pigeon_handgun": {
+      "Kind": "here",
+      "Weight": 0.6,
+      "CooldownSeconds": 900,
+      "Seconds": [
+        5,
+        5
+      ]
     }
   },
   "Species": {
@@ -33,6 +42,9 @@
         ],
         "bob_strut": [
           "Strut"
+        ],
+        "pigeon_handgun": [
+          "Handgun"
         ],
         "preen": [
           "Preen"
@@ -98,7 +110,8 @@
     "playful": {
       "Weights": {
         "bob_strut": 1.5,
-        "flap": 1.5
+        "flap": 1.5,
+        "pigeon_handgun": 1.5
       }
     },
     "lazy": {
