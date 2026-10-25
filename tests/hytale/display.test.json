@@ -518,7 +518,7 @@
                   },
                   "models": {
                     "value": {
-                      "$matches": "^(?=.*\\[CozyRanch_Songbird_Bluebird x0\\.45 at [^\\]]* intangible\\])(?=.*\\[CozyRanch_Songbird_Finch x0\\.45 at [^\\]]* intangible\\])(?=.*yaw -90 intangible)(?=.*yaw -105 intangible)"
+                      "$matches": "^(?=.*\\[CozyRanch_Songbird_Bluebird x0\\.45 at [^\\]]* intangible\\])(?=.*\\[CozyRanch_Songbird_Finch x0\\.45 at [^\\]]* intangible\\])(?=.*yaw -?0 intangible)(?=.*yaw -?180 intangible)"
                     }
                   }
                 }
