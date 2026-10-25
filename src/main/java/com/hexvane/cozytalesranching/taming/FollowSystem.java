@@ -26,7 +26,8 @@ import org.joml.Vector3d;
 
 /**
  * Once a second per world: points following animals at their owner (or the mount the owner rides, see
- * {@link FollowAnchor}) and brings back any that fell too far behind or got stuck. Walks owners in the world and their records, never entities, so the cost is
+ * {@link FollowAnchor}) and brings back any that fell too far behind or got stuck. Every owned animal near its owner also
+ * gets the walk-in-place check ({@link WalkSettle}). Walks owners in the world and their records, never entities, so the cost is
  * players × owned animals per second. Owners in another world or offline are left alone: the animal waits.
  */
 final class FollowSystem extends TickingSystem<EntityStore> {
@@ -41,6 +42,7 @@ final class FollowSystem extends TickingSystem<EntityStore> {
 
     static void forget(@Nonnull UUID animalId) {
         TRACKS.remove(animalId);
+        WalkSettle.forget(animalId);
     }
 
     @Override
@@ -65,9 +67,16 @@ final class FollowSystem extends TickingSystem<EntityStore> {
             if (ownerT == null) continue;
             noteAnchor(owner.getUuid(), ownerRef, anchor, ownerT, store);
             for (AnimalRecord record : Ranch.animals().ownedBy(owner.getUuid())) {
-                if (!record.following || record.state != AnimalRecord.State.ACTIVE || record.entityUuid == null) continue;
+                if (record.state != AnimalRecord.State.ACTIVE || record.entityUuid == null) continue;
                 Ref<EntityStore> animal = world.getEntityStore().getRefFromUUID(record.entityUuid);
-                if (animal == null || !animal.isValid() || !isRanchRole(animal, store)) continue;
+                if (animal == null || !animal.isValid()) continue;
+                if (!record.following) {
+                    // Staying or at home: only the walk-in-place check (WalkSettle) runs for it.
+                    TransformComponent st = store.getComponent(animal, TransformComponent.getComponentType());
+                    if (st != null) WalkSettle.check(record.animalId, animal, st.getPosition(), store);
+                    continue;
+                }
+                if (!isRanchRole(animal, store)) continue;
                 AnimalControl.applyFollow(animal, record, anchor, store);
                 // A follower plays no behaviour: drop any clip nobody is timing (a Sleep from the wild role or a lost nap).
                 String clip = com.hexvane.cozytalesranching.behaviour.AnimalClips.current(store, animal);
@@ -80,6 +89,7 @@ final class FollowSystem extends TickingSystem<EntityStore> {
                 Vector3d ownerPos = ownerT.getPosition();
                 double distance = pos.distance(ownerPos);
                 Track track = advance(record.animalId, pos, ownerPos);
+                WalkSettle.check(record.animalId, animal, pos, store);
                 record.lastX = pos.x;
                 record.lastY = pos.y;
                 record.lastZ = pos.z;
