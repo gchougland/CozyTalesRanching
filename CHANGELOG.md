@@ -23,6 +23,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
   - **Rancher's Ledger** with a dark quill, and a **Dreamcatcher** that hangs from beams and branches.
 - **Rancher's Ledger page:** use a placed ledger to see your whole ranch at a glance: every house with its products waiting, every animal with its hearts and where it is, and the ones still without a home.
 - **Ranching Bench:** a new bench, made at the Workbench, with tabs for Animal Houses, Feed and Care, and Toys and Decor. Houses, feeds, troughs, the Bait Bowl, the Butcher's Block and toys are crafted here now.
+- **Hay Bundles** can be made from 6 Wheat at the Ranching Bench.
 - **Creative tab:** everything from the mod has its own **Cozy Tales: Ranching** tab in the creative inventory.
 - **Raven armour:** the Raven leather armour can now be made at the Armour Bench from heavy leather, dark feathers and cotton. Each piece worn gives a chance that an arrow you shoot comes back, up to one in four with the full set.
 - **A pigeon with a secret:** now and then a pigeon pulls a handgun from under its wing, strikes a pose and tucks it away again.

@@ -1,0 +1,31 @@
+{
+  "Input": [
+    {
+      "ItemId": "Plant_Crop_Wheat_Item",
+      "Quantity": 6
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Plant_Hay_Bundle",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Plant_Hay_Bundle",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "CozyRanch_RanchingBench",
+      "Categories": [
+        "CozyRanch_FeedCare"
+      ],
+      "RequiredTierLevel": 1
+    }
+  ],
+  "KnowledgeRequired": false,
+  "TimeSeconds": 2
+}
