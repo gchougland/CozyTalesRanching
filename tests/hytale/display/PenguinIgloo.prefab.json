@@ -1,0 +1,63 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_PenguinIgloo"
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0,
+      "Y": 0.0625,
+      "Z": 1.5625
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 120.00000000000001,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Penguin",
+      "Scale": 0.5,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": -0.375,
+      "Y": 0.0625,
+      "Z": 1.625
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -180,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Penguin",
+      "Scale": 0.5,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,63 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_FlamingoNest"
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": -0.6875,
+      "Y": 0.03125,
+      "Z": 0.5
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -150.00000000000003,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Flamingo",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.6875,
+      "Y": 0.03125,
+      "Z": 0.5
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 149.99999999999997,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Flamingo",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}

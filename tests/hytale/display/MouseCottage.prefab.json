@@ -1,0 +1,86 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_MouseCottage"
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.375,
+      "Y": 0.375,
+      "Z": 1.625
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 135,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Mouse",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.625,
+      "Y": 0.375,
+      "Z": 1.625
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -135,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Mouse",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1,
+      "Y": 0.0625,
+      "Z": 1.96875
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -180,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Mouse",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}
