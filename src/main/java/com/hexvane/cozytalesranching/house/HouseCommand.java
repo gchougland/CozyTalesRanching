@@ -10,6 +10,7 @@ import com.hexvane.cozytalesranching.species.SpeciesRegistry.RoleMatch;
 import com.hexvane.cozytalesranching.taming.TamingApi;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
+import com.hypixel.hytale.protocol.BlockMaterial;
 import com.hypixel.hytale.protocol.BlockRotation;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.asset.type.blocktype.config.BlockType;
@@ -158,8 +159,9 @@ public final class HouseCommand extends AbstractCommandCollection {
                 return;
             }
             Vector3d p = t.getPosition();
-            Vector3i pos = onGround(world, (int) Math.floor(p.x), (int) Math.floor(p.y), (int) Math.floor(p.z));
-            Ref<ChunkStore> section = world.getChunkStore().getChunkSectionReferenceAtBlock(pos.x, pos.y, pos.z);
+            Vector3i ground = onGround(world, (int) Math.floor(p.x), (int) Math.floor(p.y), (int) Math.floor(p.z));
+            Vector3i pos = ground != null ? ground : new Vector3i((int) Math.floor(p.x), (int) Math.floor(p.y), (int) Math.floor(p.z));
+            Ref<ChunkStore> section = ground == null ? null : world.getChunkStore().getChunkSectionReferenceAtBlock(pos.x, pos.y, pos.z);
             if (section == null || !section.isValid()) {
                 HouseResidents.log("debug place: no chunk section at " + pos.x + " " + pos.y + " " + pos.z);
                 context.sendMessage(Message.translation("cozyranch_house.debug.place_failed").param("block", blockId).param("x", pos.x).param("y", pos.y).param("z", pos.z));
@@ -174,15 +176,21 @@ public final class HouseCommand extends AbstractCommandCollection {
                 .param("block", blockId).param("x", pos.x).param("y", pos.y).param("z", pos.z));
         }
 
-        /** The cell above the first block at or below the feet, within 32 blocks; house blocks need support below. */
-        @Nonnull
+        /**
+         * The cell above the first solid block at or below the feet, within 32 blocks; house blocks need solid support
+         * below, so flowers and grass do not count. Null when that ground is not loaded yet (just after a teleport).
+         */
+        @Nullable
         private static Vector3i onGround(@Nonnull World world, int x, int y, int z) {
             SectionReader reader = new SectionReader(world.getChunkStore());
             for (int cy = y; cy > y - 32; cy--) {
-                if (!reader.hasStorageInMemory(x, cy - 1, z)) break;
-                if (reader.getBlock(x, cy - 1, z) != BlockType.EMPTY_ID) return new Vector3i(x, cy, z);
+                if (!reader.hasStorageInMemory(x, cy - 1, z)) return null;
+                int id = reader.getBlock(x, cy - 1, z);
+                if (id == BlockType.EMPTY_ID) continue;
+                BlockType type = BlockType.getAssetMap().getAsset(id);
+                if (type != null && !type.isUnknown() && type.getMaterial() == BlockMaterial.Solid) return new Vector3i(x, cy, z);
             }
-            return new Vector3i(x, y, z);
+            return null;
         }
     }
 
