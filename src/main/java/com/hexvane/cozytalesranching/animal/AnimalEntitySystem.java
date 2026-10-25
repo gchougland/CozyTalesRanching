@@ -77,7 +77,7 @@ final class AnimalEntitySystem extends RefSystem<EntityStore> {
         World world = store.getExternalData().getWorld();
 
         if (marker != null) {
-            onMarkedAdded(ref, cb, world, marker, entityUuid, role, match, !foreign && CompatGuard.isManageableRole(role));
+            onMarkedAdded(ref, cb, world, marker, entityUuid, role, match, !foreign && CompatGuard.isManageableRole(role), reason == AddReason.SPAWN);
             return;
         }
         if (mayBeOrphan(match.kind(), foreign, role) && relinkOrphan(ref, cb, world, entityUuid, role, match)) return;
@@ -118,6 +118,8 @@ final class AnimalEntitySystem extends RefSystem<EntityStore> {
         String plate = com.hexvane.cozytalesranching.taming.TamingApi.nameplateText(r);
         if (plate != null) accessor.putComponent(ref, Nameplate.getComponentType(), new Nameplate(plate));
         AnimalPresence.put(r.animalId, ref);
+        AnimalSkins.capture(r, ref, accessor);
+        AnimalSkins.apply(r, ref, accessor, true);
         r.worldName = world.getName();
         r.lastX = p.x;
         r.lastY = p.y;
@@ -136,7 +138,8 @@ final class AnimalEntitySystem extends RefSystem<EntityStore> {
         return match != null && isAdoptRole(role, match.kind());
     }
 
-    private void onMarkedAdded(Ref<EntityStore> ref, CommandBuffer<EntityStore> cb, World world, AnimalMarker marker, UUID entityUuid, String role, RoleMatch match, boolean manageable) {
+    private void onMarkedAdded(Ref<EntityStore> ref, CommandBuffer<EntityStore> cb, World world, AnimalMarker marker, UUID entityUuid, String role, RoleMatch match, boolean manageable,
+                               boolean spawned) {
         UUID animalId = marker.animalId();
         if (animalId == null) return;
         AnimalStore store = registry.store();
@@ -166,6 +169,10 @@ final class AnimalEntitySystem extends RefSystem<EntityStore> {
                     changed = true;
                 }
                 store.setRole(animalId, role);
+                // the skin: noted once (animals tamed before skins were kept), then put back on (a loaded model drops
+                // attachments our ranch model asset does not define; a fresh spawn has just rolled its own)
+                changed |= AnimalSkins.capture(r, ref, cb);
+                changed |= AnimalSkins.apply(r, ref, cb, spawned);
                 if (changed) registry.markDirty(r);
                 else registry.scheduleSave();
             }

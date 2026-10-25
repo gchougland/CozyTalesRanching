@@ -1,6 +1,7 @@
 package com.hexvane.cozytalesranching.taming;
 
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
+import com.hexvane.cozytalesranching.animal.AnimalSkins;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.api.event.AnimalReleasedEvent;
 import com.hexvane.cozytalesranching.api.event.RanchEvents;
@@ -61,6 +62,8 @@ public final class TamingApi {
 
     public static void release(@Nonnull AnimalRecord record, @Nullable Ref<EntityStore> animal, @Nonnull PlayerRef player, @Nonnull Store<EntityStore> store) {
         RanchEvents.fire(new AnimalReleasedEvent(record.view(), player.getUuid()));
+        // the swap back to a wild role rolls a new skin: the one it wears goes back on once the wild model is there
+        if (animal != null && animal.isValid() && record.entityUuid != null) AnimalSkins.rememberRelease(record.entityUuid, record, animal, store);
         Ranch.animals().remove(record.animalId);
         FollowSystem.forget(record.animalId);
         if (animal == null || !animal.isValid()) return;

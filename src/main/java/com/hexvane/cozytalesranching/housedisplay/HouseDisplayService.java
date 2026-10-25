@@ -1,6 +1,7 @@
 package com.hexvane.cozytalesranching.housedisplay;
 
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
+import com.hexvane.cozytalesranching.animal.AnimalSkins;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
@@ -68,10 +69,10 @@ final class HouseDisplayService {
     }
 
     /** What would be spawned for one point. */
-    record Spec(@Nonnull String modelId, float scale, @Nonnull DisplayMath.Placement at, @Nullable String animation) {
+    record Spec(@Nonnull String modelId, float scale, @Nonnull DisplayMath.Placement at, @Nullable String animation, @Nonnull String skin) {
         @Nonnull
         String key() {
-            return modelId + '|' + scale + '|' + at + '|' + animation;
+            return modelId + '|' + scale + '|' + at + '|' + animation + '|' + skin;
         }
     }
 
@@ -135,7 +136,7 @@ final class HouseDisplayService {
             if (shows.slots.containsKey(e.getKey())) continue;
             Spec spec = spec(points.get(e.getKey()), house, byId.get(e.getValue()));
             if (spec == null) continue;
-            Ref<EntityStore> ref = spawn(store, spec);
+            Ref<EntityStore> ref = spawn(store, spec, byId.get(e.getValue()));
             if (ref != null) shows.slots.put(e.getKey(), new Shown(e.getValue(), ref, spec.key()));
         }
         if (shows.slots.isEmpty()) SHOWN.remove(house.houseId, shows);
@@ -200,7 +201,7 @@ final class HouseDisplayService {
         String anim = point.Animation != null ? point.Animation : HouseDisplayData.get().Animation;
         Map<String, ?> sets = asset.getAnimationSetMap();
         if (sets == null || !sets.containsKey(anim)) anim = null;
-        return new Spec(modelId, scale, at, anim);
+        return new Spec(modelId, scale, at, anim, AnimalSkins.key(r));
     }
 
     /** The model of the role the animal comes out as: the role it was stored with, else its species' ranch role. */
@@ -238,10 +239,11 @@ final class HouseDisplayService {
     }
 
     @Nullable
-    private static Ref<EntityStore> spawn(@Nonnull Store<EntityStore> store, @Nonnull Spec spec) {
+    private static Ref<EntityStore> spawn(@Nonnull Store<EntityStore> store, @Nonnull Spec spec, @Nullable AnimalRecord animal) {
         ModelAsset asset = ModelAsset.getAssetMap().getAsset(spec.modelId());
         if (asset == null) return null;
-        Model model = Model.createScaledModel(asset, spec.scale());
+        // the resident's own skin (its random attachments), so the house shows the same animal that went in
+        Model model = AnimalSkins.modelFor(asset, spec.scale(), animal);
         Rotation3f rotation = new Rotation3f(0f, spec.at().yawRadians(), 0f);
         Holder<EntityStore> holder = store.getRegistry().newHolder();
         holder.addComponent(NetworkId.getComponentType(), new NetworkId(store.getExternalData().takeNextNetworkId()));

@@ -3,6 +3,7 @@ package com.hexvane.cozytalesranching.taming;
 import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.RanchSounds;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
+import com.hexvane.cozytalesranching.animal.AnimalSkins;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.api.event.AnimalFriendshipChangedEvent;
 import com.hexvane.cozytalesranching.api.event.AnimalOwnerChangedEvent;
@@ -320,6 +321,8 @@ public final class AnimalInteractions {
         }
         if (!gateOk(use)) return;
         if (use.kind == RoleKind.ADOPT || use.kind == RoleKind.ADOPT_BABY || use.kind == RoleKind.WILD || use.kind == RoleKind.WILD_BABY) {
+            // the skin it wears now goes with it into the ranch role (noted at adoption; this covers older records)
+            AnimalSkins.capture(record, animal, store);
             Optional<String> ranchRole = AnimalControl.ranchRole(use.species, AnimalControl.roleName(animal, store), record.baby);
             if (ranchRole.isEmpty() || !AnimalControl.swapRole(animal, ranchRole.get(), AnimalControl.STATE_FOLLOW, store)) return;
         }

@@ -26,3 +26,10 @@ commands.admin.hurt.arg.by=player (default), fall, mob or gone
 commands.admin.hurt.arg.amount=How much damage (default 1000)
 commands.admin.hurt.arg.radius=How far to look, in blocks (default 24)
 admin.hurt.done=Hit {hit} ranch animals; {survived} are unharmed or still standing.
+commands.admin.skins.desc=Show the skins (model attachments) of ranch species near you and what their records keep
+commands.admin.skins.arg.radius=How far to look, in blocks (default 16)
+admin.skins.line={role} model {model}: sets {ids}, {count} attachments {textures}; record {record}
+admin.skins.none=No animal of a ranch species near you.
+commands.admin.skins.arg.set=Test: give wild animals nearby these attachment ids first, like Base=2001+Eyes=2002
+commands.admin.skins.arg.release=Test: release every ranch animal nearby instead
+admin.skins.released=Released a {role} to the wild.
