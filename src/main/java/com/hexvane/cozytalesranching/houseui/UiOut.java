@@ -17,7 +17,11 @@ public interface UiOut {
     /** Sets {@code selector.TextSpans}. */
     void text(@Nonnull String selector, @Nonnull Txt text);
 
-    /** Sets {@code selector.TooltipText}; the element needs a {@code TextTooltipStyle} in its document. */
+    /**
+     * Sets {@code selector.TooltipTextSpans}; the element needs a {@code TextTooltipStyle} in its document. Spans, not
+     * {@code TooltipText}: the client does not fill a message's parameters into {@code TooltipText} (the house page
+     * showed "What counts: {counts}"), so vanilla sends a tooltip with parameters as spans (MemoriesPage).
+     */
     void tooltip(@Nonnull String selector, @Nonnull Txt text);
 
     /** A button press that sends {@code Action} and, when not empty, {@code Animal}. */

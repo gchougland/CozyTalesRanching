@@ -101,10 +101,25 @@ class HousePageLayoutTest {
     void eachNeedAndWantSaysWhatCountsOnHover() {
         Recorder ui = render(HouseDemo.Scenario.MISSING);
         assertTrue(ui.has("#HabitatDetail.TextSpans", "{\"MessageId\":\"cozyranch_houseui.habitat.detail.hover\"}"));
-        assertEquals(1, ui.count("#HabitatMissing[0] #MNeed.TooltipText\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts."));
-        assertEquals(1, ui.count("#HabitatMissing[0] #MName.TooltipText\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts."));
-        assertEquals(1, ui.count("#HabitatMissing[1] #MWant.TooltipText\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts."));
-        assertEquals(1, ui.count("#HabitatMissing[1] #MName.TooltipText\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts.tooltip\",\"MessageParams\":{\"counts\":{\"MessageId\":\"cozyranch_houseui.counts.yard.many\""), "reeds: 2 or more");
+        assertEquals(1, ui.count("#HabitatMissing[0] #MNeed.TooltipTextSpans\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts."));
+        assertEquals(1, ui.count("#HabitatMissing[0] #MName.TooltipTextSpans\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts."));
+        assertEquals(1, ui.count("#HabitatMissing[1] #MWant.TooltipTextSpans\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts."));
+        assertEquals(1, ui.count("#HabitatMissing[1] #MName.TooltipTextSpans\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts.tooltip\",\"MessageParams\":{\"counts\":{\"MessageId\":\"cozyranch_houseui.counts.yard.many\""), "reeds: 2 or more");
+    }
+
+    /**
+     * fix6 note 6: the client shows a {@code TooltipText} message without its parameters ("What counts: {counts}"),
+     * so every tooltip goes out as {@code TooltipTextSpans}, as vanilla does for a tooltip with parameters.
+     */
+    @Test
+    void tooltipsAreSentAsSpansSoTheirParametersAreFilledIn() {
+        for (HouseDemo.Scenario scenario : HouseDemo.Scenario.values()) {
+            Recorder ui = render(scenario);
+            assertEquals(0, ui.count(".TooltipText\""), scenario + " sends a plain TooltipText");
+        }
+        Recorder crowded = render(HouseDemo.Scenario.CROWDED);
+        assertTrue(crowded.count(".TooltipTextSpans\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts.tooltip\",\"MessageParams\":{\"counts\":") >= 2);
+        assertEquals(2, crowded.count(".TooltipTextSpans\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts.list\",\"MessageParams\":{\"a\":"));
     }
 
     @Test
@@ -113,7 +128,7 @@ class HousePageLayoutTest {
         assertEquals(HousePageLayout.MAX_MISSING_ROWS, ui.count("\"selector\":\"#HabitatMissing\",\"text\":\"CozyRanch/HouseMissingRow.ui\""));
         int last = HousePageLayout.MAX_MISSING_ROWS - 1;
         assertEquals(1, ui.count("#HabitatMissing[" + last + "] #MName.TextSpans\",\"data\":{\"MessageId\":\"cozyranch_houseui.habitat.more\",\"Params\":{\"count\":\"5\"}"));
-        assertEquals(1, ui.count("#HabitatMissing[" + last + "] #MName.TooltipText\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts.list\""));
+        assertEquals(1, ui.count("#HabitatMissing[" + last + "] #MName.TooltipTextSpans\",\"data\":{\"MessageId\":\"cozyranch_houseui.counts.list\""));
     }
 
     @Test
@@ -312,7 +327,7 @@ class HousePageLayoutTest {
         String row = "#ResidentList[" + rowWithTwo + "] ";
         assertTrue(ui.has(row + "#RTrait1.Visible", "true"));
         for (String pill : new String[] {"#RTrait1", "#RTrait2"}) {
-            assertEquals(1, ui.count(row + pill + ".TooltipText\",\"data\":{\"MessageId\":\"cozyranch_breeding.trait."), pill);
+            assertEquals(1, ui.count(row + pill + ".TooltipTextSpans\",\"data\":{\"MessageId\":\"cozyranch_breeding.trait."), pill);
             assertEquals(1, ui.count(row + pill + ".TextSpans\""), pill);
         }
         assertTrue(ui.count(".desc\"}") >= 2, "tooltips are the trait descriptions");
@@ -360,7 +375,7 @@ class HousePageLayoutTest {
     void areaButtonSaysWhatPressingItDoes() {
         assertTrue(render(HouseDemo.Scenario.FULL).has("#AreaButton.TextSpans", "{\"MessageId\":\"cozyranch_houseui.button.area.show\"}"));
         assertTrue(render(HouseDemo.Scenario.FULL, null, true).has("#AreaButton.TextSpans", "{\"MessageId\":\"cozyranch_houseui.button.area.hide\"}"));
-        assertTrue(render(HouseDemo.Scenario.FULL).has("#RefreshButton.TooltipText", "{\"MessageId\":\"cozyranch_houseui.tooltip.refresh\"}"));
+        assertTrue(render(HouseDemo.Scenario.FULL).has("#RefreshButton.TooltipTextSpans", "{\"MessageId\":\"cozyranch_houseui.tooltip.refresh\"}"));
     }
 
     @Test
@@ -485,7 +500,7 @@ class HousePageLayoutTest {
 
         @Override public void text(String selector, Txt text) { commands.add(setCmd(selector + ".TextSpans", message(text))); }
 
-        @Override public void tooltip(String selector, Txt text) { commands.add(setCmd(selector + ".TooltipText", message(text))); }
+        @Override public void tooltip(String selector, Txt text) { commands.add(setCmd(selector + ".TooltipTextSpans", message(text))); }
 
         @Override public void click(String selector, String action, String animal, String house) {}
 
