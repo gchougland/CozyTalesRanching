@@ -17,55 +17,9 @@
    "Components": {
     "Transform": {
      "Position": {
-      "X": 1,
+      "X": 0.96875,
       "Y": 1.5625,
-      "Z": 1.8125
-     },
-     "Rotation": {
-      "Pitch": 0,
-      "Yaw": -180,
-      "Roll": 0
-     }
-    },
-    "Model": {
-     "Model": {
-      "Id": "CozyRanch_Pigeon",
-      "Scale": 0.45,
-      "Static": false
-     }
-    }
-   }
-  },
-  {
-   "Components": {
-    "Transform": {
-     "Position": {
-      "X": 1.8125,
-      "Y": 1.5625,
-      "Z": 1
-     },
-     "Rotation": {
-      "Pitch": 0,
-      "Yaw": -90.00000000000001,
-      "Roll": 0
-     }
-    },
-    "Model": {
-     "Model": {
-      "Id": "CozyRanch_Pigeon",
-      "Scale": 0.45,
-      "Static": false
-     }
-    }
-   }
-  },
-  {
-   "Components": {
-    "Transform": {
-     "Position": {
-      "X": 0.1875,
-      "Y": 1.5625,
-      "Z": 1
+      "Z": 1.875
      },
      "Rotation": {
       "Pitch": 0,
@@ -86,9 +40,32 @@
    "Components": {
     "Transform": {
      "Position": {
-      "X": 1,
+      "X": 1.875,
       "Y": 1.5625,
-      "Z": 0.1875
+      "Z": 1.03125
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -180,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Pigeon",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.125,
+      "Y": 1.5625,
+      "Z": 0.96875
      },
      "Rotation": {
       "Pitch": 0,
@@ -109,13 +86,13 @@
    "Components": {
     "Transform": {
      "Position": {
-      "X": 1.5625,
-      "Y": 2.0625,
-      "Z": 1.5625
+      "X": 1.03125,
+      "Y": 1.5625,
+      "Z": 0.125
      },
      "Rotation": {
       "Pitch": 0,
-      "Yaw": -135,
+      "Yaw": -90.00000000000001,
       "Roll": 0
      }
     },
@@ -132,13 +109,36 @@
    "Components": {
     "Transform": {
      "Position": {
-      "X": 0.4375,
+      "X": 1.625,
       "Y": 2.0625,
-      "Z": 1.5625
+      "Z": 1.625
      },
      "Rotation": {
       "Pitch": 0,
       "Yaw": 135,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Pigeon",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.375,
+      "Y": 2.0625,
+      "Z": 1.625
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 44.99999999999999,
       "Roll": 0
      }
     },

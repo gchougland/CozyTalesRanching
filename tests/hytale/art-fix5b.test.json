@@ -1,0 +1,995 @@
+{
+  "cases": [
+    {
+      "name": "art-fix5b houses",
+      "description": "Songbird Aviary (birdbath water rebuilt as one non-overlapping stepped slab; bowl and foot stepped instead of four overlapping turned boxes), Rookery (leaf clumps moved out along their branches onto new twigs, trinkets moved off the bird spots), Rabbit Hutch (vanilla-style carrots: tapered stepped body and two crossed cut-out leaf planes; gable boxes inset from the walls and each other; round window frame pieces 0.5 apart and the pane rebuilt as three non-overlapping boxes; water dish and lettuce stepped). Models pass Machinaria sizecheck, holes and zfight (local).",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "SongbirdAviary",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_SongbirdAviary.json",
+            "views": [
+              "three_quarter",
+              "front",
+              "right",
+              "top"
+            ],
+            "size": 320,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/SongbirdAviary.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "Rookery",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Rookery.json",
+            "views": [
+              "three_quarter",
+              "front",
+              "right",
+              "top"
+            ],
+            "size": 320,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/Rookery.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "RabbitHutch",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_RabbitHutch.json",
+            "views": [
+              "three_quarter",
+              "front",
+              "right",
+              "back"
+            ],
+            "size": 320,
+            "hitbox": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "coverage": {
+              "$gt": 0.02
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/RabbitHutch.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "Aviary_birdbath",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/House_SongbirdAviary.prefab.json",
+            "cameras": [
+              {
+                "at": [
+                  -1,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  1
+                ],
+                "height": 1,
+                "fov": 45
+              },
+              {
+                "at": [
+                  0,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  1
+                ],
+                "height": 1.4,
+                "fov": 40
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/Aviary_birdbath.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "Hutch_roof_window",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/House_RabbitHutch.prefab.json",
+            "cameras": [
+              {
+                "at": [
+                  3,
+                  1,
+                  1
+                ],
+                "lookAt": [
+                  1,
+                  2,
+                  0
+                ],
+                "height": 0.8,
+                "fov": 55
+              },
+              {
+                "at": [
+                  -1,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  -1,
+                  1,
+                  0
+                ],
+                "height": 1.2,
+                "fov": 45
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/Hutch_roof_window.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "Hutch_carrots",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/House_RabbitHutch.prefab.json",
+            "cameras": [
+              {
+                "at": [
+                  1,
+                  0,
+                  1
+                ],
+                "lookAt": [
+                  1,
+                  0,
+                  0
+                ],
+                "height": 0.7,
+                "fov": 50
+              },
+              {
+                "at": [
+                  0,
+                  0,
+                  1
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  0
+                ],
+                "height": 0.4,
+                "fov": 60
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/Hutch_carrots.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "RabbitHutch texture",
+          "arguments": {
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Houses/RabbitHutch/RabbitHutch.blockymodel",
+            "image": false
+          },
+          "expect": {
+            "verdict": "PASS"
+          }
+        }
+      ]
+    },
+    {
+      "name": "art-fix5b display looks",
+      "description": "Every look (adult and baby) at every display point of the Songbird Aviary, Rookery and Rabbit Hutch, posed at the first key of its Idle clip (the renderer draws bind pose, which hangs the raven wings straight down). The posed copies live in a test-only pack (display-fix5b/pack). Point fit for all 21 houses was measured with an OBB check (notes/fix5-art-b.md).",
+      "steps": [
+        {
+          "tool": "prefab_render",
+          "name": "RabbitHutch__Rabbit",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/RabbitHutch__Rabbit.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  0,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  0
+                ],
+                "height": 0.5,
+                "fov": 70
+              },
+              {
+                "at": [
+                  2,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  0
+                ],
+                "height": 0.6,
+                "fov": 60
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/RabbitHutch__Rabbit.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "RabbitHutch__Rabbit_Baby",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/RabbitHutch__Rabbit_Baby.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  0,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  0
+                ],
+                "height": 0.5,
+                "fov": 70
+              },
+              {
+                "at": [
+                  2,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  0
+                ],
+                "height": 0.6,
+                "fov": 60
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/RabbitHutch__Rabbit_Baby.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "RabbitHutch__Rabbit_Bunny",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/RabbitHutch__Rabbit_Bunny.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  0,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  0
+                ],
+                "height": 0.5,
+                "fov": 70
+              },
+              {
+                "at": [
+                  2,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  0
+                ],
+                "height": 0.6,
+                "fov": 60
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/RabbitHutch__Rabbit_Bunny.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "RabbitHutch__Rabbit_Bunny_Baby",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/RabbitHutch__Rabbit_Bunny_Baby.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  0,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  0
+                ],
+                "height": 0.5,
+                "fov": 70
+              },
+              {
+                "at": [
+                  2,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  0
+                ],
+                "height": 0.6,
+                "fov": 60
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/RabbitHutch__Rabbit_Bunny_Baby.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "RabbitHutch__Rabbit_Snow",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/RabbitHutch__Rabbit_Snow.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  0,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  0
+                ],
+                "height": 0.5,
+                "fov": 70
+              },
+              {
+                "at": [
+                  2,
+                  0,
+                  2
+                ],
+                "lookAt": [
+                  0,
+                  0,
+                  0
+                ],
+                "height": 0.6,
+                "fov": 60
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/RabbitHutch__Rabbit_Snow.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "Rookery__Crow",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/Rookery__Crow.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  -1,
+                  2,
+                  3
+                ],
+                "lookAt": [
+                  -1,
+                  2,
+                  1
+                ],
+                "height": 1,
+                "fov": 50
+              },
+              {
+                "at": [
+                  3,
+                  3,
+                  2
+                ],
+                "lookAt": [
+                  1,
+                  2,
+                  0
+                ],
+                "height": 0.5,
+                "fov": 50
+              },
+              {
+                "at": [
+                  1,
+                  3,
+                  -3
+                ],
+                "lookAt": [
+                  0,
+                  2,
+                  0
+                ],
+                "height": 1,
+                "fov": 60
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/Rookery__Crow.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "Rookery__Crow_Fledgling",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/Rookery__Crow_Fledgling.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  -1,
+                  2,
+                  3
+                ],
+                "lookAt": [
+                  -1,
+                  2,
+                  1
+                ],
+                "height": 1,
+                "fov": 50
+              },
+              {
+                "at": [
+                  3,
+                  3,
+                  2
+                ],
+                "lookAt": [
+                  1,
+                  2,
+                  0
+                ],
+                "height": 0.5,
+                "fov": 50
+              },
+              {
+                "at": [
+                  1,
+                  3,
+                  -3
+                ],
+                "lookAt": [
+                  0,
+                  2,
+                  0
+                ],
+                "height": 1,
+                "fov": 60
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/Rookery__Crow_Fledgling.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "Rookery__Raven",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/Rookery__Raven.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  -1,
+                  2,
+                  3
+                ],
+                "lookAt": [
+                  -1,
+                  2,
+                  1
+                ],
+                "height": 1,
+                "fov": 50
+              },
+              {
+                "at": [
+                  3,
+                  3,
+                  2
+                ],
+                "lookAt": [
+                  1,
+                  2,
+                  0
+                ],
+                "height": 0.5,
+                "fov": 50
+              },
+              {
+                "at": [
+                  1,
+                  3,
+                  -3
+                ],
+                "lookAt": [
+                  0,
+                  2,
+                  0
+                ],
+                "height": 1,
+                "fov": 60
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/Rookery__Raven.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "Rookery__Raven_Fledgling",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/Rookery__Raven_Fledgling.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  -1,
+                  2,
+                  3
+                ],
+                "lookAt": [
+                  -1,
+                  2,
+                  1
+                ],
+                "height": 1,
+                "fov": 50
+              },
+              {
+                "at": [
+                  3,
+                  3,
+                  2
+                ],
+                "lookAt": [
+                  1,
+                  2,
+                  0
+                ],
+                "height": 0.5,
+                "fov": 50
+              },
+              {
+                "at": [
+                  1,
+                  3,
+                  -3
+                ],
+                "lookAt": [
+                  0,
+                  2,
+                  0
+                ],
+                "height": 1,
+                "fov": 60
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/Rookery__Raven_Fledgling.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "SongbirdAviary__Songbird_Bluebird",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/SongbirdAviary__Songbird_Bluebird.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  0,
+                  1,
+                  3
+                ],
+                "lookAt": [
+                  0,
+                  2,
+                  1
+                ],
+                "height": 1.2,
+                "fov": 55
+              },
+              {
+                "at": [
+                  3,
+                  2,
+                  1
+                ],
+                "lookAt": [
+                  1,
+                  2,
+                  1
+                ],
+                "height": 0.8,
+                "fov": 55
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/SongbirdAviary__Songbird_Bluebird.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "SongbirdAviary__Songbird_Bluebird_Chick",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/SongbirdAviary__Songbird_Bluebird_Chick.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  0,
+                  1,
+                  3
+                ],
+                "lookAt": [
+                  0,
+                  2,
+                  1
+                ],
+                "height": 1.2,
+                "fov": 55
+              },
+              {
+                "at": [
+                  3,
+                  2,
+                  1
+                ],
+                "lookAt": [
+                  1,
+                  2,
+                  1
+                ],
+                "height": 0.8,
+                "fov": 55
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/SongbirdAviary__Songbird_Bluebird_Chick.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "SongbirdAviary__Songbird_Finch",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/SongbirdAviary__Songbird_Finch.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  0,
+                  1,
+                  3
+                ],
+                "lookAt": [
+                  0,
+                  2,
+                  1
+                ],
+                "height": 1.2,
+                "fov": 55
+              },
+              {
+                "at": [
+                  3,
+                  2,
+                  1
+                ],
+                "lookAt": [
+                  1,
+                  2,
+                  1
+                ],
+                "height": 0.8,
+                "fov": 55
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/SongbirdAviary__Songbird_Finch.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "SongbirdAviary__Songbird_Finch_Chick",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/SongbirdAviary__Songbird_Finch_Chick.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  0,
+                  1,
+                  3
+                ],
+                "lookAt": [
+                  0,
+                  2,
+                  1
+                ],
+                "height": 1.2,
+                "fov": 55
+              },
+              {
+                "at": [
+                  3,
+                  2,
+                  1
+                ],
+                "lookAt": [
+                  1,
+                  2,
+                  1
+                ],
+                "height": 0.8,
+                "fov": 55
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/SongbirdAviary__Songbird_Finch_Chick.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "SongbirdAviary__Songbird_Sparrow",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/SongbirdAviary__Songbird_Sparrow.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  0,
+                  1,
+                  3
+                ],
+                "lookAt": [
+                  0,
+                  2,
+                  1
+                ],
+                "height": 1.2,
+                "fov": 55
+              },
+              {
+                "at": [
+                  3,
+                  2,
+                  1
+                ],
+                "lookAt": [
+                  1,
+                  2,
+                  1
+                ],
+                "height": 0.8,
+                "fov": 55
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/SongbirdAviary__Songbird_Sparrow.png"
+        },
+        {
+          "tool": "prefab_render",
+          "name": "SongbirdAviary__Songbird_Sparrow_Chick",
+          "arguments": {
+            "path": "CozyTales-Ranching/tests/hytale/display-fix5b/SongbirdAviary__Songbird_Sparrow_Chick.prefab.json",
+            "packs": [
+              "CozyTales-Ranching/tests/hytale/display-fix5b/pack"
+            ],
+            "cameras": [
+              {
+                "at": [
+                  0,
+                  1,
+                  3
+                ],
+                "lookAt": [
+                  0,
+                  2,
+                  1
+                ],
+                "height": 1.2,
+                "fov": 55
+              },
+              {
+                "at": [
+                  3,
+                  2,
+                  1
+                ],
+                "lookAt": [
+                  1,
+                  2,
+                  1
+                ],
+                "height": 0.8,
+                "fov": 55
+              }
+            ],
+            "size": 420
+          },
+          "expect": {
+            "problems": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5b/display/SongbirdAviary__Songbird_Sparrow_Chick.png"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_RabbitHutch"
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.375,
+      "Y": 0.071875,
+      "Z": 0.03125
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -180,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Rabbit_Snow_FitPosed",
+      "Scale": 0.42,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.1875,
+      "Y": 0.071875,
+      "Z": -0.375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -160,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Rabbit_Snow_FitPosed",
+      "Scale": 0.42,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.46875,
+      "Y": 0.071875,
+      "Z": 0.09375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 89.99999999999999,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Rabbit_Snow_FitPosed",
+      "Scale": 0.42,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}

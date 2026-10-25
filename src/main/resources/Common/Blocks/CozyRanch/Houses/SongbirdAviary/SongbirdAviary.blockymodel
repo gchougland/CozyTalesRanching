@@ -8533,8 +8533,8 @@
       "children": []
     },
     {
-      "id": "80",
-      "name": "BathFoot0",
+      "id": "132",
+      "name": "BathFootMid",
       "position": {
         "x": -1,
         "y": 4.5,
@@ -8641,18 +8641,18 @@
       "children": []
     },
     {
-      "id": "81",
-      "name": "BathFoot1",
+      "id": "133",
+      "name": "BathFootN1",
       "position": {
         "x": -1,
         "y": 4.5,
-        "z": 33
+        "z": 30
       },
       "orientation": {
         "x": 0,
-        "y": 0.707107,
+        "y": 0,
         "z": 0,
-        "w": 0.707107
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -8663,20 +8663,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.966667,
+          "y": 1,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 10,
+            "x": 8,
             "y": 3,
-            "z": 4
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 151,
+              "x": 128,
               "y": 384
             },
             "mirror": {
@@ -8687,7 +8687,7 @@
           },
           "back": {
             "offset": {
-              "x": 163,
+              "x": 140,
               "y": 384
             },
             "mirror": {
@@ -8698,8 +8698,8 @@
           },
           "left": {
             "offset": {
-              "x": 7,
-              "y": 394
+              "x": 185,
+              "y": 389
             },
             "mirror": {
               "x": false,
@@ -8709,7 +8709,7 @@
           },
           "right": {
             "offset": {
-              "x": 13,
+              "x": 1,
               "y": 394
             },
             "mirror": {
@@ -8720,7 +8720,7 @@
           },
           "top": {
             "offset": {
-              "x": 180,
+              "x": 157,
               "y": 360
             },
             "mirror": {
@@ -8731,8 +8731,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 1,
-              "y": 367
+              "x": 169,
+              "y": 360
             },
             "mirror": {
               "x": false,
@@ -8749,18 +8749,18 @@
       "children": []
     },
     {
-      "id": "82",
-      "name": "BathFoot2",
+      "id": "134",
+      "name": "BathFootS1",
       "position": {
         "x": -1,
         "y": 4.5,
-        "z": 33
+        "z": 36
       },
       "orientation": {
         "x": 0,
-        "y": 0.382683,
+        "y": 0,
         "z": 0,
-        "w": 0.92388
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -8771,20 +8771,20 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.933333,
+          "y": 1,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 10,
+            "x": 8,
             "y": 3,
-            "z": 4
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 175,
+              "x": 128,
               "y": 384
             },
             "mirror": {
@@ -8795,8 +8795,8 @@
           },
           "back": {
             "offset": {
-              "x": 1,
-              "y": 389
+              "x": 140,
+              "y": 384
             },
             "mirror": {
               "x": false,
@@ -8806,8 +8806,8 @@
           },
           "left": {
             "offset": {
-              "x": 19,
-              "y": 394
+              "x": 187,
+              "y": 389
             },
             "mirror": {
               "x": false,
@@ -8817,7 +8817,7 @@
           },
           "right": {
             "offset": {
-              "x": 25,
+              "x": 3,
               "y": 394
             },
             "mirror": {
@@ -8828,8 +8828,8 @@
           },
           "top": {
             "offset": {
-              "x": 13,
-              "y": 367
+              "x": 157,
+              "y": 362
             },
             "mirror": {
               "x": false,
@@ -8839,8 +8839,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 25,
-              "y": 367
+              "x": 169,
+              "y": 362
             },
             "mirror": {
               "x": false,
@@ -8857,18 +8857,18 @@
       "children": []
     },
     {
-      "id": "83",
-      "name": "BathFoot3",
+      "id": "135",
+      "name": "BathFootN2",
       "position": {
         "x": -1,
         "y": 4.5,
-        "z": 33
+        "z": 28.5
       },
       "orientation": {
         "x": 0,
-        "y": 0.92388,
+        "y": 0,
         "z": 0,
-        "w": 0.382683
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -8879,21 +8879,21 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.9,
+          "y": 1,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 10,
+            "x": 4,
             "y": 3,
-            "z": 4
+            "z": 1
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 13,
-              "y": 389
+              "x": 130,
+              "y": 384
             },
             "mirror": {
               "x": false,
@@ -8903,8 +8903,8 @@
           },
           "back": {
             "offset": {
-              "x": 25,
-              "y": 389
+              "x": 142,
+              "y": 384
             },
             "mirror": {
               "x": false,
@@ -8914,8 +8914,8 @@
           },
           "left": {
             "offset": {
-              "x": 31,
-              "y": 394
+              "x": 185,
+              "y": 389
             },
             "mirror": {
               "x": false,
@@ -8925,7 +8925,7 @@
           },
           "right": {
             "offset": {
-              "x": 37,
+              "x": 1,
               "y": 394
             },
             "mirror": {
@@ -8936,8 +8936,8 @@
           },
           "top": {
             "offset": {
-              "x": 37,
-              "y": 367
+              "x": 159,
+              "y": 360
             },
             "mirror": {
               "x": false,
@@ -8947,8 +8947,116 @@
           },
           "bottom": {
             "offset": {
-              "x": 49,
-              "y": 367
+              "x": 171,
+              "y": 360
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "136",
+      "name": "BathFootS2",
+      "position": {
+        "x": -1,
+        "y": 4.5,
+        "z": 37.5
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 4,
+            "y": 3,
+            "z": 1
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 130,
+              "y": 384
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "back": {
+            "offset": {
+              "x": 142,
+              "y": 384
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 187,
+              "y": 389
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 3,
+              "y": 394
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 159,
+              "y": 362
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 171,
+              "y": 362
             },
             "mirror": {
               "x": false,
@@ -9397,8 +9505,8 @@
       "children": []
     },
     {
-      "id": "88",
-      "name": "BathBowl0",
+      "id": "137",
+      "name": "BathBowlMid",
       "position": {
         "x": -1,
         "y": 17,
@@ -9426,7 +9534,7 @@
           "size": {
             "x": 16,
             "y": 3,
-            "z": 7
+            "z": 6
           }
         },
         "textureLayout": {
@@ -9505,18 +9613,18 @@
       "children": []
     },
     {
-      "id": "89",
-      "name": "BathBowl1",
+      "id": "138",
+      "name": "BathBowlN1",
       "position": {
         "x": -1,
         "y": 17,
-        "z": 33
+        "z": 28.5
       },
       "orientation": {
         "x": 0,
-        "y": 0.707107,
+        "y": 0,
         "z": 0,
-        "w": 0.707107
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -9527,21 +9635,21 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.966667,
+          "y": 1,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 16,
+            "x": 12,
             "y": 3,
-            "z": 7
+            "z": 3
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 19,
-              "y": 384
+              "x": 167,
+              "y": 379
             },
             "mirror": {
               "x": false,
@@ -9551,7 +9659,7 @@
           },
           "back": {
             "offset": {
-              "x": 37,
+              "x": 3,
               "y": 384
             },
             "mirror": {
@@ -9562,7 +9670,7 @@
           },
           "left": {
             "offset": {
-              "x": 55,
+              "x": 37,
               "y": 389
             },
             "mirror": {
@@ -9573,7 +9681,7 @@
           },
           "right": {
             "offset": {
-              "x": 64,
+              "x": 46,
               "y": 389
             },
             "mirror": {
@@ -9584,7 +9692,7 @@
           },
           "top": {
             "offset": {
-              "x": 37,
+              "x": 3,
               "y": 334
             },
             "mirror": {
@@ -9595,7 +9703,7 @@
           },
           "bottom": {
             "offset": {
-              "x": 55,
+              "x": 21,
               "y": 334
             },
             "mirror": {
@@ -9613,18 +9721,18 @@
       "children": []
     },
     {
-      "id": "90",
-      "name": "BathBowl2",
+      "id": "139",
+      "name": "BathBowlS1",
       "position": {
         "x": -1,
         "y": 17,
-        "z": 33
+        "z": 37.5
       },
       "orientation": {
         "x": 0,
-        "y": 0.382683,
+        "y": 0,
         "z": 0,
-        "w": 0.92388
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -9635,21 +9743,21 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.933333,
+          "y": 1,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 16,
+            "x": 12,
             "y": 3,
-            "z": 7
+            "z": 3
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 55,
-              "y": 384
+              "x": 167,
+              "y": 379
             },
             "mirror": {
               "x": false,
@@ -9659,7 +9767,7 @@
           },
           "back": {
             "offset": {
-              "x": 73,
+              "x": 3,
               "y": 384
             },
             "mirror": {
@@ -9670,7 +9778,7 @@
           },
           "left": {
             "offset": {
-              "x": 73,
+              "x": 41,
               "y": 389
             },
             "mirror": {
@@ -9681,7 +9789,7 @@
           },
           "right": {
             "offset": {
-              "x": 82,
+              "x": 50,
               "y": 389
             },
             "mirror": {
@@ -9692,7 +9800,115 @@
           },
           "top": {
             "offset": {
-              "x": 73,
+              "x": 3,
+              "y": 338
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 21,
+              "y": 338
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      },
+      "children": []
+    },
+    {
+      "id": "140",
+      "name": "BathBowlN2",
+      "position": {
+        "x": -1,
+        "y": 17,
+        "z": 26
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "size": {
+            "x": 8,
+            "y": 3,
+            "z": 2
+          }
+        },
+        "textureLayout": {
+          "front": {
+            "offset": {
+              "x": 169,
+              "y": 379
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "back": {
+            "offset": {
+              "x": 5,
+              "y": 384
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 37,
+              "y": 389
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 46,
+              "y": 389
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 5,
               "y": 334
             },
             "mirror": {
@@ -9703,7 +9919,7 @@
           },
           "bottom": {
             "offset": {
-              "x": 91,
+              "x": 23,
               "y": 334
             },
             "mirror": {
@@ -9721,18 +9937,18 @@
       "children": []
     },
     {
-      "id": "91",
-      "name": "BathBowl3",
+      "id": "141",
+      "name": "BathBowlS2",
       "position": {
         "x": -1,
         "y": 17,
-        "z": 33
+        "z": 40
       },
       "orientation": {
         "x": 0,
-        "y": 0.92388,
+        "y": 0,
         "z": 0,
-        "w": 0.382683
+        "w": 1
       },
       "shape": {
         "type": "box",
@@ -9743,21 +9959,21 @@
         },
         "stretch": {
           "x": 1,
-          "y": 0.9,
+          "y": 1,
           "z": 1
         },
         "settings": {
           "size": {
-            "x": 16,
+            "x": 8,
             "y": 3,
-            "z": 7
+            "z": 2
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 91,
-              "y": 384
+              "x": 169,
+              "y": 379
             },
             "mirror": {
               "x": false,
@@ -9767,7 +9983,7 @@
           },
           "back": {
             "offset": {
-              "x": 109,
+              "x": 5,
               "y": 384
             },
             "mirror": {
@@ -9778,7 +9994,7 @@
           },
           "left": {
             "offset": {
-              "x": 91,
+              "x": 41,
               "y": 389
             },
             "mirror": {
@@ -9789,7 +10005,7 @@
           },
           "right": {
             "offset": {
-              "x": 100,
+              "x": 50,
               "y": 389
             },
             "mirror": {
@@ -9800,8 +10016,8 @@
           },
           "top": {
             "offset": {
-              "x": 109,
-              "y": 334
+              "x": 5,
+              "y": 338
             },
             "mirror": {
               "x": false,
@@ -9811,8 +10027,8 @@
           },
           "bottom": {
             "offset": {
-              "x": 127,
-              "y": 334
+              "x": 23,
+              "y": 338
             },
             "mirror": {
               "x": false,
@@ -9858,7 +10074,7 @@
           "size": {
             "x": 12,
             "y": 1,
-            "z": 12
+            "z": 6
           }
         },
         "textureLayout": {
@@ -9909,18 +10125,7 @@
           "top": {
             "offset": {
               "x": 169,
-              "y": 281
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "bottom": {
-            "offset": {
-              "x": 1,
-              "y": 295
+              "y": 284
             },
             "mirror": {
               "x": false,
@@ -9942,7 +10147,7 @@
       "position": {
         "x": -1,
         "y": 18.75,
-        "z": 33
+        "z": 28.5
       },
       "orientation": {
         "x": 0,
@@ -9964,16 +10169,16 @@
         },
         "settings": {
           "size": {
-            "x": 5,
+            "x": 8,
             "y": 1,
-            "z": 14
+            "z": 3
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 143,
-              "y": 463
+              "x": 177,
+              "y": 459
             },
             "mirror": {
               "x": false,
@@ -9983,7 +10188,7 @@
           },
           "back": {
             "offset": {
-              "x": 150,
+              "x": 1,
               "y": 463
             },
             "mirror": {
@@ -9994,8 +10199,8 @@
           },
           "left": {
             "offset": {
-              "x": 113,
-              "y": 459
+              "x": 15,
+              "y": 463
             },
             "mirror": {
               "x": false,
@@ -10005,8 +10210,8 @@
           },
           "right": {
             "offset": {
-              "x": 129,
-              "y": 459
+              "x": 29,
+              "y": 463
             },
             "mirror": {
               "x": false,
@@ -10016,19 +10221,8 @@
           },
           "top": {
             "offset": {
-              "x": 33,
-              "y": 265
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "bottom": {
-            "offset": {
-              "x": 40,
-              "y": 265
+              "x": 171,
+              "y": 281
             },
             "mirror": {
               "x": false,
@@ -10050,7 +10244,7 @@
       "position": {
         "x": -1,
         "y": 18.75,
-        "z": 33
+        "z": 37.5
       },
       "orientation": {
         "x": 0,
@@ -10072,15 +10266,15 @@
         },
         "settings": {
           "size": {
-            "x": 14,
+            "x": 8,
             "y": 1,
-            "z": 5
+            "z": 3
           }
         },
         "textureLayout": {
           "front": {
             "offset": {
-              "x": 145,
+              "x": 177,
               "y": 459
             },
             "mirror": {
@@ -10091,8 +10285,8 @@
           },
           "back": {
             "offset": {
-              "x": 161,
-              "y": 459
+              "x": 1,
+              "y": 463
             },
             "mirror": {
               "x": false,
@@ -10102,7 +10296,7 @@
           },
           "left": {
             "offset": {
-              "x": 157,
+              "x": 15,
               "y": 463
             },
             "mirror": {
@@ -10113,7 +10307,7 @@
           },
           "right": {
             "offset": {
-              "x": 164,
+              "x": 29,
               "y": 463
             },
             "mirror": {
@@ -10124,19 +10318,8 @@
           },
           "top": {
             "offset": {
-              "x": 152,
-              "y": 352
-            },
-            "mirror": {
-              "x": false,
-              "y": false
-            },
-            "angle": 0
-          },
-          "bottom": {
-            "offset": {
-              "x": 168,
-              "y": 352
+              "x": 171,
+              "y": 290
             },
             "mirror": {
               "x": false,
