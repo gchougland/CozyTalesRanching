@@ -7,7 +7,7 @@
         {
           "tool": "asset_validate",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix4-display"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true,
@@ -17,7 +17,7 @@
         {
           "tool": "ui_check_java",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix4-display"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true
@@ -33,7 +33,7 @@
           "tool": "prefab_render",
           "name": "BatRoost",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/BatRoost.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/BatRoost.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -46,7 +46,7 @@
           "tool": "prefab_render",
           "name": "ChickenCoop",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/ChickenCoop.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/ChickenCoop.prefab.json",
             "views": [
               "south_east",
               "east"
@@ -59,7 +59,7 @@
           "tool": "prefab_render",
           "name": "Dovecote",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/Dovecote.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/Dovecote.prefab.json",
             "views": [
               "south_east",
               "north_west"
@@ -72,7 +72,7 @@
           "tool": "prefab_render",
           "name": "DuckHouse",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/DuckHouse.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/DuckHouse.prefab.json",
             "views": [
               "south_east",
               "top"
@@ -85,7 +85,7 @@
           "tool": "prefab_render",
           "name": "FlamingoNest",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/FlamingoNest.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/FlamingoNest.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -98,7 +98,7 @@
           "tool": "prefab_render",
           "name": "FrogPond",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/FrogPond.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/FrogPond.prefab.json",
             "views": [
               "south_east",
               "top"
@@ -111,7 +111,7 @@
           "tool": "prefab_render",
           "name": "GeckoTerrarium",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/GeckoTerrarium.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/GeckoTerrarium.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -124,7 +124,7 @@
           "tool": "prefab_render",
           "name": "HawkMews",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/HawkMews.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/HawkMews.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -137,7 +137,7 @@
           "tool": "prefab_render",
           "name": "MouseCottage",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/MouseCottage.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/MouseCottage.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -150,7 +150,7 @@
           "tool": "prefab_render",
           "name": "OwlBarn",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/OwlBarn.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/OwlBarn.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -163,7 +163,7 @@
           "tool": "prefab_render",
           "name": "ParrotPerch",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/ParrotPerch.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/ParrotPerch.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -176,7 +176,7 @@
           "tool": "prefab_render",
           "name": "PenguinIgloo",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/PenguinIgloo.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/PenguinIgloo.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -189,7 +189,7 @@
           "tool": "prefab_render",
           "name": "RabbitHutch",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/RabbitHutch.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/RabbitHutch.prefab.json",
             "views": [
               "south_east",
               "north_west"
@@ -202,7 +202,7 @@
           "tool": "prefab_render",
           "name": "Rookery",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/Rookery.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/Rookery.prefab.json",
             "views": [
               "south_east",
               "north_west"
@@ -215,7 +215,7 @@
           "tool": "prefab_render",
           "name": "SkrillRoost",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/SkrillRoost.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/SkrillRoost.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -228,7 +228,7 @@
           "tool": "prefab_render",
           "name": "SnailTerrarium",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/SnailTerrarium.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/SnailTerrarium.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -241,7 +241,7 @@
           "tool": "prefab_render",
           "name": "SongbirdAviary",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/SongbirdAviary.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/SongbirdAviary.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -254,7 +254,7 @@
           "tool": "prefab_render",
           "name": "SquirrelDrey",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/SquirrelDrey.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/SquirrelDrey.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -267,7 +267,7 @@
           "tool": "prefab_render",
           "name": "TidePool",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/TidePool.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/TidePool.prefab.json",
             "views": [
               "south_east",
               "top"
@@ -280,7 +280,7 @@
           "tool": "prefab_render",
           "name": "TurkeyRoost",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/TurkeyRoost.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/TurkeyRoost.prefab.json",
             "views": [
               "south_east",
               "north_west"
@@ -293,7 +293,7 @@
           "tool": "prefab_render",
           "name": "WoodpeckerStump",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/WoodpeckerStump.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/WoodpeckerStump.prefab.json",
             "views": [
               "south_east",
               "south"
@@ -312,7 +312,7 @@
           "tool": "prefab_render",
           "name": "rotation1",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/Rotation1.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/Rotation1.prefab.json",
             "views": [
               "east",
               "top"
@@ -325,7 +325,7 @@
           "tool": "prefab_render",
           "name": "rotation2",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/Rotation2.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/Rotation2.prefab.json",
             "views": [
               "north",
               "top"
@@ -338,7 +338,7 @@
           "tool": "prefab_render",
           "name": "rotation3",
           "arguments": {
-            "path": "_worktrees/CozyTales-Ranching-fix4-display/tests/hytale/display/Rotation3.prefab.json",
+            "path": "CozyTales-Ranching/tests/hytale/display/Rotation3.prefab.json",
             "views": [
               "west",
               "top"
@@ -357,7 +357,7 @@
           "tool": "server_start",
           "arguments": {
             "artifacts": [
-              "_worktrees/CozyTales-Ranching-fix4-display/build/libs/CozyTalesRanching-0.6.0.jar"
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.0.jar"
             ],
             "authMode": "insecure",
             "port": 5596
