@@ -83,6 +83,8 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
     /** World thread only. */
     void pass(@Nonnull World world) {
         if (!world.isAlive()) return;
+        // A morning reached by sleeping: let the ranch live through the skipped night first (breeding cooldowns).
+        com.hexvane.cozytalesranching.produce.GameTimeSystem.observe(world);
         Store<EntityStore> store = world.getEntityStore().getStore();
         WorldTimeResource time = store.getResource(WorldTimeResource.getResourceType());
         if (time == null) return;
