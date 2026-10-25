@@ -1,6 +1,5 @@
 package com.hexvane.cozytalesranching.wildlife;
 
-import com.hexvane.cozytalesranching.wildlife.WildlifeConfig.Attractor;
 import com.hexvane.cozytalesranching.wildlife.WildlifeConfig.Rare;
 import com.hexvane.cozytalesranching.wildlife.WildlifeConfig.SpeciesWildlife;
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import java.util.random.RandomGenerator;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/** The decisions of the wildlife role, free of engine types: who is attracted, how strongly, caps, rares, timing. */
+/** The decisions of the wildlife role, free of engine types: whether a house draws its own kind, how strongly, caps, rares, timing. */
 public final class WildlifeRules {
     private static final long MINUTE_MS = 60_000L;
 
@@ -82,37 +81,35 @@ public final class WildlifeRules {
         return lastMs > 0 && nowMs - lastMs < Math.round(cooldownMinutes * MINUTE_MS);
     }
 
-    /** How strongly this house attracts {@code visitorSpecies}: 0 for not at all, and 0 unless {@link #lovesMet} holds. */
-    public static double score(@Nonnull WildlifeConfig config, @Nonnull String visitorSpecies, @Nonnull SpeciesWildlife sw,
-                               @Nonnull HouseFacts house, long lastVisitMs, long nowMs) {
-        if (!house.scanned() || onCooldown(lastVisitMs, sw.CooldownMinutes, nowMs)) return 0;
-        if (!lovesMet(house.lovesMet(), house.lovesTotal())) return 0;
-        double best = 0;
-        if (visitorSpecies.equals(house.speciesId())) {
-            if (house.requirementsMet() && house.habitatScore() + 1e-6 >= config.MinHabitatScore) {
-                best = sw.OwnHouseWeight * house.habitatScore();
-            }
-        } else {
-            for (Attractor a : sw.Attractors) {
-                if (!a.HouseSpecies.isEmpty() && !a.HouseSpecies.equals(house.speciesId())) continue;
-                if (a.Features.isEmpty() || !house.features().containsAll(a.Features)) continue;
-                best = Math.max(best, a.Weight);
-            }
-        }
-        return Math.max(0, best) * happinessFactor(house.residents(), house.avgHappiness());
+    /**
+     * Gibson's rule (fix 5): a house only ever draws visitors of its own species, normal looks and the rare one alike.
+     */
+    public static boolean visitsHouse(@Nonnull String visitorSpecies, @Nonnull String houseSpecies) {
+        return visitorSpecies.equals(houseSpecies);
     }
 
-    /** Every species the house attracts now, in config order. */
+    /**
+     * How strongly this house draws {@code visitorSpecies}: 0 for another species' house, and 0 unless {@link #lovesMet}
+     * holds, the house's requirements are met and its habitat score reaches {@code MinHabitatScore}.
+     */
+    public static double score(@Nonnull WildlifeConfig config, @Nonnull String visitorSpecies, @Nonnull SpeciesWildlife sw,
+                               @Nonnull HouseFacts house, long lastVisitMs, long nowMs) {
+        if (!visitsHouse(visitorSpecies, house.speciesId())) return 0;
+        if (!house.scanned() || onCooldown(lastVisitMs, sw.CooldownMinutes, nowMs)) return 0;
+        if (!lovesMet(house.lovesMet(), house.lovesTotal())) return 0;
+        if (!house.requirementsMet() || house.habitatScore() + 1e-6 < config.MinHabitatScore) return 0;
+        return Math.max(0, sw.OwnHouseWeight * house.habitatScore()) * happinessFactor(house.residents(), house.avgHappiness());
+    }
+
+    /** The house's own species when it draws one now (an empty list or one candidate). */
     @Nonnull
     public static List<Candidate> candidates(@Nonnull WildlifeConfig config, @Nonnull HouseFacts house,
                                              @Nonnull Map<String, Long> lastVisitBySpecies, @Nonnull Predicate<String> speciesEnabled, long nowMs) {
-        List<Candidate> out = new ArrayList<>();
-        for (Map.Entry<String, SpeciesWildlife> e : config.Species.entrySet()) {
-            if (!speciesEnabled.test(e.getKey())) continue;
-            double s = score(config, e.getKey(), e.getValue(), house, lastVisitBySpecies.getOrDefault(e.getKey(), 0L), nowMs);
-            if (s > 0) out.add(new Candidate(e.getKey(), s));
-        }
-        return out;
+        String id = house.speciesId();
+        SpeciesWildlife sw = config.species(id);
+        if (sw == null || !speciesEnabled.test(id)) return List.of();
+        double s = score(config, id, sw, house, lastVisitBySpecies.getOrDefault(id, 0L), nowMs);
+        return s > 0 ? List.of(new Candidate(id, s)) : List.of();
     }
 
     /**
@@ -146,7 +143,7 @@ public final class WildlifeRules {
 
     /** Every condition of the rare variant holds at this house (only a house of its own species). */
     public static boolean rareConditionsMet(@Nonnull String visitorSpecies, @Nullable Rare rare, @Nonnull HouseFacts house) {
-        if (rare == null || rare.Role.isEmpty() || !visitorSpecies.equals(house.speciesId()) || !house.scanned()) return false;
+        if (rare == null || rare.Role.isEmpty() || !visitsHouse(visitorSpecies, house.speciesId()) || !house.scanned()) return false;
         if (!lovesMet(house.lovesMet(), house.lovesTotal())) return false;
         if (!house.features().containsAll(rare.Features)) return false;
         if (house.habitatScore() + 1e-6 < rare.MinHabitatScore) return false;

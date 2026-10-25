@@ -65,12 +65,12 @@ class WildlifeRulesTest {
     }
 
     @Test
-    void otherSpeciesComeOnlyForTheirAttractors() {
+    void otherSpeciesNeverCome() {
         HouseFacts sty = house("pig", true, 0.8, Set.of("food", "water", "mud"), 0, 0, 0, Map.of());
-        assertEquals(0.3, WildlifeRules.score(CONFIG, "frog", CONFIG.species("frog"), sty, 0, NOW), 1e-9);
-        HouseFacts dry = house("pig", true, 0.8, Set.of("food", "mud"), 0, 0, 0, Map.of());
-        assertEquals(0, WildlifeRules.score(CONFIG, "frog", CONFIG.species("frog"), dry, 0, NOW));
+        assertEquals(0, WildlifeRules.score(CONFIG, "frog", CONFIG.species("frog"), sty, 0, NOW), "fix 5: no frog at a muddy, watery sty");
         assertEquals(0, WildlifeRules.score(CONFIG, "cow", CONFIG.species("cow"), sty, 0, NOW));
+        assertTrue(WildlifeRules.score(CONFIG, "pig", CONFIG.species("pig"), sty, 0, NOW) > 0);
+        assertEquals(List.of("pig"), WildlifeRules.candidates(CONFIG, sty, Map.of(), id -> true, NOW).stream().map(Candidate::speciesId).toList());
     }
 
     @Test

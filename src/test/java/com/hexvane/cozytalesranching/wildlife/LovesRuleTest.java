@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.hexvane.cozytalesranching.wildlife.WildlifeConfig.Attractor;
 import com.hexvane.cozytalesranching.wildlife.WildlifeConfig.SpeciesWildlife;
 import com.hexvane.cozytalesranching.wildlife.WildlifeRules.HouseFacts;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.Set;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
-/** Fix 4 notes 13 and 14: visitors need more than half of the house's loves, and snails do not go to rabbit hutches. */
+/** Fix 4 notes 13 and 14: visitors need more than half of the house's loves, and snails do not go to rabbit hutches (fix 5: no species visits another's house). */
 class LovesRuleTest {
     private static final long NOW = 10_000_000_000L;
     private static final WildlifeConfig CONFIG = WildlifeConfig.bundled();
@@ -49,11 +48,11 @@ class LovesRuleTest {
     }
 
     @Test
-    void attractedVisitorsNeedTheLovesToo() {
+    void otherSpeciesNeverComeEvenWithEveryLoveMet() {
         SpeciesWildlife frog = CONFIG.species("frog");
-        Set<String> sty = Set.of("food", "water", "mud");
+        Set<String> sty = Set.of("food", "water", "mud", "vegetables");
         assertEquals(0, WildlifeRules.score(CONFIG, "frog", frog, house("pig", sty, 2, 4), 0, NOW));
-        assertTrue(WildlifeRules.score(CONFIG, "frog", frog, house("pig", sty, 3, 4), 0, NOW) > 0);
+        assertEquals(0, WildlifeRules.score(CONFIG, "frog", frog, house("pig", sty, 3, 3), 0, NOW), "fix 5: a frog never visits a pigsty");
     }
 
     @Test
@@ -79,7 +78,6 @@ class LovesRuleTest {
     @Test
     void snailsDoNotVisitRabbitHutches() {
         SpeciesWildlife snail = CONFIG.species("snail");
-        for (Attractor a : snail.Attractors) assertFalse(a.HouseSpecies.equals("rabbit"), "snail attractor at the rabbit hutch");
         Set<String> lovelyHutch = Set.of("food", "open_grass", "carrot_patch", "tall_grass", "flowers", "water", "shade");
         assertEquals(0, WildlifeRules.score(CONFIG, "snail", snail, house("rabbit", lovelyHutch, 3, 3), 0, NOW));
     }
