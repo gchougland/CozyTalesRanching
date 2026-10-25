@@ -19,18 +19,25 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 - **New produce and decor:**
   - **Bat Guano:** use it on tilled soil to fertilise the whole 3 by 3 patch around it.
   - **Skrill Egg:** eat it, bake it into dough, or roast it on a campfire.
-  - **Owl Pellet:** breaks into bone fragments.
-  - **Feather Pillow**, **Rancher's Ledger** with a dark quill, and a **Dreamcatcher** that hangs from beams and branches.
+  - **Owl Pellet:** salvage it into bone fragments.
+  - **Rancher's Ledger** with a dark quill, and a **Dreamcatcher** that hangs from beams and branches.
 - **Rancher's Ledger page:** use a placed ledger to see your whole ranch at a glance: every house with its products waiting, every animal with its hearts and where it is, and the ones still without a home.
 - **Ranching Bench:** a new bench, made at the Workbench, with tabs for Animal Houses, Feed and Care, and Toys and Decor. Houses, feeds, troughs, the Bait Bowl, the Butcher's Block and toys are crafted here now.
 - **Creative tab:** everything from the mod has its own **Cozy Tales: Ranching** tab in the creative inventory.
+- **Raven armour:** the Raven leather armour can now be made at the Armour Bench from heavy leather, dark feathers and cotton. Each piece worn gives a chance that an arrow you shoot comes back, up to one in four with the full set.
+- **A pigeon with a secret:** now and then a pigeon pulls a handgun from under its wing, strikes a pose and tucks it away again.
+- **What counts:** hover a need or want on the house page to see exactly what counts for it, and each animal's journal page lists it too.
 - **Animals at home:** at night, the animals inside show at their houses: birds on their perches, snails and geckos in their terrariums, frogs on the lily pads and more, in their own looks.
 
 ### Changed
 
 - **Bait Bowl message:** bait that several wild animals love no longer always names the fox.
 - **Released birds** go back to the wild as their walking kind.
-- **Wild visitors** only come to a house when more than half of the things its animals love are nearby.
+- **Moss Tufts** no longer grow crops; they make mossy blocks. Bat Guano is the ranch's fertiliser.
+- **Poop Piles** can no longer be crafted.
+- **Using a full house** while animals follow you now opens its page and says it is full; they keep following.
+- **House page messages** no longer push the page off the bottom of the screen.
+- **Wild visitors** only come to a house of their own kind, and only when more than half of the things its animals love are nearby: no more frogs at the pigsty or snails at the rabbit hutch.
 - **Wolf Lodge:** a proper howling wolf on the sign, an open doorway and a tidy log pile.
 - **Bear Cave:** a clear entrance and neatly set rocks.
 - **Spotted Rug** is now a flat rug in the style of the game's carpets.
@@ -43,8 +50,9 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 - **House hitboxes** now line up with the houses, notably the Antelope Shelter, Deer Shelter, Warthog Wallow, Bison Barn, Fox Den, Meerkat Mound and Rookery. Placed Bison Barns shift by half a block.
 - **Sleeping while following:** an animal tamed while asleep no longer follows you in its sleeping pose.
 - **Your animals can no longer die** from falls, fire, drowning or suffocation, or from burns, poison, arrows and bombs left behind by enemies you have already beaten. A blocked hit no longer knocks them back either.
-- **Snails** no longer show up at rabbit hutches.
 - **Birds standing still** play their idle instead of a walk.
+- **Taming a bird** now plays its happy cheer, and no tamed animal keeps a leftover walk or sleep pose.
+- **Armadillo Shield:** your hand no longer clips through it.
 
 ## [0.5.0] - Unreleased
 
@@ -68,7 +76,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
   - **Pigeons** live in an octagonal **Dovecote**. They coo, strut and peck, and drop Pigeon Feathers.
 - **New looks for familiar animals:** Rams and Mouflons are now sheep, Boars and Wild Pigs are pigs, and Desert Chickens are chickens. Each keeps its look through taming, breeding and growing up. Mouflons, Wild Pigs and Desert Chickens can also turn up as visitors.
 - **New produce with real uses:**
-  - **Pond Weed:** mix it with poop and a little Life Essence into Fertilizer.
+  - **Pond Weed:** salvage it into plant fiber.
   - **Armadillo Plate:** craft an **Armadillo Shield** at the Armour bench.
   - **Penguin Down:** stuff the Frozen Castle Bed and the Village Bed.
   - **Warthog Tusk:** counts as bone, and makes Bone Daggers at the Weapon bench.
@@ -86,7 +94,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 ### Added
 
-- **Taming predators:** Wild foxes, wolves, bears and snow leopards bite, so walking up with food will not work. Craft a **Bait Bowl** at the Farmer's bench and fill it with bait they love. A wild one nearby comes to eat and turns **calm** for a few minutes: while calm it will not attack you or your animals, and you can crouch, walk up and feed it by hand like any other animal. Startle it and it runs off instead of fighting. Tamed predators are as gentle as the rest of your ranch. The journal's How to page has a new Wild ones section.
+- **Taming predators:** Wild foxes, wolves, bears and snow leopards bite, so walking up with food will not work. Craft a **Bait Bowl** at the Ranching Bench and fill it with bait they love. A wild one nearby comes to eat and turns **calm** for a few minutes: while calm it will not attack you or your animals, and you can crouch, walk up and feed it by hand like any other animal. Startle it and it runs off instead of fighting. Tamed predators are as gentle as the rest of your ranch. The journal's How to page has a new Wild ones section.
 - **Eight new animals,** each with its own house, foods, habitat, behaviours, journal page and babies:
   - **Foxes** live in a **Fox Den** under a mossy log. They pounce into the grass, tilt their heads and bring home Fox Trinkets.
   - **Wolves** in black or white live in a **Wolf Lodge**. They play-bow, keep watch and howl, and shed Wolf Fur.
@@ -94,16 +102,15 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
   - **Snow Leopards** live in a **Snowy Den** hung with icicles. They stalk and pounce in play and curl up in their long tails, and leave Spotted Pelts.
   - **Deer** as does and stags live in a **Deer Shelter**. They are very shy, prance and bed down in tall grass, and shed antlers.
   - **Bison** live in a **Bison Barn** with a sod roof. They wallow in dust, shake their shaggy heads and rub on posts, and give Bison Wool.
-  - **Tortoises** live in a **Tortoise Burrow**. They bask in the sun and tuck into their shells, and shed Tortoise Scutes.
+  - **Tortoises** live in a **Tortoise Burrow**. They bask in the sun and tuck into their shells, and give Sturdy Chitin.
   - **Meerkats** live in a **Meerkat Mound**. They stand sentry, dig and huddle together, and find Shiny Pebbles.
 - **New produce with real uses:**
   - **Fox Trinket:** unwrap it for a small find, from metal bars to feathers and the odd bit of silk.
   - **Wolf Fur:** tan two into leather.
   - **Wild Honey:** a food, the bear's favourite treat and bait, and the key to the new **Honey Cake**.
   - **Spotted Pelt:** sew three into a **Spotted Rug**.
-  - **Shed Antler:** mount two on a log for an **Antler Mount**, or break one into bone fragments.
+  - **Shed Antler:** mount two on a log for an **Antler Mount**, or salvage one into bone fragments.
   - **Bison Wool:** spin it into wool scraps.
-  - **Tortoise Scute:** turn it into sturdy chitin.
   - **Shiny Pebble:** crack it open for rubble, ore or, rarely, a crystal shard.
 
 ### Fixed

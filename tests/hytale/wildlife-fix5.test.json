@@ -7,7 +7,7 @@
         {
           "tool": "asset_validate",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix5-wildlife"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true,
@@ -17,7 +17,7 @@
         {
           "tool": "ui_check_java",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix5-wildlife"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true
@@ -33,7 +33,7 @@
           "tool": "server_start",
           "arguments": {
             "artifacts": [
-              "_worktrees/CozyTales-Ranching-fix5-wildlife/build/libs/CozyTalesRanching-0.6.0.jar"
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.0.jar"
             ],
             "authMode": "insecure",
             "port": 5604
