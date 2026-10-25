@@ -79,6 +79,72 @@ public final class AnimalClips {
         return true;
     }
 
+    /** How often and how long {@link #playForAfterSwap} looks for the animal's new entity after a role swap. */
+    static final long SWAP_POLL_MS = 50L;
+    static final int SWAP_POLL_TRIES = 60;
+
+    /** What {@link #playForAfterSwap} does on one look. */
+    enum SwapStep { PLAY, WAIT, GIVE_UP }
+
+    /**
+     * The rule behind {@link #playForAfterSwap}, pure. The swap has applied once the UUID resolves to a different ref
+     * than the one asked about (the engine re-adds the entity) or to one whose role no longer waits for a change.
+     */
+    static SwapStep swapStep(boolean found, boolean sameRef, boolean changeRequested, int triesLeft) {
+        if (found && (!sameRef || !changeRequested)) return SwapStep.PLAY;
+        return triesLeft > 0 ? SwapStep.WAIT : SwapStep.GIVE_UP;
+    }
+
+    /**
+     * {@link #playFor}, but when the animal has a role swap pending (it was just befriended, claimed or grew up) the clip
+     * waits for the swap and plays on the new entity, with the new model and its timer starting then. Played before the
+     * swap, the clip landed on the old entity, rode into the new one on its Status slot, and was cleared on a clock that
+     * had started before the new entity even existed; on a vanilla wild model without the clip it did not play at all.
+     * World thread.
+     */
+    public static void playForAfterSwap(@Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull String clip, double seconds) {
+        if (!afterSwap(store, ref, (s, now) -> playFor(s, now, clip, seconds))) playFor(store, ref, clip, seconds);
+    }
+
+    /**
+     * Clears whatever untimed clip the new entity carries on its Status slot once a pending role swap has applied. The
+     * slot rides through the swap, and the old role can put a clip back on it in the tick between the request and the
+     * swap: vanilla fliers ({@code Template_Birds_Passive}, state {@code .Blocked}, "Fake walking when stuck") play Walk
+     * on Status, so a befriended Bat stood still in its ranch role looping Walk. A clip a {@link #playFor} is timing (a
+     * cheer) stays. World thread.
+     */
+    public static void clearAfterSwap(@Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref) {
+        afterSwap(store, ref, AnimalClips::clearUntimed);
+    }
+
+    /** Runs {@code then} on the animal's new entity once its pending role swap has applied. False if none is pending. */
+    private static boolean afterSwap(@Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull java.util.function.BiConsumer<Store<EntityStore>, Ref<EntityStore>> then) {
+        NPCEntity npc = store.getComponent(ref, NPCEntity.getComponentType());
+        UUIDComponent id = store.getComponent(ref, UUIDComponent.getComponentType());
+        if (npc == null || npc.getRole() == null || !npc.getRole().isRoleChangeRequested() || id == null) return false;
+        lookForSwapped(store.getExternalData().getWorld(), id.getUuid(), ref, then, SWAP_POLL_TRIES);
+        return true;
+    }
+
+    private static void lookForSwapped(@Nonnull World world, @Nonnull UUID uuid, @Nonnull Ref<EntityStore> before,
+                                       @Nonnull java.util.function.BiConsumer<Store<EntityStore>, Ref<EntityStore>> then, int triesLeft) {
+        HytaleServer.SCHEDULED_EXECUTOR.schedule(() -> {
+            if (!world.isAlive()) return;
+            world.execute(() -> {
+                Ref<EntityStore> now = world.getEntityStore().getRefFromUUID(uuid);
+                boolean found = now != null && now.isValid();
+                Store<EntityStore> s = world.getEntityStore().getStore();
+                NPCEntity npc = found ? s.getComponent(now, NPCEntity.getComponentType()) : null;
+                boolean requested = npc == null || npc.getRole() == null || npc.getRole().isRoleChangeRequested();
+                switch (swapStep(found && npc != null, before.equals(now), requested, triesLeft)) {
+                    case PLAY -> then.accept(s, now);
+                    case WAIT -> lookForSwapped(world, uuid, before, then, triesLeft - 1);
+                    case GIVE_UP -> { }
+                }
+            });
+        }, SWAP_POLL_MS, TimeUnit.MILLISECONDS);
+    }
+
     /**
      * Clears the slot when it holds a clip no {@link #playFor} is timing. True if it cleared one. For animals no
      * behaviour session owns (followers): a Sleep carried over from the wild role, or any clip left behind. World thread.
