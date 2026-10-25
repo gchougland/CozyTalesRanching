@@ -60,6 +60,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 ### Fixed
 
+- **The Armadillo Burrow's entrance** is dug into the mound now: an earthen hood over a dark tunnel with roots and a dug-out apron, instead of a stone doorway with slabs stacked on top.
 - **The Goat Shed's rock pile** no longer has a slab hanging in the air: every rock rests on the ground or the rock below it.
 - **"What counts" tooltips** show their text instead of "{counts}".
 - **The Climbing Log** recipe accepts any tree log.
