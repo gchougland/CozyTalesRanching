@@ -8,24 +8,6 @@
     "Items.Ingredients",
     "CozyRanch.Produce"
   ],
-  "Recipe": {
-    "Input": [
-      {
-        "ItemId": "Ingredient_Poop",
-        "Quantity": 1
-      }
-    ],
-    "BenchRequirement": [
-      {
-        "Type": "Crafting",
-        "Categories": [
-          "Farming"
-        ],
-        "Id": "Farmingbench"
-      }
-    ],
-    "TimeSeconds": 1
-  },
   "BlockType": {
     "Material": "Empty",
     "DrawType": "Model",

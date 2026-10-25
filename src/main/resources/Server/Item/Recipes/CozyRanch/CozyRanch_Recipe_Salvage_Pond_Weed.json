@@ -1,0 +1,26 @@
+{
+  "Input": [
+    {
+      "ItemId": "CozyRanch_Pond_Weed",
+      "Quantity": 1
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Ingredient_Fibre",
+    "Quantity": 3
+  },
+  "Output": [
+    {
+      "ItemId": "Ingredient_Fibre",
+      "Quantity": 3
+    }
+  ],
+  "OutputQuantity": 3,
+  "BenchRequirement": [
+    {
+      "Type": "Processing",
+      "Id": "Salvagebench"
+    }
+  ],
+  "TimeSeconds": 4
+}
