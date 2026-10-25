@@ -1,0 +1,38 @@
+{
+  "Input": [
+    {
+      "ItemId": "Ingredient_Leather_Heavy",
+      "Quantity": 4
+    },
+    {
+      "ItemId": "Ingredient_Feathers_Dark",
+      "Quantity": 3
+    },
+    {
+      "ItemId": "Ingredient_Bolt_Cotton",
+      "Quantity": 2
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Armor_Leather_Raven_Legs",
+    "Quantity": 1
+  },
+  "Output": [
+    {
+      "ItemId": "Armor_Leather_Raven_Legs",
+      "Quantity": 1
+    }
+  ],
+  "OutputQuantity": 1,
+  "BenchRequirement": [
+    {
+      "Type": "Crafting",
+      "Id": "Armor_Bench",
+      "Categories": [
+        "Armor_Legs"
+      ]
+    }
+  ],
+  "KnowledgeRequired": false,
+  "TimeSeconds": 2
+}

@@ -1,0 +1,218 @@
+{
+  "cases": [
+    {
+      "name": "items-fix5 gate",
+      "description": "The pack validates after the removals (Feather Pillow, Tortoise Scute, Workbench and Fertilizer recipes, Moss Tuft growth).",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0,
+            "errors": 0
+          }
+        },
+        {
+          "tool": "ui_check_java",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "raven armour recipes",
+      "description": "Note 1: the four vanilla Raven Leather pieces are made at the Armour Bench from our own recipe files (vanilla files untouched).",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Armor_Leather_Raven_Head",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Armor_Leather_Raven_Head.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Armor_Leather_Raven_Chest",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Armor_Leather_Raven_Chest.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Armor_Leather_Raven_Hands",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Armor_Leather_Raven_Hands.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Armor_Leather_Raven_Legs",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Armor_Leather_Raven_Legs.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "fertiliser and salvage",
+      "description": "Notes 2, 3, 5, 6: Bat Guano is the one fertiliser; Moss Tuft is a crafting moss only; Pond Weed salvages into Plant Fiber; antler and pellet salvage only; the poop pile has no recipe; the tortoise gives Sturdy Chitin.",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Salvage_Shed_Antler",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Salvage_Shed_Antler.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Salvage_Owl_Pellet",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Salvage_Owl_Pellet.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Salvage_Pond_Weed",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Salvage_Pond_Weed.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Moss_Tuft",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Moss_Tuft.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Pond_Weed",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Pond_Weed.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Bat_Guano",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Produce/CozyRanch_Bat_Guano.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Poop_Pile",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Poop/CozyRanch_Poop_Pile.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "armadillo shield held",
+      "description": "Note 7: the shield body now starts 3.5 units out from the hand (vanilla Iron: 3.6) and the grip sits under the hand.",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Armadillo_Shield",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Tools/CozyRanch_Armadillo_Shield.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "texture_check",
+          "name": "Armadillo_Shield texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Tools/Armadillo_Shield_Texture.png",
+            "model": {
+              "root": "projects",
+              "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Tools/Armadillo_Shield.blockymodel"
+            },
+            "category": "item",
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "model_render",
+          "name": "Armadillo_Shield",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Tools/CozyRanch_Armadillo_Shield.json",
+            "views": [
+              "front",
+              "three_quarter",
+              "top",
+              "back_three_quarter"
+            ],
+            "size": 320
+          },
+          "golden": "tests/hytale/golden/items-fix5/CozyRanch_Armadillo_Shield.png"
+        }
+      ]
+    }
+  ]
+}

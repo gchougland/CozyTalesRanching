@@ -4,7 +4,7 @@
     "Description": "cozyranch_items.items.CozyRanch_Moss_Tuft.description"
   },
   "Categories": [
-    "Items.Tools",
+    "Items.Ingredients",
     "CozyRanch.Produce"
   ],
   "Quality": "Common",
@@ -27,7 +27,7 @@
   "PlayerAnimationsId": "Item",
   "Tags": {
     "Type": [
-      "Tool"
+      "Ingredient"
     ]
   },
   "MaxStack": 50,
@@ -37,29 +37,5 @@
     {
       "Id": "Moss"
     }
-  ],
-  "Interactions": {
-    "Secondary": {
-      "Interactions": [
-        {
-          "Type": "CozyRanchMossGrowCheck",
-          "Next": {
-            "Type": "ChangeFarmingStage",
-            "Increase": 1,
-            "Next": {
-              "Type": "ModifyInventory",
-              "AdjustHeldItemQuantity": -1,
-              "Next": {
-                "Type": "Simple",
-                "RunTime": 0.15,
-                "Effects": {
-                  "WorldSoundEventId": "SFX_Crops_Grow"
-                }
-              }
-            }
-          }
-        }
-      ]
-    }
-  }
+  ]
 }

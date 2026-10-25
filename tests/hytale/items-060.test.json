@@ -66,28 +66,6 @@
         },
         {
           "tool": "asset_check",
-          "name": "CozyRanch_Feather_Pillow",
-          "arguments": {
-            "root": "projects",
-            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Decor/CozyRanch_Feather_Pillow.json"
-          },
-          "expect": {
-            "errors": 0
-          }
-        },
-        {
-          "tool": "asset_check",
-          "name": "CozyRanch_Feather_Pillow hitbox",
-          "arguments": {
-            "root": "projects",
-            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_Feather_Pillow.json"
-          },
-          "expect": {
-            "errors": 0
-          }
-        },
-        {
-          "tool": "asset_check",
           "name": "CozyRanch_Ranch_Ledger",
           "arguments": {
             "root": "projects",
@@ -125,17 +103,6 @@
           "arguments": {
             "root": "projects",
             "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_Dreamcatcher.json"
-          },
-          "expect": {
-            "errors": 0
-          }
-        },
-        {
-          "tool": "asset_check",
-          "name": "CozyRanch_Recipe_Bone_Fragments_From_Owl_Pellet",
-          "arguments": {
-            "root": "projects",
-            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Bone_Fragments_From_Owl_Pellet.json"
           },
           "expect": {
             "errors": 0
@@ -256,28 +223,6 @@
             "model": {
               "root": "projects",
               "path": "CozyTales-Ranching/src/main/resources/Common/Items/CozyRanch/Produce/Bat_Guano.blockymodel"
-            },
-            "image": false
-          },
-          "expect": {
-            "verdict": {
-              "$oneOf": [
-                "PASS",
-                "WARN"
-              ]
-            }
-          }
-        },
-        {
-          "tool": "texture_check",
-          "name": "Feather_Pillow texture",
-          "arguments": {
-            "root": "projects",
-            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Feather_Pillow_Texture.png",
-            "category": "blockmodel",
-            "model": {
-              "root": "projects",
-              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Feather_Pillow.blockymodel"
             },
             "image": false
           },
@@ -491,44 +436,6 @@
             }
           },
           "golden": "tests/hytale/golden/items060/CozyRanch_Bat_Guano.png"
-        },
-        {
-          "tool": "model_render",
-          "name": "Feather_Pillow",
-          "arguments": {
-            "root": "projects",
-            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Feather_Pillow.blockymodel",
-            "texture": {
-              "root": "projects",
-              "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Decor/Feather_Pillow_Texture.png"
-            },
-            "yaw": 35,
-            "pitch": 25,
-            "projection": "orthographic",
-            "grid": false,
-            "hitbox": false,
-            "size": 200
-          },
-          "expect": {
-            "notes": {
-              "$length": 0
-            },
-            "nodes": {
-              "$lte": 255
-            },
-            "sizeBlocks": {
-              "width": {
-                "$lte": 1.1
-              },
-              "height": {
-                "$lte": 1
-              },
-              "depth": {
-                "$lte": 1
-              }
-            }
-          },
-          "golden": "tests/hytale/golden/items060/CozyRanch_Feather_Pillow.png"
         },
         {
           "tool": "model_render",
