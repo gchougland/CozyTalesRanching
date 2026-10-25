@@ -1,0 +1,331 @@
+{
+  "cases": [
+    {
+      "name": "art-fix5a gate",
+      "description": "The pack parses and matches the engine schemas; the three items and the bench hitbox (unchanged) check clean.",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "item RanchingBench",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "hitbox RanchingBench",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_RanchingBench.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "item WolfLodge",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WolfLodge.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "item FlamingoNest",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FlamingoNest.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "art-fix5a RanchingBench",
+      "description": "Gibson's note 8: the bench at vanilla bench detail. Same footprint (2 x 1 cells, under 1.8 blocks), boxes for mass and painted planes for straw, carrot tops, the quill, wheat and the blanket fringe; under 255 nodes; the texture passes the style check; the icon re-rendered. Before: tests/hytale/golden/art-fix5a/before/RanchingBench.png.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "RanchingBench views",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json",
+            "views": [
+              "three_quarter",
+              "front",
+              "back_three_quarter",
+              "left"
+            ],
+            "grid": true,
+            "size": 384
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 2
+              },
+              "height": {
+                "$lte": 1.8
+              },
+              "depth": {
+                "$lte": 1
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5a/RanchingBench.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "RanchingBench close",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json",
+            "yaw": 30,
+            "pitch": 22,
+            "size": 900,
+            "grid": false
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5a/RanchingBench_close.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "RanchingBench texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_preview",
+          "name": "bench icon",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemsGenerated/CozyRanch_RanchingBench.png"
+          },
+          "golden": "tests/hytale/golden/art-fix5a/RanchingBench_icon.png"
+        }
+      ]
+    },
+    {
+      "name": "art-fix5a WolfLodge",
+      "description": "Gibson's note 9: a classic dog bone on the step (shaft with a pair of knobs at each end) and the log pile's octagon ends stepped back 0.35 units per box (inset rings) so no two end faces sit 0.03 apart any more. Close-ups of the pile and the bone. Before: tests/hytale/golden/art-fix5a/before/WolfLodge*.png.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "WolfLodge views",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WolfLodge.json",
+            "views": [
+              "front",
+              "three_quarter",
+              "left"
+            ],
+            "size": 420
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "coverage": {
+              "$gt": 0.05
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 4
+              },
+              "depth": {
+                "$lte": 3.6
+              },
+              "height": {
+                "$lte": 4
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5a/WolfLodge.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "WolfLodge log pile",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Houses/WolfLodge/WolfLodge.blockymodel",
+            "yaw": -60,
+            "pitch": 20,
+            "size": 1024,
+            "grid": false,
+            "projection": "orthographic"
+          },
+          "golden": "tests/hytale/golden/art-fix5a/WolfLodge_pile.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "WolfLodge bone",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Houses/WolfLodge/WolfLodge.blockymodel",
+            "yaw": 10,
+            "pitch": 40,
+            "size": 1024,
+            "grid": false,
+            "projection": "orthographic"
+          },
+          "golden": "tests/hytale/golden/art-fix5a/WolfLodge_bone.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "WolfLodge texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WolfLodge.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_preview",
+          "name": "WolfLodge icon",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemsGenerated/CozyRanch_House_WolfLodge.png"
+          },
+          "golden": "tests/hytale/golden/art-fix5a/WolfLodge_icon.png"
+        }
+      ]
+    },
+    {
+      "name": "art-fix5a FlamingoNest",
+      "description": "Gibson's note 10: the sunburst door replaced by a reed-hut doorway: bundled-reed columns tied with the hut's pink bands, a pointed reed arch, frayed straw tips as crossed planes, a dark opening set back, a rolled reed mat over it. Display points (sides of the island) unaffected. Before: tests/hytale/golden/art-fix5a/before/FlamingoNest*.png.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "FlamingoNest views",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FlamingoNest.json",
+            "views": [
+              "front",
+              "three_quarter",
+              "left",
+              "back_three_quarter"
+            ],
+            "size": 420
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "coverage": {
+              "$gt": 0.05
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 3.3
+              },
+              "depth": {
+                "$lte": 3.3
+              },
+              "height": {
+                "$lte": 2.2
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/art-fix5a/FlamingoNest.png"
+        },
+        {
+          "tool": "model_render",
+          "name": "FlamingoNest door",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Blocks/CozyRanch/Houses/FlamingoNest/FlamingoNest.blockymodel",
+            "yaw": 15,
+            "pitch": 12,
+            "size": 1024,
+            "grid": false,
+            "projection": "orthographic"
+          },
+          "golden": "tests/hytale/golden/art-fix5a/FlamingoNest_door.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "FlamingoNest texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FlamingoNest.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        },
+        {
+          "tool": "texture_preview",
+          "name": "FlamingoNest icon",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemsGenerated/CozyRanch_House_FlamingoNest.png"
+          },
+          "golden": "tests/hytale/golden/art-fix5a/FlamingoNest_icon.png"
+        }
+      ]
+    }
+  ]
+}
