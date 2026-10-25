@@ -7,7 +7,7 @@
         {
           "tool": "asset_validate",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix5-houseui"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true,
@@ -17,7 +17,7 @@
         {
           "tool": "ui_check_java",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix5-houseui"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true
@@ -34,7 +34,7 @@
           "name": "empty pigsty, no products",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -410,7 +410,7 @@
           "name": "typical cow barn: three residents, one inside, one follower, no products",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -1196,7 +1196,7 @@
           "name": "full chicken coop: six residents, long names, a baby, traits, eggs waiting, every resident action",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -2378,7 +2378,7 @@
           "name": "frog pond whose habitat has not been checked",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -2997,7 +2997,7 @@
           "name": "frog pond missing lily pads (needed) and reeds (liked)",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -3705,7 +3705,7 @@
           "name": "sheepfold with breeding off",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -4472,7 +4472,7 @@
           "name": "a button pressed before the house service is installed",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -5265,7 +5265,7 @@
           "name": "seven kinds of products waiting, huge counts",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -6040,7 +6040,7 @@
           "name": "milk waiting and no buckets: the bucket hint",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -6630,7 +6630,7 @@
           "name": "move picker open for the first hen",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -7900,7 +7900,7 @@
           "name": "personalities and feed bonuses on residents (one bonus expired)",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -8894,7 +8894,7 @@
           "name": "longest names everywhere, picker open",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -10128,7 +10128,7 @@
           "name": "after Collect with no buckets",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -10725,7 +10725,7 @@
           "name": "area lights on: Hide area, the on notice",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -11914,7 +11914,7 @@
           "name": "no traits on any resident, a Refresh just done",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -12707,7 +12707,7 @@
           "name": "full coop used while a hen follows: the page opens and says the house is full",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -13896,7 +13896,7 @@
           "name": "fullest page: longest names, eight needs and wants, picker open, the longest notice",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -15194,7 +15194,7 @@
           "name": "cow page, everything discovered, all nine traits",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
             "commands": [
               {
                 "type": "Append",
@@ -16076,7 +16076,7 @@
           "name": "cow page, befriended and housed, two habits and one trait seen",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
             "commands": [
               {
                 "type": "Append",
@@ -16672,7 +16672,7 @@
           "name": "turkey page, everything discovered: what counts as a perch",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/JournalSpecies.ui",
             "commands": [
               {
                 "type": "Append",
@@ -17520,7 +17520,7 @@
           "name": "how to page",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix5-houseui/src/main/resources/Common/UI/Custom/CozyRanch/JournalGuide.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/JournalGuide.ui",
             "commands": [
               {
                 "type": "Append",
