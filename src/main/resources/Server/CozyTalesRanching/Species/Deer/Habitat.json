@@ -1,7 +1,7 @@
 {
   "Features": {
     "forest_edge": {
-      "Blocks": [
+      "BlockPrefixes": [
         "Wood_Amber_Trunk",
         "Wood_Apple_Trunk",
         "Wood_Ash_Trunk",
@@ -25,15 +25,16 @@
         "Wood_Sallow_Trunk",
         "Wood_Spiral_Trunk",
         "Wood_Stormbark_Trunk",
-        "Wood_Windwillow_Trunk"
-      ],
-      "BlockPrefixes": [
-        "Plant_Leaves_"
+        "Wood_Windwillow_Trunk",
+        "Plant_Leaves_",
+        "Wood_Fig_Blue_Trunk",
+        "Wood_Wisteria_Wild_Trunk"
       ],
       "Exclude": [
         "Burnt",
         "Dead",
-        "Poison"
+        "Poison",
+        "Stairs"
       ],
       "MinCount": 8
     }

@@ -21,6 +21,7 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,9 @@ import org.joml.Vector3d;
  *       if a meal is due and a trough in range has food it likes, and its happiness drifts.</li>
  *   <li>Habitat: at most one house is scanned at a time, {@link #COLUMNS_PER_STEP} columns per second, only
  *       when its last scan is older than {@code HabitatScanIntervalSeconds} and its block is loaded. A house just
- *       placed goes first; one never scanned by its first morning is scanned whole by the morning hook.</li>
+ *       placed goes first; one never scanned by its first morning is scanned whole by the morning hook. A house
+ *       whose scan area a player places or breaks a block in is scanned whole {@link #EDIT_RESCAN_MS} after the last
+ *       such change, one house per step, so the house page is up to date by the time the player looks.</li>
  *   <li>Troughs: every 5 s the ones whose block may not show their contents are fixed, every minute all are
  *       checked for being gone (their food is dropped).</li>
  * </ul>
@@ -54,6 +57,8 @@ final class CareWorld {
     static final long TROUGH_SYNC_MS = 5_000L;
     static final long TROUGH_CHECK_ALL_MS = 60_000L;
     static final long HOUSE_PICK_MS = 5_000L;
+    /** A house whose yard a player built in or dug up is rescanned whole this long after the last such change. */
+    static final long EDIT_RESCAN_MS = 2_000L;
     static final String EAT_ANIMATION = "EatTrough";
     /** About three plays of the 1.0 to 1.3 s clip. */
     static final double EAT_SECONDS = 4.0;
@@ -70,6 +75,8 @@ final class CareWorld {
     private final Map<UUID, Long> happinessAt = new HashMap<>();
     /** Houses placed but not scanned yet, oldest first. World thread. */
     private final Set<UUID> placed = new LinkedHashSet<>();
+    /** Houses whose scan area a player changed, to the time their rescan is due. World thread. */
+    private final Map<UUID, Long> edited = new LinkedHashMap<>();
     @Nullable private Job job;
     @Nullable private WorldHabitatGrid jobGrid;
     private long lastTroughSync;
@@ -318,8 +325,44 @@ final class CareWorld {
         placed.add(houseId);
     }
 
+    /**
+     * A player placed or broke a block: every house of this world whose scan area holds the cell is rescanned soon
+     * (debounced, so building a whole fence costs one scan). World thread.
+     */
+    void blockEdited(@Nonnull World world, @Nonnull CareService care, int x, int y, int z, long now) {
+        int r = RanchConfig.get().habitatScanRadius();
+        HabitatConfig c = care.habitat();
+        for (HouseRecord h : Ranch.houses().inWorld(world.getName())) {
+            if (!HabitatScan.covers(h.x, h.y, h.z, r, c, x, y, z)) continue;
+            edited.remove(h.houseId);
+            edited.put(h.houseId, now + EDIT_RESCAN_MS);
+        }
+    }
+
+    /** Scans whole, now, the first edited house whose rescan is due. Returns true if it scanned one. */
+    private boolean rescanEdited(@Nonnull World world, @Nonnull CareService care, long now) {
+        for (Map.Entry<UUID, Long> e : List.copyOf(edited.entrySet())) {
+            if (e.getValue() > now) continue;
+            edited.remove(e.getKey());
+            HouseRecord h = Ranch.houses().get(e.getKey()).orElse(null);
+            // a house never scanned (one just placed fires this too) keeps its own first scan
+            if (h == null || !world.getName().equals(h.worldName) || h.habitatScannedAtMs <= 0) continue;
+            if (job != null && job.houseId().equals(h.houseId)) {
+                job = null;
+                jobGrid = null;
+            }
+            HabitatScan scan = newScan(care, h);
+            WorldHabitatGrid grid = new WorldHabitatGrid(world);
+            while (!scan.done()) scan.step(grid, 4096);
+            finishScan(care, world.getName(), h, scan, now);
+            return true;
+        }
+        return false;
+    }
+
     private void stepHabitat(@Nonnull World world, @Nonnull CareService care, long now) {
         String w = world.getName();
+        if (!edited.isEmpty() && rescanEdited(world, care, now)) return;
         if (job == null) startPlacedScan(world, care);
         if (job == null) {
             if (now - lastHousePick < HOUSE_PICK_MS) return;
@@ -390,7 +433,8 @@ final class CareWorld {
      * radius plus the trough range) are checked, so a trough just broken or filled shows at once. A scan of this house
      * already under way is dropped. Columns not in memory are skipped, as always. World thread, outside ticks.
      */
-    void rescanHouse(@Nonnull World world, @Nonnull CareService care, @Nonnull HouseRecord house, long now) {
+    @Nonnull
+    HabitatScan rescanHouse(@Nonnull World world, @Nonnull CareService care, @Nonnull HouseRecord house, long now) {
         if (job != null && job.houseId().equals(house.houseId)) {
             job = null;
             jobGrid = null;
@@ -406,6 +450,7 @@ final class CareWorld {
         while (!scan.done()) scan.step(grid, 4096);
         finishScan(care, world.getName(), house, scan, now);
         care.scheduleSave();
+        return scan;
     }
 
     @Nonnull
