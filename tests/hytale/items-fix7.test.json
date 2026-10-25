@@ -1,0 +1,734 @@
+{
+  "cases": [
+    {
+      "name": "items-fix7 gate",
+      "description": "The pack validates and every Java selector resolves.",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0,
+            "errors": 0
+          }
+        },
+        {
+          "tool": "ui_check_java",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-fix7 files",
+      "description": "Note 1: the poop pile and its states carry Gathering.Harvest with the same drop list as breaking, and the vanilla gather hint. Note 3: the Climbing Log recipe asks for Wood_Trunk (Any Tree Log), which every vanilla trunk carries.",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Poop_Pile",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Poop/CozyRanch_Poop_Pile.json"
+          },
+          "expect": {
+            "errors": 0,
+            "warnings": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Toy_Log",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_Log.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "vanilla Wood_Oak_Trunk (carries Wood_Trunk) checks clean",
+          "arguments": {
+            "root": "assets",
+            "path": "Server/Item/Items/Wood/Oak/Wood_Oak_Trunk.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-fix7 live",
+      "description": "Built jar on port 5621. UpdateRecipes: the Climbing Log takes any Wood_Trunk, and all 40 houses sit at Ranching Bench tiers 1 to 3 as in the fix7 table. Poop: three droppings merge into one pile; /ranch produce poop pick runs the engine path the use key runs (BreakBlock Harvest: performPickupByInteraction) and puts all 3 Ingredient_Poop in the inventory with the gather hint, removing the pile; breaking a new pile still drops its poop.",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.0.jar"
+            ],
+            "authMode": "insecure",
+            "port": 5621
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555",
+            "name": "RanchBot",
+            "decode": [
+              "UpdateRecipes"
+            ]
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "UpdateRecipes",
+            "timeoutMs": 5000,
+            "where": {
+              "recipes": {
+                "CozyRanch_Toy_Log_Recipe_Generated_0": {
+                  "inputs": [
+                    {
+                      "resourceTypeId": "Wood_Trunk",
+                      "quantity": 2
+                    }
+                  ],
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench"
+                    }
+                  ]
+                },
+                "CozyRanch_House_CowBarn_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_ChickenCoop_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_Pigsty_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_Sheepfold_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_RabbitHutch_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_DuckHouse_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_Dovecote_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_MouseCottage_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_SquirrelDrey_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_FrogPond_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_GoatShed_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_TurkeyRoost_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_Rookery_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_SongbirdAviary_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_WoodpeckerStump_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_TidePool_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 1
+                    }
+                  ]
+                },
+                "CozyRanch_House_DeerShelter_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_FoxDen_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_OwlBarn_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_CaravanShelter_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_AntelopeShelter_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_ArmadilloBurrow_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_GeckoTerrarium_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_WarthogWallow_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_FlamingoNest_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_ParrotPerch_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_SkrillRoost_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_HawkMews_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_BatRoost_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_FossilNest_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_MooseLodge_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_MossyLodge_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_BisonBarn_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_PenguinIgloo_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 2
+                    }
+                  ]
+                },
+                "CozyRanch_House_SnailTerrarium_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 3
+                    }
+                  ]
+                },
+                "CozyRanch_House_BearCave_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 3
+                    }
+                  ]
+                },
+                "CozyRanch_House_WolfLodge_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 3
+                    }
+                  ]
+                },
+                "CozyRanch_House_SnowyDen_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 3
+                    }
+                  ]
+                },
+                "CozyRanch_House_MeerkatMound_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 3
+                    }
+                  ]
+                },
+                "CozyRanch_House_TortoiseBurrow_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "requiredTierLevel": 3
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp top"
+          },
+          "save": "top"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${top.cursor}",
+            "where": {
+              "message": {
+                "messageId": "server.commands.teleport.teleportedToTop"
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch produce poop here"
+          },
+          "save": "h1"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${h1.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_produce.poop.here.done",
+                "params": {
+                  "what": {
+                    "value": "place"
+                  },
+                  "count": {
+                    "value": 1
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch produce poop here"
+          },
+          "save": "h2"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${h2.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_produce.poop.here.done",
+                "params": {
+                  "what": {
+                    "value": "merge"
+                  },
+                  "count": {
+                    "value": 2
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch produce poop here"
+          },
+          "save": "h3"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${h3.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_produce.poop.here.done",
+                "params": {
+                  "what": {
+                    "value": "merge"
+                  },
+                  "count": {
+                    "value": 3
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch produce poop pick"
+          },
+          "save": "pick"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${pick.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_produce.poop.pick.done",
+                "params": {
+                  "count": {
+                    "value": 3
+                  },
+                  "harvestable": {
+                    "value": "true"
+                  },
+                  "hint": {
+                    "value": "server.interactionHints.gather"
+                  },
+                  "picked": {
+                    "value": 3
+                  },
+                  "after": {
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "UpdatePlayerInventory",
+            "cursor": "${pick.cursor}",
+            "where": {
+              "hotbar": {
+                "items": {
+                  "0": {
+                    "itemId": "Ingredient_Poop",
+                    "quantity": 3
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch produce poop here"
+          },
+          "save": "h4"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${h4.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_produce.poop.here.done",
+                "params": {
+                  "what": {
+                    "value": "place"
+                  },
+                  "count": {
+                    "value": 1
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch produce poop break"
+          },
+          "save": "brk"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${brk.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_produce.poop.break.done",
+                "params": {
+                  "broke": {
+                    "value": "true"
+                  },
+                  "dropped": {
+                    "value": 1
+                  },
+                  "after": {
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_stop",
+          "arguments": {
+            "botId": "${bot.botId}"
+          }
+        },
+        {
+          "tool": "job_stop",
+          "arguments": {
+            "jobId": "${server.id}"
+          }
+        }
+      ]
+    }
+  ]
+}
