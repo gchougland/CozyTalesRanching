@@ -28,9 +28,10 @@ import javax.annotation.Nonnull;
 import org.joml.Vector3d;
 
 /**
- * {@code /ranch admin hurt [--by=player|fall] [--amount=N] [--radius=R]}: hits every ranch-tagged animal within the radius
+ * {@code /ranch admin hurt [--by=player|fall|mob|gone] [--amount=N] [--radius=R]}: hits every ranch-tagged animal within the radius
  * through the real damage pipeline, as the admin would with a weapon ({@code player}, the default) or as a fall would
- * ({@code fall}), and logs per animal whether the hit was cancelled and its health after. A test player cannot swing at
+ * ({@code fall}), as the nearest non-ranch NPC would ({@code mob}: spawn a hostile next to the animals first), or as a mob that
+ * has since died would ({@code gone}: its arrow or burn still landing), and logs per animal whether the hit was cancelled and its health after. A test player cannot swing at
  * an entity, so this is how a server test proves the protection.
  */
 final class AdminHurtCommand extends AbstractPlayerCommand {
@@ -62,9 +63,18 @@ final class AdminHurtCommand extends AbstractPlayerCommand {
             NPCEntity npc = store.getComponent(e, NPCEntity.getComponentType());
             UUIDComponent id = store.getComponent(e, UUIDComponent.getComponentType());
             if (npc == null || id == null) continue;
-            Damage damage = by.equals("fall")
-                ? new Damage(Damage.NULL_SOURCE, DamageCause.getAssetMap().getIndex("Fall"), amount)
-                : new Damage(new Damage.EntitySource(ref), DamageCause.getAssetMap().getIndex("Physical"), amount);
+            Damage.Source source = switch (by) {
+                case "fall" -> Damage.NULL_SOURCE;
+                // a mob that has since died or despawned: its arrow, bomb or burn still lands
+                case "gone" -> new Damage.EntitySource(new Ref<>(store));
+                case "mob" -> {
+                    Ref<EntityStore> mob = nearestMob(e, store, markerType);
+                    yield mob == null ? null : new Damage.EntitySource(mob);
+                }
+                default -> new Damage.EntitySource(ref);
+            };
+            if (source == null) continue;
+            Damage damage = new Damage(source, DamageCause.getAssetMap().getIndex(by.equals("fall") ? "Fall" : "Physical"), amount);
             DamageSystems.executeDamage(e, store, damage);
             float health = health(e, store);
             boolean alive = health > 0;
@@ -75,6 +85,23 @@ final class AdminHurtCommand extends AbstractPlayerCommand {
                 r == null ? "?" : String.valueOf(r.ownerId), damage.isCancelled(), health, alive ? "" : " KILLED"));
         }
         context.sendMessage(Message.translation("cozyranch_animal.admin.hurt.done").param("hit", hit).param("survived", survived));
+    }
+
+    /** The nearest NPC within 16 blocks of the animal that is not a ranch animal, such as a hostile mob a test spawned. */
+    @javax.annotation.Nullable
+    private static Ref<EntityStore> nearestMob(@Nonnull Ref<EntityStore> animal, @Nonnull Store<EntityStore> store, @Nonnull com.hypixel.hytale.component.ComponentType<EntityStore, AnimalMarker> markerType) {
+        TransformComponent at = store.getComponent(animal, TransformComponent.getComponentType());
+        if (at == null) return null;
+        Ref<EntityStore> best = null;
+        double bestD = Double.MAX_VALUE;
+        for (Ref<EntityStore> o : TargetUtil.getAllEntitiesInSphere(at.getPosition(), 16.0, store)) {
+            if (store.getComponent(o, NPCEntity.getComponentType()) == null || store.getComponent(o, markerType) != null) continue;
+            TransformComponent t = store.getComponent(o, TransformComponent.getComponentType());
+            if (t == null) continue;
+            double d = t.getPosition().distanceSquared(at.getPosition());
+            if (d < bestD) { bestD = d; best = o; }
+        }
+        return best;
     }
 
     private static float health(@Nonnull Ref<EntityStore> e, @Nonnull Store<EntityStore> store) {
