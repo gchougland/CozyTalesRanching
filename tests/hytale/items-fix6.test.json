@@ -1,0 +1,438 @@
+{
+  "cases": [
+    {
+      "name": "items-fix6 gate",
+      "description": "The pack validates with the mod's own Raven set and the Jar of Crickets without its pocket recipe.",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0,
+            "errors": 0
+          }
+        },
+        {
+          "tool": "ui_check_java",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "raven set and cricket jar files",
+      "description": "Note 2: four CozyRanch_Armor_Raven_* items parent vanilla's Raven pieces and add a description; the Armour Bench recipes make them and they salvage like vanilla's. Note 3: the cricket jar file checks clean.",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Armor_Raven_Head",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Armor/CozyRanch_Armor_Raven_Head.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Armor_Leather_Raven_Head",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Armor_Leather_Raven_Head.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Salvage_Armor_Raven_Head",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Salvage_Armor_Raven_Head.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Armor_Raven_Chest",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Armor/CozyRanch_Armor_Raven_Chest.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Armor_Leather_Raven_Chest",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Armor_Leather_Raven_Chest.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Salvage_Armor_Raven_Chest",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Salvage_Armor_Raven_Chest.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Armor_Raven_Hands",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Armor/CozyRanch_Armor_Raven_Hands.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Armor_Leather_Raven_Hands",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Armor_Leather_Raven_Hands.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Salvage_Armor_Raven_Hands",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Salvage_Armor_Raven_Hands.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Armor_Raven_Legs",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Armor/CozyRanch_Armor_Raven_Legs.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Armor_Leather_Raven_Legs",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Armor_Leather_Raven_Legs.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Recipe_Salvage_Armor_Raven_Legs",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Recipes/CozyRanch/CozyRanch_Recipe_Salvage_Armor_Raven_Legs.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Food_Crickets",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Food/CozyRanch_Food_Crickets.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "items-fix6 live",
+      "description": "Built jar on port 5611: UpdateRecipes holds the Jar of Crickets only at the Ranching Bench (one bench requirement) and the Raven recipes making CozyRanch_Armor_Raven_*; UpdateItems gives those items vanilla's Raven model with our description key; UpdateTranslations carries the perk text.",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.0.jar"
+            ],
+            "authMode": "insecure",
+            "port": 5611
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555",
+            "decode": [
+              "UpdateRecipes",
+              "UpdateItems",
+              "UpdateTranslations"
+            ]
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "recipes: jar only at the Ranching Bench, Raven set at the Armour Bench",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "UpdateRecipes",
+            "timeoutMs": 5000,
+            "where": {
+              "recipes": {
+                "CozyRanch_Food_Crickets_Recipe_Generated_0": {
+                  "benchRequirement": [
+                    {
+                      "id": "CozyRanch_RanchingBench",
+                      "categories": [
+                        "CozyRanch_FeedCare"
+                      ]
+                    }
+                  ]
+                },
+                "CozyRanch_Recipe_Armor_Leather_Raven_Head": {
+                  "benchRequirement": [
+                    {
+                      "id": "Armor_Bench",
+                      "categories": [
+                        "Armor_Head"
+                      ]
+                    }
+                  ],
+                  "primaryOutput": {
+                    "itemId": "CozyRanch_Armor_Raven_Head"
+                  },
+                  "knowledgeRequired": false
+                },
+                "CozyRanch_Recipe_Salvage_Armor_Raven_Head": {
+                  "benchRequirement": [
+                    {
+                      "id": "Salvagebench"
+                    }
+                  ]
+                },
+                "CozyRanch_Recipe_Armor_Leather_Raven_Chest": {
+                  "benchRequirement": [
+                    {
+                      "id": "Armor_Bench",
+                      "categories": [
+                        "Armor_Chest"
+                      ]
+                    }
+                  ],
+                  "primaryOutput": {
+                    "itemId": "CozyRanch_Armor_Raven_Chest"
+                  },
+                  "knowledgeRequired": false
+                },
+                "CozyRanch_Recipe_Salvage_Armor_Raven_Chest": {
+                  "benchRequirement": [
+                    {
+                      "id": "Salvagebench"
+                    }
+                  ]
+                },
+                "CozyRanch_Recipe_Armor_Leather_Raven_Hands": {
+                  "benchRequirement": [
+                    {
+                      "id": "Armor_Bench",
+                      "categories": [
+                        "Armor_Hands"
+                      ]
+                    }
+                  ],
+                  "primaryOutput": {
+                    "itemId": "CozyRanch_Armor_Raven_Hands"
+                  },
+                  "knowledgeRequired": false
+                },
+                "CozyRanch_Recipe_Salvage_Armor_Raven_Hands": {
+                  "benchRequirement": [
+                    {
+                      "id": "Salvagebench"
+                    }
+                  ]
+                },
+                "CozyRanch_Recipe_Armor_Leather_Raven_Legs": {
+                  "benchRequirement": [
+                    {
+                      "id": "Armor_Bench",
+                      "categories": [
+                        "Armor_Legs"
+                      ]
+                    }
+                  ],
+                  "primaryOutput": {
+                    "itemId": "CozyRanch_Armor_Raven_Legs"
+                  },
+                  "knowledgeRequired": false
+                },
+                "CozyRanch_Recipe_Salvage_Armor_Raven_Legs": {
+                  "benchRequirement": [
+                    {
+                      "id": "Salvagebench"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "no pocket recipe for the jar",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "UpdateRecipes",
+            "timeoutMs": 5000,
+            "where": {
+              "recipes": {
+                "CozyRanch_Food_Crickets_Recipe_Generated_1": {
+                  "$exists": true
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "Raven items carry the description key",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "UpdateItems",
+            "timeoutMs": 5000,
+            "where": {
+              "items": {
+                "CozyRanch_Armor_Raven_Head": {
+                  "translationProperties": {
+                    "name": "server.items.Armor_Leather_Raven_Head.name",
+                    "description": "cozyranch_items.items.CozyRanch_Armor_Raven_Head.description"
+                  },
+                  "model": "Items/Armors/Leather_Raven/Head.blockymodel",
+                  "armor": {
+                    "armorSlot": "Head"
+                  }
+                },
+                "CozyRanch_Armor_Raven_Chest": {
+                  "translationProperties": {
+                    "name": "server.items.Armor_Leather_Raven_Chest.name",
+                    "description": "cozyranch_items.items.CozyRanch_Armor_Raven_Chest.description"
+                  },
+                  "model": "Items/Armors/Leather_Raven/Chest.blockymodel",
+                  "armor": {
+                    "armorSlot": "Chest"
+                  }
+                },
+                "CozyRanch_Armor_Raven_Hands": {
+                  "translationProperties": {
+                    "name": "server.items.Armor_Leather_Raven_Hands.name",
+                    "description": "cozyranch_items.items.CozyRanch_Armor_Raven_Hands.description"
+                  },
+                  "model": "Items/Armors/Leather_Raven/Hands.blockymodel",
+                  "armor": {
+                    "armorSlot": "Hands"
+                  }
+                },
+                "CozyRanch_Armor_Raven_Legs": {
+                  "translationProperties": {
+                    "name": "server.items.Armor_Leather_Raven_Legs.name",
+                    "description": "cozyranch_items.items.CozyRanch_Armor_Raven_Legs.description"
+                  },
+                  "model": "Items/Armors/Leather_Raven/Legs.blockymodel",
+                  "armor": {
+                    "armorSlot": "Legs"
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "description text reaches the client",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "UpdateTranslations",
+            "timeoutMs": 5000,
+            "where": {
+              "translations": {
+                "cozyranch_items.items.CozyRanch_Armor_Raven_Head.description": {
+                  "$matches": "5%.*25%"
+                },
+                "cozyranch_items.items.CozyRanch_Armor_Raven_Chest.description": {
+                  "$matches": "5%.*25%"
+                },
+                "cozyranch_items.items.CozyRanch_Armor_Raven_Hands.description": {
+                  "$matches": "5%.*25%"
+                },
+                "cozyranch_items.items.CozyRanch_Armor_Raven_Legs.description": {
+                  "$matches": "5%.*25%"
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_stop",
+          "arguments": {
+            "botId": "${bot.botId}"
+          }
+        },
+        {
+          "tool": "job_stop",
+          "arguments": {
+            "jobId": "${server.id}"
+          }
+        }
+      ]
+    }
+  ]
+}

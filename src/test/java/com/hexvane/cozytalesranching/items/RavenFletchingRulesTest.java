@@ -13,6 +13,16 @@ class RavenFletchingRulesTest {
         assertEquals(0, RavenFletchingRules.piecesWorn(List.of("Armor_Iron_Head", "Armor_Leather_Heavy_Chest")));
         assertEquals(2, RavenFletchingRules.piecesWorn(List.of("Armor_Leather_Raven_Head", "Armor_Iron_Chest", "Armor_Leather_Raven_Legs")));
         assertEquals(4, RavenFletchingRules.piecesWorn(List.copyOf(RavenFletchingRules.PIECES)));
+        assertEquals(4, RavenFletchingRules.piecesWorn(List.copyOf(RavenFletchingRules.VANILLA_PIECES)));
+    }
+
+    @Test
+    void oursAndVanillaMixAsOneSet() {
+        assertEquals(4, RavenFletchingRules.piecesWorn(List.of(
+            "CozyRanch_Armor_Raven_Head", "Armor_Leather_Raven_Chest", "CozyRanch_Armor_Raven_Hands", "Armor_Leather_Raven_Legs")));
+        assertEquals(1, RavenFletchingRules.piecesWorn(List.of("CozyRanch_Armor_Raven_Head", "Armor_Leather_Raven_Head")));
+        assertEquals(0.25, RavenFletchingRules.refundChance(RavenFletchingRules.piecesWorn(List.of(
+            "Armor_Leather_Raven_Head", "CozyRanch_Armor_Raven_Chest", "Armor_Leather_Raven_Hands", "CozyRanch_Armor_Raven_Legs"))), 1e-9);
     }
 
     @Test
