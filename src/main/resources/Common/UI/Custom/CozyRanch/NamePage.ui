@@ -1,18 +1,10 @@
 // Naming a ranch animal: one text field, Save and Not now. Every text is set from Java (.TextSpans).
-// Under the card: how to tell it to stay or follow later, with the player's own Crouch and Use keys drawn by the
-// client (HotkeyLabel, as vanilla's tool legends do), and how to rename it later.
+// Under the card: how to tell it to stay or follow later, and how to rename it later (plain text).
 $C = "../Common.ui";
 $H = "HouseStyles.ui";
 
 @PanelWidth = 500;
 @PanelHeight = 340;
-
-@KeyCap = Group {
-  LayoutMode: MiddleCenter;
-  Padding: (Horizontal: 6, Vertical: 4);
-  Anchor: (MinWidth: 30, Height: 28);
-  Background: (TexturePath: "../Common/InputBinding.png", Border: 6);
-};
 
 $C.@PageOverlay {
   LayoutMode: Middle;
@@ -57,34 +49,10 @@ $C.@PageOverlay {
           }
         }
 
-        Group #StayHint {
-          LayoutMode: Left;
-          Anchor: (Top: 10, Height: 28);
-
-          @KeyCap {
-            HotkeyLabel #CrouchKey {
-              InputBindingKey: "Crouch";
-            }
-          }
-
-          Label #StayPlus {
-            Style: (...$H.@BodyStyle, VerticalAlignment: Center);
-            Padding: (Horizontal: 6);
-            Text: "+";
-          }
-
-          @KeyCap {
-            HotkeyLabel #UseKey {
-              InputBindingKey: "BlockInteractAction";
-            }
-          }
-
-          Label #StayText {
-            FlexWeight: 1;
-            Style: (...$H.@BodyStyle, VerticalAlignment: Center);
-            Padding: (Left: 10);
-            Text: "";
-          }
+        Label #StayText {
+          Style: (...$H.@BodyStyle, Wrap: true);
+          Anchor: (Top: 10);
+          Text: "";
         }
 
         Label #RenameLater {

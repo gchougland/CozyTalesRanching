@@ -36,7 +36,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 - **Houses run on game time:** sleeping through the night, or skipping time, counts for production, breeding, growing up and meals, the way furnaces and crops work.
 - **Hay Bales** count as hay and as a perch, two flowers are enough for flowers, and houses re-check their surroundings a moment after you build nearby.
-- **The naming page** shows the keys to make your new friend stay or follow you, and where to rename it later.
+- **The naming page** says how to make your new friend stay or follow you (Crouch + Interact), and where to rename it later.
 - **The Jar of Crickets** is made at the Ranching Bench only.
 - **Bait Bowl message:** bait that several wild animals love no longer always names the fox.
 - **Released birds** go back to the wild as their walking kind.
@@ -55,6 +55,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 ### Fixed
 
 - **"What counts" tooltips** show their text instead of "{counts}".
+- **Squirrel Drey and Parrot Perch** can be built: their recipes no longer need Tree Bark or Magic Mango, which can't be found in survival. Parrots now love Coconut and geckos Azure Fruit.
 - **The Rookery's nests and perches** no longer flicker.
 - **House hitboxes** now line up with the houses, notably the Antelope Shelter, Deer Shelter, Warthog Wallow, Bison Barn, Fox Den, Meerkat Mound and Rookery. Placed Bison Barns shift by half a block.
 - **Sleeping while following:** an animal tamed while asleep no longer follows you in its sleeping pose.

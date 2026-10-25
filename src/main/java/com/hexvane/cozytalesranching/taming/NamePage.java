@@ -78,7 +78,7 @@ public final class NamePage extends InteractiveCustomUIPage<NamePage.Event> {
             : Message.translation("cozyranch_taming.namepage.prompt").param("animal", species));
         commands.set("#NameField.Value", named ? record.name : "");
         commands.set("#NameHint.TextSpans", Message.translation("cozyranch_taming.namepage.limit").param("max", NameCommand.MAX_NAME_LENGTH));
-        // the key caps beside #StayText are the player's own Crouch and Use keys, drawn by the client (HotkeyLabel)
+        // how to make it stay or follow, and how to rename it later
         commands.set("#StayText.TextSpans", Message.translation("cozyranch_taming.namepage.stay"));
         commands.set("#RenameLater.TextSpans", Message.translation("cozyranch_taming.namepage.rename_later"));
         commands.set("#NameNotice.TextSpans", noticeKey == null ? Message.raw("") : Message.translation(noticeKey));
