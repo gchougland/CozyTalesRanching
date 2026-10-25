@@ -6,6 +6,8 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 ### Added
 
+- **Tetrabird:** a new animal with its own **Fossil Nest** of fossil ribs and a horned skull. Tetrabirds fan their tails, scratch and crow, and drop dark feathers.
+- **Raven's Thrift:** the Raven Leather armour made at the Armour Bench now says on its tooltip that it sometimes gives back the arrows you shoot.
 - **Birds and bats:** Eight new animals, each with its own house, foods, habitat, behaviours, journal page and babies. Wild birds that only fly in vanilla now have walking cousins you can walk up to and befriend.
   - **Owls** in brown or snowy feathers live in an **Owl Barn**. They hoot, swivel their heads almost all the way round and doze on one leg by day. Brown owls drop dark feathers, snowy owls red ones, and both cough up Owl Pellets.
   - **Crows** and **Ravens** live in a hollow-oak **Rookery**. They hop, caw, tilt their heads and tuck shiny things under a wing, and drop dark feathers.
@@ -32,6 +34,10 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 ### Changed
 
+- **Houses run on game time:** sleeping through the night, or skipping time, counts for production, breeding, growing up and meals, the way furnaces and crops work.
+- **Hay Bales** count as hay and as a perch, two flowers are enough for flowers, and houses re-check their surroundings a moment after you build nearby.
+- **The naming page** shows the keys to make your new friend stay or follow you, and where to rename it later.
+- **The Jar of Crickets** is made at the Ranching Bench only.
 - **Bait Bowl message:** bait that several wild animals love no longer always names the fox.
 - **Released birds** go back to the wild as their walking kind.
 - **Moss Tufts** no longer grow crops; they make mossy blocks. Bat Guano is the ranch's fertiliser.
@@ -48,6 +54,8 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 ### Fixed
 
+- **"What counts" tooltips** show their text instead of "{counts}".
+- **The Rookery's nests and perches** no longer flicker.
 - **House hitboxes** now line up with the houses, notably the Antelope Shelter, Deer Shelter, Warthog Wallow, Bison Barn, Fox Den, Meerkat Mound and Rookery. Placed Bison Barns shift by half a block.
 - **Sleeping while following:** an animal tamed while asleep no longer follows you in its sleeping pose.
 - **Your animals can no longer die** from falls, fire, drowning or suffocation, or from burns, poison, arrows and bombs left behind by enemies you have already beaten. A blocked hit no longer knocks them back either.

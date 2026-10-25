@@ -7,7 +7,7 @@
         {
           "tool": "asset_validate",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix6-ui"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true,
@@ -17,7 +17,7 @@
         {
           "tool": "ui_check_java",
           "arguments": {
-            "project": "_worktrees/CozyTales-Ranching-fix6-ui"
+            "project": "CozyTales-Ranching"
           },
           "expect": {
             "valid": true
@@ -34,7 +34,7 @@
           "name": "just tamed, empty field",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix6-ui/src/main/resources/Common/UI/Custom/CozyRanch/NamePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/NamePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -118,7 +118,7 @@
           "name": "rename a named animal",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix6-ui/src/main/resources/Common/UI/Custom/CozyRanch/NamePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/NamePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -202,7 +202,7 @@
           "name": "24 characters and a refused name",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix6-ui/src/main/resources/Common/UI/Custom/CozyRanch/NamePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/NamePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -292,7 +292,7 @@
           "name": "frog pond missing lily pads (needed) and reeds (liked)",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix6-ui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
@@ -1000,7 +1000,7 @@
           "name": "fullest page: longest names, eight needs and wants, picker open, the longest notice",
           "arguments": {
             "root": "projects",
-            "path": "_worktrees/CozyTales-Ranching-fix6-ui/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
+            "path": "CozyTales-Ranching/src/main/resources/Common/UI/Custom/CozyRanch/HousePage.ui",
             "commands": [
               {
                 "type": "Append",
