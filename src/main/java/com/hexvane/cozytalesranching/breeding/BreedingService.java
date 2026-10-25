@@ -3,6 +3,7 @@ package com.hexvane.cozytalesranching.breeding;
 import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.RanchSounds;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
+import com.hexvane.cozytalesranching.animal.AnimalSkins;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.api.AnimalView;
 import com.hexvane.cozytalesranching.api.event.AnimalBredEvent;
@@ -100,6 +101,7 @@ final class BreedingService implements HouseDayHooks.Hook {
             baby.hearts = BreedingRules.BABY_HEARTS;
             String look = BreedingRules.birthLook(species, roleA, roleB, features, rng);
             baby.spawnRole = BreedingRules.babyRole(species, look != null ? look : (rng.nextBoolean() ? roleA : roleB));
+            AnimalSkins.giveBabySkin(baby, species, a, roleA, b, roleB, BreedingRules.adultRole(species, baby.spawnRole), rng);
             baby.lastX = house.doorX;
             baby.lastY = house.doorY;
             baby.lastZ = house.doorZ;

@@ -32,6 +32,7 @@ public final class AnimalFeature {
         entities.registerSystem(new AnimalEntitySystem(animals, markerType));
         entities.registerSystem(new AnimalProtectionSystem(animals, markerType));
         entities.registerSystem(new AnimalDeathSystem(animals, markerType));
+        entities.registerSystem(new SkinModelSystem(animals, markerType));
         VanillaCoopGuard coopGuard = VanillaCoopGuard.create(animals, markerType);
         if (coopGuard != null) entities.registerSystem(coopGuard);
 

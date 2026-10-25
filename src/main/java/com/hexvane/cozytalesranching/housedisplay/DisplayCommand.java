@@ -78,7 +78,9 @@ public final class DisplayCommand extends AbstractCommandCollection {
             boolean intangible = store.getArchetype(s.ref()).contains(Intangible.getComponentType());
             String model = m != null && m.getModel() != null ? m.getModel().getModelAssetId() + " x" + String.format(Locale.ROOT, "%.2f", m.getModel().getScale()) : "?";
             String at = t != null ? String.format(Locale.ROOT, "%.2f %.2f %.2f yaw %.0f", t.getPosition().x, t.getPosition().y, t.getPosition().z, Math.toDegrees(t.getRotation().yaw())) : "?";
-            return "[" + model + " at " + at + (intangible ? " intangible" : "") + "]";
+            int attachments = m != null && m.getModel() != null && m.getModel().getAttachments() != null ? m.getModel().getAttachments().length : 0;
+            // a resident's skin (its model attachments), named only when it has one
+            return "[" + model + " at " + at + (intangible ? " intangible" : "") + (attachments > 0 ? " +" + attachments + " attachments" : "") + "]";
         }
     }
 

@@ -3,7 +3,9 @@ package com.hexvane.cozytalesranching.animal;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import javax.annotation.Nonnull;
@@ -45,7 +47,7 @@ final class RecordFields {
 
     private RecordFields() {}
 
-    /** A copy with its own lists; enums, strings, UUIDs and boxed values are immutable and shared. */
+    /** A copy with its own lists and maps; enums, strings, UUIDs and boxed values are immutable and shared. */
     @Nonnull
     static AnimalRecord copy(@Nonnull AnimalRecord r) {
         AnimalRecord c = new AnimalRecord();
@@ -53,6 +55,7 @@ final class RecordFields {
             for (Field f : ALL) {
                 Object v = f.get(r);
                 if (v instanceof List<?> list) v = new ArrayList<>(list);
+                else if (v instanceof Map<?, ?> map) v = new LinkedHashMap<>(map);
                 f.set(c, v);
             }
         } catch (IllegalAccessException e) {

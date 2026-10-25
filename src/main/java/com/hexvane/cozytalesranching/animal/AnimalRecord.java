@@ -3,6 +3,7 @@ package com.hexvane.cozytalesranching.animal;
 import com.hexvane.cozytalesranching.api.AnimalView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -62,6 +63,13 @@ public final class AnimalRecord {
      * it current or clears it.
      */
     @Nullable public String spawnRole;
+    /**
+     * The model asset the animal's skin came from (its wild model, for example a skin pack's {@code Deer_Doe}), or null
+     * when it has none. See {@link SkinRules}.
+     */
+    @Nullable public String skinModel;
+    /** The skin: the chosen random attachment id per attachment set of {@link #skinModel}. Replaced whole, never edited in place. */
+    @Nullable public Map<String, String> skinIds;
 
     @Nonnull
     public AnimalView view() {

@@ -99,6 +99,10 @@ public final class PersistentAnimalRegistry implements AnimalRegistry {
         ComponentType<EntityStore, AnimalMarker> type = AnimalMarker.type();
         if (type != null) accessor.putComponent(entity, type, new AnimalMarker(record.animalId, generation));
         AnimalPresence.put(record.animalId, entity);
+        // a new incarnation wears the record's skin; a record without one notes the skin this entity has
+        boolean skinChanged = AnimalSkins.capture(record, entity, accessor);
+        skinChanged |= AnimalSkins.apply(record, entity, accessor, true);
+        if (skinChanged) store.touch(record);
         scheduleSave();
     }
 

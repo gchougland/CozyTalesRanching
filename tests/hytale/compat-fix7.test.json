@@ -1,0 +1,1093 @@
+{
+  "cases": [
+    {
+      "name": "compat fix7 gate",
+      "description": "Assets and UI selectors of the worktree.",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "_worktrees/CozyTales-Ranching-fix7-compat"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0
+          }
+        },
+        {
+          "tool": "ui_check_java",
+          "arguments": {
+            "project": "_worktrees/CozyTales-Ranching-fix7-compat"
+          },
+          "expect": {
+            "valid": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "compat fix7 build and unit tests (SkinRulesTest: resolve, merge, inherit, save)",
+      "steps": [
+        {
+          "tool": "project_build",
+          "arguments": {
+            "project": "_worktrees/CozyTales-Ranching-fix7-compat",
+            "system": "gradle",
+            "tasks": [
+              "build"
+            ]
+          },
+          "waitJob": true,
+          "expect": {
+            "state": "succeeded"
+          }
+        }
+      ]
+    },
+    {
+      "name": "compat fix7 live: a skinned wild animal keeps its skin when tamed, reloaded, housed and released",
+      "description": "Note 5. Celly's Wildlife Skins (a copy of its zip in build/skinsmod) loads beside the jar. A wild Tetrabird gets a known skin from the pack's own sets, is befriended, and keeps the same attachments on CozyRanch_Tetrabird (server state and the EntityUpdates sent to the client), after its chunk unloads and reloads, on the house display, out of the house, and back on its wild model when released.",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "_worktrees/CozyTales-Ranching-fix7-compat/build/libs/CozyTalesRanching-0.6.0.jar",
+              "_worktrees/CozyTales-Ranching-fix7-compat/build/skinsmod/Cellys_Wildlife_Skins_v1.3.1.zip"
+            ],
+            "authMode": "insecure",
+            "port": 5622
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555",
+            "name": "RanchBot",
+            "decode": [
+              "EntityUpdates"
+            ]
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 4000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 4000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/gamemode creative"
+          },
+          "save": "s1"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/npc spawn Tetrabird"
+          },
+          "save": "s2"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 3000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin skins --radius=6 --set=Base=2002+Crest=2001+Wings=2002"
+          },
+          "save": "wild"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wild Tetrabird wears the skin pack's Base, Crest and Wings",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${wild.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.skins.line",
+                "params": {
+                  "role": {
+                    "value": "Tetrabird"
+                  },
+                  "model": {
+                    "value": "Tetrabird"
+                  },
+                  "ids": {
+                    "value": "{Base=2002, Crest=2001, Wings=2002}"
+                  },
+                  "textures": {
+                    "value": {
+                      "$matches": "^(?=.*Model:Base_2002)(?=.*Model:Crest_2001)(?=.*Model:Wings_2002)[^,]*,[^,]*,[^,]*$"
+                    }
+                  },
+                  "record": {
+                    "value": "-"
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin befriend"
+          },
+          "save": "bef"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "befriended",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${bef.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.befriend.done"
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "client is sent CozyRanch_Tetrabird with the skin's attachments",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "EntityUpdates",
+            "cursor": "${bef.cursor}",
+            "where": {
+              "updates": {
+                "$contains": {
+                  "updates": {
+                    "$contains": {
+                      "model": {
+                        "assetId": "CozyRanch_Tetrabird",
+                        "attachments": {
+                          "$contains": {
+                            "texture": "NPC/Wildlife/Tetrabird/Models/Attachments/Base_2002.png"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 2000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 2000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin skins --radius=6"
+          },
+          "save": "tame"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "ranch Tetrabird keeps the skin and its record has it",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${tame.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.skins.line",
+                "params": {
+                  "role": {
+                    "value": "CozyRanch_Tetrabird"
+                  },
+                  "model": {
+                    "value": "CozyRanch_Tetrabird"
+                  },
+                  "ids": {
+                    "value": "{Base=2002, Crest=2001, Wings=2002}"
+                  },
+                  "count": {
+                    "value": 3
+                  },
+                  "textures": {
+                    "value": {
+                      "$matches": "^(?=.*Model:Base_2002)(?=.*Model:Crest_2001)(?=.*Model:Wings_2002)[^,]*,[^,]*,[^,]*$"
+                    }
+                  },
+                  "record": {
+                    "value": "Tetrabird {Base=2002, Crest=2001, Wings=2002}"
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch stay"
+          },
+          "save": "s6"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 2000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 2000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp ~3000 ~ ~"
+          },
+          "save": "s7"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 35000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 35000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp ~-3000 ~ ~"
+          },
+          "save": "s8"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 8000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 8000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin skins --radius=12"
+          },
+          "save": "reload"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "after its chunk unloads and reloads it still wears the skin",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${reload.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.skins.line",
+                "params": {
+                  "role": {
+                    "value": "CozyRanch_Tetrabird"
+                  },
+                  "ids": {
+                    "value": "{Base=2002, Crest=2001, Wings=2002}"
+                  },
+                  "count": {
+                    "value": 3
+                  },
+                  "textures": {
+                    "value": {
+                      "$matches": "^(?=.*Model:Base_2002)(?=.*Model:Crest_2001)(?=.*Model:Wings_2002)[^,]*,[^,]*,[^,]*$"
+                    }
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch follow"
+          },
+          "save": "s10"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 2000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 2000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug place tetrabird"
+          },
+          "save": "place"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "Fossil Nest placed",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${place.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.placed"
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug use"
+          },
+          "save": "use"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "assigned to the Fossil Nest",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${use.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.assign.done"
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug nightfall"
+          },
+          "save": "s13"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 6000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 6000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display refresh"
+          },
+          "save": "s14"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 1000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 1000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display status"
+          },
+          "save": "disp"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "the house display shows it with its 3 skin attachments",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${disp.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.status.line",
+                "params": {
+                  "models": {
+                    "value": {
+                      "$matches": "CozyRanch_Tetrabird x[0-9.]+ at [^\\]]*\\+3 attachments\\]"
+                    }
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug morning"
+          },
+          "save": "s16"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 8000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 8000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin skins --radius=12"
+          },
+          "save": "out"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "out of the house in the morning it wears the skin again",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${out.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.skins.line",
+                "params": {
+                  "role": {
+                    "value": "CozyRanch_Tetrabird"
+                  },
+                  "ids": {
+                    "value": "{Base=2002, Crest=2001, Wings=2002}"
+                  },
+                  "count": {
+                    "value": 3
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin skins --radius=12 --release"
+          },
+          "save": "rel"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "released",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${rel.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.skins.released"
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 3000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin skins --radius=12"
+          },
+          "save": "wildagain"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "released, it is a wild Tetrabird with the same skin",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${wildagain.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.skins.line",
+                "params": {
+                  "role": {
+                    "value": "Tetrabird"
+                  },
+                  "model": {
+                    "value": "Tetrabird"
+                  },
+                  "ids": {
+                    "value": "{Base=2002, Crest=2001, Wings=2002}"
+                  },
+                  "count": {
+                    "value": 3
+                  },
+                  "record": {
+                    "value": "-"
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_stop",
+          "arguments": {
+            "botId": "${bot.botId}"
+          },
+          "always": true
+        },
+        {
+          "tool": "job_stop",
+          "arguments": {
+            "jobId": "${server.id}"
+          },
+          "always": true
+        }
+      ]
+    },
+    {
+      "name": "compat fix7 live: a bred chick gets a skin and keeps it when it grows up",
+      "description": "Two plain parents breed in a Fossil Nest with corn in the trough. Neither has a skin, so the chick rolls one from the wild Tetrabird's sets (the skin pack's); it wears it as a chick and keeps the same ids and attachments as a grown CozyRanch_Tetrabird.",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "_worktrees/CozyTales-Ranching-fix7-compat/build/libs/CozyTalesRanching-0.6.0.jar",
+              "_worktrees/CozyTales-Ranching-fix7-compat/build/skinsmod/Cellys_Wildlife_Skins_v1.3.1.zip"
+            ],
+            "authMode": "insecure",
+            "port": 5622
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555",
+            "name": "RanchBot"
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 4000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 4000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/gamemode creative"
+          },
+          "save": "s1"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug place tetrabird"
+          },
+          "save": "place"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "Fossil Nest placed",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${place.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.placed"
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug nightfall"
+          },
+          "save": "s3"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 2000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 2000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~3 ~ ~5 CozyRanch_Trough"
+          },
+          "save": "s4"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 1500 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 1500
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch care fill ~3 ~ ~5 Plant_Crop_Corn_Item 10"
+          },
+          "save": "fill"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "trough filled with corn",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${fill.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_care.fill.done"
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch breed testhouse tetrabird"
+          },
+          "save": "th"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "two plain parents asleep in the house",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${th.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_breeding.debug.testhouse.done"
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch care run"
+          },
+          "save": "s7"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 6000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 6000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch breed morning"
+          },
+          "save": "bred"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "they bred",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${bred.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_breeding.debug.morning.bred"
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug morning"
+          },
+          "save": "s9"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 10000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin skins --radius=16"
+          },
+          "save": "chick"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "the chick has a skin rolled from the wild Tetrabird's sets and wears it",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${chick.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.skins.line",
+                "params": {
+                  "role": {
+                    "value": "CozyRanch_Tetrabird_Chick"
+                  },
+                  "ids": {
+                    "value": {
+                      "$matches": "^\\{(?=.*Base=)(?=.*Crest=)(?=.*Wings=).*\\}$"
+                    }
+                  },
+                  "record": {
+                    "value": {
+                      "$matches": "^Tetrabird \\{"
+                    }
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          },
+          "save": "chickline"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch breed growup"
+          },
+          "save": "grow"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait 5000 ms",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 5000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin skins --radius=16"
+          },
+          "save": "grown"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "grown up it wears the same skin",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${grown.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.skins.line",
+                "params": {
+                  "role": {
+                    "value": "CozyRanch_Tetrabird"
+                  },
+                  "ids": {
+                    "value": "${chickline.event.data.message.params.ids.value}"
+                  },
+                  "textures": {
+                    "value": "${chickline.event.data.message.params.textures.value}"
+                  }
+                }
+              }
+            },
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_stop",
+          "arguments": {
+            "botId": "${bot.botId}"
+          },
+          "always": true
+        },
+        {
+          "tool": "job_stop",
+          "arguments": {
+            "jobId": "${server.id}"
+          },
+          "always": true
+        }
+      ]
+    }
+  ]
+}
