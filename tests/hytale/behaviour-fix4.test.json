@@ -185,6 +185,18 @@
           }
         },
         {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "NoSuchPacketJustWaiting",
+            "cursor": 0,
+            "timeoutMs": 2000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
           "tool": "bot_send",
           "arguments": {
             "botId": "${bot.botId}",
