@@ -1,0 +1,109 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_GeckoTerrarium"
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.5,
+      "Y": 0.66875,
+      "Z": 0.875
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -160,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Gecko",
+      "Scale": 0.575,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.375,
+      "Y": 0.4375,
+      "Z": 1.4375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -170,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Gecko",
+      "Scale": 0.575,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.5625,
+      "Y": 0.4375,
+      "Z": 1.0625
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 149.99999999999997,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Gecko",
+      "Scale": 0.575,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.125,
+      "Y": 0.4375,
+      "Z": 1.375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 169.99999999999997,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Gecko",
+      "Scale": 0.575,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}

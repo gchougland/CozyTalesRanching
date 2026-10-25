@@ -4,7 +4,8 @@
     "Description": "cozyranch_items.items.CozyRanch_Herding_Horn.description"
   },
   "Categories": [
-    "Items.Tools"
+    "Items.Tools",
+    "CozyRanch.Tools"
   ],
   "Quality": "Uncommon",
   "Model": "Items/CozyRanch/Tools/Herding_Horn.blockymodel",
@@ -54,6 +55,13 @@
         "Categories": [
           "Workbench_Tools"
         ]
+      },
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "CozyRanch_FeedCare"
+        ],
+        "Id": "CozyRanch_RanchingBench"
       }
     ],
     "TimeSeconds": 2

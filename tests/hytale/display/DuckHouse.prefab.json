@@ -1,0 +1,63 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_DuckHouse"
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.1875,
+      "Y": 0.203125,
+      "Z": 1.4375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -160,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Duck",
+      "Scale": 0.6,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.4375,
+      "Y": 0.203125,
+      "Z": 1.1875
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 160.00000000000003,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Duck",
+      "Scale": 0.6,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}

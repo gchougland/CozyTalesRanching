@@ -1,0 +1,500 @@
+{
+  "cases": [
+    {
+      "name": "houses-fix4 gate",
+      "description": "The pack parses and matches the engine schemas.",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "houses-fix4 hitboxes",
+      "description": "Every hitbox moved or trimmed in fix 4 (Antelope, Deer, Warthog +0.5,+0.5; Fox Den, Meerkat Mound with their models; Rookery root flare to one cell) and every item naming one is schema-clean. Placement against the model is proven by tools/house-hitbox-check.mjs (local).",
+      "steps": [
+        {
+          "tool": "asset_check",
+          "name": "hitbox AntelopeShelter",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_AntelopeShelter.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "item AntelopeShelter",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_AntelopeShelter.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "hitbox DeerShelter",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_DeerShelter.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "item DeerShelter",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_DeerShelter.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "hitbox WarthogWallow",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_WarthogWallow.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "item WarthogWallow",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WarthogWallow.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "hitbox BisonBarn",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_House_BisonBarn.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "item BisonBarn",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BisonBarn.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "hitbox FoxDen",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_FoxDen.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "item FoxDen",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FoxDen.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "hitbox MeerkatMound",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_MeerkatMound.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "item MeerkatMound",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_MeerkatMound.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "hitbox Rookery",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_Rookery.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "item Rookery",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Rookery.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "hitbox WolfLodge",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_WolfLodge.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "item WolfLodge",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WolfLodge.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "hitbox BearCave",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/Houses/CozyRanch_House_BearCave.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "item BearCave",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BearCave.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "houses-fix4 WolfLodge",
+      "description": "Howling wolf sign (blocky relief, moon top left), doorway open from the threshold up, log pile clear of the wall.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "WolfLodge",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WolfLodge.json",
+            "views": [
+              "front",
+              "three_quarter",
+              "left"
+            ],
+            "size": 420
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "coverage": {
+              "$gt": 0.05
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 4
+              },
+              "depth": {
+                "$lte": 3.6
+              },
+              "height": {
+                "$lte": 4
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/houses-fix4/WolfLodge.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "WolfLodge texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_WolfLodge.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "houses-fix4 BearCave",
+      "description": "Doorway clear up to the lintel; rocks set square, grounded and stacked.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "BearCave",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BearCave.json",
+            "views": [
+              "front",
+              "three_quarter",
+              "left",
+              "back"
+            ],
+            "size": 360
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "coverage": {
+              "$gt": 0.05
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 4.05
+              },
+              "depth": {
+                "$lte": 4.05
+              },
+              "height": {
+                "$lte": 4.05
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/houses-fix4/BearCave.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "BearCave texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BearCave.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "houses-fix4 BisonBarn",
+      "description": "Moved half a block on X and Z so its 4 x 4 body centres on a cell corner like the Cow Barn (4 cells, not 5).",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "BisonBarn",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BisonBarn.json",
+            "views": [
+              "three_quarter",
+              "top"
+            ],
+            "size": 360
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "coverage": {
+              "$gt": 0.05
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 4.05
+              },
+              "depth": {
+                "$lte": 4.05
+              },
+              "height": {
+                "$lte": 4
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/houses-fix4/BisonBarn.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "BisonBarn texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_BisonBarn.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "houses-fix4 FoxDen",
+      "description": "Moved 6 units toward the front with its hitbox: 3 cells deep instead of 4.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "FoxDen",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FoxDen.json",
+            "views": [
+              "three_quarter",
+              "top"
+            ],
+            "size": 360
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "coverage": {
+              "$gt": 0.05
+            }
+          },
+          "golden": "tests/hytale/golden/houses-fix4/FoxDen.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "FoxDen texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FoxDen.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "houses-fix4 MeerkatMound",
+      "description": "Moved 4 units toward the front with its hitbox: 3 cells deep instead of 4.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "MeerkatMound",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_MeerkatMound.json",
+            "views": [
+              "three_quarter",
+              "top"
+            ],
+            "size": 360
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "coverage": {
+              "$gt": 0.05
+            }
+          },
+          "golden": "tests/hytale/golden/houses-fix4/MeerkatMound.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "MeerkatMound texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_MeerkatMound.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

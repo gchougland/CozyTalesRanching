@@ -1,0 +1,155 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_Dovecote"
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1,
+      "Y": 1.5625,
+      "Z": 1.8125
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -180,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Pigeon",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.8125,
+      "Y": 1.5625,
+      "Z": 1
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -90.00000000000001,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Pigeon",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.1875,
+      "Y": 1.5625,
+      "Z": 1
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 89.99999999999999,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Pigeon",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1,
+      "Y": 1.5625,
+      "Z": 0.1875
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -7.016709298534877e-15,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Pigeon",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.5625,
+      "Y": 2.0625,
+      "Z": 1.5625
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -135,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Pigeon",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.4375,
+      "Y": 2.0625,
+      "Z": 1.5625
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 135,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Pigeon",
+      "Scale": 0.45,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}

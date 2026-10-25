@@ -1,0 +1,109 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_ParrotPerch"
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.75,
+      "Y": 1.765625,
+      "Z": 1.21875
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -180,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Parrot",
+      "Scale": 0.4,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.4375,
+      "Y": 1.5625,
+      "Z": 1.375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -180,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Parrot",
+      "Scale": 0.4,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.6875,
+      "Y": 1.078125,
+      "Z": 1.375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -180,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Parrot",
+      "Scale": 0.4,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.375,
+      "Y": 1.65625,
+      "Z": 1.0625
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 149.99999999999997,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Parrot",
+      "Scale": 0.4,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}

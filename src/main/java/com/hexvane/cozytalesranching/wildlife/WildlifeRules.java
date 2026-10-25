@@ -27,7 +27,30 @@ public final class WildlifeRules {
      */
     public record HouseFacts(@Nonnull UUID houseId, @Nonnull UUID ownerId, @Nonnull String speciesId, boolean scanned,
                              boolean requirementsMet, double habitatScore, @Nonnull Set<String> features, int residents,
-                             double avgHappiness, int favoriteInTroughs, @Nonnull Map<String, Integer> stored) {}
+                             double avgHappiness, int favoriteInTroughs, @Nonnull Map<String, Integer> stored,
+                             int lovesMet, int lovesTotal) {
+        /** Facts with no loves counted (a species with no HabitatPrefers): the loves rule never holds such a house back. */
+        public HouseFacts(@Nonnull UUID houseId, @Nonnull UUID ownerId, @Nonnull String speciesId, boolean scanned,
+                          boolean requirementsMet, double habitatScore, @Nonnull Set<String> features, int residents,
+                          double avgHappiness, int favoriteInTroughs, @Nonnull Map<String, Integer> stored) {
+            this(houseId, ownerId, speciesId, scanned, requirementsMet, habitatScore, features, residents, avgHappiness, favoriteInTroughs, stored, 0, 0);
+        }
+    }
+
+    /**
+     * Gibson's rule (fix 4): a wild animal comes to a house only when MORE than half of the house's loves (its species'
+     * {@code HabitatPrefers}) are met there; half is not enough. A species that loves nothing in particular is not held back.
+     */
+    public static boolean lovesMet(int met, int total) {
+        return total <= 0 || met * 2 > total;
+    }
+
+    /** How many of {@code loves} are among the present features. */
+    public static int countLovesMet(@Nonnull Collection<String> loves, @Nonnull Set<String> present) {
+        int n = 0;
+        for (String l : new LinkedHashSet<>(loves)) if (present.contains(l)) n++;
+        return n;
+    }
 
     /** A species a house attracts now, with its weight (0..1 is a chance per visit, above 1 is certain). */
     public record Candidate(@Nonnull String speciesId, double score) {}
@@ -59,10 +82,11 @@ public final class WildlifeRules {
         return lastMs > 0 && nowMs - lastMs < Math.round(cooldownMinutes * MINUTE_MS);
     }
 
-    /** How strongly this house attracts {@code visitorSpecies}: 0 for not at all. */
+    /** How strongly this house attracts {@code visitorSpecies}: 0 for not at all, and 0 unless {@link #lovesMet} holds. */
     public static double score(@Nonnull WildlifeConfig config, @Nonnull String visitorSpecies, @Nonnull SpeciesWildlife sw,
                                @Nonnull HouseFacts house, long lastVisitMs, long nowMs) {
         if (!house.scanned() || onCooldown(lastVisitMs, sw.CooldownMinutes, nowMs)) return 0;
+        if (!lovesMet(house.lovesMet(), house.lovesTotal())) return 0;
         double best = 0;
         if (visitorSpecies.equals(house.speciesId())) {
             if (house.requirementsMet() && house.habitatScore() + 1e-6 >= config.MinHabitatScore) {
@@ -123,6 +147,7 @@ public final class WildlifeRules {
     /** Every condition of the rare variant holds at this house (only a house of its own species). */
     public static boolean rareConditionsMet(@Nonnull String visitorSpecies, @Nullable Rare rare, @Nonnull HouseFacts house) {
         if (rare == null || rare.Role.isEmpty() || !visitorSpecies.equals(house.speciesId()) || !house.scanned()) return false;
+        if (!lovesMet(house.lovesMet(), house.lovesTotal())) return false;
         if (!house.features().containsAll(rare.Features)) return false;
         if (house.habitatScore() + 1e-6 < rare.MinHabitatScore) return false;
         if (house.residents() < rare.MinResidents) return false;
@@ -138,6 +163,7 @@ public final class WildlifeRules {
     @Nonnull
     public static List<String> rareMissing(@Nonnull Rare rare, @Nonnull HouseFacts house) {
         List<String> out = new ArrayList<>();
+        if (!lovesMet(house.lovesMet(), house.lovesTotal())) out.add("loves>" + house.lovesTotal() / 2 + " of " + house.lovesTotal());
         for (String f : rare.Features) if (!house.features().contains(f)) out.add(f);
         if (house.habitatScore() + 1e-6 < rare.MinHabitatScore) out.add("score>=" + rare.MinHabitatScore);
         if (house.residents() < rare.MinResidents) out.add("residents>=" + rare.MinResidents);

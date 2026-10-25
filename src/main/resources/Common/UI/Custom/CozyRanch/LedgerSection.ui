@@ -1,0 +1,13 @@
+$H = "HouseStyles.ui";
+
+// A heading in the ledger list ("No house yet"), or a muted closing line ("and 12 more").
+Group #LedgerSectionRow {
+  LayoutMode: Left;
+  Anchor: (Height: 30, Top: 8, Right: 12);
+
+  Label #LSText {
+    FlexWeight: 1;
+    Style: (...$H.@SectionStyle, VerticalAlignment: Center);
+    Text: "";
+  }
+}

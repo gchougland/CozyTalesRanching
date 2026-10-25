@@ -6,7 +6,8 @@
   "Parent": "Template_Food",
   "Quality": "Uncommon",
   "Categories": [
-    "Items.Foods"
+    "Items.Foods",
+    "CozyRanch.Food"
   ],
   "Interactions": {
     "Secondary": "Root_Secondary_Consume_Food_T2"
@@ -44,10 +45,10 @@
   },
   "Icon": "Icons/ItemsGenerated/CozyRanch_Roasted_Skrill_Egg.png",
   "IconProperties": {
-    "Scale": 0.62,
+    "Scale": 0.7,
     "Translation": [
       0,
-      -6
+      -5.4
     ],
     "Rotation": [
       22.5,
@@ -65,7 +66,7 @@
         "Weight": 1
       }
     ],
-    "CustomModelScale": 0.5,
+    "CustomModelScale": 0.6,
     "HitboxType": "Food_Medium",
     "ParticleColor": "#f2ecdc",
     "TextureComputedColor": "#C8885E"

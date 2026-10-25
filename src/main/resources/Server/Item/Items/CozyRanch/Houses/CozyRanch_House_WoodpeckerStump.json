@@ -5,7 +5,8 @@
   },
   "Icon": "Icons/ItemsGenerated/CozyRanch_House_WoodpeckerStump.png",
   "Categories": [
-    "Furniture.Furniture"
+    "Furniture.Furniture",
+    "CozyRanch.Houses"
   ],
   "ItemLevel": 5,
   "Recipe": {
@@ -31,9 +32,9 @@
       {
         "Type": "Crafting",
         "Categories": [
-          "Farming"
+          "CozyRanch_Houses"
         ],
-        "Id": "Farmingbench"
+        "Id": "CozyRanch_RanchingBench"
       }
     ],
     "TimeSeconds": 3

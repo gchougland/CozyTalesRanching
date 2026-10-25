@@ -5,7 +5,8 @@
   },
   "Icon": "Icons/ItemsGenerated/CozyRanch_Feather_Pillow.png",
   "Categories": [
-    "Furniture.Furniture"
+    "Furniture.Furniture",
+    "CozyRanch.Decor"
   ],
   "Recipe": {
     "Input": [
@@ -25,6 +26,13 @@
         "Categories": [
           "Furniture_Textiles"
         ]
+      },
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "CozyRanch_ToysDecor"
+        ],
+        "Id": "CozyRanch_RanchingBench"
       }
     ],
     "TimeSeconds": 2

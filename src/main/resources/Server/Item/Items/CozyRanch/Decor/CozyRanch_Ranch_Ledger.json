@@ -5,7 +5,8 @@
   },
   "Icon": "Icons/ItemsGenerated/CozyRanch_Ranch_Ledger.png",
   "Categories": [
-    "Furniture.Furniture"
+    "Furniture.Furniture",
+    "CozyRanch.Decor"
   ],
   "Recipe": {
     "Input": [
@@ -33,6 +34,13 @@
         "Categories": [
           "Furniture_Misc"
         ]
+      },
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "CozyRanch_ToysDecor"
+        ],
+        "Id": "CozyRanch_RanchingBench"
       }
     ],
     "TimeSeconds": 2
@@ -53,6 +61,16 @@
       }
     ],
     "VariantRotation": "NESW",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CozyRanchOpenLedger"
+          }
+        ]
+      }
+    },
+    "InteractionHint": "cozyranch_items.ledger.hint",
     "HitboxType": "CozyRanch_Ranch_Ledger",
     "Gathering": {
       "Breaking": {

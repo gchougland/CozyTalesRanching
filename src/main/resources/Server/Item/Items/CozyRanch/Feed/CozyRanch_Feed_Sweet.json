@@ -5,7 +5,8 @@
   },
   "Quality": "Uncommon",
   "Categories": [
-    "Items.Foods"
+    "Items.Foods",
+    "CozyRanch.Food"
   ],
   "PlayerAnimationsId": "Item",
   "Icon": "Icons/ItemsGenerated/CozyRanch_Feed_Sweet.png",
@@ -44,9 +45,9 @@
       {
         "Type": "Crafting",
         "Categories": [
-          "Farming"
+          "CozyRanch_FeedCare"
         ],
-        "Id": "Farmingbench"
+        "Id": "CozyRanch_RanchingBench"
       }
     ],
     "TimeSeconds": 2

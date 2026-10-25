@@ -1,0 +1,292 @@
+{
+  "cases": [
+    {
+      "name": "catalog gate",
+      "description": "The pack validates; the creative tab, the bench and every item that names them check against the engine schema.",
+      "steps": [
+        {
+          "tool": "asset_validate",
+          "arguments": {
+            "project": "CozyTales-Ranching"
+          },
+          "expect": {
+            "valid": true,
+            "schemaErrors": 0,
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Category/CreativeLibrary/CozyRanch.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_RanchingBench.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_RanchingBench.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Block/Hitboxes/CozyRanch/CozyRanch_RanchingBench.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_House_CowBarn.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_CowBarn.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Toy_Ball.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Toys/CozyRanch_Toy_Ball.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        },
+        {
+          "tool": "asset_check",
+          "name": "CozyRanch_Tonic_Fireward.json",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Tonics/CozyRanch_Tonic_Fireward.json"
+          },
+          "expect": {
+            "errors": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "catalog bench model",
+      "description": "Ranching Bench: two cells wide like the Farming bench, blocky, under 255 nodes, painted texture passes the style check.",
+      "steps": [
+        {
+          "tool": "model_render",
+          "name": "RanchingBench three quarter",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json",
+            "views": [
+              "three_quarter",
+              "front",
+              "back_three_quarter"
+            ],
+            "grid": true,
+            "size": 384
+          },
+          "expect": {
+            "notes": {
+              "$length": 0
+            },
+            "nodes": {
+              "$lte": 255
+            },
+            "sizeBlocks": {
+              "width": {
+                "$lte": 2
+              },
+              "height": {
+                "$lte": 1.8
+              },
+              "depth": {
+                "$lte": 1
+              }
+            }
+          },
+          "golden": "tests/hytale/golden/catalog/RanchingBench.png"
+        },
+        {
+          "tool": "texture_check",
+          "name": "RanchingBench texture",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/CozyRanch_RanchingBench.json",
+            "image": false
+          },
+          "expect": {
+            "verdict": {
+              "$oneOf": [
+                "PASS",
+                "WARN"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "catalog icons",
+      "description": "Bench item icon and the creative tab icons (88 px grey and gold tab, 48 px white sub tabs, like vanilla ItemCategories).",
+      "steps": [
+        {
+          "tool": "texture_inspect",
+          "name": "CozyRanch_RanchingBench.png",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemsGenerated/CozyRanch_RanchingBench.png"
+          },
+          "expect": {
+            "width": 64,
+            "height": 64
+          }
+        },
+        {
+          "tool": "texture_inspect",
+          "name": "CozyRanch.png",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanch.png"
+          },
+          "expect": {
+            "width": 88,
+            "height": 88
+          }
+        },
+        {
+          "tool": "texture_inspect",
+          "name": "CozyRanchActive.png",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanchActive.png"
+          },
+          "expect": {
+            "width": 88,
+            "height": 88
+          }
+        },
+        {
+          "tool": "texture_inspect",
+          "name": "CozyRanch-Houses.png",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanch-Houses.png"
+          },
+          "expect": {
+            "width": 48,
+            "height": 48
+          }
+        },
+        {
+          "tool": "texture_inspect",
+          "name": "CozyRanch-Produce.png",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanch-Produce.png"
+          },
+          "expect": {
+            "width": 48,
+            "height": 48
+          }
+        },
+        {
+          "tool": "texture_inspect",
+          "name": "Houses.png",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/CraftingCategories/CozyRanch/Houses.png"
+          },
+          "expect": {
+            "width": 64,
+            "height": 64
+          }
+        },
+        {
+          "tool": "texture_inspect",
+          "name": "FeedCare.png",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/CraftingCategories/CozyRanch/FeedCare.png"
+          },
+          "expect": {
+            "width": 64,
+            "height": 64
+          }
+        },
+        {
+          "tool": "texture_inspect",
+          "name": "ToysDecor.png",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/CraftingCategories/CozyRanch/ToysDecor.png"
+          },
+          "expect": {
+            "width": 64,
+            "height": 64
+          }
+        },
+        {
+          "tool": "texture_preview",
+          "name": "CozyRanch",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanch.png"
+          },
+          "golden": "tests/hytale/golden/catalog/CozyRanch.png"
+        },
+        {
+          "tool": "texture_preview",
+          "name": "CozyRanchActive",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanchActive.png"
+          },
+          "golden": "tests/hytale/golden/catalog/CozyRanchActive.png"
+        },
+        {
+          "tool": "texture_preview",
+          "name": "CozyRanch-Houses",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanch-Houses.png"
+          },
+          "golden": "tests/hytale/golden/catalog/CozyRanch-Houses.png"
+        },
+        {
+          "tool": "texture_preview",
+          "name": "CozyRanch-Produce",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemCategories/CozyRanch-Produce.png"
+          },
+          "golden": "tests/hytale/golden/catalog/CozyRanch-Produce.png"
+        },
+        {
+          "tool": "texture_preview",
+          "name": "bench icon",
+          "arguments": {
+            "root": "projects",
+            "path": "CozyTales-Ranching/src/main/resources/Common/Icons/ItemsGenerated/CozyRanch_RanchingBench.png"
+          },
+          "golden": "tests/hytale/golden/catalog/CozyRanch_RanchingBench_icon.png"
+        }
+      ]
+    }
+  ]
+}

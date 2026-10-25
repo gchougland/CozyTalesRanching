@@ -77,7 +77,7 @@ public final class JournalView {
     public record SettingRow(@Nonnull String id, @Nonnull Txt name, @Nonnull Txt description, @Nonnull Txt state, boolean on) {}
 
     /** The How to sections, in reading order, with how many lines each has ({@code guide.<id>.title}, {@code guide.<id>.<n>}). */
-    static final String[][] GUIDE_LEFT = {{"friend", "4"}, {"home", "3"}, {"happy", "3"}};
+    static final String[][] GUIDE_LEFT = {{"friend", "4"}, {"home", "3"}, {"visitors", "1"}, {"happy", "3"}};
     static final String[][] GUIDE_RIGHT = {{"babies", "2"}, {"produce", "2"}, {"frogs", "2"}, {"wild", "3"}};
 
     private JournalView() {}

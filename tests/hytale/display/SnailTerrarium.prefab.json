@@ -1,0 +1,109 @@
+{
+ "version": 8,
+ "blockIdVersion": 11,
+ "anchorX": 0,
+ "anchorY": 0,
+ "anchorZ": 0,
+ "blocks": [
+  {
+   "x": 0,
+   "y": 0,
+   "z": 0,
+   "name": "CozyRanch_House_SnailTerrarium"
+  }
+ ],
+ "entities": [
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.625,
+      "Y": 0.53125,
+      "Z": 0.6875
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -150.00000000000003,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Snail_Frost",
+      "Scale": 0.35,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.40625,
+      "Y": 0.65625,
+      "Z": 0.59375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 149.99999999999997,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Snail_Magma",
+      "Scale": 0.35,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 0.75,
+      "Y": 0.4375,
+      "Z": 1.4375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": -170,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Snail_Garden",
+      "Scale": 0.35,
+      "Static": false
+     }
+    }
+   }
+  },
+  {
+   "Components": {
+    "Transform": {
+     "Position": {
+      "X": 1.4375,
+      "Y": 0.4375,
+      "Z": 1.375
+     },
+     "Rotation": {
+      "Pitch": 0,
+      "Yaw": 160.00000000000003,
+      "Roll": 0
+     }
+    },
+    "Model": {
+     "Model": {
+      "Id": "CozyRanch_Snail_Tide",
+      "Scale": 0.35,
+      "Static": false
+     }
+    }
+   }
+  }
+ ]
+}
