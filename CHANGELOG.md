@@ -7,6 +7,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 ### Changed
 
 - **Lighter journal pictures:** the journal's animal pictures and silhouettes now take up about a fifth of the shared UI texture space they did (about 4.6 instead of 24 megapixels), leaving room for other mods' interfaces. They look the same in game.
+- **Lighter house textures:** the animal houses take up about a third less of the shared block texture space (about 6.6 instead of 9.6 megapixels). They look the same in game.
 
 ## [0.6.0] - 10/25/2026
 
