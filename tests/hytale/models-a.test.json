@@ -13,7 +13,7 @@
       "steps": [
         { "tool": "model_render",
           "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_ChickenCoop.json", "views": ["three_quarter"], "size": 300 },
-          "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "textureSize": [256, 256], "coverage": { "$gt": 0.05 },
+          "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "textureSize": [96, 512], "coverage": { "$gt": 0.05 },
             "sizeBlocks": { "width": { "$lte": 2.25 }, "depth": { "$lte": 2.25 }, "height": { "$gt": 3.2, "$lt": 3.4 } } },
           "golden": "tests/hytale/golden/models-a/chicken-coop.png" },
         { "tool": "texture_check",
@@ -27,7 +27,7 @@
       "steps": [
         { "tool": "model_render",
           "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_Pigsty.json", "views": ["three_quarter"], "size": 300 },
-          "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "textureSize": [512, 224], "coverage": { "$gt": 0.05 },
+          "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "textureSize": [128, 544], "coverage": { "$gt": 0.05 },
             "sizeBlocks": { "width": { "$lte": 3.1 }, "depth": { "$lte": 3.1 }, "height": { "$gt": 1.7, "$lt": 2 } } },
           "golden": "tests/hytale/golden/models-a/pigsty.png" },
         { "tool": "texture_check",
@@ -41,7 +41,7 @@
       "steps": [
         { "tool": "model_render",
           "arguments": { "root": "projects", "path": "CozyTales-Ranching/src/main/resources/Server/Item/Items/CozyRanch/Houses/CozyRanch_House_FrogPond.json", "views": ["three_quarter"], "size": 300 },
-          "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "textureSize": [256, 384], "coverage": { "$gt": 0.05 },
+          "expect": { "notes": { "$length": 0 }, "nodes": { "$lte": 255 }, "textureSize": [224, 256], "coverage": { "$gt": 0.05 },
             "sizeBlocks": { "width": { "$lte": 3.05 }, "depth": { "$lte": 3.05 }, "height": { "$gt": 1.6, "$lt": 2 } } },
           "golden": "tests/hytale/golden/models-a/frog-pond.png" },
         { "tool": "texture_check",
