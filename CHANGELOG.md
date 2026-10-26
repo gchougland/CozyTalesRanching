@@ -89,7 +89,7 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 - **Using a full house** while animals follow you opens its page and says it is full; they keep following.
 - **House page messages** no longer push the page off the bottom of the screen.
 - **Animations:** feet stay on the ground across the animals' animations.
-- **Performance:** the ranch saves far less often and writes smaller save files, and the mod's download is smaller.
+- **Performance:** the ranch saves far less often and writes smaller save files, the mod's download is smaller, and the journal's animal pictures use about a fifth of the UI texture space they did (about 4.6 instead of 24 megapixels), leaving room for other mods' UI.
 
 ### Fixed
 
