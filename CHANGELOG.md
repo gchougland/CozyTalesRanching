@@ -8,6 +8,10 @@ All notable changes to Cozy Tales: Ranching are documented in this file.
 
 - **Lighter house textures:** the animal houses take up about a third less of the shared block texture space (about 6.6 instead of 9.6 megapixels). They look the same in game.
 
+### Fixed
+
+- **Log spam from house displays:** when something removes an animal shown on its house at night (usually another mod), the house now waits five minutes before trying again instead of every few seconds, and the log says so once per animal, naming the other mods' systems that could have removed it.
+
 ## [0.6.1] - 10/26/2026
 
 ### Changed

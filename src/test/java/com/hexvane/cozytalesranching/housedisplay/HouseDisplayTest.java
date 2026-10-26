@@ -132,4 +132,34 @@ class HouseDisplayTest {
             }
         }
     }
+
+    @Test
+    void aFailedSpawnWaitsThenTriesAgain() {
+        DisplayBackoff b = new DisplayBackoff();
+        UUID house = UUID.randomUUID();
+        UUID other = UUID.randomUUID();
+        assertFalse(b.waiting(house, 0));
+        b.failed(house, 1000);
+        assertTrue(b.waiting(house, 1000));
+        assertTrue(b.waiting(house, 1000 + DisplayBackoff.WAIT_MS - 1));
+        assertFalse(b.waiting(other, 1000), "other houses keep trying");
+        assertFalse(b.waiting(house, 1000 + DisplayBackoff.WAIT_MS));
+        assertFalse(b.waiting(house, 1000 + DisplayBackoff.WAIT_MS + 1), "the wait is over until it fails again");
+        b.failed(house, 5000);
+        b.forget(house);
+        assertFalse(b.waiting(house, 5000), "a house taken down tries again at once");
+    }
+
+    @Test
+    void eachModelIsReportedOnceUntilAReload() {
+        DisplayBackoff b = new DisplayBackoff();
+        assertTrue(b.firstFailure("CozyRanch_Chicken"));
+        assertFalse(b.firstFailure("CozyRanch_Chicken"));
+        assertTrue(b.firstFailure("CozyRanch_Frog"));
+        UUID house = UUID.randomUUID();
+        b.failed(house, 0);
+        b.clear();
+        assertTrue(b.firstFailure("CozyRanch_Chicken"));
+        assertFalse(b.waiting(house, 0));
+    }
 }

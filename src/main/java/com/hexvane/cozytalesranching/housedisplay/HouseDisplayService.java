@@ -7,11 +7,15 @@ import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hypixel.hytale.component.AddReason;
+import com.hypixel.hytale.component.Archetype;
+import com.hypixel.hytale.component.ComponentRegistry;
 import com.hypixel.hytale.component.Holder;
 import com.hypixel.hytale.component.NonSerialized;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.RemoveReason;
 import com.hypixel.hytale.component.Store;
+import com.hypixel.hytale.component.SystemType;
+import com.hypixel.hytale.component.system.QuerySystem;
 import com.hypixel.hytale.math.util.ChunkUtil;
 import com.hypixel.hytale.math.vector.Rotation3f;
 import com.hypixel.hytale.protocol.AnimationSlot;
@@ -29,13 +33,17 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.NPCPlugin;
 import com.hypixel.hytale.server.spawning.ISpawnableWithModel;
 import com.hypixel.hytale.server.spawning.SpawningContext;
+import java.security.CodeSource;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
@@ -79,11 +87,14 @@ final class HouseDisplayService {
     private static final Map<UUID, HouseShows> SHOWN = new ConcurrentHashMap<>();
     /** Role id to model asset id (a role's appearance does not change while the server runs, except on reload). */
     private static final Map<String, String> ROLE_MODEL = new ConcurrentHashMap<>();
+    /** Houses waiting after a failed spawn, and models already reported. */
+    private static final DisplayBackoff BACKOFF = new DisplayBackoff();
 
     private HouseDisplayService() {}
 
     static void clearCaches() {
         ROLE_MODEL.clear();
+        BACKOFF.clear();
     }
 
     /** Brings one house's shown animals in line with the residents inside it. */
@@ -132,18 +143,27 @@ final class HouseDisplayService {
                 it.remove();
             }
         }
-        for (Map.Entry<Integer, UUID> e : plan.entrySet()) {
-            if (shows.slots.containsKey(e.getKey())) continue;
-            Spec spec = spec(points.get(e.getKey()), house, byId.get(e.getValue()));
-            if (spec == null) continue;
-            Ref<EntityStore> ref = spawn(store, spec, byId.get(e.getValue()));
-            if (ref != null) shows.slots.put(e.getKey(), new Shown(e.getValue(), ref, spec.key()));
+        long now = System.currentTimeMillis();
+        if (!BACKOFF.waiting(house.houseId, now)) {
+            for (Map.Entry<Integer, UUID> e : plan.entrySet()) {
+                if (shows.slots.containsKey(e.getKey())) continue;
+                Spec spec = spec(points.get(e.getKey()), house, byId.get(e.getValue()));
+                if (spec == null) continue;
+                Ref<EntityStore> ref = spawn(store, spec, byId.get(e.getValue()));
+                if (ref == null) {
+                    // something removed it as it was added: the rest would likely go the same way, so wait
+                    BACKOFF.failed(house.houseId, now);
+                    break;
+                }
+                shows.slots.put(e.getKey(), new Shown(e.getValue(), ref, spec.key()));
+            }
         }
         if (shows.slots.isEmpty()) SHOWN.remove(house.houseId, shows);
     }
 
     /** Takes down every animal shown on a house. */
     static void hideAll(@Nonnull World world, @Nonnull UUID houseId) {
+        BACKOFF.forget(houseId);
         HouseShows shows = SHOWN.remove(houseId);
         if (shows == null) return;
         Store<EntityStore> store = world.getEntityStore().getStore();
@@ -258,12 +278,55 @@ final class HouseDisplayService {
             anim.setPlayingAnimation(AnimationSlot.Movement, spec.animation());
             holder.addComponent(ActiveAnimationComponent.getComponentType(), anim);
         }
+        Archetype<EntityStore> archetype = holder.getArchetype();
         Ref<EntityStore> ref = store.addEntity(holder, AddReason.SPAWN);
         if (ref == null || !ref.isValid()) {
-            LOG.info("House display: could not add a " + spec.modelId() + " model entity");
+            if (BACKOFF.firstFailure(spec.modelId())) {
+                LOG.info("House display: a " + spec.modelId() + " model entity was removed as it was added, so that resident"
+                    + " is not shown; its house tries again every " + DisplayBackoff.WAIT_MS / 60000 + " minutes. "
+                    + suspects(store, archetype) + " (Reported once per model.)");
+            }
             return null;
         }
         return ref;
+    }
+
+    /**
+     * Systems from other mods that run when an entity like this one is added: one of them (or a component one adds)
+     * is likely what removed it. The store queues a removal and carries it out later, so the remover cannot be read
+     * from a stack; these are the systems that saw the entity.
+     */
+    @Nonnull
+    private static String suspects(@Nonnull Store<EntityStore> store, @Nonnull Archetype<EntityStore> archetype) {
+        ComponentRegistry<EntityStore> registry = store.getRegistry();
+        ComponentRegistry.Data<EntityStore> data = registry._internal_getData();
+        Set<String> found = new LinkedHashSet<>();
+        for (SystemType<EntityStore, ? extends QuerySystem<EntityStore>> type : List.of(registry.getHolderSystemType(), registry.getRefSystemType())) {
+            BitSet indexes = data.getSystemIndexesForType(type);
+            for (int i = indexes.nextSetBit(0); i >= 0; i = indexes.nextSetBit(i + 1)) {
+                QuerySystem<EntityStore> system = data.getSystem(i, type);
+                Class<?> c = system.getClass();
+                if (c.getName().startsWith("com.hypixel.hytale.") || c.getName().startsWith("com.hexvane.cozytalesranching.")) continue;
+                if (!system.test(registry, archetype)) continue;
+                found.add(c.getName() + where(c));
+            }
+        }
+        return found.isEmpty()
+            ? "No other mod's system sees it, so the game itself removed it."
+            : "Systems from other mods that see it: " + String.join(", ", found) + ".";
+    }
+
+    /** " (Some.jar)" for the jar a class came from, or "" when that cannot be read. */
+    @Nonnull
+    private static String where(@Nonnull Class<?> c) {
+        try {
+            CodeSource source = c.getProtectionDomain().getCodeSource();
+            if (source == null || source.getLocation() == null) return "";
+            String path = source.getLocation().getPath();
+            return " (" + path.substring(path.lastIndexOf('/', path.length() - 2) + 1) + ")";
+        } catch (RuntimeException e) {
+            return "";
+        }
     }
 
     private static void remove(@Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref) {
