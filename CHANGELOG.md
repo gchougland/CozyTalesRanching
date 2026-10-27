@@ -2,7 +2,7 @@
 
 All notable changes to Cozy Tales: Ranching are documented in this file.
 
-## [Unreleased]
+## [0.6.3] - 10/27/2026
 
 ### Fixed
 
