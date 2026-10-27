@@ -4,3 +4,7 @@ commands.refresh.desc=Revisa ahora todas las casas que muestran animales.
 status.line={house} en {x} {y} {z}: {shown} de {points} plazas ocupadas, {inside} dentro: {models}
 status.none=Ninguna casa aquí tiene espacio para animales.
 refresh.done=Comprobado. {shown} animales mostrados.
+commands.freeze.desc=Detiene la actualización de este chunk, como cuando no hay jugadores cerca (para pruebas)
+commands.thaw.desc=Reanuda la actualización de este chunk (para pruebas)
+freeze.done={sections} secciones aquí dejaron de actualizarse.
+thaw.done={sections} secciones aquí vuelven a actualizarse.

@@ -29,6 +29,7 @@ import com.hypixel.hytale.server.core.modules.entity.component.ModelComponent;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.modules.entity.tracker.NetworkId;
 import com.hypixel.hytale.server.core.universe.world.World;
+import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.NPCPlugin;
 import com.hypixel.hytale.server.spawning.ISpawnableWithModel;
@@ -59,6 +60,8 @@ import org.joml.Vector3d;
  * World thread only, outside system ticks (world tasks, house day hooks, events relayed with
  * {@code world.execute}). What is shown is kept in memory: the entities are {@code NonSerialized}, so a save
  * never stores them, a chunk unload drops them and a restart starts with none; the next check makes them again.
+ * They are only made where the section ticks ({@link #isTicking}), and a parked copy the game adds back later is
+ * removed on arrival ({@link DisplayCleanupSystem}).
  */
 final class HouseDisplayService {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
@@ -107,7 +110,7 @@ final class HouseDisplayService {
         }
         Store<EntityStore> store = world.getEntityStore().getStore();
         HouseShows shows = SHOWN.get(house.houseId);
-        if (!isLoaded(world, house.x, house.z)) {
+        if (!isTicking(world, house.x, house.y, house.z)) {
             if (shows != null) shows.slots.values().removeIf(s -> !s.ref().isValid());
             return;
         }
@@ -149,6 +152,8 @@ final class HouseDisplayService {
                 if (shows.slots.containsKey(e.getKey())) continue;
                 Spec spec = spec(points.get(e.getKey()), house, byId.get(e.getValue()));
                 if (spec == null) continue;
+                // a point can sit in another section than the house block
+                if (!isTicking(world, spec.at().x(), spec.at().y(), spec.at().z())) continue;
                 Ref<EntityStore> ref = spawn(store, spec, byId.get(e.getValue()));
                 if (ref == null) {
                     // something removed it as it was added: the rest would likely go the same way, so wait
@@ -268,6 +273,7 @@ final class HouseDisplayService {
         Holder<EntityStore> holder = store.getRegistry().newHolder();
         holder.addComponent(NetworkId.getComponentType(), new NetworkId(store.getExternalData().takeNextNetworkId()));
         holder.addComponent(EntityStore.REGISTRY.getNonSerializedComponentType(), NonSerialized.get());
+        holder.addComponent(DisplayMarker.getComponentType(), DisplayMarker.INSTANCE);
         holder.addComponent(TransformComponent.getComponentType(), new TransformComponent(new Vector3d(spec.at().x(), spec.at().y(), spec.at().z()), rotation));
         holder.addComponent(HeadRotation.getComponentType(), new HeadRotation(rotation));
         holder.addComponent(ModelComponent.getComponentType(), new ModelComponent(model));
@@ -333,7 +339,16 @@ final class HouseDisplayService {
         if (ref.isValid()) store.removeEntity(ref, RemoveReason.REMOVE);
     }
 
-    static boolean isLoaded(@Nonnull World world, double x, double z) {
-        return world.getChunkStore().getChunkReference(ChunkUtil.indexChunkFromBlock(x, z)) != null;
+    /**
+     * True if the section holding this point is loaded and ticking. A loaded chunk is not enough: an entity added
+     * to a non-ticking section (no players near) is taken out of the world at once and parked in the section as a
+     * holder, even a never-saved one, and comes back when the section ticks again, by then no longer tracked here.
+     */
+    static boolean isTicking(@Nonnull World world, double x, double y, double z) {
+        ChunkStore chunks = world.getChunkStore();
+        Ref<ChunkStore> section = chunks.getChunkSectionReference(
+            ChunkUtil.chunkCoordinate(x), ChunkUtil.chunkCoordinate(y), ChunkUtil.chunkCoordinate(z));
+        return section != null && section.isValid()
+            && !chunks.getStore().getArchetype(section).contains(ChunkStore.REGISTRY.getNonTickingComponentType());
     }
 }

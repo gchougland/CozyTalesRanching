@@ -28,7 +28,9 @@ public final class HouseDisplayFeature {
     public static void register(@Nonnull CozyTalesRanchingPlugin plugin) {
         dataDirectory = plugin.getDataDirectory();
         HouseDisplayData.load(plugin.getDataDirectory());
+        DisplayMarker.bindType(plugin.getEntityStoreRegistry().registerComponent(DisplayMarker.class, () -> DisplayMarker.INSTANCE));
         plugin.getEntityStoreRegistry().registerSystem(new HouseDisplaySystem());
+        plugin.getEntityStoreRegistry().registerSystem(new DisplayCleanupSystem());
         HouseDayHooks.register(new HouseDayHooks.Hook() {
             @Override
             public void onNightfall(@Nonnull World world, @Nonnull HouseRecord house, @Nonnull List<AnimalRecord> residents) {

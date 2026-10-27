@@ -2,6 +2,12 @@
 
 All notable changes to Cozy Tales: Ranching are documented in this file.
 
+## [Unreleased]
+
+### Fixed
+
+- **House displays leaked entities:** a house whose chunk stayed loaded with no players near kept adding display animals the game parked out of the world, and they all came back as stacked copies when a player returned (thousands on a busy server). Displays are now only made where the world is ticking, and any parked copy that comes back is removed as it arrives. This was also the real cause of the "removed as it was added" log line from 0.6.2. Thanks to the server owner who tracked it down.
+
 ## [0.6.2] - 10/26/2026
 
 ### Changed

@@ -765,6 +765,334 @@
           }
         }
       ]
+    },
+    {
+      "name": "display paused chunk",
+      "description": "Port 5597. The server owner's leak: a loaded chunk with no player near stops ticking, and the game parks any entity added there (even a never-saved one) and adds it back when the chunk ticks again. /ranch display freeze pauses the house's chunk the same way (the game leaves it so while the player stays). While paused, three checks (5 s apart) make no display; after thaw, the world holds exactly the two shown display entities. The fix-off build left a third, untracked copy.",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.2.jar"
+            ],
+            "authMode": "insecure",
+            "port": 5597
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555"
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug nightfall"
+          },
+          "save": "night"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${night.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.nightfall"
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug place songbird"
+          },
+          "save": "placed"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${placed.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.placed"
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch breed testhouse songbird --role=CozyRanch_Songbird_Bluebird+CozyRanch_Songbird_Finch"
+          },
+          "save": "house"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${house.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_breeding.debug.testhouse.done"
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display refresh"
+          },
+          "save": "refresh"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${refresh.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.refresh.done",
+                "params": {
+                  "shown": {
+                    "value": 2
+                  },
+                  "entities": {
+                    "value": 2
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display freeze"
+          },
+          "save": "freeze"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${freeze.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.freeze.done"
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait for: the shown animals are parked with the chunk",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 1000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display refresh"
+          },
+          "save": "refreshF1"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${refreshF1.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.refresh.done",
+                "params": {
+                  "shown": {
+                    "value": 0
+                  },
+                  "entities": {
+                    "value": 0
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          },
+          "name": "paused: nothing shown, nothing made"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait for: two more 5 s checks while paused",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 11000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display refresh"
+          },
+          "save": "refreshF2"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${refreshF2.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.refresh.done",
+                "params": {
+                  "entities": {
+                    "value": 0
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display thaw"
+          },
+          "save": "thaw"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${thaw.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.thaw.done"
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait for: the chunk ticks again and anything parked comes back",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch display refresh"
+          },
+          "save": "refresh2"
+        },
+        {
+          "tool": "bot_expect",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${refresh2.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_display.refresh.done",
+                "params": {
+                  "shown": {
+                    "value": 2
+                  },
+                  "entities": {
+                    "value": 2
+                  }
+                }
+              }
+            }
+          },
+          "expect": {
+            "matched": true
+          },
+          "name": "two shown, and no other display entity in the world"
+        }
+      ]
     }
   ]
 }

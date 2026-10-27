@@ -4,3 +4,7 @@ commands.refresh.desc=Check every house that shows animals now
 status.line={house} at {x} {y} {z}: {shown} of {points} spots filled, {inside} inside: {models}
 status.none=No house here has spots for animals.
 refresh.done=Checked. {shown} animals shown.
+commands.freeze.desc=Stop ticking in this chunk, as when no player is near (test fixture)
+commands.thaw.desc=Start ticking in this chunk again (test fixture)
+freeze.done={sections} sections here stopped ticking.
+thaw.done={sections} sections here tick again.

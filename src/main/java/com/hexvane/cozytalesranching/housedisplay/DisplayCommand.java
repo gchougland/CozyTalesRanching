@@ -4,6 +4,8 @@ import com.hexvane.cozytalesranching.RanchPermissions;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.house.HouseRecord;
+import com.hypixel.hytale.component.ComponentType;
+import com.hypixel.hytale.component.NonTicking;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.Message;
@@ -14,7 +16,9 @@ import com.hypixel.hytale.server.core.modules.entity.component.Intangible;
 import com.hypixel.hytale.server.core.modules.entity.component.ModelComponent;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.math.util.ChunkUtil;
 import com.hypixel.hytale.server.core.universe.world.World;
+import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.List;
 import java.util.Locale;
@@ -24,7 +28,8 @@ import javax.annotation.Nonnull;
 /**
  * {@code /ranch display status} lists, per house in the player's world that has display points, how many residents
  * are inside and which are shown (also logged, with each shown entity's model, scale and position, for server
- * tests). {@code /ranch display refresh} runs the check now. Admin only.
+ * tests). {@code /ranch display refresh} runs the check now. {@code /ranch display freeze|thaw} stops or restarts
+ * ticking in the player's chunk, as the game does when no player is near (a test fixture). Admin only.
  */
 public final class DisplayCommand extends AbstractCommandCollection {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
@@ -34,6 +39,8 @@ public final class DisplayCommand extends AbstractCommandCollection {
         this.requireNoPermission();
         this.addSubCommand(new StatusCommand());
         this.addSubCommand(new RefreshCommand());
+        this.addSubCommand(new TickingCommand("freeze", true));
+        this.addSubCommand(new TickingCommand("thaw", false));
     }
 
     private static final class StatusCommand extends AbstractPlayerCommand {
@@ -93,7 +100,49 @@ public final class DisplayCommand extends AbstractCommandCollection {
         @Override
         protected void execute(@Nonnull CommandContext context, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef playerRef, @Nonnull World world) {
             HouseDisplayService.pass(world);
-            context.sendMessage(Message.translation("cozyranch_display.refresh.done").param("shown", HouseDisplayService.shownCount()));
+            // every display entity in this world, tracked or not (for server tests: no stray copies)
+            int entities = store.getEntityCountFor(DisplayMarker.getComponentType());
+            LOG.info("House display refresh: " + HouseDisplayService.shownCount() + " shown, " + entities + " display entities in " + world.getName());
+            context.sendMessage(Message.translation("cozyranch_display.refresh.done").param("shown", HouseDisplayService.shownCount()).param("entities", entities));
+        }
+    }
+
+    /**
+     * Marks the player's chunk and its sections non-ticking, or ticking again, the way the game does when no player
+     * is near: entities in it are parked, and come back when it ticks again. While the player stays, the game does
+     * not undo it (it only wakes sections that newly come into range).
+     */
+    private static final class TickingCommand extends AbstractPlayerCommand {
+        private final boolean freeze;
+
+        TickingCommand(@Nonnull String name, boolean freeze) {
+            super(name, "cozyranch_display.commands." + name + ".desc");
+            this.freeze = freeze;
+            this.requirePermission(RanchPermissions.ADMIN);
+        }
+
+        @Override
+        protected void execute(@Nonnull CommandContext context, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef playerRef, @Nonnull World world) {
+            TransformComponent t = store.getComponent(ref, TransformComponent.getComponentType());
+            if (t == null) return;
+            ChunkStore chunks = world.getChunkStore();
+            Ref<ChunkStore> column = chunks.getChunkReference(ChunkUtil.indexChunkFromBlock(t.getPosition().x, t.getPosition().z));
+            if (column == null || !column.isValid()) return;
+            Store<ChunkStore> chunkStore = chunks.getStore();
+            ComponentType<ChunkStore, NonTicking<ChunkStore>> nonTicking = ChunkStore.REGISTRY.getNonTickingComponentType();
+            int cx = ChunkUtil.chunkCoordinate(t.getPosition().x), cz = ChunkUtil.chunkCoordinate(t.getPosition().z);
+            int n = 0;
+            // sections from the bottom up, until the first one that is not there
+            for (int cy = 0; ; cy++) {
+                Ref<ChunkStore> section = chunks.getChunkSectionReference(cx, cy, cz);
+                if (section == null || !section.isValid()) break;
+                if (freeze) chunkStore.ensureComponent(section, nonTicking);
+                else chunkStore.tryRemoveComponent(section, nonTicking);
+                n++;
+            }
+            if (freeze) chunkStore.ensureComponent(column, nonTicking);
+            else chunkStore.tryRemoveComponent(column, nonTicking);
+            context.sendMessage(Message.translation("cozyranch_display." + (freeze ? "freeze" : "thaw") + ".done").param("sections", n));
         }
     }
 }
