@@ -12,7 +12,9 @@ import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredAr
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractCommandCollection;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
+import com.hypixel.hytale.server.core.inventory.InventoryComponent;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
+import com.hypixel.hytale.server.core.modules.entity.item.ItemComponent;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
@@ -22,7 +24,7 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import org.joml.Vector3d;
 
-/** {@code /ranch produce status|tick [minutes]|collect}: admin test tools for production, usable by the headless player. */
+/** {@code /ranch produce status|tick [minutes]|collect|ground}: admin test tools for production, usable by the headless player. */
 public final class ProduceCommand extends AbstractCommandCollection {
     static final double COLLECT_RADIUS = 32;
 
@@ -32,6 +34,7 @@ public final class ProduceCommand extends AbstractCommandCollection {
         this.addSubCommand(new Status());
         this.addSubCommand(new Tick());
         this.addSubCommand(new Collect());
+        this.addSubCommand(new Ground());
         this.addSubCommand(new PoopCommand());
     }
 
@@ -142,6 +145,42 @@ public final class ProduceCommand extends AbstractCommandCollection {
                 }
             }
             if (found == 0) context.sendMessage(Message.translation("cozyranch_produce.collect.none").param("radius", (int) COLLECT_RADIUS));
+        }
+    }
+
+    /**
+     * Counts products lying as dropped items within 32 blocks, plus those in the player's inventory, since a player
+     * standing at a door picks up what drops there. What a gone house really dropped, for tests.
+     */
+    static final class Ground extends AbstractPlayerCommand {
+        Ground() {
+            super("ground", "cozyranch_produce.commands.produce.ground.desc");
+            this.requirePermission(RanchPermissions.ADMIN);
+        }
+
+        @Override
+        protected void execute(@Nonnull CommandContext context, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef player, @Nonnull World world) {
+            TransformComponent t = store.getComponent(ref, TransformComponent.getComponentType());
+            if (t == null) return;
+            Vector3d pos = t.getPosition();
+            int[] bucket = {0};
+            int[] other = {0};
+            store.forEachChunk(ItemComponent.getComponentType(), (chunk, buffer) -> {
+                for (int i = 0; i < chunk.size(); i++) {
+                    ItemComponent item = chunk.getComponent(i, ItemComponent.getComponentType());
+                    TransformComponent it = chunk.getComponent(i, TransformComponent.getComponentType());
+                    if (item == null || it == null || item.getItemStack() == null) continue;
+                    if (it.getPosition().distanceSquared(pos) > COLLECT_RADIUS * COLLECT_RADIUS) continue;
+                    String id = item.getItemStack().getItemId();
+                    if (ProduceService.isBucketProduct(id)) bucket[0] += item.getItemStack().getQuantity();
+                    else if (ProduceService.isProduct(id)) other[0] += item.getItemStack().getQuantity();
+                }
+            });
+            var held = InventoryComponent.getCombined(store, ref, InventoryComponent.EVERYTHING);
+            bucket[0] += held.countItemStacks(i -> ProduceService.isBucketProduct(i.getItemId()));
+            other[0] += held.countItemStacks(i -> !ProduceService.isBucketProduct(i.getItemId()) && ProduceService.isProduct(i.getItemId()));
+            context.sendMessage(Message.translation("cozyranch_produce.ground.done")
+                .param("bucket", bucket[0]).param("other", other[0]).param("radius", (int) COLLECT_RADIUS));
         }
     }
 }

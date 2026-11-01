@@ -1,7 +1,9 @@
 package com.hexvane.cozytalesranching.animal;
 
+import com.hexvane.cozytalesranching.RanchChunks;
 import com.hexvane.cozytalesranching.compat.CompatGuard;
 import com.hexvane.cozytalesranching.config.RanchConfig;
+import com.hexvane.cozytalesranching.house.HouseRecord;
 import com.hexvane.cozytalesranching.species.SpeciesDefinition;
 import com.hexvane.cozytalesranching.species.SpeciesRegistry;
 import com.hypixel.hytale.component.ComponentType;
@@ -44,13 +46,13 @@ import org.joml.Vector3d;
  * thread. A sweep walks that world's records once (no entity scans, no chunk loads):
  * <ul>
  *   <li>current entity loaded: refresh the record's last position if it moved;</li>
- *   <li>ACTIVE, not loaded, but the chunk where it was last seen is loaded for {@link #SUSPECT_SWEEPS}
- *       sweeps in a row: it is gone, mark it MISSING;</li>
- *   <li>MISSING for {@code RecoveryDelaySeconds}: respawn it beside its owner (online, same world) or where
- *       it was last seen (chunk loaded), on a spot the game's own spawn test accepts and with no fluid
- *       underfoot. If neither place is loaded it waits.</li>
+ *   <li>ACTIVE, not loaded, but the section where it was last seen is ticking for {@link #SUSPECT_SWEEPS}
+ *       sweeps in a row: it is gone, mark it MISSING. A paused section ({@link RanchChunks#isTicking}) has
+ *       parked its entities, so an animal last seen there is not gone ({@link #maySuspect});</li>
+ *   <li>MISSING for {@code RecoveryDelaySeconds}, and past its death cooldown if it was killed: bring it back at the
+ *       first place of {@link #recoveryOrder} that is ticking, on a spot the game's own spawn test accepts and with
+ *       no fluid underfoot. If its house or last spot is paused or unloaded it waits.</li>
  * </ul>
- * Houses are wave 2; once they have a position, "near its house" goes first here.
  */
 final class AnimalRecovery {
     private static final Logger LOG = Logger.getLogger("CozyTalesRanching");
@@ -107,7 +109,7 @@ final class AnimalRecovery {
 
     private void sweepOne(World world, Store<EntityStore> store, AnimalRecord r, long now) {
         switch (r.state) {
-            case STORED -> { }
+            case STORED, CRATED -> { }
             case ACTIVE -> {
                 Ref<EntityStore> ref = AnimalPresence.get(r.animalId);
                 if (ref == null && r.entityUuid != null) {
@@ -120,7 +122,7 @@ final class AnimalRecovery {
                     if (ref.getStore() == store) refreshPosition(store, ref, r);
                     return;
                 }
-                if (r.entityUuid == null || !isChunkLoaded(world, r.lastX, r.lastZ)) {
+                if (r.entityUuid == null || !maySuspect(r.following, isChunkLoaded(world, r.lastX, r.lastZ), RanchChunks.isTicking(world, r.lastX, r.lastY, r.lastZ))) {
                     AnimalPresence.clearSuspect(r.animalId);
                     return;
                 }
@@ -132,12 +134,72 @@ final class AnimalRecovery {
                 }
             }
             case MISSING -> {
+                if (r.deathCooldownLeftMs(now) > 0) return;
                 if (now - AnimalPresence.missingSince(r.animalId, now) < recoveryDelayMs()) return;
-                Vector3d near = recoveryTarget(world, r);
-                if (near != null && !respawn(world, store, r, near)) noteFailure(r, near, now);
+                recover(world, store, r, now);
             }
         }
     }
+
+    /**
+     * Whether an unloaded ACTIVE animal can be taken for gone. Its section must be ticking: a paused one has parked it, and
+     * it comes back by itself. A follower only needs a loaded chunk, since parked it cannot catch up with its owner, who is
+     * where it belongs (a teleporter, a fast mount); recovery makes a new one there.
+     */
+    static boolean maySuspect(boolean following, boolean chunkLoaded, boolean sectionTicking) {
+        return following ? chunkLoaded : sectionTicking;
+    }
+
+    enum Place { HOUSE, OWNER, LAST_SPOT }
+
+    /**
+     * Where a missing animal may come back, best first. A follower goes to its owner, a resident to its house, an animal told
+     * to stay to where it stayed. The owner comes after the last spot only for a spot that is ticking and has no room (it
+     * fell into lava), never because the last spot is far away.
+     */
+    @Nonnull
+    static List<Place> recoveryOrder(boolean following, boolean hasHouse) {
+        if (following) return List.of(Place.OWNER, hasHouse ? Place.HOUSE : Place.LAST_SPOT);
+        return hasHouse ? List.of(Place.HOUSE) : List.of(Place.LAST_SPOT, Place.OWNER);
+    }
+
+    private void recover(@Nonnull World world, @Nonnull Store<EntityStore> store, @Nonnull AnimalRecord r, long now) {
+        HouseRecord house = r.houseId == null ? null
+            : Ranch.houses().get(r.houseId).filter(h -> h.worldName.equals(world.getName())).orElse(null);
+        Vector3d tried = null;
+        for (Place place : recoveryOrder(r.following, house != null)) {
+            if (place == Place.HOUSE) {
+                recoverAtDoor(world, house, r, now);
+                return;
+            }
+            Vector3d near;
+            if (place == Place.OWNER) {
+                near = ownerSpot(world, r);
+                if (near == null) continue;
+            } else {
+                if (!RanchChunks.isTicking(world, r.lastX, r.lastY, r.lastZ)) return;
+                near = new Vector3d(r.lastX, r.lastY, r.lastZ);
+            }
+            if (respawn(world, store, r, near)) return;
+            tried = near;
+        }
+        if (tried != null) noteFailure(r, tried, now);
+    }
+
+    /** Waits for the door to tick. The house's own spot search logs why a blocked door failed, so it is only tried now and then. */
+    private static void recoverAtDoor(@Nonnull World world, @Nonnull HouseRecord house, @Nonnull AnimalRecord r, long now) {
+        if (!RanchChunks.isTicking(world, house.doorX, house.doorY, house.doorZ)) return;
+        if (now < DOOR_RETRY_AT.getOrDefault(r.animalId, 0L)) return;
+        if (Ranch.houseService().recover(world, r)) {
+            DOOR_RETRY_AT.remove(r.animalId);
+            LOG.info("Ranch animal " + r.animalId + " recovered at house " + house.houseId + " in " + world.getName());
+        } else {
+            DOOR_RETRY_AT.put(r.animalId, now + DOOR_RETRY_MS);
+        }
+    }
+
+    private static final long DOOR_RETRY_MS = TimeUnit.MINUTES.toMillis(1);
+    private static final Map<UUID, Long> DOOR_RETRY_AT = new ConcurrentHashMap<>();
 
     /** A failed respawn is retried every sweep; say so in the log at most every 10 minutes per animal so it is never silent. */
     private static void noteFailure(@Nonnull AnimalRecord r, @Nonnull Vector3d near, long now) {
@@ -163,18 +225,14 @@ final class AnimalRecovery {
         registry.markDirty(r);
     }
 
-    /** Owner if online in this world, else the last known spot if its chunk is loaded, else null (wait). */
+    /** Where the owner stands, if online in this world and ticking there. */
     @Nullable
-    private static Vector3d recoveryTarget(@Nonnull World world, @Nonnull AnimalRecord r) {
-        if (r.ownerId != null) {
-            PlayerRef owner = Universe.get().getPlayer(r.ownerId);
-            if (owner != null && world.getWorldConfig().getUuid().equals(owner.getWorldUuid())) {
-                Vector3d p = owner.getTransform().getPosition();
-                if (isChunkLoaded(world, p.x, p.z)) return new Vector3d(p);
-            }
-        }
-        if (isChunkLoaded(world, r.lastX, r.lastZ)) return new Vector3d(r.lastX, r.lastY, r.lastZ);
-        return null;
+    private static Vector3d ownerSpot(@Nonnull World world, @Nonnull AnimalRecord r) {
+        if (r.ownerId == null) return null;
+        PlayerRef owner = Universe.get().getPlayer(r.ownerId);
+        if (owner == null || !world.getWorldConfig().getUuid().equals(owner.getWorldUuid())) return null;
+        Vector3d p = owner.getTransform().getPosition();
+        return RanchChunks.isTicking(world, p.x, p.y, p.z) ? new Vector3d(p) : null;
     }
 
     static boolean isChunkLoaded(@Nonnull World world, double x, double z) {

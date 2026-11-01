@@ -14,6 +14,7 @@ mood.sad = A bit down
 where.inside = Inside
 where.outside = Outside
 where.lost = Wandered off
+where.recovering = Back in {minutes} min
 
 button.callback = Call back
 button.moveout = Move out
@@ -50,6 +51,7 @@ move.house.at = {name} at {x}, {z}
 
 locate.inside = {name} is inside the house, snug and safe.
 locate.lost = {name} has wandered off. Call back brings it home.
+locate.recovering = {name} is recovering and comes home in about {minutes} min.
 locate.elsewhere = {name} is in another world right now.
 locate.unknown = {name} could not be found just now. Try Call back.
 locate.near = {name} is right beside you.
@@ -129,6 +131,7 @@ result.not_found = That animal could not be found.
 result.unavailable = The house is still settling in. Try again soon.
 result.error = Something went wrong. Try again.
 result.gone = This house is no longer here.
+result.recovering = This animal is recovering. It comes home by itself when it is ready.
 result.ok = Done.
 result.moved = {name} moved to {house}.
 result.move.gone = That house has no room any more.
@@ -144,9 +147,9 @@ result.border.on = Lights ring the house for a few minutes. What is inside the r
 result.border.on.trough = Lights ring the house for a few minutes: honey for what counts, blue for trough reach.
 result.border.off = The area lights are off.
 
-commands.housepage.desc = Opens the house page on a made-up house (typical, full, empty, unchecked, missing, breedingoff, products, milk, move, personality, long).
+commands.housepage.desc = Opens the house page on a made-up house (typical, full, empty, unchecked, missing, breedingoff, products, milk, move, personality, long, recovering).
 commands.housepage.arg = Which made-up house to show
-commands.housepage.unknown = Unknown house. Try typical, full, empty, unchecked, missing, breedingoff, products, milk, move, personality or long.
+commands.housepage.unknown = Unknown house. Try typical, full, empty, unchecked, missing, breedingoff, products, milk, move, personality, long or recovering.
 commands.housepage.failed = The house page could not be opened.
 habitat.desert_sand = Warm sand
 habitat.cacti = Cacti

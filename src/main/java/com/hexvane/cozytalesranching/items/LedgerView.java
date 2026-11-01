@@ -30,7 +30,7 @@ public record LedgerView(int animals, int houses, int waiting, @Nonnull List<Hou
     /** Animals with no house listed before "and N more". */
     public static final int MAX_LOOSE = 30;
 
-    public enum Where { INSIDE, NEAR_HOME, FOLLOWING, STAYING, LOST }
+    public enum Where { INSIDE, NEAR_HOME, FOLLOWING, STAYING, LOST, CRATED }
 
     public record Animal(@Nonnull Txt name, @Nonnull Txt species, int hearts, boolean baby, @Nonnull Where where) {}
 
@@ -90,7 +90,7 @@ public record LedgerView(int animals, int houses, int waiting, @Nonnull List<Hou
         List<Animal> loose = new ArrayList<>();
         List<AnimalRecord> unhoused = sorted(animals.stream().filter(a -> a.houseId == null || houses.stream().noneMatch(h -> h.houseId.equals(a.houseId))).toList());
         for (AnimalRecord a : unhoused) {
-            Where where = a.state == AnimalRecord.State.MISSING ? Where.LOST : a.following ? Where.FOLLOWING : Where.STAYING;
+            Where where = a.state == AnimalRecord.State.CRATED ? Where.CRATED : a.state == AnimalRecord.State.MISSING ? Where.LOST : a.following ? Where.FOLLOWING : Where.STAYING;
             loose.add(animal(a, speciesName(species.apply(a.speciesId), a.speciesId), where));
         }
         int more = Math.max(0, loose.size() - MAX_LOOSE);

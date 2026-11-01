@@ -182,7 +182,9 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
                 Txt denied = manageCheck(house);
                 if (denied != null) return denied;
                 state = new HouseView.PageState(animal.animalId, false);
-                playerRef.sendMessage(ServerUiOut.message(source.locate(animal, name, ref, store)));
+                int backIn = HouseView.minutesUntilBack(animal, System.currentTimeMillis());
+                Txt found = backIn > 0 ? Txt.ui("locate.recovering").with("name", name).with("minutes", backIn) : source.locate(animal, name, ref, store);
+                playerRef.sendMessage(ServerUiOut.message(found));
                 return null;
             }
             case HousePageLayout.ACTION_MOVE_TO -> {

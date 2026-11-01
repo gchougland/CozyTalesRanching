@@ -31,8 +31,9 @@ final class OrphanRelink {
         List<AnimalRecord> inWorld = store.inWorld(worldName);
         AnimalRecord best = null;
         double bestSq = RADIUS * RADIUS;
+        long now = System.currentTimeMillis();
         for (AnimalRecord r : inWorld) {
-            if (r.state != AnimalRecord.State.MISSING) continue;
+            if (r.state != AnimalRecord.State.MISSING || r.deathCooldownLeftMs(now) > 0) continue;
             if (!speciesId.equals(r.speciesId) || r.baby != baby) continue;
             if (!roleFits(role, store.role(r.animalId), r.spawnRole)) continue;
             double dx = r.lastX - x, dz = r.lastZ - z;

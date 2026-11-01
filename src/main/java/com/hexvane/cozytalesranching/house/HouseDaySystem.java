@@ -1,5 +1,6 @@
 package com.hexvane.cozytalesranching.house;
 
+import com.hexvane.cozytalesranching.RanchChunks;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.config.RanchConfig;
@@ -31,7 +32,7 @@ import org.joml.Vector3d;
  * the tick). Walks the world's houses and their residents through the registries, never all entities, and
  * skips houses whose door chunk is not loaded (they wait; nothing is loaded).
  * <ul>
- *   <li>Day: the morning (hooks, then every STORED resident comes out at the door), then the home range:
+ *   <li>Day: the morning (hooks, then every STORED resident comes out at the door once it ticks), then the home range:
  *       a resident that is not following wanders around the door and walks back when it strays.</li>
  *   <li>Night: residents walk to the door and go in; one that has not arrived within a minute goes in
  *       anyway, and one whose entity is not loaded goes in without walking. Then the nightfall hooks, once.</li>
@@ -133,9 +134,12 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
             HouseResidents.log("House " + house.houseId + " morning (day " + cycleDay + ")");
         }
         double range = RanchConfig.get().homeRangeRadius();
+        // with no player near the door is paused: residents stay inside and come out when one comes back
+        boolean doorTicking = RanchChunks.isTicking(world, house.doorX, house.doorY, house.doorZ);
         for (AnimalRecord r : Ranch.animals().inHouse(house.houseId)) {
             WALKING_SINCE.remove(r.animalId);
             if (r.state == AnimalRecord.State.STORED) {
+                if (!doorTicking) continue;
                 long now = System.currentTimeMillis();
                 if (now < OUT_RETRY_AT.getOrDefault(r.animalId, 0L)) continue;
                 if (HouseResidents.bringOut(world, store, house, r)) {
@@ -182,6 +186,7 @@ final class HouseDaySystem extends TickingSystem<EntityStore> {
                     if (stray != null) store.removeEntity(stray, com.hypixel.hytale.component.RemoveReason.REMOVE);
                 }
                 case MISSING -> {
+                    if (r.deathCooldownLeftMs(now) > 0) continue;
                     HouseResidents.storeInside(store, house, r, null);
                     HouseResidents.debug("Ranch animal " + r.animalId + " went into house " + house.houseId + " (it was missing)");
                 }

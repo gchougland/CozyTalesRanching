@@ -3,6 +3,7 @@ package com.hexvane.cozytalesranching.animal;
 import com.hexvane.cozytalesranching.api.AnimalView;
 import com.hexvane.cozytalesranching.api.event.AnimalDiedEvent;
 import com.hexvane.cozytalesranching.api.event.RanchEvents;
+import com.hexvane.cozytalesranching.config.RanchConfig;
 import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.component.Ref;
@@ -17,13 +18,15 @@ import com.hypixel.hytale.server.core.modules.entity.damage.DeathSystems;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.joml.Vector3d;
 
 /**
  * When the current incarnation of a ranch animal dies: fires {@link AnimalDiedEvent} and marks the
- * record MISSING so recovery brings the animal back. The one exception is an unowned adopted animal
+ * record MISSING so recovery brings the animal back once {@code DeathRespawnCooldownMinutes} have passed,
+ * which keeps a killed animal from being an endless source of drops. The one exception is an unowned adopted animal
  * killed by a player, which is gone for good as it would be in vanilla (otherwise it would be an
  * endless source of drops). Runs once per death, only for entities carrying the ranch marker.
  */
@@ -84,10 +87,12 @@ final class AnimalDeathSystem extends DeathSystems.OnDeathSystem {
             registry.remove(animalId);
             AnimalEntitySystem.debug("Unowned ranch animal " + animalId + " killed by a player; record removed");
         } else {
+            long now = System.currentTimeMillis();
             r.state = AnimalRecord.State.MISSING;
-            AnimalPresence.markMissing(animalId, System.currentTimeMillis());
+            r.deathCooldownUntilMs = now + TimeUnit.MINUTES.toMillis(RanchConfig.get().deathRespawnCooldownMinutes());
+            AnimalPresence.markMissing(animalId, now);
             registry.markDirty(r);
-            AnimalEntitySystem.debug("Ranch animal " + animalId + " died; marked missing for recovery");
+            AnimalEntitySystem.debug("Ranch animal " + animalId + " died; marked missing for recovery after its cooldown");
         }
         fire(world, view, cause, killerId);
     }

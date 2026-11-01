@@ -49,6 +49,7 @@ class HousePageLayoutTest {
         {"FULL", "area lights on: Hide area, the on notice", "houseui-border", "result.border.on.trough", "border"},
         {"TYPICAL", "no traits on any resident, a Refresh just done", "houseui-notraits", "result.refreshed"},
         {"FULL", "full coop used while a hen follows: the page opens and says the house is full", "houseui-usefull", "result.use.full"},
+        {"RECOVERING", "a killed resident: back in 27 min, Call back off", "houseui-recovering"},
         {"CROWDED", "fullest page: longest names, eight needs and wants, picker open, the longest notice", "houseui-crowded", "result.border.on.trough"},
     };
 
@@ -217,6 +218,8 @@ class HousePageLayoutTest {
 
     static HouseView view(HouseDemo demo, String noticeKey, boolean border) {
         HouseRecord house = demo.house();
+        // the demo counts from the real clock for the live page; this test's clock is fixed
+        demo.residents(house).stream().filter(r -> r.deathCooldownUntilMs > 0).forEach(r -> r.deathCooldownUntilMs = NOW + 27 * 60_000L - 30_000L);
         SpeciesDefinition species = SpeciesRegistry.byId(house.speciesId).orElseThrow();
         Txt speciesName = HouseView.speciesName(species, house.speciesId);
         List<HouseView.MoveTarget> targets = demo.moveTargets(house).stream()
@@ -226,6 +229,15 @@ class HousePageLayoutTest {
         return HouseView.of(house, species, houseNameKey(house.blockId), demo.residents(house), demo.service()::isInside,
             demo.followers(house, PLAYER), noticeKey == null ? null : Txt.ui(noticeKey),
             demo.stored(house), demo.initialState(), targets, r -> PLAYER.equals(r.ownerId), border, NOW, HousePageLayoutTest::counts);
+    }
+
+    @Test
+    void aKilledResidentShowsItsCountdownAndCannotBeCalledBack() {
+        Recorder ui = render(HouseDemo.Scenario.RECOVERING);
+        assertTrue(ui.json().contains("cozyranch_houseui.where.recovering"));
+        assertTrue(ui.json().contains("27"), "26.5 minutes left reads as 27: it never says less than it will take");
+        assertTrue(ui.has("#ResummonButton.Disabled", "true"));
+        assertTrue(render(HouseDemo.Scenario.TYPICAL).has("#ResummonButton.Disabled", "false"));
     }
 
     @Test

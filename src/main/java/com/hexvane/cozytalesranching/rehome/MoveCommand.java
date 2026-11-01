@@ -119,7 +119,7 @@ public final class MoveCommand extends AbstractPlayerCommand {
             case NO_PERMISSION -> "cozyranch_rehome.move.no_permission";
             case WRONG_SPECIES -> "cozyranch_rehome.move.wrong_species";
             case HOUSE_FULL -> "cozyranch_rehome.move.full";
-            case NOT_FOUND, UNAVAILABLE -> "cozyranch_rehome.move.failed";
+            case NOT_FOUND, UNAVAILABLE, RECOVERING -> "cozyranch_rehome.move.failed";
         };
     }
 

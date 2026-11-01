@@ -1,6 +1,9 @@
 package com.hexvane.cozytalesranching.produce;
 
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Predicate;
 import java.util.random.RandomGenerator;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -114,5 +117,25 @@ public final class ProduceRules {
         int waiting = Math.max(0, waitingInHouse);
         int convert = Math.min(waiting, Math.max(0, emptyBuckets));
         return new BucketPlan(convert, waiting - convert);
+    }
+
+    /**
+     * What drops when a house goes. Bucket products are lost with it: they would otherwise come out as filled buckets
+     * for free, a way round the empty bucket each one takes to collect.
+     */
+    @Nonnull
+    public static Map<String, Integer> dropsOfGoneHouse(@Nonnull Map<String, Integer> stock, @Nonnull Predicate<String> bucketProduct) {
+        Map<String, Integer> out = new LinkedHashMap<>(stock);
+        out.keySet().removeIf(bucketProduct);
+        return out;
+    }
+
+    /** How many items of a gone house's stock {@link #dropsOfGoneHouse} leaves out. */
+    public static int lostWithGoneHouse(@Nonnull Map<String, Integer> stock, @Nonnull Predicate<String> bucketProduct) {
+        int lost = 0;
+        for (Map.Entry<String, Integer> e : stock.entrySet()) {
+            if (bucketProduct.test(e.getKey()) && e.getValue() != null) lost += e.getValue();
+        }
+        return lost;
     }
 }

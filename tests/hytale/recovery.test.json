@@ -1,0 +1,1639 @@
+{
+  "cases": [
+    {
+      "name": "resident stays home in a paused chunk",
+      "description": "Port 5603. The player report: chickens out at their coop, the owner 400 blocks away, past the ticking range but with the coop still in view, so its chunk stays loaded and pauses. Recovery took about 110 s to bring them to the owner. Now they are not missing: after 130 s none is beside the owner, the records are ACTIVE, and they are at the coop when the owner returns.",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.3.jar"
+            ],
+            "authMode": "insecure",
+            "port": 5603
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555",
+            "timeoutMs": 120000
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_send",
+          "name": "view radius 24 chunks",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "packet",
+            "name": "ViewRadius",
+            "fields": {
+              "value": 768
+            }
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/gamemode creative"
+          },
+          "save": "s1"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/time 7"
+          },
+          "save": "s2"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug nightfall"
+          },
+          "save": "s3"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "forced night",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s3.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.nightfall"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug place chicken"
+          },
+          "save": "s4"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "coop placed",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s4.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.placed"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch breed testhouse chicken"
+          },
+          "save": "s5"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "two chickens live in it",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s5.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_breeding.debug.testhouse.done"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug morning"
+          },
+          "save": "s6"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "forced morning",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s6.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.morning"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: they come out",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 5000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin hurt --by=fall --amount=0 --radius=16"
+          },
+          "save": "s7"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "chickens out at the coop",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s7.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.hurt.done",
+                "params": {
+                  "hit": {
+                    "value": 2
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp ~400 ~ ~"
+          },
+          "save": "s8"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the new spot loads",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 4000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp top"
+          },
+          "save": "s9"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: on the ground",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: longer than the suspect sweeps and the recovery delay",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 120000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: and one more sweep",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin hurt --by=fall --amount=0 --radius=32"
+          },
+          "save": "s10"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "no chicken came to the owner",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s10.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.hurt.done",
+                "params": {
+                  "hit": {
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin list McpBot"
+          },
+          "save": "s11"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "not marked missing",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s11.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.line",
+                "params": {
+                  "species": {
+                    "value": "chicken"
+                  },
+                  "state": {
+                    "value": "ACTIVE"
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp ~-400 ~ ~"
+          },
+          "save": "s12"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the new spot loads",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 4000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp top"
+          },
+          "save": "s13"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: on the ground",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the coop's chunk ticks again",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 5000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin hurt --by=fall --amount=0 --radius=32"
+          },
+          "save": "s14"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "chickens back at the coop",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s14.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.hurt.done",
+                "params": {
+                  "hit": {
+                    "value": 2
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "residents wait inside while the door is paused",
+      "description": "Port 5604. The morning comes with the owner away and the coop's chunk loaded but paused. The game's spawn test refuses every spot there (NO_TICKING_CHUNK), so they stay STORED, and come out within seconds of the owner returning (before, up to 30 s, with 'no room at the door' in the log every 30 s meanwhile).",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.3.jar"
+            ],
+            "authMode": "insecure",
+            "port": 5604
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555",
+            "timeoutMs": 120000
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_send",
+          "name": "view radius 24 chunks",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "packet",
+            "name": "ViewRadius",
+            "fields": {
+              "value": 768
+            }
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/gamemode creative"
+          },
+          "save": "s15"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/time 7"
+          },
+          "save": "s16"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug nightfall"
+          },
+          "save": "s17"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "forced night",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s17.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.nightfall"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug place chicken"
+          },
+          "save": "s18"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "coop placed",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s18.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.placed"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch breed testhouse chicken"
+          },
+          "save": "s19"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "two chickens live in it",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s19.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_breeding.debug.testhouse.done"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp ~400 ~ ~"
+          },
+          "save": "s20"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the new spot loads",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 4000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp top"
+          },
+          "save": "s21"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: on the ground",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the coop's chunk pauses",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug morning"
+          },
+          "save": "s22"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "forced morning",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s22.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.morning"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: longer than the suspect sweeps and the recovery delay",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 120000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: and one more sweep",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin hurt --by=fall --amount=0 --radius=32"
+          },
+          "save": "s23"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "no chicken came to the owner",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s23.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.hurt.done",
+                "params": {
+                  "hit": {
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin list McpBot"
+          },
+          "save": "s24"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "still inside",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s24.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.line",
+                "params": {
+                  "species": {
+                    "value": "chicken"
+                  },
+                  "state": {
+                    "value": "STORED"
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp ~-400 ~ ~"
+          },
+          "save": "s25"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the new spot loads",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 4000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp top"
+          },
+          "save": "s26"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: on the ground",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the coop's chunk ticks again",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 5000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin list McpBot"
+          },
+          "save": "s27"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "out once the door ticks",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s27.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.line",
+                "params": {
+                  "species": {
+                    "value": "chicken"
+                  },
+                  "state": {
+                    "value": "ACTIVE"
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin hurt --by=fall --amount=0 --radius=32"
+          },
+          "save": "s28"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "chickens at the coop",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s28.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.hurt.done",
+                "params": {
+                  "hit": {
+                    "value": 2
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "lost resident recovers at its house",
+      "description": "Port 5605. A resident that is really gone (its entity removed outright; ranch animals cannot be killed) with its coop ticking and the owner 100 blocks away comes back at the door, not beside the owner, and each of the two comes back as its own entity: an untagged spawn was taken by the other lost chicken (OrphanRelink), leaving two records on one chicken.",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.3.jar"
+            ],
+            "authMode": "insecure",
+            "port": 5605
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555",
+            "timeoutMs": 120000
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_send",
+          "name": "view radius 24 chunks",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "packet",
+            "name": "ViewRadius",
+            "fields": {
+              "value": 768
+            }
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/gamemode creative"
+          },
+          "save": "s29"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/time 7"
+          },
+          "save": "s30"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug nightfall"
+          },
+          "save": "s31"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "forced night",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s31.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.nightfall"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug place chicken"
+          },
+          "save": "s32"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "coop placed",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s32.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.placed"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch breed testhouse chicken"
+          },
+          "save": "s33"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "two chickens live in it",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s33.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_breeding.debug.testhouse.done"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug morning"
+          },
+          "save": "s34"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "forced morning",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s34.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.morning"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: they come out",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 5000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/npc clean --confirm"
+          },
+          "save": "s35"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: their entities are gone",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 2000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin list McpBot"
+          },
+          "save": "s36"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "marked missing",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s36.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.line",
+                "params": {
+                  "species": {
+                    "value": "chicken"
+                  },
+                  "state": {
+                    "value": "MISSING"
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp ~100 ~ ~"
+          },
+          "save": "s37"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the new spot loads",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 4000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp top"
+          },
+          "save": "s38"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: on the ground",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the suspect sweeps do not apply; the recovery delay and one sweep",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 90000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin hurt --by=fall --amount=0 --radius=32"
+          },
+          "save": "s39"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "no chicken came to the owner",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s39.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.hurt.done",
+                "params": {
+                  "hit": {
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin list McpBot"
+          },
+          "save": "s40"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "recovered",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s40.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.line",
+                "params": {
+                  "species": {
+                    "value": "chicken"
+                  },
+                  "state": {
+                    "value": "ACTIVE"
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp ~-100 ~ ~"
+          },
+          "save": "s41"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the new spot loads",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 4000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp top"
+          },
+          "save": "s42"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: on the ground",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: settled",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin hurt --by=fall --amount=0 --radius=32"
+          },
+          "save": "s43"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "chickens at the coop",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s43.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.hurt.done",
+                "params": {
+                  "hit": {
+                    "value": 2
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "followers still reach their owner",
+      "description": "Port 5606. Followers are the one case that goes to the owner: told to follow, then the owner teleports 400 blocks away. The follow teleport does nothing while the owner's new chunk is loading, so a follower can be left behind and parked as its chunk pauses; recovery then makes a new one beside the owner, unlike a resident.",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.3.jar"
+            ],
+            "authMode": "insecure",
+            "port": 5606
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555",
+            "timeoutMs": 120000
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_send",
+          "name": "view radius 24 chunks",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "packet",
+            "name": "ViewRadius",
+            "fields": {
+              "value": 768
+            }
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/gamemode creative"
+          },
+          "save": "s44"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/time 7"
+          },
+          "save": "s45"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug nightfall"
+          },
+          "save": "s46"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "forced night",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s46.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.nightfall"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug place chicken"
+          },
+          "save": "s47"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "coop placed",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s47.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.placed"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch breed testhouse chicken"
+          },
+          "save": "s48"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "two chickens live in it",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s48.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_breeding.debug.testhouse.done"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug morning"
+          },
+          "save": "s49"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "forced morning",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s49.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.morning"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: they come out",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 5000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch follow"
+          },
+          "save": "s50"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: they follow",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 2000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp ~400 ~ ~"
+          },
+          "save": "s51"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the new spot loads",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 4000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/tp top"
+          },
+          "save": "s52"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: on the ground",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: they catch up, by the follow teleport or by recovery",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 120000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: and one more sweep",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 10000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch admin hurt --by=fall --amount=0 --radius=32"
+          },
+          "save": "s53"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "chickens beside the owner",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s53.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_animal.admin.hurt.done",
+                "params": {
+                  "hit": {
+                    "value": 2
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        }
+      ]
+    }
+  ]
+}

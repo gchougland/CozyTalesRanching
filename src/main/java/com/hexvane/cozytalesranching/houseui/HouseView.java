@@ -50,10 +50,11 @@ public record HouseView(
 
     public enum Mood { HAPPY, OKAY, SAD }
 
-    public enum Where { INSIDE, OUTSIDE, LOST }
+    public enum Where { INSIDE, OUTSIDE, LOST, RECOVERING }
 
+    /** {@code backInMinutes}: for {@link Where#RECOVERING}, how long until it was killed long enough ago to come back. */
     public record Resident(@Nonnull UUID id, @Nonnull Txt name, int hearts, @Nonnull Mood mood, @Nonnull List<Trait> traits, boolean baby,
-                           @Nonnull Where where, @Nullable Txt personality, @Nullable Txt feedBonus, boolean nameable) {}
+                           @Nonnull Where where, @Nullable Txt personality, @Nullable Txt feedBonus, boolean nameable, int backInMinutes) {}
 
     /** A trait on a resident row: its name, and what it does for the tooltip. */
     public record Trait(@Nonnull Txt name, @Nonnull Txt description) {}
@@ -112,11 +113,12 @@ public record HouseView(
 
         List<Resident> rows = new ArrayList<>();
         for (AnimalRecord r : sorted(residents)) {
-            Where where = inside.test(r.animalId) ? Where.INSIDE : r.state == AnimalRecord.State.MISSING ? Where.LOST : Where.OUTSIDE;
+            int backIn = minutesUntilBack(r, nowMs);
+            Where where = inside.test(r.animalId) ? Where.INSIDE : backIn > 0 ? Where.RECOVERING : r.state == AnimalRecord.State.MISSING ? Where.LOST : Where.OUTSIDE;
             List<Trait> traits = r.traits == null ? List.of()
                 : r.traits.stream().filter(t -> t != null && !t.isBlank()).distinct().limit(MAX_TRAITS).map(HouseView::trait).toList();
             rows.add(new Resident(r.animalId, animalName(r, speciesName), hearts(r.hearts), mood(r.happiness), traits, r.baby, where,
-                personality(r.personality), feedBonus(r.feedBonus, r.feedBonusUntilMs, nowMs), canName.test(r)));
+                personality(r.personality), feedBonus(r.feedBonus, r.feedBonusUntilMs, nowMs), canName.test(r), backIn));
         }
         Resident selected = rows.stream().filter(r -> r.id().equals(state.selected())).findFirst()
             .orElse(rows.isEmpty() ? null : rows.getFirst());
@@ -132,6 +134,11 @@ public record HouseView(
         int capacity = Math.max(1, house.capacity);
         return new HouseView(title, speciesName, residents.size(), capacity, rows, habitat(house, species, counts),
             house.breedingEnabled, house.visitorsEnabled, follow, custom, notice, products, selected, picking, targets, borderOn);
+    }
+
+    /** Whole minutes of a killed animal's cooldown left, rounded up so it never says 0 while it still waits; 0 for no cooldown. */
+    public static int minutesUntilBack(@Nonnull AnimalRecord r, long nowMs) {
+        return (int) Math.ceil(r.deathCooldownLeftMs(nowMs) / 60_000.0);
     }
 
     /** The house's own name, else its item's name, else "{species} House". */
@@ -189,7 +196,7 @@ public record HouseView(
     }
 
     @Nonnull
-    static Mood mood(float happiness) {
+    public static Mood mood(float happiness) {
         return happiness >= HAPPY_AT ? Mood.HAPPY : happiness >= CONTENT_AT ? Mood.OKAY : Mood.SAD;
     }
 

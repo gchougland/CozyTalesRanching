@@ -3,6 +3,7 @@ package com.hexvane.cozytalesranching.animal;
 import com.hexvane.cozytalesranching.config.RanchConfig;
 import com.hypixel.hytale.component.ComponentAccessor;
 import com.hypixel.hytale.component.ComponentType;
+import com.hypixel.hytale.component.Holder;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.nio.file.Path;
@@ -103,6 +104,14 @@ public final class PersistentAnimalRegistry implements AnimalRegistry {
         boolean skinChanged = AnimalSkins.capture(record, entity, accessor);
         skinChanged |= AnimalSkins.apply(record, entity, accessor, true);
         if (skinChanged) store.touch(record);
+        scheduleSave();
+    }
+
+    @Override
+    public void bindHolder(@Nonnull AnimalRecord record, @Nonnull Holder<EntityStore> holder, @Nonnull UUID entityUuid) {
+        long generation = store.bind(record, entityUuid);
+        ComponentType<EntityStore, AnimalMarker> type = AnimalMarker.type();
+        if (type != null) holder.putComponent(type, new AnimalMarker(record.animalId, generation));
         scheduleSave();
     }
 

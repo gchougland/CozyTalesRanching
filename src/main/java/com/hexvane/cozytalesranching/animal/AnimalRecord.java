@@ -21,7 +21,9 @@ public final class AnimalRecord {
         /** Asleep inside its house with no entity; the house spawns it again. */
         STORED,
         /** Entity lost; recovery will respawn it. */
-        MISSING
+        MISSING,
+        /** In a capture crate with no entity; opening the crate brings it back. See {@link CrateService}. */
+        CRATED
     }
 
     public UUID animalId;
@@ -70,6 +72,13 @@ public final class AnimalRecord {
     @Nullable public String skinModel;
     /** The skin: the chosen random attachment id per attachment set of {@link #skinModel}. Replaced whole, never edited in place. */
     @Nullable public Map<String, String> skinIds;
+    /** Set when the animal is killed: nothing brings it back before then. See {@link #deathCooldownLeftMs}. */
+    public long deathCooldownUntilMs;
+
+    /** How long this animal must still stay gone because it was killed; 0 when it was not, or is back. */
+    public long deathCooldownLeftMs(long nowMs) {
+        return state == State.MISSING ? Math.max(0, deathCooldownUntilMs - nowMs) : 0;
+    }
 
     @Nonnull
     public AnimalView view() {

@@ -4,6 +4,8 @@ import com.hexvane.cozytalesranching.CozyTalesRanchingPlugin;
 import com.hypixel.hytale.component.ComponentRegistryProxy;
 import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.server.core.event.events.ShutdownEvent;
+import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
+import com.hypixel.hytale.server.core.modules.interaction.interaction.config.Interaction;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -35,6 +37,9 @@ public final class AnimalFeature {
         entities.registerSystem(new SkinModelSystem(animals, markerType));
         VanillaCoopGuard coopGuard = VanillaCoopGuard.create(animals, markerType);
         if (coopGuard != null) entities.registerSystem(coopGuard);
+
+        plugin.getCodecRegistry(Interaction.CODEC).register(CaptureCrateInteraction.TYPE, CaptureCrateInteraction.class, CaptureCrateInteraction.CODEC);
+        plugin.getEventRegistry().registerGlobal(PlayerReadyEvent.class, CrateService::onPlayerReady);
 
         AnimalRecovery rec = new AnimalRecovery(animals, markerType);
         rec.start();

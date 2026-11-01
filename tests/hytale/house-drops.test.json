@@ -1,0 +1,1024 @@
+{
+  "cases": [
+    {
+      "name": "a broken barn does not drop its milk",
+      "description": "Port 5640. Milk waiting in a cow barn takes one empty bucket each to collect. Breaking the barn used to drop it all as filled buckets, a way round needing buckets. Now none is on the ground or in the inventory, and the owner is told how much was lost.",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.3.jar"
+            ],
+            "authMode": "insecure",
+            "port": 5640
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555",
+            "timeoutMs": 120000
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/gamemode creative"
+          },
+          "save": "s1"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/time 7"
+          },
+          "save": "s2"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: creative mode is on, which /clear needs",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 2000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-2 ~-1 ~-2 Rock_Stone"
+          },
+          "save": "s3"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-2 ~-1 ~-1 Rock_Stone"
+          },
+          "save": "s4"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-2 ~-1 ~0 Rock_Stone"
+          },
+          "save": "s5"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-2 ~-1 ~1 Rock_Stone"
+          },
+          "save": "s6"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-2 ~-1 ~2 Rock_Stone"
+          },
+          "save": "s7"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-1 ~-1 ~-2 Rock_Stone"
+          },
+          "save": "s8"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-1 ~-1 ~-1 Rock_Stone"
+          },
+          "save": "s9"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-1 ~-1 ~0 Rock_Stone"
+          },
+          "save": "s10"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-1 ~-1 ~1 Rock_Stone"
+          },
+          "save": "s11"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-1 ~-1 ~2 Rock_Stone"
+          },
+          "save": "s12"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~0 ~-1 ~-2 Rock_Stone"
+          },
+          "save": "s13"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~0 ~-1 ~-1 Rock_Stone"
+          },
+          "save": "s14"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~0 ~-1 ~0 Rock_Stone"
+          },
+          "save": "s15"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~0 ~-1 ~1 Rock_Stone"
+          },
+          "save": "s16"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~0 ~-1 ~2 Rock_Stone"
+          },
+          "save": "s17"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~1 ~-1 ~-2 Rock_Stone"
+          },
+          "save": "s18"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~1 ~-1 ~-1 Rock_Stone"
+          },
+          "save": "s19"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~1 ~-1 ~0 Rock_Stone"
+          },
+          "save": "s20"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~1 ~-1 ~1 Rock_Stone"
+          },
+          "save": "s21"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~1 ~-1 ~2 Rock_Stone"
+          },
+          "save": "s22"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~2 ~-1 ~-2 Rock_Stone"
+          },
+          "save": "s23"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~2 ~-1 ~-1 Rock_Stone"
+          },
+          "save": "s24"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~2 ~-1 ~0 Rock_Stone"
+          },
+          "save": "s25"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~2 ~-1 ~1 Rock_Stone"
+          },
+          "save": "s26"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~2 ~-1 ~2 Rock_Stone"
+          },
+          "save": "s27"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/clear ~-2 ~ ~-2 ~2 ~4 ~2"
+          },
+          "save": "s28"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the floor is down and the air is clear",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug place cow"
+          },
+          "save": "s29"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "house placed",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s29.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.placed"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch breed testhouse cow"
+          },
+          "save": "s30"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "two residents",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s30.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_breeding.debug.testhouse.done"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch produce tick 480"
+          },
+          "save": "s31"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "products wait in it",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s31.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_produce.tick.done",
+                "params": {
+                  "items": {
+                    "value": {
+                      "$gte": 1
+                    }
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~ ~ ~ Empty"
+          },
+          "save": "broke"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the house notices its block is gone and drops what it may",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house list"
+          },
+          "save": "s32"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "the house is gone",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s32.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.list.header",
+                "params": {
+                  "count": {
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "the owner hears the milk was lost",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${broke.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_produce.house.milk_lost",
+                "params": {
+                  "count": {
+                    "value": {
+                      "$gte": 1
+                    }
+                  }
+                }
+              }
+            },
+            "timeoutMs": 1000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch produce ground"
+          },
+          "save": "s33"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "no milk came out",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s33.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_produce.ground.done",
+                "params": {
+                  "bucket": {
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "a broken coop still drops its eggs",
+      "description": "Port 5641. The other side of the barn rule, and proof that the count above can see drops: products collected as they are still drop at the door when their house goes, with no word of lost milk.",
+      "steps": [
+        {
+          "tool": "server_start",
+          "arguments": {
+            "artifacts": [
+              "CozyTales-Ranching/build/libs/CozyTalesRanching-0.6.3.jar"
+            ],
+            "authMode": "insecure",
+            "port": 5641
+          },
+          "waitReady": true,
+          "save": "server"
+        },
+        {
+          "tool": "server_command",
+          "arguments": {
+            "jobId": "${server.id}",
+            "command": "op add 11111111-2222-4333-8444-555555555555"
+          }
+        },
+        {
+          "tool": "bot_start",
+          "arguments": {
+            "jobId": "${server.id}",
+            "uuid": "11111111-2222-4333-8444-555555555555",
+            "timeoutMs": 120000
+          },
+          "expect": {
+            "state": "ready"
+          },
+          "save": "bot"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/gamemode creative"
+          },
+          "save": "s34"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/time 7"
+          },
+          "save": "s35"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: creative mode is on, which /clear needs",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 2000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-2 ~-1 ~-2 Rock_Stone"
+          },
+          "save": "s36"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-2 ~-1 ~-1 Rock_Stone"
+          },
+          "save": "s37"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-2 ~-1 ~0 Rock_Stone"
+          },
+          "save": "s38"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-2 ~-1 ~1 Rock_Stone"
+          },
+          "save": "s39"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-2 ~-1 ~2 Rock_Stone"
+          },
+          "save": "s40"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-1 ~-1 ~-2 Rock_Stone"
+          },
+          "save": "s41"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-1 ~-1 ~-1 Rock_Stone"
+          },
+          "save": "s42"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-1 ~-1 ~0 Rock_Stone"
+          },
+          "save": "s43"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-1 ~-1 ~1 Rock_Stone"
+          },
+          "save": "s44"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~-1 ~-1 ~2 Rock_Stone"
+          },
+          "save": "s45"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~0 ~-1 ~-2 Rock_Stone"
+          },
+          "save": "s46"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~0 ~-1 ~-1 Rock_Stone"
+          },
+          "save": "s47"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~0 ~-1 ~0 Rock_Stone"
+          },
+          "save": "s48"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~0 ~-1 ~1 Rock_Stone"
+          },
+          "save": "s49"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~0 ~-1 ~2 Rock_Stone"
+          },
+          "save": "s50"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~1 ~-1 ~-2 Rock_Stone"
+          },
+          "save": "s51"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~1 ~-1 ~-1 Rock_Stone"
+          },
+          "save": "s52"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~1 ~-1 ~0 Rock_Stone"
+          },
+          "save": "s53"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~1 ~-1 ~1 Rock_Stone"
+          },
+          "save": "s54"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~1 ~-1 ~2 Rock_Stone"
+          },
+          "save": "s55"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~2 ~-1 ~-2 Rock_Stone"
+          },
+          "save": "s56"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~2 ~-1 ~-1 Rock_Stone"
+          },
+          "save": "s57"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~2 ~-1 ~0 Rock_Stone"
+          },
+          "save": "s58"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~2 ~-1 ~1 Rock_Stone"
+          },
+          "save": "s59"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~2 ~-1 ~2 Rock_Stone"
+          },
+          "save": "s60"
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/clear ~-2 ~ ~-2 ~2 ~4 ~2"
+          },
+          "save": "s61"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the floor is down and the air is clear",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 3000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house debug place chicken"
+          },
+          "save": "s62"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "house placed",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s62.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.debug.placed"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch breed testhouse chicken"
+          },
+          "save": "s63"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "two residents",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s63.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_breeding.debug.testhouse.done"
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch produce tick 480"
+          },
+          "save": "s64"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "products wait in it",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s64.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_produce.tick.done",
+                "params": {
+                  "items": {
+                    "value": {
+                      "$gte": 1
+                    }
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/block set ~ ~ ~ Empty"
+          },
+          "save": "broke"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "wait: the house notices its block is gone and drops what it may",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "WaitOnlyNoSuchPacket",
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch house list"
+          },
+          "save": "s65"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "the house is gone",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s65.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_house.list.header",
+                "params": {
+                  "count": {
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        },
+        {
+          "tool": "bot_expect",
+          "name": "nothing said of lost milk",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${broke.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_produce.house.milk_lost"
+              }
+            },
+            "timeoutMs": 1000
+          },
+          "expect": {
+            "matched": false
+          }
+        },
+        {
+          "tool": "bot_send",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "op": "chat",
+            "text": "/ranch produce ground"
+          },
+          "save": "s66"
+        },
+        {
+          "tool": "bot_expect",
+          "name": "the eggs came out",
+          "arguments": {
+            "botId": "${bot.botId}",
+            "packet": "ServerMessage",
+            "cursor": "${s66.cursor}",
+            "where": {
+              "message": {
+                "messageId": "cozyranch_produce.ground.done",
+                "params": {
+                  "bucket": {
+                    "value": 0
+                  },
+                  "other": {
+                    "value": {
+                      "$gte": 1
+                    }
+                  }
+                }
+              }
+            },
+            "timeoutMs": 15000
+          },
+          "expect": {
+            "matched": true
+          }
+        }
+      ]
+    }
+  ]
+}

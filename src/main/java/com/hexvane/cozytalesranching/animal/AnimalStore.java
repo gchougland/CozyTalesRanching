@@ -182,9 +182,31 @@ final class AnimalStore {
         r.generation++;
         r.entityUuid = entityUuid;
         r.state = AnimalRecord.State.ACTIVE;
+        r.deathCooldownUntilMs = 0;
         reindex(r);
         changed(r);
         return r.generation;
+    }
+
+    /**
+     * Into a capture crate: no entity any more, and a new generation for the crate to name. Any copy of the entity that
+     * comes back (a chunk saved at the wrong moment) is stale, and so is any older crate. Returns the generation.
+     */
+    synchronized long crate(@Nonnull AnimalRecord r) {
+        r.generation++;
+        r.entityUuid = null;
+        r.state = AnimalRecord.State.CRATED;
+        r.following = false;
+        r.deathCooldownUntilMs = 0;
+        reindex(r);
+        changed(r);
+        return r.generation;
+    }
+
+    /** Every record in a capture crate, in any world. */
+    @Nonnull
+    synchronized List<AnimalRecord> crated() {
+        return records.values().stream().filter(r -> r.state == AnimalRecord.State.CRATED).toList();
     }
 
     /**

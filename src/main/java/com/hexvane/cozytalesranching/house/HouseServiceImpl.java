@@ -67,7 +67,7 @@ final class HouseServiceImpl implements HouseService {
         World world = house != null ? Universe.get().getWorld(house.worldName) : null;
         if (animal.state == AnimalRecord.State.STORED) {
             boolean out = house != null && world != null && HouseResidents.bringOut(world, world.getEntityStore().getStore(), house, animal);
-            // the door is not loaded: recovery brings it out beside its owner instead
+            // the door is paused, unloaded or blocked: recovery brings it back at its last spot, or beside its owner if that has no room
             if (!out) animal.state = AnimalRecord.State.MISSING;
         }
         if (world != null) {
@@ -118,11 +118,20 @@ final class HouseServiceImpl implements HouseService {
         if (house == null) return Result.NOT_FOUND;
         Result check = manage(actor, house);
         if (check != Result.OK) return check;
+        if (animal.deathCooldownLeftMs(System.currentTimeMillis()) > 0) return Result.RECOVERING;
         World world = Universe.get().getWorld(house.worldName);
         if (world == null) return Result.UNAVAILABLE;
         Store<EntityStore> store = world.getEntityStore().getStore();
         HouseDaySystem.forget(animal.animalId);
         return HouseResidents.bringOut(world, store, house, animal) ? Result.OK : Result.UNAVAILABLE;
+    }
+
+    @Override
+    public boolean recover(@Nonnull World world, @Nonnull AnimalRecord animal) {
+        HouseRecord house = animal.houseId != null ? Ranch.houses().get(animal.houseId).orElse(null) : null;
+        if (house == null || !house.worldName.equals(world.getName())) return false;
+        HouseDaySystem.forget(animal.animalId);
+        return HouseResidents.bringOut(world, world.getEntityStore().getStore(), house, animal);
     }
 
     @Override

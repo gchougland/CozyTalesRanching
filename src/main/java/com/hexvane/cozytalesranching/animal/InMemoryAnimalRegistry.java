@@ -58,11 +58,21 @@ public final class InMemoryAnimalRegistry implements AnimalRegistry {
 
     @Override
     public void bindEntity(@Nonnull AnimalRecord record, @Nonnull Ref<EntityStore> entity, @Nonnull UUID entityUuid, @Nonnull ComponentAccessor<EntityStore> accessor) {
+        bind(record, entityUuid);
+    }
+
+    private void bind(@Nonnull AnimalRecord record, @Nonnull UUID entityUuid) {
         if (record.entityUuid != null) entityToAnimal.remove(record.entityUuid);
         record.generation++;
         record.entityUuid = entityUuid;
         record.state = AnimalRecord.State.ACTIVE;
+        record.deathCooldownUntilMs = 0;
         entityToAnimal.put(entityUuid, record.animalId);
+    }
+
+    @Override
+    public void bindHolder(@Nonnull AnimalRecord record, @Nonnull com.hypixel.hytale.component.Holder<EntityStore> holder, @Nonnull UUID entityUuid) {
+        bind(record, entityUuid);
     }
 
     @Override

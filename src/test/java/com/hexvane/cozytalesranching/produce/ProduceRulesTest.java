@@ -13,6 +13,18 @@ import org.junit.jupiter.api.Test;
 class ProduceRulesTest {
     private static final double EPS = 1e-9;
     private static final ProduceTuning T = new ProduceTuning().normalise();
+
+    @Test
+    void aGoneHouseDropsEverythingButBucketProducts() {
+        String milk = "*Container_Bucket_State_Filled_Milk";
+        java.util.Map<String, Integer> stock = new java.util.LinkedHashMap<>(java.util.Map.of(milk, 5, "Food_Egg", 3));
+        assertEquals(java.util.Map.of("Food_Egg", 3), ProduceRules.dropsOfGoneHouse(stock, milk::equals));
+        assertEquals(java.util.Map.of(), ProduceRules.dropsOfGoneHouse(java.util.Map.of(milk, 5), milk::equals));
+        assertEquals(5, stock.get(milk), "the stock itself is left alone");
+        assertEquals(5, ProduceRules.lostWithGoneHouse(stock, milk::equals));
+        assertEquals(0, ProduceRules.lostWithGoneHouse(java.util.Map.of("Food_Egg", 3), milk::equals));
+    }
+
     /** Never rolls a bonus. */
     private static final RandomGenerator NO_LUCK = new RandomGenerator() {
         @Override public long nextLong() { return Long.MAX_VALUE; }

@@ -2,6 +2,7 @@ package com.hexvane.cozytalesranching.house;
 
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.world.World;
 import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -12,7 +13,7 @@ import javax.annotation.Nullable;
  * Every method checks ownership and permissions itself and fires the events the contract names.
  */
 public interface HouseService {
-    enum Result { OK, NOT_OWNER, NO_PERMISSION, WRONG_SPECIES, HOUSE_FULL, NOT_FOUND, UNAVAILABLE }
+    enum Result { OK, NOT_OWNER, NO_PERMISSION, WRONG_SPECIES, HOUSE_FULL, NOT_FOUND, UNAVAILABLE, RECOVERING }
 
     /** Makes {@code animal} live in {@code house} (moving it out of any other house). */
     @Nonnull Result assign(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal, @Nonnull HouseRecord house);
@@ -30,6 +31,12 @@ public interface HouseService {
     /** Brings a resident back to the door: from inside, or if lost or far away. */
     @Nonnull Result resummon(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal);
 
+    /**
+     * Brings a lost resident back at its door, for the animal role's recovery: no player asked, so nothing to check. On the
+     * world's thread, outside a tick. False if it has no house there, or the door is paused or has no room.
+     */
+    boolean recover(@Nonnull World world, @Nonnull AnimalRecord animal);
+
     /** True while the animal is inside its house (record STORED, no entity). */
     boolean isInside(@Nonnull UUID animalId);
 
@@ -40,6 +47,7 @@ public interface HouseService {
         @Nonnull @Override public Result setBreeding(@Nonnull PlayerRef actor, @Nonnull HouseRecord house, boolean enabled) { return Result.UNAVAILABLE; }
         @Nonnull @Override public Result setVisitors(@Nonnull PlayerRef actor, @Nonnull HouseRecord house, boolean enabled) { return Result.UNAVAILABLE; }
         @Nonnull @Override public Result resummon(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal) { return Result.UNAVAILABLE; }
+        @Override public boolean recover(@Nonnull World world, @Nonnull AnimalRecord animal) { return false; }
         @Override public boolean isInside(@Nonnull UUID animalId) { return false; }
     };
 }

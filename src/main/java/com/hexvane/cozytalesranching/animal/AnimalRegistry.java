@@ -1,6 +1,7 @@
 package com.hexvane.cozytalesranching.animal;
 
 import com.hypixel.hytale.component.ComponentAccessor;
+import com.hypixel.hytale.component.Holder;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.List;
@@ -35,6 +36,12 @@ public interface AnimalRegistry {
      * (a CommandBuffer inside systems). Any other entity carrying this animal id becomes stale.
      */
     void bindEntity(@Nonnull AnimalRecord record, @Nonnull Ref<EntityStore> entity, @Nonnull UUID entityUuid, @Nonnull ComponentAccessor<EntityStore> accessor);
+
+    /**
+     * {@link #bindEntity} for an entity still being made (a spawn's pre-add callback): it enters the world already
+     * tagged, so nothing can take it for an untagged stray. The animal role finishes the binding as it arrives.
+     */
+    void bindHolder(@Nonnull AnimalRecord record, @Nonnull Holder<EntityStore> holder, @Nonnull UUID entityUuid);
 
     /** True only for the entity the record currently names, at the record's generation. */
     boolean isCurrent(@Nonnull UUID animalId, @Nonnull UUID entityUuid, long generation);

@@ -173,7 +173,7 @@ final class CareWorld {
 
     private void careFor(@Nonnull UUID animalId, @Nonnull Context ctx) {
         AnimalRecord record = Ranch.animals().get(animalId).orElse(null);
-        if (record == null || record.ownerId == null || record.state == AnimalRecord.State.MISSING) return;
+        if (record == null || record.ownerId == null || record.state == AnimalRecord.State.MISSING || record.state == AnimalRecord.State.CRATED) return;
         if (!ctx.world().getName().equals(record.worldName)) return;
         SpeciesDefinition species = SpeciesRegistry.byId(record.speciesId).orElse(null);
         if (species == null) return;

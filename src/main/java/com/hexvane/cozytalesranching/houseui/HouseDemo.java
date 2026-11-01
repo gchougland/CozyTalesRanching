@@ -26,7 +26,7 @@ import javax.annotation.Nullable;
  * Products, other houses of the owner and the Locate positions are made up too; the journal is the real one.
  */
 public final class HouseDemo implements HouseSource {
-    public enum Scenario { TYPICAL, FULL, EMPTY, UNCHECKED, MISSING, BREEDINGOFF, PRODUCTS, MILK, MOVE, PERSONALITY, LONG, CROWDED }
+    public enum Scenario { TYPICAL, FULL, EMPTY, UNCHECKED, MISSING, BREEDINGOFF, PRODUCTS, MILK, MOVE, PERSONALITY, LONG, CROWDED, RECOVERING }
 
     public static final String MILK = "*Container_Bucket_State_Filled_Milk";
     /** Where the demo pretends the player stands, for Locate. */
@@ -120,6 +120,15 @@ public final class HouseDemo implements HouseSource {
                 d.habitat(false, 0.35f, "lily_pads", "reeds");
                 d.resident("Lily", 2, 0.35f, false, false);
                 d.resident("Croaker", 4, 0.48f, false, true, "hardy");
+                yield d;
+            }
+            case RECOVERING -> {
+                HouseDemo d = new HouseDemo(owner, "cow", "CozyRanch_House_CowBarn", 4);
+                d.habitat(true, 0.72f, "open_space");
+                Resident killed = d.resident("Buttercup", 4, 0.86f, false, false);
+                killed.killed(System.currentTimeMillis() + 27 * 60_000L);
+                d.resident("Moose", 2, 0.55f, false, true);
+                d.initial = new HouseView.PageState(killed.record().animalId, false);
                 yield d;
             }
             case BREEDINGOFF -> {
@@ -262,6 +271,11 @@ public final class HouseDemo implements HouseSource {
             record.feedBonusUntilMs = untilMs;
             return this;
         }
+
+        void killed(long cooldownUntilMs) {
+            record.state = AnimalRecord.State.MISSING;
+            record.deathCooldownUntilMs = cooldownUntilMs;
+        }
     }
 
     private void follower(@Nullable String name, int hearts) {
@@ -397,6 +411,11 @@ public final class HouseDemo implements HouseSource {
             animal.state = AnimalRecord.State.ACTIVE;
             inside.remove(animal.animalId);
             return Result.OK;
+        }
+
+        @Override
+        public boolean recover(@Nonnull com.hypixel.hytale.server.core.universe.world.World world, @Nonnull AnimalRecord animal) {
+            return false;
         }
 
         @Override

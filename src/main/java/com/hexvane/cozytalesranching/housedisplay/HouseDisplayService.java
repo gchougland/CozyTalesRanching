@@ -1,5 +1,6 @@
 package com.hexvane.cozytalesranching.housedisplay;
 
+import com.hexvane.cozytalesranching.RanchChunks;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.AnimalSkins;
 import com.hexvane.cozytalesranching.animal.Ranch;
@@ -16,7 +17,6 @@ import com.hypixel.hytale.component.RemoveReason;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.SystemType;
 import com.hypixel.hytale.component.system.QuerySystem;
-import com.hypixel.hytale.math.util.ChunkUtil;
 import com.hypixel.hytale.math.vector.Rotation3f;
 import com.hypixel.hytale.protocol.AnimationSlot;
 import com.hypixel.hytale.server.core.asset.type.model.config.Model;
@@ -29,7 +29,6 @@ import com.hypixel.hytale.server.core.modules.entity.component.ModelComponent;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.modules.entity.tracker.NetworkId;
 import com.hypixel.hytale.server.core.universe.world.World;
-import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.NPCPlugin;
 import com.hypixel.hytale.server.spawning.ISpawnableWithModel;
@@ -60,7 +59,7 @@ import org.joml.Vector3d;
  * World thread only, outside system ticks (world tasks, house day hooks, events relayed with
  * {@code world.execute}). What is shown is kept in memory: the entities are {@code NonSerialized}, so a save
  * never stores them, a chunk unload drops them and a restart starts with none; the next check makes them again.
- * They are only made where the section ticks ({@link #isTicking}), and a parked copy the game adds back later is
+ * They are only made where the section ticks ({@link RanchChunks#isTicking}), and a parked copy the game adds back later is
  * removed on arrival ({@link DisplayCleanupSystem}).
  */
 final class HouseDisplayService {
@@ -110,7 +109,7 @@ final class HouseDisplayService {
         }
         Store<EntityStore> store = world.getEntityStore().getStore();
         HouseShows shows = SHOWN.get(house.houseId);
-        if (!isTicking(world, house.x, house.y, house.z)) {
+        if (!RanchChunks.isTicking(world, house.x, house.y, house.z)) {
             if (shows != null) shows.slots.values().removeIf(s -> !s.ref().isValid());
             return;
         }
@@ -153,7 +152,7 @@ final class HouseDisplayService {
                 Spec spec = spec(points.get(e.getKey()), house, byId.get(e.getValue()));
                 if (spec == null) continue;
                 // a point can sit in another section than the house block
-                if (!isTicking(world, spec.at().x(), spec.at().y(), spec.at().z())) continue;
+                if (!RanchChunks.isTicking(world, spec.at().x(), spec.at().y(), spec.at().z())) continue;
                 Ref<EntityStore> ref = spawn(store, spec, byId.get(e.getValue()));
                 if (ref == null) {
                     // something removed it as it was added: the rest would likely go the same way, so wait
@@ -337,18 +336,5 @@ final class HouseDisplayService {
 
     private static void remove(@Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref) {
         if (ref.isValid()) store.removeEntity(ref, RemoveReason.REMOVE);
-    }
-
-    /**
-     * True if the section holding this point is loaded and ticking. A loaded chunk is not enough: an entity added
-     * to a non-ticking section (no players near) is taken out of the world at once and parked in the section as a
-     * holder, even a never-saved one, and comes back when the section ticks again, by then no longer tracked here.
-     */
-    static boolean isTicking(@Nonnull World world, double x, double y, double z) {
-        ChunkStore chunks = world.getChunkStore();
-        Ref<ChunkStore> section = chunks.getChunkSectionReference(
-            ChunkUtil.chunkCoordinate(x), ChunkUtil.chunkCoordinate(y), ChunkUtil.chunkCoordinate(z));
-        return section != null && section.isValid()
-            && !chunks.getStore().getArchetype(section).contains(ChunkStore.REGISTRY.getNonTickingComponentType());
     }
 }

@@ -134,7 +134,8 @@ public final class HousePageLayout {
                 ui.click(row + "#RNameButton", ACTION_NAME, r.id().toString());
             }
             hearts(ui, row + "#RHeart", r.hearts());
-            ui.text(row + "#RWhere", Txt.ui("where." + r.where().name().toLowerCase(java.util.Locale.ROOT)));
+            Txt where = Txt.ui("where." + r.where().name().toLowerCase(java.util.Locale.ROOT));
+            ui.text(row + "#RWhere", r.where() == HouseView.Where.RECOVERING ? where.with("minutes", r.backInMinutes()) : where);
             ui.click(list, ACTION_SELECT, r.id().toString());
         }
     }
@@ -151,6 +152,7 @@ public final class HousePageLayout {
         ui.text("#LocateButton", Txt.ui("button.locate"));
         ui.click("#LocateButton", ACTION_LOCATE, id);
         ui.text("#ResummonButton", Txt.ui("button.callback"));
+        ui.set("#ResummonButton.Disabled", r.where() == HouseView.Where.RECOVERING);
         ui.click("#ResummonButton", ACTION_CALL_BACK, id);
         boolean canMove = !view.moveTargets().isEmpty();
         ui.set("#MoveButton.Visible", canMove);

@@ -17,6 +17,7 @@ import com.hypixel.hytale.component.Holder;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.math.vector.Rotation3f;
+import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.asset.type.item.config.Item;
 import com.hypixel.hytale.server.core.entity.ItemUtils;
 import com.hypixel.hytale.server.core.entity.entities.Player;
@@ -87,6 +88,26 @@ public final class ProduceService implements Ranch.ProduceStorage {
             }
         }
         return ProduceRules.Mode.HOUSE;
+    }
+
+    /** True when any species collects this item into a bucket. A gone house's stock no longer says whose it was. */
+    static boolean isBucketProduct(@Nonnull String itemId) {
+        for (SpeciesDefinition s : SpeciesRegistry.all()) {
+            for (SpeciesDefinition.Product p : s.allProducts()) {
+                if (itemId.equals(p.Item) && ProduceRules.mode(p.Collect) == ProduceRules.Mode.BUCKET) return true;
+            }
+        }
+        return false;
+    }
+
+    /** True when any species' house makes this item. */
+    static boolean isProduct(@Nonnull String itemId) {
+        for (SpeciesDefinition s : SpeciesRegistry.all()) {
+            for (SpeciesDefinition.Product p : s.allProducts()) {
+                if (itemId.equals(p.Item) && ProduceRules.mode(p.Collect) != ProduceRules.Mode.NONE) return true;
+            }
+        }
+        return false;
     }
 
     // ---------------------------------------------------------------- production
@@ -195,23 +216,45 @@ public final class ProduceService implements Ranch.ProduceStorage {
 
     // ---------------------------------------------------------------- a house goes
 
-    /** Fired by the house role on the world thread after the record is removed. The products drop at the door. */
+    /**
+     * Fired by the house role on the world thread after the record is removed. The products drop at the door, and an
+     * online owner hears how much milk went with the house, after the house's own message.
+     */
     void onHouseRemoved(@Nonnull RanchHouseRemovedEvent event) {
-        retire(event.getHouseId(), "the house was removed");
+        ProduceStore.Stock gone = retire(event.getHouseId(), "the house was removed");
+        int milkLost = gone == null ? 0 : ProduceRules.lostWithGoneHouse(gone.Items, ProduceService::isBucketProduct);
         World world = Universe.get().getWorld(event.getWorldName());
-        if (world != null) world.execute(() -> dropPending(world));
+        PlayerRef owner = milkLost > 0 && event.getOwnerId() != null ? Universe.get().getPlayer(event.getOwnerId()) : null;
+        if (world == null) {
+            if (owner != null) tellMilkLost(owner, milkLost);
+            return;
+        }
+        world.execute(() -> {
+            dropPending(world);
+            if (owner != null) tellMilkLost(owner, milkLost);
+        });
     }
 
-    private void retire(@Nonnull UUID houseId, @Nonnull String why) {
+    /** Always shown: the player cannot see this happen, and it is why the next barn's milk should be collected first. */
+    private static void tellMilkLost(@Nonnull PlayerRef owner, int count) {
+        owner.sendMessage(Message.translation("cozyranch_produce.house.milk_lost").param("count", count));
+    }
+
+    @Nullable
+    private ProduceStore.Stock retire(@Nonnull UUID houseId, @Nonnull String why) {
         ProduceStore.Stock s = store.retire(houseId);
         if (s != null) {
-            LOG.info("House " + houseId + " is gone (" + why + "); " + s.total() + " product(s) will drop at "
+            LOG.info("House " + houseId + " is gone (" + why + ") with " + s.total() + " product(s) waiting; its drop point is "
                 + fmt(s.X) + " " + fmt(s.Y) + " " + fmt(s.Z));
         }
         store.scheduleSave();
+        return s;
     }
 
-    /** Drops waiting products of gone houses whose drop point is in a loaded chunk. World thread, outside ticks. */
+    /**
+     * Drops waiting products of gone houses whose drop point is in a loaded chunk, all but bucket products
+     * ({@link ProduceRules#dropsOfGoneHouse}), including those of a house that went before that rule. World thread, outside ticks.
+     */
     void dropPending(@Nonnull World world) {
         List<ProduceStore.Stock> drops = store.pendingDrops(world.getName());
         if (drops.isEmpty()) return;
@@ -220,14 +263,15 @@ public final class ProduceService implements Ranch.ProduceStorage {
         for (ProduceStore.Stock s : drops) {
             int bx = (int) Math.floor(s.X), by = (int) Math.floor(s.Y), bz = (int) Math.floor(s.Z);
             if (!reader.hasStorageInMemory(bx, by, bz)) continue;
-            List<ItemStack> stacks = stacks(s.Items);
+            Map<String, Integer> dropping = ProduceRules.dropsOfGoneHouse(s.Items, ProduceService::isBucketProduct);
+            List<ItemStack> stacks = stacks(dropping);
             if (!stacks.isEmpty()) {
                 Holder<EntityStore>[] holders = ItemComponent.generateItemDrops(es, stacks, new Vector3d(s.X, s.Y + 0.5, s.Z), Rotation3f.IDENTITY);
                 es.addEntities(holders, AddReason.SPAWN);
             }
             store.dropped(s);
-            LOG.info("Dropped " + s.total() + " product(s) of house " + s.HouseId + " in " + s.World + " at "
-                + fmt(s.X) + " " + fmt(s.Y) + " " + fmt(s.Z) + ": " + s.Items);
+            LOG.info("Dropped " + dropping + " of house " + s.HouseId + " in " + s.World + " at "
+                + fmt(s.X) + " " + fmt(s.Y) + " " + fmt(s.Z) + ", of the " + s.Items + " waiting there");
         }
         store.scheduleSave();
     }

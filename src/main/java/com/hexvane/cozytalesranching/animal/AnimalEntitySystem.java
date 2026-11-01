@@ -162,6 +162,7 @@ final class AnimalEntitySystem extends RefSystem<EntityStore> {
                 boolean changed = verdict == AnimalStore.Verdict.CURRENT_CAUGHT_UP;
                 if (r.state == AnimalRecord.State.MISSING) {
                     r.state = AnimalRecord.State.ACTIVE;
+                    r.deathCooldownUntilMs = 0;
                     changed = true;
                 }
                 if (!world.getName().equals(r.worldName)) {

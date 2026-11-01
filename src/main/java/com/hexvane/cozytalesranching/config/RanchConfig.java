@@ -38,6 +38,7 @@ public final class RanchConfig {
     private int maxAnimalsPerPlayer = 64;
     private double saveDebounceSeconds = 10.0;
     private int recoveryDelaySeconds = 60;
+    private int deathRespawnCooldownMinutes = 30;
     private int homeRangeRadius = 10;
     private int troughRange = 8;
     private int breedingMinHearts = 3;
@@ -65,6 +66,7 @@ public final class RanchConfig {
         .append(new KeyedCodec<>("MaxAnimalsPerPlayer", Codec.INTEGER), (c, v) -> c.maxAnimalsPerPlayer = v, c -> c.maxAnimalsPerPlayer).add()
         .append(new KeyedCodec<>("SaveDebounceSeconds", Codec.DOUBLE), (c, v) -> c.saveDebounceSeconds = v, c -> c.saveDebounceSeconds).add()
         .append(new KeyedCodec<>("RecoveryDelaySeconds", Codec.INTEGER), (c, v) -> c.recoveryDelaySeconds = v, c -> c.recoveryDelaySeconds).add()
+        .append(new KeyedCodec<>("DeathRespawnCooldownMinutes", Codec.INTEGER), (c, v) -> c.deathRespawnCooldownMinutes = v, c -> c.deathRespawnCooldownMinutes).add()
         .append(new KeyedCodec<>("HomeRangeRadius", Codec.INTEGER), (c, v) -> c.homeRangeRadius = v, c -> c.homeRangeRadius).add()
         .append(new KeyedCodec<>("TroughRange", Codec.INTEGER), (c, v) -> c.troughRange = v, c -> c.troughRange).add()
         .append(new KeyedCodec<>("BreedingMinHearts", Codec.INTEGER), (c, v) -> c.breedingMinHearts = v, c -> c.breedingMinHearts).add()
@@ -134,6 +136,13 @@ public final class RanchConfig {
     public int maxAnimalsPerPlayer() { return Math.max(1, maxAnimalsPerPlayer); }
     public double saveDebounceSeconds() { return Math.max(1.0, saveDebounceSeconds); }
     public int recoveryDelaySeconds() { return Math.max(5, recoveryDelaySeconds); }
+    /** How long a killed animal stays gone before it can come back. 0 turns the wait off. */
+    public int deathRespawnCooldownMinutes() { return Math.max(0, deathRespawnCooldownMinutes); }
+    /** For {@code /ranch admin deathrules}: until the next restart, not written to the file. */
+    public void setForTest(boolean protectOwned, int cooldownMinutes) {
+        protectOwnedAnimals = protectOwned;
+        deathRespawnCooldownMinutes = cooldownMinutes;
+    }
     /** At least 8: the animal roles wander 6 blocks from the door, and a smaller range sends them home all day. */
     public int homeRangeRadius() { return Math.clamp(homeRangeRadius, 8, 32); }
     public int troughRange() { return Math.clamp(troughRange, 2, 16); }

@@ -1,5 +1,6 @@
 package com.hexvane.cozytalesranching.house;
 
+import com.hexvane.cozytalesranching.RanchChunks;
 import com.hexvane.cozytalesranching.RanchSounds;
 import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
@@ -144,12 +145,14 @@ final class HouseResidents {
 
     /**
      * Brings a stored (or lost) resident out just outside the door as a new incarnation. Any loaded older
-     * entity is removed first; an unloaded one becomes stale by the generation bump. Returns false if no
-     * role or safe spot was found (the record is left as it was).
+     * entity is removed first; an unloaded one becomes stale by the generation bump. It is tagged as it is
+     * made: untagged, another lost animal of its kind nearby would take it for itself ({@code OrphanRelink}).
+     * Returns false if the door is not ticking ({@link RanchChunks#isTicking}; the game's spawn test refuses
+     * every spot there), or no role or safe spot was found (the record is left as it was).
      */
     static boolean bringOut(@Nonnull World world, @Nonnull Store<EntityStore> store, @Nonnull HouseRecord house, @Nonnull AnimalRecord r) {
         NPCPlugin npcs = NPCPlugin.get();
-        if (npcs == null || !HouseBlocks.isLoaded(world, house.doorX, house.doorZ)) return false;
+        if (npcs == null || !RanchChunks.isTicking(world, house.doorX, house.doorY, house.doorZ)) return false;
         Set<String> candidates = roleCandidates(r);
         for (String role : candidates) {
             int roleIndex = npcs.getIndex(role);
@@ -172,18 +175,15 @@ final class HouseResidents {
                 }
                 store.removeEntity(old, RemoveReason.REMOVE);
             }
-            var spawned = npcs.spawnEntity(store, roleIndex, spot.pos, new Rotation3f(0f, (float) (Math.random() * Math.PI * 2), 0f), spot.model, null);
+            var spawned = npcs.spawnEntity(store, roleIndex, spot.pos, new Rotation3f(0f, (float) (Math.random() * Math.PI * 2), 0f), spot.model, (made, holder, s) -> {
+                UUIDComponent uuid = holder.getComponent(UUIDComponent.getComponentType());
+                if (uuid != null) Ranch.animals().bindHolder(r, holder, uuid.getUuid());
+            }, null);
             if (spawned == null || spawned.first() == null || !spawned.first().isValid()) {
                 log("Ranch animal " + r.animalId + " cannot come out of house " + house.houseId + ": spawning " + role + " failed");
                 return false;
             }
             Ref<EntityStore> ref = spawned.first();
-            UUIDComponent uuid = store.getComponent(ref, UUIDComponent.getComponentType());
-            if (uuid == null) {
-                store.removeEntity(ref, RemoveReason.REMOVE);
-                return false;
-            }
-            Ranch.animals().bindEntity(r, ref, uuid.getUuid(), store);
             r.state = AnimalRecord.State.ACTIVE;
             r.following = false;
             r.spawnRole = role;
