@@ -28,6 +28,12 @@ public interface HouseService {
     /** Lets wild animals of the house's kind come to visit, or stops them (a visitor there walks off). */
     @Nonnull Result setVisitors(@Nonnull PlayerRef actor, @Nonnull HouseRecord house, boolean enabled);
 
+    /**
+     * Lets a resident go back to the wild: it leaves the house, stops being a ranch animal and gets its wild role back.
+     * A resident inside comes out at the door first, so a wild animal is really there. Owner (or manage-any) only.
+     */
+    @Nonnull Result release(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal);
+
     /** Brings a resident back to the door: from inside, or if lost or far away. */
     @Nonnull Result resummon(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal);
 
@@ -47,6 +53,7 @@ public interface HouseService {
         @Nonnull @Override public Result setBreeding(@Nonnull PlayerRef actor, @Nonnull HouseRecord house, boolean enabled) { return Result.UNAVAILABLE; }
         @Nonnull @Override public Result setVisitors(@Nonnull PlayerRef actor, @Nonnull HouseRecord house, boolean enabled) { return Result.UNAVAILABLE; }
         @Nonnull @Override public Result resummon(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal) { return Result.UNAVAILABLE; }
+        @Nonnull @Override public Result release(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal) { return Result.UNAVAILABLE; }
         @Override public boolean recover(@Nonnull World world, @Nonnull AnimalRecord animal) { return false; }
         @Override public boolean isInside(@Nonnull UUID animalId) { return false; }
     };

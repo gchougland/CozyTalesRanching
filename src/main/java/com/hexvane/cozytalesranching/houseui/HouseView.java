@@ -32,7 +32,8 @@ public record HouseView(
     @Nullable Resident selected,
     boolean picking,
     @Nonnull List<MoveTarget> moveTargets,
-    boolean borderOn
+    boolean borderOn,
+    boolean releasing
 ) {
     public static final int MAX_HEARTS = 5;
     public static final int MAX_TRAITS = 2;
@@ -86,9 +87,16 @@ public record HouseView(
         return products.stream().anyMatch(p -> needsBucket(p.itemId()));
     }
 
-    /** What the page remembers between builds: the selected resident and whether the move picker is open. */
-    public record PageState(@Nullable UUID selected, boolean picking) {
+    /**
+     * What the page remembers between builds: the selected resident, whether the move picker is open, and whether
+     * Release was pressed once (the next press lets the selected resident go).
+     */
+    public record PageState(@Nullable UUID selected, boolean picking, boolean releasing) {
         public static final PageState NONE = new PageState(null, false);
+
+        public PageState(@Nullable UUID selected, boolean picking) {
+            this(selected, picking, false);
+        }
     }
 
     /**
@@ -133,7 +141,8 @@ public record HouseView(
         boolean picking = state.picking() && !targets.isEmpty();
         int capacity = Math.max(1, house.capacity);
         return new HouseView(title, speciesName, residents.size(), capacity, rows, habitat(house, species, counts),
-            house.breedingEnabled, house.visitorsEnabled, follow, custom, notice, products, selected, picking, targets, borderOn);
+            house.breedingEnabled, house.visitorsEnabled, follow, custom, notice, products, selected, picking, targets, borderOn,
+            state.releasing() && selected != null && selected.id().equals(state.selected()));
     }
 
     /** Whole minutes of a killed animal's cooldown left, rounded up so it never says 0 while it still waits; 0 for no cooldown. */

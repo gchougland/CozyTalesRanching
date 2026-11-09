@@ -189,8 +189,15 @@ $C.@PageOverlay {
               }
 
               $C.@SmallTertiaryTextButton #MoveOutButton {
-                @Anchor = (Width: 112, Top: 10);
+                @Anchor = (Width: 112, Right: 6, Top: 10);
                 @Text = "";
+              }
+
+              $C.@SmallTertiaryTextButton #ReleaseButton {
+                @Anchor = (Width: 104, Top: 10);
+                @Text = "";
+                TextTooltipStyle: $C.@DefaultTextTooltipStyle;
+                Visible: false;
               }
             }
 

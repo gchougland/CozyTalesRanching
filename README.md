@@ -67,6 +67,7 @@ Settings live in `RanchConfig.json` in the mod's data folder (written on first s
 | `AdoptVanillaTamed` | true | Animals tamed the vanilla way join the ranch |
 | `ProtectOwnedAnimals` | true | Players cannot hurt owned animals; lost animals come back |
 | `ProtectFromHostileMobs` | true | Hostile mobs cannot hurt owned animals |
+| `AllowRaiding` | false | With `ProtectOwnedAnimals` on, other players can still kill owned animals (farm raiding); the owner cannot |
 | `BreedingEnabled` | true | Turn breeding off server wide |
 | `ShowNameplates` | true | Names above animals' heads |
 | `ClaimsIntegration` | true | Houses follow QuestLines Claims permissions |

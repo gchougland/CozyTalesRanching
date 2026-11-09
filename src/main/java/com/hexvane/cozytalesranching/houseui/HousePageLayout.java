@@ -32,6 +32,7 @@ public final class HousePageLayout {
     public static final String ACTION_REFRESH = "Refresh";
     public static final String ACTION_BORDER = "Border";
     public static final String ACTION_NAME = "Name";
+    public static final String ACTION_RELEASE = "Release";
 
     /** Product chips that fit beside the Collect button; with more kinds, one chip's place shows "+N more". */
     public static final int MAX_CHIPS = 5;
@@ -162,6 +163,13 @@ public final class HousePageLayout {
         }
         ui.text("#MoveOutButton", Txt.ui("button.moveout"));
         ui.click("#MoveOutButton", ACTION_MOVE_OUT, id);
+        // owner (or manage-any) only; the first press asks, the second lets it go
+        ui.set("#ReleaseButton.Visible", r.nameable());
+        if (r.nameable()) {
+            ui.text("#ReleaseButton", Txt.ui(view.releasing() ? "button.release.confirm" : "button.release"));
+            ui.tooltip("#ReleaseButton", Txt.ui("tooltip.release"));
+            ui.click("#ReleaseButton", ACTION_RELEASE, id);
+        }
         if (!view.picking()) return;
         ui.text("#MoveTitle", Txt.ui("move.title").with("name", r.name()));
         ui.text("#MoveCancel", Txt.ui("button.cancel"));

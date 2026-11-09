@@ -30,6 +30,8 @@ public final class RanchConfig {
     private String[] disabledSpecies = new String[0];
     private boolean protectOwnedAnimals = true;
     private boolean protectFromHostileMobs = true;
+    /** With ProtectOwnedAnimals on: other players can still kill owned animals (raiding); the owner cannot. */
+    private boolean allowRaiding = false;
     private boolean breedingEnabled = true;
     private double followTeleportDistance = 24.0;
     private double followStuckSeconds = 6.0;
@@ -58,6 +60,7 @@ public final class RanchConfig {
         .append(new KeyedCodec<>("DisabledSpecies", Codec.STRING_ARRAY), (c, v) -> c.disabledSpecies = v, c -> c.disabledSpecies).add()
         .append(new KeyedCodec<>("ProtectOwnedAnimals", Codec.BOOLEAN), (c, v) -> c.protectOwnedAnimals = v, c -> c.protectOwnedAnimals).add()
         .append(new KeyedCodec<>("ProtectFromHostileMobs", Codec.BOOLEAN), (c, v) -> c.protectFromHostileMobs = v, c -> c.protectFromHostileMobs).add()
+        .append(new KeyedCodec<>("AllowRaiding", Codec.BOOLEAN), (c, v) -> c.allowRaiding = v, c -> c.allowRaiding).add()
         .append(new KeyedCodec<>("BreedingEnabled", Codec.BOOLEAN), (c, v) -> c.breedingEnabled = v, c -> c.breedingEnabled).add()
         .append(new KeyedCodec<>("FollowTeleportDistance", Codec.DOUBLE), (c, v) -> c.followTeleportDistance = v, c -> c.followTeleportDistance).add()
         .append(new KeyedCodec<>("FollowStuckSeconds", Codec.DOUBLE), (c, v) -> c.followStuckSeconds = v, c -> c.followStuckSeconds).add()
@@ -128,6 +131,8 @@ public final class RanchConfig {
     @Nonnull public Set<String> ignoredComponentClasses() { return java.util.Arrays.stream(ignoredComponentClasses).collect(Collectors.toUnmodifiableSet()); }
     public boolean protectOwnedAnimals() { return protectOwnedAnimals; }
     public boolean protectFromHostileMobs() { return protectFromHostileMobs; }
+    /** Players other than the owner may hurt owned animals; the owner still cannot (needs ProtectOwnedAnimals). */
+    public boolean allowRaiding() { return allowRaiding; }
     public boolean breedingEnabled() { return breedingEnabled; }
     public double followTeleportDistance() { return Math.max(8.0, followTeleportDistance); }
     public double followStuckSeconds() { return Math.max(2.0, followStuckSeconds); }

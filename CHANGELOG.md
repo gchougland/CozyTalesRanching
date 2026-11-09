@@ -2,7 +2,19 @@
 
 All notable changes to Cozy Tales: Ranching are documented in this file.
 
-## [0.6.3] - 10/27/2026
+## [0.6.4] - 11/9/2026
+
+### Added
+
+- **Farm raiding option:** server owners can set `AllowRaiding` to true in the config. Owners still cannot hurt their own animals by accident, but other players can kill them, so farms can be raided. A raided animal comes back after `DeathRespawnCooldownMinutes`, like any killed animal. Off by default.
+- **Release from the house page:** select a resident and press Release, then Confirm?, to let it go back to the wild. An animal inside the house comes out at the door first. Only the animal's owner can release it.
+
+### Fixed
+
+- **Config updates:** an existing `RanchConfig.json` now gets any new settings added with their defaults at start and on `/ranch reload`, so new options like `AllowRaiding` show up without deleting the file. Values you set are kept.
+- **Lost tankards:** the dough recipes with duck eggs and skrill eggs now give the empty tankard back, like the vanilla dough recipe.
+
+## [0.6.3] - 11/1/2026
 
 ### Fixed
 

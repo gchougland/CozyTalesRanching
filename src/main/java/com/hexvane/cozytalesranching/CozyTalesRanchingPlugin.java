@@ -83,10 +83,7 @@ public final class CozyTalesRanchingPlugin extends JavaPlugin {
 
     @Override
     protected void start() {
-        if (!Files.exists(getDataDirectory().resolve("RanchConfig.json"))) {
-            config.save();
-            getLogger().atInfo().log("Created default RanchConfig.json in %s", getDataDirectory());
-        }
+        fillConfigDefaults();
 
         if (!this.getManifest().includesAssetPack()) {
             return;
@@ -110,9 +107,19 @@ public final class CozyTalesRanchingPlugin extends JavaPlugin {
         }
     }
 
+    /** Writes RanchConfig.json when missing, or adds settings newer versions brought, keeping every value already set. */
+    private void fillConfigDefaults() {
+        java.nio.file.Path file = getDataDirectory().resolve("RanchConfig.json");
+        boolean existed = Files.exists(file);
+        java.util.List<String> added = com.hexvane.cozytalesranching.config.ConfigDefaults.fill(config, RanchConfig.CODEC, file);
+        if (!existed) getLogger().atInfo().log("Created default RanchConfig.json in %s", getDataDirectory());
+        else if (!added.isEmpty()) getLogger().atInfo().log("Added new settings to RanchConfig.json with their defaults: %s", String.join(", ", added));
+    }
+
     /** Re-reads RanchConfig.json and the species files. */
     public void reload() {
         config.load().join();
+        fillConfigDefaults();
         RanchConfig.bind(config.get());
         SpeciesRegistry.load(getDataDirectory());
         com.hexvane.cozytalesranching.breeding.TraitRegistry.load(getDataDirectory());

@@ -389,6 +389,13 @@ public final class HouseDemo implements HouseSource {
         }
 
         @Nonnull @Override
+        public Result release(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal) {
+            animal.houseId = null;
+            inside.remove(animal.animalId);
+            return Result.OK;
+        }
+
+        @Nonnull @Override
         public Result rename(@Nonnull PlayerRef actor, @Nonnull HouseRecord h, @Nullable String name) {
             h.name = name;
             return Result.OK;

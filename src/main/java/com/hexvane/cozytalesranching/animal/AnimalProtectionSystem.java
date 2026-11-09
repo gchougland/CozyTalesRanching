@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 /**
  * Makes owned ranch animals invulnerable ({@link ProtectionRules}): with {@code ProtectOwnedAnimals} on (default) no
  * player (the owner included, so a stray swing never kills a pet) and nothing in the world (falls, drowning, fire,
- * suffocation) hurts them; with {@code ProtectFromHostileMobs} on (default) no creature does either. A hit whose attacker
+ * suffocation) hurts them (with {@code AllowRaiding} on, only the owner is kept off: other players can kill them); with {@code ProtectFromHostileMobs} on (default) no creature does either. A hit whose attacker
  * is gone (an arrow or bomb still flying, a burn or poison still ticking after the mob that started it died) is cancelled
  * under either switch. A cancelled hit does not knock the animal back either. Below the world's
  * floor the engine kills without a damage event; recovery brings the animal back.
@@ -85,9 +85,11 @@ final class AnimalProtectionSystem extends DamageEventSystem {
         Ref<EntityStore> attacker = src instanceof Damage.EntitySource source ? source.getRef() : null;
         boolean attackerValid = attacker != null && attacker.isValid();
         boolean orphanEffect = src instanceof ActiveEntityEffect effect && effect.getOwner() != null;
-        ProtectionRules.Source from = ProtectionRules.classify(attacker != null, attackerValid,
-            attackerValid && cb.getComponent(attacker, Player.getComponentType()) != null, orphanEffect);
-        if (!ProtectionRules.cancels(true, from, players, mobs)) return;
+        boolean attackerIsPlayer = attackerValid && cb.getComponent(attacker, Player.getComponentType()) != null;
+        UUIDComponent attackerUuid = attackerIsPlayer ? cb.getComponent(attacker, uuidType) : null;
+        boolean attackerIsOwner = attackerUuid != null && r.ownerId.equals(attackerUuid.getUuid());
+        ProtectionRules.Source from = ProtectionRules.classify(attacker != null, attackerValid, attackerIsPlayer, attackerIsOwner, orphanEffect);
+        if (!ProtectionRules.cancels(true, from, players, mobs, config.allowRaiding())) return;
         damage.setCancelled(true);
         // as vanilla does for a cancelled hit (spawn protection, no PvP): the blow does not fling the animal either
         if (damage.getIfPresentMetaObject(Damage.KNOCKBACK_COMPONENT) != null) cb.tryRemoveComponent(self, KnockbackComponent.getComponentType());

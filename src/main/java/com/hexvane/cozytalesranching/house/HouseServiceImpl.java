@@ -5,6 +5,7 @@ import com.hexvane.cozytalesranching.animal.AnimalRecord;
 import com.hexvane.cozytalesranching.animal.Ranch;
 import com.hexvane.cozytalesranching.api.event.AnimalHouseAssignedEvent;
 import com.hexvane.cozytalesranching.api.event.RanchEvents;
+import com.hexvane.cozytalesranching.taming.TamingApi;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
@@ -78,6 +79,29 @@ final class HouseServiceImpl implements HouseService {
         animal.houseId = null;
         Ranch.animals().markDirty(animal);
         RanchEvents.fire(new AnimalHouseAssignedEvent(animal.view(), previous, null));
+        return Result.OK;
+    }
+
+    @Nonnull @Override
+    public Result release(@Nonnull PlayerRef actor, @Nonnull AnimalRecord animal) {
+        if (animal.houseId == null || Ranch.animals().get(animal.animalId).isEmpty()) return Result.NOT_FOUND;
+        UUID id = actor.getUuid();
+        boolean admin = RanchPermissions.has(id, RanchPermissions.ADMIN_MANAGE_ANY);
+        if (!id.equals(animal.ownerId) && !admin) return Result.NOT_OWNER;
+        if (!admin && !RanchPermissions.has(id, RanchPermissions.RELEASE)) return Result.NO_PERMISSION;
+        UUID previous = animal.houseId;
+        HouseRecord house = Ranch.houses().get(previous).orElse(null);
+        World world = house != null ? Universe.get().getWorld(house.worldName) : null;
+        if (world == null) return Result.UNAVAILABLE;
+        Store<EntityStore> store = world.getEntityStore().getStore();
+        // inside, the animal has no entity: bring it out first so there is a wild animal to let go
+        if (animal.state == AnimalRecord.State.STORED && !HouseResidents.bringOut(world, store, house, animal)) return Result.UNAVAILABLE;
+        Ref<EntityStore> ref = HouseResidents.live(world, animal);
+        if (ref != null) HouseResidents.releaseHome(ref, store);
+        HouseDaySystem.forget(animal.animalId);
+        animal.houseId = null;
+        RanchEvents.fire(new AnimalHouseAssignedEvent(animal.view(), previous, null));
+        TamingApi.release(animal, ref, actor, store);
         return Result.OK;
     }
 

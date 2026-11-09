@@ -197,6 +197,18 @@ public final class HousePage extends InteractiveCustomUIPage<HousePage.Event> {
                 state = HouseView.PageState.NONE;
                 return Txt.ui("result.moved").with("name", name).with("house", houseName(target));
             }
+            case HousePageLayout.ACTION_RELEASE -> {
+                if (!canName(animal)) return failure(HouseService.Result.NOT_OWNER);
+                if (!state.releasing() || !animal.animalId.equals(state.selected())) {
+                    state = new HouseView.PageState(animal.animalId, false, true);
+                    return Txt.ui("result.release.ask").with("name", name);
+                }
+                state = new HouseView.PageState(animal.animalId, false);
+                HouseService.Result result = service.release(playerRef, animal);
+                if (result != HouseService.Result.OK) return failure(result);
+                state = HouseView.PageState.NONE;
+                return Txt.ui("result.released").with("name", name);
+            }
             case HousePageLayout.ACTION_MOVE_OUT, HousePageLayout.ACTION_CALL_BACK -> {
                 state = new HouseView.PageState(animal.animalId, false);
                 boolean out = action.equals(HousePageLayout.ACTION_MOVE_OUT);
